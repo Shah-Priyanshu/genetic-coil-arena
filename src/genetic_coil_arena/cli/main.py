@@ -2,13 +2,17 @@
 
 import typer
 from pathlib import Path
-from typing import Optional
+from typing import Optional, List
 import sys
 import yaml
+from datetime import datetime
 
 from ..config import Config
 from ..evo.arena import EvolutionArena
 from ..snake_core.agent import SnakeAgent, get_observation_size
+# Add persistence imports
+from ..persistence.arena import PersistentEvolutionArena, list_experiments
+from ..persistence import ModelPersistence
 
 app = typer.Typer(
     name="genetic-coil",
@@ -37,8 +41,23 @@ def evolve(
     seed: Optional[int] = typer.Option(
         None, "--seed", help="Random seed for reproducibility"
     ),
+    experiment_id: Optional[str] = typer.Option(
+        None, "--experiment", "-e", help="Resume existing experiment ID"
+    ),
+    description: str = typer.Option(
+        "", "--description", "-d", help="Experiment description"
+    ),
+    tags: List[str] = typer.Option(
+        [], "--tag", help="Experiment tags (can be used multiple times)"
+    ),
+    checkpoint_freq: int = typer.Option(
+        10, "--checkpoint-freq", help="Checkpoint frequency (generations)"
+    ),
+    base_path: str = typer.Option(
+        "experiments", "--base-path", help="Base directory for experiments"
+    ),
 ) -> None:
-    """Run genetic algorithm evolution to train snake agents."""
+    """Run genetic algorithm evolution to train snake agents with persistence."""
     
     # Load configuration
     if config_file and config_file.exists():
@@ -60,29 +79,49 @@ def evolve(
     if seed is not None:
         config.evaluation.deterministic_seed = seed
     
-    # Create output directory
-    config.logging.output_dir.mkdir(parents=True, exist_ok=True)
+    # Create persistent arena
+    typer.echo("Initializing persistent evolution arena...")
+    arena = PersistentEvolutionArena(
+        config=config,
+        experiment_id=experiment_id,
+        base_path=base_path,
+        checkpoint_frequency=checkpoint_freq
+    )
+    
+    if experiment_id:
+        typer.echo(f"Resumed experiment: {experiment_id}")
+    else:
+        # Set description and tags for new experiment
+        if hasattr(arena, 'metadata') and arena.metadata:
+            arena.metadata.description = description
+            arena.metadata.tags = tags
+        typer.echo(f"Created new experiment: {arena.experiment_id}")
+    
+    summary = arena.get_experiment_summary()
+    typer.echo(f"Current generation: {summary['current_generation']}")
+    typer.echo(f"Population size: {summary['population_size']}")
     
     # Run evolution
     typer.echo("Starting evolution...")
-    arena = EvolutionArena(config)
     
     try:
-        result = arena.evolve()
+        result = arena.evolve(generations=generations or config.evolution.generations, verbose=True)
         
         typer.echo(f"\n✅ Evolution completed!")
-        typer.echo(f"Best fitness: {result.hall_of_fame[0].fitness:.3f}")
-        typer.echo(f"Total time: {result.total_time:.2f} seconds")
-        typer.echo(f"Results saved to: {config.logging.output_dir}")
+        typer.echo(f"Experiment ID: {arena.experiment_id}")
+        typer.echo(f"Final generation: {arena.generation}")
+        typer.echo(f"Results saved to: {arena.experiment_path}")
         
-        if result.converged:
-            typer.echo(f"Converged at generation {result.convergence_generation}")
+        if 'final_best_fitness' in result:
+            typer.echo(f"Best fitness: {result['final_best_fitness']:.3f}")
         
     except KeyboardInterrupt:
         typer.echo("\n⚠️  Evolution interrupted by user")
+        typer.echo(f"Progress saved for experiment: {arena.experiment_id}")
         sys.exit(1)
     except Exception as e:
         typer.echo(f"\n❌ Error during evolution: {e}")
+        typer.echo(f"Emergency checkpoint saved for experiment: {arena.experiment_id}")
         sys.exit(1)
 
 
@@ -340,5 +379,266 @@ def info() -> None:
     typer.echo(f"Episodes per agent: {config.evaluation.episodes_per_agent}")
 
 
-if __name__ == "__main__":
-    app()
+@app.command()
+def experiments(
+    base_path: str = typer.Option("experiments", "--base-path", help="Base directory for experiments"),
+    show_details: bool = typer.Option(False, "--details", help="Show detailed information"),
+) -> None:
+    """List all available experiments."""
+    
+    try:
+        experiments = list_experiments(base_path)
+        
+        if not experiments:
+            typer.echo("No experiments found.")
+            return
+        
+        typer.echo(f"📁 Found {len(experiments)} experiments in {base_path}:")
+        typer.echo("=" * 80)
+        
+        for exp in experiments:
+            typer.echo(f"ID: {exp['experiment_id']}")
+            typer.echo(f"Created: {exp['created_at']}")
+            typer.echo(f"Generations: {exp['total_generations']}")
+            typer.echo(f"Best Fitness: {exp['best_fitness']:.4f}")
+            
+            if exp['description']:
+                typer.echo(f"Description: {exp['description']}")
+            if exp['tags']:
+                typer.echo(f"Tags: {', '.join(exp['tags'])}")
+            
+            if show_details:
+                typer.echo(f"Total Evaluations: {exp['total_evaluations']}")
+            
+            typer.echo("-" * 40)
+        
+    except Exception as e:
+        typer.echo(f"❌ Error listing experiments: {e}")
+        raise typer.Exit(1)
+
+
+@app.command()
+def resume(
+    experiment_id: str = typer.Argument(..., help="Experiment ID to resume"),
+    generations: Optional[int] = typer.Option(None, "--generations", "-g", help="Additional generations to run"),
+    base_path: str = typer.Option("experiments", "--base-path", help="Base directory for experiments"),
+) -> None:
+    """Resume an existing experiment."""
+    
+    # Load existing experiment configuration
+    exp_path = Path(base_path) / experiment_id
+    if not exp_path.exists():
+        typer.echo(f"❌ Experiment {experiment_id} not found in {base_path}")
+        raise typer.Exit(1)
+    
+    config_path = exp_path / "config.yaml"
+    if not config_path.exists():
+        typer.echo(f"❌ Configuration not found for experiment {experiment_id}")
+        raise typer.Exit(1)
+    
+    config = Config.from_yaml(config_path)
+    
+    # Create persistent arena and resume
+    arena = PersistentEvolutionArena(
+        config=config,
+        experiment_id=experiment_id,
+        base_path=base_path
+    )
+    
+    summary = arena.get_experiment_summary()
+    typer.echo(f"📊 Experiment Summary:")
+    typer.echo(f"ID: {summary['experiment_id']}")
+    typer.echo(f"Current Generation: {summary['current_generation']}")
+    typer.echo(f"Population Size: {summary['population_size']}")
+    
+    if 'current_best_fitness' in summary:
+        typer.echo(f"Current Best Fitness: {summary['current_best_fitness']:.4f}")
+    
+    # Run additional generations
+    if generations:
+        typer.echo(f"Running {generations} additional generations...")
+        try:
+            result = arena.evolve(generations=generations, verbose=True)
+            typer.echo(f"✅ Evolution completed!")
+            typer.echo(f"Final generation: {arena.generation}")
+        except KeyboardInterrupt:
+            typer.echo("\n⚠️  Evolution interrupted by user")
+            typer.echo(f"Progress saved for experiment: {arena.experiment_id}")
+        except Exception as e:
+            typer.echo(f"\n❌ Error during evolution: {e}")
+            raise typer.Exit(1)
+    else:
+        typer.echo("Use --generations to continue evolution")
+
+
+@app.command()
+def export(
+    experiment_id: str = typer.Argument(..., help="Experiment ID to export"),
+    output_file: Path = typer.Option(None, "--output", "-o", help="Output archive file (.tar.gz)"),
+    include_checkpoints: bool = typer.Option(False, "--checkpoints", help="Include checkpoint files"),
+    base_path: str = typer.Option("experiments", "--base-path", help="Base directory for experiments"),
+) -> None:
+    """Export an experiment to a portable archive."""
+    
+    if output_file is None:
+        output_file = Path(f"{experiment_id}_export.tar.gz")
+    
+    try:
+        persistence = ModelPersistence(base_path)
+        persistence.export_experiment(experiment_id, output_file, include_checkpoints)
+        
+        typer.echo(f"✅ Exported experiment {experiment_id} to {output_file}")
+        typer.echo(f"Archive size: {output_file.stat().st_size / 1024 / 1024:.1f} MB")
+        
+    except Exception as e:
+        typer.echo(f"❌ Error exporting experiment: {e}")
+        raise typer.Exit(1)
+
+
+@app.command()
+def status(
+    experiment_id: str = typer.Argument(..., help="Experiment ID to check"),
+    base_path: str = typer.Option("experiments", "--base-path", help="Base directory for experiments"),
+) -> None:
+    """Show detailed status of an experiment."""
+    
+    try:
+        persistence = ModelPersistence(base_path)
+        exp_path = persistence.base_path / experiment_id
+        
+        if not exp_path.exists():
+            typer.echo(f"❌ Experiment {experiment_id} not found")
+            raise typer.Exit(1)
+        
+        # Load metadata
+        metadata = persistence.load_metadata(exp_path / "metadata.json")
+        
+        typer.echo(f"📊 Experiment Status: {experiment_id}")
+        typer.echo("=" * 60)
+        typer.echo(f"Created: {metadata.created_at}")
+        typer.echo(f"Description: {metadata.description}")
+        typer.echo(f"Tags: {', '.join(metadata.tags) if metadata.tags else 'None'}")
+        typer.echo(f"Total Generations: {metadata.total_generations}")
+        typer.echo(f"Total Evaluations: {metadata.total_evaluations}")
+        typer.echo(f"Best Fitness: {metadata.best_fitness:.4f}")
+        
+        # Check for checkpoints
+        latest_checkpoint = persistence.find_latest_checkpoint(exp_path)
+        if latest_checkpoint:
+            typer.echo(f"Latest Checkpoint: {latest_checkpoint.name}")
+        else:
+            typer.echo("Latest Checkpoint: None")
+        
+        # Check for results
+        results_file = exp_path / "results.json"
+        if results_file.exists():
+            typer.echo("Results: Available")
+        else:
+            typer.echo("Results: Not available")
+        
+        # Check for saved models
+        best_agent_file = exp_path / "best_agent.pkl"
+        if best_agent_file.exists():
+            typer.echo("Best Agent: Saved")
+        else:
+            typer.echo("Best Agent: Not saved")
+        
+        # Directory size
+        total_size = sum(f.stat().st_size for f in exp_path.rglob('*') if f.is_file())
+        typer.echo(f"Disk Usage: {total_size / 1024 / 1024:.1f} MB")
+        
+    except Exception as e:
+        typer.echo(f"❌ Error checking experiment status: {e}")
+        raise typer.Exit(1)
+
+
+@app.command()
+def cleanup(
+    experiment_id: str = typer.Argument(..., help="Experiment ID to clean up"),
+    keep_every: int = typer.Option(10, "--keep-every", help="Keep every Nth checkpoint"),
+    base_path: str = typer.Option("experiments", "--base-path", help="Base directory for experiments"),
+    dry_run: bool = typer.Option(False, "--dry-run", help="Show what would be deleted without actually deleting"),
+) -> None:
+    """Clean up old checkpoints for an experiment."""
+    
+    try:
+        persistence = ModelPersistence(base_path)
+        exp_path = persistence.base_path / experiment_id
+        
+        if not exp_path.exists():
+            typer.echo(f"❌ Experiment {experiment_id} not found")
+            raise typer.Exit(1)
+        
+        # Find checkpoints to delete
+        checkpoints = list(exp_path.glob("checkpoint_gen_*.pkl"))
+        checkpoints.sort(key=lambda p: int(p.stem.split('_')[-1]))
+        
+        to_delete = []
+        for i, checkpoint in enumerate(checkpoints):
+            generation = int(checkpoint.stem.split('_')[-1])
+            if i < len(checkpoints) - 1 and generation % keep_every != 0:
+                to_delete.append(checkpoint)
+        
+        if not to_delete:
+            typer.echo("No checkpoints to clean up")
+            return
+        
+        total_size = sum(f.stat().st_size for f in to_delete)
+        typer.echo(f"Found {len(to_delete)} checkpoints to clean up")
+        typer.echo(f"Would free: {total_size / 1024 / 1024:.1f} MB")
+        
+        if dry_run:
+            typer.echo("Checkpoints that would be deleted:")
+            for checkpoint in to_delete:
+                typer.echo(f"  {checkpoint.name}")
+        else:
+            for checkpoint in to_delete:
+                checkpoint.unlink()
+            typer.echo(f"✅ Cleaned up {len(to_delete)} checkpoints")
+        
+    except Exception as e:
+        typer.echo(f"❌ Error during cleanup: {e}")
+        raise typer.Exit(1)
+
+
+@app.command()
+def best(
+    experiment_id: str = typer.Argument(..., help="Experiment ID"),
+    base_path: str = typer.Option("experiments", "--base-path", help="Base directory for experiments"),
+    save_agent: Optional[Path] = typer.Option(None, "--save", help="Save best agent to file"),
+) -> None:
+    """Show and optionally save the best agent from an experiment."""
+    
+    try:
+        persistence = ModelPersistence(base_path)
+        exp_path = persistence.base_path / experiment_id
+        
+        if not exp_path.exists():
+            typer.echo(f"❌ Experiment {experiment_id} not found")
+            raise typer.Exit(1)
+        
+        # Load best agent
+        best_agent_file = exp_path / "best_agent.pkl"
+        if not best_agent_file.exists():
+            typer.echo(f"❌ Best agent not found for experiment {experiment_id}")
+            raise typer.Exit(1)
+        
+        agent = persistence.load_agent(best_agent_file)
+        
+        # Load metadata for fitness info
+        metadata = persistence.load_metadata(exp_path / "metadata.json")
+        
+        typer.echo(f"🏆 Best Agent from {experiment_id}")
+        typer.echo("=" * 40)
+        typer.echo(f"Best Fitness: {metadata.best_fitness:.4f}")
+        typer.echo(f"Architecture: {agent.architecture}")
+        typer.echo(f"Total Parameters: {len(agent.weights):,}")
+        
+        # Save agent if requested
+        if save_agent:
+            persistence.save_agent(save_agent.parent, agent, save_agent.name)
+            typer.echo(f"✅ Best agent saved to {save_agent}")
+        
+    except Exception as e:
+        typer.echo(f"❌ Error accessing best agent: {e}")
+        raise typer.Exit(1)
