@@ -1,0 +1,38 @@
+# Default configuration for Genetic Coil Arena
+
+game:
+  board_size: 32
+  observation_radius: 5  # Creates 11x11 observation window
+  max_steps: 500
+  food_reward: 1.0
+  step_reward: 0.1
+  death_penalty: -2.0
+  early_death_threshold: 50
+
+agent:
+  hidden_size: 32
+  second_hidden_size: 16
+  activation: "tanh"
+
+evolution:
+  population_size: 256
+  generations: 100
+  tournament_size: 3
+  elite_size: 13  # Top 5% of 256
+  crossover_alpha: 0.3
+  mutation_sigma: 0.2
+  mutation_prob: 0.1
+  early_stop_patience: 15
+
+evaluation:
+  episodes_per_agent: 3
+  parallel_processes: 8
+  batch_size: 16
+  deterministic_seed: null
+
+logging:
+  output_dir: "outputs"
+  log_level: "INFO"
+  save_checkpoints: true
+  checkpoint_interval: 10
+  save_best_agents: true
