@@ -642,3 +642,62 @@ def best(
     except Exception as e:
         typer.echo(f"❌ Error accessing best agent: {e}")
         raise typer.Exit(1)
+
+
+@app.command()
+def web(
+    host: str = typer.Option("localhost", "--host", help="Host to bind the web server"),
+    port: int = typer.Option(8000, "--port", help="Port to bind the web server"),
+    config_file: Optional[Path] = typer.Option(None, "--config", "-c", help="Configuration file"),
+    auto_open: bool = typer.Option(True, "--auto-open", help="Automatically open browser"),
+) -> None:
+    """Start the web dashboard for monitoring and controlling experiments."""
+    
+    try:
+        from ..web.server import WebServer
+        from ..config import load_config
+        import webbrowser
+        import time
+        import threading
+        
+        # Load configuration
+        config = load_config(config_file) if config_file else load_config()
+        
+        typer.echo(f"🚀 Starting Genetic Coil Arena Web Dashboard")
+        typer.echo(f"Host: {host}")
+        typer.echo(f"Port: {port}")
+        typer.echo(f"URL: http://{host}:{port}")
+        typer.echo("-" * 50)
+        
+        # Create and configure web server
+        server = WebServer(host=host, port=port, config=config)
+        
+        # Auto-open browser after a delay
+        if auto_open and host in ["localhost", "127.0.0.1"]:
+            def open_browser():
+                time.sleep(2)  # Wait for server to start
+                webbrowser.open(f"http://{host}:{port}")
+            
+            threading.Thread(target=open_browser, daemon=True).start()
+        
+        # Start server
+        typer.echo("🌐 Web dashboard is starting...")
+        typer.echo("📊 Access the dashboard at: http://localhost:8000")
+        typer.echo("🔌 WebSocket endpoint: ws://localhost:8000/ws")
+        typer.echo("Press Ctrl+C to stop the server")
+        
+        server.run()
+        
+    except ImportError as e:
+        typer.echo(f"❌ Missing required packages for web server: {e}")
+        typer.echo("Install with: pip install fastapi uvicorn[standard] websockets")
+        raise typer.Exit(1)
+    except KeyboardInterrupt:
+        typer.echo("\n🛑 Web server stopped")
+    except Exception as e:
+        typer.echo(f"❌ Error starting web server: {e}")
+        raise typer.Exit(1)
+
+
+if __name__ == "__main__":
+    app()
