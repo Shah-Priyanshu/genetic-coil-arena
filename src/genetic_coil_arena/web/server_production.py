@@ -42,6 +42,8 @@ try:
     # Phase 5: Advanced Analytics & AI Integration
     from .analytics_routes import analytics_router
     from .analytics import analytics_router as basic_analytics_router
+    # Phase 6A: Deep Learning Integration
+    from .neural_routes import neural_router
     from .database import db
     from .auth import get_current_user
     from ..config import Config
@@ -345,8 +347,10 @@ class ProductionServer:
             self.app.include_router(performance_router)
             # Phase 4E: Mobile & PWA
             self.app.include_router(mobile_router)
+            # Phase 6A: Deep Learning Integration
+            self.app.include_router(neural_router)
             
-            logger.info("✅ All routes integrated successfully - Phase 4C Collaboration + Phase 4D Performance + Phase 4E Mobile + Phase 5 Analytics Features included")
+            logger.info("✅ All routes integrated successfully - Phase 4C Collaboration + Phase 4D Performance + Phase 4E Mobile + Phase 5 Analytics + Phase 6A Neural Evolution Features included")
         else:
             logger.warning("⚠️ Running with limited functionality due to missing components")
     

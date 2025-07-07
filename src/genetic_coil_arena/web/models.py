@@ -6,6 +6,14 @@ from typing import List, Optional, Dict, Any
 from datetime import datetime
 from pydantic import BaseModel, Field
 
+# Import database manager
+try:
+    from .database import DatabaseManager
+    db = DatabaseManager()
+except ImportError:
+    # Fallback if database module not available
+    db = None
+
 
 class User(BaseModel):
     """User model for authentication."""
@@ -160,6 +168,20 @@ class NotificationConfig(BaseModel):
     error_alerts: bool = Field(True, description="Notify on errors")
     badge_updates: bool = Field(True, description="Update app badge")
     vibration: bool = Field(True, description="Enable vibration on mobile")
+
+
+class Experiment(BaseModel):
+    """Experiment model for database storage."""
+    id: str = Field(..., description="Experiment ID")
+    name: str = Field(..., description="Experiment name")
+    description: Optional[str] = Field(None, description="Experiment description")
+    status: str = Field("pending", description="Experiment status")
+    config: Dict[str, Any] = Field(default_factory=dict, description="Experiment configuration")
+    created_at: datetime = Field(default_factory=datetime.now, description="Creation timestamp")
+    started_at: Optional[datetime] = Field(None, description="Start timestamp")
+    completed_at: Optional[datetime] = Field(None, description="Completion timestamp")
+    user_id: str = Field(..., description="Owner user ID")
+    results: Optional[Dict[str, Any]] = Field(None, description="Experiment results")
 
 
 class MobileUserPreferences(BaseModel):
