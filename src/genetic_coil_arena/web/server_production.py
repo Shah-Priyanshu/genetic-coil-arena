@@ -19,7 +19,6 @@ from contextlib import asynccontextmanager
 try:
     from .api_real import router as experiment_router
     from .auth_routes import auth_router
-    from .analytics import analytics_router
     from .visualization import viz_router
     from .templates_routes import templates_router
     from .templates_ui import templates_ui_router
@@ -40,6 +39,9 @@ try:
     from .performance_optimizer import PerformanceOptimizer
     # Phase 4E: Mobile & PWA
     from .mobile_routes import router as mobile_router
+    # Phase 5: Advanced Analytics & AI Integration
+    from .analytics_routes import analytics_router
+    from .analytics import analytics_router as basic_analytics_router
     from .database import db
     from .auth import get_current_user
     from ..config import Config
@@ -323,6 +325,7 @@ class ProductionServer:
             # Include all feature routers
             self.app.include_router(auth_router)
             self.app.include_router(experiment_router)
+            self.app.include_router(basic_analytics_router)
             self.app.include_router(analytics_router)
             self.app.include_router(viz_router)
             self.app.include_router(templates_router)
@@ -343,7 +346,7 @@ class ProductionServer:
             # Phase 4E: Mobile & PWA
             self.app.include_router(mobile_router)
             
-            logger.info("✅ All routes integrated successfully - Phase 4C Collaboration + Phase 4D Performance + Phase 4E Mobile Features included")
+            logger.info("✅ All routes integrated successfully - Phase 4C Collaboration + Phase 4D Performance + Phase 4E Mobile + Phase 5 Analytics Features included")
         else:
             logger.warning("⚠️ Running with limited functionality due to missing components")
     
