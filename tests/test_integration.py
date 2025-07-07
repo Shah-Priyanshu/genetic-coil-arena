@@ -11,7 +11,7 @@ from src.genetic_coil_arena.snake_core.game import SnakeGame
 from src.genetic_coil_arena.snake_core.agent import SnakeAgent, get_observation_size
 from src.genetic_coil_arena.evo.genome import Genome
 from src.genetic_coil_arena.evo.arena import EvolutionArena
-from src.genetic_coil_arena.evo.advanced import NoveltySearch, MultiObjectiveOptimizer, SpeciationManager, AdaptiveEvolution, HyperparameterOptimizer
+from src.genetic_coil_arena.evo.advanced import NoveltySearch, MultiObjectiveEvolution, SpeciationEvolution, AdaptiveEvolution, HyperparameterOptimization
 from src.genetic_coil_arena.analysis.evolution_monitor import EvolutionMonitor
 from src.genetic_coil_arena.ui.viewer import GameViewer
 
@@ -153,16 +153,14 @@ class TestSystemIntegration:
             seed=42
         )
         
-        optimizer = MultiObjectiveOptimizer()
+        optimizer = MultiObjectiveEvolution()
         
-        # Create mock objectives (fitness, efficiency)
-        objectives = np.random.random((8, 2))
-        
-        # Test Pareto front computation
-        pareto_indices = optimizer.compute_pareto_front(objectives)
-        
-        assert len(pareto_indices) > 0
-        assert all(0 <= idx < 8 for idx in pareto_indices)
+        # Test scoring calculation
+        fitness_score = 0.8
+        novelty_score = 0.6
+        multi_score = optimizer.calculate_multi_objective_score(fitness_score, novelty_score)
+        assert isinstance(multi_score, float)
+        assert 0.0 <= multi_score <= 1.0
 
     def test_speciation_manager(self):
         """Test speciation functionality."""
@@ -171,54 +169,52 @@ class TestSystemIntegration:
         # Create some genomes
         genomes = [Genome(genome_size=30) for _ in range(10)]
         
-        speciation = SpeciationManager(
+        speciation = SpeciationEvolution(
             compatibility_threshold=0.5,
-            species_target=3
+            target_species=3
         )
         
         species = speciation.assign_species(genomes)
         
+        assert isinstance(species, dict)
         assert len(species) > 0
-        assert all(len(sp) > 0 for sp in species)
-        assert sum(len(sp) for sp in species) == 10
+        # Test that all genomes are assigned to some species
+        total_assigned = sum(len(species_members) for species_members in species.values())
+        assert total_assigned == 10
 
     def test_adaptive_evolution(self):
         """Test adaptive evolution parameters."""
         config = load_config()
         
-        adaptive = AdaptiveEvolution(
-            initial_mutation_rate=0.1,
-            initial_crossover_rate=0.7
-        )
+        adaptive = AdaptiveEvolution(adaptation_interval=10)
+        
+        # Test should_adapt method
+        assert adaptive.should_adapt(0) == False
+        assert adaptive.should_adapt(10) == True
+        assert adaptive.should_adapt(20) == True
+        assert adaptive.should_adapt(15) == False
         
         # Test parameter adaptation
-        diversity = 0.3  # Low diversity
-        avg_fitness = 5.0
-        
-        new_mutation_rate = adaptive.adapt_mutation_rate(diversity, avg_fitness)
-        new_crossover_rate = adaptive.adapt_crossover_rate(diversity, avg_fitness)
-        
-        assert 0.0 <= new_mutation_rate <= 1.0
-        assert 0.0 <= new_crossover_rate <= 1.0
+        recent_performance = [0.5, 0.51, 0.52, 0.53, 0.54]
+        adapted_config = adaptive.adapt_parameters(config, recent_performance)
+        assert adapted_config is not None
 
     def test_hyperparameter_optimization(self):
         """Test hyperparameter optimization."""
         config = load_config()
         
-        optimizer = HyperparameterOptimizer(
-            param_space={
-                'mutation_rate': (0.01, 0.3),
-                'population_size': (10, 50),
-                'hidden_size': (8, 32)
-            }
-        )
+        optimizer = HyperparameterOptimization()
         
-        # Test parameter sampling
-        params = optimizer.sample_parameters()
+        # Test parameter suggestion
+        params = optimizer.suggest_parameters(method='random')
         
-        assert 0.01 <= params['mutation_rate'] <= 0.3
-        assert 10 <= params['population_size'] <= 50
-        assert 8 <= params['hidden_size'] <= 32
+        assert isinstance(params, dict)
+        assert 'population_size' in params
+        assert 'mutation_sigma' in params
+        assert 'mutation_prob' in params
+        assert 50 <= params['population_size'] <= 500
+        assert 0.05 <= params['mutation_sigma'] <= 0.5
+        assert 0.01 <= params['mutation_prob'] <= 0.3
 
     def test_evolution_monitor(self):
         """Test evolution monitoring and analysis."""
