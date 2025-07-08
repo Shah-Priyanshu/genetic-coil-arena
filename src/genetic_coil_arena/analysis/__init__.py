@@ -1,10 +1,6 @@
 """Analysis and visualization tools for evolution results."""
 
-from .evolution_monitor import EvolutionMonitor, EvolutionUpdate, LivePlotter, EvolutionAnalyzer
+# Evolution monitor components have been removed
+# This module is kept for compatibility
 
-__all__ = [
-    'EvolutionMonitor',
-    'EvolutionUpdate', 
-    'LivePlotter',
-    'EvolutionAnalyzer',
-]
+__all__ = []

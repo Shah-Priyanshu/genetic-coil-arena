@@ -65,7 +65,9 @@ class GameFrame:
     agent_id: Optional[int] = None
 
 class GameViewer:
-    """Real-time visualization of Snake game with agent behavior."""    def __init__(self, config: Optional[VisualizationConfig] = None):
+    """Real-time visualization of Snake game with agent behavior."""
+    
+    def __init__(self, config: Optional[VisualizationConfig] = None):
         """Initialize the game viewer.
         
         Args:

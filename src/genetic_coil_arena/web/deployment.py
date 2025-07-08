@@ -17,7 +17,7 @@ class DeploymentConfig:
         "reload": True,
         "workers": 1,
         "log_level": "debug",
-        "cors_origins": ["*"],
+        "cors_origins": ["http://localhost:3000", "http://localhost:8080", "http://127.0.0.1:3000"],
         "database_url": "sqlite:///./genetic_coil_arena_dev.db",
         "secret_key": "dev-secret-key-change-in-production",
         "access_token_expire_minutes": 1440,  # 24 hours
