@@ -85,5 +85,6 @@ The status `state` is one of:
 | `done` | Finished with exit code 0 |
 | `failed` | Exited with a non-zero code |
 | `timeout` | Killed after `timeout_min` |
+| `interrupted` | The runner was stopped with Ctrl+C; the job runs again on the next start |
 | `cancelled` | Stopped because `runs/cancel/<id>` was pushed to the jobs branch |
 | `rejected` | Never run; `reason` says why (bad script path, or a commit not on the jobs branch) |

@@ -120,6 +120,11 @@ class Results:
             self.commit_and_push("Start results branch")
 
     def pull(self) -> None:
+        # A runner stopped mid-job leaves unsaved files; keep them rather than
+        # failing the rebase.
+        git(self.root, "add", "-A")
+        if git(self.root, "status", "--porcelain").strip():
+            git(self.root, "commit", "-q", "-m", "Save files left by a stopped runner")
         if git(self.repo, "ls-remote", "--heads", self.remote, self.branch).strip():
             git(self.root, "pull", "--rebase", "--quiet", self.remote, self.branch)
 
@@ -285,29 +290,38 @@ def run_job(args: argparse.Namespace, repo: Path, results: Results, job: dict) -
         push_progress("running")
         last_push = time.monotonic()
         state = "done"
-        while True:
-            try:
-                line = lines.get(timeout=5)
-            except queue.Empty:
-                line = ""
-            if line is None:
-                break
-            if line:
-                if log.tell() < MAX_LOG_BYTES:
-                    log.write(line)
-                    log.flush()
-                tail.append(line)
-            if time.monotonic() - started > timeout:
-                proc.kill()
-                state = "timeout"
-                break
-            if time.monotonic() - last_push > args.push_every:
-                if cancel_requested(repo, args, job_id):
-                    proc.kill()
-                    state = "cancelled"
+        try:
+            while True:
+                try:
+                    line = lines.get(timeout=5)
+                except queue.Empty:
+                    line = ""
+                if line is None:
                     break
-                push_progress("running")
-                last_push = time.monotonic()
+                if line:
+                    if log.tell() < MAX_LOG_BYTES:
+                        log.write(line)
+                        log.flush()
+                    tail.append(line)
+                if time.monotonic() - started > timeout:
+                    proc.kill()
+                    state = "timeout"
+                    break
+                if time.monotonic() - last_push > args.push_every:
+                    if cancel_requested(repo, args, job_id):
+                        proc.kill()
+                        state = "cancelled"
+                        break
+                    push_progress("running")
+                    last_push = time.monotonic()
+        except KeyboardInterrupt:
+            # Not a final state: the job runs again when the runner restarts.
+            proc.kill()
+            proc.wait()
+            push_progress("interrupted", finished_at=now())
+            git(repo, "worktree", "remove", "--force", str(work), check=False)
+            print(f"{job_id}: interrupted; it will run again on the next start")
+            raise
         returncode = proc.wait()
     if state == "done" and returncode != 0:
         state = "failed"
