@@ -24,8 +24,10 @@ symbol marginals) costs team food with a 95% paired t-CI over episodes above 0.
     python scripts/code_formation.py --runs 10 --generations 600 --workers 4 \
         --out docs/results/code_formation.md
 
-Outputs next to ``--out``: ``<stem>.md``, ``<stem>.json`` and ``<stem>_params.npz``;
-``--reuse`` re-renders from those without training.
+Outputs next to ``--out``: ``<stem>.md``, ``<stem>.json`` and ``<stem>_params.npz``
+(float32). Every finished run is saved at once to ``--cache`` (``<arm>_run<k>.npy`` +
+``.json``); a rerun with the same settings loads those and trains only the rest, so an
+interrupted run resumes and a finished one re-renders without training.
 """
 
 import argparse
@@ -90,9 +92,39 @@ def arm_settings(
     raise ValueError(f"Unknown arm {arm!r}")
 
 
-def _train_job(job: tuple[str, int, TrainSettings]) -> dict[str, Any]:
-    arm, run, settings = job
+def _cached(cache: Path, arm: str, run: int, settings: TrainSettings) -> Any:
+    """A finished run saved by an earlier invocation with the same settings, or None."""
+    meta, theta = cache / f"{arm}_run{run}.json", cache / f"{arm}_run{run}.npy"
+    if not (meta.exists() and theta.exists()):
+        return None
+    saved = json.loads(meta.read_text(encoding="utf-8"))
+    if saved["settings"] != _finite(asdict(replace(settings, progress_s=0.0))):
+        return None
+    return {**saved["run"], "theta": np.load(theta), "cached": True}
+
+
+def _train_job(job: tuple[str, int, TrainSettings, Path]) -> dict[str, Any]:
+    """Train one (arm, run) unless it is cached; each finished run is saved at once
+    (theta as .npy, then the summary .json, both via rename) so a restart only loses
+    the runs in progress."""
+    arm, run, settings, cache = job
+    hit = _cached(cache, arm, run, settings)
+    if hit is not None:
+        print(f"[cache] {arm} run {run}", flush=True)
+        return hit
     out = train_run(LEARNED, run, settings)
+    out = {k: v for k, v in out.items() if k != "theta_final"}
+    tmp = cache / f"{arm}_run{run}.tmp.npy"
+    np.save(tmp, out["theta"])
+    os.replace(tmp, cache / f"{arm}_run{run}.npy")
+    summary = {k: v for k, v in out.items() if k != "theta"}
+    meta = {
+        "settings": _finite(asdict(replace(settings, progress_s=0.0))),
+        "run": _finite({**summary, "arm": arm}),
+    }
+    tmp = cache / f"{arm}_run{run}.tmp.json"
+    tmp.write_text(json.dumps(meta, allow_nan=False), encoding="utf-8")
+    os.replace(tmp, cache / f"{arm}_run{run}.json")
     last = out["curve"][-1]
     print(
         f"[train] {arm:11s} run {run}: {out['generations_done']} gens in "
@@ -398,7 +430,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--progress", type=float, default=300.0)
     parser.add_argument(
-        "--reuse", action="store_true", help="Re-evaluate the saved runs, no training"
+        "--cache",
+        type=Path,
+        help="Folder for per-run results (default <out stem>_runs next to --out); "
+        "finished runs with the same settings are loaded instead of retrained",
     )
     parser.add_argument(
         "--out", type=Path, default=Path("docs/results/code_formation.md")
@@ -420,47 +455,24 @@ def main() -> None:
     stem, folder = args.out.stem, args.out.parent
     folder.mkdir(parents=True, exist_ok=True)
     params_path = folder / f"{stem}_params.npz"
-    train_path = folder / f"{stem}_training.json"
-    if args.reuse:
-        params = np.load(params_path)
-        saved = json.loads(train_path.read_text(encoding="utf-8"))
-        trained = [
-            {**t, "theta": params[f"{t['arm']}_run{t['run']}"].astype(np.float64)}
-            for t in saved["training"]
-        ]
-        train_seconds = saved["train_seconds"]
-    else:
-        jobs = [(a, run, settings[a]) for run in range(args.runs) for a in args.arms]
-        print(
-            f"[start] {len(jobs)} training runs on {args.workers} workers", flush=True
-        )
-        start = time.perf_counter()
-        with ProcessPoolExecutor(max_workers=args.workers) as pool:
-            trained = list(pool.map(_train_job, jobs))
-        train_seconds = time.perf_counter() - start
-        np.savez_compressed(
-            params_path,
-            **{f"{t['arm']}_run{t['run']}": t["theta"] for t in trained},
-        )
-        train_path.write_text(
-            json.dumps(
-                _finite(
-                    {
-                        "train_seconds": train_seconds,
-                        "training": [
-                            {
-                                k: v
-                                for k, v in t.items()
-                                if k not in ("theta", "theta_final")
-                            }
-                            for t in trained
-                        ],
-                    }
-                ),
-                allow_nan=False,
-            ),
-            encoding="utf-8",
-        )
+    cache = args.cache or folder / f"{stem}_runs"
+    cache.mkdir(parents=True, exist_ok=True)
+    jobs = [(a, run, settings[a], cache) for run in range(args.runs) for a in args.arms]
+    print(
+        f"[start] {len(jobs)} runs on {args.workers} workers; cache {cache}", flush=True
+    )
+    start = time.perf_counter()
+    with ProcessPoolExecutor(max_workers=args.workers) as pool:
+        trained = list(pool.map(_train_job, jobs))
+    wall_now = time.perf_counter() - start
+    # Wall time across restarts: this invocation's plus the CPU time of the runs it
+    # loaded from the cache spread over the workers (an estimate)
+    cached_cpu = sum(t["seconds"] for t in trained if t.get("cached"))
+    train_seconds = wall_now + cached_cpu / args.workers
+    np.savez_compressed(
+        params_path,
+        **{f"{t['arm']}_run{t['run']}": t["theta"].astype(np.float32) for t in trained},
+    )
     print(f"[train] done in {train_seconds:.0f} s; evaluating", flush=True)
 
     esettings = EvalSettings(n_episodes=args.eval_episodes)
