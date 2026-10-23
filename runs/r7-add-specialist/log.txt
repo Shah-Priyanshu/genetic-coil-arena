@@ -318,3 +318,12 @@
 [progress] joint run 8: gen 660/1200, val newcomer food 6.42, team 28.67, elapsed 3882 s
 [progress] joint run 3: gen 650/1200, val newcomer food 9.30, team 36.19, elapsed 3894 s
 [progress] joint run 2: gen 660/1200, val newcomer food 8.06, team 32.72, elapsed 3923 s
+[progress] silent/scratch run 1: gen 760/800, val newcomer food 1.31, team 13.23, elapsed 3946 s
+[progress] silent/scratch run 0: gen 760/800, val newcomer food 1.22, team 14.45, elapsed 3948 s
+[progress] joint run 9: gen 680/1200, val newcomer food 9.92, team 38.31, elapsed 3953 s
+[progress] joint run 4: gen 640/1200, val newcomer food 9.80, team 39.72, elapsed 3954 s
+[progress] joint run 0: gen 680/1200, val newcomer food 8.34, team 34.67, elapsed 3958 s
+[progress] joint run 1: gen 680/1200, val newcomer food 8.59, team 32.48, elapsed 3962 s
+[progress] hand-coded/scratch run 0: gen 720/800, val newcomer food 4.69, team 38.06, elapsed 3965 s
+[progress] hand-coded/scratch run 1: gen 720/800, val newcomer food 4.34, team 38.66, elapsed 3975 s
+[progress] learned/scratch run 0: gen 650/800, val newcomer food 4.06, team 36.09, elapsed 3982 s
