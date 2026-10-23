@@ -1,4 +1,4 @@
-"""Test the evaluation statistics: CIs, IQM bootstrap, Mann-Whitney + Holm, A12."""
+"""Test the evaluation statistics: CIs, IQM bootstrap, Mann-Whitney, Wilcoxon, Holm, A12."""
 
 import numpy as np
 import pytest
@@ -12,6 +12,7 @@ from genetic_coil_arena.evaluation.stats import (
     paired_difference,
     stratified_bootstrap_ci,
     vargha_delaney_a12,
+    wilcoxon_signed_rank,
 )
 
 
@@ -106,6 +107,23 @@ class TestComparisons:
     def test_mann_whitney_identical_constants(self):
         u, p = mann_whitney([1, 1, 1], [1, 1])
         assert p == 1.0 and u == 3.0
+
+    def test_wilcoxon_is_paired(self):
+        rng = np.random.default_rng(0)
+        base = rng.normal(0, 10, 20)  # Large between-seed spread
+        shifted = base - 0.5 - rng.uniform(0, 0.1, 20)  # Small consistent drop
+        _, p = wilcoxon_signed_rank(base, shifted)
+        assert p == pytest.approx(2 / 2**20)  # Exact: every difference positive
+        assert mann_whitney(base, shifted)[1] > 0.5
+        w, p_rev = wilcoxon_signed_rank(shifted, base)
+        assert p_rev == pytest.approx(p)
+
+    def test_wilcoxon_no_difference_and_bad_input(self):
+        assert wilcoxon_signed_rank([1, 2, 3], [1, 2, 3]) == (0.0, 1.0)
+        with pytest.raises(ValueError):
+            wilcoxon_signed_rank([1, 2], [1])
+        with pytest.raises(ValueError):
+            wilcoxon_signed_rank([], [])
 
     def test_holm_known_values(self):
         adjusted = holm_correction([0.01, 0.04, 0.03, 0.005])

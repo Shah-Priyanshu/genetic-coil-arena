@@ -320,6 +320,33 @@ class TestListening:
         ignore = intervention_influence(_listener("ignore"), msgs, "random_matched")
         assert ignore["js_bits"] == 0.0 and ignore["changed_fraction"] == 0.0
 
+    def test_mask_averages_over_live_receivers_only(self, msgs):
+        """Dead receivers (constant action, junk message 0) must not dilute the mean."""
+        mask = np.ones(msgs.shape[:2], dtype=bool)
+        mask[::2, 1] = False
+        dead = msgs.copy()
+        dead[~mask] = 0
+
+        def listener(m):
+            probs = _listener("obey")(m)
+            probs[~mask] = np.eye(4)[0]
+            return probs
+
+        cic = causal_influence(listener, dead, mask=mask)
+        live_msgs = msgs[mask]
+        assert cic["cic_bits"] == pytest.approx(entropy(live_msgs.ravel()), abs=1e-9)
+        assert cic["per_receiver_bits"][1] == pytest.approx(cic["cic_bits"], abs=0.1)
+        unmasked = causal_influence(listener, dead)["cic_bits"]
+        assert unmasked < cic["cic_bits"]
+
+        infl = intervention_influence(
+            listener, dead, "shuffle_batch", n_repeats=3, mask=mask
+        )
+        assert 0.6 < infl["changed_fraction"] < 0.9
+        assert infl["js_bits"] == pytest.approx(infl["changed_fraction"])
+        with pytest.raises(ValueError, match="live"):
+            causal_influence(listener, dead, mask=np.zeros_like(mask))
+
     def test_listening_summary(self):
         cic = {"cic_bits": 1.5}
         verdict = listening_summary(
@@ -408,6 +435,8 @@ def test_package_is_domain_agnostic():
         tree = ast.parse(path.read_text(encoding="utf-8"))
         for node in ast.walk(tree):
             if isinstance(node, ast.ImportFrom):
+                if node.level == 2 and node.module == "messages":
+                    continue  # The shared, dependency-free message conventions
                 parts = set((node.module or "").split("."))
                 if node.level >= 2 or node.module is None:
                     parts |= {alias.name for alias in node.names}

@@ -182,6 +182,61 @@ def interpretation(results: dict[int, ExperimentResult]) -> list[str]:
     return out
 
 
+def wrong_information(results: dict[int, ExperimentResult]) -> list[str]:
+    """Do the information-destroying ablations cost more than silence? (from the data)"""
+    misleading = ("shuffle_batch", "swap_receivers", "random_matched")
+    worse, not_worse, below = [], [], True
+    for r, res in results.items():
+        drops = {a.intervention: a for a in res.ablations if a.system == LISTENER}
+        nocomm = res.condition("no-comm").mean
+        for name in misleading:
+            target = (
+                worse
+                if drops[name].delta_mean > drops["zero"].delta_mean
+                else not_worse
+            )
+            target.append((r, name))
+            below &= drops[name].ablated.mean < nocomm
+    always = [n for n in misleading if all((r, n) in worse for r in results)]
+    exceptions = ", ".join(f"{n} at r = {r}" for r, n in not_worse)
+    text = (
+        "- Wrong information is mostly worse than none. shuffle_batch, swap_receivers "
+        "and random_matched keep the message statistics but break the link to the "
+        f"receiver's situation. {' and '.join(always) or 'None of them'} "
+        f"{'costs' if len(always) == 1 else 'cost'} more than zeroing the channel at "
+        "every radius"
+    )
+    if exceptions:
+        text += f"; the exception is {exceptions}, where the drop is no larger"
+    text += ". " + (
+        "Each of them leaves the squad below the message-blind `no-comm` baseline."
+        if below
+        else "Not all of them leave the squad below the `no-comm` baseline."
+    )
+    return [text]
+
+
+def p_value_note(results: dict[int, ExperimentResult], n_seeds: int) -> str:
+    """Why the message-following squad's ablation p-values sit where they do."""
+    ps = [
+        a.p_holm
+        for res in results.values()
+        for a in res.ablations
+        if a.system == LISTENER
+    ]
+    text = (
+        f"- p-values bottom out at {_p(min(ps))}: with {n_seeds} paired seeds that all "
+        "drop, that is the smallest two-sided Wilcoxon signed-rank p (exact, "
+        f"2 / 2^{n_seeds}) after Holm across the four interventions."
+    )
+    if max(ps) > min(ps):
+        text += (
+            f" Rows up to {_p(max(ps))} are the same complete separation where tied "
+            "differences make scipy use the normal approximation."
+        )
+    return text + " The paired CIs carry the effect sizes."
+
+
 def render(
     results: dict[int, ExperimentResult],
     settings: ListeningSettings,
@@ -207,11 +262,15 @@ def render(
         "- Squad defaults: 21×21 walls, 3 snakes, 2 food per colour, health 60, T = 300, "
         "message = 1 discrete symbol, V = 8 (3 bits), sent every step, read one step "
         "later",
-        f"- Communication metrics: messages recorded every {settings.record_every} "
-        f"steps for living receivers; CIC and intervention influence on listener "
-        f"snapshots every {settings.snapshot_every} steps, action probabilities from "
-        f"{settings.n_draws} seeded draws; MI null from {settings.n_shuffles} "
-        "label shuffles.",
+        f"- Communication metrics: recorded during the scored runs (no replays). "
+        f"Messages every {settings.record_every} steps for living receivers; CIC and "
+        f"intervention influence on listener snapshots every "
+        f"{settings.snapshot_every} steps, from the specialists' exact action "
+        f"probabilities (`policy.probs`); MI null from {settings.n_shuffles} label "
+        "shuffles.",
+        "- Live receivers (alive snakes in unfinished episodes) are the unit "
+        "throughout: interventions permute, zero and resample only among them, and "
+        "listener metrics average over them.",
         f"- Sanity controls: {'all passed' if all_passed else '**SOME FAILED**'}",
         "",
         "Reproduce with `python scripts/listening.py --seeds "
@@ -238,11 +297,8 @@ def render(
         "",
         "- The specialists listen, and only through the message. Every intervention "
         "drops team food at every radius. The deaf control's drop is exactly 0 and "
-        "its CIC is exactly 0.",
-        "- Wrong information is worse than none. shuffle_batch, swap_receivers and "
-        "random_matched keep the message statistics but break the link to the "
-        "receiver's situation. Each of them costs more than zeroing the channel, and "
-        "each leaves the squad below the message-blind `no-comm` baseline.",
+        "its CIC is 0 up to floating-point rounding (< 1e-16).",
+        *wrong_information(results),
         "- Listening matters less as the window grows. CIC and the share of actions an "
         "intervention flips both fall from r = 3 to r = 7, because the greedy "
         "specialist only reads the message when no own-colour food is in view.",
@@ -252,9 +308,7 @@ def render(
         "an independent recomputation, not a discovery. A learned centre is where MI "
         "becomes informative. The unused ~0.4 bits are the skewed code distribution, "
         "and the 'no food' case is folded into code 0.",
-        "- p-values bottom out at 2.7e-07 because, with 20 seeds and complete "
-        "separation, that is the smallest two-sided Mann-Whitney p after Holm. The "
-        "paired CIs carry the effect sizes.",
+        p_value_note(results, n_seeds),
         "",
         "## Team food per episode",
         "",
@@ -266,8 +320,8 @@ def render(
         "## Message ablations (positive listening)",
         "",
         "Drop = intact minus ablated team food, paired by seed; `listening` = the drop's "
-        "95% CI lies above zero. p is a two-sided Mann-Whitney test (the harness's "
-        "choice; unpaired), Holm-corrected across the four interventions per system.",
+        "95% CI lies above zero. p is a two-sided Wilcoxon signed-rank test on the "
+        "per-seed pairs, Holm-corrected across the four interventions per system.",
         "",
         *ablation_table(results),
         "",
@@ -283,7 +337,7 @@ def render(
         "",
         "## How much messages move actions (listener side)",
         "",
-        "Per living receiver, mean ± 95% CI over seeds. CIC = I(action; message) with "
+        "Per live receiver, mean ± 95% CI over seeds. CIC = I(action; message) with "
         "the situation held fixed and messages drawn from the centre's own message "
         "distribution (max log2 3 = 1.585 bits). JS = Jensen-Shannon divergence "
         "between action distributions with the real and the intervened message.",

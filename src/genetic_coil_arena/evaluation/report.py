@@ -6,7 +6,8 @@ An ``ExperimentResult`` holds, for one task:
   CI, and the IQM with a stratified bootstrap CI);
 - the mandatory baselines it was required to include, and which ones are missing;
 - Holm-corrected Mann-Whitney comparisons with the Vargha-Delaney A12 effect size;
-- message-ablation deltas (intact minus intervened, paired by seed);
+- message-ablation deltas (intact minus intervened, paired by seed) with Holm-corrected
+  Wilcoxon signed-rank p-values;
 - communication metrics per system.
 
 It serializes to JSON (lossless round trip; NaN is stored as null), to a flat CSV and
@@ -67,6 +68,13 @@ class ConditionResult:
     iqm_low: float
     iqm_high: float
     n_episodes: int = 0
+
+    def __post_init__(self) -> None:
+        # Per-seed artifacts, in seed order, kept in memory only (never serialized):
+        # the system's outputs (``evaluate(keep_outputs=True)``) and the
+        # ``RecordingHook`` of each seed (``evaluate(record=True)``)
+        self.outputs: Optional[list[Any]] = None
+        self.recordings: Optional[list[Any]] = None
 
     @classmethod
     def from_scores(
@@ -129,10 +137,11 @@ class AblationResult:
     ablated: ConditionResult
     delta_mean: float  # Intact minus ablated, oriented so positive = performance lost
     delta_ci: float
-    p: float
+    p: float  # Paired test of intact vs ablated per-seed scores (see ``test``)
     p_holm: float
     a12: float  # P(intact beats ablated) per seed, oriented like delta
     listening: bool  # Delta CI lies entirely above zero
+    test: str = "wilcoxon"  # Wilcoxon signed-rank on the per-seed pairs
 
     @property
     def delta_low(self) -> float:

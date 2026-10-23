@@ -2,12 +2,18 @@
 
 import time
 from collections.abc import Sequence
-from typing import Optional
+from typing import Any, Callable, Optional
 
 import numpy as np
 
+from ..base import Observations
 from .env import SquadConfig, SquadEnv
 from .policies import CentrePolicy, SilentCentre, SpecialistPolicy
+
+# hook(messages, step, mask) -> messages; mask is the (B, N) live-receiver mask
+Hook = Callable[..., np.ndarray]
+# observer(step, obs, sent, done) is called every step before the specialists act
+Observer = Callable[[int, Observations, Optional[np.ndarray], np.ndarray], Any]
 
 
 def run_episodes(
@@ -15,8 +21,17 @@ def run_episodes(
     specialist: SpecialistPolicy,
     centre: Optional[CentrePolicy],
     seeds: Sequence[int],
+    hook: Optional[Hook] = None,
+    observer: Optional[Observer] = None,
 ) -> dict[str, np.ndarray]:
     """Play one batched episode per seed to the end.
+
+    Args:
+        hook: Applied to the centre's messages between send and receive as
+            ``hook(messages, step, mask)``, where ``mask`` = alive snakes in unfinished
+            episodes (an ``evaluation`` ``MessageHook`` fits)
+        observer: Called as ``observer(step, obs, sent, done)`` with the messages as
+            sent (before the hook), e.g. to record them
 
     Returns:
         Per-episode arrays: ``team_food`` (B,), ``food`` (B, N), ``steps`` (B,),
@@ -30,12 +45,19 @@ def run_episodes(
     total = np.zeros(len(seeds), dtype=np.float64)
     agent_steps = 0
     done = np.zeros(len(seeds), dtype=bool)
+    step = 0
     while not done.all():
         agent_steps += int(env.alive.sum())
-        messages = centre.send(obs)
+        sent = centre.send(obs)
+        if observer is not None:
+            observer(step, obs, sent, done)
+        delivered = sent
+        if hook is not None and sent is not None:
+            delivered = hook(sent, step, obs.centre["alive"] & ~done[:, None])
         actions = specialist.act(obs)
-        obs, rewards, done, info = env.step(actions, messages)
+        obs, rewards, done, info = env.step(actions, delivered)
         total += rewards[:, 0]
+        step += 1
     return {
         "team_food": env.score.sum(axis=1).astype(np.float64),
         "food": env.score.copy(),

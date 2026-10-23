@@ -2,9 +2,10 @@
 
 Every experiment reports a mean with a Student-t confidence interval, plus the
 interquartile mean (IQM) with a stratified bootstrap confidence interval, following
-Agarwal et al. 2021 ("Deep RL at the Edge of the Statistical Precipice"). Conditions
-are compared with Mann-Whitney U tests, Holm-corrected for multiple comparisons, and
-the Vargha-Delaney A12 effect size.
+Agarwal et al. 2021 ("Deep RL at the Edge of the Statistical Precipice"). Independent
+conditions (system vs baseline) are compared with Mann-Whitney U tests; paired ones
+(intact vs ablated on the same seeds) with the Wilcoxon signed-rank test. p-values are
+Holm-corrected for multiple comparisons; the effect size is Vargha-Delaney A12.
 """
 
 import itertools
@@ -128,6 +129,29 @@ def mann_whitney(
         return x.size * y.size / 2, 1.0  # All values tied: no evidence of a difference
 
     result = scipy_stats.mannwhitneyu(x, y, alternative=alternative)
+    return float(result.statistic), float(result.pvalue)
+
+
+def wilcoxon_signed_rank(
+    a: Sequence[float], b: Sequence[float], alternative: str = "two-sided"
+) -> tuple[float, float]:
+    """Wilcoxon signed-rank statistic and p-value for paired samples (a[i] with b[i]).
+
+    Zero differences are dropped (scipy's default ``zero_method="wilcox"``); when every
+    difference is zero there is no evidence of a difference and p = 1.
+    """
+    x = np.asarray(a, dtype=float).ravel()
+    y = np.asarray(b, dtype=float).ravel()
+    if x.shape != y.shape:
+        raise ValueError(
+            f"Paired samples must have equal length, got {x.size} and {y.size}"
+        )
+    if x.size == 0:
+        raise ValueError("Wilcoxon needs at least one pair")
+    if not np.any(x != y):
+        return 0.0, 1.0
+
+    result = scipy_stats.wilcoxon(x, y, alternative=alternative)
     return float(result.statistic), float(result.pvalue)
 
 

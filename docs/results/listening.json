@@ -1,6 +1,6 @@
 {
   "date": "2026-10-23",
-  "commit": "e7bdf49",
+  "commit": "8dfb52c",
   "results": {
     "r3": {
       "task": {
@@ -16,6 +16,14 @@
           "episode_seed_base": 3000000000,
           "seed_stride": 10000,
           "message_capacity_bits": 3.0
+        },
+        "message": {
+          "kind": "discrete",
+          "length": 1,
+          "vocab_size": 8,
+          "dim": 0,
+          "interval": 1,
+          "n_receivers": 3
         }
       },
       "seeds": [
@@ -600,10 +608,11 @@
           },
           "delta_mean": 11.986,
           "delta_ci": 0.929518507504304,
-          "p": 6.77647383397644e-08,
-          "p_holm": 2.710589533590576e-07,
+          "p": 1.9073486328125e-06,
+          "p_holm": 7.62939453125e-06,
           "a12": 1.0,
-          "listening": true
+          "listening": true,
+          "test": "wilcoxon"
         },
         {
           "system": "greedy+hand-coded",
@@ -635,40 +644,41 @@
               19
             ],
             "per_seed": [
-              5.5,
-              4.54,
-              3.82,
-              5.0,
-              5.7,
-              4.82,
-              4.94,
-              4.92,
-              5.74,
-              4.78,
-              4.08,
-              5.1,
-              4.62,
-              5.04,
-              5.86,
-              5.34,
-              3.52,
+              4.26,
+              3.76,
+              4.0,
+              4.28,
+              4.26,
+              3.68,
+              3.56,
               4.02,
-              4.9,
-              5.46
+              4.56,
+              3.62,
+              3.58,
+              4.3,
+              3.64,
+              4.72,
+              4.64,
+              3.98,
+              3.56,
+              3.82,
+              3.86,
+              3.28
             ],
-            "mean": 4.885,
-            "ci": 0.30269734962971234,
-            "iqm": 4.946,
-            "iqm_low": 4.630000000000001,
-            "iqm_high": 5.242,
+            "mean": 3.969,
+            "ci": 0.18888493108681265,
+            "iqm": 3.9279999999999995,
+            "iqm_low": 3.718,
+            "iqm_high": 4.17805,
             "n_episodes": 1000
           },
-          "delta_mean": 13.697999999999999,
-          "delta_ci": 0.7844904331969509,
-          "p": 6.795615128173358e-08,
-          "p_holm": 2.710589533590576e-07,
+          "delta_mean": 14.613999999999999,
+          "delta_ci": 0.7697459622756279,
+          "p": 1.9073486328125e-06,
+          "p_holm": 7.62939453125e-06,
           "a12": 1.0,
-          "listening": true
+          "listening": true,
+          "test": "wilcoxon"
         },
         {
           "system": "greedy+hand-coded",
@@ -700,40 +710,41 @@
               19
             ],
             "per_seed": [
-              4.14,
-              5.3,
-              4.74,
-              4.62,
-              5.84,
-              4.12,
-              4.32,
-              4.96,
-              5.32,
-              5.38,
+              7.8,
+              6.8,
+              5.64,
+              6.64,
+              6.42,
+              6.64,
+              6.54,
+              7.38,
+              7.04,
+              7.22,
+              9.12,
+              8.38,
+              7.2,
+              8.06,
+              6.18,
+              6.76,
+              5.88,
               6.68,
-              5.8,
-              5.46,
-              5.2,
-              4.18,
-              5.24,
-              4.86,
-              3.44,
-              4.76,
-              5.08
+              7.18,
+              8.1
             ],
-            "mean": 4.972,
-            "ci": 0.3425405082021903,
-            "iqm": 5.008,
-            "iqm_low": 4.63595,
-            "iqm_high": 5.287999999999999,
+            "mean": 7.083,
+            "ci": 0.40581009614283464,
+            "iqm": 6.953999999999999,
+            "iqm_low": 6.651999999999999,
+            "iqm_high": 7.43605,
             "n_episodes": 1000
           },
-          "delta_mean": 13.610999999999999,
-          "delta_ci": 0.6773701126992006,
-          "p": 6.795615128173358e-08,
-          "p_holm": 2.710589533590576e-07,
+          "delta_mean": 11.5,
+          "delta_ci": 0.6924748895361503,
+          "p": 1.9073486328125e-06,
+          "p_holm": 7.62939453125e-06,
           "a12": 1.0,
-          "listening": true
+          "listening": true,
+          "test": "wilcoxon"
         },
         {
           "system": "greedy+hand-coded",
@@ -765,40 +776,41 @@
               19
             ],
             "per_seed": [
-              5.94,
-              6.04,
-              4.98,
-              5.38,
-              6.64,
-              6.06,
-              4.78,
-              6.22,
-              6.08,
-              5.64,
+              5.08,
+              4.06,
+              4.46,
+              5.12,
+              4.76,
+              4.26,
+              4.52,
+              4.0,
+              4.26,
+              4.42,
               5.44,
-              5.16,
+              4.94,
               4.48,
-              6.08,
-              5.88,
-              5.88,
-              6.34,
-              5.72,
-              5.96,
-              6.6
+              4.82,
+              4.82,
+              3.72,
+              3.64,
+              3.76,
+              4.02,
+              4.6
             ],
-            "mean": 5.764999999999999,
-            "ci": 0.27017766560502016,
-            "iqm": 5.864,
-            "iqm_low": 5.53995,
-            "iqm_high": 6.066,
+            "mean": 4.459,
+            "ci": 0.23377012002648986,
+            "iqm": 4.464,
+            "iqm_low": 4.198,
+            "iqm_high": 4.71205,
             "n_episodes": 1000
           },
-          "delta_mean": 12.817999999999998,
-          "delta_ci": 0.8528812487940344,
-          "p": 6.77647383397644e-08,
-          "p_holm": 2.710589533590576e-07,
+          "delta_mean": 14.124,
+          "delta_ci": 0.6642410686854242,
+          "p": 1.9073486328125e-06,
+          "p_holm": 7.62939453125e-06,
           "a12": 1.0,
-          "listening": true
+          "listening": true,
+          "test": "wilcoxon"
         },
         {
           "system": "no-comm+hand-coded",
@@ -863,7 +875,8 @@
           "p": 1.0,
           "p_holm": 1.0,
           "a12": 0.5,
-          "listening": false
+          "listening": false,
+          "test": "wilcoxon"
         },
         {
           "system": "no-comm+hand-coded",
@@ -928,7 +941,8 @@
           "p": 1.0,
           "p_holm": 1.0,
           "a12": 0.5,
-          "listening": false
+          "listening": false,
+          "test": "wilcoxon"
         },
         {
           "system": "no-comm+hand-coded",
@@ -993,7 +1007,8 @@
           "p": 1.0,
           "p_holm": 1.0,
           "a12": 0.5,
-          "listening": false
+          "listening": false,
+          "test": "wilcoxon"
         },
         {
           "system": "no-comm+hand-coded",
@@ -1058,7 +1073,8 @@
           "p": 1.0,
           "p_holm": 1.0,
           "a12": 0.5,
-          "listening": false
+          "listening": false,
+          "test": "wilcoxon"
         }
       ],
       "communication": {
@@ -1075,16 +1091,16 @@
           "n_messages": 155128.0,
           "mi_bits_seed_mean": 2.631283131450852,
           "mi_bits_seed_ci": 0.005782117814758455,
-          "cic_bits": 0.8778305138403872,
-          "cic_bits_ci": 0.00946699870091152,
-          "js_shuffle_batch_bits": 0.38572580313239707,
-          "js_shuffle_batch_bits_ci": 0.006392642462506232,
-          "changed_shuffle_batch": 0.4199498367331933,
-          "changed_shuffle_batch_ci": 0.007966014578471368,
-          "js_random_matched_bits": 0.3913230391355985,
-          "js_random_matched_bits_ci": 0.008029762239201672,
-          "changed_random_matched": 0.4256561108144024,
-          "changed_random_matched_ci": 0.008138506955671745
+          "cic_bits": 0.8558266313608547,
+          "cic_bits_ci": 0.009407088545705974,
+          "js_shuffle_batch_bits": 0.3972223111335586,
+          "js_shuffle_batch_bits_ci": 0.006585158262062674,
+          "changed_shuffle_batch": 0.407353026812049,
+          "changed_shuffle_batch_ci": 0.006389564646706081,
+          "js_random_matched_bits": 0.3980512454546156,
+          "js_random_matched_bits_ci": 0.005332879232527543,
+          "changed_random_matched": 0.40999803500810617,
+          "changed_random_matched_ci": 0.00736029559879525
         },
         "no-comm+hand-coded": {
           "message_entropy_bits": 2.5127238723084315,
@@ -1099,8 +1115,8 @@
           "n_messages": 111288.0,
           "mi_bits_seed_mean": 2.5124482452086214,
           "mi_bits_seed_ci": 0.005437344315711812,
-          "cic_bits": 5.664926863745548e-17,
-          "cic_bits_ci": 6.475127950477119e-17,
+          "cic_bits": 1.657099029241006e-17,
+          "cic_bits_ci": 3.2844735147824484e-17,
           "js_shuffle_batch_bits": 0.0,
           "js_shuffle_batch_bits_ci": 0.0,
           "changed_shuffle_batch": 0.0,
@@ -1123,16 +1139,16 @@
           "n_messages": 79492.0,
           "mi_bits_seed_mean": 0.0005259762452826333,
           "mi_bits_seed_ci": 0.0008091624658597106,
-          "cic_bits": 0.9606598031521905,
-          "cic_bits_ci": 0.011776704293480798,
-          "js_shuffle_batch_bits": 0.43833946053171646,
-          "js_shuffle_batch_bits_ci": 0.010302539380596346,
-          "changed_shuffle_batch": 0.5046559770568226,
-          "changed_shuffle_batch_ci": 0.00809831731489838,
-          "js_random_matched_bits": 0.4446166690830286,
-          "js_random_matched_bits_ci": 0.011351700623534423,
-          "changed_random_matched": 0.5113925856296235,
-          "changed_random_matched_ci": 0.011986576298009062
+          "cic_bits": 0.925865215506815,
+          "cic_bits_ci": 0.011341324659268195,
+          "js_shuffle_batch_bits": 0.4292119032488365,
+          "js_shuffle_batch_bits_ci": 0.010067111958966361,
+          "changed_shuffle_batch": 0.42811732098750455,
+          "changed_shuffle_batch_ci": 0.013656743905144356,
+          "js_random_matched_bits": 0.42805045198216235,
+          "js_random_matched_bits_ci": 0.00726525473536124,
+          "changed_random_matched": 0.42742476749181507,
+          "changed_random_matched_ci": 0.00957205440604179
         },
         "greedy+silent-centre": {
           "message_entropy_bits": 0.0,
@@ -1166,20 +1182,13 @@
           ],
           "record_every": 3,
           "snapshot_every": 25,
-          "n_draws": 8,
           "n_shuffles": 100,
           "n_boot": 2000
         },
         "radius": 3,
-        "instrumented_rerun_max_abs_diff": {
-          "greedy+hand-coded": 0.0,
-          "no-comm+hand-coded": 0.0,
-          "greedy+random-centre": 0.0,
-          "greedy+silent-centre": 0.0
-        },
         "listening_summary": {
           "greedy+hand-coded": {
-            "cic_bits": 0.8778305138403872,
+            "cic_bits": 0.8558266313608547,
             "ablations_with_drop": [
               "zero",
               "shuffle_batch",
@@ -1189,7 +1198,7 @@
             "positive_listening": true
           },
           "no-comm+hand-coded": {
-            "cic_bits": 5.664926863745548e-17,
+            "cic_bits": 1.657099029241006e-17,
             "ablations_with_drop": [],
             "positive_listening": false
           }
@@ -1219,11 +1228,6 @@
             "check": "zero ablation == silent-centre baseline, seed by seed",
             "passed": true,
             "detail": "max |diff| = 0"
-          },
-          {
-            "check": "instrumented reruns reproduce the harness scores",
-            "passed": true,
-            "detail": "max |diff| = 0"
           }
         ]
       },
@@ -1244,6 +1248,14 @@
           "episode_seed_base": 3000000000,
           "seed_stride": 10000,
           "message_capacity_bits": 3.0
+        },
+        "message": {
+          "kind": "discrete",
+          "length": 1,
+          "vocab_size": 8,
+          "dim": 0,
+          "interval": 1,
+          "n_receivers": 3
         }
       },
       "seeds": [
@@ -1828,10 +1840,11 @@
           },
           "delta_mean": 12.105,
           "delta_ci": 0.7321326088175016,
-          "p": 6.786038616738627e-08,
-          "p_holm": 2.706768307138164e-07,
+          "p": 8.844915021211901e-05,
+          "p_holm": 0.00017689830042423802,
           "a12": 1.0,
-          "listening": true
+          "listening": true,
+          "test": "wilcoxon"
         },
         {
           "system": "greedy+hand-coded",
@@ -1863,40 +1876,41 @@
               19
             ],
             "per_seed": [
-              10.26,
-              9.72,
-              9.2,
-              10.72,
-              10.28,
-              10.46,
-              10.88,
-              9.88,
-              10.5,
-              10.66,
-              9.98,
-              12.28,
-              9.56,
-              10.86,
-              10.64,
-              9.24,
-              8.94,
-              8.9,
-              9.96,
-              10.72
+              8.3,
+              7.58,
+              7.88,
+              7.86,
+              7.86,
+              8.36,
+              7.0,
+              8.1,
+              7.06,
+              7.9,
+              8.1,
+              6.78,
+              7.6,
+              8.26,
+              7.28,
+              8.06,
+              7.44,
+              7.2,
+              7.24,
+              8.5
             ],
-            "mean": 10.182,
-            "ci": 0.3777698621736253,
-            "iqm": 10.234,
-            "iqm_low": 9.78195,
-            "iqm_high": 10.563999999999998,
+            "mean": 7.717999999999999,
+            "ci": 0.23503752256808616,
+            "iqm": 7.7559999999999985,
+            "iqm_low": 7.4559500000000005,
+            "iqm_high": 8.034,
             "n_episodes": 1000
           },
-          "delta_mean": 16.430999999999997,
-          "delta_ci": 0.4889136214355023,
-          "p": 6.77647383397644e-08,
-          "p_holm": 2.706768307138164e-07,
+          "delta_mean": 18.895000000000003,
+          "delta_ci": 0.5142366613361429,
+          "p": 8.844915021211901e-05,
+          "p_holm": 0.00017689830042423802,
           "a12": 1.0,
-          "listening": true
+          "listening": true,
+          "test": "wilcoxon"
         },
         {
           "system": "greedy+hand-coded",
@@ -1928,40 +1942,41 @@
               19
             ],
             "per_seed": [
-              10.78,
-              10.32,
-              9.52,
-              10.1,
-              10.14,
-              10.5,
-              8.82,
-              10.24,
-              10.28,
-              9.28,
-              9.74,
-              10.86,
-              9.14,
-              9.8,
-              9.56,
-              11.18,
-              9.52,
-              10.88,
-              10.16,
-              9.74
+              13.18,
+              13.5,
+              10.18,
+              12.26,
+              12.14,
+              12.4,
+              10.3,
+              12.68,
+              13.1,
+              12.1,
+              11.58,
+              12.24,
+              11.74,
+              13.52,
+              10.84,
+              13.02,
+              11.3,
+              10.34,
+              11.08,
+              10.96
             ],
-            "mean": 10.028,
-            "ci": 0.29448953750291296,
-            "iqm": 10.008000000000001,
-            "iqm_low": 9.706,
-            "iqm_high": 10.35005,
+            "mean": 11.923000000000004,
+            "ci": 0.5016301411907426,
+            "iqm": 11.952000000000002,
+            "iqm_low": 11.379850000000001,
+            "iqm_high": 12.536049999999998,
             "n_episodes": 1000
           },
-          "delta_mean": 16.585,
-          "delta_ci": 0.6020444048400421,
-          "p": 6.76692076784541e-08,
-          "p_holm": 2.706768307138164e-07,
+          "delta_mean": 14.690000000000001,
+          "delta_ci": 0.5671040244242729,
+          "p": 1.9073486328125e-06,
+          "p_holm": 7.62939453125e-06,
           "a12": 1.0,
-          "listening": true
+          "listening": true,
+          "test": "wilcoxon"
         },
         {
           "system": "greedy+hand-coded",
@@ -1993,40 +2008,41 @@
               19
             ],
             "per_seed": [
-              9.92,
-              11.76,
-              12.16,
-              10.1,
-              10.5,
-              10.9,
-              11.78,
-              10.58,
-              11.22,
-              11.36,
-              12.14,
-              11.1,
-              10.96,
-              12.38,
-              10.52,
-              11.62,
-              10.34,
-              12.0,
-              10.86,
-              11.5
+              7.88,
+              9.44,
+              9.54,
+              10.22,
+              9.32,
+              7.42,
+              7.38,
+              9.86,
+              8.78,
+              9.24,
+              8.96,
+              9.38,
+              7.26,
+              9.88,
+              10.32,
+              9.6,
+              7.56,
+              7.82,
+              9.3,
+              10.08
             ],
-            "mean": 11.184999999999999,
-            "ci": 0.33908315645386106,
-            "iqm": 11.186,
-            "iqm_low": 10.77195,
-            "iqm_high": 11.59015,
+            "mean": 8.962,
+            "ci": 0.48066121665370526,
+            "iqm": 9.144,
+            "iqm_low": 8.458000000000002,
+            "iqm_high": 9.578,
             "n_episodes": 1000
           },
-          "delta_mean": 15.427999999999997,
-          "delta_ci": 0.6446013344671611,
-          "p": 6.786038616738627e-08,
-          "p_holm": 2.706768307138164e-07,
+          "delta_mean": 17.651,
+          "delta_ci": 0.5747526210851962,
+          "p": 1.9073486328125e-06,
+          "p_holm": 7.62939453125e-06,
           "a12": 1.0,
-          "listening": true
+          "listening": true,
+          "test": "wilcoxon"
         },
         {
           "system": "no-comm+hand-coded",
@@ -2091,7 +2107,8 @@
           "p": 1.0,
           "p_holm": 1.0,
           "a12": 0.5,
-          "listening": false
+          "listening": false,
+          "test": "wilcoxon"
         },
         {
           "system": "no-comm+hand-coded",
@@ -2156,7 +2173,8 @@
           "p": 1.0,
           "p_holm": 1.0,
           "a12": 0.5,
-          "listening": false
+          "listening": false,
+          "test": "wilcoxon"
         },
         {
           "system": "no-comm+hand-coded",
@@ -2221,7 +2239,8 @@
           "p": 1.0,
           "p_holm": 1.0,
           "a12": 0.5,
-          "listening": false
+          "listening": false,
+          "test": "wilcoxon"
         },
         {
           "system": "no-comm+hand-coded",
@@ -2286,7 +2305,8 @@
           "p": 1.0,
           "p_holm": 1.0,
           "a12": 0.5,
-          "listening": false
+          "listening": false,
+          "test": "wilcoxon"
         }
       ],
       "communication": {
@@ -2303,16 +2323,16 @@
           "n_messages": 170691.0,
           "mi_bits_seed_mean": 2.603950172390721,
           "mi_bits_seed_ci": 0.005065042969411005,
-          "cic_bits": 0.6563158627904222,
-          "cic_bits_ci": 0.009170670790697858,
-          "js_shuffle_batch_bits": 0.2968583153902979,
-          "js_shuffle_batch_bits_ci": 0.008418670010210554,
-          "changed_shuffle_batch": 0.33127495800770956,
-          "changed_shuffle_batch_ci": 0.010274154363986682,
-          "js_random_matched_bits": 0.2987951644295679,
-          "js_random_matched_bits_ci": 0.00806350912496232,
-          "changed_random_matched": 0.3338720062836447,
-          "changed_random_matched_ci": 0.00920226454574472
+          "cic_bits": 0.6395439298070559,
+          "cic_bits_ci": 0.009221937784138483,
+          "js_shuffle_batch_bits": 0.29622599758385293,
+          "js_shuffle_batch_bits_ci": 0.007873174303997775,
+          "changed_shuffle_batch": 0.30313542752773565,
+          "changed_shuffle_batch_ci": 0.00903134383952371,
+          "js_random_matched_bits": 0.2984166510770275,
+          "js_random_matched_bits_ci": 0.006000878402642789,
+          "changed_random_matched": 0.3061608415513115,
+          "changed_random_matched_ci": 0.007419647601119089
         },
         "no-comm+hand-coded": {
           "message_entropy_bits": 2.5483541514014707,
@@ -2327,8 +2347,8 @@
           "n_messages": 138179.0,
           "mi_bits_seed_mean": 2.547547526681645,
           "mi_bits_seed_ci": 0.00631406572273295,
-          "cic_bits": 4.232267445444403e-17,
-          "cic_bits_ci": 5.888495818793577e-17,
+          "cic_bits": 2.3353541322201786e-17,
+          "cic_bits_ci": 2.653942303264784e-17,
           "js_shuffle_batch_bits": 0.0,
           "js_shuffle_batch_bits_ci": 0.0,
           "changed_shuffle_batch": 0.0,
@@ -2351,16 +2371,16 @@
           "n_messages": 93557.0,
           "mi_bits_seed_mean": 0.00039135453824061804,
           "mi_bits_seed_ci": 0.0007769120212212088,
-          "cic_bits": 0.7906706295354031,
-          "cic_bits_ci": 0.010236731580621695,
-          "js_shuffle_batch_bits": 0.3768594051929105,
-          "js_shuffle_batch_bits_ci": 0.006993375202696365,
-          "changed_shuffle_batch": 0.4467833057214934,
-          "changed_shuffle_batch_ci": 0.007725413432987382,
-          "js_random_matched_bits": 0.37185621017922815,
-          "js_random_matched_bits_ci": 0.009819404423757944,
-          "changed_random_matched": 0.4409359291728979,
-          "changed_random_matched_ci": 0.010519763068753936
+          "cic_bits": 0.7580909260018058,
+          "cic_bits_ci": 0.010099764170421513,
+          "js_shuffle_batch_bits": 0.3584631944420555,
+          "js_shuffle_batch_bits_ci": 0.00779113486457164,
+          "changed_shuffle_batch": 0.3663873140431127,
+          "changed_shuffle_batch_ci": 0.010076074934813953,
+          "js_random_matched_bits": 0.3559267466870657,
+          "js_random_matched_bits_ci": 0.008220306366454268,
+          "changed_random_matched": 0.3616324392331478,
+          "changed_random_matched_ci": 0.0115477798685532
         },
         "greedy+silent-centre": {
           "message_entropy_bits": 0.0,
@@ -2394,20 +2414,13 @@
           ],
           "record_every": 3,
           "snapshot_every": 25,
-          "n_draws": 8,
           "n_shuffles": 100,
           "n_boot": 2000
         },
         "radius": 5,
-        "instrumented_rerun_max_abs_diff": {
-          "greedy+hand-coded": 0.0,
-          "no-comm+hand-coded": 0.0,
-          "greedy+random-centre": 0.0,
-          "greedy+silent-centre": 0.0
-        },
         "listening_summary": {
           "greedy+hand-coded": {
-            "cic_bits": 0.6563158627904222,
+            "cic_bits": 0.6395439298070559,
             "ablations_with_drop": [
               "zero",
               "shuffle_batch",
@@ -2417,7 +2430,7 @@
             "positive_listening": true
           },
           "no-comm+hand-coded": {
-            "cic_bits": 4.232267445444403e-17,
+            "cic_bits": 2.3353541322201786e-17,
             "ablations_with_drop": [],
             "positive_listening": false
           }
@@ -2447,11 +2460,6 @@
             "check": "zero ablation == silent-centre baseline, seed by seed",
             "passed": true,
             "detail": "max |diff| = 0"
-          },
-          {
-            "check": "instrumented reruns reproduce the harness scores",
-            "passed": true,
-            "detail": "max |diff| = 0"
           }
         ]
       },
@@ -2472,6 +2480,14 @@
           "episode_seed_base": 3000000000,
           "seed_stride": 10000,
           "message_capacity_bits": 3.0
+        },
+        "message": {
+          "kind": "discrete",
+          "length": 1,
+          "vocab_size": 8,
+          "dim": 0,
+          "interval": 1,
+          "n_receivers": 3
         }
       },
       "seeds": [
@@ -3056,10 +3072,11 @@
           },
           "delta_mean": 7.872000000000002,
           "delta_ci": 0.6590544100370903,
-          "p": 6.786038616738627e-08,
-          "p_holm": 2.710589533590576e-07,
+          "p": 1.9073486328125e-06,
+          "p_holm": 7.62939453125e-06,
           "a12": 1.0,
-          "listening": true
+          "listening": true,
+          "test": "wilcoxon"
         },
         {
           "system": "greedy+hand-coded",
@@ -3091,40 +3108,41 @@
               19
             ],
             "per_seed": [
-              18.48,
-              18.74,
-              17.2,
-              16.96,
-              15.74,
-              16.3,
-              17.06,
-              18.52,
-              17.62,
-              17.66,
-              17.66,
-              19.74,
-              16.36,
-              17.18,
-              18.54,
-              17.42,
-              15.58,
-              16.9,
-              16.08,
-              17.36
+              14.84,
+              15.88,
+              11.72,
+              15.56,
+              13.56,
+              12.46,
+              14.08,
+              15.9,
+              12.4,
+              15.16,
+              13.54,
+              15.56,
+              12.16,
+              14.08,
+              14.34,
+              13.0,
+              13.1,
+              13.52,
+              13.18,
+              15.24
             ],
-            "mean": 17.354999999999997,
-            "ci": 0.5023062653278201,
-            "iqm": 17.302,
-            "iqm_low": 16.8378,
-            "iqm_high": 17.864100000000004,
+            "mean": 13.964000000000002,
+            "ci": 0.6105606241960468,
+            "iqm": 13.940000000000001,
+            "iqm_low": 13.23395,
+            "iqm_high": 14.764299999999999,
             "n_episodes": 1000
           },
-          "delta_mean": 15.206999999999999,
-          "delta_ci": 0.7670885443659763,
-          "p": 6.786038616738627e-08,
-          "p_holm": 2.710589533590576e-07,
+          "delta_mean": 18.598000000000003,
+          "delta_ci": 0.8520049051112403,
+          "p": 1.9073486328125e-06,
+          "p_holm": 7.62939453125e-06,
           "a12": 1.0,
-          "listening": true
+          "listening": true,
+          "test": "wilcoxon"
         },
         {
           "system": "greedy+hand-coded",
@@ -3156,40 +3174,41 @@
               19
             ],
             "per_seed": [
-              18.96,
-              19.4,
-              16.26,
-              19.82,
-              16.68,
-              17.88,
-              16.68,
-              16.04,
-              19.08,
-              18.62,
-              16.54,
-              19.54,
-              15.82,
-              17.26,
-              18.9,
-              16.94,
-              16.74,
-              16.74,
               18.78,
-              17.94
+              18.28,
+              19.42,
+              18.32,
+              17.36,
+              17.34,
+              18.78,
+              17.86,
+              20.56,
+              20.06,
+              17.92,
+              20.6,
+              19.4,
+              18.36,
+              19.54,
+              18.78,
+              18.06,
+              18.1,
+              17.38,
+              16.9
             ],
-            "mean": 17.730999999999998,
-            "ci": 0.6091759856801527,
-            "iqm": 17.648000000000003,
-            "iqm_low": 16.86,
-            "iqm_high": 18.55605,
+            "mean": 18.59,
+            "ci": 0.49852467042181686,
+            "iqm": 18.478,
+            "iqm_low": 18.021949999999997,
+            "iqm_high": 19.0761,
             "n_episodes": 1000
           },
-          "delta_mean": 14.831,
-          "delta_ci": 0.8171882532304412,
-          "p": 6.77647383397644e-08,
-          "p_holm": 2.710589533590576e-07,
+          "delta_mean": 13.972,
+          "delta_ci": 0.7646869673172284,
+          "p": 8.844915021211901e-05,
+          "p_holm": 0.00017689830042423802,
           "a12": 1.0,
-          "listening": true
+          "listening": true,
+          "test": "wilcoxon"
         },
         {
           "system": "greedy+hand-coded",
@@ -3221,40 +3240,41 @@
               19
             ],
             "per_seed": [
-              17.62,
-              18.3,
-              19.34,
-              18.64,
-              18.78,
-              18.94,
-              16.68,
-              17.2,
-              19.74,
-              19.04,
-              17.14,
-              20.12,
-              16.46,
-              17.12,
-              20.08,
-              18.88,
-              16.48,
-              17.82,
-              16.78,
-              18.16
+              14.56,
+              15.96,
+              16.18,
+              15.9,
+              15.42,
+              14.96,
+              17.9,
+              15.78,
+              15.16,
+              17.38,
+              14.72,
+              15.62,
+              14.2,
+              14.74,
+              16.0,
+              15.8,
+              14.8,
+              13.82,
+              17.26,
+              16.14
             ],
-            "mean": 18.166000000000004,
-            "ci": 0.5600723573752876,
-            "iqm": 18.148,
-            "iqm_low": 17.42,
-            "iqm_high": 18.822,
+            "mean": 15.614999999999998,
+            "ci": 0.495410437428289,
+            "iqm": 15.540000000000001,
+            "iqm_low": 15.036000000000001,
+            "iqm_high": 16.032049999999998,
             "n_episodes": 1000
           },
-          "delta_mean": 14.396,
-          "delta_ci": 0.6730547672058044,
-          "p": 6.795615128173358e-08,
-          "p_holm": 2.710589533590576e-07,
+          "delta_mean": 16.947,
+          "delta_ci": 0.7397045248686888,
+          "p": 8.844915021211901e-05,
+          "p_holm": 0.00017689830042423802,
           "a12": 1.0,
-          "listening": true
+          "listening": true,
+          "test": "wilcoxon"
         },
         {
           "system": "no-comm+hand-coded",
@@ -3319,7 +3339,8 @@
           "p": 1.0,
           "p_holm": 1.0,
           "a12": 0.5,
-          "listening": false
+          "listening": false,
+          "test": "wilcoxon"
         },
         {
           "system": "no-comm+hand-coded",
@@ -3384,7 +3405,8 @@
           "p": 1.0,
           "p_holm": 1.0,
           "a12": 0.5,
-          "listening": false
+          "listening": false,
+          "test": "wilcoxon"
         },
         {
           "system": "no-comm+hand-coded",
@@ -3449,7 +3471,8 @@
           "p": 1.0,
           "p_holm": 1.0,
           "a12": 0.5,
-          "listening": false
+          "listening": false,
+          "test": "wilcoxon"
         },
         {
           "system": "no-comm+hand-coded",
@@ -3514,7 +3537,8 @@
           "p": 1.0,
           "p_holm": 1.0,
           "a12": 0.5,
-          "listening": false
+          "listening": false,
+          "test": "wilcoxon"
         }
       ],
       "communication": {
@@ -3531,16 +3555,16 @@
           "n_messages": 175467.0,
           "mi_bits_seed_mean": 2.5807489349531503,
           "mi_bits_seed_ci": 0.004969895653465541,
-          "cic_bits": 0.4370984503322154,
-          "cic_bits_ci": 0.004730790080426947,
-          "js_shuffle_batch_bits": 0.2089689627777791,
-          "js_shuffle_batch_bits_ci": 0.004288579007468172,
-          "changed_shuffle_batch": 0.2361395527100963,
-          "changed_shuffle_batch_ci": 0.0045244744136551905,
-          "js_random_matched_bits": 0.20515288717083022,
-          "js_random_matched_bits_ci": 0.005714007553674801,
-          "changed_random_matched": 0.23375427551240704,
-          "changed_random_matched_ci": 0.007132058579453198
+          "cic_bits": 0.42379147357669034,
+          "cic_bits_ci": 0.004832382868179162,
+          "js_shuffle_batch_bits": 0.20248458365116231,
+          "js_shuffle_batch_bits_ci": 0.0038098726206459107,
+          "changed_shuffle_batch": 0.2062899255125074,
+          "changed_shuffle_batch_ci": 0.004282668689956229,
+          "js_random_matched_bits": 0.2036673628777018,
+          "js_random_matched_bits_ci": 0.004552909824774232,
+          "changed_random_matched": 0.20839746736661396,
+          "changed_random_matched_ci": 0.005109342993382021
         },
         "no-comm+hand-coded": {
           "message_entropy_bits": 2.5762362197278574,
@@ -3555,8 +3579,8 @@
           "n_messages": 156889.0,
           "mi_bits_seed_mean": 2.57605313923679,
           "mi_bits_seed_ci": 0.005934632988596567,
-          "cic_bits": 5.4610881220056205e-17,
-          "cic_bits_ci": 6.586183179055322e-17,
+          "cic_bits": 3.5355204454890523e-17,
+          "cic_bits_ci": 3.144732709562341e-17,
           "js_shuffle_batch_bits": 0.0,
           "js_shuffle_batch_bits_ci": 0.0,
           "changed_shuffle_batch": 0.0,
@@ -3579,16 +3603,16 @@
           "n_messages": 106034.0,
           "mi_bits_seed_mean": 0.0003860351993777211,
           "mi_bits_seed_ci": 0.000656983529284148,
-          "cic_bits": 0.5895540234083887,
-          "cic_bits_ci": 0.01151056910037782,
-          "js_shuffle_batch_bits": 0.2822334810713125,
-          "js_shuffle_batch_bits_ci": 0.008588098665200982,
-          "changed_shuffle_batch": 0.3444787266319268,
-          "changed_shuffle_batch_ci": 0.009389743811054401,
-          "js_random_matched_bits": 0.27886689709750134,
-          "js_random_matched_bits_ci": 0.008334378329956732,
-          "changed_random_matched": 0.3449966298118593,
-          "changed_random_matched_ci": 0.010260970389077454
+          "cic_bits": 0.5617304890454485,
+          "cic_bits_ci": 0.011195517120322235,
+          "js_shuffle_batch_bits": 0.27563670213761093,
+          "js_shuffle_batch_bits_ci": 0.008292676753899043,
+          "changed_shuffle_batch": 0.2863361734123462,
+          "changed_shuffle_batch_ci": 0.009683665704563792,
+          "js_random_matched_bits": 0.27160289217904965,
+          "js_random_matched_bits_ci": 0.008046433767672449,
+          "changed_random_matched": 0.2810769404612368,
+          "changed_random_matched_ci": 0.010568230978359296
         },
         "greedy+silent-centre": {
           "message_entropy_bits": 0.0,
@@ -3622,20 +3646,13 @@
           ],
           "record_every": 3,
           "snapshot_every": 25,
-          "n_draws": 8,
           "n_shuffles": 100,
           "n_boot": 2000
         },
         "radius": 7,
-        "instrumented_rerun_max_abs_diff": {
-          "greedy+hand-coded": 0.0,
-          "no-comm+hand-coded": 0.0,
-          "greedy+random-centre": 0.0,
-          "greedy+silent-centre": 0.0
-        },
         "listening_summary": {
           "greedy+hand-coded": {
-            "cic_bits": 0.4370984503322154,
+            "cic_bits": 0.42379147357669034,
             "ablations_with_drop": [
               "zero",
               "shuffle_batch",
@@ -3645,7 +3662,7 @@
             "positive_listening": true
           },
           "no-comm+hand-coded": {
-            "cic_bits": 5.4610881220056205e-17,
+            "cic_bits": 3.5355204454890523e-17,
             "ablations_with_drop": [],
             "positive_listening": false
           }
@@ -3673,11 +3690,6 @@
           },
           {
             "check": "zero ablation == silent-centre baseline, seed by seed",
-            "passed": true,
-            "detail": "max |diff| = 0"
-          },
-          {
-            "check": "instrumented reruns reproduce the harness scores",
             "passed": true,
             "detail": "max |diff| = 0"
           }

@@ -12,20 +12,26 @@ from genetic_coil_arena.envs.squad import (
     SquadEnv,
     run_episodes,
 )
-from genetic_coil_arena.evaluation import BaselineRegistry, InterventionHook
+from genetic_coil_arena.evaluation import (
+    ABLATIONS,
+    BaselineRegistry,
+    InterventionHook,
+    evaluate,
+)
 from genetic_coil_arena.experiments.listening import (
     DEAF,
     LISTENER,
     NO_FOOD,
+    SILENT_CENTRE,
     ListeningSettings,
-    Recorder,
+    Recording,
     SquadSystem,
+    communication_metrics_for,
     episode_seeds,
     food_targets,
     listener_metrics,
     make_task,
     register_squad_baselines,
-    rollout,
     run_radius,
     sanity_checks,
 )
@@ -57,11 +63,26 @@ def test_food_targets_match_hand_coded_centre():
     assert checked > 0
 
 
-def test_rollout_without_hook_matches_run_episodes():
+def test_recording_system_matches_run_episodes():
     seeds = list(range(8))
-    ours = rollout(SquadEnv(CONFIG), GreedyPolicy(), HandCodedCentre(), seeds)
+    system = SquadSystem(CONFIG, GreedyPolicy(), HandCodedCentre(), Recording(2, 10))
+    ours = system(seeds)
     ref = run_episodes(SquadEnv(CONFIG), GreedyPolicy(), HandCodedCentre(), seeds)
     assert np.array_equal(ours["team_food"], ref["team_food"])
+    recorded = ours["recorder"].stacked()
+    assert recorded["messages"].shape[0] == recorded["label"].shape[0] > 0
+    assert "recorder" not in SquadSystem(CONFIG, GreedyPolicy())(seeds)
+
+
+def test_hooks_only_touch_live_receivers():
+    seen = []
+
+    def hook(messages, step, mask):
+        seen.append(mask.copy())
+        return InterventionHook("shuffle_batch", seed=step)(messages, step, mask)
+
+    SquadSystem(CONFIG, GreedyPolicy(), HandCodedCentre())(list(range(8)), hook=hook)
+    assert seen[0].all() and not seen[-1].all()  # Snakes die during the episode
 
 
 def test_zero_hook_equals_silent_centre():
@@ -94,12 +115,23 @@ def test_listener_metrics_separate_listener_from_deaf():
     seeds = list(range(6))
     results = {}
     for name, policy in (("greedy", GreedyPolicy()), ("deaf", NoCommPolicy())):
-        recorder = Recorder(record_every=2, snapshot_every=10)
-        SquadSystem(CONFIG, policy, HandCodedCentre())(seeds, recorder=recorder)
-        results[name] = listener_metrics(policy, recorder, n_draws=4)
+        system = SquadSystem(CONFIG, policy, HandCodedCentre(), Recording(2, 10))
+        results[name] = listener_metrics(policy, system(seeds)["recorder"])
     assert results["greedy"]["cic_bits"] > 0.05
-    assert results["deaf"]["cic_bits"] == pytest.approx(0.0, abs=1e-12)
-    assert results["deaf"]["js_shuffle_batch_bits"] == pytest.approx(0.0, abs=1e-12)
+    assert results["deaf"]["cic_bits"] == 0.0
+    assert results["deaf"]["js_shuffle_batch_bits"] == 0.0
+
+
+def test_metrics_come_from_the_scored_runs():
+    registry = BaselineRegistry()
+    task = make_task(3, n_seeds=2, n_episodes=4, registry=registry)
+    system = SquadSystem(CONFIG, GreedyPolicy(), HandCodedCentre(), Recording())
+    cond = evaluate(task, system, [0, 1], name=LISTENER, keep_outputs=True)
+    assert len(cond.outputs) == 2
+    metrics = communication_metrics_for(cond, system.specialist, True, n_shuffles=10)
+    assert metrics["cic_bits"] > 0 and metrics["mi_bits"] > 1.0
+    with pytest.raises(ValueError, match="keep_outputs"):
+        communication_metrics_for(evaluate(task, system, [0]), system.specialist, True)
 
 
 def test_run_radius_end_to_end_passes_sanity_checks():
@@ -109,8 +141,11 @@ def test_run_radius_end_to_end_passes_sanity_checks():
     result = run_radius(3, settings)
     assert result.complete
     assert {a.intervention for a in result.ablations if a.system == LISTENER} == set(
-        settings.interventions
+        ABLATIONS
     )
+    assert all(a.test == "wilcoxon" for a in result.ablations)
+    assert result.task["message"]["n_receivers"] == 3
+    assert result.communication[SILENT_CENTRE]["message_entropy_bits"] == 0.0
     assert all(a.delta_mean == 0 for a in result.ablations if a.system == DEAF)
     for row in sanity_checks(result):
         if "random centre" in row["check"]:
