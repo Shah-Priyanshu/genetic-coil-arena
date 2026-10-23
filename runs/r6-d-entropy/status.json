@@ -20,10 +20,12 @@
     "--entropy-anneal",
     "0.15"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-23T06:59:19+00:00",
-  "updated_at": "2026-10-23T08:10:23+00:00",
-  "elapsed_min": 71.1,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 409 MiB, 12282 MiB, 40",
-  "host": "PC"
+  "updated_at": "2026-10-23T08:13:50+00:00",
+  "elapsed_min": 74.5,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 399 MiB, 12282 MiB, 40",
+  "host": "PC",
+  "returncode": 0,
+  "finished_at": "2026-10-23T08:13:50+00:00"
 }

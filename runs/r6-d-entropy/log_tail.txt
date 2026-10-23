@@ -1,74 +1,3 @@
-[progress] r=3 learned run 8: gen 790/2000, val team food 30.44, best gen 790, elapsed 1575 s
-[progress] r=3 learned run 6: gen 770/2000, val team food 33.53, best gen 770, elapsed 1592 s
-[progress] r=3 learned run 0: gen 770/2000, val team food 31.84, best gen 700, elapsed 1596 s
-[progress] r=3 learned run 2: gen 770/2000, val team food 34.84, best gen 730, elapsed 1599 s
-[progress] r=3 learned run 7: gen 760/2000, val team food 34.72, best gen 690, elapsed 1603 s
-[progress] r=3 learned run 1: gen 790/2000, val team food 34.66, best gen 770, elapsed 1605 s
-[progress] r=3 learned run 9: gen 780/2000, val team food 33.22, best gen 710, elapsed 1615 s
-[progress] r=3 learned run 4: gen 750/2000, val team food 35.28, best gen 680, elapsed 1617 s
-[progress] r=3 learned run 3: gen 760/2000, val team food 31.69, best gen 720, elapsed 1619 s
-[progress] r=3 learned run 5: gen 750/2000, val team food 36.38, best gen 740, elapsed 1620 s
-[progress] r=3 learned run 8: gen 850/2000, val team food 27.91, best gen 820, elapsed 1712 s
-[progress] r=3 learned run 6: gen 830/2000, val team food 34.28, best gen 810, elapsed 1726 s
-[progress] r=3 learned run 0: gen 830/2000, val team food 33.53, best gen 830, elapsed 1733 s
-[progress] r=3 learned run 2: gen 830/2000, val team food 34.12, best gen 780, elapsed 1737 s
-[progress] r=3 learned run 7: gen 820/2000, val team food 33.88, best gen 690, elapsed 1741 s
-[progress] r=3 learned run 1: gen 850/2000, val team food 35.00, best gen 830, elapsed 1742 s
-[progress] r=3 learned run 9: gen 840/2000, val team food 33.72, best gen 710, elapsed 1753 s
-[progress] r=3 learned run 4: gen 810/2000, val team food 36.31, best gen 680, elapsed 1755 s
-[progress] r=3 learned run 5: gen 810/2000, val team food 36.34, best gen 740, elapsed 1757 s
-[progress] r=3 learned run 3: gen 820/2000, val team food 31.62, best gen 720, elapsed 1760 s
-[progress] r=3 learned run 8: gen 910/2000, val team food 26.94, best gen 820, elapsed 1851 s
-[progress] r=3 learned run 6: gen 890/2000, val team food 35.19, best gen 810, elapsed 1864 s
-[progress] r=3 learned run 0: gen 890/2000, val team food 31.19, best gen 830, elapsed 1870 s
-[progress] r=3 learned run 2: gen 890/2000, val team food 33.97, best gen 780, elapsed 1876 s
-[progress] r=3 learned run 1: gen 910/2000, val team food 36.69, best gen 890, elapsed 1877 s
-[progress] r=3 learned run 7: gen 880/2000, val team food 37.47, best gen 850, elapsed 1881 s
-[progress] r=3 learned run 9: gen 900/2000, val team food 35.47, best gen 710, elapsed 1891 s
-[progress] r=3 learned run 4: gen 870/2000, val team food 33.31, best gen 680, elapsed 1894 s
-[progress] r=3 learned run 5: gen 870/2000, val team food 37.91, best gen 840, elapsed 1896 s
-[progress] r=3 learned run 3: gen 880/2000, val team food 34.16, best gen 720, elapsed 1898 s
-[progress] r=3 learned run 8: gen 970/2000, val team food 29.69, best gen 930, elapsed 1988 s
-[progress] r=3 learned run 6: gen 950/2000, val team food 32.97, best gen 810, elapsed 2000 s
-[progress] r=3 learned run 0: gen 950/2000, val team food 31.03, best gen 830, elapsed 2005 s
-[progress] r=3 learned run 1: gen 970/2000, val team food 35.81, best gen 890, elapsed 2012 s
-[progress] r=3 learned run 2: gen 950/2000, val team food 38.78, best gen 950, elapsed 2013 s
-[progress] r=3 learned run 7: gen 940/2000, val team food 35.59, best gen 850, elapsed 2018 s
-[progress] r=3 learned run 9: gen 960/2000, val team food 34.12, best gen 710, elapsed 2028 s
-[progress] r=3 learned run 4: gen 930/2000, val team food 36.94, best gen 680, elapsed 2031 s
-[progress] r=3 learned run 5: gen 930/2000, val team food 35.94, best gen 840, elapsed 2032 s
-[progress] r=3 learned run 3: gen 940/2000, val team food 31.12, best gen 720, elapsed 2036 s
-[progress] r=3 learned run 8: gen 1030/2000, val team food 28.31, best gen 930, elapsed 2125 s
-[progress] r=3 learned run 6: gen 1010/2000, val team food 34.47, best gen 810, elapsed 2137 s
-[progress] r=3 learned run 0: gen 1010/2000, val team food 29.97, best gen 830, elapsed 2142 s
-[progress] r=3 learned run 1: gen 1030/2000, val team food 33.34, best gen 890, elapsed 2149 s
-[progress] r=3 learned run 2: gen 1010/2000, val team food 37.31, best gen 1000, elapsed 2150 s
-[progress] r=3 learned run 7: gen 1000/2000, val team food 35.16, best gen 850, elapsed 2154 s
-[progress] r=3 learned run 9: gen 1020/2000, val team food 34.03, best gen 710, elapsed 2166 s
-[progress] r=3 learned run 4: gen 990/2000, val team food 33.25, best gen 680, elapsed 2167 s
-[progress] r=3 learned run 5: gen 990/2000, val team food 39.38, best gen 990, elapsed 2171 s
-[progress] r=3 learned run 3: gen 1000/2000, val team food 33.78, best gen 720, elapsed 2172 s
-[progress] r=3 learned run 8: gen 1090/2000, val team food 29.72, best gen 930, elapsed 2262 s
-[progress] r=3 learned run 6: gen 1070/2000, val team food 34.22, best gen 810, elapsed 2273 s
-[progress] r=3 learned run 0: gen 1070/2000, val team food 31.72, best gen 830, elapsed 2280 s
-[progress] r=3 learned run 1: gen 1090/2000, val team food 36.41, best gen 890, elapsed 2286 s
-[progress] r=3 learned run 2: gen 1070/2000, val team food 38.88, best gen 1000, elapsed 2288 s
-[progress] r=3 learned run 7: gen 1060/2000, val team food 37.28, best gen 1040, elapsed 2291 s
-[progress] r=3 learned run 9: gen 1080/2000, val team food 36.88, best gen 1080, elapsed 2303 s
-[progress] r=3 learned run 4: gen 1050/2000, val team food 37.69, best gen 680, elapsed 2304 s
-[progress] r=3 learned run 3: gen 1060/2000, val team food 32.47, best gen 1010, elapsed 2308 s
-[progress] r=3 learned run 5: gen 1050/2000, val team food 39.00, best gen 990, elapsed 2310 s
-[progress] r=3 learned run 8: gen 1150/2000, val team food 27.06, best gen 930, elapsed 2399 s
-[progress] r=3 learned run 6: gen 1130/2000, val team food 32.41, best gen 810, elapsed 2409 s
-[progress] r=3 learned run 0: gen 1130/2000, val team food 33.50, best gen 830, elapsed 2417 s
-[progress] r=3 learned run 1: gen 1150/2000, val team food 34.91, best gen 1140, elapsed 2421 s
-[progress] r=3 learned run 2: gen 1130/2000, val team food 37.50, best gen 1000, elapsed 2426 s
-[progress] r=3 learned run 7: gen 1120/2000, val team food 33.19, best gen 1040, elapsed 2429 s
-[progress] r=3 learned run 9: gen 1140/2000, val team food 36.41, best gen 1080, elapsed 2440 s
-[progress] r=3 learned run 4: gen 1110/2000, val team food 36.75, best gen 1060, elapsed 2441 s
-[progress] r=3 learned run 3: gen 1120/2000, val team food 34.97, best gen 1010, elapsed 2446 s
-[progress] r=3 learned run 5: gen 1110/2000, val team food 39.06, best gen 1090, elapsed 2448 s
-[progress] r=3 learned run 8: gen 1210/2000, val team food 29.47, best gen 930, elapsed 2536 s
 [progress] r=3 learned run 6: gen 1190/2000, val team food 36.25, best gen 810, elapsed 2546 s
 [progress] r=3 learned run 0: gen 1190/2000, val team food 32.97, best gen 830, elapsed 2555 s
 [progress] r=3 learned run 1: gen 1210/2000, val team food 37.03, best gen 1180, elapsed 2558 s
@@ -198,3 +127,74 @@
 [progress] r=3 learned run 4: gen 1890/2000, val team food 39.94, best gen 1890, elapsed 4223 s
 [progress] r=3 learned run 3: gen 1900/2000, val team food 37.12, best gen 1580, elapsed 4236 s
 [progress] r=3 learned run 5: gen 1890/2000, val team food 38.16, best gen 1180, elapsed 4237 s
+[progress] r=3 learned run 8: gen 1990/2000, val team food 30.91, best gen 1640, elapsed 4316 s
+[progress] r=3 learned run 6: gen 1970/2000, val team food 36.31, best gen 1880, elapsed 4324 s
+[progress] r=3 learned run 1: gen 1990/2000, val team food 38.19, best gen 1610, elapsed 4333 s
+[progress] r=3 learned run 0: gen 1970/2000, val team food 29.81, best gen 1650, elapsed 4335 s
+[progress] r=3 learned run 8: gen 2000/2000, val team food 29.19, best gen 1640, elapsed 4339 s
+[train] r=3 learned    run 8: 2000 gens in 4339 s, best val food 32.53 (gen 1640)
+[progress] r=3 learned run 7: gen 1960/2000, val team food 38.38, best gen 1850, elapsed 4351 s
+[progress] r=3 learned run 2: gen 1970/2000, val team food 38.03, best gen 1890, elapsed 4355 s
+[progress] r=3 learned run 1: gen 2000/2000, val team food 38.78, best gen 1610, elapsed 4355 s
+[train] r=3 learned    run 1: 2000 gens in 4355 s, best val food 39.16 (gen 1610)
+[progress] r=3 learned run 9: gen 1980/2000, val team food 36.97, best gen 1810, elapsed 4356 s
+[progress] r=3 learned run 4: gen 1950/2000, val team food 36.59, best gen 1890, elapsed 4360 s
+[progress] r=3 learned run 3: gen 1960/2000, val team food 36.72, best gen 1580, elapsed 4370 s
+[progress] r=3 learned run 5: gen 1950/2000, val team food 36.94, best gen 1180, elapsed 4371 s
+[progress] r=3 learned run 6: gen 2000/2000, val team food 36.06, best gen 1880, elapsed 4386 s
+[train] r=3 learned    run 6: 2000 gens in 4386 s, best val food 39.91 (gen 1880)
+[progress] r=3 learned run 9: gen 2000/2000, val team food 38.50, best gen 2000, elapsed 4395 s
+[train] r=3 learned    run 9: 2000 gens in 4395 s, best val food 38.50 (gen 2000)
+[progress] r=3 learned run 0: gen 2000/2000, val team food 31.06, best gen 1650, elapsed 4396 s
+[train] r=3 learned    run 0: 2000 gens in 4396 s, best val food 34.72 (gen 1650)
+[progress] r=3 learned run 2: gen 2000/2000, val team food 38.12, best gen 1890, elapsed 4410 s
+[train] r=3 learned    run 2: 2000 gens in 4410 s, best val food 41.62 (gen 1890)
+[progress] r=3 learned run 7: gen 2000/2000, val team food 37.78, best gen 1850, elapsed 4423 s
+[train] r=3 learned    run 7: 2000 gens in 4423 s, best val food 40.34 (gen 1850)
+[progress] r=3 learned run 3: gen 2000/2000, val team food 38.31, best gen 2000, elapsed 4436 s
+[train] r=3 learned    run 3: 2000 gens in 4436 s, best val food 38.31 (gen 2000)
+[progress] r=3 learned run 4: gen 2000/2000, val team food 36.94, best gen 1890, elapsed 4441 s
+[train] r=3 learned    run 4: 2000 gens in 4441 s, best val food 39.94 (gen 1890)
+[progress] r=3 learned run 5: gen 2000/2000, val team food 36.53, best gen 1180, elapsed 4448 s
+[train] r=3 learned    run 5: 2000 gens in 4448 s, best val food 41.00 (gen 1180)
+[train] done in 4449 s; evaluating
+Wrote docs\results\learned_protocol.{md,json}, _curves.csv, _params.npz
+Wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r6-d-entropy\artifacts\learned_protocol.{md,json}, _curves.csv, _params.npz
+Task: squad-learned-protocol-r3  (seeds: 10)
+Baselines: random-actions, greedy+silent-centre, greedy+random-centre, no-comm, oracle
+
+condition                    role      n   mean ± 95% CI   IQM [95% CI]           
+---------------------------  --------  --  --------------  -----------------------
+learned-centre+learned-spec  system    10  36.046 ± 2.002  36.672 [34.182, 37.988]
+greedy+hand-coded            system    10  18.703 ± 0.325  18.724 [18.336, 19.061]
+random-actions               baseline  10  0.325 ± 0.027   0.321 [0.302, 0.347]   
+greedy+silent-centre         baseline  10  6.696 ± 0.217   6.701 [6.495, 6.903]   
+greedy+random-centre         baseline  10  3.761 ± 0.162   3.732 [3.593, 3.926]   
+no-comm                      baseline  10  8.098 ± 0.272   8.102 [7.856, 8.354]   
+oracle                       baseline  10  43.100 ± 0.315  43.145 [42.829, 43.393]
+
+system                       intervention    ablated mean  drop [95% CI]            p (Holm)  A12    listening
+---------------------------  --------------  ------------  -----------------------  --------  -----  ---------
+learned-centre+learned-spec  zero            2.818         33.228 [30.802, 35.653]  0.008     1.000  yes      
+learned-centre+learned-spec  shuffle_batch   2.443         33.603 [31.562, 35.644]  0.008     1.000  yes      
+learned-centre+learned-spec  swap_receivers  9.765         26.282 [24.149, 28.414]  0.008     1.000  yes      
+learned-centre+learned-spec  random_matched  2.671         33.375 [31.253, 35.497]  0.008     1.000  yes      
+
+comparison                                           mean diff  p      p (Holm)  A12  
+---------------------------------------------------  ---------  -----  --------  -----
+learned-centre+learned-spec vs random-actions        35.721     0.000  0.002     1.000
+learned-centre+learned-spec vs greedy+silent-centre  29.351     0.000  0.002     1.000
+learned-centre+learned-spec vs greedy+random-centre  32.286     0.000  0.002     1.000
+learned-centre+learned-spec vs no-comm               27.949     0.000  0.002     1.000
+learned-centre+learned-spec vs oracle                -7.054     0.000  0.002     0.000
+greedy+hand-coded vs random-actions                  18.378     0.000  0.002     1.000
+greedy+hand-coded vs greedy+silent-centre            12.007     0.000  0.002     1.000
+greedy+hand-coded vs greedy+random-centre            14.942     0.000  0.002     1.000
+greedy+hand-coded vs no-comm                         10.605     0.000  0.002     1.000
+greedy+hand-coded vs oracle                          -24.398    0.000  0.002     0.000
+
+system                       changed_random_matched  changed_random_matched_ci  changed_shuffle_batch  changed_shuffle_batch_ci  cic_bits  cic_bits_ci  distinct_codes  distinct_codes_ci  js_random_matched_bits  js_random_matched_bits_ci  js_shuffle_batch_bits  js_shuffle_batch_bits_ci  message_entropy_bits  message_entropy_bits_ci  mi_bits  mi_bits_ci  mi_direction_bits  mi_direction_bits_ci  mi_far_bits  mi_far_bits_ci  mi_null_q95_bits  mi_null_q95_bits_ci  mi_p_value  mi_p_value_ci  target_entropy_bits  target_entropy_bits_ci  topsim  topsim_ci  utilization  utilization_ci
+---------------------------  ----------------------  -------------------------  ---------------------  ------------------------  --------  -----------  --------------  -----------------  ----------------------  -------------------------  ---------------------  ------------------------  --------------------  -----------------------  -------  ----------  -----------------  --------------------  -----------  --------------  ----------------  -------------------  ----------  -------------  -------------------  ----------------------  ------  ---------  -----------  --------------
+learned-centre+learned-spec  0.268                   0.016                      0.269                  0.016                     0.497     0.034        4.500           0.773              0.224                   0.011                      0.225                  0.011                     1.312                 0.110                    0.690    0.061       0.623              0.060                 0.020        0.011           0.000             0.000                0.010       0.000          2.616                0.056                   0.276   0.019      0.437        0.037         
+greedy+hand-coded            0.411                   0.008                      0.413                  0.010                     0.854     0.006        8.000           0.000              0.400                   0.008                      0.401                  0.008                     2.631                 0.004                    2.631    0.004       1.907              0.003                 0.768        0.004           0.000             0.000                0.010       0.000          2.631                0.004                   0.746   0.004      0.877        0.001         
+Done: train 4449 s, eval 20 s
