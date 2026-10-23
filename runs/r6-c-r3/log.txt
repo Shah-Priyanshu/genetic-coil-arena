@@ -1601,3 +1601,80 @@
 [progress] r=3 hand-coded run 9: gen 1940/2000, val team food 38.69, best gen 1860, elapsed 4413 s
 [progress] r=3 learned run 6: gen 1930/2000, val team food 29.69, best gen 1780, elapsed 5248 s
 [progress] r=3 learned run 8: gen 1850/2000, val team food 38.25, best gen 1620, elapsed 5022 s
+[progress] r=3 hand-coded run 9: gen 2000/2000, val team food 35.31, best gen 1860, elapsed 4495 s
+[train] r=3 hand-coded run 9: 2000 gens in 4495 s, best val food 39.31 (gen 1860)
+[progress] r=3 learned run 9: gen 1820/2000, val team food 35.66, best gen 1800, elapsed 4456 s
+[progress] r=3 learned run 7: gen 1940/2000, val team food 35.41, best gen 1680, elapsed 5242 s
+[progress] r=3 learned run 6: gen 2000/2000, val team food 32.94, best gen 2000, elapsed 5354 s
+[train] r=3 learned    run 6: 2000 gens in 5354 s, best val food 32.94 (gen 2000)
+[progress] r=3 learned run 8: gen 1940/2000, val team food 38.12, best gen 1910, elapsed 5155 s
+[progress] r=3 learned run 7: gen 2000/2000, val team food 36.59, best gen 1680, elapsed 5326 s
+[train] r=3 learned    run 7: 2000 gens in 5326 s, best val food 39.12 (gen 1680)
+[progress] r=3 learned run 9: gen 1910/2000, val team food 36.25, best gen 1880, elapsed 4580 s
+[progress] r=3 learned run 8: gen 2000/2000, val team food 37.56, best gen 1910, elapsed 5233 s
+[train] r=3 learned    run 8: 2000 gens in 5233 s, best val food 41.38 (gen 1910)
+[progress] r=3 learned run 9: gen 2000/2000, val team food 37.56, best gen 1980, elapsed 4690 s
+[train] r=3 learned    run 9: 2000 gens in 4690 s, best val food 38.19 (gen 1980)
+[train] done in 13088 s; evaluating
+Wrote docs\results\learned_protocol.{md,json}, _curves.csv, _params.npz
+Wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r6-c-r3\artifacts\learned_protocol.{md,json}, _curves.csv, _params.npz
+Task: squad-learned-protocol-r3  (seeds: 10)
+Baselines: random-actions, greedy+silent-centre, greedy+random-centre, no-comm, oracle
+
+condition                    role      n   mean ± 95% CI   IQM [95% CI]           
+---------------------------  --------  --  --------------  -----------------------
+silent+learned-spec          system    10  15.215 ± 1.120  15.292 [14.243, 16.386]
+hand-coded+learned-spec      system    10  34.889 ± 2.372  35.897 [32.754, 37.018]
+learned-centre+learned-spec  system    10  35.432 ± 1.588  35.707 [34.200, 36.887]
+greedy+hand-coded            system    10  18.703 ± 0.325  18.724 [18.336, 19.061]
+random-actions               baseline  10  0.325 ± 0.027   0.321 [0.302, 0.347]   
+greedy+silent-centre         baseline  10  6.696 ± 0.217   6.701 [6.495, 6.903]   
+greedy+random-centre         baseline  10  3.761 ± 0.162   3.732 [3.593, 3.926]   
+no-comm                      baseline  10  8.098 ± 0.272   8.102 [7.856, 8.354]   
+oracle                       baseline  10  43.100 ± 0.315  43.145 [42.829, 43.393]
+
+system                       intervention    ablated mean  drop [95% CI]            p (Holm)  A12    listening
+---------------------------  --------------  ------------  -----------------------  --------  -----  ---------
+silent+learned-spec          zero            15.215        0.000 [0.000, 0.000]     1.000     0.500  no       
+silent+learned-spec          shuffle_batch   15.215        0.000 [0.000, 0.000]     1.000     0.500  no       
+silent+learned-spec          swap_receivers  15.215        0.000 [0.000, 0.000]     1.000     0.500  no       
+silent+learned-spec          random_matched  15.215        0.000 [0.000, 0.000]     1.000     0.500  no       
+hand-coded+learned-spec      zero            4.231         30.658 [28.565, 32.751]  0.008     1.000  yes      
+hand-coded+learned-spec      shuffle_batch   2.422         32.466 [30.237, 34.696]  0.008     1.000  yes      
+hand-coded+learned-spec      swap_receivers  9.625         25.264 [23.728, 26.800]  0.008     1.000  yes      
+hand-coded+learned-spec      random_matched  2.427         32.461 [30.244, 34.678]  0.008     1.000  yes      
+learned-centre+learned-spec  zero            3.526         31.906 [29.565, 34.247]  0.008     1.000  yes      
+learned-centre+learned-spec  shuffle_batch   2.599         32.832 [30.993, 34.672]  0.008     1.000  yes      
+learned-centre+learned-spec  swap_receivers  9.277         26.155 [24.706, 27.605]  0.008     1.000  yes      
+learned-centre+learned-spec  random_matched  2.817         32.615 [30.795, 34.436]  0.008     1.000  yes      
+
+comparison                                           mean diff  p      p (Holm)  A12  
+---------------------------------------------------  ---------  -----  --------  -----
+silent+learned-spec vs random-actions                14.890     0.000  0.004     1.000
+silent+learned-spec vs greedy+silent-centre          8.519      0.000  0.004     1.000
+silent+learned-spec vs greedy+random-centre          11.454     0.000  0.004     1.000
+silent+learned-spec vs no-comm                       7.117      0.000  0.004     1.000
+silent+learned-spec vs oracle                        -27.886    0.000  0.004     0.000
+hand-coded+learned-spec vs random-actions            34.564     0.000  0.004     1.000
+hand-coded+learned-spec vs greedy+silent-centre      28.193     0.000  0.004     1.000
+hand-coded+learned-spec vs greedy+random-centre      31.128     0.000  0.004     1.000
+hand-coded+learned-spec vs no-comm                   26.791     0.000  0.004     1.000
+hand-coded+learned-spec vs oracle                    -8.211     0.000  0.004     0.000
+learned-centre+learned-spec vs random-actions        35.107     0.000  0.004     1.000
+learned-centre+learned-spec vs greedy+silent-centre  28.736     0.000  0.004     1.000
+learned-centre+learned-spec vs greedy+random-centre  31.672     0.000  0.004     1.000
+learned-centre+learned-spec vs no-comm               27.335     0.000  0.004     1.000
+learned-centre+learned-spec vs oracle                -7.668     0.000  0.004     0.000
+greedy+hand-coded vs random-actions                  18.378     0.000  0.004     1.000
+greedy+hand-coded vs greedy+silent-centre            12.007     0.000  0.004     1.000
+greedy+hand-coded vs greedy+random-centre            14.942     0.000  0.004     1.000
+greedy+hand-coded vs no-comm                         10.605     0.000  0.004     1.000
+greedy+hand-coded vs oracle                          -24.398    0.000  0.004     0.000
+
+system                       changed_random_matched  changed_random_matched_ci  changed_shuffle_batch  changed_shuffle_batch_ci  cic_bits  cic_bits_ci  distinct_codes  distinct_codes_ci  js_random_matched_bits  js_random_matched_bits_ci  js_shuffle_batch_bits  js_shuffle_batch_bits_ci  message_entropy_bits  message_entropy_bits_ci  mi_bits  mi_bits_ci  mi_direction_bits  mi_direction_bits_ci  mi_far_bits  mi_far_bits_ci  mi_null_q95_bits  mi_null_q95_bits_ci  mi_p_value  mi_p_value_ci  target_entropy_bits  target_entropy_bits_ci  topsim  topsim_ci  utilization  utilization_ci
+---------------------------  ----------------------  -------------------------  ---------------------  ------------------------  --------  -----------  --------------  -----------------  ----------------------  -------------------------  ---------------------  ------------------------  --------------------  -----------------------  -------  ----------  -----------------  --------------------  -----------  --------------  ----------------  -------------------  ----------  -------------  -------------------  ----------------------  ------  ---------  -----------  --------------
+silent+learned-spec          -                       -                          -                      -                         -         -            1.000           0.000              -                       -                          -                      -                         0.000                 0.000                    0.000    0.000       0.000              0.000                 0.000        0.000           0.000             0.000                1.000       0.000          2.441                0.058                   nan     nan        0.000        0.000         
+hand-coded+learned-spec      0.242                   0.032                      0.242                  0.031                     0.489     0.048        8.000           0.000              0.195                   0.026                      0.193                  0.025                     2.654                 0.028                    2.654    0.028       1.731              0.018                 0.932        0.010           0.000             0.000                0.010       0.000          2.654                0.028                   0.740   0.007      0.885        0.009         
+learned-centre+learned-spec  0.269                   0.014                      0.267                  0.016                     0.471     0.026        4.100           1.237              0.222                   0.011                      0.221                  0.012                     1.187                 0.180                    0.727    0.029       0.667              0.046                 0.021        0.016           0.000             0.000                0.010       0.000          2.596                0.036                   0.349   0.041      0.396        0.060         
+greedy+hand-coded            0.411                   0.008                      0.413                  0.010                     0.854     0.006        8.000           0.000              0.400                   0.008                      0.401                  0.008                     2.631                 0.004                    2.631    0.004       1.907              0.003                 0.768        0.004           0.000             0.000                0.010       0.000          2.631                0.004                   0.746   0.004      0.877        0.001         
+Done: train 13088 s, eval 45 s
