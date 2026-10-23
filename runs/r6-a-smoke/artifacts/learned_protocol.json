@@ -1,0 +1,1506 @@
+{
+ "results": {
+  "3": {
+   "task": {
+    "name": "squad-learned-protocol-r3",
+    "description": "Cooperative squad (21x21 walls, 3 snakes); score = team food per episode on held-out seeds; window radius 3; seed = training run",
+    "metric": "team_food",
+    "higher_is_better": true,
+    "n_seeds": 2,
+    "seed_offset": 0,
+    "params": {
+     "obs_radius": 3,
+     "n_episodes": 4,
+     "test_seed_base": 3500000000,
+     "seed_stride": 10000,
+     "message_capacity_bits": 3.0,
+     "message_interval": 1
+    },
+    "message": {
+     "kind": "discrete",
+     "length": 1,
+     "vocab_size": 8,
+     "dim": 0,
+     "interval": 1,
+     "n_receivers": 3
+    }
+   },
+   "seeds": [
+    0,
+    1
+   ],
+   "conditions": [
+    {
+     "name": "silent+learned-spec",
+     "role": "system",
+     "seeds": [
+      0,
+      1
+     ],
+     "per_seed": [
+      0.5,
+      0.0
+     ],
+     "mean": 0.25,
+     "ci": 3.1765511840436735,
+     "iqm": 0.25,
+     "iqm_low": 0.0,
+     "iqm_high": 0.5,
+     "n_episodes": 8
+    },
+    {
+     "name": "hand-coded+learned-spec",
+     "role": "system",
+     "seeds": [
+      0,
+      1
+     ],
+     "per_seed": [
+      0.0,
+      0.0
+     ],
+     "mean": 0.0,
+     "ci": 0.0,
+     "iqm": 0.0,
+     "iqm_low": 0.0,
+     "iqm_high": 0.0,
+     "n_episodes": 8
+    },
+    {
+     "name": "learned-centre+learned-spec",
+     "role": "system",
+     "seeds": [
+      0,
+      1
+     ],
+     "per_seed": [
+      0.0,
+      0.5
+     ],
+     "mean": 0.25,
+     "ci": 3.1765511840436735,
+     "iqm": 0.25,
+     "iqm_low": 0.0,
+     "iqm_high": 0.5,
+     "n_episodes": 8
+    },
+    {
+     "name": "greedy+hand-coded",
+     "role": "system",
+     "seeds": [
+      0,
+      1
+     ],
+     "per_seed": [
+      11.0,
+      19.25
+     ],
+     "mean": 15.125,
+     "ci": 52.413094536720614,
+     "iqm": 15.125,
+     "iqm_low": 11.0,
+     "iqm_high": 19.25,
+     "n_episodes": 8
+    },
+    {
+     "name": "random-actions",
+     "role": "baseline",
+     "seeds": [
+      0,
+      1
+     ],
+     "per_seed": [
+      0.25,
+      0.25
+     ],
+     "mean": 0.25,
+     "ci": 0.0,
+     "iqm": 0.25,
+     "iqm_low": 0.25,
+     "iqm_high": 0.25,
+     "n_episodes": 8
+    },
+    {
+     "name": "greedy+silent-centre",
+     "role": "baseline",
+     "seeds": [
+      0,
+      1
+     ],
+     "per_seed": [
+      12.0,
+      6.5
+     ],
+     "mean": 9.25,
+     "ci": 34.942063024480404,
+     "iqm": 9.25,
+     "iqm_low": 6.5,
+     "iqm_high": 12.0,
+     "n_episodes": 8
+    },
+    {
+     "name": "greedy+random-centre",
+     "role": "baseline",
+     "seeds": [
+      0,
+      1
+     ],
+     "per_seed": [
+      5.0,
+      3.25
+     ],
+     "mean": 4.125,
+     "ci": 11.117929144152855,
+     "iqm": 4.125,
+     "iqm_low": 3.25,
+     "iqm_high": 5.0,
+     "n_episodes": 8
+    },
+    {
+     "name": "no-comm",
+     "role": "baseline",
+     "seeds": [
+      0,
+      1
+     ],
+     "per_seed": [
+      8.25,
+      7.5
+     ],
+     "mean": 7.875,
+     "ci": 4.76482677606551,
+     "iqm": 7.875,
+     "iqm_low": 7.5,
+     "iqm_high": 8.25,
+     "n_episodes": 8
+    },
+    {
+     "name": "oracle",
+     "role": "baseline",
+     "seeds": [
+      0,
+      1
+     ],
+     "per_seed": [
+      42.75,
+      49.5
+     ],
+     "mean": 46.125,
+     "ci": 42.88344098458959,
+     "iqm": 46.125,
+     "iqm_low": 42.75,
+     "iqm_high": 49.5,
+     "n_episodes": 8
+    }
+   ],
+   "required_baselines": [
+    "random-actions",
+    "greedy+silent-centre",
+    "greedy+random-centre",
+    "no-comm",
+    "oracle"
+   ],
+   "comparisons": [
+    {
+     "a": "silent+learned-spec",
+     "b": "random-actions",
+     "u": 2.0,
+     "p": 1.0,
+     "a12": 0.5,
+     "mean_diff": 0.0,
+     "n_a": 2,
+     "n_b": 2,
+     "p_holm": 1.0
+    },
+    {
+     "a": "silent+learned-spec",
+     "b": "greedy+silent-centre",
+     "u": 0.0,
+     "p": 0.3333333333333333,
+     "a12": 0.0,
+     "mean_diff": -9.0,
+     "n_a": 2,
+     "n_b": 2,
+     "p_holm": 1.0
+    },
+    {
+     "a": "silent+learned-spec",
+     "b": "greedy+random-centre",
+     "u": 0.0,
+     "p": 0.3333333333333333,
+     "a12": 0.0,
+     "mean_diff": -3.875,
+     "n_a": 2,
+     "n_b": 2,
+     "p_holm": 1.0
+    },
+    {
+     "a": "silent+learned-spec",
+     "b": "no-comm",
+     "u": 0.0,
+     "p": 0.3333333333333333,
+     "a12": 0.0,
+     "mean_diff": -7.625,
+     "n_a": 2,
+     "n_b": 2,
+     "p_holm": 1.0
+    },
+    {
+     "a": "silent+learned-spec",
+     "b": "oracle",
+     "u": 0.0,
+     "p": 0.3333333333333333,
+     "a12": 0.0,
+     "mean_diff": -45.875,
+     "n_a": 2,
+     "n_b": 2,
+     "p_holm": 1.0
+    },
+    {
+     "a": "hand-coded+learned-spec",
+     "b": "random-actions",
+     "u": 0.0,
+     "p": 0.1939308522824107,
+     "a12": 0.0,
+     "mean_diff": -0.25,
+     "n_a": 2,
+     "n_b": 2,
+     "p_holm": 1.0
+    },
+    {
+     "a": "hand-coded+learned-spec",
+     "b": "greedy+silent-centre",
+     "u": 0.0,
+     "p": 0.22067136191984682,
+     "a12": 0.0,
+     "mean_diff": -9.25,
+     "n_a": 2,
+     "n_b": 2,
+     "p_holm": 1.0
+    },
+    {
+     "a": "hand-coded+learned-spec",
+     "b": "greedy+random-centre",
+     "u": 0.0,
+     "p": 0.22067136191984682,
+     "a12": 0.0,
+     "mean_diff": -4.125,
+     "n_a": 2,
+     "n_b": 2,
+     "p_holm": 1.0
+    },
+    {
+     "a": "hand-coded+learned-spec",
+     "b": "no-comm",
+     "u": 0.0,
+     "p": 0.22067136191984682,
+     "a12": 0.0,
+     "mean_diff": -7.875,
+     "n_a": 2,
+     "n_b": 2,
+     "p_holm": 1.0
+    },
+    {
+     "a": "hand-coded+learned-spec",
+     "b": "oracle",
+     "u": 0.0,
+     "p": 0.22067136191984682,
+     "a12": 0.0,
+     "mean_diff": -46.125,
+     "n_a": 2,
+     "n_b": 2,
+     "p_holm": 1.0
+    },
+    {
+     "a": "learned-centre+learned-spec",
+     "b": "random-actions",
+     "u": 2.0,
+     "p": 1.0,
+     "a12": 0.5,
+     "mean_diff": 0.0,
+     "n_a": 2,
+     "n_b": 2,
+     "p_holm": 1.0
+    },
+    {
+     "a": "learned-centre+learned-spec",
+     "b": "greedy+silent-centre",
+     "u": 0.0,
+     "p": 0.3333333333333333,
+     "a12": 0.0,
+     "mean_diff": -9.0,
+     "n_a": 2,
+     "n_b": 2,
+     "p_holm": 1.0
+    },
+    {
+     "a": "learned-centre+learned-spec",
+     "b": "greedy+random-centre",
+     "u": 0.0,
+     "p": 0.3333333333333333,
+     "a12": 0.0,
+     "mean_diff": -3.875,
+     "n_a": 2,
+     "n_b": 2,
+     "p_holm": 1.0
+    },
+    {
+     "a": "learned-centre+learned-spec",
+     "b": "no-comm",
+     "u": 0.0,
+     "p": 0.3333333333333333,
+     "a12": 0.0,
+     "mean_diff": -7.625,
+     "n_a": 2,
+     "n_b": 2,
+     "p_holm": 1.0
+    },
+    {
+     "a": "learned-centre+learned-spec",
+     "b": "oracle",
+     "u": 0.0,
+     "p": 0.3333333333333333,
+     "a12": 0.0,
+     "mean_diff": -45.875,
+     "n_a": 2,
+     "n_b": 2,
+     "p_holm": 1.0
+    },
+    {
+     "a": "greedy+hand-coded",
+     "b": "random-actions",
+     "u": 4.0,
+     "p": 0.22067136191984682,
+     "a12": 1.0,
+     "mean_diff": 14.875,
+     "n_a": 2,
+     "n_b": 2,
+     "p_holm": 1.0
+    },
+    {
+     "a": "greedy+hand-coded",
+     "b": "greedy+silent-centre",
+     "u": 3.0,
+     "p": 0.6666666666666666,
+     "a12": 0.75,
+     "mean_diff": 5.875,
+     "n_a": 2,
+     "n_b": 2,
+     "p_holm": 1.0
+    },
+    {
+     "a": "greedy+hand-coded",
+     "b": "greedy+random-centre",
+     "u": 4.0,
+     "p": 0.3333333333333333,
+     "a12": 1.0,
+     "mean_diff": 11.0,
+     "n_a": 2,
+     "n_b": 2,
+     "p_holm": 1.0
+    },
+    {
+     "a": "greedy+hand-coded",
+     "b": "no-comm",
+     "u": 4.0,
+     "p": 0.3333333333333333,
+     "a12": 1.0,
+     "mean_diff": 7.25,
+     "n_a": 2,
+     "n_b": 2,
+     "p_holm": 1.0
+    },
+    {
+     "a": "greedy+hand-coded",
+     "b": "oracle",
+     "u": 0.0,
+     "p": 0.3333333333333333,
+     "a12": 0.0,
+     "mean_diff": -31.0,
+     "n_a": 2,
+     "n_b": 2,
+     "p_holm": 1.0
+    }
+   ],
+   "ablations": [
+    {
+     "system": "silent+learned-spec",
+     "intervention": "zero",
+     "intact_mean": 0.25,
+     "ablated": {
+      "name": "silent+learned-spec|zero",
+      "role": "ablation",
+      "seeds": [
+       0,
+       1
+      ],
+      "per_seed": [
+       0.5,
+       0.0
+      ],
+      "mean": 0.25,
+      "ci": 3.1765511840436735,
+      "iqm": 0.25,
+      "iqm_low": 0.0,
+      "iqm_high": 0.5,
+      "n_episodes": 8
+     },
+     "delta_mean": 0.0,
+     "delta_ci": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0,
+     "a12": 0.5,
+     "listening": false,
+     "test": "wilcoxon"
+    },
+    {
+     "system": "silent+learned-spec",
+     "intervention": "shuffle_batch",
+     "intact_mean": 0.25,
+     "ablated": {
+      "name": "silent+learned-spec|shuffle_batch",
+      "role": "ablation",
+      "seeds": [
+       0,
+       1
+      ],
+      "per_seed": [
+       0.5,
+       0.0
+      ],
+      "mean": 0.25,
+      "ci": 3.1765511840436735,
+      "iqm": 0.25,
+      "iqm_low": 0.0,
+      "iqm_high": 0.5,
+      "n_episodes": 8
+     },
+     "delta_mean": 0.0,
+     "delta_ci": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0,
+     "a12": 0.5,
+     "listening": false,
+     "test": "wilcoxon"
+    },
+    {
+     "system": "silent+learned-spec",
+     "intervention": "swap_receivers",
+     "intact_mean": 0.25,
+     "ablated": {
+      "name": "silent+learned-spec|swap_receivers",
+      "role": "ablation",
+      "seeds": [
+       0,
+       1
+      ],
+      "per_seed": [
+       0.5,
+       0.0
+      ],
+      "mean": 0.25,
+      "ci": 3.1765511840436735,
+      "iqm": 0.25,
+      "iqm_low": 0.0,
+      "iqm_high": 0.5,
+      "n_episodes": 8
+     },
+     "delta_mean": 0.0,
+     "delta_ci": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0,
+     "a12": 0.5,
+     "listening": false,
+     "test": "wilcoxon"
+    },
+    {
+     "system": "silent+learned-spec",
+     "intervention": "random_matched",
+     "intact_mean": 0.25,
+     "ablated": {
+      "name": "silent+learned-spec|random_matched",
+      "role": "ablation",
+      "seeds": [
+       0,
+       1
+      ],
+      "per_seed": [
+       0.5,
+       0.0
+      ],
+      "mean": 0.25,
+      "ci": 3.1765511840436735,
+      "iqm": 0.25,
+      "iqm_low": 0.0,
+      "iqm_high": 0.5,
+      "n_episodes": 8
+     },
+     "delta_mean": 0.0,
+     "delta_ci": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0,
+     "a12": 0.5,
+     "listening": false,
+     "test": "wilcoxon"
+    },
+    {
+     "system": "hand-coded+learned-spec",
+     "intervention": "zero",
+     "intact_mean": 0.0,
+     "ablated": {
+      "name": "hand-coded+learned-spec|zero",
+      "role": "ablation",
+      "seeds": [
+       0,
+       1
+      ],
+      "per_seed": [
+       0.5,
+       0.75
+      ],
+      "mean": 0.625,
+      "ci": 1.5882755920218368,
+      "iqm": 0.625,
+      "iqm_low": 0.5,
+      "iqm_high": 0.75,
+      "n_episodes": 8
+     },
+     "delta_mean": -0.625,
+     "delta_ci": 1.5882755920218368,
+     "p": 0.5,
+     "p_holm": 1.0,
+     "a12": 0.0,
+     "listening": false,
+     "test": "wilcoxon"
+    },
+    {
+     "system": "hand-coded+learned-spec",
+     "intervention": "shuffle_batch",
+     "intact_mean": 0.0,
+     "ablated": {
+      "name": "hand-coded+learned-spec|shuffle_batch",
+      "role": "ablation",
+      "seeds": [
+       0,
+       1
+      ],
+      "per_seed": [
+       0.0,
+       0.25
+      ],
+      "mean": 0.125,
+      "ci": 1.5882755920218368,
+      "iqm": 0.125,
+      "iqm_low": 0.0,
+      "iqm_high": 0.25,
+      "n_episodes": 8
+     },
+     "delta_mean": -0.125,
+     "delta_ci": 1.5882755920218368,
+     "p": 1.0,
+     "p_holm": 1.0,
+     "a12": 0.25,
+     "listening": false,
+     "test": "wilcoxon"
+    },
+    {
+     "system": "hand-coded+learned-spec",
+     "intervention": "swap_receivers",
+     "intact_mean": 0.0,
+     "ablated": {
+      "name": "hand-coded+learned-spec|swap_receivers",
+      "role": "ablation",
+      "seeds": [
+       0,
+       1
+      ],
+      "per_seed": [
+       0.0,
+       0.0
+      ],
+      "mean": 0.0,
+      "ci": 0.0,
+      "iqm": 0.0,
+      "iqm_low": 0.0,
+      "iqm_high": 0.0,
+      "n_episodes": 8
+     },
+     "delta_mean": 0.0,
+     "delta_ci": 0.0,
+     "p": 1.0,
+     "p_holm": 1.0,
+     "a12": 0.5,
+     "listening": false,
+     "test": "wilcoxon"
+    },
+    {
+     "system": "hand-coded+learned-spec",
+     "intervention": "random_matched",
+     "intact_mean": 0.0,
+     "ablated": {
+      "name": "hand-coded+learned-spec|random_matched",
+      "role": "ablation",
+      "seeds": [
+       0,
+       1
+      ],
+      "per_seed": [
+       0.5,
+       0.0
+      ],
+      "mean": 0.25,
+      "ci": 3.1765511840436735,
+      "iqm": 0.25,
+      "iqm_low": 0.0,
+      "iqm_high": 0.5,
+      "n_episodes": 8
+     },
+     "delta_mean": -0.25,
+     "delta_ci": 3.1765511840436735,
+     "p": 1.0,
+     "p_holm": 1.0,
+     "a12": 0.25,
+     "listening": false,
+     "test": "wilcoxon"
+    },
+    {
+     "system": "learned-centre+learned-spec",
+     "intervention": "zero",
+     "intact_mean": 0.25,
+     "ablated": {
+      "name": "learned-centre+learned-spec|zero",
+      "role": "ablation",
+      "seeds": [
+       0,
+       1
+      ],
+      "per_seed": [
+       0.75,
+       0.25
+      ],
+      "mean": 0.5,
+      "ci": 3.1765511840436735,
+      "iqm": 0.5,
+      "iqm_low": 0.25,
+      "iqm_high": 0.75,
+      "n_episodes": 8
+     },
+     "delta_mean": -0.25,
+     "delta_ci": 6.353102368087347,
+     "p": 1.0,
+     "p_holm": 1.0,
+     "a12": 0.25,
+     "listening": false,
+     "test": "wilcoxon"
+    },
+    {
+     "system": "learned-centre+learned-spec",
+     "intervention": "shuffle_batch",
+     "intact_mean": 0.25,
+     "ablated": {
+      "name": "learned-centre+learned-spec|shuffle_batch",
+      "role": "ablation",
+      "seeds": [
+       0,
+       1
+      ],
+      "per_seed": [
+       0.0,
+       0.0
+      ],
+      "mean": 0.0,
+      "ci": 0.0,
+      "iqm": 0.0,
+      "iqm_low": 0.0,
+      "iqm_high": 0.0,
+      "n_episodes": 8
+     },
+     "delta_mean": 0.25,
+     "delta_ci": 3.1765511840436735,
+     "p": 1.0,
+     "p_holm": 1.0,
+     "a12": 0.75,
+     "listening": false,
+     "test": "wilcoxon"
+    },
+    {
+     "system": "learned-centre+learned-spec",
+     "intervention": "swap_receivers",
+     "intact_mean": 0.25,
+     "ablated": {
+      "name": "learned-centre+learned-spec|swap_receivers",
+      "role": "ablation",
+      "seeds": [
+       0,
+       1
+      ],
+      "per_seed": [
+       0.0,
+       0.25
+      ],
+      "mean": 0.125,
+      "ci": 1.5882755920218368,
+      "iqm": 0.125,
+      "iqm_low": 0.0,
+      "iqm_high": 0.25,
+      "n_episodes": 8
+     },
+     "delta_mean": 0.125,
+     "delta_ci": 1.5882755920218368,
+     "p": 1.0,
+     "p_holm": 1.0,
+     "a12": 0.625,
+     "listening": false,
+     "test": "wilcoxon"
+    },
+    {
+     "system": "learned-centre+learned-spec",
+     "intervention": "random_matched",
+     "intact_mean": 0.25,
+     "ablated": {
+      "name": "learned-centre+learned-spec|random_matched",
+      "role": "ablation",
+      "seeds": [
+       0,
+       1
+      ],
+      "per_seed": [
+       0.0,
+       0.0
+      ],
+      "mean": 0.0,
+      "ci": 0.0,
+      "iqm": 0.0,
+      "iqm_low": 0.0,
+      "iqm_high": 0.0,
+      "n_episodes": 8
+     },
+     "delta_mean": 0.25,
+     "delta_ci": 3.1765511840436735,
+     "p": 1.0,
+     "p_holm": 1.0,
+     "a12": 0.75,
+     "listening": false,
+     "test": "wilcoxon"
+    }
+   ],
+   "communication": {
+    "silent+learned-spec": {
+     "message_entropy_bits": 0.0,
+     "message_entropy_bits_ci": 0.0,
+     "utilization": 0.0,
+     "utilization_ci": 0.0,
+     "mi_bits": 0.0,
+     "mi_bits_ci": 0.0,
+     "mi_null_q95_bits": 0.0,
+     "mi_null_q95_bits_ci": 0.0,
+     "mi_p_value": 1.0,
+     "mi_p_value_ci": 0.0,
+     "target_entropy_bits": 2.692561968745931,
+     "target_entropy_bits_ci": 0.994971241463687,
+     "mi_direction_bits": 0.0,
+     "mi_direction_bits_ci": 0.0,
+     "mi_far_bits": 0.0,
+     "mi_far_bits_ci": 0.0,
+     "distinct_codes": 1.0,
+     "distinct_codes_ci": 0.0,
+     "topsim": null,
+     "topsim_ci": null
+    },
+    "hand-coded+learned-spec": {
+     "message_entropy_bits": 2.734296494781309,
+     "message_entropy_bits_ci": 0.57425726898894,
+     "utilization": 0.9114321649271029,
+     "utilization_ci": 0.19141908966298024,
+     "mi_bits": 2.7772870203805544,
+     "mi_bits_ci": 0.7828240838903088,
+     "mi_null_q95_bits": 0.2421497263101161,
+     "mi_null_q95_bits_ci": 1.2672616523530154,
+     "mi_p_value": 0.009900990099009901,
+     "mi_p_value_ci": 0.0,
+     "target_entropy_bits": 2.734296494781309,
+     "target_entropy_bits_ci": 0.57425726898894,
+     "mi_direction_bits": 1.985819721762557,
+     "mi_direction_bits_ci": 0.06114272493227925,
+     "mi_far_bits": 0.7847896045302563,
+     "mi_far_bits_ci": 0.6183182914847296,
+     "distinct_codes": 8.0,
+     "distinct_codes_ci": 0.0,
+     "topsim": 0.7193289313516849,
+     "topsim_ci": 0.23553442756962192,
+     "cic_bits": 0.005402154195140539,
+     "cic_bits_ci": 0.012835196745621159,
+     "js_shuffle_batch_bits": 0.0014513536157732267,
+     "js_shuffle_batch_bits_ci": 0.006805963914405809,
+     "changed_shuffle_batch": 0.2900608519269777,
+     "changed_shuffle_batch_ci": 0.6958773384923261,
+     "js_random_matched_bits": 0.0015242462667105893,
+     "js_random_matched_bits_ci": 0.008702590898363848,
+     "changed_random_matched": 0.2261663286004057,
+     "changed_random_matched_ci": 0.6314442515948884
+    },
+    "learned-centre+learned-spec": {
+     "message_entropy_bits": 0.5743523939354507,
+     "message_entropy_bits_ci": 1.0982531997505234,
+     "utilization": 0.19145079797848358,
+     "utilization_ci": 0.3660843999168411,
+     "mi_bits": 0.1664781221183551,
+     "mi_bits_ci": 0.15235625314834286,
+     "mi_null_q95_bits": 0.08707082538967721,
+     "mi_null_q95_bits_ci": 0.3779870238161442,
+     "mi_p_value": 0.009900990099009901,
+     "mi_p_value_ci": 0.0,
+     "target_entropy_bits": 2.6383161852263752,
+     "target_entropy_bits_ci": 1.2851706676399104,
+     "mi_direction_bits": 0.13427275728503907,
+     "mi_direction_bits_ci": 0.0027707716323778445,
+     "mi_far_bits": 0.03950237646183863,
+     "mi_far_bits_ci": 0.12507315869015076,
+     "distinct_codes": 3.0,
+     "distinct_codes_ci": 12.706204736174694,
+     "topsim": -0.05429181153934773,
+     "topsim_ci": 0.48897455727779293,
+     "cic_bits": 0.0010067486905429106,
+     "cic_bits_ci": 0.0003844517676536663,
+     "js_shuffle_batch_bits": 0.0022460876363365385,
+     "js_shuffle_batch_bits_ci": 0.012190001659380195,
+     "changed_shuffle_batch": 0.11904761904761904,
+     "changed_shuffle_batch_ci": 1.5126434209731778,
+     "js_random_matched_bits": 0.001688867769514755,
+     "js_random_matched_bits_ci": 0.006935600645131537,
+     "changed_random_matched": 0.11904761904761904,
+     "changed_random_matched_ci": 0.3025286841946355
+    },
+    "greedy+hand-coded": {
+     "message_entropy_bits": 2.587675617456159,
+     "message_entropy_bits_ci": 0.8965311702948828,
+     "utilization": 0.8625585391520529,
+     "utilization_ci": 0.29884372343162785,
+     "mi_bits": 2.596372594345576,
+     "mi_bits_ci": 0.8791447957859797,
+     "mi_null_q95_bits": 0.03504133240431173,
+     "mi_null_q95_bits_ci": 0.10666606171834857,
+     "mi_p_value": 0.009900990099009901,
+     "mi_p_value_ci": 0.0,
+     "target_entropy_bits": 2.587675617456159,
+     "target_entropy_bits_ci": 0.8965311702948828,
+     "mi_direction_bits": 1.922964553924534,
+     "mi_direction_bits_ci": 0.2505070263362732,
+     "mi_far_bits": 0.7220725579941791,
+     "mi_far_bits_ci": 0.40971483769944417,
+     "distinct_codes": 7.5,
+     "distinct_codes_ci": 6.353102368087347,
+     "topsim": 0.7588121329391995,
+     "topsim_ci": 0.21567277492074824,
+     "cic_bits": 0.874791688412951,
+     "cic_bits_ci": 0.20891931691063026,
+     "js_shuffle_batch_bits": 0.35292653789306827,
+     "js_shuffle_batch_bits_ci": 0.2681802659867446,
+     "changed_shuffle_batch": 0.3563218390804598,
+     "changed_shuffle_batch_ci": 0.29209666060171713,
+     "js_random_matched_bits": 0.3493868753856362,
+     "js_random_matched_bits_ci": 0.6745797674712273,
+     "changed_random_matched": 0.3815453384418902,
+     "changed_random_matched_ci": 0.8478916953577621
+    }
+   },
+   "metadata": {
+    "radius": 3,
+    "train_settings": {
+     "radius": 3,
+     "generations": 6,
+     "population": 8,
+     "episodes_per_member": 2,
+     "sigma": 0.05,
+     "lr": 0.03,
+     "weight_decay": 0.005,
+     "spec_hidden": 16,
+     "centre_hidden": 16,
+     "eval_every": 3,
+     "val_episodes": 32,
+     "max_steps": 300,
+     "time_limit_s": null,
+     "progress_s": 120.0
+    },
+    "eval_settings": {
+     "n_episodes": 4,
+     "interventions": [
+      "zero",
+      "shuffle_batch",
+      "swap_receivers",
+      "random_matched"
+     ],
+     "record_every": 3,
+     "snapshot_every": 25,
+     "n_shuffles": 100,
+     "n_boot": 2000
+    },
+    "per_run_communication": {
+     "silent+learned-spec": {
+      "message_entropy_bits": [
+       0.0,
+       0.0
+      ],
+      "utilization": [
+       0.0,
+       0.0
+      ],
+      "mi_bits": [
+       0.0,
+       0.0
+      ],
+      "mi_null_q95_bits": [
+       0.0,
+       0.0
+      ],
+      "mi_p_value": [
+       1.0,
+       1.0
+      ],
+      "target_entropy_bits": [
+       2.614256033801329,
+       2.7708679036905326
+      ],
+      "mi_direction_bits": [
+       0.0,
+       0.0
+      ],
+      "mi_far_bits": [
+       0.0,
+       0.0
+      ],
+      "distinct_codes": [
+       1.0,
+       1.0
+      ],
+      "topsim": [
+       null,
+       null
+      ]
+     },
+     "hand-coded+learned-spec": {
+      "message_entropy_bits": [
+       2.7794915220071825,
+       2.689101467555435
+      ],
+      "utilization": [
+       0.9264971740023942,
+       0.8963671558518117
+      ],
+      "mi_bits": [
+       2.83889661192614,
+       2.7156774288349688
+      ],
+      "mi_null_q95_bits": [
+       0.34188538134368474,
+       0.14241407127654745
+      ],
+      "mi_p_value": [
+       0.009900990099009901,
+       0.009900990099009901
+      ],
+      "target_entropy_bits": [
+       2.7794915220071825,
+       2.689101467555435
+      ],
+      "mi_direction_bits": [
+       1.9906317585746356,
+       1.9810076849504785
+      ],
+      "mi_far_bits": [
+       0.8334523094309865,
+       0.736126899629526
+      ],
+      "distinct_codes": [
+       8.0,
+       8.0
+      ],
+      "topsim": [
+       0.7007919698859961,
+       0.7378658928173736
+      ],
+      "cic_bits": [
+       0.006412306086450713,
+       0.004392002303830365
+      ],
+      "js_shuffle_batch_bits": [
+       0.0009157126391227277,
+       0.0019869945924237257
+      ],
+      "changed_shuffle_batch": [
+       0.23529411764705882,
+       0.3448275862068966
+      ],
+      "js_random_matched_bits": [
+       0.0008393375092129643,
+       0.0022091550242082144
+      ],
+      "changed_random_matched": [
+       0.17647058823529413,
+       0.27586206896551724
+      ]
+     },
+     "learned-centre+learned-spec": {
+      "message_entropy_bits": [
+       0.6607867952814156,
+       0.4879179925894858
+      ],
+      "utilization": [
+       0.2202622650938052,
+       0.16263933086316193
+      ],
+      "mi_bits": [
+       0.17846881928653335,
+       0.15448742495017687
+      ],
+      "mi_null_q95_bits": [
+       0.11681904932156549,
+       0.05732260145778893
+      ],
+      "mi_p_value": [
+       0.009900990099009901,
+       0.009900990099009901
+      ],
+      "target_entropy_bits": [
+       2.7394613103305705,
+       2.5371710601221795
+      ],
+      "mi_direction_bits": [
+       0.1340546928283497,
+       0.13449082174172844
+      ],
+      "mi_far_bits": [
+       0.04934584752869986,
+       0.029658905394977397
+      ],
+      "distinct_codes": [
+       4.0,
+       2.0
+      ],
+      "topsim": [
+       -0.09277494379092223,
+       -0.015808679287773224
+      ],
+      "cic_bits": [
+       0.0009764916802368255,
+       0.001037005700848996
+      ],
+      "js_shuffle_batch_bits": [
+       0.003205461573124692,
+       0.0012867136995483852
+      ],
+      "changed_shuffle_batch": [
+       0.23809523809523808,
+       0.0
+      ],
+      "js_random_matched_bits": [
+       0.0022347113781405322,
+       0.0011430241608889776
+      ],
+      "changed_random_matched": [
+       0.14285714285714285,
+       0.09523809523809523
+      ]
+     },
+     "greedy+hand-coded": {
+      "message_entropy_bits": [
+       2.517117084132479,
+       2.658234150779839
+      ],
+      "utilization": [
+       0.8390390280441596,
+       0.8860780502599463
+      ],
+      "mi_bits": [
+       2.527182398371239,
+       2.6655627903199135
+      ],
+      "mi_null_q95_bits": [
+       0.043436133521805864,
+       0.0266465312868176
+      ],
+      "mi_p_value": [
+       0.009900990099009901,
+       0.009900990099009901
+      ],
+      "target_entropy_bits": [
+       2.517117084132479,
+       2.658234150779839
+      ],
+      "mi_direction_bits": [
+       1.9032492233803096,
+       1.9426798844687583
+      ],
+      "mi_far_bits": [
+       0.6898273009558613,
+       0.754317815032497
+      ],
+      "distinct_codes": [
+       7.0,
+       8.0
+      ],
+      "topsim": [
+       0.7757859484410641,
+       0.7418383174373347
+      ],
+      "cic_bits": [
+       0.858349381583451,
+       0.891233995242451
+      ],
+      "js_shuffle_batch_bits": [
+       0.3318202932232313,
+       0.3740327825629053
+      ],
+      "changed_shuffle_batch": [
+       0.3333333333333333,
+       0.3793103448275862
+      ],
+      "js_random_matched_bits": [
+       0.2962962962962963,
+       0.402477454474976
+      ],
+      "changed_random_matched": [
+       0.3148148148148148,
+       0.4482758620689655
+      ]
+     }
+    },
+    "codebooks": [
+     [
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       4,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       7,
+       14,
+       8,
+       24,
+       9,
+       25,
+       6,
+       19,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       1,
+       0,
+       8,
+       0,
+       1,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ]
+     ],
+     [
+      [
+       0,
+       1,
+       0,
+       11,
+       0,
+       2,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      [
+       12,
+       16,
+       2,
+       15,
+       5,
+       39,
+       3,
+       26,
+       0
+      ]
+     ]
+    ],
+    "headline": [
+     {
+      "a": "learned-centre+learned-spec",
+      "b": "silent+learned-spec",
+      "u": 2.0,
+      "p": 1.0,
+      "a12": 0.5,
+      "mean_diff": 0.0,
+      "n_a": 2,
+      "n_b": 2,
+      "p_holm": 1.0,
+      "welch_ci": 1.5212174611483271
+     },
+     {
+      "a": "learned-centre+learned-spec",
+      "b": "hand-coded+learned-spec",
+      "u": 3.0,
+      "p": 0.6170750774519738,
+      "a12": 0.75,
+      "mean_diff": 0.25,
+      "n_a": 2,
+      "n_b": 2,
+      "p_holm": 1.0,
+      "welch_ci": 3.1765511840436735
+     },
+     {
+      "a": "hand-coded+learned-spec",
+      "b": "silent+learned-spec",
+      "u": 1.0,
+      "p": 0.6170750774519738,
+      "a12": 0.25,
+      "mean_diff": -0.25,
+      "n_a": 2,
+      "n_b": 2,
+      "p_holm": 1.0,
+      "welch_ci": 3.1765511840436735
+     },
+     {
+      "a": "learned-centre+learned-spec",
+      "b": "greedy+hand-coded",
+      "u": 0.0,
+      "p": 0.3333333333333333,
+      "a12": 0.0,
+      "mean_diff": -14.875,
+      "n_a": 2,
+      "n_b": 2,
+      "p_holm": 1.0,
+      "welch_ci": 51.61296208395684
+     },
+     {
+      "a": "hand-coded+learned-spec",
+      "b": "greedy+hand-coded",
+      "u": 0.0,
+      "p": 0.22067136191984682,
+      "a12": 0.0,
+      "mean_diff": -15.125,
+      "n_a": 2,
+      "n_b": 2,
+      "p_holm": 1.0,
+      "welch_ci": 52.413094536720614
+     }
+    ]
+   },
+   "complete": true,
+   "missing_baselines": []
+  }
+ },
+ "training": [
+  {
+   "mode": "silent",
+   "run": 0,
+   "radius": 3,
+   "best_generation": 6,
+   "generations_done": 6,
+   "seconds": 2.3976202000048943,
+   "n_params": 3347
+  },
+  {
+   "mode": "hand-coded",
+   "run": 0,
+   "radius": 3,
+   "best_generation": 6,
+   "generations_done": 6,
+   "seconds": 2.7324842999805696,
+   "n_params": 3347
+  },
+  {
+   "mode": "learned",
+   "run": 0,
+   "radius": 3,
+   "best_generation": 6,
+   "generations_done": 6,
+   "seconds": 2.4627815000130795,
+   "n_params": 3611
+  },
+  {
+   "mode": "silent",
+   "run": 1,
+   "radius": 3,
+   "best_generation": 3,
+   "generations_done": 6,
+   "seconds": 2.436370800016448,
+   "n_params": 3347
+  },
+  {
+   "mode": "hand-coded",
+   "run": 1,
+   "radius": 3,
+   "best_generation": 6,
+   "generations_done": 6,
+   "seconds": 0.118194000038784,
+   "n_params": 3347
+  },
+  {
+   "mode": "learned",
+   "run": 1,
+   "radius": 3,
+   "best_generation": 6,
+   "generations_done": 6,
+   "seconds": 0.23142570001073182,
+   "n_params": 3611
+  }
+ ],
+ "scale": "smoke",
+ "train_settings": {
+  "radius": 3,
+  "generations": 6,
+  "population": 8,
+  "episodes_per_member": 2,
+  "sigma": 0.05,
+  "lr": 0.03,
+  "weight_decay": 0.005,
+  "spec_hidden": 16,
+  "centre_hidden": 16,
+  "eval_every": 3,
+  "val_episodes": 32,
+  "max_steps": 300,
+  "time_limit_s": null,
+  "progress_s": 120.0
+ },
+ "eval_settings": {
+  "n_episodes": 4,
+  "interventions": [
+   "zero",
+   "shuffle_batch",
+   "swap_receivers",
+   "random_matched"
+  ],
+  "record_every": 3,
+  "snapshot_every": 25,
+  "n_shuffles": 100,
+  "n_boot": 2000
+ },
+ "train_seconds": 3.90029499999946,
+ "eval_seconds": 2.9710281000006944,
+ "workers": 4
+}
