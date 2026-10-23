@@ -1,0 +1,21 @@
+[start] scale=gpu: 30 training runs on 20 workers; TrainSettings(radius=3, generations=2000, population=128, episodes_per_member=8, sigma=0.05, lr=0.03, weight_decay=0.005, spec_hidden=16, centre_hidden=16, eval_every=10, val_episodes=32, max_steps=300, time_limit_s=inf, progress_s=120.0)
+[progress] r=3 learned run 2: gen 30/2000, val team food 0.62, best gen 30, elapsed 121 s
+[progress] r=3 hand-coded run 2: gen 40/2000, val team food 0.62, best gen 40, elapsed 125 s
+[progress] r=3 learned run 0: gen 40/2000, val team food 0.97, best gen 40, elapsed 126 s
+[progress] r=3 silent run 1: gen 40/2000, val team food 1.34, best gen 40, elapsed 128 s
+[progress] r=3 silent run 3: gen 30/2000, val team food 0.72, best gen 30, elapsed 131 s
+[progress] r=3 learned run 5: gen 40/2000, val team food 0.94, best gen 20, elapsed 132 s
+[progress] r=3 silent run 6: gen 30/2000, val team food 0.56, best gen 20, elapsed 132 s
+[progress] r=3 silent run 4: gen 50/2000, val team food 1.09, best gen 50, elapsed 133 s
+[progress] r=3 silent run 5: gen 50/2000, val team food 0.81, best gen 50, elapsed 136 s
+[progress] r=3 silent run 0: gen 50/2000, val team food 1.38, best gen 50, elapsed 137 s
+[progress] r=3 silent run 2: gen 40/2000, val team food 0.38, best gen 20, elapsed 137 s
+[progress] r=3 hand-coded run 6: gen 40/2000, val team food 1.56, best gen 40, elapsed 138 s
+[progress] r=3 learned run 1: gen 50/2000, val team food 0.84, best gen 50, elapsed 143 s
+[progress] r=3 learned run 4: gen 40/2000, val team food 1.31, best gen 40, elapsed 143 s
+[progress] r=3 hand-coded run 0: gen 40/2000, val team food 2.12, best gen 40, elapsed 144 s
+[progress] r=3 hand-coded run 1: gen 40/2000, val team food 1.47, best gen 40, elapsed 147 s
+[progress] r=3 hand-coded run 5: gen 50/2000, val team food 1.44, best gen 50, elapsed 147 s
+[progress] r=3 learned run 3: gen 40/2000, val team food 0.75, best gen 20, elapsed 148 s
+[progress] r=3 hand-coded run 4: gen 50/2000, val team food 2.03, best gen 50, elapsed 149 s
+[progress] r=3 hand-coded run 3: gen 50/2000, val team food 1.16, best gen 50, elapsed 150 s
