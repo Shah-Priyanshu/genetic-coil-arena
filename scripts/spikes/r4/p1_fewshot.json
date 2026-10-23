@@ -1,0 +1,57 @@
+[
+  {
+    "text": "Red, go eat in the top-left corner.",
+    "gold": {
+      "eaters": [
+        "red"
+      ],
+      "region": "top_left",
+      "avoid": [],
+      "tempo": "normal",
+      "hold": false
+    }
+  },
+  {
+    "text": "Green and blue, hurry to the bottom half and grab food; red keep out of the way.",
+    "gold": {
+      "eaters": [
+        "green",
+        "blue"
+      ],
+      "region": "bottom",
+      "avoid": [
+        "red"
+      ],
+      "tempo": "fast",
+      "hold": false
+    }
+  },
+  {
+    "text": "Everybody wait where you are and be careful.",
+    "gold": {
+      "eaters": [
+        "red",
+        "green",
+        "blue"
+      ],
+      "region": "any",
+      "avoid": [],
+      "tempo": "cautious",
+      "hold": true
+    }
+  },
+  {
+    "text": "Blue eats on the right side, green must stay away from there.",
+    "gold": {
+      "eaters": [
+        "blue"
+      ],
+      "region": "right",
+      "avoid": [
+        "green"
+      ],
+      "tempo": "normal",
+      "hold": false
+    }
+  }
+]

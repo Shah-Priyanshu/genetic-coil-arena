@@ -1,0 +1,63 @@
+{
+  "type": "object",
+  "properties": {
+    "eaters": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "red",
+          "green",
+          "blue"
+        ]
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "region": {
+      "type": "string",
+      "enum": [
+        "any",
+        "top_left",
+        "top_right",
+        "bottom_left",
+        "bottom_right",
+        "top",
+        "bottom",
+        "left",
+        "right"
+      ]
+    },
+    "avoid": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "red",
+          "green",
+          "blue"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "tempo": {
+      "type": "string",
+      "enum": [
+        "normal",
+        "fast",
+        "cautious"
+      ]
+    },
+    "hold": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "eaters",
+    "region",
+    "avoid",
+    "tempo",
+    "hold"
+  ],
+  "additionalProperties": false
+}
