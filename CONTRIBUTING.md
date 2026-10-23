@@ -12,16 +12,12 @@ We welcome contributions to Genetic Coil Arena! This document provides guideline
 
 2. **Set up development environment**
    ```bash
-   make setup
-   # or manually:
-   pip install -e ".[dev,ui,analysis]"
-   pre-commit install
+   pip install -e ".[dev]"
    ```
 
 3. **Run tests to verify setup**
    ```bash
-   make test
-   pytest tests/ -v
+   pytest tests/ --ignore=tests/test_viewer.py
    ```
 
 ## Code Style
@@ -31,10 +27,10 @@ We welcome contributions to Genetic Coil Arena! This document provides guideline
 - **Docstrings**: Use Google-style docstrings for all public functions
 - **Line length**: 88 characters (black default)
 
-Run formatting and linting:
+Run formatting and linting on the files you change:
 ```bash
-make format
-make lint
+black <files>
+ruff check <files>
 ```
 
 ## Testing
@@ -46,14 +42,14 @@ make lint
 
 Run the test suite:
 ```bash
-# All tests
-make test
+# All tests (test_viewer.py opens a pygame window)
+pytest tests/ --ignore=tests/test_viewer.py
 
 # Fast tests only
-make test-fast
+pytest tests/ --ignore=tests/test_viewer.py -m "not slow"
 
-# Benchmarks
-make benchmark
+# Baselines and saved agents, mean ± 95% CI
+genetic-coil benchmark -n 100
 ```
 
 ## Areas for Contribution

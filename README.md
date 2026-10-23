@@ -1,657 +1,82 @@
-# 🧬 Genetic Coil Arena
+# Genetic Coil Arena
 
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.100+-green.svg)](https://fastapi.tiangolo.com/)
-[![PyTorch](https://img.shields.io/badge/PyTorch-2.0+-red.svg)](https://pytorch.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+A research lab for **specialist agents that coordinate through a language they learn themselves**. A command centre directs them, and a translator turns natural-language instructions into the command centre's protocol and back.
 
-**Complete evolutionary computing platform with neural evolution, advanced analytics, and production-ready APIs.**
+**Status:** early research. The repo was rebooted in October 2026. The earlier web platform is preserved under the `legacy-platform` git tag.
 
-## 🚀 Features
+## Why
 
-### 🧠 Neural Evolution
-- **PyTorch Integration**: Modern neural networks with GPU/CPU support
-- **NEAT-like Speciation**: Advanced diversity preservation mechanisms
-- **Multiple Architectures**: Feedforward, recurrent, and custom networks
-- **Real-time Monitoring**: Live experiment tracking and visualization
+The long-term goal is an in-house, task-agnostic ecosystem of specialized models. Each model is good at one job, and they exchange compact machine messages instead of human language. Building that requires answers to open questions:
 
-### 📊 Advanced Analytics & AI
-- **ML-Powered Insights**: RandomForest and ensemble models for predictions
-- **Anomaly Detection**: IsolationForest-based performance monitoring
-- **Predictive Modeling**: Experiment outcome prediction with confidence intervals
-- **Performance Analytics**: Time-series analysis and trend identification
+- **Protocol:** can specialists learn a compact protocol that beats a hand-designed one?
+- **Bandwidth:** how much bandwidth do they actually need?
+- **Translation:** can a translator map human intent into the protocol reliably, and decode it back for monitoring?
+- **Modularity:** can a new specialist join without retraining everything?
 
-### 🎯 Experiment Management
-- **Complete Lifecycle**: Create, monitor, pause, resume, and analyze experiments
-- **Template System**: Pre-configured setups for rapid prototyping
-- **Batch Processing**: Queue-based processing of multiple experiments
-- **Data Persistence**: Comprehensive experiment history and state management
+Snake is the first lab for these questions:
+- experiments take minutes;
+- ground truth is exact, because you know who ate what and when;
+- failures are visible.
 
-### 👥 Collaboration & Teams
-- **Multi-user Support**: Team-based experiment sharing and management
-- **Version Control**: Git-like versioning for experiment configurations
-- **Notifications**: Real-time alerts and progress updates
-- **Access Control**: Role-based permissions and security
+## What works today
 
-### 📱 Mobile & Web
-- **Progressive Web App**: Offline functionality with service workers
-- **Responsive Design**: Touch-friendly interface for all devices
-- **Real-time Updates**: WebSocket-powered live monitoring
-- **API-First**: RESTful APIs for custom integrations
+- **Simulator:** a fast single-snake simulator compiled with numba. The board can wrap around (torus) or have walls, and a hunger timer ends games where the snake stops eating.
+- **Genetic algorithm:** BLX-α crossover, Gaussian mutation, tournament selection and elitism, with parallel evaluation, persistence and resume.
+- **Evaluation harness:**
+  - random, straight and greedy baselines;
+  - held-out seeds;
+  - mean ± 95% confidence intervals;
+  - multi-seed evolution runs.
+- **Pygame viewer** and analysis plots.
 
-### ⚡ Performance & Scalability
-- **Load Balancing**: Distributed processing across multiple workers
-- **Auto-scaling**: Dynamic resource allocation based on workload
-- **Performance Monitoring**: Real-time metrics and optimization
-- **Production Ready**: Enterprise-grade reliability and security
+Current numbers (100 held-out seeds, food eaten per episode):
 
-### 🔒 Enterprise Security
-- **JWT Token Management**: Advanced authentication with refresh/revocation
-- **Input Validation**: Comprehensive XSS and injection protection  
-- **Rate Limiting**: DoS protection with configurable limits
-- **Security Headers**: CSP, HSTS, and security best practices
-- **Environment Configuration**: Secure secret management
-- **Session Monitoring**: Active session tracking and management
+| Policy | Food |
+|---|---|
+| Random | 0.07 ± 0.05 |
+| Evolved (256 × 300 generations, 3 seeds) | 0.44 ± 0.13 |
+| Greedy heuristic | 39.2 ± 3.6 |
 
-## 🎯 Quick Start
+Evolution beats random but is far from greedy. Treat this as an open problem, not a solved baseline.
 
-### ✅ Production Status
-**The Genetic Coil Arena is PRODUCTION READY!** 
-
-- 🟢 **Server Status**: Fully operational with 8 integrated API routes
-- 🟢 **Core Features**: Experiments, Neural Evolution, Analytics, Visualization
-- 🟢 **Documentation**: Complete API docs at `/docs`
-- 🟢 **Health Monitoring**: All systems operational
-
-**Start the server and access at: http://localhost:8000**
-
-### 📋 Prerequisites
-- **Python 3.8+** with pip
-- **Git** for version control
-- **Optional**: CUDA-compatible GPU for neural training acceleration
-
-### 🚀 Installation
-```bash
-# Clone the repository
-git clone https://github.com/yourusername/genetic-coil-arena.git
-cd genetic-coil-arena
-
-# Install dependencies
-pip install -e .
-
-# Set up secure configuration
-cp .env.template .env
-# Edit .env file with your secure passwords and configuration
-
-# Create necessary directories (auto-created on first run)
-python -c "import os; [os.makedirs(d, exist_ok=True) for d in ['data/experiments', 'data/models', 'logs', 'storage/uploads']]"
-```
-
-### 🔐 Security Configuration
-**IMPORTANT**: Before production deployment, update your `.env` file:
-```bash
-# Required for production
-SECRET_KEY=your-32-character-secret-key-here
-DEFAULT_ADMIN_PASSWORD=your_secure_admin_password
-DEFAULT_RESEARCHER_PASSWORD=your_secure_researcher_password
-
-# Optional security settings
-CORS_ORIGINS=https://yourdomain.com,https://app.yourdomain.com
-RATE_LIMIT_REQUESTS=100
-ACCESS_TOKEN_EXPIRE_MINUTES=30
-```
-
-### ⚡ Start the Platform
-```bash
-# Method 1: Simple launcher (recommended)
-python start_server.py
-
-# Method 2: Direct module execution
-python -m src.genetic_coil_arena.web.server
-
-# Method 3: Production server
-uvicorn src.genetic_coil_arena.web.server:create_app --host 0.0.0.0 --port 8000
-```
-
-### 🌐 Access the Platform
-Once started, access these endpoints:
-- **🏠 Homepage**: http://localhost:8000
-- **📖 API Documentation**: http://localhost:8000/docs
-- **🔍 ReDoc**: http://localhost:8000/redoc
-- **💓 Health Check**: http://localhost:8000/health
-
-### 🎮 Quick Demo
-```bash
-# Run comprehensive feature demo
-python comprehensive_demo.py
-
-# Run integration tests (verify everything works)
-python -m pytest tests/ -v
-```
-
-## 📖 Documentation
-
-### 📋 **Complete Documentation**
-For comprehensive documentation, see the [`docs/`](docs/) directory:
-
-- **[API Reference](docs/API_DOCUMENTATION.md)** - Complete API documentation
-- **[Project Structure](docs/PROJECT_STRUCTURE.md)** - Architecture overview
-- **[Security Review](docs/SENIOR_DEVELOPER_REVIEW.md)** - Security analysis
-- **[Security Implementation](docs/FINAL_SECURITY_REPORT.md)** - Security features
-
-### 🔗 **Quick Links**
-- **Interactive API Docs**: http://localhost:8000/docs
-- **API Schema**: http://localhost:8000/redoc
-- **Health Check**: http://localhost:8000/health
-
-### Core Endpoints
-
-| Service | Endpoint | Description |
-|---------|----------|-------------|
-| **System** | `/health` | System health and status |
-| **Docs** | `/docs` | Interactive API documentation |
-| **Experiments** | `/api/experiments` | Core experiment management |
-| **Neural** | `/api/neural/health` | Neural evolution engine |
-| **Analytics** | `/api/analytics/health` | AI-powered analytics |
-| **Templates** | `/api/templates` | Experiment templates |
-| **Teams** | `/api/teams` | Team collaboration |
-| **Performance** | `/api/performance` | Performance monitoring |
-| **Mobile** | `/api/mobile` | Mobile features |
-| **3D Viz** | `/api/visualization_3d` | 3D visualization |
-| **Batch** | `/api/batch` | Batch processing |
-| **Notifications** | `/api/notifications` | Real-time notifications |
-
-### Example Usage
-
-```python
-import requests
-
-# Check system health
-response = requests.get("http://localhost:8000/health")
-print(response.json())
-
-# Create neural evolution experiment
-experiment = {
-    "name": "Snake AI Evolution",
-    "agent_config": {
-        "input_size": 10,
-        "hidden_layers": [64, 32],
-        "output_size": 4
-    },
-    "evolution_config": {
-        "population_size": 100,
-        "generations": 50
-    }
-}
-
-response = requests.post(
-    "http://localhost:8000/api/neural/experiments",
-    json=experiment,
-    headers={"Authorization": "Bearer <token>"}
-)
-```
-
-## 🏗️ Project Structure
-
-The project is organized for production use with clear separation of concerns:
-
-```
-genetic-coil-arena/
-├── 📁 src/genetic_coil_arena/      # Core package
-│   ├── 🌐 web/                    # Web API and server
-│   │   ├── 📁 core/               # Infrastructure (auth, db, storage)
-│   │   ├── 📁 routes/             # API endpoints by feature
-│   │   ├── 📁 ui/                 # Web UI components
-│   │   └── server.py              # Main server application
-│   ├── 🧠 neural_evolution.py     # Neural evolution engine
-│   ├── 🎮 snake_core/             # Game environment
-│   ├── 📊 analysis/               # Data analysis modules
-│   └── 🎨 ui/                     # User interface components
-├── 📁 data/                       # Application data and models
-├── 📁 logs/                       # Application logs
-├── 📁 storage/                    # Runtime storage and uploads
-├── 📁 tests/                      # Comprehensive test suite
-├── 📁 archive/                    # Legacy files and demos
-├── 🚀 start_server.py             # Simple server launcher
-├── 🎯 comprehensive_demo.py       # Complete feature demo
-└── 🧪 test_integration.py         # Integration tests
-```
-
-See [PROJECT_STRUCTURE.md](PROJECT_STRUCTURE.md) for detailed documentation.
-
-## 🧪 Testing
-
-### Integration Tests
-```bash
-# Run all integration tests
-python test_integration.py
-
-# Expected output: 100% success rate
-# Total Tests: 15
-# Passed: 15
-# Failed: 0
-# Success Rate: 100.0%
-```
-
-### Performance Testing
-```bash
-# Test individual components
-curl http://localhost:8000/api/neural/health
-curl http://localhost:8000/api/analytics/health
-curl http://localhost:8000/api/experiments/health
-```
-
-## 🛠️ Development
-
-### 🏗️ Architecture Overview
-The platform follows clean architecture principles:
-
-- **🌐 Web Layer** (`web/`): API endpoints and server management
-- **🧠 Business Logic**: Core algorithms and evolution engines  
-- **💾 Data Layer**: Persistence, storage, and database management
-- **🎨 Presentation**: UI components and visualization
-- **🧪 Testing**: Comprehensive test suite with 100% integration coverage
-
-### 📦 Module Organization
-
-#### Core Infrastructure (`web/core/`)
-- **auth.py** - JWT-based authentication and authorization
-- **database.py** - Database management and ORM
-- **file_storage.py** - File upload and storage handling
-- **models.py** - Pydantic data models and schemas
-
-#### API Routes (`web/routes/`)
-- **experiments_routes.py** - Core experiment CRUD operations
-- **neural_routes.py** - Neural evolution and PyTorch integration
-- **analytics_routes.py** - ML analytics and insights
-- **team_management_routes.py** - Collaboration features
-- **performance_routes.py** - Performance monitoring
-- **mobile_routes.py** - Mobile-optimized endpoints
-- **batch_routes.py** - Batch processing and queues
-- **notifications_routes.py** - Real-time notifications
-- **templates_routes.py** - Experiment templates
-- **visualization_3d_routes.py** - 3D visualization
-
-#### UI Components (`web/ui/`)
-- Interactive web interfaces for each feature
-- Real-time updates with WebSocket support
-- Mobile-responsive design
-
-### 🔧 Development Setup
-```bash
-# Install development dependencies
-pip install -e ".[dev,ui,analysis]"
-
-# Run linting and formatting
-ruff check src/
-black src/
-
-# Type checking
-mypy src/
-
-# Run tests
-python -m pytest tests/
-python test_integration.py
-```
-
-### 🚀 Adding New Features
-
-1. **Create API Route**:
-   ```python
-   # src/genetic_coil_arena/web/routes/new_feature_routes.py
-   from fastapi import APIRouter
-   
-   router = APIRouter(prefix="/new_feature", tags=["new-feature"])
-   
-   @router.get("/")
-   async def get_feature():
-       return {"status": "working"}
-   ```
-
-2. **Add to Server**:
-   ```python
-   # In src/genetic_coil_arena/web/server.py
-   from .routes.new_feature_routes import router as new_feature_router
-   app.include_router(new_feature_router, prefix="/api")
-   ```
-
-3. **Create Tests**:
-   ```python
-   # In test_integration.py
-   def test_new_feature():
-       response = requests.get(f"{base_url}/api/new_feature")
-       assert response.status_code == 200
-   ```
-
-### 📋 Contributing Guidelines
-
-1. **Fork** the repository
-2. **Create** a feature branch: `git checkout -b feature/amazing-feature`
-3. **Make** your changes following the existing patterns
-4. **Add tests** for new functionality
-5. **Run** the test suite: `python test_integration.py`
-6. **Commit** with clear messages: `git commit -m "Add amazing feature"`
-7. **Push** to your fork: `git push origin feature/amazing-feature`
-8. **Submit** a pull request
-
-### 🔍 Code Quality Standards
-- **Type hints** for all functions
-- **Docstrings** for public APIs
-- **Error handling** with proper HTTP status codes
-- **Logging** for debugging and monitoring
-- **Tests** for all new features
-- **Documentation** updates
-
-## 📊 Features Status
-
-| Feature | Status | Description |
-|---------|--------|-------------|
-| ✅ Core Experiments | **Production** | Complete experiment lifecycle management |
-| ✅ Neural Evolution | **Production** | PyTorch-based neuroevolution with templates |
-| ✅ Analytics & AI | **Production** | ML-powered insights and predictions |
-| ✅ Team Collaboration | **Production** | Multi-user support with authentication |
-| ✅ Performance Monitoring | **Production** | Real-time metrics and optimization |
-| ✅ Mobile Support | **Production** | Progressive Web App functionality |
-| ✅ 3D Visualization | **Production** | Interactive 3D experiment visualization |
-| ✅ Batch Processing | **Production** | Queue-based experiment processing |
-| ✅ API Documentation | **Production** | Comprehensive API docs with examples |
-
-## 🌟 Production Deployment
-
-### Docker (Recommended)
-```dockerfile
-FROM python:3.11-slim
-COPY . /app
-WORKDIR /app
-RUN pip install -e .
-EXPOSE 8000
-CMD ["python", "start_server.py"]
-```
-
-### Manual Deployment
-```bash
-# Production server with multiple workers
-uvicorn src.genetic_coil_arena.web.server:create_app --host 0.0.0.0 --port 8000 --workers 4
-
-# With SSL (recommended for production)
-uvicorn src.genetic_coil_arena.web.server:create_app --host 0.0.0.0 --port 443 --ssl-keyfile key.pem --ssl-certfile cert.pem
-```
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🤝 Support
-
-- **Documentation**: http://localhost:8000/docs
-- **Issues**: [GitHub Issues](https://github.com/yourusername/genetic-coil-arena/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/genetic-coil-arena/discussions)
-
-## 🎉 Acknowledgments
-
-- Built with FastAPI, PyTorch, and Scikit-learn
-- Inspired by NEAT and modern evolutionary computation research
-- Designed for both research and production use
-
----
-
-**🧬 Genetic Coil Arena - Where Evolution Meets Intelligence** 🚀
-
-### Installation
+## Quick start
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/genetic-coil-arena.git
-cd genetic-coil-arena
-
-# Install dependencies
-pip install -e .
-
-# Install optional GPU support
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-```
-
-### Running the Server
-
-```bash
-# Start the unified server
-python -m src.genetic_coil_arena.web.server
-
-# Or use the CLI
-genetic-coil serve
-
-# Or run directly
-python -m genetic_coil_arena
-```
-
-The server will start on `http://localhost:8000` with:
-- 📖 **API Documentation**: http://localhost:8000/docs
-- 🧠 **Neural Evolution**: http://localhost:8000/api/neural/health
-- 📊 **Analytics**: http://localhost:8000/api/analytics/health
-- 💓 **Health Check**: http://localhost:8000/health
-
-### Basic Usage
-
-```python
-import requests
-
-# Check system health
-response = requests.get("http://localhost:8000/health")
-print(response.json())
-
-# Get neural evolution templates
-response = requests.get("http://localhost:8000/api/neural/templates")
-templates = response.json()["templates"]
-
-# Create a neural evolution experiment
-experiment_config = {
-    "name": "My Neural Evolution",
-    "description": "Testing neural network evolution",
-    "agent_config": {
-        "input_size": 10,
-        "hidden_layers": [64, 32],
-        "output_size": 4
-    },
-    "evolution_config": {
-        "population_size": 50,
-        "generations": 100,
-        "mutation_rate": 0.1
-    },
-    "environment_type": "grid_world"
-}
-
-response = requests.post(
-    "http://localhost:8000/api/neural/experiments",
-    json=experiment_config,
-    headers={"Authorization": "Bearer YOUR_TOKEN"}
-)
-```
-
-## 📚 API Reference
-
-### Core Endpoints
-
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/health` | GET | System health and status |
-| `/docs` | GET | Interactive API documentation |
-| `/api/experiments` | GET, POST | Experiment management |
-| `/api/neural/health` | GET | Neural evolution system status |
-| `/api/neural/templates` | GET | Pre-configured neural architectures |
-| `/api/neural/experiments` | POST | Create neural evolution experiments |
-| `/api/analytics/health` | GET | Analytics system status |
-| `/api/analytics/insights` | POST | Get AI-powered insights |
-
-### Neural Evolution
-
-```bash
-# Get available neural templates
-curl http://localhost:8000/api/neural/templates
-
-# Check neural system health
-curl http://localhost:8000/api/neural/health
-
-# Get system status
-curl http://localhost:8000/api/neural/status
-```
-
-### Analytics & AI
-
-```bash
-# Get analytics health
-curl http://localhost:8000/api/analytics/health
-
-# Get model status
-curl http://localhost:8000/api/analytics/model/status
-
-# Generate predictions (requires experiment data)
-curl -X POST http://localhost:8000/api/analytics/predictions \
-  -H "Content-Type: application/json" \
-  -d '{"experiment_id": "exp_123", "generations": 50}'
-```
-
-## 🏗️ Architecture
-
-```
-Genetic Coil Arena
-├── Neural Evolution Engine (PyTorch)
-├── Analytics & AI (Scikit-learn, ML models)
-├── Experiment Management (Persistence, lifecycle)
-├── Web API (FastAPI, REST endpoints)
-├── Real-time Updates (WebSocket)
-├── Authentication & Security (JWT)
-├── Database (SQLite/PostgreSQL)
-├── Mobile & PWA (Progressive Web App)
-└── Performance & Monitoring (Scalability)
-```
-
-### Key Components
-
-- **Neural Evolution**: PyTorch-based neuroevolution with NEAT-like features
-- **Analytics Engine**: ML-powered insights and predictive modeling
-- **Experiment Manager**: Complete lifecycle management with persistence
-- **Web Server**: Production FastAPI server with comprehensive APIs
-- **Database Layer**: Flexible storage with SQLite and PostgreSQL support
-- **Authentication**: JWT-based security with role-based access control
-
-## 🔬 Research Applications
-
-### Evolutionary Robotics
-- Agent behavior evolution in simulated environments
-- Neural network architecture optimization
-- Multi-objective fitness optimization
-
-### Machine Learning Research
-- Neural architecture search (NAS)
-- Hyperparameter optimization
-- Transfer learning experiments
-
-### Comparative Studies
-- Algorithm performance analysis
-- Parameter sensitivity studies
-- Convergence behavior research
-
-### Production Applications
-- Automated model optimization
-- Real-time adaptive systems
-- Large-scale evolutionary experiments
-
-## 📊 Testing
-
-Run the comprehensive integration tests:
-
-```bash
-# Start the server
-python -m genetic_coil_arena &
-
-# Run integration tests
-python test_integration.py
-
-# View results
-cat integration_test_results.json
-```
-
-The test suite validates:
-- ✅ System health and core functionality
-- ✅ Neural evolution features
-- ✅ Analytics and AI components
-- ✅ Visualization and templates
-- ✅ Team management and collaboration
-- ✅ Performance monitoring
-- ✅ Mobile and PWA features
-
-## 🛠️ Development
-
-### Setup Development Environment
-
-```bash
-# Install development dependencies
 pip install -e ".[dev]"
+pytest tests/ --ignore=tests/test_viewer.py   # test_viewer.py opens a pygame window
 
-# Run tests
-pytest tests/
-
-# Code formatting
-black src/
-ruff check src/
-
-# Type checking
-mypy src/
+genetic-coil benchmark -n 100                 # baselines, mean ± 95% CI on held-out seeds
+genetic-coil evolve -g 60 -p 128              # one evolution run (resume with -e <experiment id>)
+genetic-coil multiseed -k 3 -g 60 -p 128 --no-early-stop -o outputs/multiseed
+genetic-coil visualize                        # watch a game
 ```
 
-### Project Structure
+On Windows, set `PYTHONUTF8=1`. The CLI prints emoji, which crashes a cp1252 console when output is piped.
+
+## Roadmap
+
+1. **Step 0, an honest measuring stick:** done.
+2. **Cooperative squad lab:**
+   - specialist snakes that each eat one colour of food;
+   - a command centre that sees the whole board;
+   - bandwidth-limited messages, each with a readable envelope and a learned payload.
+3. **Translator:** natural language becomes a typed, readable GoalSpec, which the command centre turns into learned payloads. A reverse translator decodes the payloads for monitoring.
+4. **A second, non-game domain,** to prove the interfaces are task-agnostic.
+5. **Real small models** behind the same specialist interface.
+
+## Layout
 
 ```
-genetic-coil-arena/
-├── src/genetic_coil_arena/
-│   ├── web/                 # Web server and APIs
-│   │   ├── server.py       # Unified production server
-│   │   ├── neural_routes.py # Neural evolution APIs
-│   │   ├── analytics_routes.py # Analytics APIs
-│   │   └── ...             # Other API modules
-│   ├── neural_evolution.py # Neural network agents
-│   ├── neuro_evolution_engine.py # Evolution engine
-│   ├── advanced_analytics.py # ML analytics
-│   └── config.py           # Configuration
-├── tests/                  # Test suite
-├── notebooks/              # Jupyter examples
-├── test_integration.py     # Integration tests
-└── README.md              # This file
+src/genetic_coil_arena/
+  snake_core/   game engine (numba) and the neural agent
+  evo/          genetic operators, fitness, parallel evaluation, baselines, evolution loop
+  persistence/  experiment storage, checkpoints and resume
+  analysis/     benchmark harness (confidence intervals, multi-seed runs)
+  cli/          the `genetic-coil` command
+  ui/           pygame viewer
+tests/
 ```
 
-## 🤝 Contributing
+## License
 
-We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
-
-### Development Workflow
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Make your changes and add tests
-4. Run the test suite: `python test_integration.py`
-5. Commit your changes: `git commit -m "Add amazing feature"`
-6. Push to the branch: `git push origin feature/amazing-feature`
-7. Open a Pull Request
-
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **PyTorch** for the neural network framework
-- **FastAPI** for the modern web framework
-- **Scikit-learn** for machine learning tools
-- **NEAT** algorithm inspiration for neuroevolution
-- **Research Community** for evolutionary computation advances
-
-## 📞 Support
-
-- 📖 **Documentation**: http://localhost:8000/docs
-- 💬 **Issues**: [GitHub Issues](https://github.com/yourusername/genetic-coil-arena/issues)
-- 📧 **Email**: support@geneticcoilarena.com
-- 🌐 **Website**: https://geneticcoilarena.com
-
----
-
-**Genetic Coil Arena - Evolving the Future of AI** 🧬🚀
+MIT. See [LICENSE](LICENSE).
