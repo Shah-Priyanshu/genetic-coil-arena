@@ -720,3 +720,31 @@
 [progress] hand-coded/scratch run 4: gen 180/800, val newcomer food 0.80, team 36.30, elapsed 1070 s
 [progress] learned/scratch run 6: gen 120/800, val newcomer food 0.84, team 29.25, elapsed 778 s
 [progress] learned/scratch run 7: gen 90/800, val newcomer food 0.89, team 36.20, elapsed 593 s
+[progress] learned/scratch run 3: gen 660/800, val newcomer food 6.88, team 37.62, elapsed 4140 s
+[progress] silent/scratch run 4: gen 200/800, val newcomer food 0.45, team 14.70, elapsed 1112 s
+[progress] silent/scratch run 2: gen 800/800, val newcomer food 1.95, team 14.34, elapsed 4188 s
+[train] silent_scratch_run2: 800 gens in 4188 s (5.24 s/gen), final val newcomer food 1.95, team 14.34 (best gen 790)
+[progress] hand-coded/scratch run 7: gen 0/800, val newcomer food 0.20, team 33.44, elapsed 0 s
+[progress] learned/scratch run 4: gen 180/800, val newcomer food 1.06, team 33.48, elapsed 1179 s
+[progress] hand-coded/scratch run 2: gen 800/800, val newcomer food 6.98, team 36.95, elapsed 4478 s
+[train] hand-coded_scratch_run2: 800 gens in 4478 s (5.60 s/gen), final val newcomer food 6.98, team 36.95 (best gen 690)
+[progress] silent/scratch run 7: gen 0/800, val newcomer food 0.14, team 14.50, elapsed 0 s
+[progress] learned/scratch run 5: gen 180/800, val newcomer food 3.47, team 39.50, elapsed 1187 s
+[progress] silent/scratch run 6: gen 160/800, val newcomer food 0.38, team 10.41, elapsed 873 s
+[progress] learned/scratch run 2: gen 720/800, val newcomer food 7.34, team 38.48, elapsed 4501 s
+[progress] hand-coded/scratch run 6: gen 160/800, val newcomer food 0.31, team 28.11, elapsed 942 s
+[progress] learned/scratch run 6: gen 150/800, val newcomer food 1.34, team 28.73, elapsed 972 s
+[progress] hand-coded/scratch run 5: gen 200/800, val newcomer food 2.48, team 36.89, elapsed 1167 s
+[progress] silent/scratch run 5: gen 200/800, val newcomer food 0.52, team 14.69, elapsed 1131 s
+[progress] silent/scratch run 3: gen 720/800, val newcomer food 1.36, team 14.50, elapsed 3812 s
+[progress] hand-coded/scratch run 3: gen 680/800, val newcomer food 3.81, team 35.25, elapsed 3826 s
+[progress] learned/scratch run 7: gen 120/800, val newcomer food 1.12, team 37.08, elapsed 790 s
+[progress] hand-coded/scratch run 4: gen 220/800, val newcomer food 1.08, team 33.97, elapsed 1309 s
+[progress] learned/scratch run 3: gen 690/800, val newcomer food 7.31, team 38.50, elapsed 4338 s
+[progress] silent/scratch run 4: gen 240/800, val newcomer food 0.56, team 13.50, elapsed 1337 s
+[progress] learned/scratch run 4: gen 210/800, val newcomer food 1.19, team 35.05, elapsed 1376 s
+[progress] hand-coded/scratch run 7: gen 40/800, val newcomer food 0.36, team 34.97, elapsed 234 s
+[progress] learned/scratch run 5: gen 210/800, val newcomer food 4.61, team 41.62, elapsed 1387 s
+[progress] learned/scratch run 2: gen 750/800, val newcomer food 7.09, team 37.31, elapsed 4698 s
+[progress] silent/scratch run 7: gen 40/800, val newcomer food 0.08, team 14.86, elapsed 221 s
+[progress] silent/scratch run 6: gen 200/800, val newcomer food 0.28, team 10.52, elapsed 1091 s
