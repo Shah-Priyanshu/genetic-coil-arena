@@ -45,6 +45,7 @@ from typing import Any, Optional
 FINAL_STATES = ("done", "failed", "timeout", "cancelled", "rejected")
 LOG_TAIL_LINES = 200
 MAX_LOG_BYTES = 5_000_000
+GIT_TIMEOUT_S = 180
 
 
 def now() -> str:
@@ -52,13 +53,20 @@ def now() -> str:
 
 
 def git(repo: Path, *args: str, check: bool = True) -> str:
-    result = subprocess.run(
-        ["git", "-C", str(repo), *args],
-        capture_output=True,
-        text=True,
-        encoding="utf-8",
-        errors="replace",
-    )
+    # A hung git (network drop, credential prompt) must not freeze the runner:
+    # time it out and never let it prompt.
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(repo), *args],
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            errors="replace",
+            timeout=GIT_TIMEOUT_S,
+            env={**os.environ, "GIT_TERMINAL_PROMPT": "0"},
+        )
+    except subprocess.TimeoutExpired as err:
+        raise RuntimeError(f"git {' '.join(args)} timed out") from err
     if check and result.returncode != 0:
         raise RuntimeError(f"git {' '.join(args)} failed: {result.stderr.strip()}")
     return result.stdout
@@ -151,7 +159,10 @@ class Results:
             except RuntimeError as err:
                 print(f"push failed ({err}); retrying", file=sys.stderr)
                 time.sleep(2 ** (attempt + 1))
-                self.pull()
+                try:
+                    self.pull()
+                except RuntimeError as pull_err:
+                    print(f"pull failed ({pull_err})", file=sys.stderr)
         print("giving up on this push; will retry at the next update", file=sys.stderr)
 
 
@@ -371,14 +382,29 @@ def main() -> None:
     repo = args.repo.resolve()
     args.jobs_ref = f"{args.remote}/{args.jobs_branch}"
     results_dir = args.results_dir or repo.parent / f"{repo.name}-gpu-results"
-    git(repo, "fetch", "-q", args.remote, args.jobs_branch)
-    results = Results(repo, results_dir.resolve(), args.results_branch, args.remote)
+    while True:
+        # After a reboot the network may come up after the runner does.
+        try:
+            git(repo, "fetch", "-q", args.remote, args.jobs_branch)
+            results = Results(
+                repo, results_dir.resolve(), args.results_branch, args.remote
+            )
+            break
+        except RuntimeError as err:
+            print(f"startup sync failed ({err}); retrying in {args.poll} s")
+            time.sleep(args.poll)
     print(f"watching {args.jobs_ref}:runs/queue; results -> {args.results_branch}")
     print(f"GPU: {gpu_stats() or 'nvidia-smi not found'}")
 
     while True:
-        git(repo, "fetch", "-q", args.remote, args.jobs_branch)
-        results.pull()
+        try:
+            git(repo, "fetch", "-q", args.remote, args.jobs_branch)
+            results.pull()
+        except RuntimeError as err:
+            # Offline or GitHub unreachable: wait and try again.
+            print(f"sync failed ({err}); retrying in {args.poll} s", file=sys.stderr)
+            time.sleep(args.poll)
+            continue
         for job in queued_jobs(repo, args.jobs_ref):
             if results.final_state(job["id"]) is not None:
                 continue
