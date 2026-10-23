@@ -147,3 +147,8 @@
 [progress] r=3 learned run 1: gen 170/3000, val team food 19.38, best gen 170, elapsed 1176 s
 [progress] r=3 silent run 3: gen 210/3000, val team food 6.09, best gen 200, elapsed 1180 s
 [progress] r=3 hand-coded run 6: gen 170/3000, val team food 29.84, best gen 160, elapsed 1197 s
+[progress] r=3 hand-coded run 1: gen 180/3000, val team food 32.59, best gen 180, elapsed 1211 s
+[progress] r=3 hand-coded run 3: gen 180/3000, val team food 27.84, best gen 180, elapsed 1218 s
+[progress] r=3 hand-coded run 5: gen 180/3000, val team food 28.44, best gen 180, elapsed 1222 s
+[progress] r=3 hand-coded run 0: gen 170/3000, val team food 32.19, best gen 170, elapsed 1230 s
+[progress] r=3 silent run 2: gen 220/3000, val team food 6.09, best gen 200, elapsed 1243 s
