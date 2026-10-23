@@ -1,0 +1,17 @@
+[start] scale=gpu: 70 training runs on 16 workers; cache D:\Projects\genetic-coil-arena-gpu-results\runs\r7-add-specialist\artifacts\add_specialist_runs; AddSettings(radius=3, n_old=3, generations=800, population=128, episodes_per_member=8, sigma=0.05, lr=0.03, weight_decay=0.005, spec_hidden=16, centre_hidden=16, eval_every=10, val_episodes=64, max_steps=300, time_limit_s=inf, progress_s=180.0, fitness='newcomer')
+[progress] joint run 1: gen 0/1200, val newcomer food 0.16, team 0.39, elapsed 4 s
+[progress] joint run 7: gen 0/1200, val newcomer food 0.14, team 0.30, elapsed 4 s
+[progress] joint run 4: gen 0/1200, val newcomer food 0.09, team 0.36, elapsed 4 s
+[progress] joint run 6: gen 0/1200, val newcomer food 0.08, team 0.28, elapsed 4 s
+[progress] joint run 8: gen 0/1200, val newcomer food 0.05, team 0.17, elapsed 4 s
+[progress] joint run 9: gen 0/1200, val newcomer food 0.11, team 0.42, elapsed 4 s
+[progress] learned/scratch run 0: gen 0/800, val newcomer food 0.05, team 35.69, elapsed 4 s
+[progress] joint run 3: gen 0/1200, val newcomer food 0.12, team 0.41, elapsed 4 s
+[progress] joint run 0: gen 0/1200, val newcomer food 0.08, team 0.33, elapsed 4 s
+[progress] joint run 2: gen 0/1200, val newcomer food 0.11, team 0.44, elapsed 4 s
+[progress] silent/scratch run 1: gen 0/800, val newcomer food 0.12, team 13.95, elapsed 4 s
+[progress] silent/scratch run 0: gen 0/800, val newcomer food 0.08, team 13.36, elapsed 4 s
+[progress] joint run 5: gen 0/1200, val newcomer food 0.08, team 0.44, elapsed 4 s
+[progress] learned/scratch run 1: gen 0/800, val newcomer food 0.12, team 35.08, elapsed 4 s
+[progress] hand-coded/scratch run 1: gen 0/800, val newcomer food 0.09, team 36.41, elapsed 4 s
+[progress] hand-coded/scratch run 0: gen 0/800, val newcomer food 0.03, team 37.39, elapsed 4 s
