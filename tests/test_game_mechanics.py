@@ -129,6 +129,30 @@ class TestWalls:
         assert grid[0, 0] == 2  # Food at (6, 6) is two cells up-left across the wrap
 
 
+class TestObservationRotation:
+    """The window is rotated so the snake's heading always points up."""
+
+    # Heading -> (ahead, left) offsets in world (dx, dy); north is -y.
+    OFFSETS = {
+        Direction.NORTH: ((0, -1), (-1, 0)),
+        Direction.EAST: ((1, 0), (0, -1)),
+        Direction.SOUTH: ((0, 1), (1, 0)),
+        Direction.WEST: ((-1, 0), (0, 1)),
+    }
+
+    @pytest.mark.parametrize("direction", list(OFFSETS))
+    @pytest.mark.parametrize("where, cell", [("ahead", (1, 2)), ("left", (2, 1))])
+    def test_food_appears_where_the_snake_sees_it(self, direction, where, cell):
+        game = SnakeGame(board_size=9, observation_radius=2, walls=True, seed=0)
+        game.snake_positions = np.array([[4, 4]], dtype=np.int32)
+        game.snake_direction = direction
+        dx, dy = self.OFFSETS[direction][0 if where == "ahead" else 1]
+        game.food_position = Position(4 + dx, 4 + dy)
+
+        grid = game.get_observation()[:25].reshape(5, 5)
+        assert grid[cell] == 2
+
+
 class TestRewards:
     """GameConfig reward fields drive the per-step rewards."""
 

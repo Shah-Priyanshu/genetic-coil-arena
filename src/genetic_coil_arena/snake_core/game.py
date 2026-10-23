@@ -163,11 +163,11 @@ def _get_observation(board: np.ndarray, head_x: int, head_y: int,
     if direction == Direction.NORTH:
         pass  # No rotation needed
     elif direction == Direction.EAST:
-        observation = np.rot90(observation, k=-1)
+        observation = np.rot90(observation, k=1)
     elif direction == Direction.SOUTH:
         observation = np.rot90(observation, k=2)
     elif direction == Direction.WEST:
-        observation = np.rot90(observation, k=1)
+        observation = np.rot90(observation, k=-1)
     
     return observation
 
