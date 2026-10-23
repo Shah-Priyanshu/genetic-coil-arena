@@ -17,7 +17,7 @@ class TestSnakeGame:
         
         assert game.board_size == 16
         assert game.observation_radius == 5
-        assert game.max_steps == 500
+        assert game.max_steps == 2000
         assert game.is_alive is True
         assert game.score == 0
         assert game.steps == 0

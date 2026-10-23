@@ -5,10 +5,10 @@ import numpy as np
 import tempfile
 from pathlib import Path
 
-from src.genetic_coil_arena.config import load_config
-from src.genetic_coil_arena.snake_core.game import SnakeGame, Action
-from src.genetic_coil_arena.snake_core.agent import SnakeAgent, get_observation_size
-from src.genetic_coil_arena.evo.genome import Genome
+from genetic_coil_arena.config import load_config
+from genetic_coil_arena.snake_core.game import SnakeGame, Action
+from genetic_coil_arena.snake_core.agent import SnakeAgent, get_observation_size
+from genetic_coil_arena.evo.genome import Genome
 
 
 class TestBasicIntegration:

@@ -2,9 +2,15 @@
 
 import numpy as np
 import numba  # type: ignore
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict, is_dataclass
 from enum import IntEnum
-from typing import Tuple, Optional, NamedTuple
+from typing import Any, Dict, Tuple, Optional, NamedTuple
+
+# Constructor parameters that can be taken from a GameConfig
+GAME_CONFIG_PARAMS = (
+    "board_size", "observation_radius", "max_steps", "starvation_steps", "walls",
+    "food_reward", "step_reward", "death_penalty", "early_death_threshold",
+)
 
 
 class Direction(IntEnum):
@@ -39,7 +45,8 @@ class GameState:
     score: int
     steps: int
     is_alive: bool
-    
+    end_reason: Optional[str] = None  # "collision", "wall", "starvation" or "timeout"
+
     @property
     def snake_length(self) -> int:
         """Current snake length."""
@@ -65,6 +72,30 @@ def _move_position(pos_x: int, pos_y: int, direction: int, board_size: int) -> T
         return (pos_x - 1) % board_size, pos_y
     else:
         return pos_x, pos_y
+
+
+@numba.njit(cache=True)  # type: ignore
+def _next_position(pos_x: int, pos_y: int, direction: int, board_size: int,
+                   wrap: bool) -> Tuple[int, int, bool]:
+    """Move position in given direction; returns (x, y, hit_wall).
+
+    With wrap=True the board is a torus and hit_wall is always False.
+    """
+    if wrap:
+        new_x, new_y = _move_position(pos_x, pos_y, direction, board_size)
+        return new_x, new_y, False
+
+    new_x, new_y = pos_x, pos_y
+    if direction == 0:  # NORTH
+        new_y = pos_y - 1
+    elif direction == 1:  # EAST
+        new_x = pos_x + 1
+    elif direction == 2:  # SOUTH
+        new_y = pos_y + 1
+    elif direction == 3:  # WEST
+        new_x = pos_x - 1
+    hit_wall = new_x < 0 or new_x >= board_size or new_y < 0 or new_y >= board_size
+    return new_x, new_y, hit_wall
 
 
 @numba.njit(cache=True)  # type: ignore
@@ -104,21 +135,29 @@ def _update_board(board: np.ndarray, snake_positions: np.ndarray, food_x: int, f
 
 
 @numba.njit(cache=True)  # type: ignore
-def _get_observation(board: np.ndarray, head_x: int, head_y: int, 
-                    direction: int, radius: int) -> np.ndarray:
-    """Get egocentric observation window around snake head."""
+def _get_observation(board: np.ndarray, head_x: int, head_y: int,
+                    direction: int, radius: int, wrap: bool = True) -> np.ndarray:
+    """Get egocentric observation window around snake head.
+
+    Without wrapping, cells outside the board read as 1 (deadly, like the body).
+    """
     board_size = board.shape[0]
     window_size = 2 * radius + 1
     observation = np.zeros((window_size, window_size), dtype=np.float32)
-    
+
     # Get observation in world coordinates
     for dy in range(-radius, radius + 1):
         for dx in range(-radius, radius + 1):
-            world_x = (head_x + dx) % board_size
-            world_y = (head_y + dy) % board_size
+            world_x = head_x + dx
+            world_y = head_y + dy
             obs_x = dx + radius
             obs_y = dy + radius
-            observation[obs_y, obs_x] = board[world_y, world_x]
+            if wrap:
+                observation[obs_y, obs_x] = board[world_y % board_size, world_x % board_size]
+            elif world_x < 0 or world_x >= board_size or world_y < 0 or world_y >= board_size:
+                observation[obs_y, obs_x] = 1.0
+            else:
+                observation[obs_y, obs_x] = board[world_y, world_x]
     
     # Rotate observation based on snake direction to make it egocentric
     if direction == Direction.NORTH:
@@ -136,47 +175,77 @@ def _get_observation(board: np.ndarray, head_x: int, head_y: int,
 class SnakeGame:
     """High-performance snake game implementation."""
     
-    def __init__(self, board_size: int = 32, observation_radius: int = 5, 
-                 max_steps: int = 500, seed: Optional[int] = None):
+    def __init__(self, board_size: int = 32, observation_radius: int = 5,
+                 max_steps: int = 2000, seed: Optional[int] = None,
+                 starvation_steps: int = 100, walls: bool = False,
+                 food_reward: float = 1.0, step_reward: float = 0.1,
+                 death_penalty: float = -2.0, early_death_threshold: int = 50):
         """Initialize game.
-        
+
+        Defaults mirror GameConfig; prefer SnakeGame.from_config().
+
         Args:
             board_size: Size of the square game board
             observation_radius: Radius of observation window (creates 2*radius+1 square)
-            max_steps: Maximum steps before timeout            seed: Random seed for reproducibility
+            max_steps: Episode length cap (extended by 2 steps per body segment)
+            seed: Random seed for reproducibility (food placement)
+            starvation_steps: Snake dies after this many steps without food (0 disables)
+            walls: If True, leaving the board kills; if False, the board wraps (torus)
+            food_reward: Reward for eating food
+            step_reward: Reward for a step that does not eat food
+            death_penalty: Reward on death before early_death_threshold steps
+            early_death_threshold: Deaths before this many steps get death_penalty
         """
         self.board_size = board_size
         self.observation_radius = observation_radius
         self.max_steps = max_steps
         self.seed = seed
-        
-        if seed is not None:
-            np.random.seed(seed)
-        
+        self.starvation_steps = starvation_steps
+        self.walls = walls
+        self.food_reward = food_reward
+        self.step_reward = step_reward
+        self.death_penalty = death_penalty
+        self.early_death_threshold = early_death_threshold
+
+        # Private RNG so games never reseed numpy's global state
+        self._rng = np.random.RandomState(seed)
+
         self.reset()
-    
+
+    @classmethod
+    def from_config(cls, game_config: Any, seed: Optional[int] = None) -> "SnakeGame":
+        """Create a game from a GameConfig (or its dict form).
+
+        Keys missing from the config (e.g. old checkpoints) fall back to the defaults.
+        """
+        config: Dict[str, Any] = asdict(game_config) if is_dataclass(game_config) else dict(game_config)
+        kwargs = {key: config[key] for key in GAME_CONFIG_PARAMS if key in config}
+        return cls(seed=seed, **kwargs)
+
     def reset(self) -> GameState:
         """Reset game to initial state."""
         # Reseed for deterministic behavior
         if self.seed is not None:
-            np.random.seed(self.seed)
-            
+            self._rng = np.random.RandomState(self.seed)
+
         # Initialize snake in center of board
         center = self.board_size // 2
         self.snake_positions = np.array([[center, center]], dtype=np.int32)
         self.snake_direction = Direction.NORTH
-        
+
         # Place food randomly (avoid snake)
         self._place_food()
-        
+
         # Initialize other state
         self.score = 0
         self.steps = 0
+        self.steps_since_food = 0
         self.is_alive = True
-        
+        self.end_reason: Optional[str] = None
+
         # Create board representation
         self.board = np.zeros((self.board_size, self.board_size), dtype=np.int32)
-        
+
         return self._get_current_state()
     
     def step(self, action: Action) -> Tuple[GameState, float, bool]:
@@ -190,22 +259,24 @@ class SnakeGame:
         """
         if not self.is_alive:
             return self._get_current_state(), 0.0, True
-        
-        # Update direction based on action
-        self.snake_direction = Direction(_get_new_direction(self.snake_direction, action))
-        
+
+        # Update direction based on action (plain ints: enum types must not reach numba)
+        self.snake_direction = Direction(_get_new_direction(int(self.snake_direction), int(action)))
+
         # Move snake head
         head = self.snake_positions[0]
-        new_head_x, new_head_y = _move_position(
-            int(head[0]), int(head[1]), self.snake_direction, self.board_size
+        new_head_x, new_head_y, hit_wall = _next_position(
+            int(head[0]), int(head[1]), int(self.snake_direction), self.board_size,
+            not self.walls
         )
-        
+
+        if hit_wall:
+            return self._die("wall")
+
         # Check self collision
         if _check_self_collision(self.snake_positions, new_head_x, new_head_y):
-            self.is_alive = False
-            reward = -2.0 if self.steps < 50 else 0.0  # Early death penalty
-            return self._get_current_state(), reward, True
-        
+            return self._die("collision")
+
         # Check food collision
         ate_food = (new_head_x == self.food_position.x and 
                    new_head_y == self.food_position.y)
@@ -218,23 +289,46 @@ class SnakeGame:
             self.snake_positions = new_positions
             
             self.score += 1
+            self.steps_since_food = 0
             self._place_food()
-            reward = 1.0
+            reward = self.food_reward
         else:
             # Move snake (replace tail with new head)
             new_positions = self.snake_positions.copy()
             new_positions[1:] = self.snake_positions[:-1]
             new_positions[0] = [new_head_x, new_head_y]
             self.snake_positions = new_positions
-            reward = 0.1  # Small reward for staying alive
-        
+            self.steps_since_food += 1
+            reward = self.step_reward  # Small reward for staying alive
+
         self.steps += 1
-        
+
+        if self.starvation_steps > 0 and self.steps_since_food >= self.starvation_steps:
+            return self._die("starvation")
+
         # Check timeout
         max_steps_for_length = self.max_steps + 2 * len(self.snake_positions)
         done = self.steps >= max_steps_for_length
-        
+        if done:
+            self.end_reason = "timeout"
+
         return self._get_current_state(), reward, done
+
+    def _die(self, reason: str) -> Tuple[GameState, float, bool]:
+        """End the episode with a death."""
+        self.is_alive = False
+        self.end_reason = reason
+        reward = self.death_penalty if self.steps < self.early_death_threshold else 0.0
+        return self._get_current_state(), reward, True
+
+    def food_distance(self, x: int, y: int) -> int:
+        """Manhattan distance from (x, y) to the food, wrapping on a torus."""
+        dx = abs(self.food_position.x - x)
+        dy = abs(self.food_position.y - y)
+        if not self.walls:
+            dx = min(dx, self.board_size - dx)
+            dy = min(dy, self.board_size - dy)
+        return dx + dy
     
     def get_observation(self) -> np.ndarray:
         """Get current observation for the agent.
@@ -249,11 +343,12 @@ class SnakeGame:
         
         # Get egocentric grid observation
         grid_obs = _get_observation(
-            state.board, 
-            state.head_position.x, 
+            state.board,
+            state.head_position.x,
             state.head_position.y,
-            state.snake_direction,
-            self.observation_radius
+            int(state.snake_direction),
+            self.observation_radius,
+            not self.walls
         )
         
         # Snake length (normalized by max reasonable length)
@@ -265,9 +360,9 @@ class SnakeGame:
         food_dy = state.food_position.y - head_pos.y
         
         # Handle toroidal distance
-        if abs(food_dx) > self.board_size // 2:
+        if not self.walls and abs(food_dx) > self.board_size // 2:
             food_dx = food_dx - np.sign(food_dx) * self.board_size
-        if abs(food_dy) > self.board_size // 2:
+        if not self.walls and abs(food_dy) > self.board_size // 2:
             food_dy = food_dy - np.sign(food_dy) * self.board_size
             
         food_direction = np.array([
@@ -293,8 +388,8 @@ class SnakeGame:
     def _place_food(self) -> None:
         """Place food at random empty position."""
         while True:
-            x = np.random.randint(0, self.board_size)
-            y = np.random.randint(0, self.board_size)
+            x = self._rng.randint(0, self.board_size)
+            y = self._rng.randint(0, self.board_size)
             
             # Check if position is occupied by snake
             occupied = False
@@ -320,5 +415,6 @@ class SnakeGame:
             food_position=self.food_position,
             score=self.score,
             steps=self.steps,
-            is_alive=self.is_alive
+            is_alive=self.is_alive,
+            end_reason=self.end_reason
         )

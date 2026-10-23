@@ -339,12 +339,10 @@ class ModelPersistence:
         Returns:
             Full path to saved file
         """
-        import yaml
-        
         file_path = path / filename
-        with open(file_path, 'w') as f:
-            yaml.dump(asdict(config), f, default_flow_style=False)
-        
+        # Config.to_yaml writes Paths as strings, so the file loads back with safe_load
+        config.to_yaml(file_path)
+
         return file_path
     
     def load_config(self, file_path: Path) -> Config:
@@ -356,12 +354,7 @@ class ModelPersistence:
         Returns:
             Loaded configuration
         """
-        import yaml
-        
-        with open(file_path, 'r') as f:
-            data = yaml.safe_load(f)
-        
-        return Config(**data)
+        return Config.from_yaml(file_path)
     
     def save_results(self, path: Path, results: Dict[str, Any],
                     filename: str = "results.json") -> Path:
