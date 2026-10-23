@@ -120,9 +120,39 @@ class TrainSettings:
     max_steps: int = 300
     time_limit_s: float = float("inf")
     progress_s: float = 0.0  # Print a progress line at most this often (0: never)
+    # Code-formation aids for the learned centre (both off by default):
+    # fitness += w(g) * H(M), the entropy in bits of the member's own symbols
+    # (live receivers, pooled over its episodes), w annealed linearly from
+    # entropy_bonus to 0 over the first entropy_anneal of the generations
+    entropy_bonus: float = 0.0
+    entropy_anneal: float = 0.5
+    # Training rollouts sample the centre's code from softmax(logits / tau), tau
+    # annealed linearly from centre_temperature to 0 (argmax) over the first
+    # temperature_anneal of the generations; validation and test are always argmax
+    centre_temperature: float = 0.0
+    temperature_anneal: float = 0.5
 
     def squad_config(self) -> SquadConfig:
         return SquadConfig(obs_radius=self.radius, max_steps=self.max_steps)
+
+    def entropy_weight(self, generation: int) -> float:
+        """Weight of the message-entropy bonus at a (0-based) generation."""
+        return self.entropy_bonus * _anneal(
+            generation, self.entropy_anneal * self.generations
+        )
+
+    def temperature(self, generation: int) -> float:
+        """Centre sampling temperature at a (0-based) generation (0 = argmax)."""
+        return self.centre_temperature * _anneal(
+            generation, self.temperature_anneal * self.generations
+        )
+
+
+def _anneal(generation: int, horizon: float) -> float:
+    """1 at generation 0, falling linearly to 0 at ``horizon`` (0 if horizon <= 0)."""
+    if horizon <= 0:
+        return 0.0
+    return max(0.0, 1.0 - generation / horizon)
 
 
 # ------------------------------------------------------------------ features
@@ -234,8 +264,14 @@ def _messages(
     centre_params: Optional[np.ndarray],
     obs: Observations,
     members: int,
+    temperature: float = 0.0,
+    gen: Optional[np.random.Generator] = None,
 ) -> np.ndarray:
-    """(P B, N, 1) codes for the population, member-major."""
+    """(P B, N, 1) codes for the population, member-major.
+
+    With ``temperature`` > 0 the learned centre samples from softmax(logits / T)
+    (Gumbel-max; the same noise for every member, drawn from ``gen``).
+    """
     heading = obs.centre["heading"]
     if mode == SILENT:
         return np.zeros(heading.shape + (1,), dtype=np.int64)
@@ -247,6 +283,11 @@ def _messages(
     logits = nets.centre.forward(
         centre_params, feats.reshape(members, (total // members) * n, -1)
     )
+    if temperature > 0:
+        if gen is None:
+            raise ValueError("A sampling centre needs a generator")
+        noise = gen.gumbel(size=logits.shape[1:]).astype(np.float32)
+        logits = logits / np.float32(temperature) + noise
     return logits.argmax(axis=2).reshape(total, n, 1).astype(np.int64)
 
 
@@ -257,9 +298,16 @@ def population_rollout(
     params: np.ndarray,
     seeds: Sequence[int],
     noise_seed: int,
+    temperature: float = 0.0,
 ) -> dict[str, np.ndarray]:
     """Every member of ``params`` (P, n) plays the same ``seeds`` with the same action
-    noise; returns ``return`` and ``team_food`` as (P, B)."""
+    noise; returns ``return`` and ``team_food`` as (P, B), and ``message_entropy``
+    (P,): the entropy in bits of each member's codes to live receivers, pooled over
+    its episodes and steps (0 for a silent centre).
+
+    ``temperature`` > 0 samples the learned centre's codes (see ``_messages``) with
+    noise from a stream separate from the action noise.
+    """
     params = np.atleast_2d(params)
     members, batch = params.shape[0], len(seeds)
     spec_p, centre_p = nets.split(params)
@@ -267,10 +315,16 @@ def population_rollout(
     obs = env.reset(np.tile(np.asarray(seeds, dtype=np.int64), members))
     n = env.config.n_snakes
     gen = np.random.default_rng(noise_seed)
+    msg_gen = np.random.default_rng([noise_seed, 1])
+    vocab = nets.vocab
+    counts = np.zeros(members * vocab, dtype=np.float64)
+    member = np.repeat(np.arange(members), batch)[:, None] * vocab
     total = np.zeros(members * batch, dtype=np.float64)
     done = np.zeros(members * batch, dtype=bool)
     while not done.all():
-        msgs = _messages(mode, nets, centre_p, obs, members)
+        msgs = _messages(mode, nets, centre_p, obs, members, temperature, msg_gen)
+        live = obs.centre["alive"] & ~done[:, None]
+        counts += np.bincount((member + msgs[:, :, 0])[live], minlength=members * vocab)
         x = specialist_inputs(obs.specialists, nets.vocab)
         logits = nets.spec.forward(spec_p, x.reshape(members, batch * n, -1))
         gumbel = gen.gumbel(size=(batch * n, 3)).astype(np.float32)
@@ -280,7 +334,17 @@ def population_rollout(
     return {
         "return": total.reshape(members, batch),
         "team_food": env.score.sum(axis=1).reshape(members, batch).astype(float),
+        "message_entropy": entropy_bits(counts.reshape(members, vocab)),
     }
+
+
+def entropy_bits(counts: np.ndarray) -> np.ndarray:
+    """Entropy in bits of each row of a (P, V) count table (0 for an empty row)."""
+    counts = np.asarray(counts, dtype=np.float64)
+    totals = counts.sum(axis=-1, keepdims=True)
+    p = np.divide(counts, totals, out=np.zeros_like(counts), where=totals > 0)
+    logs = np.log2(p, out=np.zeros_like(p), where=p > 0)
+    return -(p * logs).sum(axis=-1) + 0.0
 
 
 # ------------------------------------------------------------------ training
@@ -292,7 +356,7 @@ def train_run(
     Returns:
         ``theta`` (best validation checkpoint), ``theta_final``, ``curve`` (rows of
         generation, episodes, wall_s, pop_mean_return, pop_max_return,
-        val_return, val_team_food), ``best_generation``, ``generations_done``,
+        val_return, val_team_food, val_message_entropy), ``best_generation``, ``generations_done``,
         ``seconds``, ``n_params``
     """
     if mode not in MODES:
@@ -324,6 +388,7 @@ def train_run(
         )
         val_food = float(out["team_food"].mean())
         val_ret = float(out["return"].mean())
+        val_h = float(out["message_entropy"][0])
         curve.append(
             {
                 "generation": generation,
@@ -333,6 +398,7 @@ def train_run(
                 "pop_max_return": float(pop.max()) if pop is not None else np.nan,
                 "val_return": val_ret,
                 "val_team_food": val_food,
+                "val_message_entropy": val_h,
             }
         )
         if val_ret > best[0]:
@@ -354,9 +420,18 @@ def train_run(
         seeds = [TRAIN_SEED_BASE + run * TRAIN_RUN_STRIDE + g * b + i for i in range(b)]
         cands = es.ask()
         out = population_rollout(
-            settings, nets, mode, cands, seeds, TRAIN_SEED_BASE + run * 7919 + g
+            settings,
+            nets,
+            mode,
+            cands,
+            seeds,
+            TRAIN_SEED_BASE + run * 7919 + g,
+            temperature=settings.temperature(g) if mode == LEARNED else 0.0,
         )
         fitness = out["return"].mean(axis=1)
+        weight = settings.entropy_weight(g) if mode == LEARNED else 0.0
+        if weight > 0:
+            fitness = fitness + weight * out["message_entropy"]
         es.tell(fitness)
         episodes += settings.population * b
         gen_done = g + 1

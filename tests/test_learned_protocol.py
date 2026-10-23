@@ -21,6 +21,7 @@ from genetic_coil_arena.experiments.learned_protocol import (
     Nets,
     TrainSettings,
     centre_features,
+    entropy_bits,
     evaluate_radius,
     policies_for,
     population_rollout,
@@ -220,3 +221,55 @@ def test_evaluate_radius_end_to_end():
     assert "cic_bits" in result.communication[CONDITION[LEARNED]]
     assert len(result.metadata["headline"]) == 5
     result.to_json()  # serialisable once the recorders are dropped
+
+
+# ------------------------------------------------------------------ code-formation aids
+def test_code_formation_aids_are_off_by_default_and_anneal():
+    s = TrainSettings(generations=100)
+    assert s.entropy_weight(0) == 0.0 and s.temperature(0) == 0.0
+    s = replace(s, entropy_bonus=2.0, entropy_anneal=0.5, centre_temperature=1.0,
+                temperature_anneal=0.25)  # fmt: skip
+    assert s.entropy_weight(0) == 2.0
+    assert s.entropy_weight(25) == pytest.approx(1.0)
+    assert s.entropy_weight(50) == 0.0 and s.entropy_weight(99) == 0.0
+    assert s.temperature(0) == 1.0 and s.temperature(25) == 0.0
+    assert replace(s, entropy_anneal=0.0).entropy_weight(0) == 0.0
+
+
+def test_entropy_bits():
+    h = entropy_bits(np.array([[4, 0, 0, 0], [1, 1, 1, 1], [0, 0, 0, 0], [2, 2, 0, 0]]))
+    np.testing.assert_allclose(h, [0.0, 2.0, 0.0, 1.0])
+
+
+def test_rollout_reports_message_entropy():
+    seeds = [11, 12]
+    silent = Nets.build(TINY, SILENT)
+    out = population_rollout(TINY, silent, SILENT, silent.init(0), seeds, 5)
+    assert out["message_entropy"].shape == (1,) and out["message_entropy"][0] == 0.0
+    nets = Nets.build(TINY, LEARNED)
+    params = np.stack([nets.init(0), nets.init(0)])
+    greedy = population_rollout(TINY, nets, LEARNED, params, seeds, 5)
+    assert 0.0 <= greedy["message_entropy"][0] <= 3.0
+    # Identical members see identical (common) centre noise
+    hot = population_rollout(TINY, nets, LEARNED, params, seeds, 5, temperature=1e6)
+    assert hot["message_entropy"][0] == hot["message_entropy"][1]
+    assert hot["message_entropy"][0] > 2.5  # Near-uniform symbols at a huge T
+    # T -> 0 is the argmax centre, and the centre's noise never touches the actions
+    cold = population_rollout(TINY, nets, LEARNED, params, seeds, 5, temperature=1e-6)
+    np.testing.assert_array_equal(cold["return"], greedy["return"])
+
+
+def test_entropy_bonus_changes_training_only_when_on():
+    base = train_run(LEARNED, 0, TINY)
+    again = train_run(LEARNED, 0, replace(TINY, entropy_anneal=0.9))  # bonus still 0
+    np.testing.assert_array_equal(base["theta_final"], again["theta_final"])
+    bonus = train_run(LEARNED, 0, replace(TINY, entropy_bonus=100.0))
+    assert not np.array_equal(base["theta_final"], bonus["theta_final"])
+    hot = train_run(LEARNED, 0, replace(TINY, centre_temperature=5.0))
+    assert "val_message_entropy" in hot["curve"][-1]
+    # The aids apply to the learned centre only
+    silent = train_run(SILENT, 0, replace(TINY, entropy_bonus=100.0,
+                                          centre_temperature=5.0))  # fmt: skip
+    np.testing.assert_array_equal(
+        silent["theta_final"], train_run(SILENT, 0, TINY)["theta_final"]
+    )
