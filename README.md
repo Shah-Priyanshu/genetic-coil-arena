@@ -32,6 +32,7 @@ Snake is the first lab for these questions:
 - **CommArena evaluation harness:** mandatory baselines, multi-seed runs, message ablations and interventions, communication metrics, IQM with bootstrap CIs and Holm-corrected tests.
 - **Squad environment:** a batched, numba-compiled cooperative squad of colour-specialist snakes with scripted specialists and centres. Its need-to-talk baselines are in [docs/results/need_to_talk.md](docs/results/need_to_talk.md) (`genetic-coil squad-benchmark`).
 - **Plant-floor sensor squad** (`envs/plant/`, a second, non-game domain): four edge sensor nodes on Tennessee Eastman process data uplink byte-limited messages to a gateway centre that diagnoses the fault. Hand-designed PCA/FFT features reach macro-F1 0.76 at 16 B per message over 18 diagnosable faults ([docs/results/plant_bytes_baselines.md](docs/results/plant_bytes_baselines.md)). The data is fetched by `scripts/fetch_tep.py` into a cache outside the repo.
+  - Step 2 ([docs/results/plant_bytes_baselines_rieth.md](docs/results/plant_bytes_baselines_rieth.md)) uses the Rieth et al. 2017 runs, with 10 run-level replicates and a calibrated MLP centre at a 5% false-alarm rate, over 17 faults. Hand designs reach macro-F1 0.82 at 1 B, 0.91 at 4 B and 0.95 at 8 B and above. The oracle scores 0.952: at 16 B and above the hand designs match it, so a learned code can only beat them at 8 B or less.
 
 Current numbers (100 held-out seeds, food eaten per episode):
 
