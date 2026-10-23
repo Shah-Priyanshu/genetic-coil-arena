@@ -19,15 +19,16 @@ protocol, runtime or evaluation layers: it deals in plain numpy arrays only.
 
 import math
 from abc import ABC, abstractmethod
+from collections.abc import Sequence
 from dataclasses import dataclass, field
-from typing import Any, Dict, Optional, Sequence, Tuple
+from typing import Any, Optional
 
 import numpy as np
 
 MESSAGE_KINDS = ("discrete", "continuous", "none")
 
 # Shape of one observation component (excluding the batch and specialist axes) and its dtype
-ArraySpec = Tuple[Tuple[int, ...], Any]
+ArraySpec = tuple[tuple[int, ...], Any]
 
 
 @dataclass(frozen=True)
@@ -50,7 +51,9 @@ class MessageSpec:
 
     def __post_init__(self) -> None:
         if self.kind not in MESSAGE_KINDS:
-            raise ValueError(f"Unknown message kind {self.kind!r}; expected one of {MESSAGE_KINDS}")
+            raise ValueError(
+                f"Unknown message kind {self.kind!r}; expected one of {MESSAGE_KINDS}"
+            )
         if self.kind == "discrete" and (self.length < 1 or self.vocab_size < 2):
             raise ValueError("Discrete messages need length >= 1 and vocab_size >= 2")
         if self.kind == "continuous" and self.dim < 1:
@@ -68,7 +71,7 @@ class MessageSpec:
         return 0.0
 
     @property
-    def payload_shape(self) -> Tuple[int, ...]:
+    def payload_shape(self) -> tuple[int, ...]:
         """Per-receiver payload shape: (L,), (D,) or (0,)."""
         if self.kind == "discrete":
             return (self.length,)
@@ -85,7 +88,9 @@ class MessageSpec:
         """All-zero message batch of shape (B, R, ...)."""
         return np.zeros((batch_size, receivers) + self.payload_shape, dtype=self.dtype)
 
-    def validate(self, messages: np.ndarray, batch_size: int, receivers: int) -> np.ndarray:
+    def validate(
+        self, messages: np.ndarray, batch_size: int, receivers: int
+    ) -> np.ndarray:
         """Check a message batch against this spec and return it with the canonical dtype.
 
         Raises:
@@ -123,8 +128,8 @@ class EnvSpec:
 
     n_specialists: int
     n_actions: int
-    specialist_obs: Dict[str, ArraySpec]
-    centre_obs: Dict[str, ArraySpec]
+    specialist_obs: dict[str, ArraySpec]
+    centre_obs: dict[str, ArraySpec]
     message: MessageSpec
     max_steps: int
 
@@ -133,8 +138,8 @@ class EnvSpec:
 class Observations:
     """One batched observation: specialist arrays are (B, N, ...), centre arrays (B, ...)."""
 
-    specialists: Dict[str, np.ndarray]
-    centre: Dict[str, np.ndarray]
+    specialists: dict[str, np.ndarray]
+    centre: dict[str, np.ndarray]
 
     @property
     def batch_size(self) -> int:
@@ -152,7 +157,7 @@ class StepResult:
     obs: Observations
     rewards: np.ndarray  # (B, N) float32
     dones: np.ndarray  # (B,) bool
-    info: Dict[str, np.ndarray] = field(default_factory=dict)
+    info: dict[str, np.ndarray] = field(default_factory=dict)
 
     def __iter__(self):
         return iter((self.obs, self.rewards, self.dones, self.info))
@@ -172,8 +177,9 @@ class MultiAgentEnv(ABC):
         """Start one episode per seed; the batch size is ``len(seeds)``."""
 
     @abstractmethod
-    def step(self, actions: np.ndarray,
-             messages: Optional[np.ndarray] = None) -> StepResult:
+    def step(
+        self, actions: np.ndarray, messages: Optional[np.ndarray] = None
+    ) -> StepResult:
         """Advance every unfinished episode by one step.
 
         Args:
