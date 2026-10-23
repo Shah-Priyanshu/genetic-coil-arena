@@ -1,12 +1,14 @@
 """CommArena evaluation harness: does communication between specialists matter?
 
 Domain-agnostic: works on numpy arrays and callables and never imports an
-environment, the protocol or the runtime.
+environment, the protocol or the runtime. Its only import from outside the package
+is the dependency-free ``genetic_coil_arena.messages`` (``MessageSpec``).
 
 - ``runner``: tasks, mandatory baselines, multi-seed runs and message ablations
 - ``interventions``: message interventions and the hook environment loops apply
 - ``metrics``: communication metrics (entropy, MI, CIC, topsim, posdis, bosdis, ...)
-- ``stats``: mean/t-CI, IQM with stratified bootstrap, Mann-Whitney + Holm, A12
+- ``stats``: mean/t-CI, IQM with stratified bootstrap, Mann-Whitney (unpaired) and
+  Wilcoxon signed-rank (paired) + Holm, A12
 - ``report``: the standard result object (JSON, CSV, plain-text table)
 """
 
@@ -20,6 +22,7 @@ from .interventions import (
     MessageSpec,
     RecordingHook,
     apply_hook,
+    default_ablations,
     get_intervention,
     random_matched,
     shuffle_batch,
@@ -66,6 +69,7 @@ from .stats import (
     paired_difference,
     stratified_bootstrap_ci,
     vargha_delaney_a12,
+    wilcoxon_signed_rank,
 )
 
 __all__ = [
@@ -85,6 +89,7 @@ __all__ = [
     "Task",
     "TaskSpec",
     "apply_hook",
+    "default_ablations",
     "bag_of_symbols_disentanglement",
     "causal_influence",
     "channel_usage",
@@ -120,5 +125,6 @@ __all__ = [
     "symbol_entropy",
     "topographic_similarity",
     "vargha_delaney_a12",
+    "wilcoxon_signed_rank",
     "zero_messages",
 ]

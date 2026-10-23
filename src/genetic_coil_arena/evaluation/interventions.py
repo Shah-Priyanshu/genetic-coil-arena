@@ -1,96 +1,61 @@
 """Message interventions for testing whether receivers actually listen.
 
-Array conventions shared by every environment and protocol in the project:
+Array conventions and the channel description ``MessageSpec`` live in the
+dependency-free ``genetic_coil_arena.messages`` (re-exported here):
 
 - discrete messages: int64 array of shape (B, R, L), symbols in [0, V)
 - continuous messages: float32 array of shape (B, R, D)
 
 B is the number of parallel episodes, R the number of receivers, L the message length
 and D the payload dimension. An intervention is a function
-``(messages, rng, spec) -> messages`` that returns a new array of the same shape and
-dtype and never modifies its input. Environment loops apply one between send and
-receive through a ``MessageHook``.
+``(messages, rng, spec=None, mask=None) -> messages`` that returns a new array of the
+same shape and dtype and never modifies its input; ``mask`` is an optional (B, R) bool
+array of live receivers, and masked-out entries are left untouched. Environment loops
+apply one between send and receive through a ``MessageHook``.
 """
 
-from dataclasses import dataclass
 from typing import Callable, Optional, Protocol
 
 import numpy as np
 
-DISCRETE = "discrete"
-CONTINUOUS = "continuous"
+from ..messages import CONTINUOUS, DISCRETE, MessageSpec, infer_kind
 
-# Interventions that work for any number of receivers; used as the default ablation set
-ABLATIONS: tuple[str, ...] = ("zero", "shuffle_batch", "random_matched")
+__all__ = [
+    "ABLATIONS",
+    "CONTINUOUS",
+    "DISCRETE",
+    "INTERVENTIONS",
+    "Intervention",
+    "InterventionHook",
+    "MessageHook",
+    "MessageSpec",
+    "RecordingHook",
+    "apply_hook",
+    "default_ablations",
+    "get_intervention",
+    "infer_kind",
+    "no_intervention",
+    "random_matched",
+    "shuffle_batch",
+    "step_rng",
+    "swap_receivers",
+    "zero_messages",
+]
 
-
-@dataclass(frozen=True)
-class MessageSpec:
-    """Shape and type of one message channel."""
-
-    kind: str
-    n_receivers: int
-    length: int  # L for discrete messages, D for continuous ones
-    vocab_size: Optional[int] = None  # V; discrete only
-
-    def __post_init__(self) -> None:
-        if self.kind not in (DISCRETE, CONTINUOUS):
-            raise ValueError(
-                f"kind must be {DISCRETE!r} or {CONTINUOUS!r}, got {self.kind!r}"
-            )
-        if self.n_receivers < 1 or self.length < 1:
-            raise ValueError("n_receivers and length must be positive")
-        if self.kind == DISCRETE and (self.vocab_size is None or self.vocab_size < 1):
-            raise ValueError("Discrete channels need vocab_size >= 1")
-        if self.kind == CONTINUOUS and self.vocab_size is not None:
-            raise ValueError("Continuous channels have no vocab_size")
-
-    @classmethod
-    def discrete(cls, n_receivers: int, length: int, vocab_size: int) -> "MessageSpec":
-        return cls(DISCRETE, n_receivers, length, vocab_size)
-
-    @classmethod
-    def continuous(cls, n_receivers: int, dim: int) -> "MessageSpec":
-        return cls(CONTINUOUS, n_receivers, dim)
-
-    @property
-    def capacity_bits(self) -> float:
-        """Bits one receiver can get per message: L * log2(V); infinite if continuous."""
-        if self.kind == CONTINUOUS:
-            return float("inf")
-        return float(self.length * np.log2(self.vocab_size))
-
-    def validate(self, messages: np.ndarray) -> np.ndarray:
-        """Check shape, dtype and symbol range; returns the array unchanged."""
-        arr = np.asarray(messages)
-        if arr.ndim != 3 or arr.shape[1:] != (self.n_receivers, self.length):
-            raise ValueError(
-                f"Expected messages of shape (B, {self.n_receivers}, {self.length}), "
-                f"got {arr.shape}"
-            )
-        if self.kind == DISCRETE:
-            if arr.dtype != np.int64:
-                raise TypeError(f"Discrete messages must be int64, got {arr.dtype}")
-            if arr.size and (arr.min() < 0 or arr.max() >= self.vocab_size):
-                raise ValueError(f"Symbols must lie in [0, {self.vocab_size})")
-        elif arr.dtype != np.float32:
-            raise TypeError(f"Continuous messages must be float32, got {arr.dtype}")
-        return arr
-
-    def empty(self, batch: int) -> np.ndarray:
-        """All-zero messages for ``batch`` episodes."""
-        dtype = np.int64 if self.kind == DISCRETE else np.float32
-        return np.zeros((batch, self.n_receivers, self.length), dtype=dtype)
+# The default ablation set; ``swap_receivers`` needs at least 2 receivers
+ABLATIONS: tuple[str, ...] = (
+    "zero",
+    "shuffle_batch",
+    "swap_receivers",
+    "random_matched",
+)
 
 
-def infer_kind(messages: np.ndarray) -> str:
-    """Channel kind implied by the array dtype."""
-    dtype = np.asarray(messages).dtype
-    if np.issubdtype(dtype, np.integer):
-        return DISCRETE
-    if np.issubdtype(dtype, np.floating):
-        return CONTINUOUS
-    raise TypeError(f"Cannot infer message kind from dtype {dtype}")
+def default_ablations(n_receivers: Optional[int] = None) -> tuple[str, ...]:
+    """``ABLATIONS`` minus ``swap_receivers`` when there is a single receiver."""
+    if n_receivers is not None and n_receivers < 2:
+        return tuple(name for name in ABLATIONS if name != "swap_receivers")
+    return ABLATIONS
 
 
 def step_rng(seed: int, step: int = 0, *streams: int) -> np.random.Generator:
@@ -112,6 +77,16 @@ def _checked(
     return arr, infer_kind(arr)
 
 
+def _checked_mask(mask: Optional[np.ndarray], arr: np.ndarray) -> Optional[np.ndarray]:
+    """Validate a (B, R) live-receiver mask; ``None`` means every entry is live."""
+    if mask is None:
+        return None
+    m = np.asarray(mask, dtype=bool)
+    if m.shape != arr.shape[:2]:
+        raise ValueError(f"mask must have shape {arr.shape[:2]}, got {m.shape}")
+    return m
+
+
 def _derangement(n: int, rng: np.random.Generator) -> np.ndarray:
     """Random permutation with no fixed points (Sattolo's algorithm, a single cycle)."""
     perm = np.arange(n)
@@ -122,7 +97,10 @@ def _derangement(n: int, rng: np.random.Generator) -> np.ndarray:
 
 
 def no_intervention(
-    messages: np.ndarray, rng: np.random.Generator, spec: Optional[MessageSpec] = None
+    messages: np.ndarray,
+    rng: np.random.Generator,
+    spec: Optional[MessageSpec] = None,
+    mask: Optional[np.ndarray] = None,
 ) -> np.ndarray:
     """Pass messages through unchanged (a copy)."""
     arr, _ = _checked(messages, spec)
@@ -130,64 +108,131 @@ def no_intervention(
 
 
 def zero_messages(
-    messages: np.ndarray, rng: np.random.Generator, spec: Optional[MessageSpec] = None
+    messages: np.ndarray,
+    rng: np.random.Generator,
+    spec: Optional[MessageSpec] = None,
+    mask: Optional[np.ndarray] = None,
 ) -> np.ndarray:
-    """Replace every message with a constant: symbol 0 (discrete) or the zero vector."""
+    """Replace every live message with a constant: symbol 0 or the zero vector."""
     arr, _ = _checked(messages, spec)
-    return np.zeros_like(arr)
+    m = _checked_mask(mask, arr)
+    if m is None:
+        return np.zeros_like(arr)
+    out = arr.copy()
+    out[m] = 0
+    return out
 
 
 def shuffle_batch(
-    messages: np.ndarray, rng: np.random.Generator, spec: Optional[MessageSpec] = None
+    messages: np.ndarray,
+    rng: np.random.Generator,
+    spec: Optional[MessageSpec] = None,
+    mask: Optional[np.ndarray] = None,
 ) -> np.ndarray:
     """Give each episode another episode's messages (no episode keeps its own).
 
-    Keeps the message distribution intact but breaks its link to the receiver's situation.
+    Keeps the message distribution intact but breaks its link to the receiver's
+    situation. Without a mask whole episodes are deranged. With a (B, R) live mask,
+    each receiver r gets the message sent to receiver r in another episode where r is
+    live; masked entries are left as they are, and a receiver live in only one episode
+    keeps its message.
     """
     arr, _ = _checked(messages, spec)
-    if arr.shape[0] < 2:
-        raise ValueError("shuffle_batch needs at least 2 episodes")
-    return arr[_derangement(arr.shape[0], rng)].copy()
+    m = _checked_mask(mask, arr)
+    if m is None:
+        if arr.shape[0] < 2:
+            raise ValueError("shuffle_batch needs at least 2 episodes")
+        return arr[_derangement(arr.shape[0], rng)].copy()
+
+    out = arr.copy()
+    for r in range(arr.shape[1]):
+        live = np.flatnonzero(m[:, r])
+        if live.size >= 2:
+            out[live, r] = arr[live[_derangement(live.size, rng)], r]
+    return out
 
 
 def swap_receivers(
-    messages: np.ndarray, rng: np.random.Generator, spec: Optional[MessageSpec] = None
+    messages: np.ndarray,
+    rng: np.random.Generator,
+    spec: Optional[MessageSpec] = None,
+    mask: Optional[np.ndarray] = None,
 ) -> np.ndarray:
-    """Deliver each receiver's message to a different receiver (same episode)."""
+    """Deliver each receiver's message to a different receiver (same episode).
+
+    Without a mask one derangement of the receivers is applied to every episode. With a
+    (B, R) live mask, messages move only among live receivers: episodes with the same
+    set of live receivers share one derangement of that set, and an episode with fewer
+    than two live receivers is left unchanged.
+    """
     arr, _ = _checked(messages, spec)
     if arr.shape[1] < 2:
-        raise ValueError("swap_receivers needs at least 2 receivers")
-    return arr[:, _derangement(arr.shape[1], rng)].copy()
+        raise ValueError(
+            "swap_receivers needs at least 2 receivers; give the task a "
+            "TaskSpec.message with n_receivers=1 to drop it from the default ablations"
+        )
+    m = _checked_mask(mask, arr)
+    if m is None:
+        return arr[:, _derangement(arr.shape[1], rng)].copy()
+
+    out = arr.copy()
+    patterns, groups = np.unique(m, axis=0, return_inverse=True)
+    groups = np.asarray(groups).reshape(-1)
+    for g, pattern in enumerate(patterns):
+        live = np.flatnonzero(pattern)
+        if live.size < 2:
+            continue
+        rows = np.flatnonzero(groups == g)
+        src = live[_derangement(live.size, rng)]
+        out[rows[:, None], live[None, :]] = arr[rows[:, None], src[None, :]]
+    return out
 
 
 def random_matched(
-    messages: np.ndarray, rng: np.random.Generator, spec: Optional[MessageSpec] = None
+    messages: np.ndarray,
+    rng: np.random.Generator,
+    spec: Optional[MessageSpec] = None,
+    mask: Optional[np.ndarray] = None,
 ) -> np.ndarray:
     """Random messages with the same per-(receiver, position) marginals as the batch.
 
     Discrete: each symbol is drawn independently from the empirical distribution at its
     (receiver, position), so per-position entropy is preserved while any dependence on
     the situation (and between positions) is destroyed. Continuous: Gaussian noise with
-    the batch mean and standard deviation of each (receiver, dimension).
+    the batch mean and standard deviation of each (receiver, dimension). With a (B, R)
+    live mask, marginals come from live entries only and only live entries are replaced.
     """
     arr, kind = _checked(messages, spec)
-    if kind == CONTINUOUS:
-        mean = arr.mean(axis=0, keepdims=True)
-        std = arr.std(axis=0, keepdims=True)
-        return (mean + std * rng.standard_normal(arr.shape)).astype(arr.dtype)
+    m = _checked_mask(mask, arr)
+    if m is None:
+        if kind == CONTINUOUS:
+            mean = arr.mean(axis=0, keepdims=True)
+            std = arr.std(axis=0, keepdims=True)
+            return (mean + std * rng.standard_normal(arr.shape)).astype(arr.dtype)
+        m = np.ones(arr.shape[:2], dtype=bool)
 
-    batch, receivers, length = arr.shape
-    out = np.empty_like(arr)
-    for r in range(receivers):
-        for pos in range(length):
-            symbols, counts = np.unique(arr[:, r, pos], return_counts=True)
-            out[:, r, pos] = rng.choice(symbols, size=batch, p=counts / counts.sum())
+    out = arr.copy()
+    for r in range(arr.shape[1]):
+        live = np.flatnonzero(m[:, r])
+        if live.size == 0:
+            continue
+        values = arr[live, r]  # (n_live, L|D)
+        if kind == CONTINUOUS:
+            noise = rng.standard_normal(values.shape)
+            out[live, r] = (values.mean(axis=0) + values.std(axis=0) * noise).astype(
+                arr.dtype
+            )
+            continue
+        for pos in range(arr.shape[2]):
+            symbols, counts = np.unique(values[:, pos], return_counts=True)
+            out[live, r, pos] = rng.choice(
+                symbols, size=live.size, p=counts / counts.sum()
+            )
     return out
 
 
-Intervention = Callable[
-    [np.ndarray, np.random.Generator, Optional[MessageSpec]], np.ndarray
-]
+Intervention = Callable[..., np.ndarray]
+"""``(messages, rng, spec=None, mask=None) -> messages``"""
 
 INTERVENTIONS: dict[str, Intervention] = {
     "none": no_intervention,
@@ -208,9 +253,15 @@ def get_intervention(name: str) -> Intervention:
 
 
 class MessageHook(Protocol):
-    """Called by an environment loop on messages between send and receive."""
+    """Called by an environment loop on messages between send and receive.
 
-    def __call__(self, messages: np.ndarray, step: int = 0) -> np.ndarray: ...
+    ``mask`` is an optional (B, R) bool array of live receivers (e.g. alive snakes in
+    unfinished episodes); hooks leave masked-out entries alone.
+    """
+
+    def __call__(
+        self, messages: np.ndarray, step: int = 0, mask: Optional[np.ndarray] = None
+    ) -> np.ndarray: ...
 
 
 class InterventionHook:
@@ -234,10 +285,12 @@ class InterventionHook:
         self._fn = get_intervention(name)
         self.calls = 0
 
-    def __call__(self, messages: np.ndarray, step: int = 0) -> np.ndarray:
+    def __call__(
+        self, messages: np.ndarray, step: int = 0, mask: Optional[np.ndarray] = None
+    ) -> np.ndarray:
         rng = step_rng(self.seed, step, self.stream, self.calls)
         self.calls += 1
-        return self._fn(messages, rng, self.spec)
+        return self._fn(messages, rng, self.spec, mask)
 
     def reset(self) -> None:
         """Restart the call counter so the same calls replay the same interventions."""
@@ -253,37 +306,64 @@ class RecordingHook:
     """Records the messages that pass through it, optionally applying another hook.
 
     The recorded arrays are copies of the messages as sent (before ``inner`` changes
-    them), so communication metrics can be computed from the same run.
+    them), with the step and live mask of each call, so communication metrics can be
+    computed from the same run. The runner composes one around its intervention hook
+    when asked to record (``evaluate(..., record=True)``).
     """
 
     def __init__(self, inner: Optional[MessageHook] = None):
         self.inner = inner
         self.records: list[np.ndarray] = []
         self.steps: list[int] = []
+        self.masks: list[Optional[np.ndarray]] = []
 
-    def __call__(self, messages: np.ndarray, step: int = 0) -> np.ndarray:
+    def __call__(
+        self, messages: np.ndarray, step: int = 0, mask: Optional[np.ndarray] = None
+    ) -> np.ndarray:
         arr = np.asarray(messages)
         self.records.append(arr.copy())
         self.steps.append(step)
-        return self.inner(arr, step) if self.inner is not None else arr
+        self.masks.append(None if mask is None else np.array(mask, dtype=bool))
+        return apply_hook(self.inner, arr, step, mask)
 
-    def stacked(self) -> np.ndarray:
-        """All recorded messages concatenated along the episode axis."""
+    def stacked(self, live_only: bool = False) -> np.ndarray:
+        """All recorded messages concatenated along the episode axis.
+
+        With ``live_only`` the result is (n, L|D): one row per live receiver per call
+        (calls made without a mask count every receiver as live).
+        """
         if not self.records:
             raise ValueError("No messages recorded")
-        return np.concatenate(self.records, axis=0)
+        if not live_only:
+            return np.concatenate(self.records, axis=0)
+        return np.concatenate(
+            [
+                rec[np.ones(rec.shape[:2], dtype=bool) if m is None else m]
+                for rec, m in zip(self.records, self.masks)
+            ]
+        )
 
     def reset(self) -> None:
         """Forget recorded messages and reset the inner hook, if it can be reset."""
         self.records.clear()
         self.steps.clear()
+        self.masks.clear()
         reset = getattr(self.inner, "reset", None)
         if callable(reset):
             reset()
 
 
 def apply_hook(
-    hook: Optional[MessageHook], messages: np.ndarray, step: int = 0
+    hook: Optional[MessageHook],
+    messages: np.ndarray,
+    step: int = 0,
+    mask: Optional[np.ndarray] = None,
 ) -> np.ndarray:
-    """What an environment loop calls between send and receive; ``None`` is a no-op."""
-    return messages if hook is None else hook(messages, step)
+    """What an environment loop calls between send and receive; ``None`` is a no-op.
+
+    ``mask`` is passed on only when given, so hooks written as ``(messages, step)``
+    keep working on loops that have no live mask.
+    """
+    if hook is None:
+        return messages
+    return hook(messages, step) if mask is None else hook(messages, step, mask)

@@ -35,45 +35,51 @@ def continuous():
 
 
 class TestMessageSpec:
-    """Shape, dtype and range validation."""
+    """The shared spec, as the harness uses it (envs.base re-exports the same class)."""
 
     def test_capacity(self):
-        assert MessageSpec.discrete(2, 3, 8).capacity_bits == 9.0
-        assert MessageSpec.continuous(2, 4).capacity_bits == float("inf")
+        assert MessageSpec.discrete(3, 8, n_receivers=2).capacity_bits == 9.0
+        assert MessageSpec.continuous(4).capacity_bits == float("inf")
 
     def test_validate_accepts_conforming(self, discrete, continuous):
-        MessageSpec.discrete(R, L, V).validate(discrete)
-        MessageSpec.continuous(R, D).validate(continuous)
+        MessageSpec.discrete(L, V, n_receivers=R).validate(discrete)
+        MessageSpec.continuous(D, n_receivers=R).validate(continuous)
+        MessageSpec.discrete(L, V).validate(discrete)  # Any R when n_receivers unset
 
     @pytest.mark.parametrize(
         "bad",
         [
             np.zeros((B, R, L + 1), dtype=np.int64),
-            np.zeros((B, R, L), dtype=np.int32),
+            np.zeros((B, R + 1, L), dtype=np.int64),
+            np.zeros((B, R, L), dtype=np.float32),
             np.full((B, R, L), V, dtype=np.int64),
             np.full((B, R, L), -1, dtype=np.int64),
             np.zeros((R, L), dtype=np.int64),
         ],
     )
     def test_validate_rejects(self, bad):
-        with pytest.raises((ValueError, TypeError)):
-            MessageSpec.discrete(R, L, V).validate(bad)
+        with pytest.raises(ValueError):
+            MessageSpec.discrete(L, V, n_receivers=R).validate(bad)
 
-    def test_continuous_must_be_float32(self):
-        with pytest.raises(TypeError):
-            MessageSpec.continuous(R, D).validate(np.zeros((B, R, D)))
+    def test_validate_casts_to_canonical_dtype(self):
+        spec = MessageSpec.continuous(D, n_receivers=R)
+        assert spec.validate(np.zeros((B, R, D))).dtype == np.float32
+        ints = MessageSpec.discrete(L, V).validate(np.zeros((B, R, L), dtype=np.int32))
+        assert ints.dtype == np.int64
 
     def test_invalid_specs(self):
         with pytest.raises(ValueError):
-            MessageSpec("analog", 1, 1)
+            MessageSpec("analog")
         with pytest.raises(ValueError):
-            MessageSpec("discrete", 1, 1)
+            MessageSpec.discrete(1, 1)
         with pytest.raises(ValueError):
-            MessageSpec("continuous", 1, 1, vocab_size=3)
+            MessageSpec.discrete(1, 4, n_receivers=0)
 
-    def test_empty(self):
-        msgs = MessageSpec.discrete(R, L, V).empty(7)
+    def test_zeros(self):
+        msgs = MessageSpec.discrete(L, V, n_receivers=R).zeros(7)
         assert msgs.shape == (7, R, L) and msgs.dtype == np.int64
+        with pytest.raises(ValueError):
+            MessageSpec.discrete(L, V).zeros(7)  # R unknown
 
 
 class TestInterventions:
@@ -146,7 +152,7 @@ class TestInterventions:
 
     def test_spec_is_enforced(self, discrete):
         with pytest.raises(ValueError):
-            zero_messages(discrete, step_rng(0), MessageSpec.discrete(R, L, 2))
+            zero_messages(discrete, step_rng(0), MessageSpec.discrete(L, 2))
 
     def test_unknown_name(self):
         with pytest.raises(KeyError):
@@ -154,6 +160,91 @@ class TestInterventions:
 
     def test_default_ablations_registered(self):
         assert set(ABLATIONS) <= set(INTERVENTIONS)
+
+
+class TestMasks:
+    """With a live mask, interventions act among live entries and leave the rest."""
+
+    @pytest.fixture
+    def mask(self):
+        m = np.random.default_rng(5).random((B, R)) < 0.7
+        m[:4] = True  # Some fully live episodes
+        m[4, :] = [True, False, False]  # A lone live receiver
+        return m
+
+    @pytest.fixture
+    def labelled(self):
+        """Message = 100 * episode + receiver, so every move is traceable."""
+        ids = 100 * np.arange(B)[:, None] + np.arange(R)[None, :]
+        return ids[:, :, None].repeat(L, 2).astype(np.int64)
+
+    @pytest.mark.parametrize("name", sorted(INTERVENTIONS))
+    def test_masked_entries_untouched(self, name, mask, labelled, continuous):
+        for msgs in (labelled, continuous):
+            out = get_intervention(name)(msgs, step_rng(1), None, mask)
+            assert out.shape == msgs.shape and out.dtype == msgs.dtype
+            np.testing.assert_array_equal(out[~mask], msgs[~mask])
+
+    def test_zero_only_live(self, mask, labelled):
+        out = zero_messages(labelled, step_rng(0), None, mask)
+        assert not out[mask].any()
+        np.testing.assert_array_equal(out[~mask], labelled[~mask])
+
+    def test_shuffle_batch_draws_from_live_same_receiver(self, mask, labelled):
+        out = shuffle_batch(labelled, step_rng(2), None, mask)[:, :, 0]
+        src_episode, src_receiver = out // 100, out % 100
+        for r in range(R):
+            live = np.flatnonzero(mask[:, r])
+            assert np.all(src_receiver[live, r] == r)
+            assert sorted(src_episode[live, r]) == sorted(live)  # A permutation
+            assert np.all(src_episode[live, r] != live)  # Nobody keeps their own
+
+    def test_shuffle_batch_lone_live_entry_keeps_its_message(self, labelled):
+        mask = np.zeros((B, R), dtype=bool)
+        mask[7, 1] = True
+        out = shuffle_batch(labelled, step_rng(0), None, mask)
+        np.testing.assert_array_equal(out, labelled)
+
+    def test_swap_receivers_among_live_only(self, mask, labelled):
+        out = swap_receivers(labelled, step_rng(3), None, mask)[:, :, 0]
+        src_episode, src_receiver = out // 100, out % 100
+        assert np.all(src_episode == np.arange(B)[:, None])  # Same episode
+        for b in range(B):
+            live = np.flatnonzero(mask[b])
+            if live.size >= 2:
+                assert sorted(src_receiver[b, live]) == list(live)
+                assert np.all(src_receiver[b, live] != live)
+            else:
+                assert np.all(src_receiver[b] == np.arange(R))
+
+    def test_random_matched_uses_live_marginals(self):
+        msgs = np.zeros((B, R, L), dtype=np.int64)
+        mask = np.zeros((B, R), dtype=bool)
+        mask[: B // 2] = True
+        msgs[: B // 2] = 3  # Live entries all say 3; dead ones say 0
+        out = random_matched(msgs, step_rng(0), None, mask)
+        assert np.all(out[mask] == 3) and np.all(out[~mask] == 0)
+
+    def test_full_mask_matches_no_mask_where_defined(self, discrete):
+        full = np.ones((B, R), dtype=bool)
+        for fn in (zero_messages, random_matched, no_intervention):
+            np.testing.assert_array_equal(
+                fn(discrete, step_rng(4), None, full), fn(discrete, step_rng(4))
+            )
+
+    def test_mask_shape_checked(self, discrete):
+        with pytest.raises(ValueError, match="mask"):
+            shuffle_batch(discrete, step_rng(0), None, np.ones((B, R + 1), bool))
+
+    def test_hooks_pass_mask_through(self, mask, labelled):
+        rec = RecordingHook(InterventionHook("zero"))
+        out = apply_hook(rec, labelled, 0, mask)
+        np.testing.assert_array_equal(out[~mask], labelled[~mask])
+        assert not out[mask].any()
+        np.testing.assert_array_equal(rec.masks[0], mask)
+        assert rec.stacked(live_only=True).shape == (int(mask.sum()), L)
+        apply_hook(rec, labelled, 1)  # No mask: every receiver counts as live
+        assert rec.stacked(live_only=True).shape == (int(mask.sum()) + B * R, L)
 
 
 class TestDeterminism:
@@ -185,7 +276,7 @@ class TestDeterminism:
         assert not np.array_equal(a, b)
 
     def test_hook_validates_with_spec(self, discrete):
-        hook = InterventionHook("zero", spec=MessageSpec.discrete(R, L + 1, V))
+        hook = InterventionHook("zero", spec=MessageSpec.discrete(L + 1, V))
         with pytest.raises(ValueError):
             hook(discrete)
 

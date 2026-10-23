@@ -84,8 +84,9 @@ Components:
 New packages (the squad-lab stack):
 - **Protocol (`protocol/`).** `Envelope` (readable header + payload, HMAC `signing`), `codecs` between message arrays and envelopes, `GoalSpec` + `SpecRegistry` (JSON Schema via `jsonschema`, `MinimalValidator` fallback), `tensor_store`.
 - **Runtime (`runtime/`).** `Specialist`/`ClockAdapter`, `InProcessBus`, routers, `SpecialistRegistry`, `CommandCentre`, JSONL `TraceLog` (training triples). `runtime/demo.py` is the arithmetic demo (`protocol-demo`).
-- **Evaluation (`evaluation/`).** CommArena harness: `runner` (tasks, mandatory baselines, multi-seed runs, message ablations), `interventions`, communication `metrics`, `stats` (t-CI, IQM bootstrap, Mann-Whitney + Holm, A12), `report`.
-- **Environments (`envs/`).** `envs.base` is the batched multi-agent API (`MultiAgentEnv`, `EnvSpec`, `MessageSpec`). `envs/squad/` is the cooperative squad: numba engine, `SquadEnv`, scripted specialists and centres, `run_episodes`.
+- **Messages (`messages.py`).** The one `MessageSpec` (kind, L/V/D, interval, optional `n_receivers`); numpy-only so `envs` and `evaluation` both import it.
+- **Evaluation (`evaluation/`).** CommArena harness: `runner` (tasks, mandatory baselines, multi-seed runs, message ablations; `TaskSpec.message`; `keep_outputs`/`record` keep per-seed outputs / `RecordingHook`s on the `ConditionResult`), `interventions` (hooks are `hook(messages, step, mask=None)`, mask = (B, R) live receivers), communication `metrics` (CIC/influence take `mask`), `stats` (t-CI, IQM bootstrap, Mann-Whitney for system vs baseline, Wilcoxon signed-rank for paired ablations, Holm, A12), `report`.
+- **Environments (`envs/`).** `envs.base` is the batched multi-agent API (`MultiAgentEnv`, `EnvSpec`, `MessageSpec`). `envs/squad/` is the cooperative squad: numba engine, `SquadEnv` (centre obs include `alive`), scripted specialists (`act` samples, `probs` gives the exact distribution) and centres (silent sends zeros, never `None`), `run_episodes(..., hook, observer)`.
 - **Lazy top level.** `genetic_coil_arena/__init__.py` resolves `Config`, `EvolutionArena`, `SnakeGame` and `SnakeAgent` on first access, so importing `protocol`, `runtime` or `evaluation` never loads `snake_core` or numba (a subprocess test checks it). Keep it that way.
 
 ## Conventions for new code
@@ -96,7 +97,7 @@ New packages (the squad-lab stack):
   - an object layer (envelopes, specialists, command centre) for orchestration and, later, real models.
   
   Keep converters between the two explicit.
-- **`protocol/`, `runtime/` and `evaluation/` are domain-agnostic.** AST tests enforce their import rules; don't add `snake_core`, `evo`, `envs` or `analysis` imports there.
+- **`protocol/`, `runtime/` and `evaluation/` are domain-agnostic.** AST tests enforce their import rules; don't add `snake_core`, `evo`, `envs` or `analysis` imports there (`evaluation` may import `..messages` only).
 - **Message arrays:** discrete codes are int64 `(B, R, L)`, continuous vectors float32 `(B, R, D)`. Convert to envelopes only via `protocol.codecs`.
 - **Goals:** every goal must pass `SpecRegistry.make` or `SpecRegistry.validate`. Never hand-build a `GoalSpec` that skips validation.
 - **Baselines:** environments register their baselines with `evaluation.register_baseline`; `run_experiment` refuses a task with no registered baseline unless `strict=False`.

@@ -12,7 +12,12 @@ environment loop must apply to messages between send and receive (see
 Each seed yields one score (the mean over that seed's episodes), so the seeds are the
 independent runs that confidence intervals and tests are computed over. Systems,
 baselines and ablations all see the same inputs for a given seed, which makes the
-ablation deltas paired.
+ablation deltas paired: they are tested with the Wilcoxon signed-rank test, while
+system-vs-baseline comparisons use Mann-Whitney.
+
+``evaluate(..., keep_outputs=True)`` keeps each seed's system outputs (per-episode
+artifacts) and ``record=True`` wraps each seed's hook in a ``RecordingHook``, so metrics
+can be computed from the scored runs without replaying them.
 
 Nothing here imports an environment: tasks plug in through callables.
 """
@@ -23,14 +28,22 @@ from typing import Any, Callable, Optional
 
 import numpy as np
 
-from .interventions import ABLATIONS, INTERVENTIONS, InterventionHook, MessageHook
+from ..messages import MessageSpec
+from .interventions import (
+    ABLATIONS,
+    INTERVENTIONS,
+    InterventionHook,
+    MessageHook,
+    RecordingHook,
+    default_ablations,
+)
 from .report import BASELINE, SYSTEM, AblationResult, ConditionResult, ExperimentResult
 from .stats import (
     compare_conditions,
     holm_correction,
-    mann_whitney,
     paired_difference,
     vargha_delaney_a12,
+    wilcoxon_signed_rank,
 )
 
 System = Callable[..., Any]
@@ -39,7 +52,12 @@ Checker = Callable[[Any, Any], Any]
 
 @dataclass(frozen=True)
 class TaskSpec:
-    """Static description of a task: what is measured and how runs are seeded."""
+    """Static description of a task: what is measured and how runs are seeded.
+
+    ``message`` optionally describes the channel the ablations act on; when given,
+    intervention hooks validate messages against it, and with ``n_receivers == 1``
+    the default ablations leave out ``swap_receivers``.
+    """
 
     name: str
     description: str = ""
@@ -48,6 +66,7 @@ class TaskSpec:
     n_seeds: int = 10
     seed_offset: int = 0
     params: dict[str, Any] = field(default_factory=dict)
+    message: Optional[MessageSpec] = None
 
     def __post_init__(self) -> None:
         if not self.name:
@@ -92,6 +111,13 @@ class Task:
         self, system: System, seed: int, hook: Optional[MessageHook] = None
     ) -> tuple[float, int]:
         """Run ``system`` on this seed's inputs; returns (mean score, n_episodes)."""
+        scores, _ = self.run(system, seed, hook)
+        return float(scores.mean()), int(scores.size)
+
+    def run(
+        self, system: System, seed: int, hook: Optional[MessageHook] = None
+    ) -> tuple[np.ndarray, Any]:
+        """Run ``system`` on this seed's inputs; returns (per-episode scores, outputs)."""
         inputs = self.inputs(seed)
         outputs = system(inputs, seed=seed, hook=hook)
         scores = np.asarray(self.checker(inputs, outputs), dtype=float).ravel()
@@ -102,7 +128,7 @@ class Task:
                 f"Checker for task {self.name!r} returned non-finite scores; "
                 "refusing to average over a silently failing evaluation"
             )
-        return float(scores.mean()), int(scores.size)
+        return scores, outputs
 
 
 class BaselineRegistry:
@@ -172,23 +198,42 @@ def evaluate(
     hook_factory: Optional[Callable[[int], MessageHook]] = None,
     confidence: float = 0.95,
     n_boot: int = 2000,
+    keep_outputs: bool = False,
+    record: bool = False,
 ) -> ConditionResult:
     """Score one condition on every seed.
 
     Args:
         hook_factory: ``seed -> hook`` for intervened runs; ``None`` for intact runs
+        keep_outputs: Keep each seed's system outputs in ``result.outputs``
+        record: Wrap each seed's hook (or ``None``) in a ``RecordingHook``, kept in
+            ``result.recordings``; it records messages as sent, before intervention
+
+    Returns:
+        A ``ConditionResult``; ``outputs`` and ``recordings`` are in seed order and
+        stay in memory only
     """
     if len(seeds) == 0:
         raise ValueError("Need at least one seed")
     per_seed, n_episodes = [], 0
+    outputs: list[Any] = []
+    recordings: list[RecordingHook] = []
     for seed in seeds:
         hook = None if hook_factory is None else hook_factory(int(seed))
-        score, n = task.score(system, int(seed), hook)
-        per_seed.append(score)
-        n_episodes += n
-    return ConditionResult.from_scores(
+        if record:
+            hook = RecordingHook(hook)
+            recordings.append(hook)
+        scores, out = task.run(system, int(seed), hook)
+        per_seed.append(float(scores.mean()))
+        n_episodes += int(scores.size)
+        if keep_outputs:
+            outputs.append(out)
+    result = ConditionResult.from_scores(
         name, role, seeds, per_seed, n_episodes, confidence=confidence, n_boot=n_boot
     )
+    result.outputs = outputs if keep_outputs else None
+    result.recordings = recordings if record else None
+    return result
 
 
 def _intervention_stream(name: str) -> int:
@@ -201,18 +246,28 @@ def run_ablations(
     task: Task,
     system: System,
     seeds: Sequence[int],
-    interventions: Sequence[str] = ABLATIONS,
+    interventions: Optional[Sequence[str]] = None,
     intact: Optional[ConditionResult] = None,
     name: str = "system",
     confidence: float = 0.95,
     n_boot: int = 2000,
+    keep_outputs: bool = False,
+    record: bool = False,
 ) -> list[AblationResult]:
     """Performance drop when each intervention is applied to the system's messages.
 
     Deltas are intact minus ablated per seed (sign flipped when lower is better), so a
     positive delta always means performance was lost. ``listening`` is true when the
-    delta's CI lies above zero. p-values are Holm-corrected across the interventions.
+    delta's CI lies above zero. p-values come from the Wilcoxon signed-rank test on the
+    per-seed pairs, Holm-corrected across the interventions.
+
+    Args:
+        interventions: Names from ``INTERVENTIONS``; default
+            ``default_ablations(task.spec.message.n_receivers)``
+        keep_outputs, record: Passed to ``evaluate`` for the ablated runs
     """
+    if interventions is None:
+        interventions = _default_ablations(task)
     seeds = [int(s) for s in seeds]
     if intact is None:
         intact = evaluate(
@@ -227,7 +282,9 @@ def run_ablations(
         stream = _intervention_stream(intervention)
 
         def factory(seed: int, _name: str = intervention, _stream: int = stream) -> Any:
-            return InterventionHook(_name, seed=seed, stream=_stream)
+            return InterventionHook(
+                _name, seed=seed, spec=task.spec.message, stream=_stream
+            )
 
         ablated = evaluate(
             task,
@@ -238,11 +295,13 @@ def run_ablations(
             hook_factory=factory,
             confidence=confidence,
             n_boot=n_boot,
+            keep_outputs=keep_outputs,
+            record=record,
         )
         intact_scores = sign * np.asarray(intact.per_seed)
         ablated_scores = sign * np.asarray(ablated.per_seed)
         diff = paired_difference(intact_scores, ablated_scores, confidence)
-        _, p = mann_whitney(intact_scores, ablated_scores)
+        _, p = wilcoxon_signed_rank(intact_scores, ablated_scores)
         results.append(
             AblationResult(
                 system=name,
@@ -274,6 +333,8 @@ def run_experiment(
     n_boot: int = 2000,
     strict: bool = True,
     metadata: Optional[dict[str, Any]] = None,
+    keep_outputs: bool = False,
+    record: bool = False,
 ) -> ExperimentResult:
     """Run systems and every mandatory baseline, compare them, and ablate messages.
 
@@ -282,11 +343,15 @@ def run_experiment(
         systems: Name -> system under test
         seeds: Run seeds (default ``task.spec.seeds()``)
         ablations: Interventions to apply to each ablated system; ``None`` or empty
-            skips ablations
+            skips ablations. The default ``ABLATIONS`` drops ``swap_receivers`` when
+            ``task.spec.message`` has a single receiver
         ablate: Which systems to ablate (default all of them; baselines never)
         registry: Baseline registry (default the global ``BASELINES``)
         strict: Raise if the task has no mandatory baseline at all
         metadata: Free-form context stored in the result
+        keep_outputs, record: Passed to ``evaluate`` for the intact runs of systems
+            and baselines (not ablations), so their per-seed outputs / recordings are
+            on ``result.condition(name)``
 
     Returns:
         An ``ExperimentResult``; comparisons are every system vs every baseline,
@@ -314,7 +379,15 @@ def run_experiment(
     for name, system in systems.items():
         result.conditions.append(
             evaluate(
-                task, system, seeds, name, SYSTEM, confidence=confidence, n_boot=n_boot
+                task,
+                system,
+                seeds,
+                name,
+                SYSTEM,
+                confidence=confidence,
+                n_boot=n_boot,
+                keep_outputs=keep_outputs,
+                record=record,
             )
         )
     for name, baseline in baselines.items():
@@ -327,6 +400,8 @@ def run_experiment(
                 BASELINE,
                 confidence=confidence,
                 n_boot=n_boot,
+                keep_outputs=keep_outputs,
+                record=record,
             )
         )
 
@@ -338,6 +413,8 @@ def run_experiment(
         for row in result.comparisons:
             row["mean_diff"] *= sign  # Report the raw-score difference
 
+    if ablations is ABLATIONS:
+        ablations = _default_ablations(task)
     if ablations:
         targets = list(systems) if ablate is None else list(ablate)
         for name in targets:
@@ -358,7 +435,12 @@ def run_experiment(
     return result
 
 
+def _default_ablations(task: Task) -> tuple[str, ...]:
+    message = task.spec.message
+    return default_ablations(None if message is None else message.n_receivers)
+
+
 def _spec_dict(spec: TaskSpec) -> dict[str, Any]:
-    data = asdict(spec)
+    data = asdict(spec)  # A MessageSpec becomes a plain dict
     data["params"] = dict(data["params"])
     return data

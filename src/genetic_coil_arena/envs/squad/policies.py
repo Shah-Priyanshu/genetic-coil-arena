@@ -1,8 +1,10 @@
 """Scripted squad policies: specialists, command centres and a full-view oracle.
 
-Specialists map ``Observations`` to (B, N) actions; centres map them to a (B, N, L)
-message batch or None (silence). Every policy is seeded per episode through ``reset``
-so a run is reproducible from its seeds.
+Specialists map ``Observations`` to (B, N) actions (``act``, sampled) and to the
+exact action distribution they sample from (``probs``, (B, N, 3)). Centres map
+observations to a (B, N, L) message batch; the silent centre sends an explicit all-zero
+batch rather than nothing, so message hooks see every step. Every policy is seeded per
+episode through ``reset`` so a run is reproducible from its seeds.
 
 The hand-coded centre speaks a 3-bit code per receiver, one discrete symbol in [0, 8):
 ``code = 2 * direction + far``. ``direction`` says where the receiver's nearest
@@ -13,7 +15,6 @@ move at t, so it is one step stale.
 """
 
 from collections.abc import Sequence
-from typing import Optional
 
 import numba  # type: ignore
 import numpy as np
@@ -82,46 +83,111 @@ def _choose(
 
 
 @numba.njit(cache=True)  # type: ignore
+def _choose_probs(
+    out, safe, target_right: int, target_ahead: int, has_target: bool, explore: float
+) -> None:
+    """Exact distribution of ``_choose`` over the three actions, written into ``out``."""
+    for a in range(3):
+        out[a] = 0.0
+    if has_target:
+        best_dist = 1 << 30
+        ties = 0
+        for a in range(3):
+            if not safe[a]:
+                continue
+            dist = abs(target_right - _ACTION_RIGHT[a]) + abs(
+                target_ahead - _ACTION_AHEAD[a]
+            )
+            if dist < best_dist:
+                best_dist, ties = dist, 1
+            elif dist == best_dist:
+                ties += 1
+        if ties > 0:  # Reservoir sampling picks uniformly among the tied best
+            for a in range(3):
+                if safe[a]:
+                    dist = abs(target_right - _ACTION_RIGHT[a]) + abs(
+                        target_ahead - _ACTION_AHEAD[a]
+                    )
+                    if dist == best_dist:
+                        out[a] = 1.0 / ties
+            return
+    n_safe = 0
+    for a in range(3):
+        if safe[a]:
+            n_safe += 1
+    if n_safe == 0:
+        out[0] = 1.0
+        return
+    rest = 1.0
+    if safe[0]:  # Straight with probability 1 - explore, else uniform over safe
+        out[0] = 1.0 - explore
+        rest = explore
+    for a in range(3):
+        if safe[a]:
+            out[a] += rest / n_safe
+
+
+@numba.njit(cache=True)  # type: ignore
+def _window_target(windows, messages, use_messages: bool, b: int, i: int, safe):
+    """Fill ``safe`` and return the egocentric (right, ahead, has_target) target."""
+    size = windows.shape[3]
+    r = size // 2
+    for a in range(3):
+        oy = r - _ACTION_AHEAD[a]
+        ox = r + _ACTION_RIGHT[a]
+        safe[a] = windows[b, i, 0, oy, ox] == 0 and windows[b, i, 1, oy, ox] == 0
+    # nearest visible own-colour food
+    best = 1 << 30
+    tr = 0
+    ta = 0
+    for oy in range(size):
+        for ox in range(size):
+            if windows[b, i, 2, oy, ox] > 0:
+                dist = abs(oy - r) + abs(ox - r)
+                if dist < best:
+                    best, tr, ta = dist, ox - r, r - oy
+    has_target = best < (1 << 30)
+    if not has_target and use_messages and messages.shape[2] > 0:
+        direction = (messages[b, i, 0] // 2) % 4
+        far = r + 2
+        has_target = True
+        if direction == 0:
+            tr, ta = 0, far
+        elif direction == 1:
+            tr, ta = far, 0
+        elif direction == 2:
+            tr, ta = 0, -far
+        else:
+            tr, ta = -far, 0
+    return tr, ta, has_target
+
+
+@numba.njit(cache=True)  # type: ignore
 def _window_actions(
     out, windows, messages, use_messages: bool, rng, explore: float
 ) -> None:
     """Greedy own-colour policy on the egocentric window, optionally message-guided."""
     n_batch, n = out.shape
-    size = windows.shape[3]
-    r = size // 2
     safe = np.zeros(3, dtype=np.bool_)
     for b in range(n_batch):
         for i in range(n):
-            for a in range(3):
-                oy = r - _ACTION_AHEAD[a]
-                ox = r + _ACTION_RIGHT[a]
-                safe[a] = (
-                    windows[b, i, 0, oy, ox] == 0 and windows[b, i, 1, oy, ox] == 0
-                )
-            # nearest visible own-colour food
-            best = 1 << 30
-            tr = 0
-            ta = 0
-            for oy in range(size):
-                for ox in range(size):
-                    if windows[b, i, 2, oy, ox] > 0:
-                        dist = abs(oy - r) + abs(ox - r)
-                        if dist < best:
-                            best, tr, ta = dist, ox - r, r - oy
-            has_target = best < (1 << 30)
-            if not has_target and use_messages and messages.shape[2] > 0:
-                direction = (messages[b, i, 0] // 2) % 4
-                far = r + 2
-                has_target = True
-                if direction == 0:
-                    tr, ta = 0, far
-                elif direction == 1:
-                    tr, ta = far, 0
-                elif direction == 2:
-                    tr, ta = 0, -far
-                else:
-                    tr, ta = -far, 0
+            tr, ta, has_target = _window_target(
+                windows, messages, use_messages, b, i, safe
+            )
             out[b, i] = _choose(rng, b, safe, tr, ta, has_target, explore)
+
+
+@numba.njit(cache=True)  # type: ignore
+def _window_probs(out, windows, messages, use_messages: bool, explore: float) -> None:
+    """Exact action distribution of ``_window_actions``, shape (B, N, 3)."""
+    n_batch, n = out.shape[0], out.shape[1]
+    safe = np.zeros(3, dtype=np.bool_)
+    for b in range(n_batch):
+        for i in range(n):
+            tr, ta, has_target = _window_target(
+                windows, messages, use_messages, b, i, safe
+            )
+            _choose_probs(out[b, i], safe, tr, ta, has_target, explore)
 
 
 @numba.njit(cache=True)  # type: ignore
@@ -142,38 +208,61 @@ def _nearest_food(food, b: int, colour: int, per_colour: int, x0: int, y0: int):
 
 
 @numba.njit(cache=True)  # type: ignore
+def _oracle_target(board, heads, heading, food, b: int, i: int, safe):
+    """Fill ``safe`` and return the (right, ahead, has_target) target on the full board."""
+    n = heading.shape[1]
+    height, width = board.shape[2], board.shape[3]
+    per_colour = food.shape[1] // n
+    hx = heads[b, i, 0]
+    hy = heads[b, i, 1]
+    d = heading[b, i]
+    for a in range(3):
+        nd = d if a == 0 else ((d + 3) % 4 if a == 1 else (d + 1) % 4)
+        x = hx + DIR_DX[nd]
+        y = hy + DIR_DY[nd]
+        ok = 0 <= x < width and 0 <= y < height
+        if ok:
+            for j in range(n):
+                if board[b, j, y, x] > 0:
+                    ok = False
+        safe[a] = ok
+    fx, fy, dist = _nearest_food(food, b, i, per_colour, hx, hy)
+    tr = 0
+    ta = 0
+    if fx >= 0:
+        ox, oy = fx - hx, fy - hy
+        ta = ox * DIR_DX[d] + oy * DIR_DY[d]
+        tr = ox * DIR_DX[(d + 1) % 4] + oy * DIR_DY[(d + 1) % 4]
+    return tr, ta, fx >= 0
+
+
+@numba.njit(cache=True)  # type: ignore
 def _oracle_actions(out, board, heads, heading, food, rng, explore: float) -> None:
     """Greedy on the full board: nearest own-colour food, never into a wall or body."""
     n_batch, n = out.shape
-    height, width = board.shape[2], board.shape[3]
-    per_colour = food.shape[1] // n
     safe = np.zeros(3, dtype=np.bool_)
     for b in range(n_batch):
         for i in range(n):
-            hx = heads[b, i, 0]
-            hy = heads[b, i, 1]
-            if hx < 0:
+            if heads[b, i, 0] < 0:
                 out[b, i] = 0
                 continue
-            d = heading[b, i]
-            for a in range(3):
-                nd = d if a == 0 else ((d + 3) % 4 if a == 1 else (d + 1) % 4)
-                x = hx + DIR_DX[nd]
-                y = hy + DIR_DY[nd]
-                ok = 0 <= x < width and 0 <= y < height
-                if ok:
-                    for j in range(n):
-                        if board[b, j, y, x] > 0:
-                            ok = False
-                safe[a] = ok
-            fx, fy, dist = _nearest_food(food, b, i, per_colour, hx, hy)
-            tr = 0
-            ta = 0
-            if fx >= 0:
-                ox, oy = fx - hx, fy - hy
-                ta = ox * DIR_DX[d] + oy * DIR_DY[d]
-                tr = ox * DIR_DX[(d + 1) % 4] + oy * DIR_DY[(d + 1) % 4]
-            out[b, i] = _choose(rng, b, safe, tr, ta, fx >= 0, explore)
+            tr, ta, has_target = _oracle_target(board, heads, heading, food, b, i, safe)
+            out[b, i] = _choose(rng, b, safe, tr, ta, has_target, explore)
+
+
+@numba.njit(cache=True)  # type: ignore
+def _oracle_probs(out, board, heads, heading, food, explore: float) -> None:
+    """Exact action distribution of ``_oracle_actions``, shape (B, N, 3)."""
+    n_batch, n = out.shape[0], out.shape[1]
+    safe = np.zeros(3, dtype=np.bool_)
+    for b in range(n_batch):
+        for i in range(n):
+            if heads[b, i, 0] < 0:
+                out[b, i, :] = 0.0
+                out[b, i, 0] = 1.0
+                continue
+            tr, ta, has_target = _oracle_target(board, heads, heading, food, b, i, safe)
+            _choose_probs(out[b, i], safe, tr, ta, has_target, explore)
 
 
 @numba.njit(cache=True)  # type: ignore
@@ -204,7 +293,11 @@ def _hand_coded_messages(out, heads, heading, food, near_distance: int) -> None:
 
 # ---------------------------------------------------------------- specialists
 class SpecialistPolicy:
-    """Maps observations to (B, N) int64 actions."""
+    """Maps observations to (B, N) int64 actions and (B, N, 3) action probabilities.
+
+    ``act`` samples from exactly the distribution ``probs`` returns; ``probs`` is
+    deterministic and needs no ``reset``.
+    """
 
     name = "specialist"
     salt = 0
@@ -214,6 +307,10 @@ class SpecialistPolicy:
         self.rng = _seed_states(seeds, self.salt)
 
     def act(self, obs: Observations) -> np.ndarray:  # pragma: no cover - interface
+        raise NotImplementedError
+
+    def probs(self, obs: Observations) -> np.ndarray:  # pragma: no cover - interface
+        """Action distribution (B, N, 3) float64 that ``act`` samples from."""
         raise NotImplementedError
 
 
@@ -232,15 +329,25 @@ class GreedyPolicy(SpecialistPolicy):
     def __init__(self, explore: float = 0.1):
         self.explore = explore
 
-    def act(self, obs: Observations) -> np.ndarray:
+    def _inputs(self, obs: Observations) -> tuple[np.ndarray, np.ndarray]:
         windows = obs.specialists["window"]
         messages = obs.specialists["message"]
         if messages.dtype != np.int64 or messages.ndim != 3:
             messages = np.zeros(windows.shape[:2] + (0,), dtype=np.int64)
+        return windows, messages
+
+    def act(self, obs: Observations) -> np.ndarray:
+        windows, messages = self._inputs(obs)
         out = np.zeros(windows.shape[:2], dtype=np.int64)
         _window_actions(
             out, windows, messages, self.use_messages, self.rng, self.explore
         )
+        return out
+
+    def probs(self, obs: Observations) -> np.ndarray:
+        windows, messages = self._inputs(obs)
+        out = np.zeros(windows.shape[:2] + (3,), dtype=np.float64)
+        _window_probs(out, windows, messages, self.use_messages, self.explore)
         return out
 
 
@@ -265,6 +372,10 @@ class RandomPolicy(SpecialistPolicy):
         shape = obs.specialists["window"].shape[:2]
         return self._gen.integers(0, 3, size=shape, dtype=np.int64)
 
+    def probs(self, obs: Observations) -> np.ndarray:
+        shape = obs.specialists["window"].shape[:2]
+        return np.full(shape + (3,), 1.0 / 3.0)
+
 
 class OraclePolicy(SpecialistPolicy):
     """Specialists that see the full board (the centre's view): greedy on the nearest
@@ -286,17 +397,25 @@ class OraclePolicy(SpecialistPolicy):
         )
         return out
 
+    def probs(self, obs: Observations) -> np.ndarray:
+        c = obs.centre
+        out = np.zeros(c["heading"].shape + (3,), dtype=np.float64)
+        _oracle_probs(
+            out, c["board"], c["heads"], c["heading"], c["food"], self.explore
+        )
+        return out
+
 
 # ---------------------------------------------------------------- centres
 class CentrePolicy:
-    """Maps observations to a (B, N, L) int64 message batch, or None for silence."""
+    """Maps observations to a (B, N, ...) message batch, sent every step."""
 
     name = "centre"
 
     def reset(self, seeds: Sequence[int]) -> None:
         """Seed per episode (no-op for deterministic centres)."""
 
-    def send(self, obs: Observations) -> Optional[np.ndarray]:  # pragma: no cover
+    def send(self, obs: Observations) -> np.ndarray:  # pragma: no cover
         raise NotImplementedError
 
 
@@ -340,9 +459,14 @@ class RandomCentre(CentrePolicy):
 
 
 class SilentCentre(CentrePolicy):
-    """Never sends: specialists keep reading the all-zero initial payload."""
+    """Sends the constant all-zero code every step.
+
+    That is the same payload specialists read before any message arrives, so what they
+    observe matches never sending; sending it explicitly lets message hooks and
+    recorders see the silent channel like any other.
+    """
 
     name = "silent"
 
-    def send(self, obs: Observations) -> None:
-        return None
+    def send(self, obs: Observations) -> np.ndarray:
+        return np.zeros_like(obs.specialists["message"])

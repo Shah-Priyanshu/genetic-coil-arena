@@ -1,12 +1,13 @@
 """Cooperative foraging squad: N colour-specialist snakes and a full-view command centre."""
 
 from collections.abc import Sequence
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from typing import Optional
 
 import numpy as np
 
-from ..base import EnvSpec, MessageSpec, MultiAgentEnv, Observations, StepResult
+from ...messages import MessageSpec
+from ..base import EnvSpec, MultiAgentEnv, Observations, StepResult
 from . import engine
 
 N_ACTIONS = 3  # 0 straight, 1 left, 2 right (relative to the heading)
@@ -55,6 +56,9 @@ class SquadConfig:
             raise ValueError("obs_radius must be >= 1")
         if self.max_health < 1 or self.max_steps < 1:
             raise ValueError("max_health and max_steps must be >= 1")
+        receivers = self.message.n_receivers
+        if receivers is not None and receivers != self.n_snakes:
+            raise ValueError("message.n_receivers must equal n_snakes")
 
 
 class SquadEnv(MultiAgentEnv):
@@ -72,6 +76,8 @@ class SquadEnv(MultiAgentEnv):
         heads: (N, 2) int64 head [x, y] (-1 once dead)
         food: (N * F, 2) int64 food [x, y]; row c * F + f has colour c (-1 if empty)
         heading: (N,) int64, absolute heading 0 N, 1 E, 2 S, 3 W
+        alive: (N,) bool, which snakes are alive (the live-receiver mask for message
+            hooks and metrics is ``alive & ~done``)
 
     The reward is shared: every specialist gets the team's food eaten this step plus
     ``survival_reward`` per living snake. An episode ends after ``max_steps`` steps or
@@ -83,7 +89,7 @@ class SquadEnv(MultiAgentEnv):
         c = self.config
         self.pad = max(1, c.obs_radius)
         self.window = 2 * c.obs_radius + 1
-        msg = c.message
+        msg = replace(c.message, n_receivers=c.n_snakes)
         self.spec = EnvSpec(
             n_specialists=c.n_snakes,
             n_actions=N_ACTIONS,
@@ -98,6 +104,7 @@ class SquadEnv(MultiAgentEnv):
                 "heads": ((c.n_snakes, 2), np.int64),
                 "food": ((c.n_snakes * c.food_per_colour, 2), np.int64),
                 "heading": ((c.n_snakes,), np.int64),
+                "alive": ((c.n_snakes,), np.bool_),
             },
             message=msg,
             max_steps=c.max_steps,
@@ -213,6 +220,7 @@ class SquadEnv(MultiAgentEnv):
                 "heading": self.heading.copy(),
                 "heads": heads,
                 "food": np.stack([self.food_x, self.food_y], axis=2),
+                "alive": self.alive.copy(),
             },
         )
 

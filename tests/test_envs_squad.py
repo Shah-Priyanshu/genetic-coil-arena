@@ -425,7 +425,59 @@ class TestPolicies:
             msgs = centre.send(obs)
             assert msgs.shape == (5, 3, 1) and msgs.dtype == np.int64
             assert msgs.min() >= 0 and msgs.max() < 8
-        assert SilentCentre().send(obs) is None
+        silent = SilentCentre().send(obs)
+        assert silent.shape == (5, 3, 1) and silent.dtype == np.int64
+        assert not silent.any()
+
+    def test_silent_centre_matches_never_sending(self):
+        class Mute(SilentCentre):
+            def send(self, obs):
+                return None
+
+        seeds = list(range(16))
+        sent = run_episodes(SquadEnv(), GreedyPolicy(), SilentCentre(), seeds)
+        mute = run_episodes(SquadEnv(), GreedyPolicy(), Mute(), seeds)
+        assert np.array_equal(sent["team_food"], mute["team_food"])
+        assert np.array_equal(sent["steps"], mute["steps"])
+
+    @pytest.mark.parametrize(
+        "policy",
+        [GreedyPolicy(), NoCommPolicy(), RandomPolicy(), OraclePolicy()],
+        ids=lambda p: p.name,
+    )
+    def test_probs_are_the_sampling_distribution(self, policy):
+        env = SquadEnv(SquadConfig(obs_radius=3))
+        obs = env.reset(range(6))
+        gen = np.random.default_rng(0)
+        for _ in range(15):  # Move on to a varied state with messages in flight
+            obs = env.step(
+                gen.integers(0, 3, size=(6, 3)), gen.integers(0, 8, size=(6, 3, 1))
+            ).obs
+        probs = policy.probs(obs)
+        assert probs.shape == (6, 3, 3)
+        assert np.allclose(probs.sum(axis=-1), 1.0) and probs.min() >= 0
+        draws = 3000
+        counts = np.zeros_like(probs)
+        rows, cols = np.indices((6, 3))
+        for k in range(draws // 6):
+            policy.reset(range(k * 6, k * 6 + 6))
+            for _ in range(6):
+                counts[rows, cols, policy.act(obs)] += 1
+        freq = counts / counts.sum(axis=-1, keepdims=True)
+        assert np.abs(freq - probs).max() < 0.05
+        # Never samples a zero-probability action
+        assert np.all(counts[probs == 0] == 0)
+
+    def test_greedy_probs_follow_the_message(self):
+        env = make_env(2, obs_radius=3)
+        obs = env.set_state(0, [[(5, 5), (5, 6)], [(1, 9)]], [N, N])
+        policy = GreedyPolicy(explore=0.0)
+        for code, action in ((0, STRAIGHT), (2, RIGHT), (6, LEFT)):
+            msgs = np.full((1, 2, 1), code, dtype=np.int64)
+            view = type(obs)({**obs.specialists, "message": msgs}, obs.centre)
+            assert policy.probs(view)[0, 0, action] == 1.0
+        deaf = NoCommPolicy(explore=0.3).probs(obs)[0, 0]
+        assert deaf[STRAIGHT] == pytest.approx(0.7 + 0.3 / 3)
 
     def test_specialists_return_valid_actions(self):
         env = SquadEnv()
@@ -446,6 +498,30 @@ class TestPolicies:
         assert policy.act(obs)[0, 0] == RIGHT
         obs = env.set_state(0, [[(5, 0), (5, 1)], [(1, 1)]], [N, N])
         assert policy.act(obs)[0, 0] in (LEFT, RIGHT)
+
+    def test_run_episodes_hook_gets_live_mask_and_observer_sees_sent(self):
+        seeds = list(range(8))
+        calls, seen = [], []
+
+        def hook(messages, step, mask):
+            calls.append((step, mask.copy()))
+            return np.zeros_like(messages)
+
+        out = run_episodes(
+            SquadEnv(SquadConfig(max_steps=80)),
+            GreedyPolicy(),
+            HandCodedCentre(),
+            seeds,
+            hook=hook,
+            observer=lambda step, obs, sent, done: seen.append(sent.copy()),
+        )
+        silent = run_episodes(
+            SquadEnv(SquadConfig(max_steps=80)), GreedyPolicy(), SilentCentre(), seeds
+        )
+        assert np.array_equal(out["team_food"], silent["team_food"])
+        assert [s for s, _ in calls] == list(range(len(calls)))
+        assert calls[0][1].shape == (8, 3) and calls[0][1].all()
+        assert len(seen) == len(calls) and any(m.any() for m in seen)
 
     def test_hand_coded_messages_help(self):
         seeds = list(range(32))

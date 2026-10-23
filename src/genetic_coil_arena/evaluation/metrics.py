@@ -246,6 +246,7 @@ def causal_influence(
     messages: np.ndarray,
     candidates: Optional[np.ndarray] = None,
     weights: Optional[Sequence[float]] = None,
+    mask: Optional[np.ndarray] = None,
 ) -> dict[str, Any]:
     """Causal influence of communication (CIC) on receivers' actions.
 
@@ -260,18 +261,20 @@ def causal_influence(
             candidates and weights (the sender's empirical message distribution)
         candidates: Messages to intervene with, shape (K, L|D)
         weights: Probability of each candidate (default uniform when candidates given)
+        mask: Optional (B, R) bool array of live receivers; only they are averaged
+            over (and supply the default candidates)
 
     Returns:
-        cic_bits (mean), per_receiver_bits (list) and n_candidates
+        cic_bits (mean over live receivers), per_receiver_bits (list; NaN for a
+        receiver never live) and n_candidates
     """
     arr = np.asarray(messages)
     if arr.ndim != 3:
         raise ValueError(f"Messages must have shape (B, R, L|D), got {arr.shape}")
+    live = _live_mask(mask, arr)
 
     if candidates is None:
-        cand, counts = np.unique(
-            arr.reshape(-1, arr.shape[-1]), axis=0, return_counts=True
-        )
+        cand, counts = np.unique(arr[live], axis=0, return_counts=True)
         w = counts / counts.sum()
     else:
         cand = np.asarray(candidates, dtype=arr.dtype).reshape(-1, arr.shape[-1])
@@ -303,10 +306,32 @@ def causal_influence(
         terms = np.where(p_given_m > 0, p_given_m * np.log(p_given_m / marginal), 0.0)
     cic = np.tensordot(w, terms.sum(axis=-1), axes=1) / LN2  # (B, R)
     return {
-        "cic_bits": float(cic.mean()),
-        "per_receiver_bits": [float(v) for v in cic.mean(axis=0)],
+        "cic_bits": _live_mean(cic, live),
+        "per_receiver_bits": _per_receiver(cic, live),
         "n_candidates": int(len(cand)),
     }
+
+
+def _live_mask(mask: Optional[np.ndarray], arr: np.ndarray) -> np.ndarray:
+    """(B, R) bool live mask; all True when ``mask`` is None."""
+    if mask is None:
+        return np.ones(arr.shape[:2], dtype=bool)
+    live = np.asarray(mask, dtype=bool)
+    if live.shape != arr.shape[:2]:
+        raise ValueError(f"mask must have shape {arr.shape[:2]}, got {live.shape}")
+    if not live.any():
+        raise ValueError("mask has no live receivers")
+    return live
+
+
+def _live_mean(values: np.ndarray, live: np.ndarray) -> float:
+    return float(values[live].mean())
+
+
+def _per_receiver(values: np.ndarray, live: np.ndarray) -> list[float]:
+    counts = live.sum(axis=0)
+    sums = np.where(live, values, 0.0).sum(axis=0)
+    return [float(s / c) if c else float("nan") for s, c in zip(sums, counts)]
 
 
 def _js_divergence_bits(p: np.ndarray, q: np.ndarray) -> np.ndarray:
@@ -324,6 +349,7 @@ def intervention_influence(
     intervention: str = "shuffle_batch",
     seed: int = 0,
     n_repeats: int = 1,
+    mask: Optional[np.ndarray] = None,
 ) -> dict[str, Any]:
     """How much an intervention on messages changes receivers' action distributions.
 
@@ -338,12 +364,16 @@ def intervention_influence(
         intervention: Name of an intervention from ``interventions.INTERVENTIONS``
         seed: Seed for the intervention generator
         n_repeats: Independent intervention draws to average over
+        mask: Optional (B, R) bool array of live receivers; it is passed to the
+            intervention (which then acts among live entries only) and only live
+            receivers are averaged over
 
     Returns:
-        js_bits (mean), per_receiver_bits and changed_fraction (share of
+        js_bits (mean), per_receiver_bits and changed_fraction (share of live
         (episode, receiver) pairs whose most likely action changed)
     """
     arr = np.asarray(messages)
+    live = _live_mask(mask, arr)
     fn = get_intervention(intervention)
     base = np.asarray(listener(arr), dtype=float)
     if base.ndim != 3 or base.shape[:2] != arr.shape[:2]:
@@ -352,15 +382,15 @@ def intervention_influence(
     js, changed = [], []
     for repeat in range(n_repeats):
         intervened = np.asarray(
-            listener(fn(arr, step_rng(seed, 0, repeat), None)), dtype=float
+            listener(fn(arr, step_rng(seed, 0, repeat), None, mask)), dtype=float
         )
         js.append(_js_divergence_bits(base, intervened))
         changed.append(base.argmax(axis=-1) != intervened.argmax(axis=-1))
     js_arr = np.mean(js, axis=0)  # (B, R)
     return {
-        "js_bits": float(js_arr.mean()),
-        "per_receiver_bits": [float(v) for v in js_arr.mean(axis=0)],
-        "changed_fraction": float(np.mean(changed)),
+        "js_bits": _live_mean(js_arr, live),
+        "per_receiver_bits": _per_receiver(js_arr, live),
+        "changed_fraction": _live_mean(np.mean(changed, axis=0), live),
     }
 
 

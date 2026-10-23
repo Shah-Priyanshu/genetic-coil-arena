@@ -182,6 +182,16 @@ def interpretation(results: dict[int, ExperimentResult]) -> list[str]:
     return out
 
 
+def min_p(results: dict[int, ExperimentResult]) -> float:
+    """Smallest Holm-corrected ablation p-value of the message-following squad."""
+    return min(
+        a.p_holm
+        for res in results.values()
+        for a in res.ablations
+        if a.system == LISTENER
+    )
+
+
 def render(
     results: dict[int, ExperimentResult],
     settings: ListeningSettings,
@@ -207,11 +217,15 @@ def render(
         "- Squad defaults: 21×21 walls, 3 snakes, 2 food per colour, health 60, T = 300, "
         "message = 1 discrete symbol, V = 8 (3 bits), sent every step, read one step "
         "later",
-        f"- Communication metrics: messages recorded every {settings.record_every} "
-        f"steps for living receivers; CIC and intervention influence on listener "
-        f"snapshots every {settings.snapshot_every} steps, action probabilities from "
-        f"{settings.n_draws} seeded draws; MI null from {settings.n_shuffles} "
-        "label shuffles.",
+        f"- Communication metrics: recorded during the scored runs (no replays). "
+        f"Messages every {settings.record_every} steps for living receivers; CIC and "
+        f"intervention influence on listener snapshots every "
+        f"{settings.snapshot_every} steps, from the specialists' exact action "
+        f"probabilities (`policy.probs`); MI null from {settings.n_shuffles} label "
+        "shuffles.",
+        "- Live receivers (alive snakes in unfinished episodes) are the unit "
+        "throughout: interventions permute, zero and resample only among them, and "
+        "listener metrics average over them.",
         f"- Sanity controls: {'all passed' if all_passed else '**SOME FAILED**'}",
         "",
         "Reproduce with `python scripts/listening.py --seeds "
@@ -252,9 +266,9 @@ def render(
         "an independent recomputation, not a discovery. A learned centre is where MI "
         "becomes informative. The unused ~0.4 bits are the skewed code distribution, "
         "and the 'no food' case is folded into code 0.",
-        "- p-values bottom out at 2.7e-07 because, with 20 seeds and complete "
-        "separation, that is the smallest two-sided Mann-Whitney p after Holm. The "
-        "paired CIs carry the effect sizes.",
+        f"- p-values bottom out at {_p(min_p(results))}: with {n_seeds} paired seeds "
+        "that all drop, that is the smallest two-sided Wilcoxon signed-rank p after "
+        "Holm across the four interventions. The paired CIs carry the effect sizes.",
         "",
         "## Team food per episode",
         "",
@@ -266,8 +280,8 @@ def render(
         "## Message ablations (positive listening)",
         "",
         "Drop = intact minus ablated team food, paired by seed; `listening` = the drop's "
-        "95% CI lies above zero. p is a two-sided Mann-Whitney test (the harness's "
-        "choice; unpaired), Holm-corrected across the four interventions per system.",
+        "95% CI lies above zero. p is a two-sided Wilcoxon signed-rank test on the "
+        "per-seed pairs, Holm-corrected across the four interventions per system.",
         "",
         *ablation_table(results),
         "",
@@ -283,7 +297,7 @@ def render(
         "",
         "## How much messages move actions (listener side)",
         "",
-        "Per living receiver, mean ± 95% CI over seeds. CIC = I(action; message) with "
+        "Per live receiver, mean ± 95% CI over seeds. CIC = I(action; message) with "
         "the situation held fixed and messages drawn from the centre's own message "
         "distribution (max log2 3 = 1.585 bits). JS = Jensen-Shannon divergence "
         "between action distributions with the real and the intervened message.",

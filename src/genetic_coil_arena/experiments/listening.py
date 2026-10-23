@@ -4,23 +4,25 @@ Runs the cooperative squad through the CommArena evaluation harness end to end:
 
 - ``SquadSystem`` adapts a (specialist, centre) pair into an evaluation system
   ``system(inputs, seed=, hook=)``. ``inputs`` are the episode seeds of one run seed;
-  the hook is applied to the centre's messages between send and receive.
+  ``envs.squad.run_episodes`` applies the hook to the centre's messages between send
+  and receive, with the live-receiver mask (alive snakes in unfinished episodes). With
+  a ``Recording`` it also returns a ``Recorder`` of what was sent and listener
+  snapshots, so metrics come from the scored runs themselves.
 - ``register_squad_baselines`` makes random actions, a silent centre, a random centre,
   message-blind ("no-comm") specialists and the full-view oracle mandatory baselines.
-- ``run_radius`` runs one window radius: performance vs baselines, every message
-  intervention (positive listening), and, from instrumented reruns of the same
-  episodes, the message-side metrics (entropy, bits used vs capacity, MI with the
-  receiver's nearest-own-food direction and distance) and the listener-side metrics
-  (CIC and intervention influence on specialist actions).
+- ``run_radius`` runs one window radius: performance vs baselines, every default
+  message ablation (positive listening), the message-side metrics (entropy, bits used
+  vs capacity, MI with the receiver's nearest-own-food direction and distance) and the
+  listener-side metrics (CIC and intervention influence on specialist actions, from
+  the specialists' exact action probabilities).
 - ``sanity_checks`` checks the controls that must come out a known way.
 
 Seeds: run seed s plays episodes ``EPISODE_SEED_BASE + s * SEED_STRIDE + i``, which
 lie above the step-0 benchmark's held-out range (2,000,000,000 + i).
 """
 
-import copy
 from collections.abc import Sequence
-from dataclasses import asdict, dataclass, field
+from dataclasses import asdict, dataclass, field, replace
 from typing import Any, Optional
 
 import numpy as np
@@ -36,16 +38,18 @@ from ..envs.squad import (
     SilentCentre,
     SquadConfig,
     SquadEnv,
+    run_episodes,
 )
 from ..envs.squad.engine import DIR_DX, DIR_DY
 from ..envs.squad.policies import HAND_CODED_VOCAB, CentrePolicy, SpecialistPolicy
 from ..evaluation import (
+    ABLATIONS,
     BaselineRegistry,
+    ConditionResult,
     ExperimentResult,
     MessageHook,
     Task,
     TaskSpec,
-    apply_hook,
     causal_influence,
     communication_metrics,
     entropy,
@@ -59,7 +63,6 @@ from ..evaluation import (
 
 EPISODE_SEED_BASE = 3_000_000_000
 SEED_STRIDE = 10_000
-INTERVENTIONS = ("zero", "shuffle_batch", "swap_receivers", "random_matched")
 NO_FOOD = 2 * 4  # Target label when the receiver has no own-colour food on the board
 NEAR_DISTANCE = 5  # Same threshold as HandCodedCentre's default
 
@@ -132,15 +135,27 @@ def food_targets(
     }
 
 
-# ------------------------------------------------------------------ rollout
-@dataclass
-class Recorder:
-    """Collects what the centre sends and listener snapshots during a rollout.
+# ------------------------------------------------------------------ recording
+@dataclass(frozen=True)
+class Recording:
+    """What a recording system keeps from each run.
 
     Args:
         record_every: Record sent messages and targets every this many steps
         snapshot_every: Keep the specialists' observations every this many steps (for
             CIC); 0 keeps none
+    """
+
+    record_every: int = 3
+    snapshot_every: int = 25
+
+
+@dataclass
+class Recorder:
+    """Collects what the centre sends and listener snapshots during a rollout.
+
+    Used as the ``observer`` of ``envs.squad.run_episodes``; only live receivers
+    (alive snakes in unfinished episodes) are recorded.
     """
 
     record_every: int = 1
@@ -152,34 +167,27 @@ class Recorder:
     fars: list[np.ndarray] = field(default_factory=list)
     snapshots: list[tuple[Observations, np.ndarray]] = field(default_factory=list)
 
-    def observe(
-        self,
-        step: int,
-        obs: Observations,
-        sent: Optional[np.ndarray],
-        done: np.ndarray,
+    def __call__(
+        self, step: int, obs: Observations, sent: np.ndarray, done: np.ndarray
     ) -> None:
-        alive = obs.centre["heads"][:, :, 0] >= 0
+        live = obs.centre["alive"] & ~done[:, None]
         if step % self.record_every == 0:
-            active = alive & ~done[:, None]
-            if sent is None:  # A silent centre: receivers keep reading the zero payload
-                sent = np.zeros_like(obs.specialists["message"])
             targets = food_targets(obs.centre, self.near_distance)
-            self.messages.append(np.asarray(sent)[active])
-            self.labels.append(targets["label"][active])
-            self.directions.append(targets["direction"][active])
-            self.fars.append(targets["far"][active])
+            self.messages.append(np.asarray(sent)[live])
+            self.labels.append(targets["label"][live])
+            self.directions.append(targets["direction"][live])
+            self.fars.append(targets["far"][live])
         if self.snapshot_every and step % self.snapshot_every == 0:
-            keep = ~done & alive.any(axis=1)
+            keep = live.any(axis=1)
             if keep.any():
                 snap = Observations(
                     specialists={k: v[keep] for k, v in obs.specialists.items()},
                     centre={k: v[keep] for k, v in obs.centre.items()},
                 )
-                self.snapshots.append((snap, alive[keep]))
+                self.snapshots.append((snap, live[keep]))
 
     def stacked(self) -> dict[str, np.ndarray]:
-        """Recorded messages (n, L) and targets (n,) for active receivers."""
+        """Recorded messages (n, L) and targets (n,) for live receivers."""
         if not self.messages:
             raise ValueError("Nothing recorded")
         return {
@@ -190,7 +198,7 @@ class Recorder:
         }
 
     def snapshot(self) -> tuple[Observations, np.ndarray]:
-        """All snapshots concatenated along the episode axis, with the alive mask."""
+        """All snapshots concatenated along the episode axis, with the live mask."""
         if not self.snapshots:
             raise ValueError("No snapshots recorded")
         obs = [s for s, _ in self.snapshots]
@@ -204,97 +212,86 @@ class Recorder:
                     k: np.concatenate([o.centre[k] for o in obs]) for k in obs[0].centre
                 },
             ),
-            np.concatenate([a for _, a in self.snapshots]),
+            np.concatenate([m for _, m in self.snapshots]),
         )
 
 
-def rollout(
-    env: SquadEnv,
-    specialist: SpecialistPolicy,
-    centre: Optional[CentrePolicy],
-    seeds: Sequence[int],
-    hook: Optional[MessageHook] = None,
-    recorder: Optional[Recorder] = None,
-) -> dict[str, np.ndarray]:
-    """``envs.squad.run_episodes`` with the hook applied between send and receive.
-
-    A silent centre sends ``None``; there is nothing to intervene on, so the hook is
-    not called and the receivers keep their zero payload.
-    """
-    centre = centre or SilentCentre()
-    obs = env.reset(seeds)
-    specialist.reset(seeds)
-    centre.reset(seeds)
-    done = np.zeros(len(seeds), dtype=bool)
-    info: dict[str, np.ndarray] = {}
-    step = 0
-    while not done.all():
-        sent = centre.send(obs)
-        delivered = None if sent is None else apply_hook(hook, sent, step)
-        if recorder is not None:
-            recorder.observe(step, obs, sent, done)
-        actions = specialist.act(obs)
-        obs, _, done, info = env.step(actions, delivered)
-        step += 1
-    return {
-        "team_food": info["score"].sum(axis=1).astype(np.float64),
-        "food": info["score"],
-        "steps": info["steps"],
-        "survivors": info["alive"].sum(axis=1),
-    }
-
-
 class SquadSystem:
-    """A squad (specialist policy + centre policy) as an evaluation system."""
+    """A squad (specialist policy + centre policy) as an evaluation system.
+
+    With ``recording`` set, the outputs also carry ``"recorder"``: the ``Recorder`` of
+    that very run (``run_experiment(keep_outputs=True)`` keeps them per seed).
+    """
 
     def __init__(
         self,
         config: SquadConfig,
         specialist: SpecialistPolicy,
         centre: Optional[CentrePolicy] = None,
+        recording: Optional[Recording] = None,
     ):
         self.config = config
         self.specialist = specialist
         self.centre = centre or SilentCentre()
+        self.recording = recording
 
     def __call__(
         self,
         inputs: Sequence[int],
         seed: int = 0,
         hook: Optional[MessageHook] = None,
-        recorder: Optional[Recorder] = None,
-    ) -> dict[str, np.ndarray]:
+    ) -> dict[str, Any]:
+        rec = None
+        if self.recording is not None:
+            rec = Recorder(self.recording.record_every, self.recording.snapshot_every)
         env = SquadEnv(self.config)
-        return rollout(env, self.specialist, self.centre, inputs, hook, recorder)
+        out: dict[str, Any] = dict(
+            run_episodes(env, self.specialist, self.centre, inputs, hook, rec)
+        )
+        if rec is not None:
+            out["recorder"] = rec
+        return out
 
     def __repr__(self) -> str:
         return f"SquadSystem({self.specialist.name}, {self.centre.name})"
 
 
-def squad_systems(config: SquadConfig) -> dict[str, SquadSystem]:
+def squad_systems(
+    config: SquadConfig, recording: Optional[Recording] = None
+) -> dict[str, SquadSystem]:
     """Systems under test: message-following specialists and the deaf control."""
     return {
-        LISTENER: SquadSystem(config, GreedyPolicy(), HandCodedCentre()),
-        DEAF: SquadSystem(config, NoCommPolicy(), HandCodedCentre()),
+        LISTENER: SquadSystem(config, GreedyPolicy(), HandCodedCentre(), recording),
+        DEAF: SquadSystem(config, NoCommPolicy(), HandCodedCentre(), recording),
     }
 
 
-def squad_baselines(config: SquadConfig) -> dict[str, SquadSystem]:
-    """Mandatory baselines for a squad listening task."""
+def squad_baselines(
+    config: SquadConfig, recording: Optional[Recording] = None
+) -> dict[str, SquadSystem]:
+    """Mandatory baselines for a squad listening task.
+
+    ``recording`` applies to the two baselines with a talking centre; the silent one
+    records messages but no listener snapshots (its only message is the zero code).
+    """
+    silent = None if recording is None else replace(recording, snapshot_every=0)
     return {
         "random-actions": SquadSystem(config, RandomPolicy()),
-        SILENT_CENTRE: SquadSystem(config, GreedyPolicy(), SilentCentre()),
-        RANDOM_CENTRE: SquadSystem(config, GreedyPolicy(), RandomCentre()),
+        SILENT_CENTRE: SquadSystem(config, GreedyPolicy(), SilentCentre(), silent),
+        RANDOM_CENTRE: SquadSystem(config, GreedyPolicy(), RandomCentre(), recording),
         "no-comm": SquadSystem(config, NoCommPolicy()),
         "oracle": SquadSystem(config, OraclePolicy()),
     }
 
 
 def register_squad_baselines(
-    name: str, config: SquadConfig, registry: Optional[BaselineRegistry] = None
+    name: str,
+    config: SquadConfig,
+    registry: Optional[BaselineRegistry] = None,
+    recording: Optional[Recording] = None,
 ) -> list[str]:
     """Register the squad baselines for task ``name``; returns their names."""
-    baselines = squad_baselines(config)
+    baselines = squad_baselines(config, recording)
     for baseline, system in baselines.items():
         register_baseline(name, baseline, system, registry=registry)
     return list(baselines)
@@ -305,9 +302,11 @@ def make_task(
     n_seeds: int = 20,
     n_episodes: int = 50,
     registry: Optional[BaselineRegistry] = None,
+    recording: Optional[Recording] = None,
 ) -> Task:
     """The squad task at window radius ``radius``, with its baselines registered."""
     config = SquadConfig(obs_radius=radius)
+    channel = SquadEnv(config).spec.message  # n_receivers = n_snakes
     spec = TaskSpec(
         name=task_name(radius),
         description=(
@@ -323,75 +322,48 @@ def make_task(
             "seed_stride": SEED_STRIDE,
             "message_capacity_bits": config.message.bits,
         },
+        message=channel,
     )
-    register_squad_baselines(spec.name, config, registry)
+    register_squad_baselines(spec.name, config, registry, recording)
     return Task(spec, lambda seed: episode_seeds(seed, n_episodes), team_food)
 
 
 # ------------------------------------------------------------------ listener metrics
-def make_listener(
-    specialist: SpecialistPolicy,
-    obs: Observations,
-    alive: np.ndarray,
-    n_draws: int = 8,
-    seed: int = 0,
-):
-    """Action probabilities of ``specialist`` in fixed situations, as a function of the
-    message it reads.
-
-    The scripted policies only expose a sampling ``act`` with internal per-episode
-    state, so probabilities are estimated from ``n_draws`` independently seeded copies.
-    Dead receivers get a constant distribution so they add nothing to CIC or JS.
-    """
-    policy = copy.deepcopy(specialist)
-    batch, n = alive.shape
-    n_actions = 3
+def make_listener(specialist: SpecialistPolicy, obs: Observations):
+    """Exact action probabilities (B, N, 3) of ``specialist`` in fixed situations, as
+    a function of the message it reads."""
 
     def listener(messages: np.ndarray) -> np.ndarray:
         view = Observations(
             specialists={**obs.specialists, "message": np.asarray(messages)},
             centre=obs.centre,
         )
-        probs = np.zeros((batch, n, n_actions))
-        rows, cols = np.indices((batch, n))
-        for k in range(n_draws):
-            base = (seed * n_draws + k) * batch
-            policy.reset(range(base, base + batch))
-            probs[rows, cols, policy.act(view)] += 1.0
-        probs /= n_draws
-        probs[~alive] = np.eye(n_actions)[0]
-        return probs
+        return specialist.probs(view)
 
     return listener
 
 
 def listener_metrics(
-    specialist: SpecialistPolicy,
-    recorder: Recorder,
-    n_draws: int = 8,
-    seed: int = 0,
+    specialist: SpecialistPolicy, recorder: Recorder, seed: int = 0
 ) -> dict[str, float]:
-    """CIC and intervention influence per living receiver, from one seed's snapshots.
+    """CIC and intervention influence per live receiver, from one run's snapshots.
 
     Candidate messages for CIC are the centre's empirical message distribution over
-    the same run. Values are rescaled from the harness's average over every (episode,
-    receiver) slot to an average over living receivers.
+    the same run.
     """
-    obs, alive = recorder.snapshot()
-    listener = make_listener(specialist, obs, alive, n_draws, seed)
-    sent = recorder.stacked()["messages"]
-    candidates, counts = np.unique(sent, axis=0, return_counts=True)
-    scale = alive.size / max(int(alive.sum()), 1)
+    obs, live = recorder.snapshot()
+    listener = make_listener(specialist, obs)
+    candidates, counts = np.unique(
+        recorder.stacked()["messages"], axis=0, return_counts=True
+    )
     received = obs.specialists["message"]
 
-    cic = causal_influence(listener, received, candidates, counts)
-    out = {"cic_bits": cic["cic_bits"] * scale}
+    cic = causal_influence(listener, received, candidates, counts, mask=live)
+    out = {"cic_bits": cic["cic_bits"]}
     for name in ("shuffle_batch", "random_matched"):
-        if name == "shuffle_batch" and received.shape[0] < 2:
-            continue
-        infl = intervention_influence(listener, received, name, seed=seed)
-        out[f"js_{name}_bits"] = infl["js_bits"] * scale
-        out[f"changed_{name}"] = infl["changed_fraction"] * scale
+        infl = intervention_influence(listener, received, name, seed=seed, mask=live)
+        out[f"js_{name}_bits"] = infl["js_bits"]
+        out[f"changed_{name}"] = infl["changed_fraction"]
     return out
 
 
@@ -417,36 +389,25 @@ def message_metrics(
     return out
 
 
-def communication_pass(
-    task: Task,
-    system: SquadSystem,
-    seeds: Sequence[int],
+def communication_metrics_for(
+    condition: ConditionResult,
+    specialist: SpecialistPolicy,
     listens: bool,
-    record_every: int = 3,
-    snapshot_every: int = 25,
-    n_draws: int = 8,
     n_shuffles: int = 100,
-) -> tuple[dict[str, float], list[float]]:
-    """Instrumented intact reruns of every seed; returns (metrics, per-seed scores).
-
-    The harness's ``evaluate`` exposes only per-seed scores, so messages and listener
-    snapshots come from a second, identical run of the same episodes.
-    """
+) -> dict[str, float]:
+    """Message and listener metrics from the recorders of a condition's scored runs."""
+    if condition.outputs is None:
+        raise ValueError(f"{condition.name!r} was run without keep_outputs")
     pooled: list[dict[str, np.ndarray]] = []
     per_seed_mi: list[float] = []
     per_seed_listen: dict[str, list[float]] = {}
-    scores: list[float] = []
-    for seed in seeds:
-        recorder = Recorder(record_every, snapshot_every if listens else 0)
-        outputs = system(task.inputs(seed), seed=seed, recorder=recorder)
-        scores.append(float(np.mean(task.checker(None, outputs))))
+    for seed, outputs in zip(condition.seeds, condition.outputs):
+        recorder: Recorder = outputs["recorder"]
         recorded = recorder.stacked()
         pooled.append(recorded)
         per_seed_mi.append(mutual_information(recorded["messages"], recorded["label"]))
         if listens:
-            for key, value in listener_metrics(
-                system.specialist, recorder, n_draws, seed
-            ).items():
+            for key, value in listener_metrics(specialist, recorder, seed).items():
                 per_seed_listen.setdefault(key, []).append(value)
 
     merged = {k: np.concatenate([p[k] for p in pooled]) for k in pooled[0]}
@@ -456,7 +417,7 @@ def communication_pass(
     )
     for key, values in per_seed_listen.items():
         metrics[key], metrics[f"{key}_ci"] = mean_ci(values)
-    return metrics, scores
+    return metrics
 
 
 # ------------------------------------------------------------------ experiment
@@ -467,10 +428,9 @@ class ListeningSettings:
     radii: tuple[int, ...] = (3, 5, 7)
     n_seeds: int = 20
     n_episodes: int = 50
-    interventions: tuple[str, ...] = INTERVENTIONS
+    interventions: tuple[str, ...] = ABLATIONS
     record_every: int = 3
     snapshot_every: int = 25
-    n_draws: int = 8
     n_shuffles: int = 100
     n_boot: int = 2000
 
@@ -482,43 +442,33 @@ def run_radius(
 ) -> ExperimentResult:
     """The full listening experiment at one window radius."""
     registry = BaselineRegistry() if registry is None else registry
-    task = make_task(radius, settings.n_seeds, settings.n_episodes, registry)
-    config = SquadConfig(obs_radius=radius)
-    systems = squad_systems(config)
-    seeds = task.spec.seeds()
+    recording = Recording(settings.record_every, settings.snapshot_every)
+    task = make_task(radius, settings.n_seeds, settings.n_episodes, registry, recording)
+    systems = squad_systems(SquadConfig(obs_radius=radius), recording)
     result = run_experiment(
         task,
         systems,
-        seeds=seeds,
         ablations=settings.interventions,
         registry=registry,
         n_boot=settings.n_boot,
         metadata={"settings": asdict(settings), "radius": radius},
+        keep_outputs=True,
     )
     result.require_complete()
 
     baselines = registry.baselines(task.name)
-    reproduced: dict[str, float] = {}
     for name, system, listens in (
         (LISTENER, systems[LISTENER], True),
         (DEAF, systems[DEAF], True),
         (RANDOM_CENTRE, baselines[RANDOM_CENTRE], True),
         (SILENT_CENTRE, baselines[SILENT_CENTRE], False),
     ):
-        metrics, scores = communication_pass(
-            task,
-            system,
-            seeds,
-            listens,
-            settings.record_every,
-            settings.snapshot_every,
-            settings.n_draws,
-            settings.n_shuffles,
+        result.add_communication(
+            name,
+            communication_metrics_for(
+                result.condition(name), system.specialist, listens, settings.n_shuffles
+            ),
         )
-        result.add_communication(name, metrics)
-        harness = np.asarray(result.condition(name).per_seed)
-        reproduced[name] = float(np.max(np.abs(harness - np.asarray(scores))))
-    result.metadata["instrumented_rerun_max_abs_diff"] = reproduced
 
     result.metadata["listening_summary"] = {
         name: listening_summary(
@@ -586,16 +536,6 @@ def sanity_checks(result: ExperimentResult) -> list[dict[str, Any]]:
         rows.append(
             {
                 "check": "zero ablation == silent-centre baseline, seed by seed",
-                "passed": diff < 1e-9,
-                "detail": f"max |diff| = {diff:.3g}",
-            }
-        )
-    rerun = result.metadata.get("instrumented_rerun_max_abs_diff", {})
-    if rerun:
-        diff = max(rerun.values())
-        rows.append(
-            {
-                "check": "instrumented reruns reproduce the harness scores",
                 "passed": diff < 1e-9,
                 "detail": f"max |diff| = {diff:.3g}",
             }
