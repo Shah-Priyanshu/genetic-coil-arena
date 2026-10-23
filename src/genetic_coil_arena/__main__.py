@@ -1,9 +1,6 @@
-"""
-Genetic Coil Arena - Main Entry Point
-Complete evolutionary computing platform with integrated features.
-"""
+"""Allow ``python -m genetic_coil_arena`` to run the CLI."""
 
-from .web.server import main
+from .cli.main import app
 
 if __name__ == "__main__":
-    main()
+    app()

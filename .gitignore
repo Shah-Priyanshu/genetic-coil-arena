@@ -100,3 +100,7 @@ docs/site/
 
 # Numba cache
 __numba_cache__/
+
+# Claude Code agent worktrees
+.claude/worktrees/
+.claude/settings.local.json
