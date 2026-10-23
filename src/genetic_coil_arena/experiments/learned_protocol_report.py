@@ -19,6 +19,11 @@ A bigger run is a flag change, e.g. on 20 cores:
 Outputs next to ``--out``: ``<stem>.json`` (every ExperimentResult + training
 summaries), ``<stem>_curves.csv`` (learning curves) and ``<stem>_params.npz``
 (trained parameters, float32).
+
+Every finished training run is also saved at once to a cache folder (``--cache``,
+default ``$GCA_RUN_DIR/<stem>_runs`` or ``outputs/<stem>_runs``; ``--no-cache`` turns it
+off); rerunning the same command after an interruption loads those runs and trains
+only the rest.
 """
 
 import argparse
@@ -37,6 +42,7 @@ from typing import Any, Optional
 import numpy as np
 
 from ..evaluation import ExperimentResult, format_table
+from . import run_cache
 from .learned_protocol import (
     CONDITION,
     HAND_CODED,
@@ -137,9 +143,30 @@ def load_trained(
     return trained, float(data["train_seconds"])
 
 
-def _train_job(args: tuple[str, int, TrainSettings]) -> dict[str, Any]:
-    mode, run, settings = args
+def _train_job(
+    args: tuple[str, int, TrainSettings, Optional[Path]],
+) -> dict[str, Any]:
+    """Train one (mode, run) unless ``cache`` holds it with the same settings; a
+    finished run is saved to ``cache`` at once, so a restart only loses runs in
+    progress."""
+    mode, run, settings, cache = args
+    key = f"r{settings.radius}_{mode}_run{run}"
+    ident = {**asdict(replace(settings, progress_s=0.0)), "mode": mode, "run": run}
+    if cache is not None:
+        hit = run_cache.load(cache, key, ident)
+        if hit is not None:
+            print(f"[cache] {key}", flush=True)
+            return hit
     out = train_run(mode, run, settings)
+    if cache is not None:
+        summary = {k: v for k, v in out.items() if k not in ("theta", "theta_final")}
+        run_cache.save(
+            cache,
+            key,
+            ident,
+            {"theta": out["theta"], "theta_final": out["theta_final"]},
+            summary,
+        )
     print(
         f"[train] r={settings.radius} {mode:10s} run {run}: "
         f"{out['generations_done']} gens in {out['seconds']:.0f} s, best val food "
@@ -678,6 +705,16 @@ def parse_args(argv: Optional[list[str]] = None) -> argparse.Namespace:
         ".json) are reused instead of retrained; must use the same training settings",
     )
     parser.add_argument(
+        "--cache",
+        type=Path,
+        help="Folder where each finished training run is saved at once and reloaded "
+        "on a rerun with the same settings (default $GCA_RUN_DIR/<stem>_runs, else "
+        "outputs/<stem>_runs)",
+    )
+    parser.add_argument(
+        "--no-cache", action="store_true", help="Neither read nor write the run cache"
+    )
+    parser.add_argument(
         "--out", type=Path, default=Path("docs/results/learned_protocol.md")
     )
     args = parser.parse_args(argv)  # fmt: skip
@@ -715,8 +752,11 @@ def main(argv: Optional[list[str]] = None) -> None:
     esettings = EvalSettings(n_episodes=args.eval_episodes)
     reused, reused_seconds = load_trained(args.reuse, base) if args.reuse else ([], 0.0)
     have = {(t["radius"], t["mode"], t["run"]) for t in reused}
+    cache = None
+    if not args.no_cache:
+        cache = args.cache or run_cache.default_cache_dir(args.out.stem)
     jobs = [
-        (mode, run, replace(base, radius=r))
+        (mode, run, replace(base, radius=r), cache)
         for r in args.radii
         for run in range(args.runs)
         for mode in args.modes
@@ -725,10 +765,15 @@ def main(argv: Optional[list[str]] = None) -> None:
     if reused:
         print(f"[reuse] {len(reused)} trained runs from {args.reuse}", flush=True)
     print(f"[start] scale={args.scale}: {len(jobs)} training runs on "
-          f"{args.workers} workers; {base}", flush=True)  # fmt: skip
+          f"{args.workers} workers; cache {cache}; {base}", flush=True)  # fmt: skip
     start = time.perf_counter()
     with ProcessPoolExecutor(max_workers=args.workers) as pool:
         trained = list(pool.map(_train_job, jobs))
+    # Runs loaded from the cache count with their CPU time spread over the workers
+    # (an estimate of the wall time they took before the restart)
+    reused_seconds += sum(t["seconds"] for t in trained if t.get("cached")) / max(
+        args.workers, 1
+    )
     wanted = {
         (r, m, k) for r in args.radii for m in args.modes for k in range(args.runs)
     }
