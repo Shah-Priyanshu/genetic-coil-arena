@@ -23,14 +23,14 @@ cd D:\Projects\genetic-coil-arena
 git fetch origin
 git checkout claude/vibrant-hawking-zodb5a
 
-py -3.12 -m venv D:\venvs\gca
+py -3.13 -m venv D:\venvs\gca   # any Python torch supports; `py -0` lists them
 D:\venvs\gca\Scripts\python -m pip install --upgrade pip
 D:\venvs\gca\Scripts\python -m pip install -e ".[dev]"
 D:\venvs\gca\Scripts\python -m pip install torch --index-url https://download.pytorch.org/whl/cu128
 ```
 
 Use a CUDA build of torch that matches your driver (`nvidia-smi` shows the highest CUDA
-version it supports). Python 3.12 is the safest choice for torch on Windows.
+version it supports). Python 3.10–3.13 all work with current torch.
 
 `git push` must work without a prompt. If you've pushed from this folder before, it
 already does.
