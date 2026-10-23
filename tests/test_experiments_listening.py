@@ -118,7 +118,8 @@ def test_listener_metrics_separate_listener_from_deaf():
         system = SquadSystem(CONFIG, policy, HandCodedCentre(), Recording(2, 10))
         results[name] = listener_metrics(policy, system(seeds)["recorder"])
     assert results["greedy"]["cic_bits"] > 0.05
-    assert results["deaf"]["cic_bits"] == 0.0
+    # A deaf listener ignores the message, but float round-off in the marginal leaves ~1e-17
+    assert results["deaf"]["cic_bits"] == pytest.approx(0.0, abs=1e-12)
     assert results["deaf"]["js_shuffle_batch_bits"] == 0.0
 
 
