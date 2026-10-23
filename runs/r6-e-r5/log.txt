@@ -2403,3 +2403,16 @@
 [progress] r=5 silent run 9: gen 870/2000, val team food 10.59, best gen 870, elapsed 4673 s
 [progress] r=5 learned run 8: gen 860/2000, val team food 20.94, best gen 840, elapsed 5348 s
 [progress] r=5 hand-coded run 8: gen 900/2000, val team food 27.09, best gen 900, elapsed 5521 s
+[progress] r=5 learned run 7: gen 860/2000, val team food 22.50, best gen 740, elapsed 5595 s
+[progress] r=5 learned run 9: gen 810/2000, val team food 17.06, best gen 790, elapsed 4741 s
+[progress] r=5 silent run 8: gen 990/2000, val team food 7.38, best gen 920, elapsed 5566 s
+[progress] r=5 learned run 6: gen 870/2000, val team food 27.84, best gen 870, elapsed 5726 s
+[progress] r=5 learned run 8: gen 880/2000, val team food 22.22, best gen 880, elapsed 5470 s
+[progress] r=5 silent run 7: gen 990/2000, val team food 8.28, best gen 950, elapsed 5723 s
+[progress] r=5 hand-coded run 9: gen 820/2000, val team food 25.03, best gen 700, elapsed 4813 s
+[progress] r=5 hand-coded run 7: gen 930/2000, val team food 25.59, best gen 770, elapsed 5716 s
+[progress] r=5 silent run 9: gen 900/2000, val team food 9.31, best gen 870, elapsed 4838 s
+[progress] r=5 learned run 7: gen 880/2000, val team food 24.00, best gen 740, elapsed 5716 s
+[progress] r=5 learned run 9: gen 830/2000, val team food 14.44, best gen 790, elapsed 4862 s
+[progress] r=5 hand-coded run 8: gen 930/2000, val team food 23.56, best gen 900, elapsed 5690 s
+[progress] r=5 learned run 6: gen 890/2000, val team food 28.41, best gen 890, elapsed 5850 s
