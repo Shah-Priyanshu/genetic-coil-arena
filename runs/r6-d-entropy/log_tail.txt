@@ -1,4 +1,3 @@
-[start] scale=gpu: 10 training runs on 20 workers; TrainSettings(radius=3, generations=2000, population=128, episodes_per_member=8, sigma=0.05, lr=0.03, weight_decay=0.005, spec_hidden=16, centre_hidden=16, eval_every=10, val_episodes=32, max_steps=300, time_limit_s=inf, progress_s=120.0, entropy_bonus=1.0, entropy_anneal=0.15, centre_temperature=0.0, temperature_anneal=0.5)
 [progress] r=3 learned run 8: gen 120/2000, val team food 1.59, best gen 120, elapsed 124 s
 [progress] r=3 learned run 2: gen 100/2000, val team food 1.62, best gen 90, elapsed 125 s
 [progress] r=3 learned run 4: gen 90/2000, val team food 7.22, best gen 90, elapsed 126 s
@@ -175,3 +174,27 @@
 [progress] r=3 learned run 1: gen 1150/2000, val team food 34.91, best gen 1140, elapsed 2421 s
 [progress] r=3 learned run 2: gen 1130/2000, val team food 37.50, best gen 1000, elapsed 2426 s
 [progress] r=3 learned run 7: gen 1120/2000, val team food 33.19, best gen 1040, elapsed 2429 s
+[progress] r=3 learned run 9: gen 1140/2000, val team food 36.41, best gen 1080, elapsed 2440 s
+[progress] r=3 learned run 4: gen 1110/2000, val team food 36.75, best gen 1060, elapsed 2441 s
+[progress] r=3 learned run 3: gen 1120/2000, val team food 34.97, best gen 1010, elapsed 2446 s
+[progress] r=3 learned run 5: gen 1110/2000, val team food 39.06, best gen 1090, elapsed 2448 s
+[progress] r=3 learned run 8: gen 1210/2000, val team food 29.47, best gen 930, elapsed 2536 s
+[progress] r=3 learned run 6: gen 1190/2000, val team food 36.25, best gen 810, elapsed 2546 s
+[progress] r=3 learned run 0: gen 1190/2000, val team food 32.97, best gen 830, elapsed 2555 s
+[progress] r=3 learned run 1: gen 1210/2000, val team food 37.03, best gen 1180, elapsed 2558 s
+[progress] r=3 learned run 2: gen 1190/2000, val team food 37.53, best gen 1000, elapsed 2564 s
+[progress] r=3 learned run 7: gen 1180/2000, val team food 35.88, best gen 1040, elapsed 2565 s
+[progress] r=3 learned run 9: gen 1200/2000, val team food 31.56, best gen 1080, elapsed 2577 s
+[progress] r=3 learned run 4: gen 1170/2000, val team food 36.12, best gen 1140, elapsed 2578 s
+[progress] r=3 learned run 3: gen 1180/2000, val team food 34.59, best gen 1160, elapsed 2584 s
+[progress] r=3 learned run 5: gen 1170/2000, val team food 38.38, best gen 1090, elapsed 2586 s
+[progress] r=3 learned run 8: gen 1270/2000, val team food 28.78, best gen 930, elapsed 2673 s
+[progress] r=3 learned run 6: gen 1250/2000, val team food 36.09, best gen 1210, elapsed 2681 s
+[progress] r=3 learned run 0: gen 1250/2000, val team food 32.91, best gen 830, elapsed 2691 s
+[progress] r=3 learned run 1: gen 1270/2000, val team food 36.16, best gen 1180, elapsed 2694 s
+[progress] r=3 learned run 2: gen 1250/2000, val team food 38.00, best gen 1000, elapsed 2701 s
+[progress] r=3 learned run 7: gen 1240/2000, val team food 35.19, best gen 1040, elapsed 2702 s
+[progress] r=3 learned run 9: gen 1260/2000, val team food 33.69, best gen 1080, elapsed 2714 s
+[progress] r=3 learned run 4: gen 1230/2000, val team food 35.81, best gen 1140, elapsed 2716 s
+[progress] r=3 learned run 3: gen 1240/2000, val team food 32.88, best gen 1190, elapsed 2721 s
+[progress] r=3 learned run 5: gen 1230/2000, val team food 39.66, best gen 1180, elapsed 2724 s
