@@ -1,0 +1,29 @@
+{
+  "id": "r6-d-entropy",
+  "commit": "3f3ab581b7626b23b8f37c795f9b38bf1f8e792f",
+  "queued_args": [
+    "scripts/learned_protocol.py",
+    "--scale",
+    "gpu",
+    "--radii",
+    "3",
+    "--generations",
+    "2000",
+    "--episodes-per-member",
+    "8",
+    "--workers",
+    "20",
+    "--modes",
+    "learned",
+    "--entropy-bonus",
+    "1",
+    "--entropy-anneal",
+    "0.15"
+  ],
+  "state": "running",
+  "started_at": "2026-10-23T06:59:19+00:00",
+  "updated_at": "2026-10-23T06:59:19+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 408 MiB, 12282 MiB, 39",
+  "host": "PC"
+}
