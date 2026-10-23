@@ -1,0 +1,1 @@
+[start] scale=gpu: 10 training runs on 20 workers; TrainSettings(radius=3, generations=2000, population=128, episodes_per_member=8, sigma=0.05, lr=0.03, weight_decay=0.005, spec_hidden=16, centre_hidden=16, eval_every=10, val_episodes=32, max_steps=300, time_limit_s=inf, progress_s=120.0, entropy_bonus=1.0, entropy_anneal=0.15, centre_temperature=0.0, temperature_anneal=0.5)
