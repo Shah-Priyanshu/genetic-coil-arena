@@ -61,7 +61,7 @@ dmypy.json
 outputs/
 results/
 !docs/results/
-experiments/
+/experiments/
 checkpoints/
 *.pkl
 *.h5
