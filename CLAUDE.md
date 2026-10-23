@@ -30,6 +30,7 @@ genetic-coil squad-benchmark -n 100 [-r 5] [-o docs/results/need_to_talk.md]   #
 ruff check <files>; black <files>
 ```
 
+- **GPU jobs:** the GPU PC isn't reachable from cloud sessions. Queue a job as `runs/queue/<id>.json` (pinned to a pushed commit, script under `scripts/`), push, and read progress from the `gpu-results` branch (`runs/<id>/status.json`, `log_tail.txt`). See `docs/gpu_runner.md`. Scripts meant for the GPU should log at least every few minutes and write artifacts to `$GCA_RUN_DIR`.
 - **Windows: set `PYTHONUTF8=1`.** The CLI prints emoji. When output is piped (including from Claude's shell), a cp1252 console crashes with `UnicodeEncodeError`.
 - **numba cache:**
   - `@njit(cache=True)` writes caches into `src/**/__pycache__`.
