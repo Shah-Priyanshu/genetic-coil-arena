@@ -203,8 +203,11 @@ def compute_analysis(
             row["ratio"] = float("nan")
         elif mine is None:
             row["ratio"] = float("inf")
+            # It used its whole budget without getting there: a lower bound
+            row["ratio_lower_bound"] = row["episodes_done"] / theirs["episodes"]
         else:
             row["ratio"] = mine["episodes"] / theirs["episodes"]
+            row["ratio_lower_bound"] = row["ratio"]
         full = j["episodes_done"]
         row["ratio_vs_joint_budget"] = (
             float("inf") if mine is None else mine["episodes"] / full
@@ -229,6 +232,9 @@ def compute_analysis(
                 "n_runs": len(mine),
                 "n_reached": len(reached),
                 "median_ratio": float(np.median(valid)) if valid.size else np.nan,
+                "median_ratio_lower_bound": _nanmedian(
+                    [r.get("ratio_lower_bound", np.nan) for r in mine]
+                ),
                 "share_within_kill_ratio": (
                     float(np.mean(valid <= kill_ratio)) if valid.size else np.nan
                 ),
@@ -270,7 +276,21 @@ def compute_analysis(
     ]
     if key_rows and not np.isnan(key_rows[0]["median_ratio"]):
         med = key_rows[0]["median_ratio"]  # may be inf: most runs never got there
-        if med > kill_ratio:
+        low = key_rows[0]["median_ratio_lower_bound"]
+        if med == np.inf and not low > kill_ratio:
+            verdict = (
+                "INCONCLUSIVE: most from-scratch newcomers under the frozen learned "
+                f"language did not reach the threshold within their budget ({_ratio(low)} "
+                f"of joint-retraining compute, <= {kill_ratio:.0%}); train them longer"
+            )
+        elif med == np.inf:
+            verdict = (
+                "KILL: most from-scratch newcomers under the frozen learned language did "
+                f"not reach the threshold within a budget of {_ratio(low)} of "
+                f"joint-retraining compute (median over runs, > {kill_ratio:.0%}, so the "
+                "true ratio is larger): the ecosystem needs a fixed typed core protocol"
+            )
+        elif med > kill_ratio:
             verdict = (
                 f"KILL: a from-scratch newcomer under the frozen learned language needs "
                 f"{_ratio(med)} of joint-retraining compute (median over runs, > "
@@ -289,6 +309,12 @@ def compute_analysis(
         "summary": summary,
         "verdict": verdict,
     }
+
+
+def _nanmedian(values: list[float]) -> float:
+    arr = np.asarray(values, dtype=float)
+    arr = arr[~np.isnan(arr)]
+    return float(np.median(arr)) if arr.size else float("nan")
 
 
 def _ratio(value: float) -> str:
@@ -356,7 +382,7 @@ def compute_tables(analysis: dict[str, Any]) -> list[str]:
         lines.append(
             f"| {s['condition']} | {s['init'] if s['condition'] != JOINT else '-'} "
             f"| {s['n_runs']} | {s['n_reached']}/{s['n_runs']} "
-            f"| {_ratio(s['median_ratio']) if s['condition'] != JOINT else '100%'} "
+            f"| {_summary_ratio(s)} "
             f"| {'n/a' if not np.isfinite(share) else f'{100 * share:.0f}%'} "
             f"| {_gens(s['median_generations_to_threshold'])} "
             f"| {_gens(s['median_generations_to_old_level'])} |"
@@ -378,11 +404,26 @@ def compute_tables(analysis: dict[str, Any]) -> list[str]:
             f"| {r['condition']} | {r['init'] if r['condition'] != JOINT else '-'} "
             f"| {r['run']} | {r.get('reference_food', float('nan')):.2f} "
             f"| {r.get('threshold', float('nan')):.2f} | {gens} | {episodes} "
-            f"| {_ratio(r.get('ratio', float('nan')))} "
+            f"| {_ratio_cell(r)} "
             f"| {_ratio(r.get('ratio_vs_joint_budget', float('nan')))} "
             f"| {_ratio(r.get('wall_ratio', float('nan')))} |"
         )
     return lines
+
+
+def _summary_ratio(s: dict[str, Any]) -> str:
+    if s["condition"] == JOINT:
+        return "100%"
+    if s["median_ratio"] == float("inf"):
+        return f"> {_ratio(s['median_ratio_lower_bound'])} (budget spent)"
+    return _ratio(s["median_ratio"])
+
+
+def _ratio_cell(row: dict[str, Any]) -> str:
+    ratio = row.get("ratio", float("nan"))
+    if ratio == float("inf") and "ratio_lower_bound" in row:
+        return f"> {_ratio(row['ratio_lower_bound'])} (budget spent)"
+    return _ratio(ratio)
 
 
 def _gens(value: float) -> str:
