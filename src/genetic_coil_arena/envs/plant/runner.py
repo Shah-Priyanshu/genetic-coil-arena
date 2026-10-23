@@ -40,7 +40,8 @@ def run_episodes(
         env: The environment (its budget fixes the uplink shape)
         encoder: Node encoder with ``encode(specialist_obs)``; ``None`` sends nothing
         centre: Has ``diagnose(messages, raw)``; ``raw`` is passed only if
-            ``centre.needs_raw`` (the oracle)
+            ``centre.needs_raw`` (the oracle). If it has ``reset()`` that is called first,
+            so a centre that stacks messages over time starts each batch with no history
         seeds: One episode per seed (``seed % env.n_runs`` picks the run)
         hook: Applied to the messages between send and delivery as
             ``hook(messages, step, mask)``, ``mask`` = (B, N) senders of unfinished episodes
@@ -54,6 +55,8 @@ def run_episodes(
         ``bytes_per_node`` (the encoder's declared bytes per node message, mean over nodes)
     """
     obs = env.reset(seeds)
+    if hasattr(centre, "reset"):
+        centre.reset()  # centres that stack messages over time start with no history
     b, k_max = len(seeds), env.spec.max_steps
     labels = np.zeros((b, k_max), dtype=np.int64)
     diagnoses = np.zeros((b, k_max), dtype=np.int64)

@@ -25,6 +25,8 @@ The centre's observation holds only ``uplink``; labels, the clock and the onset 
 in an observation (labels are in ``info``, for scoring and training).
 """
 
+import copy
+import dataclasses
 from collections.abc import Sequence
 from dataclasses import dataclass, field
 from typing import Optional
@@ -117,6 +119,11 @@ class PlantEnv(MultiAgentEnv):
 
     Normalisation statistics come from the normal *training* run only (``normaliser``),
     whichever split is replayed.
+
+    Pass ``runs`` (already normalised ``windows.Run`` objects, e.g. from
+    ``rieth.to_runs``) to replay an arbitrary set of simulation runs instead of the
+    Braatz data: ``data``, ``normaliser`` and ``config.split`` are then not used to
+    build episodes, and ``config.faults`` must cover the runs' faults.
     """
 
     def __init__(
@@ -124,15 +131,25 @@ class PlantEnv(MultiAgentEnv):
         config: Optional[PlantConfig] = None,
         data: Optional[TepData] = None,
         normaliser: Optional[Normaliser] = None,
+        runs: Optional[Sequence[Run]] = None,
     ):
         self.config = config or PlantConfig()
-        self.data = TepData.from_cache() if data is None else data
-        self.normaliser = normaliser or Normaliser.fit(self.data.normal_train)
         c = self.config
         self.layout: NodeLayout = make_layout()
-        self.runs: list[Run] = build_runs(
-            self.data, self.normaliser, c.split, c.faults, c.include_normal
-        )
+        self.normaliser: Optional[Normaliser]
+        if runs is None:
+            self.data: Optional[TepData] = (
+                TepData.from_cache() if data is None else data
+            )
+            self.normaliser = normaliser or Normaliser.fit(self.data.normal_train)
+            self.runs: list[Run] = build_runs(
+                self.data, self.normaliser, c.split, c.faults, c.include_normal
+            )
+        else:
+            self.data, self.normaliser = data, normaliser
+            self.runs = list(runs)
+            if not self.runs:
+                raise ValueError("A split needs at least one run")
         flat = labelled_windows(
             self.runs, c.class_of_fault, self.layout, c.window, c.stride
         )
@@ -160,8 +177,13 @@ class PlantEnv(MultiAgentEnv):
             dtype=np.int64,
         )
 
-        msg = c.message
-        self.spec = EnvSpec(
+        self.spec = self._make_spec(k_max)
+        self._batch = 0
+
+    def _make_spec(self, k_max: int) -> EnvSpec:
+        msg = self.config.message
+        n, v, w = self.layout.n_nodes, self.layout.max_vars, self.config.window
+        return EnvSpec(
             n_specialists=n,
             n_actions=N_ACTIONS,
             specialist_obs={
@@ -172,7 +194,18 @@ class PlantEnv(MultiAgentEnv):
             message=msg,
             max_steps=k_max,
         )
-        self._batch = 0
+
+    def with_budget(self, budget: int) -> "PlantEnv":
+        """The same episodes on a channel of another byte budget, sharing the window arrays.
+
+        Building an environment materialises every window of every run; this copy only
+        swaps the message channel, so one set of runs serves all budgets.
+        """
+        other = copy.copy(self)
+        other.config = dataclasses.replace(self.config, budget=budget)
+        other.spec = other._make_spec(self.spec.max_steps)
+        other._batch = 0
+        return other
 
     # ------------------------------------------------------------------ properties
     @property
@@ -348,6 +381,10 @@ class PlantEnv(MultiAgentEnv):
         to fit anything that learns or calibrates; ``stride`` defaults to the env's.
         """
         c = self.config
+        if self.data is None or self.normaliser is None:
+            raise ValueError(
+                "This environment was built from runs; window them directly"
+            )
         runs = build_runs(self.data, self.normaliser, split, c.faults, True)
         out = labelled_windows(
             runs,
