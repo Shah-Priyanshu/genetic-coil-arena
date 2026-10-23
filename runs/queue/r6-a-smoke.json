@@ -1,0 +1,6 @@
+{
+  "id": "r6-a-smoke",
+  "commit": "263d2f719d375e675f6b5789f4fd013dcf4ef966",
+  "args": ["scripts/learned_protocol.py", "--scale", "smoke", "--workers", "4"],
+  "timeout_min": 20
+}
