@@ -31,6 +31,7 @@ Snake is the first lab for these questions:
 - **Protocol and runtime:** signed envelopes with a readable header and a payload, codecs between batched message arrays and envelopes, schema-validated GoalSpecs, and a command centre that routes goals to specialists and logs a JSONL trace (`genetic-coil protocol-demo`).
 - **CommArena evaluation harness:** mandatory baselines, multi-seed runs, message ablations and interventions, communication metrics, IQM with bootstrap CIs and Holm-corrected tests.
 - **Squad environment:** a batched, numba-compiled cooperative squad of colour-specialist snakes with scripted specialists and centres. Its need-to-talk baselines are in [docs/results/need_to_talk.md](docs/results/need_to_talk.md) (`genetic-coil squad-benchmark`).
+- **Plant-floor sensor squad** (`envs/plant/`, a second, non-game domain): four edge sensor nodes on Tennessee Eastman process data uplink byte-limited messages to a gateway centre that diagnoses the fault. Hand-designed PCA/FFT features reach macro-F1 0.76 at 16 B per message over 18 diagnosable faults ([docs/results/plant_bytes_baselines.md](docs/results/plant_bytes_baselines.md)). The data is fetched by `scripts/fetch_tep.py` into a cache outside the repo.
 
 Current numbers (100 held-out seeds, food eaten per episode):
 
@@ -74,7 +75,7 @@ On Windows, set `PYTHONUTF8=1`. The CLI prints emoji, which crashes a cp1252 con
      - Neither difference is significant at this n;
    - next: specialist snakes that each eat one colour of food and a command centre that sees the whole board, learning bandwidth-limited messages, each with a readable envelope and a learned payload.
 3. **Translator:** natural language becomes a typed, readable GoalSpec, which the command centre turns into learned payloads. A reverse translator decodes the payloads for monitoring.
-4. **A second, non-game domain,** to prove the interfaces are task-agnostic.
+4. **A second, non-game domain,** to prove the interfaces are task-agnostic: in progress (step 1: hand-designed byte baselines done).
 5. **Real small models** behind the same specialist interface.
 
 ## Layout
@@ -86,14 +87,14 @@ src/genetic_coil_arena/
   evaluation/   CommArena harness: baselines, ablations, metrics, statistics   [domain-agnostic]
   learning/     population MLPs and evolution strategies (numpy)              [domain-agnostic]
   experiments/  environment <-> harness glue (squad listening, learned protocol)
-  envs/         batched multi-agent API (base) and the squad environment (squad/)
+  envs/         batched multi-agent API (base), the squad environment (squad/), the plant-floor sensor squad (plant/)
   snake_core/   single-snake game engine (numba) and the neural agent
   evo/          genetic operators, fitness, parallel evaluation, baselines, evolution loop
   persistence/  experiment storage, checkpoints and resume
   analysis/     Snake benchmark harness, multi-seed runs, squad need-to-talk report
   cli/          the `genetic-coil` command
   ui/           pygame viewer
-scripts/        experiment scripts (need_to_talk.py, learned_protocol.py, code_formation.py), GPU runner
+scripts/        experiment scripts (need_to_talk.py, learned_protocol.py, code_formation.py, plant_baselines.py, fetch_tep.py), GPU runner
 docs/results/   recorded results
 tests/
 ```
