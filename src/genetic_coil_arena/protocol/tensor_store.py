@@ -6,7 +6,8 @@ swapped or modified after the reference was sent.
 """
 
 import hashlib
-from typing import Any, Dict, Mapping, Protocol, runtime_checkable
+from collections.abc import Mapping
+from typing import Any, Protocol, runtime_checkable
 
 import numpy as np
 
@@ -17,7 +18,11 @@ def tensor_digest(array: np.ndarray) -> str:
     """SHA-256 over dtype, shape and raw bytes of an array."""
     arr = np.ascontiguousarray(array)
     digest = hashlib.sha256()
-    digest.update(canonical_json({"dtype": arr.dtype.str, "shape": list(arr.shape)}).encode("utf-8"))
+    digest.update(
+        canonical_json({"dtype": arr.dtype.str, "shape": list(arr.shape)}).encode(
+            "utf-8"
+        )
+    )
     digest.update(arr.tobytes())
     return digest.hexdigest()
 
@@ -32,7 +37,7 @@ class TensorStore(Protocol):
 
     name: str
 
-    def put(self, array: np.ndarray) -> Dict[str, Any]:
+    def put(self, array: np.ndarray) -> dict[str, Any]:
         """Store a copy of ``array`` and return its reference."""
         ...
 
@@ -52,9 +57,9 @@ class InMemoryTensorStore:
         if not name:
             raise ValueError("store name must be non-empty")
         self.name = name
-        self._tensors: Dict[str, np.ndarray] = {}
+        self._tensors: dict[str, np.ndarray] = {}
 
-    def put(self, array: np.ndarray) -> Dict[str, Any]:
+    def put(self, array: np.ndarray) -> dict[str, Any]:
         """Store a read-only copy of ``array`` and return its reference."""
         arr = np.array(array, copy=True)
         if arr.dtype == object:
@@ -62,8 +67,13 @@ class InMemoryTensorStore:
         arr.setflags(write=False)
         key = new_id()
         self._tensors[key] = arr
-        return {"store": self.name, "key": key, "shape": list(arr.shape),
-                "dtype": arr.dtype.str, "sha256": tensor_digest(arr)}
+        return {
+            "store": self.name,
+            "key": key,
+            "shape": list(arr.shape),
+            "dtype": arr.dtype.str,
+            "sha256": tensor_digest(arr),
+        }
 
     def get(self, ref: Mapping[str, Any], verify: bool = False) -> np.ndarray:
         """Return the stored tensor.
@@ -73,18 +83,28 @@ class InMemoryTensorStore:
             TensorDigestError: ``verify`` is set and the tensor does not match ``ref``
         """
         if ref.get("store") != self.name:
-            raise KeyError(f"Reference belongs to store {ref.get('store')!r}, not {self.name!r}")
+            raise KeyError(
+                f"Reference belongs to store {ref.get('store')!r}, not {self.name!r}"
+            )
         arr = self._tensors[ref["key"]]
         if verify and tensor_digest(arr) != ref.get("sha256"):
-            raise TensorDigestError(f"Tensor {ref['key']} does not match its reference digest")
+            raise TensorDigestError(
+                f"Tensor {ref['key']} does not match its reference digest"
+            )
         return arr
 
     def delete(self, ref: Mapping[str, Any]) -> None:
         """Forget the tensor for ``ref``."""
-        self._tensors.pop(ref.get("key"), None)
+        key = ref.get("key")
+        if isinstance(key, str):
+            self._tensors.pop(key, None)
 
     def __contains__(self, ref: object) -> bool:
-        return isinstance(ref, Mapping) and ref.get("store") == self.name and ref.get("key") in self._tensors
+        return (
+            isinstance(ref, Mapping)
+            and ref.get("store") == self.name
+            and ref.get("key") in self._tensors
+        )
 
     def __len__(self) -> int:
         return len(self._tensors)

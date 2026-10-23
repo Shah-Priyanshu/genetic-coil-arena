@@ -16,8 +16,9 @@ of one task, ``trace_id`` correlates everything caused by one request, and
 
 import json
 import uuid
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field, replace
-from typing import Any, Dict, Mapping, Optional, Sequence, Tuple, Union
+from typing import Any, Optional, Union
 
 import numpy as np
 
@@ -27,8 +28,17 @@ LATENT_REF_KEYS = ("store", "key", "shape", "dtype", "sha256")
 
 # Serialized field names, in a stable order (manifest is only present when signed)
 ENVELOPE_FIELDS = (
-    "v", "msg_id", "trace_id", "parent_id", "sender", "recipients", "task_id",
-    "clock", "payload_type", "payload_encoding", "payload",
+    "v",
+    "msg_id",
+    "trace_id",
+    "parent_id",
+    "sender",
+    "recipients",
+    "task_id",
+    "clock",
+    "payload_type",
+    "payload_encoding",
+    "payload",
 )
 
 
@@ -46,12 +56,24 @@ def canonical_json(value: Any) -> str:
 
     Used wherever bytes must be reproducible, e.g. for signatures and digests.
     """
-    return json.dumps(value, sort_keys=True, separators=(",", ":"),
-                      ensure_ascii=False, allow_nan=False)
+    return json.dumps(
+        value,
+        sort_keys=True,
+        separators=(",", ":"),
+        ensure_ascii=False,
+        allow_nan=False,
+    )
+
+
+def as_recipients(value: Any) -> tuple[str, ...]:
+    """Normalize a single name or a sequence of names to a tuple."""
+    return (value,) if isinstance(value, str) else tuple(value)
 
 
 def _is_int(value: Any) -> bool:
-    return isinstance(value, (int, np.integer)) and not isinstance(value, (bool, np.bool_))
+    return isinstance(value, (int, np.integer)) and not isinstance(
+        value, (bool, np.bool_)
+    )
 
 
 @dataclass(frozen=True)
@@ -77,25 +99,27 @@ class Envelope:
     """
 
     sender: str
-    recipients: Tuple[str, ...]
+    recipients: tuple[str, ...]
     payload_type: str
     payload: Any
-    payload_encoding: Dict[str, Any] = field(default_factory=dict)
+    payload_encoding: dict[str, Any] = field(default_factory=dict)
     task_id: Optional[str] = None
     trace_id: str = field(default_factory=new_id)
     parent_id: Optional[str] = None
     clock: int = 0
     msg_id: str = field(default_factory=new_id)
     v: int = PROTOCOL_VERSION
-    manifest: Optional[Dict[str, Any]] = None
+    manifest: Optional[dict[str, Any]] = None
 
     def __post_init__(self) -> None:
-        recipients = (self.recipients,) if isinstance(self.recipients, str) else tuple(self.recipients)
+        recipients = as_recipients(self.recipients)
         object.__setattr__(self, "recipients", recipients)
 
         if not _is_int(self.v) or not 1 <= int(self.v) <= PROTOCOL_VERSION:
-            raise EnvelopeError(f"Unsupported envelope version {self.v!r}; "
-                                f"this code understands 1..{PROTOCOL_VERSION}")
+            raise EnvelopeError(
+                f"Unsupported envelope version {self.v!r}; "
+                f"this code understands 1..{PROTOCOL_VERSION}"
+            )
         for name in ("sender", "msg_id", "trace_id"):
             value = getattr(self, name)
             if not isinstance(value, str) or not value:
@@ -103,14 +127,20 @@ class Envelope:
         for name in ("task_id", "parent_id"):
             value = getattr(self, name)
             if value is not None and (not isinstance(value, str) or not value):
-                raise EnvelopeError(f"{name} must be None or a non-empty string, got {value!r}")
+                raise EnvelopeError(
+                    f"{name} must be None or a non-empty string, got {value!r}"
+                )
         if not recipients or not all(isinstance(r, str) and r for r in recipients):
-            raise EnvelopeError(f"recipients must be non-empty strings, got {recipients!r}")
+            raise EnvelopeError(
+                f"recipients must be non-empty strings, got {recipients!r}"
+            )
         if not _is_int(self.clock) or self.clock < 0:
             raise EnvelopeError(f"clock must be a non-negative int, got {self.clock!r}")
         object.__setattr__(self, "clock", int(self.clock))
         if self.payload_type not in PAYLOAD_TYPES:
-            raise EnvelopeError(f"payload_type must be one of {PAYLOAD_TYPES}, got {self.payload_type!r}")
+            raise EnvelopeError(
+                f"payload_type must be one of {PAYLOAD_TYPES}, got {self.payload_type!r}"
+            )
         if not isinstance(self.payload_encoding, dict):
             raise EnvelopeError("payload_encoding must be a dict")
         if self.manifest is not None and not isinstance(self.manifest, dict):
@@ -118,21 +148,27 @@ class Envelope:
         try:
             canonical_json(self.payload_encoding)
         except (TypeError, ValueError) as exc:
-            raise EnvelopeError(f"payload_encoding is not JSON-serializable: {exc}") from exc
+            raise EnvelopeError(
+                f"payload_encoding is not JSON-serializable: {exc}"
+            ) from exc
 
         self._check_payload()
 
     def _check_payload(self) -> None:
         payload = self.payload
         if isinstance(payload, np.ndarray):
-            raise EnvelopeError("Arrays are never inlined in envelopes; use protocol.codecs "
-                                "(codes) or a TensorStore (latent_ref)")
+            raise EnvelopeError(
+                "Arrays are never inlined in envelopes; use protocol.codecs "
+                "(codes) or a TensorStore (latent_ref)"
+            )
 
         if self.payload_type == "json":
             try:
                 canonical_json(payload)
             except (TypeError, ValueError) as exc:
-                raise EnvelopeError(f"json payload is not JSON-serializable: {exc}") from exc
+                raise EnvelopeError(
+                    f"json payload is not JSON-serializable: {exc}"
+                ) from exc
 
         elif self.payload_type == "codes":
             if isinstance(payload, (str, bytes)) or not isinstance(payload, Sequence):
@@ -140,29 +176,49 @@ class Envelope:
             if not all(_is_int(symbol) for symbol in payload):
                 raise EnvelopeError("codes payload must contain only ints")
             symbols = tuple(int(symbol) for symbol in payload)
+            for size_key in ("V", "L"):
+                size = self.payload_encoding.get(size_key)
+                if size is not None and (not _is_int(size) or size < 0):
+                    raise EnvelopeError(
+                        f"payload_encoding[{size_key!r}] must be a non-negative int"
+                    )
             vocab_size = self.payload_encoding.get("V")
             length = self.payload_encoding.get("L")
             if vocab_size is not None and any(not 0 <= s < vocab_size for s in symbols):
-                raise EnvelopeError(f"codes payload has symbols outside [0, {vocab_size})")
+                raise EnvelopeError(
+                    f"codes payload has symbols outside [0, {vocab_size})"
+                )
             if length is not None and len(symbols) != length:
-                raise EnvelopeError(f"codes payload has {len(symbols)} symbols, encoding says L={length}")
+                raise EnvelopeError(
+                    f"codes payload has {len(symbols)} symbols, encoding says L={length}"
+                )
             object.__setattr__(self, "payload", symbols)
 
         else:  # latent_ref
-            if not isinstance(payload, Mapping) or any(key not in payload for key in LATENT_REF_KEYS):
-                raise EnvelopeError(f"latent_ref payload must be a mapping with keys {LATENT_REF_KEYS}")
+            if not isinstance(payload, Mapping) or any(
+                key not in payload for key in LATENT_REF_KEYS
+            ):
+                raise EnvelopeError(
+                    f"latent_ref payload must be a mapping with keys {LATENT_REF_KEYS}"
+                )
             ref = dict(payload)
             try:
                 canonical_json(ref)
             except (TypeError, ValueError) as exc:
-                raise EnvelopeError(f"latent_ref payload is not JSON-serializable: {exc}") from exc
+                raise EnvelopeError(
+                    f"latent_ref payload is not JSON-serializable: {exc}"
+                ) from exc
             object.__setattr__(self, "payload", ref)
+
+    def __hash__(self) -> int:
+        # Payloads and encodings are dicts, so hash on the (unique) message id
+        return hash(self.msg_id)
 
     # ------------------------------------------------------------------ serialization
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         """JSON-compatible dict (``manifest`` is included only when present)."""
-        data: Dict[str, Any] = {
+        data: dict[str, Any] = {
             "v": self.v,
             "msg_id": self.msg_id,
             "trace_id": self.trace_id,
@@ -173,7 +229,9 @@ class Envelope:
             "clock": self.clock,
             "payload_type": self.payload_type,
             "payload_encoding": self.payload_encoding,
-            "payload": list(self.payload) if self.payload_type == "codes" else self.payload,
+            "payload": (
+                list(self.payload) if self.payload_type == "codes" else self.payload
+            ),
         }
         if self.manifest is not None:
             data["manifest"] = self.manifest
@@ -190,7 +248,7 @@ class Envelope:
             raise EnvelopeError(f"Envelope dict has unknown fields {unknown}")
         return cls(
             sender=data["sender"],
-            recipients=tuple(data["recipients"]),
+            recipients=data["recipients"],
             payload_type=data["payload_type"],
             payload=data["payload"],
             payload_encoding=dict(data["payload_encoding"]),
@@ -200,7 +258,9 @@ class Envelope:
             clock=data["clock"],
             msg_id=data["msg_id"],
             v=data["v"],
-            manifest=dict(data["manifest"]) if data.get("manifest") is not None else None,
+            manifest=(
+                dict(data["manifest"]) if data.get("manifest") is not None else None
+            ),
         )
 
     def to_json(self) -> str:
@@ -219,14 +279,19 @@ class Envelope:
         """Whether a signature manifest is attached (it may still be invalid)."""
         return self.manifest is not None
 
-    def with_manifest(self, manifest: Optional[Dict[str, Any]]) -> "Envelope":
+    def with_manifest(self, manifest: Optional[dict[str, Any]]) -> "Envelope":
         """Copy of this envelope with the given (or no) signature manifest."""
         return replace(self, manifest=manifest)
 
-    def reply(self, sender: str, payload: Any = None, payload_type: str = "json",
-              recipients: Optional[Union[str, Sequence[str]]] = None,
-              payload_encoding: Optional[Dict[str, Any]] = None,
-              clock: Optional[int] = None) -> "Envelope":
+    def reply(
+        self,
+        sender: str,
+        payload: Any = None,
+        payload_type: str = "json",
+        recipients: Optional[Union[str, Sequence[str]]] = None,
+        payload_encoding: Optional[dict[str, Any]] = None,
+        clock: Optional[int] = None,
+    ) -> "Envelope":
         """New envelope answering this one.
 
         Keeps ``task_id`` and ``trace_id``, sets ``parent_id`` to this message, and by
@@ -234,7 +299,7 @@ class Envelope:
         """
         return Envelope(
             sender=sender,
-            recipients=(self.sender,) if recipients is None else recipients,
+            recipients=as_recipients(self.sender if recipients is None else recipients),
             payload_type=payload_type,
             payload=payload,
             payload_encoding=dict(payload_encoding or {}),

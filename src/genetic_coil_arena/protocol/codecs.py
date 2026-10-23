@@ -14,7 +14,8 @@ addressed to that receiver alone. Every envelope of episode ``b`` shares its
 ``task_id``/``trace_id``/``parent_id`` entry.
 """
 
-from typing import Any, Dict, List, Optional, Sequence
+from collections.abc import Sequence
+from typing import Any, Optional
 
 import numpy as np
 
@@ -25,43 +26,63 @@ CODEC_VERSION = 1
 CODES_CODEC = "codes"
 VECTOR_CODEC = "vector"
 
-EnvelopeBatch = List[List[Envelope]]
+EnvelopeBatch = list[list[Envelope]]
 
 
-def codes_encoding(vocab_size: int, length: int) -> Dict[str, Any]:
+def codes_encoding(vocab_size: int, length: int) -> dict[str, Any]:
     """payload_encoding for discrete messages of ``length`` symbols from a vocabulary of ``vocab_size``."""
-    return {"codec": CODES_CODEC, "codec_version": CODEC_VERSION, "V": int(vocab_size), "L": int(length)}
+    return {
+        "codec": CODES_CODEC,
+        "codec_version": CODEC_VERSION,
+        "V": int(vocab_size),
+        "L": int(length),
+    }
 
 
-def vector_encoding(dim: int) -> Dict[str, Any]:
+def vector_encoding(dim: int) -> dict[str, Any]:
     """payload_encoding for continuous messages of dimension ``dim``."""
-    return {"codec": VECTOR_CODEC, "codec_version": CODEC_VERSION, "D": int(dim), "dtype": "float32"}
+    return {
+        "codec": VECTOR_CODEC,
+        "codec_version": CODEC_VERSION,
+        "D": int(dim),
+        "dtype": "float32",
+    }
 
 
-def _per_episode(values: Optional[Sequence[Optional[str]]], batch_size: int, name: str,
-                 default: Any) -> List[Optional[str]]:
+def _per_episode(
+    values: Optional[Sequence[Optional[str]]], batch_size: int, name: str, default: Any
+) -> list[Optional[str]]:
     if values is None:
         return [default() if callable(default) else default for _ in range(batch_size)]
     values = list(values)
     if len(values) != batch_size:
-        raise ValueError(f"{name} has {len(values)} entries, expected one per episode ({batch_size})")
+        raise ValueError(
+            f"{name} has {len(values)} entries, expected one per episode ({batch_size})"
+        )
     return values
 
 
-def _check_recipients(recipients: Sequence[str], num_receivers: int) -> List[str]:
+def _check_recipients(recipients: Sequence[str], num_receivers: int) -> list[str]:
     recipients = list(recipients)
     if len(recipients) != num_receivers:
-        raise ValueError(f"Got {len(recipients)} recipients for {num_receivers} receivers")
+        raise ValueError(
+            f"Got {len(recipients)} recipients for {num_receivers} receivers"
+        )
     if len(set(recipients)) != len(recipients):
         raise ValueError("recipients must be unique")
     return recipients
 
 
-def codes_to_envelopes(codes: np.ndarray, vocab_size: int, sender: str, recipients: Sequence[str],
-                       task_ids: Optional[Sequence[Optional[str]]] = None,
-                       trace_ids: Optional[Sequence[str]] = None,
-                       parent_ids: Optional[Sequence[Optional[str]]] = None,
-                       clock: int = 0) -> EnvelopeBatch:
+def codes_to_envelopes(
+    codes: np.ndarray,
+    vocab_size: int,
+    sender: str,
+    recipients: Sequence[str],
+    task_ids: Optional[Sequence[Optional[str]]] = None,
+    trace_ids: Optional[Sequence[str]] = None,
+    parent_ids: Optional[Sequence[Optional[str]]] = None,
+    clock: int = 0,
+) -> EnvelopeBatch:
     """Turn a (B, R, L) array of symbols into a [B][R] batch of ``codes`` envelopes.
 
     Args:
@@ -88,29 +109,41 @@ def codes_to_envelopes(codes: np.ndarray, vocab_size: int, sender: str, recipien
         raise ValueError(f"codes must lie in [0, {vocab_size})")
 
     batch_size, num_receivers, length = arr.shape
-    recipients = _check_recipients(recipients, num_receivers)
-    task_ids = _per_episode(task_ids, batch_size, "task_ids", None)
-    trace_ids = _per_episode(trace_ids, batch_size, "trace_ids", new_id)
-    parent_ids = _per_episode(parent_ids, batch_size, "parent_ids", None)
+    names = _check_recipients(recipients, num_receivers)
+    tasks = _per_episode(task_ids, batch_size, "task_ids", None)
+    traces = [
+        t or new_id() for t in _per_episode(trace_ids, batch_size, "trace_ids", None)
+    ]
+    parents = _per_episode(parent_ids, batch_size, "parent_ids", None)
     encoding = codes_encoding(vocab_size, length)
     rows = arr.astype(np.int64).tolist()
 
     return [
         [
-            Envelope(sender=sender, recipients=(recipients[r],), payload_type="codes",
-                     payload=tuple(rows[b][r]), payload_encoding=dict(encoding),
-                     task_id=task_ids[b], trace_id=trace_ids[b], parent_id=parent_ids[b],
-                     clock=clock)
+            Envelope(
+                sender=sender,
+                recipients=(names[r],),
+                payload_type="codes",
+                payload=tuple(rows[b][r]),
+                payload_encoding=dict(encoding),
+                task_id=tasks[b],
+                trace_id=traces[b],
+                parent_id=parents[b],
+                clock=clock,
+            )
             for r in range(num_receivers)
         ]
         for b in range(batch_size)
     ]
 
 
-def _check_batch(envelopes: Sequence[Sequence[Envelope]],
-                 recipients: Optional[Sequence[str]]) -> int:
+def _check_batch(
+    envelopes: Sequence[Sequence[Envelope]], recipients: Optional[Sequence[str]]
+) -> int:
     if not envelopes or not envelopes[0]:
-        raise ValueError("envelope batch must have at least one episode and one receiver")
+        raise ValueError(
+            "envelope batch must have at least one episode and one receiver"
+        )
     num_receivers = len(envelopes[0])
     if any(len(row) != num_receivers for row in envelopes):
         raise ValueError("every episode must have the same number of receivers")
@@ -119,24 +152,33 @@ def _check_batch(envelopes: Sequence[Sequence[Envelope]],
         for row in envelopes:
             for r, envelope in enumerate(row):
                 if envelope.recipients != (recipients[r],):
-                    raise ValueError(f"Envelope {envelope.msg_id} is addressed to "
-                                     f"{envelope.recipients}, expected ({recipients[r]!r},)")
+                    raise ValueError(
+                        f"Envelope {envelope.msg_id} is addressed to "
+                        f"{envelope.recipients}, expected ({recipients[r]!r},)"
+                    )
     return num_receivers
 
 
 def _check_encoding(envelope: Envelope, payload_type: str, codec: str) -> None:
     if envelope.payload_type != payload_type:
-        raise ValueError(f"Envelope {envelope.msg_id} has payload_type {envelope.payload_type!r}, "
-                         f"expected {payload_type!r}")
+        raise ValueError(
+            f"Envelope {envelope.msg_id} has payload_type {envelope.payload_type!r}, "
+            f"expected {payload_type!r}"
+        )
     encoding = envelope.payload_encoding
     if encoding.get("codec") != codec:
-        raise ValueError(f"Envelope {envelope.msg_id} uses codec {encoding.get('codec')!r}, expected {codec!r}")
+        raise ValueError(
+            f"Envelope {envelope.msg_id} uses codec {encoding.get('codec')!r}, expected {codec!r}"
+        )
     if encoding.get("codec_version") != CODEC_VERSION:
-        raise ValueError(f"Unsupported {codec} codec version {encoding.get('codec_version')!r}")
+        raise ValueError(
+            f"Unsupported {codec} codec version {encoding.get('codec_version')!r}"
+        )
 
 
-def envelopes_to_codes(envelopes: Sequence[Sequence[Envelope]],
-                       recipients: Optional[Sequence[str]] = None) -> np.ndarray:
+def envelopes_to_codes(
+    envelopes: Sequence[Sequence[Envelope]], recipients: Optional[Sequence[str]] = None
+) -> np.ndarray:
     """Inverse of :func:`codes_to_envelopes`.
 
     Args:
@@ -155,18 +197,25 @@ def envelopes_to_codes(envelopes: Sequence[Sequence[Envelope]],
     for b, row in enumerate(envelopes):
         for r, envelope in enumerate(row):
             _check_encoding(envelope, "codes", CODES_CODEC)
-            if envelope.payload_encoding["V"] != vocab_size or envelope.payload_encoding["L"] != length:
+            if (
+                envelope.payload_encoding["V"] != vocab_size
+                or envelope.payload_encoding["L"] != length
+            ):
                 raise ValueError("all envelopes in a batch must share V and L")
             codes[b, r] = envelope.payload
     return codes
 
 
-def vectors_to_envelopes(vectors: np.ndarray, store: TensorStore, sender: str,
-                         recipients: Sequence[str],
-                         task_ids: Optional[Sequence[Optional[str]]] = None,
-                         trace_ids: Optional[Sequence[str]] = None,
-                         parent_ids: Optional[Sequence[Optional[str]]] = None,
-                         clock: int = 0) -> EnvelopeBatch:
+def vectors_to_envelopes(
+    vectors: np.ndarray,
+    store: TensorStore,
+    sender: str,
+    recipients: Sequence[str],
+    task_ids: Optional[Sequence[Optional[str]]] = None,
+    trace_ids: Optional[Sequence[str]] = None,
+    parent_ids: Optional[Sequence[Optional[str]]] = None,
+    clock: int = 0,
+) -> EnvelopeBatch:
     """Store each (B, R, D) message vector and wrap its reference in a ``latent_ref`` envelope.
 
     Args:
@@ -187,27 +236,39 @@ def vectors_to_envelopes(vectors: np.ndarray, store: TensorStore, sender: str,
         raise ValueError("vectors must be finite")
 
     batch_size, num_receivers, dim = arr.shape
-    recipients = _check_recipients(recipients, num_receivers)
-    task_ids = _per_episode(task_ids, batch_size, "task_ids", None)
-    trace_ids = _per_episode(trace_ids, batch_size, "trace_ids", new_id)
-    parent_ids = _per_episode(parent_ids, batch_size, "parent_ids", None)
+    names = _check_recipients(recipients, num_receivers)
+    tasks = _per_episode(task_ids, batch_size, "task_ids", None)
+    traces = [
+        t or new_id() for t in _per_episode(trace_ids, batch_size, "trace_ids", None)
+    ]
+    parents = _per_episode(parent_ids, batch_size, "parent_ids", None)
     encoding = vector_encoding(dim)
 
     return [
         [
-            Envelope(sender=sender, recipients=(recipients[r],), payload_type="latent_ref",
-                     payload=store.put(arr[b, r]), payload_encoding=dict(encoding),
-                     task_id=task_ids[b], trace_id=trace_ids[b], parent_id=parent_ids[b],
-                     clock=clock)
+            Envelope(
+                sender=sender,
+                recipients=(names[r],),
+                payload_type="latent_ref",
+                payload=store.put(arr[b, r]),
+                payload_encoding=dict(encoding),
+                task_id=tasks[b],
+                trace_id=traces[b],
+                parent_id=parents[b],
+                clock=clock,
+            )
             for r in range(num_receivers)
         ]
         for b in range(batch_size)
     ]
 
 
-def envelopes_to_vectors(envelopes: Sequence[Sequence[Envelope]], store: TensorStore,
-                         recipients: Optional[Sequence[str]] = None,
-                         verify: bool = False) -> np.ndarray:
+def envelopes_to_vectors(
+    envelopes: Sequence[Sequence[Envelope]],
+    store: TensorStore,
+    recipients: Optional[Sequence[str]] = None,
+    verify: bool = False,
+) -> np.ndarray:
     """Inverse of :func:`vectors_to_envelopes`.
 
     Args:
@@ -232,6 +293,8 @@ def envelopes_to_vectors(envelopes: Sequence[Sequence[Envelope]], store: TensorS
                 raise ValueError("all envelopes in a batch must share D")
             tensor = store.get(envelope.payload, verify=verify)
             if tensor.shape != (dim,):
-                raise ValueError(f"Referenced tensor has shape {tensor.shape}, expected ({dim},)")
+                raise ValueError(
+                    f"Referenced tensor has shape {tensor.shape}, expected ({dim},)"
+                )
             vectors[b, r] = tensor
     return vectors

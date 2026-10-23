@@ -14,7 +14,8 @@ Manifest format::
 
 import hashlib
 import hmac
-from typing import Any, Dict, Mapping, Optional, Union
+from collections.abc import Mapping
+from typing import Any, Optional, Union
 
 from .envelope import Envelope, canonical_json
 from .tensor_store import TensorStore, tensor_digest
@@ -38,8 +39,20 @@ def _signed_bytes(envelope: Envelope, key_id: str, digest: str) -> bytes:
     header = envelope.to_dict()
     header.pop("payload")
     header.pop("manifest", None)
-    body = {"alg": MAC_ALGORITHM, "key_id": key_id, "header": header, "payload_sha256": digest}
+    body = {
+        "alg": MAC_ALGORITHM,
+        "key_id": key_id,
+        "header": header,
+        "payload_sha256": digest,
+    }
     return canonical_json(body).encode("utf-8")
+
+
+def _same(expected: str, claimed: Any) -> bool:
+    """Constant-time comparison that tolerates non-string or non-ASCII claims."""
+    if not isinstance(claimed, str):
+        return False
+    return hmac.compare_digest(expected.encode("utf-8"), claimed.encode("utf-8"))
 
 
 def sign(envelope: Envelope, key: bytes, key_id: str = "default") -> Envelope:
@@ -53,14 +66,21 @@ def sign(envelope: Envelope, key: bytes, key_id: str = "default") -> Envelope:
     if not key:
         raise ValueError("signing key must be non-empty")
     digest = payload_digest(envelope)
-    mac = hmac.new(key, _signed_bytes(envelope, key_id, digest), hashlib.sha256).hexdigest()
-    manifest: Dict[str, Any] = {"alg": MAC_ALGORITHM, "key_id": key_id,
-                                "payload_sha256": digest, "mac": mac}
+    mac = hmac.new(
+        key, _signed_bytes(envelope, key_id, digest), hashlib.sha256
+    ).hexdigest()
+    manifest: dict[str, Any] = {
+        "alg": MAC_ALGORITHM,
+        "key_id": key_id,
+        "payload_sha256": digest,
+        "mac": mac,
+    }
     return envelope.with_manifest(manifest)
 
 
-def check_signature(envelope: Envelope, keys: Keys,
-                    store: Optional[TensorStore] = None) -> Optional[str]:
+def check_signature(
+    envelope: Envelope, keys: Keys, store: Optional[TensorStore] = None
+) -> Optional[str]:
     """Verify an envelope's manifest.
 
     Args:
@@ -77,18 +97,22 @@ def check_signature(envelope: Envelope, keys: Keys,
     if manifest.get("alg") != MAC_ALGORITHM:
         return f"unsupported algorithm {manifest.get('alg')!r}"
     key_id = manifest.get("key_id")
+    if not isinstance(key_id, str):
+        return "manifest has no key id"
     if isinstance(keys, (bytes, bytearray)):
         key: Optional[bytes] = bytes(keys)
     else:
-        key = keys.get(key_id) if isinstance(key_id, str) else None
+        key = keys.get(key_id)
     if not key:
         return f"unknown key id {key_id!r}"
 
     digest = payload_digest(envelope)
-    if not hmac.compare_digest(digest, str(manifest.get("payload_sha256", ""))):
+    if not _same(digest, manifest.get("payload_sha256")):
         return "payload digest mismatch"
-    expected = hmac.new(key, _signed_bytes(envelope, key_id, digest), hashlib.sha256).hexdigest()
-    if not hmac.compare_digest(expected, str(manifest.get("mac", ""))):
+    expected = hmac.new(
+        key, _signed_bytes(envelope, key_id, digest), hashlib.sha256
+    ).hexdigest()
+    if not _same(expected, manifest.get("mac")):
         return "bad signature"
 
     if store is not None and envelope.payload_type == "latent_ref":
@@ -106,9 +130,13 @@ def verify(envelope: Envelope, keys: Keys, store: Optional[TensorStore] = None) 
     return check_signature(envelope, keys, store) is None
 
 
-def require_valid(envelope: Envelope, keys: Keys, store: Optional[TensorStore] = None) -> Envelope:
+def require_valid(
+    envelope: Envelope, keys: Keys, store: Optional[TensorStore] = None
+) -> Envelope:
     """Return the envelope if valid, else raise :class:`SignatureError`."""
     reason = check_signature(envelope, keys, store)
     if reason is not None:
-        raise SignatureError(f"Envelope {envelope.msg_id} from {envelope.sender!r}: {reason}")
+        raise SignatureError(
+            f"Envelope {envelope.msg_id} from {envelope.sender!r}: {reason}"
+        )
     return envelope
