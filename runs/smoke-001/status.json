@@ -1,0 +1,13 @@
+{
+  "id": "smoke-001",
+  "commit": "eb7e44b896dd607c2a168b5369e08716b477dbd2",
+  "queued_args": [
+    "scripts/gpu_smoke.py"
+  ],
+  "state": "running",
+  "started_at": "2026-10-23T01:50:36+00:00",
+  "updated_at": "2026-10-23T01:50:36+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 1073 MiB, 12282 MiB, 38",
+  "host": "PC"
+}

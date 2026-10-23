@@ -1,0 +1,8 @@
+{
+  "id": "smoke-001",
+  "commit": "eb7e44b896dd607c2a168b5369e08716b477dbd2",
+  "args": [
+    "scripts/gpu_smoke.py"
+  ],
+  "timeout_min": 15
+}
