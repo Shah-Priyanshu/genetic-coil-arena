@@ -1,0 +1,8 @@
+{
+  "id": "r6-c-r3",
+  "commit": "dc65462811bea8d22be03953179a4af52a59f469",
+  "args": ["scripts/learned_protocol.py", "--scale", "gpu", "--radii", "3",
+           "--generations", "2000", "--episodes-per-member", "8", "--workers", "20"],
+  "timeout_min": 330,
+  "outputs": ["docs/results"]
+}
