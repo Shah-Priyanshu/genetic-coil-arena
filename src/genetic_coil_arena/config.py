@@ -12,7 +12,14 @@ class GameConfig:
     
     board_size: int = 32
     observation_radius: int = 5  # 11x11 window
-    max_steps: int = 500
+    # Episode cap, extended by 2 steps per body segment. At 500 a greedy food-seeker
+    # times out in 58% of episodes (a ceiling); at 2000 it dies of its own mistakes first.
+    max_steps: int = 2000
+    # Die after this many steps without food (0 disables). Without it every policy
+    # survives to max_steps on the torus and survival swamps food in the fitness.
+    # The farthest food on a 32x32 torus is 32 steps away, so 100 leaves ~3x slack.
+    starvation_steps: int = 100
+    walls: bool = False  # True: leaving the board kills; False: board wraps (torus)
     food_reward: float = 1.0
     step_reward: float = 0.1
     death_penalty: float = -2.0
@@ -50,6 +57,9 @@ class EvaluationConfig:
     parallel_processes: int = 8
     batch_size: int = 16
     deterministic_seed: Optional[int] = None
+    # "food": food eaten, survival only breaks ties; "legacy": score + 0.1 * steps;
+    # "return": sum of the game rewards (food_reward, step_reward, death_penalty)
+    fitness_function: str = "food"
     
 
 @dataclass

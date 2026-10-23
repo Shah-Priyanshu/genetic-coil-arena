@@ -11,9 +11,11 @@ This module extends the base evolution arena with:
 
 import logging
 import random
+from dataclasses import asdict
 from pathlib import Path
 from typing import Optional, Dict, Any, List, Callable
 import numpy as np
+import pandas as pd
 
 from genetic_coil_arena.config import Config
 from genetic_coil_arena.evo.arena import EvolutionArena
@@ -131,18 +133,18 @@ class PersistentEvolutionArena(EvolutionArena):
             'python_state': random.getstate()
         }
         
-        # Capture additional evolution state
+        # Capture additional evolution state (restored onto the arena on resume)
         evolution_state = {}
-        for attr in ['elite_size', 'mutation_rate', 'crossover_rate']:
+        for attr in ['generation_stats', 'best_fitness_history', 'random_baseline_fitness']:
             if hasattr(self, attr):
                 evolution_state[attr] = getattr(self, attr)
-        
+
         # Update metadata
         if self.metadata:
             self.metadata.total_generations = self.generation
             self.metadata.total_evaluations = len(self.fitness_history) * len(self.population)
             if self.hall_of_fame:
-                self.metadata.best_fitness = max(ind.fitness.values[0] for ind in self.hall_of_fame)
+                self.metadata.best_fitness = max(ind.fitness for ind in self.hall_of_fame)
         
         # Create checkpoint state
         state = CheckpointState(
@@ -187,8 +189,24 @@ class PersistentEvolutionArena(EvolutionArena):
                 distance = np.linalg.norm(weights1 - weights2)
                 distances.append(distance)
         
-        return np.mean(distances) if distances else 0.0
-    
+        return float(np.mean(distances)) if distances else 0.0
+
+    def evolve_generation(self) -> List[float]:
+        """Evaluate the current population, then replace it with its offspring.
+
+        Returns:
+            Fitness of each genome in the evaluated population
+        """
+        if not self.population:
+            self.population = self.initialize_population()
+
+        self.evaluate_generation(self.generation, self.population)
+        population_fitness = [genome.fitness for genome in self.population]
+
+        self.population = self.next_generation(self.population)
+        self.generation += 1
+        return population_fitness
+
     def evolve(self, generations: int, verbose: bool = True) -> Dict[str, Any]:
         """Run evolution with persistence and monitoring.
         
@@ -205,9 +223,20 @@ class PersistentEvolutionArena(EvolutionArena):
         if verbose:
             logger.info(f"Starting evolution from generation {start_generation} "
                        f"to {target_generation}")
-        
+
+        if not self.population:
+            self.population = self.initialize_population()
+        if self.random_baseline_fitness is None:
+            self.random_baseline_fitness = self.compute_random_baseline()
+        if verbose:
+            print(f"Fitness function: {self.config.evaluation.fitness_function} "
+                  f"(random policy baseline: {self.random_baseline_fitness:.3f})")
+
         try:
             for gen in range(generations):
+                if verbose:
+                    print(f"\n=== Generation {self.generation + 1}/{target_generation} ===")
+
                 # Run one generation
                 population_fitness = self.evolve_generation()
                 
@@ -250,7 +279,10 @@ class PersistentEvolutionArena(EvolutionArena):
                 self._save_checkpoint()
                 logger.info("Saved emergency checkpoint")
             raise
-        
+
+        finally:
+            self.fitness_evaluator.close()
+
         # Final checkpoint and results
         if self.auto_checkpoint:
             self._save_checkpoint()
@@ -269,7 +301,9 @@ class PersistentEvolutionArena(EvolutionArena):
             'experiment_id': self.experiment_id,
             'total_generations': self.generation,
             'total_evaluations': len(self.fitness_history) * len(self.population),
-            'config': self.config.__dict__,
+            'config': ExperimentMetadata._convert_paths_to_strings(asdict(self.config)),
+            'fitness_function': self.config.evaluation.fitness_function,
+            'random_baseline_fitness': self.random_baseline_fitness,
             'fitness_history': self.fitness_history,
             'diversity_history': self.diversity_history,
         }
@@ -284,9 +318,8 @@ class PersistentEvolutionArena(EvolutionArena):
             })
         
         if self.hall_of_fame:
-            results['hall_of_fame_fitness'] = [ind.fitness.values[0] 
-                                              for ind in self.hall_of_fame]
-        
+            results['hall_of_fame_fitness'] = [ind.fitness for ind in self.hall_of_fame]
+
         return results
     
     def _save_final_results(self, results: Dict[str, Any]):
@@ -294,7 +327,12 @@ class PersistentEvolutionArena(EvolutionArena):
         if self.experiment_path:
             # Save detailed results
             self.persistence.save_results(self.experiment_path, results)
-            
+
+            # Per-generation curves, in the layout `genetic-coil analyze` reads
+            pd.DataFrame([asdict(stats) for stats in self.generation_stats]).to_csv(
+                self.experiment_path / "generation_stats.csv", index=False
+            )
+
             # Save best agents
             if self.hall_of_fame:
                 best_genome = self.hall_of_fame[0]

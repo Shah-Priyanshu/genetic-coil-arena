@@ -9,6 +9,7 @@ from datetime import datetime
 
 from ..config import Config
 from ..evo.arena import EvolutionArena
+from ..evo.baselines import BENCHMARK_SEED_OFFSET
 from ..snake_core.agent import SnakeAgent, get_observation_size
 # Add persistence imports
 from ..persistence.arena import PersistentEvolutionArena, list_experiments
@@ -60,13 +61,18 @@ def evolve(
     """Run genetic algorithm evolution to train snake agents with persistence."""
     
     # Load configuration
+    experiment_config = Path(base_path) / experiment_id / "config.yaml" if experiment_id else None
     if config_file and config_file.exists():
         config = Config.from_yaml(config_file)
         typer.echo(f"Loaded configuration from {config_file}")
+    elif experiment_config and experiment_config.exists():
+        # Resuming: keep the configuration the experiment was started with
+        config = Config.from_yaml(experiment_config)
+        typer.echo(f"Loaded configuration from {experiment_config}")
     else:
         config = Config()
         typer.echo("Using default configuration")
-    
+
     # Override config with CLI arguments
     if generations is not None:
         config.evolution.generations = generations
@@ -113,8 +119,12 @@ def evolve(
         typer.echo(f"Results saved to: {arena.experiment_path}")
         
         if 'final_best_fitness' in result:
-            typer.echo(f"Best fitness: {result['final_best_fitness']:.3f}")
-        
+            typer.echo(f"Best fitness: {result['final_best_fitness']:.3f} "
+                       f"(random policy: {result['random_baseline_fitness']:.3f})")
+        typer.echo(f"Benchmark the best agent with: genetic-coil benchmark "
+                   f"--config {arena.experiment_path / 'config.yaml'} "
+                   f"--agent {arena.experiment_path / 'best_agent.pkl'}")
+
     except KeyboardInterrupt:
         typer.echo("\n⚠️  Evolution interrupted by user")
         typer.echo(f"Progress saved for experiment: {arena.experiment_id}")
@@ -188,9 +198,9 @@ Total Improvement: {improvement:.4f}
 PERFORMANCE METRICS
 -------------------
 Final Mean Fitness: {df['mean_fitness'].iloc[-1]:.4f}
+Final Best / Mean Food: {df['best_score'].iloc[-1]:.2f} / {df['mean_score'].iloc[-1]:.2f}
 Final Success Rate: {df['success_rate'].iloc[-1]:.1%}
 Final Diversity: {df['diversity'].iloc[-1]:.4f}
-Relative to Baseline: {df['relative_to_baseline'].iloc[-1]:.2f}x
 
 TRENDS
 ------
@@ -235,11 +245,13 @@ Diversity Trend: {"Decreasing" if df['diversity'].diff().tail(5).mean() < 0 else
             axes[1, 0].set_ylabel('Diversity')
             axes[1, 0].grid(True, alpha=0.3)
             
-            # Performance relative to baseline
-            axes[1, 1].plot(df['generation'], df['relative_to_baseline'], 'c-', linewidth=2)
-            axes[1, 1].set_title('Performance vs Baseline')
+            # Food eaten per episode
+            axes[1, 1].plot(df['generation'], df['best_score'], 'c-', label='Best', linewidth=2)
+            axes[1, 1].plot(df['generation'], df['mean_score'], 'c--', label='Mean', alpha=0.7)
+            axes[1, 1].set_title('Food Eaten per Episode')
             axes[1, 1].set_xlabel('Generation')
-            axes[1, 1].set_ylabel('Relative Performance')
+            axes[1, 1].set_ylabel('Food')
+            axes[1, 1].legend()
             axes[1, 1].grid(True, alpha=0.3)
             
             plt.tight_layout()
@@ -279,25 +291,19 @@ def visualize(
     try:
         from ..ui.viewer import GameViewer, VisualizationConfig
         from ..snake_core.game import SnakeGame
-        from ..snake_core.agent import SnakeAgent
         from ..config import load_config
-        
+        from ..analysis.benchmark import load_agent_file
+
         # Load configuration
         config = load_config(config_file) if config_file else load_config()
-        
+
         # Create game
-        game = SnakeGame(
-            board_size=config.game.board_size,
-            observation_radius=config.game.observation_radius
-        )
-        
+        game = SnakeGame.from_config(config.game)
+
         # Load agent if provided
         agent = None
         if agent_file and agent_file.exists():
-            import pickle
-            with open(agent_file, 'rb') as f:
-                genome = pickle.load(f)
-            agent = SnakeAgent.from_genome(genome, config.agent)
+            agent = load_agent_file(agent_file, config)
             typer.echo(f"🤖 Loaded agent from: {agent_file}")
         else:
             typer.echo("🎮 Manual control mode (use arrow keys or WASD)")
@@ -357,7 +363,10 @@ def info() -> None:
     typer.echo(f"Board size: {config.game.board_size}x{config.game.board_size}")
     typer.echo(f"Observation window: {2*config.game.observation_radius+1}x{2*config.game.observation_radius+1}")
     typer.echo(f"Max steps per episode: {config.game.max_steps}")
-    
+    typer.echo(f"Starvation after: {config.game.starvation_steps or 'disabled'} steps without food")
+    typer.echo(f"Board edges: {'walls' if config.game.walls else 'wrap (torus)'}")
+    typer.echo(f"Fitness function: {config.evaluation.fitness_function}")
+
     # Evolution configuration  
     typer.echo(f"Population size: {config.evolution.population_size}")
     typer.echo(f"Tournament size: {config.evolution.tournament_size}")
@@ -642,6 +651,87 @@ def best(
     except Exception as e:
         typer.echo(f"❌ Error accessing best agent: {e}")
         raise typer.Exit(1)
+
+
+@app.command()
+def benchmark(
+    config_file: Optional[Path] = typer.Option(None, "--config", "-c", help="Configuration YAML file"),
+    episodes: int = typer.Option(100, "--episodes", "-n", help="Episodes per policy (held-out seeds)"),
+    agent_files: List[Path] = typer.Option(
+        [], "--agent", "-a",
+        help="Saved agent, genome or hall-of-fame pickle (can be used multiple times)"
+    ),
+    baselines: bool = typer.Option(True, "--baselines/--no-baselines", help="Include random/straight/greedy"),
+    output_file: Optional[Path] = typer.Option(None, "--output", "-o", help="Write results to CSV"),
+    seed_offset: int = typer.Option(BENCHMARK_SEED_OFFSET, "--seed-offset", help="First episode seed"),
+) -> None:
+    """Score baselines and saved agents on the same held-out seeds (mean ± 95% CI)."""
+
+    from ..config import load_config
+    from ..analysis.benchmark import (
+        baseline_policies, benchmark_policies, format_benchmark_table,
+        load_agent_file, saved_agent_factory,
+    )
+
+    config = load_config(config_file)
+    policies = baseline_policies() if baselines else {}
+    for agent_file in agent_files:
+        try:
+            agent = load_agent_file(agent_file, config)
+        except (OSError, ValueError) as e:
+            typer.echo(f"❌ Could not load {agent_file}: {e}")
+            raise typer.Exit(1)
+        policies[str(agent_file)] = saved_agent_factory(agent)
+
+    if not policies:
+        typer.echo("Nothing to benchmark: pass --agent or keep --baselines")
+        raise typer.Exit(1)
+
+    typer.echo(f"Fitness function: {config.evaluation.fitness_function}, "
+               f"starvation: {config.game.starvation_steps or 'off'}, "
+               f"{'walls' if config.game.walls else 'wrap'}, {episodes} episodes per policy")
+    results = benchmark_policies(config, policies, episodes, seed_offset)
+    typer.echo(format_benchmark_table(results))
+
+    if output_file:
+        results.to_csv(output_file, index=False)
+        typer.echo(f"📄 Results saved to: {output_file}")
+
+
+@app.command()
+def multiseed(
+    config_file: Optional[Path] = typer.Option(None, "--config", "-c", help="Configuration YAML file"),
+    seeds: int = typer.Option(3, "--seeds", "-k", help="Number of independent runs"),
+    first_seed: int = typer.Option(0, "--first-seed", help="Seed of the first run"),
+    generations: Optional[int] = typer.Option(None, "--generations", "-g", help="Generations per run"),
+    population: Optional[int] = typer.Option(None, "--population", "-p", help="Population size"),
+    parallel_processes: Optional[int] = typer.Option(None, "--processes", help="Number of parallel processes"),
+    episodes: int = typer.Option(100, "--episodes", "-n", help="Held-out episodes for the final benchmark"),
+    early_stop: bool = typer.Option(True, "--early-stop/--no-early-stop", help="Allow early stopping"),
+    output_dir: Path = typer.Option(Path("outputs/multiseed"), "--output", "-o", help="Output directory"),
+) -> None:
+    """Evolve with K seeds; write per-generation curves with 95% CIs and a final benchmark."""
+
+    from ..config import load_config
+    from ..analysis.benchmark import format_benchmark_table, run_multi_seed_evolution
+
+    config = load_config(config_file)
+    if generations is not None:
+        config.evolution.generations = generations
+    if population is not None:
+        config.evolution.population_size = population
+    if parallel_processes is not None:
+        config.evaluation.parallel_processes = parallel_processes
+    if not early_stop:
+        config.evolution.early_stop_patience = config.evolution.generations + 1
+
+    run_seeds = list(range(first_seed, first_seed + seeds))
+    typer.echo(f"Running {len(run_seeds)} seeds {run_seeds} → {output_dir}")
+    outputs = run_multi_seed_evolution(config, run_seeds, output_dir, benchmark_episodes=episodes)
+
+    typer.echo("\nFinal benchmark (held-out seeds):")
+    typer.echo(format_benchmark_table(outputs["benchmark"]))
+    typer.echo(f"\n📄 Curves: {output_dir / 'curves_ci.csv'}, benchmark: {output_dir / 'final_benchmark.csv'}")
 
 
 @app.command()

@@ -17,6 +17,8 @@ class GenomeStats:
     avg_length: float
     avg_steps: float
     success_rate: float
+    avg_return: float = 0.0  # Mean sum of game rewards per episode
+    starvation_rate: float = 0.0  # Fraction of episodes ended by starvation
 
 
 # Create DEAP fitness and individual classes (check if they already exist)
