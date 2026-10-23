@@ -60,6 +60,7 @@ dmypy.json
 # Data and outputs
 outputs/
 results/
+!docs/results/
 experiments/
 checkpoints/
 *.pkl

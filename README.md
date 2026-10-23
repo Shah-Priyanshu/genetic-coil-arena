@@ -28,6 +28,9 @@ Snake is the first lab for these questions:
   - mean ± 95% confidence intervals;
   - multi-seed evolution runs.
 - **Pygame viewer** and analysis plots.
+- **Protocol and runtime:** signed envelopes with a readable header and a payload, codecs between batched message arrays and envelopes, schema-validated GoalSpecs, and a command centre that routes goals to specialists and logs a JSONL trace (`genetic-coil protocol-demo`).
+- **CommArena evaluation harness:** mandatory baselines, multi-seed runs, message ablations and interventions, communication metrics, IQM with bootstrap CIs and Holm-corrected tests.
+- **Squad environment:** a batched, numba-compiled cooperative squad of colour-specialist snakes with scripted specialists and centres. Its need-to-talk baselines are in [docs/results/need_to_talk.md](docs/results/need_to_talk.md) (`genetic-coil squad-benchmark`).
 
 Current numbers (100 held-out seeds, food eaten per episode):
 
@@ -37,7 +40,7 @@ Current numbers (100 held-out seeds, food eaten per episode):
 | Evolved (256 × 300 generations, 3 seeds) | 0.44 ± 0.13 |
 | Greedy heuristic | 39.2 ± 3.6 |
 
-Evolution beats random but is far from greedy. Treat this as an open problem, not a solved baseline.
+Evolution beats random but is far from greedy. Treat this as an open problem, not a solved baseline. These agents were evolved before commit c63e08b fixed a mirrored (east/west) observation window, so the evolved row needs re-measuring.
 
 ## Quick start
 
@@ -49,6 +52,8 @@ genetic-coil benchmark -n 100                 # baselines, mean ± 95% CI on hel
 genetic-coil evolve -g 60 -p 128              # one evolution run (resume with -e <experiment id>)
 genetic-coil multiseed -k 3 -g 60 -p 128 --no-early-stop -o outputs/multiseed
 genetic-coil visualize                        # watch a game
+genetic-coil protocol-demo --trace trace.jsonl  # specialists coordinated by the command centre
+genetic-coil squad-benchmark -n 100           # squad need-to-talk baselines (Markdown report)
 ```
 
 On Windows, set `PYTHONUTF8=1`. The CLI prints emoji, which crashes a cp1252 console when output is piped.
@@ -56,10 +61,9 @@ On Windows, set `PYTHONUTF8=1`. The CLI prints emoji, which crashes a cp1252 con
 ## Roadmap
 
 1. **Step 0, an honest measuring stick:** done.
-2. **Cooperative squad lab:**
-   - specialist snakes that each eat one colour of food;
-   - a command centre that sees the whole board;
-   - bandwidth-limited messages, each with a readable envelope and a learned payload.
+2. **Cooperative squad lab:** in progress.
+   - done: the protocol and runtime, the CommArena evaluation harness, and the squad environment with scripted baselines (with a small window, a hand-coded 3-bit centre roughly doubles team food);
+   - next: specialist snakes that each eat one colour of food and a command centre that sees the whole board, learning bandwidth-limited messages, each with a readable envelope and a learned payload.
 3. **Translator:** natural language becomes a typed, readable GoalSpec, which the command centre turns into learned payloads. A reverse translator decodes the payloads for monitoring.
 4. **A second, non-game domain,** to prove the interfaces are task-agnostic.
 5. **Real small models** behind the same specialist interface.
@@ -68,12 +72,18 @@ On Windows, set `PYTHONUTF8=1`. The CLI prints emoji, which crashes a cp1252 con
 
 ```
 src/genetic_coil_arena/
-  snake_core/   game engine (numba) and the neural agent
+  protocol/     envelopes, signing, codecs (arrays <-> envelopes), GoalSpecs   [domain-agnostic]
+  runtime/      specialists, bus, router, command centre, trace, demo          [domain-agnostic]
+  evaluation/   CommArena harness: baselines, ablations, metrics, statistics   [domain-agnostic]
+  envs/         batched multi-agent API (base) and the squad environment (squad/)
+  snake_core/   single-snake game engine (numba) and the neural agent
   evo/          genetic operators, fitness, parallel evaluation, baselines, evolution loop
   persistence/  experiment storage, checkpoints and resume
-  analysis/     benchmark harness (confidence intervals, multi-seed runs)
+  analysis/     Snake benchmark harness, multi-seed runs, squad need-to-talk report
   cli/          the `genetic-coil` command
   ui/           pygame viewer
+scripts/        experiment scripts (need_to_talk.py)
+docs/results/   recorded results
 tests/
 ```
 

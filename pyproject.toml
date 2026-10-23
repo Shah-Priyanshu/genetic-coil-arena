@@ -35,6 +35,7 @@ dependencies = [
     "pyyaml>=6.0",
     "pygame>=2.0.0",  # For real-time visualization
     "scipy>=1.7.0",  # Confidence intervals in benchmarks
+    "jsonschema>=4",  # GoalSpec validation (protocol)
 ]
 
 [project.optional-dependencies]
@@ -46,6 +47,7 @@ dev = [
     "black>=23.0.0",
     "ruff>=0.1.0",
     "mypy>=1.0.0",
+    "types-jsonschema",
     "pre-commit>=3.0.0",
 ]
 ui = [

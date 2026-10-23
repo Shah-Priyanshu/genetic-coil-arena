@@ -16,21 +16,22 @@ from genetic_coil_arena.evaluation.stats import (
 
 
 class TestMeanCI:
-    """Student-t confidence interval; must agree with analysis.benchmark.mean_ci."""
+    """Student-t confidence interval (the one implementation in the repo)."""
 
     def test_known_values(self):
         mean, half = mean_ci([1, 2, 3, 4, 5])
         assert mean == 3.0
         assert half == pytest.approx(2.776445 * np.sqrt(2.5) / np.sqrt(5), rel=1e-5)
 
-    def test_matches_benchmark_harness(self):
+    def test_benchmark_harness_reexports_it(self):
         from genetic_coil_arena.analysis.benchmark import mean_ci as benchmark_mean_ci
 
+        assert benchmark_mean_ci is mean_ci
+
+    def test_confidence_level_widens_interval(self):
         values = np.random.default_rng(3).normal(size=17)
-        for confidence in (0.9, 0.95, 0.99):
-            assert mean_ci(values, confidence) == pytest.approx(
-                benchmark_mean_ci(values, confidence)
-            )
+        halves = [mean_ci(values, c)[1] for c in (0.9, 0.95, 0.99)]
+        assert halves == sorted(halves)
 
     def test_single_value_and_empty(self):
         assert np.isnan(mean_ci([2.0])[1])

@@ -6,13 +6,13 @@ import pickle
 import time
 from dataclasses import asdict
 from pathlib import Path
-from typing import Any, Dict, Iterable, List, Sequence, Tuple
+from typing import Any, Dict, List, Sequence
 
 import numpy as np
 import pandas as pd
-from scipy import stats as scipy_stats
 
 from ..config import Config
+from ..evaluation.stats import mean_ci  # Re-exported: analysis.benchmark.mean_ci
 from ..evo.arena import EvolutionArena
 from ..evo.baselines import (
     BASELINE_POLICIES,
@@ -32,29 +32,6 @@ CURVE_METRICS = ("best_fitness", "mean_fitness", "best_score", "mean_score",
 
 # Validation seeds pick the best hall-of-fame genome; test seeds then score it
 VALIDATION_SEED_OFFSET = BENCHMARK_SEED_OFFSET + 1_000_000
-
-
-def mean_ci(values: Iterable[float], confidence: float = 0.95) -> Tuple[float, float]:
-    """Mean and half-width of the Student-t confidence interval for the mean.
-
-    Args:
-        values: Sample values
-        confidence: Confidence level
-
-    Returns:
-        (mean, half_width); half_width is NaN for fewer than 2 values
-    """
-    arr = np.asarray(list(values), dtype=float)
-    if arr.size == 0:
-        raise ValueError("mean_ci needs at least one value")
-
-    mean = float(arr.mean())
-    if arr.size < 2:
-        return mean, float("nan")
-
-    sem = arr.std(ddof=1) / np.sqrt(arr.size)
-    t_crit = scipy_stats.t.ppf((1 + confidence) / 2, df=arr.size - 1)
-    return mean, float(t_crit * sem)
 
 
 def summarize_policy(name: str, results: List[EvaluationResult], fitness_function: str,
