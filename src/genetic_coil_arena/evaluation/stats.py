@@ -22,8 +22,7 @@ from scipy import stats as scipy_stats
 def mean_ci(values: Iterable[float], confidence: float = 0.95) -> tuple[float, float]:
     """Mean and half-width of the Student-t confidence interval for the mean.
 
-    Same definition as ``analysis.benchmark.mean_ci``; duplicated so this package does
-    not import the Snake simulator.
+    The single implementation; ``analysis.benchmark`` re-exports it.
 
     Args:
         values: Sample values

@@ -734,5 +734,49 @@ def multiseed(
     typer.echo(f"\n📄 Curves: {output_dir / 'curves_ci.csv'}, benchmark: {output_dir / 'final_benchmark.csv'}")
 
 
+@app.command("protocol-demo")
+def protocol_demo(
+    trace: Optional[Path] = typer.Option(
+        None, "--trace", help="Write the JSONL message trace to this file"
+    ),
+) -> None:
+    """Run the protocol/runtime demo: command centre, specialists, signed envelopes."""
+    from ..runtime.demo import main as demo_main
+
+    code = demo_main([str(trace)] if trace is not None else [])
+    if code != 0:
+        raise typer.Exit(code)
+
+
+@app.command("squad-benchmark")
+def squad_benchmark(
+    seeds: int = typer.Option(
+        100, "--seeds", "-n", help="Held-out episodes per setting"
+    ),
+    radii: list[int] = typer.Option(
+        [], "--radius", "-r", help="Window radius (repeatable; default 3, 5, 7)"
+    ),
+    batch: int = typer.Option(256, "--batch", help="Throughput batch size"),
+    throughput: bool = typer.Option(
+        True, "--throughput/--no-throughput", help="Measure agent-steps per second"
+    ),
+    output_file: Optional[Path] = typer.Option(
+        None, "--out", "-o", help="Write the Markdown report here"
+    ),
+) -> None:
+    """Squad need-to-talk baselines: team food with 95% CIs per radius and centre."""
+    from ..analysis.need_to_talk import RADII, run_need_to_talk
+
+    typer.echo(
+        run_need_to_talk(
+            seeds,
+            radii or RADII,
+            batch_size=batch,
+            throughput=throughput,
+            out=output_file,
+        )
+    )
+
+
 if __name__ == "__main__":
     app()
