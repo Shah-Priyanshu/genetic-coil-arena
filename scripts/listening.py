@@ -234,6 +234,28 @@ def render(
         "",
         *interpretation(results),
         "",
+        "Reading across radii:",
+        "",
+        "- The specialists listen, and only through the message. Every intervention "
+        "drops team food at every radius. The deaf control's drop is exactly 0 and "
+        "its CIC is exactly 0.",
+        "- Wrong information is worse than none. shuffle_batch, swap_receivers and "
+        "random_matched keep the message statistics but break the link to the "
+        "receiver's situation. Each of them costs more than zeroing the channel, and "
+        "each leaves the squad below the message-blind `no-comm` baseline.",
+        "- Listening matters less as the window grows. CIC and the share of actions an "
+        "intervention flips both fall from r = 3 to r = 7, because the greedy "
+        "specialist only reads the message when no own-colour food is in view.",
+        "- The centre says about 2.6 of its 3 bits. All of that is about the target: "
+        "MI(M;T) = H(M) = H(T). This holds by construction, since the code is that "
+        "target. Here MI is a check that the centre is implemented correctly against "
+        "an independent recomputation, not a discovery. A learned centre is where MI "
+        "becomes informative. The unused ~0.4 bits are the skewed code distribution, "
+        "and the 'no food' case is folded into code 0.",
+        "- p-values bottom out at 2.7e-07 because, with 20 seeds and complete "
+        "separation, that is the smallest two-sided Mann-Whitney p after Holm. The "
+        "paired CIs carry the effect sizes.",
+        "",
         "## Team food per episode",
         "",
         "Mean ± 95% t-CI over run seeds (each seed's score is the mean over its "
