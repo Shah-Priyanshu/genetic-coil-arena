@@ -1,5 +1,6 @@
 """Tests for the learned-protocol experiment (R6) and the domain-agnostic learning package."""
 
+import json
 import subprocess
 import sys
 from dataclasses import replace
@@ -273,3 +274,25 @@ def test_entropy_bonus_changes_training_only_when_on():
     np.testing.assert_array_equal(
         silent["theta_final"], train_run(SILENT, 0, TINY)["theta_final"]
     )
+
+
+def test_report_driver_saves_runs_and_resumes(tmp_path):
+    from genetic_coil_arena.experiments.learned_protocol_report import main
+
+    argv = [
+        "--scale", "smoke", "--runs", "1", "--modes", SILENT, "--generations", "1",
+        "--population", "2", "--episodes-per-member", "1", "--eval-every", "1",
+        "--eval-episodes", "2", "--workers", "1", "--cache", str(tmp_path / "cache"),
+        "--out", str(tmp_path / "lp.md"),
+    ]  # fmt: skip
+    main(argv)
+    assert sorted(p.name for p in (tmp_path / "cache").iterdir()) == [
+        "r3_silent_run0.json",
+        "r3_silent_run0.npz",
+    ]
+    first = np.load(tmp_path / "lp_params.npz")["r3_silent_run0"]
+    main(argv)  # Loaded from the cache: same parameters, no retraining
+    data = json.loads((tmp_path / "lp.json").read_text(encoding="utf-8"))
+    assert data["training"][0]["cached"] is True
+    again = np.load(tmp_path / "lp_params.npz")["r3_silent_run0"]
+    np.testing.assert_array_equal(again, first)
