@@ -182,14 +182,59 @@ def interpretation(results: dict[int, ExperimentResult]) -> list[str]:
     return out
 
 
-def min_p(results: dict[int, ExperimentResult]) -> float:
-    """Smallest Holm-corrected ablation p-value of the message-following squad."""
-    return min(
+def wrong_information(results: dict[int, ExperimentResult]) -> list[str]:
+    """Do the information-destroying ablations cost more than silence? (from the data)"""
+    misleading = ("shuffle_batch", "swap_receivers", "random_matched")
+    worse, not_worse, below = [], [], True
+    for r, res in results.items():
+        drops = {a.intervention: a for a in res.ablations if a.system == LISTENER}
+        nocomm = res.condition("no-comm").mean
+        for name in misleading:
+            target = (
+                worse
+                if drops[name].delta_mean > drops["zero"].delta_mean
+                else not_worse
+            )
+            target.append((r, name))
+            below &= drops[name].ablated.mean < nocomm
+    always = [n for n in misleading if all((r, n) in worse for r in results)]
+    exceptions = ", ".join(f"{n} at r = {r}" for r, n in not_worse)
+    text = (
+        "- Wrong information is mostly worse than none. shuffle_batch, swap_receivers "
+        "and random_matched keep the message statistics but break the link to the "
+        f"receiver's situation. {' and '.join(always) or 'None of them'} "
+        f"{'costs' if len(always) == 1 else 'cost'} more than zeroing the channel at "
+        "every radius"
+    )
+    if exceptions:
+        text += f"; the exception is {exceptions}, where the drop is no larger"
+    text += ". " + (
+        "Each of them leaves the squad below the message-blind `no-comm` baseline."
+        if below
+        else "Not all of them leave the squad below the `no-comm` baseline."
+    )
+    return [text]
+
+
+def p_value_note(results: dict[int, ExperimentResult], n_seeds: int) -> str:
+    """Why the message-following squad's ablation p-values sit where they do."""
+    ps = [
         a.p_holm
         for res in results.values()
         for a in res.ablations
         if a.system == LISTENER
+    ]
+    text = (
+        f"- p-values bottom out at {_p(min(ps))}: with {n_seeds} paired seeds that all "
+        "drop, that is the smallest two-sided Wilcoxon signed-rank p (exact, "
+        f"2 / 2^{n_seeds}) after Holm across the four interventions."
     )
+    if max(ps) > min(ps):
+        text += (
+            f" Rows up to {_p(max(ps))} are the same complete separation where tied "
+            "differences make scipy use the normal approximation."
+        )
+    return text + " The paired CIs carry the effect sizes."
 
 
 def render(
@@ -252,11 +297,8 @@ def render(
         "",
         "- The specialists listen, and only through the message. Every intervention "
         "drops team food at every radius. The deaf control's drop is exactly 0 and "
-        "its CIC is exactly 0.",
-        "- Wrong information is worse than none. shuffle_batch, swap_receivers and "
-        "random_matched keep the message statistics but break the link to the "
-        "receiver's situation. Each of them costs more than zeroing the channel, and "
-        "each leaves the squad below the message-blind `no-comm` baseline.",
+        "its CIC is 0 up to floating-point rounding (< 1e-16).",
+        *wrong_information(results),
         "- Listening matters less as the window grows. CIC and the share of actions an "
         "intervention flips both fall from r = 3 to r = 7, because the greedy "
         "specialist only reads the message when no own-colour food is in view.",
@@ -266,9 +308,7 @@ def render(
         "an independent recomputation, not a discovery. A learned centre is where MI "
         "becomes informative. The unused ~0.4 bits are the skewed code distribution, "
         "and the 'no food' case is folded into code 0.",
-        f"- p-values bottom out at {_p(min_p(results))}: with {n_seeds} paired seeds "
-        "that all drop, that is the smallest two-sided Wilcoxon signed-rank p after "
-        "Holm across the four interventions. The paired CIs carry the effect sizes.",
+        p_value_note(results, n_seeds),
         "",
         "## Team food per episode",
         "",
