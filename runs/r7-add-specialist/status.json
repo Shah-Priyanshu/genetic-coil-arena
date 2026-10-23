@@ -1,0 +1,17 @@
+{
+  "id": "r7-add-specialist",
+  "commit": "4def4e748dcb724112440c993d83bfc9f4bcfe71",
+  "queued_args": [
+    "scripts/add_specialist.py",
+    "--scale",
+    "gpu",
+    "--out",
+    "docs/results/add_specialist.md"
+  ],
+  "state": "running",
+  "started_at": "2026-10-23T17:27:18+00:00",
+  "updated_at": "2026-10-23T17:27:18+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 5 %, 472 MiB, 12282 MiB, 43",
+  "host": "PC"
+}

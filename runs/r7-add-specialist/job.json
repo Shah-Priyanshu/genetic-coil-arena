@@ -1,0 +1,15 @@
+{
+  "id": "r7-add-specialist",
+  "commit": "4def4e748dcb724112440c993d83bfc9f4bcfe71",
+  "args": [
+    "scripts/add_specialist.py",
+    "--scale",
+    "gpu",
+    "--out",
+    "docs/results/add_specialist.md"
+  ],
+  "timeout_min": 330,
+  "outputs": [
+    "docs/results"
+  ]
+}
