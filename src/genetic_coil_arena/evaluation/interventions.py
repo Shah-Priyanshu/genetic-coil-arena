@@ -13,7 +13,7 @@ receive through a ``MessageHook``.
 """
 
 from dataclasses import dataclass
-from typing import Callable, Dict, Optional, Protocol, Tuple
+from typing import Callable, Optional, Protocol
 
 import numpy as np
 
@@ -21,7 +21,7 @@ DISCRETE = "discrete"
 CONTINUOUS = "continuous"
 
 # Interventions that work for any number of receivers; used as the default ablation set
-ABLATIONS: Tuple[str, ...] = ("zero", "shuffle_batch", "random_matched")
+ABLATIONS: tuple[str, ...] = ("zero", "shuffle_batch", "random_matched")
 
 
 @dataclass(frozen=True)
@@ -35,7 +35,9 @@ class MessageSpec:
 
     def __post_init__(self) -> None:
         if self.kind not in (DISCRETE, CONTINUOUS):
-            raise ValueError(f"kind must be {DISCRETE!r} or {CONTINUOUS!r}, got {self.kind!r}")
+            raise ValueError(
+                f"kind must be {DISCRETE!r} or {CONTINUOUS!r}, got {self.kind!r}"
+            )
         if self.n_receivers < 1 or self.length < 1:
             raise ValueError("n_receivers and length must be positive")
         if self.kind == DISCRETE and (self.vocab_size is None or self.vocab_size < 1):
@@ -62,8 +64,10 @@ class MessageSpec:
         """Check shape, dtype and symbol range; returns the array unchanged."""
         arr = np.asarray(messages)
         if arr.ndim != 3 or arr.shape[1:] != (self.n_receivers, self.length):
-            raise ValueError(f"Expected messages of shape (B, {self.n_receivers}, {self.length}), "
-                             f"got {arr.shape}")
+            raise ValueError(
+                f"Expected messages of shape (B, {self.n_receivers}, {self.length}), "
+                f"got {arr.shape}"
+            )
         if self.kind == DISCRETE:
             if arr.dtype != np.int64:
                 raise TypeError(f"Discrete messages must be int64, got {arr.dtype}")
@@ -97,7 +101,9 @@ def step_rng(seed: int, step: int = 0, *streams: int) -> np.random.Generator:
     return np.random.default_rng([int(key) for key in keys])
 
 
-def _checked(messages: np.ndarray, spec: Optional[MessageSpec]) -> Tuple[np.ndarray, str]:
+def _checked(
+    messages: np.ndarray, spec: Optional[MessageSpec]
+) -> tuple[np.ndarray, str]:
     arr = np.asarray(messages)
     if spec is not None:
         return spec.validate(arr), spec.kind
@@ -115,22 +121,25 @@ def _derangement(n: int, rng: np.random.Generator) -> np.ndarray:
     return perm
 
 
-def no_intervention(messages: np.ndarray, rng: np.random.Generator,
-                    spec: Optional[MessageSpec] = None) -> np.ndarray:
+def no_intervention(
+    messages: np.ndarray, rng: np.random.Generator, spec: Optional[MessageSpec] = None
+) -> np.ndarray:
     """Pass messages through unchanged (a copy)."""
     arr, _ = _checked(messages, spec)
     return arr.copy()
 
 
-def zero_messages(messages: np.ndarray, rng: np.random.Generator,
-                  spec: Optional[MessageSpec] = None) -> np.ndarray:
+def zero_messages(
+    messages: np.ndarray, rng: np.random.Generator, spec: Optional[MessageSpec] = None
+) -> np.ndarray:
     """Replace every message with a constant: symbol 0 (discrete) or the zero vector."""
     arr, _ = _checked(messages, spec)
     return np.zeros_like(arr)
 
 
-def shuffle_batch(messages: np.ndarray, rng: np.random.Generator,
-                  spec: Optional[MessageSpec] = None) -> np.ndarray:
+def shuffle_batch(
+    messages: np.ndarray, rng: np.random.Generator, spec: Optional[MessageSpec] = None
+) -> np.ndarray:
     """Give each episode another episode's messages (no episode keeps its own).
 
     Keeps the message distribution intact but breaks its link to the receiver's situation.
@@ -141,8 +150,9 @@ def shuffle_batch(messages: np.ndarray, rng: np.random.Generator,
     return arr[_derangement(arr.shape[0], rng)].copy()
 
 
-def swap_receivers(messages: np.ndarray, rng: np.random.Generator,
-                   spec: Optional[MessageSpec] = None) -> np.ndarray:
+def swap_receivers(
+    messages: np.ndarray, rng: np.random.Generator, spec: Optional[MessageSpec] = None
+) -> np.ndarray:
     """Deliver each receiver's message to a different receiver (same episode)."""
     arr, _ = _checked(messages, spec)
     if arr.shape[1] < 2:
@@ -150,8 +160,9 @@ def swap_receivers(messages: np.ndarray, rng: np.random.Generator,
     return arr[:, _derangement(arr.shape[1], rng)].copy()
 
 
-def random_matched(messages: np.ndarray, rng: np.random.Generator,
-                   spec: Optional[MessageSpec] = None) -> np.ndarray:
+def random_matched(
+    messages: np.ndarray, rng: np.random.Generator, spec: Optional[MessageSpec] = None
+) -> np.ndarray:
     """Random messages with the same per-(receiver, position) marginals as the batch.
 
     Discrete: each symbol is drawn independently from the empirical distribution at its
@@ -174,9 +185,11 @@ def random_matched(messages: np.ndarray, rng: np.random.Generator,
     return out
 
 
-Intervention = Callable[[np.ndarray, np.random.Generator, Optional[MessageSpec]], np.ndarray]
+Intervention = Callable[
+    [np.ndarray, np.random.Generator, Optional[MessageSpec]], np.ndarray
+]
 
-INTERVENTIONS: Dict[str, Intervention] = {
+INTERVENTIONS: dict[str, Intervention] = {
     "none": no_intervention,
     "zero": zero_messages,
     "shuffle_batch": shuffle_batch,
@@ -188,15 +201,16 @@ INTERVENTIONS: Dict[str, Intervention] = {
 def get_intervention(name: str) -> Intervention:
     """Look up an intervention by name."""
     if name not in INTERVENTIONS:
-        raise KeyError(f"Unknown intervention {name!r}; expected one of {sorted(INTERVENTIONS)}")
+        raise KeyError(
+            f"Unknown intervention {name!r}; expected one of {sorted(INTERVENTIONS)}"
+        )
     return INTERVENTIONS[name]
 
 
 class MessageHook(Protocol):
     """Called by an environment loop on messages between send and receive."""
 
-    def __call__(self, messages: np.ndarray, step: int = 0) -> np.ndarray:
-        ...
+    def __call__(self, messages: np.ndarray, step: int = 0) -> np.ndarray: ...
 
 
 class InterventionHook:
@@ -206,8 +220,13 @@ class InterventionHook:
     hook replays exactly when the same sequence of calls is made after ``reset()``.
     """
 
-    def __init__(self, name: str, seed: int = 0, spec: Optional[MessageSpec] = None,
-                 stream: int = 0):
+    def __init__(
+        self,
+        name: str,
+        seed: int = 0,
+        spec: Optional[MessageSpec] = None,
+        stream: int = 0,
+    ):
         self.name = name
         self.seed = seed
         self.spec = spec
@@ -225,4 +244,46 @@ class InterventionHook:
         self.calls = 0
 
     def __repr__(self) -> str:
-        return f"InterventionHook({self.name!r}, seed={self.seed}, stream={self.stream})"
+        return (
+            f"InterventionHook({self.name!r}, seed={self.seed}, stream={self.stream})"
+        )
+
+
+class RecordingHook:
+    """Records the messages that pass through it, optionally applying another hook.
+
+    The recorded arrays are copies of the messages as sent (before ``inner`` changes
+    them), so communication metrics can be computed from the same run.
+    """
+
+    def __init__(self, inner: Optional[MessageHook] = None):
+        self.inner = inner
+        self.records: list[np.ndarray] = []
+        self.steps: list[int] = []
+
+    def __call__(self, messages: np.ndarray, step: int = 0) -> np.ndarray:
+        arr = np.asarray(messages)
+        self.records.append(arr.copy())
+        self.steps.append(step)
+        return self.inner(arr, step) if self.inner is not None else arr
+
+    def stacked(self) -> np.ndarray:
+        """All recorded messages concatenated along the episode axis."""
+        if not self.records:
+            raise ValueError("No messages recorded")
+        return np.concatenate(self.records, axis=0)
+
+    def reset(self) -> None:
+        """Forget recorded messages and reset the inner hook, if it can be reset."""
+        self.records.clear()
+        self.steps.clear()
+        reset = getattr(self.inner, "reset", None)
+        if callable(reset):
+            reset()
+
+
+def apply_hook(
+    hook: Optional[MessageHook], messages: np.ndarray, step: int = 0
+) -> np.ndarray:
+    """What an environment loop calls between send and receive; ``None`` is a no-op."""
+    return messages if hook is None else hook(messages, step)

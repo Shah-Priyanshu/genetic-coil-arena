@@ -17,12 +17,14 @@ Structure: topographic similarity (Brighton & Kirby 2006), positional and
 bag-of-symbols disentanglement (Chaabouni et al. 2020).
 """
 
-from typing import Any, Callable, Dict, List, Optional, Sequence, Tuple
+from collections.abc import Sequence
+from typing import Any, Callable, Optional
 
 import numpy as np
 from scipy import stats as scipy_stats
 from scipy.spatial.distance import pdist
 
+from .interventions import get_intervention, step_rng
 from .stats import mean_ci
 
 LN2 = float(np.log(2.0))
@@ -73,7 +75,7 @@ def entropy_from_counts(counts: Any, correction: str = "none") -> float:
     h = float(-(p * np.log(p)).sum())
     if correction == "miller_madow":
         h += (c.size - 1) / (2 * n)
-    return h / LN2
+    return h / LN2 + 0.0  # + 0.0 turns -0.0 (a single symbol) into 0.0
 
 
 def entropy(labels: Any, correction: str = "none") -> float:
@@ -95,10 +97,14 @@ def symbol_entropy(messages: Any) -> np.ndarray:
 
 def _mi_from_labels(x: np.ndarray, y: np.ndarray, correction: str = "none") -> float:
     joint = x.astype(np.int64) * (int(y.max()) + 1) + y
-    return entropy(x, correction) + entropy(y, correction) - entropy(joint, correction)
+    return float(
+        entropy(x, correction) + entropy(y, correction) - entropy(joint, correction)
+    )
 
 
-def mutual_information(messages: Any, targets: Any, correction: str = "miller_madow") -> float:
+def mutual_information(
+    messages: Any, targets: Any, correction: str = "miller_madow"
+) -> float:
     """I(M; T) between messages and a target variable (e.g. what the sender observed).
 
     The Miller-Madow correction removes most of the plug-in estimator's upward bias on
@@ -109,8 +115,13 @@ def mutual_information(messages: Any, targets: Any, correction: str = "miller_ma
     return _mi_from_labels(m, t, correction)
 
 
-def mi_null_test(messages: Any, targets: Any, n_shuffles: int = 200, seed: int = 0,
-                 correction: str = "miller_madow") -> Dict[str, float]:
+def mi_null_test(
+    messages: Any,
+    targets: Any,
+    n_shuffles: int = 200,
+    seed: int = 0,
+    correction: str = "miller_madow",
+) -> dict[str, float]:
     """Mutual information compared with its null distribution under shuffled targets.
 
     Returns:
@@ -121,7 +132,9 @@ def mi_null_test(messages: Any, targets: Any, n_shuffles: int = 200, seed: int =
     observed = _mi_from_labels(m, t, correction)
 
     rng = np.random.default_rng(seed)
-    null = np.array([_mi_from_labels(m, rng.permutation(t), correction) for _ in range(n_shuffles)])
+    null = np.array(
+        [_mi_from_labels(m, rng.permutation(t), correction) for _ in range(n_shuffles)]
+    )
     return {
         "mi": observed,
         "null_mean": float(null.mean()),
@@ -131,7 +144,7 @@ def mi_null_test(messages: Any, targets: Any, n_shuffles: int = 200, seed: int =
     }
 
 
-def channel_usage(messages: Any, vocab_size: int) -> Dict[str, float]:
+def channel_usage(messages: Any, vocab_size: int) -> dict[str, float]:
     """Bits actually used per message against the channel capacity L * log2(V).
 
     Entropy is estimated from the sample, so it can never exceed log2(number of messages).
@@ -164,8 +177,12 @@ def quantize_continuous(messages: Any, n_bins: int = 8) -> np.ndarray:
     return codes.reshape(arr.shape)
 
 
-def topographic_similarity(meanings: Any, messages: Any, meaning_metric: str = "hamming",
-                           message_metric: str = "hamming") -> float:
+def topographic_similarity(
+    meanings: Any,
+    messages: Any,
+    meaning_metric: str = "hamming",
+    message_metric: str = "hamming",
+) -> float:
     """Spearman correlation between pairwise meaning distances and message distances.
 
     1 means similar situations get similar messages. NaN when either set of distances is
@@ -211,8 +228,9 @@ def positional_disentanglement(meanings: Any, messages: Any) -> float:
     return _information_gap(attrs, rows)
 
 
-def bag_of_symbols_disentanglement(meanings: Any, messages: Any, vocab_size: int,
-                                   exclude_symbols: Sequence[int] = ()) -> float:
+def bag_of_symbols_disentanglement(
+    meanings: Any, messages: Any, vocab_size: int, exclude_symbols: Sequence[int] = ()
+) -> float:
     """bosdis: does each symbol's count encode a single attribute, regardless of position?"""
     rows = flatten_messages(messages)
     attrs = np.asarray(meanings).reshape(rows.shape[0], -1)
@@ -223,9 +241,12 @@ def bag_of_symbols_disentanglement(meanings: Any, messages: Any, vocab_size: int
     return _information_gap(attrs, counts)
 
 
-def causal_influence(listener: Callable[[np.ndarray], np.ndarray], messages: np.ndarray,
-                     candidates: Optional[np.ndarray] = None,
-                     weights: Optional[Sequence[float]] = None) -> Dict[str, Any]:
+def causal_influence(
+    listener: Callable[[np.ndarray], np.ndarray],
+    messages: np.ndarray,
+    candidates: Optional[np.ndarray] = None,
+    weights: Optional[Sequence[float]] = None,
+) -> dict[str, Any]:
     """Causal influence of communication (CIC) on receivers' actions.
 
     With each receiver's situation held fixed, every candidate message is delivered in
@@ -248,14 +269,25 @@ def causal_influence(listener: Callable[[np.ndarray], np.ndarray], messages: np.
         raise ValueError(f"Messages must have shape (B, R, L|D), got {arr.shape}")
 
     if candidates is None:
-        cand, counts = np.unique(arr.reshape(-1, arr.shape[-1]), axis=0, return_counts=True)
+        cand, counts = np.unique(
+            arr.reshape(-1, arr.shape[-1]), axis=0, return_counts=True
+        )
         w = counts / counts.sum()
     else:
         cand = np.asarray(candidates, dtype=arr.dtype).reshape(-1, arr.shape[-1])
-        w = (np.full(len(cand), 1.0 / len(cand)) if weights is None
-             else np.asarray(weights, dtype=float) / np.sum(weights))
+        w = (
+            np.full(len(cand), 1.0 / len(cand))
+            if weights is None
+            else np.asarray(weights, dtype=float) / np.sum(weights)
+        )
     if len(w) != len(cand):
         raise ValueError("weights must match the number of candidates")
+    keep = (
+        w > 0
+    )  # Zero-weight candidates add nothing and could divide by a zero marginal
+    cand, w = cand[keep], w[keep]
+    if cand.shape[0] == 0:
+        raise ValueError("At least one candidate needs positive weight")
 
     probs = []
     for candidate in cand:
@@ -277,8 +309,64 @@ def causal_influence(listener: Callable[[np.ndarray], np.ndarray], messages: np.
     }
 
 
-def steps_to_threshold(steps: Sequence[float], values: Sequence[float], threshold: float,
-                       window: int = 1) -> Optional[float]:
+def _js_divergence_bits(p: np.ndarray, q: np.ndarray) -> np.ndarray:
+    """Jensen-Shannon divergence along the last axis, in bits (0 to 1)."""
+    m = 0.5 * (p + q)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        kl_p = np.where(p > 0, p * np.log(p / m), 0.0).sum(axis=-1)
+        kl_q = np.where(q > 0, q * np.log(q / m), 0.0).sum(axis=-1)
+    return 0.5 * (kl_p + kl_q) / LN2
+
+
+def intervention_influence(
+    listener: Callable[[np.ndarray], np.ndarray],
+    messages: np.ndarray,
+    intervention: str = "shuffle_batch",
+    seed: int = 0,
+    n_repeats: int = 1,
+) -> dict[str, Any]:
+    """How much an intervention on messages changes receivers' action distributions.
+
+    Complements ``causal_influence`` when the message space is too large to enumerate:
+    the listener sees the observed messages and then intervened ones in the same
+    situations, and the Jensen-Shannon divergence between the two action
+    distributions is averaged over episodes, receivers and repeats.
+
+    Args:
+        listener: Maps messages (B, R, L|D) to action probabilities (B, R, A)
+        messages: Observed messages
+        intervention: Name of an intervention from ``interventions.INTERVENTIONS``
+        seed: Seed for the intervention generator
+        n_repeats: Independent intervention draws to average over
+
+    Returns:
+        js_bits (mean), per_receiver_bits and changed_fraction (share of
+        (episode, receiver) pairs whose most likely action changed)
+    """
+    arr = np.asarray(messages)
+    fn = get_intervention(intervention)
+    base = np.asarray(listener(arr), dtype=float)
+    if base.ndim != 3 or base.shape[:2] != arr.shape[:2]:
+        raise ValueError(f"listener must return shape (B, R, A), got {base.shape}")
+
+    js, changed = [], []
+    for repeat in range(n_repeats):
+        intervened = np.asarray(
+            listener(fn(arr, step_rng(seed, 0, repeat), None)), dtype=float
+        )
+        js.append(_js_divergence_bits(base, intervened))
+        changed.append(base.argmax(axis=-1) != intervened.argmax(axis=-1))
+    js_arr = np.mean(js, axis=0)  # (B, R)
+    return {
+        "js_bits": float(js_arr.mean()),
+        "per_receiver_bits": [float(v) for v in js_arr.mean(axis=0)],
+        "changed_fraction": float(np.mean(changed)),
+    }
+
+
+def steps_to_threshold(
+    steps: Sequence[float], values: Sequence[float], threshold: float, window: int = 1
+) -> Optional[float]:
     """First step at which the trailing ``window``-point average reaches ``threshold``."""
     s = np.asarray(steps, dtype=float)
     v = np.asarray(values, dtype=float)
@@ -287,15 +375,19 @@ def steps_to_threshold(steps: Sequence[float], values: Sequence[float], threshol
     if v.size == 0:
         return None
 
-    smoothed = np.convolve(v, np.ones(window) / window, mode="full")[:v.size]
+    smoothed = np.convolve(v, np.ones(window) / window, mode="full")[: v.size]
     counts = np.minimum(np.arange(1, v.size + 1), window)
     smoothed = smoothed * window / counts  # Average over the points seen so far
     hits = np.nonzero(smoothed >= threshold)[0]
     return float(s[hits[0]]) if hits.size else None
 
 
-def learnability(curves: Sequence[Tuple[Sequence[float], Sequence[float]]], reference: float,
-                 fraction: float = 0.8, window: int = 1) -> Dict[str, Any]:
+def learnability(
+    curves: Sequence[tuple[Sequence[float], Sequence[float]]],
+    reference: float,
+    fraction: float = 0.8,
+    window: int = 1,
+) -> dict[str, Any]:
     """How fast fresh learners reach ``fraction`` of a reference score on a fixed protocol.
 
     Args:
@@ -321,9 +413,14 @@ def learnability(curves: Sequence[Tuple[Sequence[float], Sequence[float]]], refe
     }
 
 
-def communication_metrics(messages: Any, targets: Any = None, meanings: Any = None,
-                          vocab_size: Optional[int] = None, n_shuffles: int = 200,
-                          seed: int = 0) -> Dict[str, float]:
+def communication_metrics(
+    messages: Any,
+    targets: Any = None,
+    meanings: Any = None,
+    vocab_size: Optional[int] = None,
+    n_shuffles: int = 200,
+    seed: int = 0,
+) -> dict[str, float]:
     """The standard set of message-side metrics, so every experiment reports the same ones.
 
     Continuous messages should be passed through ``quantize_continuous`` first.
@@ -340,7 +437,7 @@ def communication_metrics(messages: Any, targets: Any = None, meanings: Any = No
         Flat dict of metric name -> value (NaN where undefined)
     """
     rows = flatten_messages(messages)
-    out: Dict[str, float] = {"message_entropy_bits": message_entropy(rows)}
+    out: dict[str, float] = {"message_entropy_bits": message_entropy(rows)}
     if vocab_size is not None:
         usage = channel_usage(rows, vocab_size)
         out["capacity_bits"] = usage["capacity_bits"]
@@ -360,14 +457,19 @@ def communication_metrics(messages: Any, targets: Any = None, meanings: Any = No
     return out
 
 
-def listening_summary(cic: Dict[str, Any], ablations: Dict[str, Dict[str, Any]],
-                      min_cic_bits: float = 0.01) -> Dict[str, Any]:
+def listening_summary(
+    cic: dict[str, Any],
+    ablations: dict[str, dict[str, Any]],
+    min_cic_bits: float = 0.01,
+) -> dict[str, Any]:
     """Combine CIC and ablation results into a positive-listening verdict.
 
     Listening is positive when receivers' actions depend on messages (CIC above
     ``min_cic_bits``) and at least one ablation's performance drop has a CI above zero.
     """
-    dropped: List[str] = [name for name, effect in ablations.items() if effect.get("listening")]
+    dropped: list[str] = [
+        name for name, effect in ablations.items() if effect.get("listening")
+    ]
     return {
         "cic_bits": cic["cic_bits"],
         "ablations_with_drop": dropped,

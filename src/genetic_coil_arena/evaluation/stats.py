@@ -8,13 +8,18 @@ the Vargha-Delaney A12 effect size.
 """
 
 import itertools
-from typing import Any, Callable, Dict, Iterable, List, Mapping, Optional, Sequence, Tuple
+from collections.abc import Iterable, Mapping, Sequence
+from typing import (
+    Any,
+    Callable,
+    Optional,
+)
 
 import numpy as np
 from scipy import stats as scipy_stats
 
 
-def mean_ci(values: Iterable[float], confidence: float = 0.95) -> Tuple[float, float]:
+def mean_ci(values: Iterable[float], confidence: float = 0.95) -> tuple[float, float]:
     """Mean and half-width of the Student-t confidence interval for the mean.
 
     Same definition as ``analysis.benchmark.mean_ci``; duplicated so this package does
@@ -48,9 +53,13 @@ def iqm(values: Any) -> float:
     return float(scipy_stats.trim_mean(arr, 0.25))
 
 
-def stratified_bootstrap_ci(scores: Any, statistic: Callable[[np.ndarray], float] = iqm,
-                            n_boot: int = 2000, confidence: float = 0.95,
-                            seed: int = 0) -> Tuple[float, float, float]:
+def stratified_bootstrap_ci(
+    scores: Any,
+    statistic: Callable[[np.ndarray], float] = iqm,
+    n_boot: int = 2000,
+    confidence: float = 0.95,
+    seed: int = 0,
+) -> tuple[float, float, float]:
     """Point estimate and percentile bootstrap CI, resampling runs within each task.
 
     Args:
@@ -67,7 +76,9 @@ def stratified_bootstrap_ci(scores: Any, statistic: Callable[[np.ndarray], float
     if arr.ndim == 1:
         arr = arr[:, None]
     if arr.ndim != 2 or arr.shape[0] == 0:
-        raise ValueError(f"scores must have shape (n_runs,) or (n_runs, n_tasks), got {arr.shape}")
+        raise ValueError(
+            f"scores must have shape (n_runs,) or (n_runs, n_tasks), got {arr.shape}"
+        )
 
     point = float(statistic(arr))
     n_runs, n_tasks = arr.shape
@@ -76,8 +87,13 @@ def stratified_bootstrap_ci(scores: Any, statistic: Callable[[np.ndarray], float
 
     rng = np.random.default_rng(seed)
     run_idx = rng.integers(0, n_runs, size=(n_boot, n_runs, n_tasks))
-    samples = arr[run_idx, np.arange(n_tasks)]  # Each task column resampled independently
-    boot = np.array([statistic(sample) for sample in samples], dtype=float)
+    samples = arr[
+        run_idx, np.arange(n_tasks)
+    ]  # Each task column resampled independently
+    if statistic is iqm:  # Vectorized fast path for the default statistic
+        boot = scipy_stats.trim_mean(samples.reshape(n_boot, -1), 0.25, axis=1)
+    else:
+        boot = np.array([statistic(sample) for sample in samples], dtype=float)
 
     alpha = (1 - confidence) / 2
     low, high = np.quantile(boot, [alpha, 1 - alpha])
@@ -100,8 +116,9 @@ def vargha_delaney_a12(a: Sequence[float], b: Sequence[float]) -> float:
     return float((greater + 0.5 * equal) / (x.size * y.size))
 
 
-def mann_whitney(a: Sequence[float], b: Sequence[float],
-                 alternative: str = "two-sided") -> Tuple[float, float]:
+def mann_whitney(
+    a: Sequence[float], b: Sequence[float], alternative: str = "two-sided"
+) -> tuple[float, float]:
     """Mann-Whitney U statistic and p-value; identical constant samples give p = 1."""
     x = np.asarray(a, dtype=float).ravel()
     y = np.asarray(b, dtype=float).ravel()
@@ -126,9 +143,11 @@ def holm_correction(pvalues: Sequence[float]) -> np.ndarray:
     return adjusted
 
 
-def compare_conditions(samples: Mapping[str, Sequence[float]],
-                       pairs: Optional[Sequence[Tuple[str, str]]] = None,
-                       reference: Optional[str] = None) -> List[Dict[str, Any]]:
+def compare_conditions(
+    samples: Mapping[str, Sequence[float]],
+    pairs: Optional[Sequence[tuple[str, str]]] = None,
+    reference: Optional[str] = None,
+) -> list[dict[str, Any]]:
     """Pairwise Mann-Whitney comparisons with Holm correction across the family.
 
     Args:
@@ -152,29 +171,34 @@ def compare_conditions(samples: Mapping[str, Sequence[float]],
     rows = []
     for a, b in pairs:
         u, p = mann_whitney(samples[a], samples[b])
-        rows.append({
-            "a": a,
-            "b": b,
-            "u": u,
-            "p": p,
-            "a12": vargha_delaney_a12(samples[a], samples[b]),
-            "mean_diff": float(np.mean(samples[a]) - np.mean(samples[b])),
-            "n_a": len(samples[a]),
-            "n_b": len(samples[b]),
-        })
+        rows.append(
+            {
+                "a": a,
+                "b": b,
+                "u": u,
+                "p": p,
+                "a12": vargha_delaney_a12(samples[a], samples[b]),
+                "mean_diff": float(np.mean(samples[a]) - np.mean(samples[b])),
+                "n_a": len(samples[a]),
+                "n_b": len(samples[b]),
+            }
+        )
 
     for row, adjusted in zip(rows, holm_correction([row["p"] for row in rows])):
         row["p_holm"] = float(adjusted)
     return rows
 
 
-def paired_difference(a: Sequence[float], b: Sequence[float],
-                      confidence: float = 0.95) -> Dict[str, float]:
+def paired_difference(
+    a: Sequence[float], b: Sequence[float], confidence: float = 0.95
+) -> dict[str, float]:
     """Mean and t-CI of the paired differences a - b (e.g. intact vs intervened, per seed)."""
     x = np.asarray(a, dtype=float).ravel()
     y = np.asarray(b, dtype=float).ravel()
     if x.shape != y.shape:
-        raise ValueError(f"Paired samples must have equal length, got {x.size} and {y.size}")
+        raise ValueError(
+            f"Paired samples must have equal length, got {x.size} and {y.size}"
+        )
 
     mean, half = mean_ci(x - y, confidence)
     return {"mean": mean, "ci": half, "low": mean - half, "high": mean + half}
