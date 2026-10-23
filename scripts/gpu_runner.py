@@ -21,7 +21,9 @@ Job file (``runs/queue/<id>.json``)::
 ``args[0]`` must be a script under ``scripts/``. The job also gets ``GCA_RUN_DIR``,
 a directory whose contents are pushed with the results. The runner only executes
 commits reachable from the jobs branch, one job at a time, and skips any job that
-already has a final status on the results branch. Stop it with Ctrl+C.
+already has a final status on the results branch. To stop a running job, push an
+empty file ``runs/cancel/<job id>`` to the jobs branch; it is noticed within
+``--push-every`` seconds. Stop the runner itself with Ctrl+C.
 """
 
 import argparse
@@ -40,7 +42,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Optional
 
-FINAL_STATES = ("done", "failed", "timeout", "rejected")
+FINAL_STATES = ("done", "failed", "timeout", "cancelled", "rejected")
 LOG_TAIL_LINES = 200
 MAX_LOG_BYTES = 5_000_000
 
@@ -146,6 +148,23 @@ class Results:
                 time.sleep(2 ** (attempt + 1))
                 self.pull()
         print("giving up on this push; will retry at the next update", file=sys.stderr)
+
+
+def cancel_requested(repo: Path, args: argparse.Namespace, job_id: str) -> bool:
+    """True if ``runs/cancel/<job id>`` exists on the jobs branch."""
+    git(repo, "fetch", "-q", args.remote, args.jobs_branch, check=False)
+    found = subprocess.run(
+        [
+            "git",
+            "-C",
+            str(repo),
+            "cat-file",
+            "-e",
+            f"{args.jobs_ref}:runs/cancel/{job_id}",
+        ],
+        capture_output=True,
+    )
+    return found.returncode == 0
 
 
 def queued_jobs(repo: Path, ref: str) -> list[dict[str, Any]]:
@@ -283,6 +302,10 @@ def run_job(args: argparse.Namespace, repo: Path, results: Results, job: dict) -
                 state = "timeout"
                 break
             if time.monotonic() - last_push > args.push_every:
+                if cancel_requested(repo, args, job_id):
+                    proc.kill()
+                    state = "cancelled"
+                    break
                 push_progress("running")
                 last_push = time.monotonic()
         returncode = proc.wait()
@@ -343,8 +366,12 @@ def main() -> None:
         git(repo, "fetch", "-q", args.remote, args.jobs_branch)
         results.pull()
         for job in queued_jobs(repo, args.jobs_ref):
-            if results.final_state(job["id"]) is None:
-                run_job(args, repo, results, job)
+            if results.final_state(job["id"]) is not None:
+                continue
+            if cancel_requested(repo, args, job["id"]):
+                print(f"{job['id']}: cancelled before start; skipping")
+                continue
+            run_job(args, repo, results, job)
         if args.once:
             return
         time.sleep(args.poll)
