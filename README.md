@@ -31,6 +31,7 @@ Snake is the first lab for these questions:
 - **Protocol and runtime:** signed envelopes with a readable header and a payload, codecs between batched message arrays and envelopes, schema-validated GoalSpecs, and a command centre that routes goals to specialists and logs a JSONL trace (`genetic-coil protocol-demo`).
 - **CommArena evaluation harness:** mandatory baselines, multi-seed runs, message ablations and interventions, communication metrics, IQM with bootstrap CIs and Holm-corrected tests.
 - **Squad environment:** a batched, numba-compiled cooperative squad of colour-specialist snakes with scripted specialists and centres. Its need-to-talk baselines are in [docs/results/need_to_talk.md](docs/results/need_to_talk.md) (`genetic-coil squad-benchmark`).
+- **Plant-floor sensor squad** (`envs/plant/`, a second, non-game domain): four edge sensor nodes on Tennessee Eastman process data uplink byte-limited messages to a gateway centre that diagnoses the fault. Hand-designed PCA/FFT features reach macro-F1 0.76 at 16 B per message over 18 diagnosable faults ([docs/results/plant_bytes_baselines.md](docs/results/plant_bytes_baselines.md)). The data is fetched by `scripts/fetch_tep.py` into a cache outside the repo.
 
 Current numbers (100 held-out seeds, food eaten per episode):
 
@@ -54,6 +55,7 @@ genetic-coil multiseed -k 3 -g 60 -p 128 --no-early-stop -o outputs/multiseed
 genetic-coil visualize                        # watch a game
 genetic-coil protocol-demo --trace trace.jsonl  # specialists coordinated by the command centre
 genetic-coil squad-benchmark -n 100           # squad need-to-talk baselines (Markdown report)
+genetic-coil learned-protocol --scale smoke   # R6 learned protocol (ES training + evaluation); --help lists flags
 ```
 
 On Windows, set `PYTHONUTF8=1`. The CLI prints emoji, which crashes a cp1252 console when output is piped.
@@ -63,9 +65,17 @@ On Windows, set `PYTHONUTF8=1`. The CLI prints emoji, which crashes a cp1252 con
 1. **Step 0, an honest measuring stick:** done.
 2. **Cooperative squad lab:** in progress.
    - done: the protocol and runtime, the CommArena evaluation harness, and the squad environment with scripted baselines (with a small window, a hand-coded 3-bit centre roughly doubles team food);
+   - R6, a learned protocol at 3 bits (first CPU result in [docs/results/learned_protocol.md](docs/results/learned_protocol.md); `genetic-coil learned-protocol`): the centre and the specialists are trained jointly with evolution strategies at window radius 3. **There were only n = 4 training runs per condition, so treat this as a pilot.**
+     - Learned listeners reading the fixed hand-coded centre ate 30.7 ± 4.6 food per episode. For comparison, the scripted squad ate 18.7 and the silent learned squad 10.3.
+     - The jointly learned code reached 22.5 ± 14.8. In 3 of 4 runs it formed a 1 to 1.6-bit direction code, and those runs fell in the hand-coded range. One run never formed a code and stayed at the silent level.
+     - At this n, no comparison with the hand-coded protocol is conclusive. A GPU run with 10 runs per condition is queued.
+   - code formation ([docs/results/code_formation.md](docs/results/code_formation.md), pilot with n = 6 runs per arm at 600 generations):
+     - With an annealed message-entropy bonus (`--entropy-bonus 1`), a code formed in 6/6 runs, against 4/6 without it. Team food was 25.6 ± 2.1 against 18.8 ± 10.2.
+     - A sampled centre with annealed temperature also formed a code in 6/6 runs but learned more slowly.
+     - Neither difference is significant at this n;
    - next: specialist snakes that each eat one colour of food and a command centre that sees the whole board, learning bandwidth-limited messages, each with a readable envelope and a learned payload.
 3. **Translator:** natural language becomes a typed, readable GoalSpec, which the command centre turns into learned payloads. A reverse translator decodes the payloads for monitoring.
-4. **A second, non-game domain,** to prove the interfaces are task-agnostic.
+4. **A second, non-game domain,** to prove the interfaces are task-agnostic: in progress (step 1: hand-designed byte baselines done).
 5. **Real small models** behind the same specialist interface.
 
 ## Layout
@@ -75,14 +85,16 @@ src/genetic_coil_arena/
   protocol/     envelopes, signing, codecs (arrays <-> envelopes), GoalSpecs   [domain-agnostic]
   runtime/      specialists, bus, router, command centre, trace, demo          [domain-agnostic]
   evaluation/   CommArena harness: baselines, ablations, metrics, statistics   [domain-agnostic]
-  envs/         batched multi-agent API (base) and the squad environment (squad/)
+  learning/     population MLPs and evolution strategies (numpy)              [domain-agnostic]
+  experiments/  environment <-> harness glue (squad listening, learned protocol)
+  envs/         batched multi-agent API (base), the squad environment (squad/), the plant-floor sensor squad (plant/)
   snake_core/   single-snake game engine (numba) and the neural agent
   evo/          genetic operators, fitness, parallel evaluation, baselines, evolution loop
   persistence/  experiment storage, checkpoints and resume
   analysis/     Snake benchmark harness, multi-seed runs, squad need-to-talk report
   cli/          the `genetic-coil` command
   ui/           pygame viewer
-scripts/        experiment scripts (need_to_talk.py)
+scripts/        experiment scripts (need_to_talk.py, learned_protocol.py, code_formation.py, plant_baselines.py, fetch_tep.py), GPU runner
 docs/results/   recorded results
 tests/
 ```

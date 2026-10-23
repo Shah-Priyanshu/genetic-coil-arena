@@ -27,6 +27,7 @@ genetic-coil evolve -g 60 -p 128                 # resume with -e <experiment id
 genetic-coil multiseed -k 3 -g 60 -p 128 --no-early-stop -o outputs/multiseed   # curves_ci.csv + final_benchmark.csv
 genetic-coil protocol-demo [--trace trace.jsonl]  # arithmetic specialists via the command centre
 genetic-coil squad-benchmark -n 100 [-r 5] [-o docs/results/need_to_talk.md]   # squad need-to-talk baselines
+genetic-coil learned-protocol --scale smoke|cpu|gpu [flags of scripts/learned_protocol.py]   # R6: learned vs hand-coded protocol (ES)
 ruff check <files>; black <files>
 ```
 
@@ -37,6 +38,9 @@ ruff check <files>; black <files>
   - Old `py38` caches there may still reference enum classes and fail with `No module named 'src'`. Fix it by deleting `*.nbi` and `*.nbc`.
   - New code must pass plain ints into numba helpers, never enums.
   - Set `NUMBA_CACHE_DIR` to a short path if a long path breaks caching (Windows' 260-character limit).
+- **Git worktrees:** the venv's editable install points at the main checkout, so in a worktree run with `PYTHONPATH=<worktree>/src` or you will import the main checkout's code.
+- **Windows GPU jobs:** call `torch.cuda.set_per_process_memory_fraction(0.85)`. WDDM silently spills VRAM to system RAM instead of raising out-of-memory, so a job can crawl instead of failing (found in the R4 spike, see `docs/results/r4_translator_lora_spike.md`).
+- **Translator model:** the default is qwen2.5-coder:14b through Ollama structured outputs. Load it on demand and unload it with `keep_alive` 0, because at 9.1 GB it can't sit beside training on 12 GB.
 - **Windows process spawning:** fitness evaluation uses `ProcessPoolExecutor`, so any script that calls `evolve()` needs an `if __name__ == "__main__":` guard.
 - **pytest settings:** `filterwarnings = error` turns warnings into failures, except UserWarning and DeprecationWarning. `--strict-markers` is on; the markers are `slow`, `integration` and `benchmark`.
 - **Lint is not clean.** ruff reports many pre-existing issues, so run ruff and black on the files you touch, not the whole tree. CI (`.github/workflows/ci.yml`) runs ruff, mypy and pytest on a 3-OS × Python 3.9–3.12 matrix and does not pass yet.
@@ -88,7 +92,10 @@ New packages (the squad-lab stack):
 - **Messages (`messages.py`).** The one `MessageSpec` (kind, L/V/D, interval, optional `n_receivers`); numpy-only so `envs` and `evaluation` both import it.
 - **Evaluation (`evaluation/`).** CommArena harness: `runner` (tasks, mandatory baselines, multi-seed runs, message ablations; `TaskSpec.message`; `keep_outputs`/`record` keep per-seed outputs / `RecordingHook`s on the `ConditionResult`), `interventions` (hooks are `hook(messages, step, mask=None)`, mask = (B, R) live receivers), communication `metrics` (CIC/influence take `mask`), `stats` (t-CI, IQM bootstrap, Mann-Whitney for system vs baseline, Wilcoxon signed-rank for paired ablations, Holm, A12), `report`.
 - **Environments (`envs/`).** `envs.base` is the batched multi-agent API (`MultiAgentEnv`, `EnvSpec`, `MessageSpec`). `envs/squad/` is the cooperative squad: numba engine, `SquadEnv` (centre obs include `alive`), scripted specialists (`act` samples, `probs` gives the exact distribution) and centres (silent sends zeros, never `None`), `run_episodes(..., hook, observer)`.
-- **Lazy top level.** `genetic_coil_arena/__init__.py` resolves `Config`, `EvolutionArena`, `SnakeGame` and `SnakeAgent` on first access, so importing `protocol`, `runtime` or `evaluation` never loads `snake_core` or numba (a subprocess test checks it). Keep it that way.
+- **Plant floor (`envs/plant/`).** The second, non-game domain: four sensor nodes on Tennessee Eastman process data uplink byte-budgeted messages (specialists to centre) to a gateway centre that diagnoses the fault. It implements the shared `envs.base` API, with hand-designed encoders (PCA/FFT features, alarm code) and centres; `scripts/plant_baselines.py` writes `docs/results/plant_bytes_baselines.{md,json}`. TEP data lives in `%LOCALAPPDATA%\genetic_coil_arena\tep` (override with `GCA_TEP_DIR`) and is fetched with `python scripts/fetch_tep.py`; the real-data tests skip when it is absent.
+- **Learning (`learning/`).** Numpy-only `MLP` (flat parameters, whole population per forward) and OpenAI-ES `EvolutionStrategy` (antithetic, centred ranks, Adam, optional mask).
+- **Experiments (`experiments/`).** Glue between an environment and the harness (allowed to import `envs`). `learned_protocol` trains/evaluates the R6 conditions (`TrainSettings` has opt-in code-formation aids `entropy_bonus` and `centre_temperature`, off by default); `learned_protocol_report` is the driver behind `scripts/learned_protocol.py` and `genetic-coil learned-protocol`.
+- **Lazy top level.** `genetic_coil_arena/__init__.py` resolves `Config`, `EvolutionArena`, `SnakeGame` and `SnakeAgent` on first access, so importing `protocol`, `runtime`, `evaluation` or `learning` never loads `snake_core` or numba (a subprocess test checks it). Keep it that way.
 
 ## Conventions for new code
 
@@ -98,7 +105,7 @@ New packages (the squad-lab stack):
   - an object layer (envelopes, specialists, command centre) for orchestration and, later, real models.
   
   Keep converters between the two explicit.
-- **`protocol/`, `runtime/` and `evaluation/` are domain-agnostic.** AST tests enforce their import rules; don't add `snake_core`, `evo`, `envs` or `analysis` imports there (`evaluation` may import `..messages` only).
+- **`protocol/`, `runtime/`, `evaluation/` and `learning/` are domain-agnostic.** AST tests enforce their import rules; don't add `snake_core`, `evo`, `envs` or `analysis` imports there (`evaluation` may import `..messages` only; `learning` imports numpy only).
 - **Message arrays:** discrete codes are int64 `(B, R, L)`, continuous vectors float32 `(B, R, D)`. Convert to envelopes only via `protocol.codecs`.
 - **Goals:** every goal must pass `SpecRegistry.make` or `SpecRegistry.validate`. Never hand-build a `GoalSpec` that skips validation.
 - **Baselines:** environments register their baselines with `evaluation.register_baseline`; `run_experiment` refuses a task with no registered baseline unless `strict=False`.

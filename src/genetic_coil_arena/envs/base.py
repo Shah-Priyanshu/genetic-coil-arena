@@ -13,6 +13,11 @@ B = parallel episodes, R = receivers (the N specialists), L = symbols per messag
 V = vocabulary size, D = vector size. Messages passed to ``step`` at time t appear in
 the specialists' observations returned by that call (time t + 1).
 
+The message direction is the environment's choice. In the squad the centre sends to the
+specialists (centre -> specialists); in the plant floor the specialists uplink to the
+centre (specialists -> centre). Either way the message array keeps the same shape and
+dtype conventions; ``EnvSpec.message`` describes the channel.
+
 This module has no knowledge of any particular domain and imports nothing from the
 protocol, runtime or evaluation layers: it deals in plain numpy arrays only. The channel
 description ``MessageSpec`` is the shared one from ``genetic_coil_arena.messages``
@@ -51,7 +56,8 @@ class EnvSpec:
         n_actions: Discrete actions per specialist
         specialist_obs: Observation components per specialist, shapes exclude (B, N)
         centre_obs: Observation components for the centre, shapes exclude (B,)
-        message: Centre-to-specialist channel
+        message: The message channel, centre -> specialists (squad) or specialists ->
+            centre (plant uplink)
         max_steps: Episode length cap (T)
     """
 

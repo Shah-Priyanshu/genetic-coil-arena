@@ -1,0 +1,9 @@
+{
+  "id": "r6-d-entropy",
+  "commit": "3f3ab581b7626b23b8f37c795f9b38bf1f8e792f",
+  "args": ["scripts/learned_protocol.py", "--scale", "gpu", "--radii", "3",
+           "--generations", "2000", "--episodes-per-member", "8", "--workers", "20",
+           "--modes", "learned", "--entropy-bonus", "1", "--entropy-anneal", "0.15"],
+  "timeout_min": 240,
+  "outputs": ["docs/results"]
+}
