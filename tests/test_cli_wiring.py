@@ -13,7 +13,7 @@ def test_domain_agnostic_packages_do_not_load_snake_or_numba():
     code = (
         "import sys\n"
         "import genetic_coil_arena.evaluation, genetic_coil_arena.protocol, "
-        "genetic_coil_arena.runtime\n"
+        "genetic_coil_arena.runtime, genetic_coil_arena.learning\n"
         "loaded = [m for m in ('genetic_coil_arena.snake_core', 'numba') "
         "if m in sys.modules]\n"
         "print(','.join(loaded))\n"
@@ -53,3 +53,18 @@ def test_squad_benchmark_small(tmp_path):
     assert "| 3 | greedy + hand-coded centre (3 bits) |" in report
     assert "| 5 |" not in report  # Only the requested radius (oracle row is "full")
     assert "oracle" in report and "Throughput" not in report
+
+
+def test_learned_protocol_tiny(tmp_path, monkeypatch):
+    monkeypatch.delenv("GCA_RUN_DIR", raising=False)
+    out = tmp_path / "lp.md"
+    args = ["learned-protocol", "--scale", "smoke", "--generations", "2"]
+    args += ["--eval-every", "1", "--eval-episodes", "2", "--entropy-bonus", "0.5"]
+    args += ["--modes", "silent", "learned"]  # (b) left out: the report still renders
+    result = CliRunner().invoke(app, args + ["--out", str(out)])
+    assert result.exit_code == 0, result.output
+    report = out.read_text(encoding="utf-8")
+    assert "| learned-centre+learned-spec | system |" in report
+    assert "--entropy-bonus 0.5 --entropy-anneal 0.5" in report  # reproduce line
+    assert (tmp_path / "lp_params.npz").exists()
+    assert (tmp_path / "lp_curves.csv").exists()

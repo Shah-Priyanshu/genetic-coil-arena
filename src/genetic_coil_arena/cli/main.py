@@ -778,5 +778,23 @@ def squad_benchmark(
     )
 
 
+@app.command(
+    "learned-protocol",
+    context_settings={"allow_extra_args": True, "ignore_unknown_options": True},
+    add_help_option=False,
+)
+def learned_protocol(ctx: typer.Context) -> None:
+    """Squad R6: learned vs hand-coded protocol (ES training + held-out evaluation).
+
+    Takes the flags of scripts/learned_protocol.py, e.g. `--scale smoke`,
+    `--radii 3 --runs 4 --generations 1000 --out docs/results/learned_protocol.md`,
+    or the code-formation aids `--entropy-bonus 1 --centre-temperature 1`;
+    `--help` lists them all.
+    """
+    from ..experiments.learned_protocol_report import main as report_main
+
+    report_main(list(ctx.args))
+
+
 if __name__ == "__main__":
     app()

@@ -233,7 +233,7 @@ def _imports(path: Path):
             yield node.module or "", node.level
 
 
-@pytest.mark.parametrize("package", ["protocol", "runtime"])
+@pytest.mark.parametrize("package", ["protocol", "runtime", "learning"])
 def test_domain_agnostic_imports(package):
     files = sorted((PACKAGE_ROOT / package).glob("*.py"))
     assert files
