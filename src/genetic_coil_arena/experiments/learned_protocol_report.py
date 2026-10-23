@@ -290,7 +290,11 @@ def per_run_table(results: dict[int, ExperimentResult]) -> list[str]:
         abl = {
             a.intervention: a.ablated.per_seed for a in res.ablations if a.system == C
         }
-        food = {n: res.condition(n).per_seed for n in (A, B, C)}
+        names = {c.name for c in res.conditions}
+        nan = [float("nan")] * len(res.seeds)  # A condition left out with --modes
+        food = {
+            n: (res.condition(n).per_seed if n in names else nan) for n in (A, B, C)
+        }
         for i, run in enumerate(res.seeds):
             lines.append(
                 f"| {r} | {run} | {food[C][i]:.2f} | {food[B][i]:.2f} "

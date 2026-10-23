@@ -60,6 +60,7 @@ def test_learned_protocol_tiny(tmp_path, monkeypatch):
     out = tmp_path / "lp.md"
     args = ["learned-protocol", "--scale", "smoke", "--generations", "2"]
     args += ["--eval-every", "1", "--eval-episodes", "2", "--entropy-bonus", "0.5"]
+    args += ["--modes", "silent", "learned"]  # (b) left out: the report still renders
     result = CliRunner().invoke(app, args + ["--out", str(out)])
     assert result.exit_code == 0, result.output
     report = out.read_text(encoding="utf-8")

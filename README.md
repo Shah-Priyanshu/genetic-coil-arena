@@ -68,7 +68,11 @@ On Windows, set `PYTHONUTF8=1`. The CLI prints emoji, which crashes a cp1252 con
      - Learned listeners reading the fixed hand-coded centre ate 30.7 ± 4.6 food per episode. For comparison, the scripted squad ate 18.7 and the silent learned squad 10.3.
      - The jointly learned code reached 22.5 ± 14.8. In 3 of 4 runs it formed a 1 to 1.6-bit direction code, and those runs fell in the hand-coded range. One run never formed a code and stayed at the silent level.
      - At this n, no comparison with the hand-coded protocol is conclusive. A GPU run with 10 runs per condition is queued.
-   - next: make code formation reliable (code-formation aids: [docs/results/code_formation.md](docs/results/code_formation.md)), then specialist snakes that each eat one colour of food and a command centre that sees the whole board, learning bandwidth-limited messages, each with a readable envelope and a learned payload.
+   - code formation ([docs/results/code_formation.md](docs/results/code_formation.md), pilot with n = 6 runs per arm at 600 generations):
+     - With an annealed message-entropy bonus (`--entropy-bonus 1`), a code formed in 6/6 runs, against 4/6 without it. Team food was 25.6 ± 2.1 against 18.8 ± 10.2.
+     - A sampled centre with annealed temperature also formed a code in 6/6 runs but learned more slowly.
+     - Neither difference is significant at this n;
+   - next: specialist snakes that each eat one colour of food and a command centre that sees the whole board, learning bandwidth-limited messages, each with a readable envelope and a learned payload.
 3. **Translator:** natural language becomes a typed, readable GoalSpec, which the command centre turns into learned payloads. A reverse translator decodes the payloads for monitoring.
 4. **A second, non-game domain,** to prove the interfaces are task-agnostic.
 5. **Real small models** behind the same specialist interface.
