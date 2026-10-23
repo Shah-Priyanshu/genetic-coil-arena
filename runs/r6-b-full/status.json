@@ -1,0 +1,15 @@
+{
+  "id": "r6-b-full",
+  "commit": "263d2f719d375e675f6b5789f4fd013dcf4ef966",
+  "queued_args": [
+    "scripts/learned_protocol.py",
+    "--scale",
+    "gpu"
+  ],
+  "state": "running",
+  "started_at": "2026-10-23T02:50:15+00:00",
+  "updated_at": "2026-10-23T02:50:15+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 1 %, 1397 MiB, 12282 MiB, 39",
+  "host": "PC"
+}
