@@ -7,3 +7,12 @@ scale full: 2 groups, replicates 0:10 of 10, 5 seed(s); 8 processes x 1 torch th
   15/100 cells, 215s
   20/100 cells, 255s
   25/100 cells, 283s
+  30/100 cells, 305s
+  35/100 cells, 343s
+  40/100 cells, 373s
+  45/100 cells, 398s
+  50/100 cells, 431s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s3-vq-b48\artifacts\plant_learned_vq_b4_r0-10.json (7.2 min)
+  55/100 cells, 481s
+  60/100 cells, 522s
+  65/100 cells, 557s
