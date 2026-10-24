@@ -3,6 +3,8 @@
 Both standardise their inputs with the training statistics, weight classes equally
 (balanced), regularise with L2 and fit with L-BFGS (``scipy.optimize``), so a fit is
 deterministic given its seed. They have no dependency beyond numpy and scipy.
+``precision="float32"`` runs the matrix products in single precision (about twice as
+fast on a large training set); the optimiser still works in float64.
 """
 
 from typing import Any, Optional
@@ -27,8 +29,12 @@ class _Classifier:
         max_iter: int,
         seed: int,
         normal_weight: float = 1.0,
+        precision: str = "float64",
     ):
+        if precision not in ("float32", "float64"):
+            raise ValueError(f"precision must be float32 or float64, got {precision!r}")
         self.n_classes = n_classes
+        self.dtype = np.dtype(precision)
         self.normal_weight = normal_weight
         self.l2 = l2
         self.max_iter = max_iter
@@ -61,16 +67,16 @@ class _Classifier:
         self._mean = x.mean(axis=0) if x.shape[1] else np.zeros(0)
         std = x.std(axis=0) if x.shape[1] else np.zeros(0)
         self._scale = np.where(std > 1e-8, std, 1.0)
-        z = (x - self._mean) / self._scale
+        z = ((x - self._mean) / self._scale).astype(self.dtype)
         counts = np.bincount(y, minlength=self.n_classes).astype(np.float64)
         class_w = np.where(counts > 0, 1.0 / np.maximum(counts, 1.0), 0.0)
         class_w[0] *= self.normal_weight
         w = class_w[y]
-        w = w / w.sum()
+        w = (w / w.sum()).astype(self.dtype)
         rng = np.random.default_rng(self.seed)
         theta0 = self._init(z.shape[1], rng)
         result = minimize(
-            self._loss_grad,
+            self._objective,
             theta0,
             args=(z, y, w),
             jac=True,
@@ -80,13 +86,20 @@ class _Classifier:
         self._theta = result.x
         return self
 
+    def _objective(
+        self, theta: np.ndarray, x: np.ndarray, y: np.ndarray, w: np.ndarray
+    ) -> tuple[float, np.ndarray]:
+        loss, grad = self._loss_grad(theta.astype(self.dtype, copy=False), x, y, w)
+        return float(loss), np.asarray(grad, dtype=np.float64)
+
     def decision_function(self, features: np.ndarray) -> np.ndarray:
-        """(n, n_classes) logits."""
+        """(n, n_classes) logits (float64)."""
         if self._theta is None:
             raise RuntimeError("fit() first")
         x = np.asarray(features, dtype=np.float64)
-        z = (x - self._mean) / self._scale
-        return self._logits(self._theta, z)
+        z = ((x - self._mean) / self._scale).astype(self.dtype)
+        theta = self._theta.astype(self.dtype, copy=False)
+        return np.asarray(self._logits(theta, z), dtype=np.float64)
 
     def predict_proba(self, features: np.ndarray) -> np.ndarray:
         """(n, n_classes) class probabilities."""
@@ -107,8 +120,9 @@ class SoftmaxRegression(_Classifier):
         max_iter: int = 300,
         seed: int = 0,
         normal_weight: float = 1.0,
+        precision: str = "float64",
     ):
-        super().__init__(n_classes, l2, max_iter, seed, normal_weight)
+        super().__init__(n_classes, l2, max_iter, seed, normal_weight, precision)
 
     def _init(self, n_features: int, rng: np.random.Generator) -> np.ndarray:
         return np.zeros((n_features + 1) * self.n_classes)
@@ -149,8 +163,9 @@ class MLPClassifier(_Classifier):
         max_iter: int = 200,
         seed: int = 0,
         normal_weight: float = 1.0,
+        precision: str = "float64",
     ):
-        super().__init__(n_classes, l2, max_iter, seed, normal_weight)
+        super().__init__(n_classes, l2, max_iter, seed, normal_weight, precision)
         self.hidden = hidden
 
     def _init(self, n_features: int, rng: np.random.Generator) -> np.ndarray:

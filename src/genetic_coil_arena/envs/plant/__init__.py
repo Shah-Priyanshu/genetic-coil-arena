@@ -21,6 +21,7 @@ from .centres import (
     block_subsample,
     blocked_folds,
     raw_features,
+    stack_context,
 )
 from .classifiers import MLPClassifier, SoftmaxRegression, make_classifier
 from .encoders import (
@@ -34,6 +35,15 @@ from .encoders import (
     make_encoder,
 )
 from .env import N_ACTIONS, PlantConfig, PlantEnv
+from .replicates import Protocol, Replicate
+from .rieth import (
+    RiethData,
+    RunSelection,
+    RunSplits,
+    rieth_cache_dir,
+    synthetic_rieth,
+    to_runs,
+)
 from .runner import diagnosis_metrics, macro_f1, run_episodes
 from .tep import (
     FAULT_IDS,
@@ -47,6 +57,7 @@ from .tep import (
     default_cache_dir,
     synthetic_tep,
 )
+from .tuning import tune_centre
 from .windows import NodeLayout, make_layout
 
 __all__ = [
@@ -72,6 +83,11 @@ __all__ = [
     "OracleCentre",
     "PlantConfig",
     "PlantEnv",
+    "Protocol",
+    "Replicate",
+    "RiethData",
+    "RunSelection",
+    "RunSplits",
     "SilentCentre",
     "SilentEncoder",
     "SoftmaxRegression",
@@ -90,6 +106,11 @@ __all__ = [
     "message_spec",
     "min_uplink_period_s",
     "raw_features",
+    "rieth_cache_dir",
     "run_episodes",
+    "stack_context",
+    "synthetic_rieth",
     "synthetic_tep",
+    "to_runs",
+    "tune_centre",
 ]
