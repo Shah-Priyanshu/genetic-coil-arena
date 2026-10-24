@@ -32,6 +32,7 @@ ruff check <files>; black <files>
 ```
 
 - **GPU jobs:** the GPU PC isn't reachable from cloud sessions. Queue a job as `runs/queue/<id>.json` (pinned to a pushed commit, script under `scripts/`), push, and read progress from the `gpu-results` branch (`runs/<id>/status.json`, `log_tail.txt`). See `docs/gpu_runner.md`. Scripts meant for the GPU should log at least every few minutes and write artifacts to `$GCA_RUN_DIR`.
+- **Queueing jobs:** `python scripts/queue_job.py <id> --workers N [--lane gpu] [--grid seed=1,2] -- scripts/<x>.py ...` writes `runs/queue/*.json` pinned to a pushed `HEAD`; you commit and push. Always give `--workers`, or the job runs alone. The PC runs `scripts/start_runner.ps1`, which self-updates the runner and runs CI on every push.
 - **Windows: set `PYTHONUTF8=1`.** The CLI prints emoji. When output is piped (including from Claude's shell), a cp1252 console crashes with `UnicodeEncodeError`.
 - **numba cache:**
   - `@njit(cache=True)` writes caches into `src/**/__pycache__`.
