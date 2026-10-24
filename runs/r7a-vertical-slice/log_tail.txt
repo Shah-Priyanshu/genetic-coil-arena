@@ -1,0 +1,20 @@
+[16:18:22] 160 instructions (16 invalid), smoke=False
+[16:18:26] starting `C:\Users\priya\AppData\Local\Programs\Ollama\ollama.EXE serve`
+[16:18:29] qwen2.5-coder:14b: forward translation of 160 items
+[16:18:45] qwen2.5-coder:14b: forward 10/160 (squad-indist-09)
+[16:18:53] qwen2.5-coder:14b: forward 20/160 (squad-indist-19)
+[16:19:02] qwen2.5-coder:14b: forward 30/160 (squad-indist-29)
+[16:19:09] qwen2.5-coder:14b: forward 40/160 (squad-indist-x3)
+[16:19:18] qwen2.5-coder:14b: forward 50/160 (squad-heldout-09)
+[16:19:25] qwen2.5-coder:14b: forward 60/160 (squad-heldout-19)
+[16:19:33] qwen2.5-coder:14b: forward 70/160 (squad-heldout-29)
+[16:19:40] qwen2.5-coder:14b: forward 80/160 (squad-heldout-x3)
+[16:20:09] qwen2.5-coder:14b: forward 90/160 (plant-indist-09)
+[16:20:33] qwen2.5-coder:14b: forward 100/160 (plant-indist-19)
+[16:21:12] qwen2.5-coder:14b: forward 110/160 (plant-indist-29)
+[16:21:29] qwen2.5-coder:14b: forward 120/160 (plant-indist-x3)
+[16:22:04] qwen2.5-coder:14b: forward 130/160 (plant-heldout-09)
+[16:22:28] qwen2.5-coder:14b: forward 140/160 (plant-heldout-19)
+[16:22:55] qwen2.5-coder:14b: forward 150/160 (plant-heldout-29)
+[16:23:11] qwen2.5-coder:14b: forward 160/160 (plant-heldout-x3)
+[16:23:11] qwen2.5-coder:14b: reverse translation (summary + round trip)

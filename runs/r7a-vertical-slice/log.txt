@@ -1,0 +1,3 @@
+[16:18:22] 160 instructions (16 invalid), smoke=False
+[16:18:26] starting `C:\Users\priya\AppData\Local\Programs\Ollama\ollama.EXE serve`
+[16:18:29] qwen2.5-coder:14b: forward translation of 160 items
