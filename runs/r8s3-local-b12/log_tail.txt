@@ -3,3 +3,15 @@ scale full: 2 groups, replicates 0:10 of 10, 5 seed(s); 8 processes x 1 torch th
   tuned ('local', 1): {'hidden': 32, 'l2': 0.001, 'max_iter': 200, 'folds': 3} val F1 0.965 (208s)
   tuned ('local', 2): {'hidden': 32, 'l2': 0.001, 'max_iter': 100, 'folds': 3} val F1 0.967 (208s)
   5/100 cells, 260s
+  10/100 cells, 310s
+  15/100 cells, 325s
+  20/100 cells, 363s
+  25/100 cells, 414s
+  30/100 cells, 428s
+  35/100 cells, 466s
+  40/100 cells, 495s
+  45/100 cells, 531s
+  50/100 cells, 565s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s3-local-b12\artifacts\plant_learned_local_b1_r0-10.json (9.5 min)
+  55/100 cells, 581s
+  60/100 cells, 606s
