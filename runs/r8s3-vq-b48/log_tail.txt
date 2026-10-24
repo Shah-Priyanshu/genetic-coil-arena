@@ -1,0 +1,9 @@
+scale full: 2 groups, replicates 0:10 of 10, 5 seed(s); 8 processes x 1 torch thread(s) <= 8 workers
+100 cells in 2 groups on 8 workers
+  tuned ('vq', 4): {'whiten': False, 'dim': 32} val F1 0.931 (101s)
+  5/100 cells, 149s
+  tuned ('vq', 8): {'whiten': False, 'dim': 32} val F1 0.943 (170s)
+  10/100 cells, 194s
+  15/100 cells, 215s
+  20/100 cells, 255s
+  25/100 cells, 283s
