@@ -9,3 +9,19 @@ scale full: 2 groups, replicates 0:10 of 10, 5 seed(s); 8 processes x 1 torch th
   25/100 cells, 284s
   30/100 cells, 304s
   35/100 cells, 317s
+  40/100 cells, 341s
+  45/100 cells, 358s
+  50/100 cells, 372s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s3-e2e-b48\artifacts\plant_learned_e2e_b4_r0-10.json (6.2 min)
+  55/100 cells, 402s
+  60/100 cells, 430s
+  65/100 cells, 442s
+  70/100 cells, 472s
+  75/100 cells, 500s
+  80/100 cells, 514s
+  85/100 cells, 541s
+  90/100 cells, 554s
+  95/100 cells, 586s
+  100/100 cells, 607s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s3-e2e-b48\artifacts\plant_learned_e2e_b8_r0-10.json (10.1 min)
+done in 10.1 min

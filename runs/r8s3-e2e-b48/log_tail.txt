@@ -23,3 +23,5 @@ wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s3-e2e-b48\artifacts\pla
   90/100 cells, 554s
   95/100 cells, 586s
   100/100 cells, 607s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s3-e2e-b48\artifacts\plant_learned_e2e_b8_r0-10.json (10.1 min)
+done in 10.1 min
