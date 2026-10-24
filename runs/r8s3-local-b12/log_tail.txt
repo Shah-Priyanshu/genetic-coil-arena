@@ -15,3 +15,13 @@ scale full: 2 groups, replicates 0:10 of 10, 5 seed(s); 8 processes x 1 torch th
 wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s3-local-b12\artifacts\plant_learned_local_b1_r0-10.json (9.5 min)
   55/100 cells, 581s
   60/100 cells, 606s
+  65/100 cells, 636s
+  70/100 cells, 653s
+  75/100 cells, 677s
+  80/100 cells, 706s
+  85/100 cells, 725s
+  90/100 cells, 749s
+  95/100 cells, 776s
+  100/100 cells, 792s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s3-local-b12\artifacts\plant_learned_local_b2_r0-10.json (13.2 min)
+done in 13.2 min

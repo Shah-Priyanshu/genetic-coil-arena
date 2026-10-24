@@ -16,10 +16,12 @@
     "--ablate-budgets",
     "1,2,4"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-24T19:33:02+00:00",
-  "updated_at": "2026-10-24T19:43:14+00:00",
-  "elapsed_min": 10.2,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 801 MiB, 12282 MiB, 40",
-  "host": "PC"
+  "updated_at": "2026-10-24T19:46:15+00:00",
+  "elapsed_min": 13.2,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 100 %, 10980 MiB, 12282 MiB, 61",
+  "host": "PC",
+  "returncode": 0,
+  "finished_at": "2026-10-24T19:46:15+00:00"
 }
