@@ -1,0 +1,17 @@
+{
+  "id": "r8s3-zz-aggregate",
+  "commit": "5450962e53a4946156746c59334b6121e4eec666",
+  "queued_args": [
+    "scripts/plant_learned_codes.py",
+    "--from-json",
+    "runs:r8s3-*",
+    "--out",
+    "docs/results/plant_learned_codes.md"
+  ],
+  "state": "running",
+  "started_at": "2026-10-24T20:17:15+00:00",
+  "updated_at": "2026-10-24T20:17:15+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 805 MiB, 12282 MiB, 41",
+  "host": "PC"
+}
