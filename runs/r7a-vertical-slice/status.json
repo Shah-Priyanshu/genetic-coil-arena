@@ -6,10 +6,12 @@
     "--out",
     "docs/results/r7a_vertical_slice"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-24T20:18:20+00:00",
-  "updated_at": "2026-10-24T20:28:30+00:00",
-  "elapsed_min": 10.2,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 95 %, 5163 MiB, 12282 MiB, 74",
-  "host": "PC"
+  "updated_at": "2026-10-24T20:28:50+00:00",
+  "elapsed_min": 10.5,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 808 MiB, 12282 MiB, 54",
+  "host": "PC",
+  "returncode": 0,
+  "finished_at": "2026-10-24T20:28:50+00:00"
 }
