@@ -1272,3 +1272,16 @@
 [train] learned_scratch_run9: 800 gens in 4995 s (6.24 s/gen), final val newcomer food 7.61, team 38.86 (best gen 640)
 [progress] hand-coded/scratch run 9: gen 550/800, val newcomer food 1.72, team 35.41, elapsed 2702 s
 [progress] silent/scratch run 9: gen 560/800, val newcomer food 1.27, team 12.95, elapsed 2526 s
+[progress] hand-coded/scratch run 9: gen 650/800, val newcomer food 2.03, team 35.52, elapsed 2891 s
+[progress] silent/scratch run 9: gen 660/800, val newcomer food 0.72, team 12.66, elapsed 2706 s
+[progress] hand-coded/scratch run 9: gen 750/800, val newcomer food 2.59, team 35.42, elapsed 3079 s
+[progress] silent/scratch run 9: gen 770/800, val newcomer food 0.89, team 11.75, elapsed 2903 s
+[progress] silent/scratch run 9: gen 800/800, val newcomer food 1.05, team 12.23, elapsed 2957 s
+[train] silent_scratch_run9: 800 gens in 2957 s (3.70 s/gen), final val newcomer food 1.05, team 12.23 (best gen 550)
+[progress] hand-coded/scratch run 9: gen 800/800, val newcomer food 2.70, team 36.34, elapsed 3172 s
+[train] hand-coded_scratch_run9: 800 gens in 3172 s (3.97 s/gen), final val newcomer food 2.70, team 36.34 (best gen 720)
+[train] done in 15094 s; evaluating
+[verdict] KILL: most from-scratch newcomers under the frozen learned language did not reach the threshold within a budget of 124% of joint-retraining compute (median over runs, > 30%, so the true ratio is larger): the ecosystem needs a fixed typed core protocol
+Wrote docs\results\add_specialist.{md,json} and _curves.csv
+Wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r7-add-specialist\artifacts\add_specialist.{md,json} and _curves.csv
+Done: train 15094 s, eval 119 s

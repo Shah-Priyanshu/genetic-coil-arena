@@ -1,14 +1,3 @@
-[progress] silent/copy run 2: gen 0/100, val newcomer food 5.17, team 17.23, elapsed 0 s
-[progress] hand-coded/scratch run 7: gen 720/800, val newcomer food 8.27, team 36.94, elapsed 4221 s
-[progress] silent/scratch run 7: gen 760/800, val newcomer food 1.02, team 14.27, elapsed 4192 s
-[progress] learned/scratch run 7: gen 750/800, val newcomer food 2.56, team 37.47, elapsed 4896 s
-[progress] learned/copy run 1: gen 60/100, val newcomer food 9.03, team 41.98, elapsed 386 s
-[progress] hand-coded/scratch run 9: gen 160/800, val newcomer food 0.66, team 35.44, elapsed 938 s
-[progress] learned/scratch run 8: gen 570/800, val newcomer food 2.66, team 37.88, elapsed 3699 s
-[progress] hand-coded/scratch run 8: gen 640/800, val newcomer food 6.56, team 31.39, elapsed 3725 s
-[progress] hand-coded/copy run 1: gen 40/100, val newcomer food 10.22, team 41.81, elapsed 239 s
-[progress] learned/scratch run 6: gen 800/800, val newcomer food 6.50, team 31.88, elapsed 5177 s
-[train] learned_scratch_run6: 800 gens in 5177 s (6.47 s/gen), final val newcomer food 6.50, team 31.88 (best gen 750)
 [progress] learned/copy run 3: gen 0/100, val newcomer food 10.28, team 41.61, elapsed 0 s
 [progress] silent/scratch run 8: gen 640/800, val newcomer food 0.66, team 15.61, elapsed 3513 s
 [progress] learned/copy run 2: gen 30/100, val newcomer food 9.05, team 37.75, elapsed 197 s
@@ -198,3 +187,14 @@
 [progress] silent/scratch run 9: gen 560/800, val newcomer food 1.27, team 12.95, elapsed 2526 s
 [progress] hand-coded/scratch run 9: gen 650/800, val newcomer food 2.03, team 35.52, elapsed 2891 s
 [progress] silent/scratch run 9: gen 660/800, val newcomer food 0.72, team 12.66, elapsed 2706 s
+[progress] hand-coded/scratch run 9: gen 750/800, val newcomer food 2.59, team 35.42, elapsed 3079 s
+[progress] silent/scratch run 9: gen 770/800, val newcomer food 0.89, team 11.75, elapsed 2903 s
+[progress] silent/scratch run 9: gen 800/800, val newcomer food 1.05, team 12.23, elapsed 2957 s
+[train] silent_scratch_run9: 800 gens in 2957 s (3.70 s/gen), final val newcomer food 1.05, team 12.23 (best gen 550)
+[progress] hand-coded/scratch run 9: gen 800/800, val newcomer food 2.70, team 36.34, elapsed 3172 s
+[train] hand-coded_scratch_run9: 800 gens in 3172 s (3.97 s/gen), final val newcomer food 2.70, team 36.34 (best gen 720)
+[train] done in 15094 s; evaluating
+[verdict] KILL: most from-scratch newcomers under the frozen learned language did not reach the threshold within a budget of 124% of joint-retraining compute (median over runs, > 30%, so the true ratio is larger): the ecosystem needs a fixed typed core protocol
+Wrote docs\results\add_specialist.{md,json} and _curves.csv
+Wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r7-add-specialist\artifacts\add_specialist.{md,json} and _curves.csv
+Done: train 15094 s, eval 119 s
