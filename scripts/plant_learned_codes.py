@@ -129,9 +129,12 @@ def main() -> None:
     name = args.baseline.name
 
     if args.from_json is not None:
-        partials = read_partials(resolve_sources(args.from_json))
+        sources = resolve_sources(args.from_json)
+        partials = read_partials(sources)
         if not partials:
-            raise SystemExit(f"no partial results found in {args.from_json}")
+            raise SystemExit(
+                f"no partial results found in {args.from_json} (searched {sources})"
+            )
         merged = merge_partials(partials)
         print(f"merged {len(partials)} partial files, {len(merged['rows'])} rows")
         render(merged, baseline, args.out, name)
