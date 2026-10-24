@@ -54,6 +54,7 @@ ui = [
     "pygame>=2.1.0",
     "arcade>=2.6.0",
 ]
+llm = ["torch", "transformers>=5", "peft>=0.21", "accelerate"]
 wasm = [
     "pygbag>=0.8.0",
 ]
