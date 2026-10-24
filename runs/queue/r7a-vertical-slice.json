@@ -1,4 +1,4 @@
-﻿{
+{
   "id": "r7a-vertical-slice",
   "commit": "3232dd8124af86f1cdb9d06f7fe86cce7634e876",
   "args": ["scripts/r7a_vertical_slice.py", "--out", "docs/results/r7a_vertical_slice"],
