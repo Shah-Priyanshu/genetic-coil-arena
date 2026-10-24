@@ -79,6 +79,7 @@ On Windows, set `PYTHONUTF8=1`. The CLI prints emoji, which crashes a cp1252 con
      - Neither difference is significant at this n;
    - next: specialist snakes that each eat one colour of food and a command centre that sees the whole board, learning bandwidth-limited messages, each with a readable envelope and a learned payload.
 3. **Translator:** natural language becomes a typed, readable GoalSpec, which the command centre turns into learned payloads. A reverse translator decodes the payloads for monitoring.
+   - R7a vertical slice (`translator/`, `scripts/r7a_vertical_slice.py`): instruction, then translator, validated GoalSpec, command centre, specialists, trace, reverse summary and re-translation, on the squad and the plant floor with one translator. Code and 160-instruction evaluation set done; the full run is queued as `r7a-vertical-slice` (results in `docs/results/r7a_vertical_slice.md` once it lands).
 4. **A second, non-game domain,** to prove the interfaces are task-agnostic: in progress (step 1: hand-designed byte baselines done).
 5. **Real small models** behind the same specialist interface.
    - R9 (two LoRA specialists on a shared Qwen3-1.7B, latent messages vs JSON): kill criterion not met, so JSON stays the default.
