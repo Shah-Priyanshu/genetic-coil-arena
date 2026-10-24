@@ -16,3 +16,12 @@ wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s3-vq-b48\artifacts\plan
   55/100 cells, 481s
   60/100 cells, 522s
   65/100 cells, 557s
+  70/100 cells, 608s
+  75/100 cells, 648s
+  80/100 cells, 683s
+  85/100 cells, 717s
+  90/100 cells, 752s
+  95/100 cells, 802s
+  100/100 cells, 832s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s3-vq-b48\artifacts\plant_learned_vq_b8_r0-10.json (13.9 min)
+done in 13.9 min
