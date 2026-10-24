@@ -87,6 +87,7 @@ On Windows, set `PYTHONUTF8=1`. The CLI prints emoji, which crashes a cp1252 con
      - A KV-prefix handoff matched JSON and saved about 43% latency, but is 11 MiB per record against 104 B, so it suits only same-host specialists.
      - A single model matched the pipeline, so the task doesn't force a split.
      - One task, one base, 3 seeds: [docs/results/r9_latent_vs_json.md](docs/results/r9_latent_vs_json.md).
+   - R10 step 1 (goal G4, `envs/logtriage/`, `scripts/r10_log_triage.py`): a task where no model can read the whole input. RCAEval RE2 incidents (Sock Shop, Online Boutique; per-service logs and metrics, labelled root-cause service and fault type) are 400-700 times a 4k-token context. Compared at a matched centre context: a single model with naive truncation, a single model with a strong heuristic selection, a long-context single model, and a team of per-service specialists with typed JSON or free-text messages, plus non-LLM baselines. Zero-shot Qwen3-1.7B (and Ollama qwen2.5-coder:14b); training is step 2. Code, data pipeline and baselines done; the evaluation is queued as `r10-*` runner jobs, results in `docs/results/r10_log_triage.md`.
 
 ## Layout
 

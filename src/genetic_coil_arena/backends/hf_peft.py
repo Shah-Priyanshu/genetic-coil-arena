@@ -742,6 +742,57 @@ class HFPeftBackend:
             layer=index,
         )
 
+    def next_token_logprobs(
+        self,
+        prompts: Sequence[str],
+        token_ids: Sequence[int],
+        adapter_id: Optional[str] = None,
+        *,
+        chunk_size: Optional[int] = None,
+    ) -> list[list[float]]:
+        """Log-probability of each of ``token_ids`` as the token right after each prompt.
+
+        One forward pass, no cache kept, and the vocabulary projection runs on the last
+        position only. The softmax is over the whole vocabulary, so the values are true
+        log-probabilities, not renormalised over ``token_ids``. Use it to rank a closed
+        set of answers (e.g. option letters) without generating text.
+
+        Args:
+            prompts: Text of each row
+            token_ids: Candidate next tokens
+            adapter_id: Adapter to run (``None`` = base model)
+            chunk_size: If set and a prompt is longer, read it in chunks of this many
+                tokens through a KV cache. Attention memory then grows with the chunk,
+                not with the square of the prompt, which is what lets a 16k-token prompt
+                fit in 12 GB (the model's attention otherwise materialises
+                ``[heads, T, T]``)
+
+        Returns:
+            ``[len(prompts)][len(token_ids)]`` nested lists
+        """
+        torch = self.torch
+        ids = torch.tensor(list(token_ids), dtype=torch.long, device=self.device)
+        with torch.no_grad(), self.use_adapter(adapter_id):
+            inputs = self.build_inputs(prompts)
+            length = inputs.inputs_embeds.shape[1]
+            if chunk_size and length > chunk_size:
+                lm = self._lm()
+                cache = self._new_cache()
+                for lo in range(0, length, chunk_size):
+                    hi = min(lo + chunk_size, length)
+                    out = lm.model(
+                        inputs_embeds=inputs.inputs_embeds[:, lo:hi],
+                        attention_mask=inputs.attention_mask[:, :hi],
+                        position_ids=inputs.position_ids[:, lo:hi],
+                        past_key_values=cache,
+                        use_cache=True,
+                    )
+            else:
+                out = self.forward_hidden(inputs, use_cache=False)
+            logits = self._lm().lm_head(out.last_hidden_state[:, -1]).float()
+            logp = torch.log_softmax(logits, dim=-1)[:, ids]
+        return logp.cpu().tolist()
+
     def prefill(
         self, prompts: Sequence[str], adapter_id: Optional[str] = None
     ) -> KVPrefix:

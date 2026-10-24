@@ -225,3 +225,37 @@ def paired_difference(
 
     mean, half = mean_ci(x - y, confidence)
     return {"mean": mean, "ci": half, "low": mean - half, "high": mean + half}
+
+
+def paired_bootstrap_ci(
+    a: Sequence[float],
+    b: Sequence[float],
+    n_boot: int = 10000,
+    confidence: float = 0.95,
+    seed: int = 0,
+) -> tuple[float, float, float]:
+    """Mean paired difference ``a - b`` with a percentile bootstrap CI over the units.
+
+    Units (e.g. incidents) are resampled together, so the pairing is kept. Use it where
+    the per-unit values are 0/1 outcomes, for which a t-interval is a poor fit.
+
+    Returns:
+        (point, low, high)
+    """
+    x = np.asarray(a, dtype=float).ravel()
+    y = np.asarray(b, dtype=float).ravel()
+    if x.shape != y.shape:
+        raise ValueError(
+            f"Paired samples must have equal length, got {x.size} and {y.size}"
+        )
+    if x.size == 0:
+        raise ValueError("A paired bootstrap needs at least one pair")
+    diff = x - y
+    point = float(diff.mean())
+    if diff.size < 2:
+        return point, float("nan"), float("nan")
+    rng = np.random.default_rng(seed)
+    boot = diff[rng.integers(0, diff.size, size=(n_boot, diff.size))].mean(axis=1)
+    alpha = (1 - confidence) / 2
+    low, high = np.quantile(boot, [alpha, 1 - alpha])
+    return point, float(low), float(high)
