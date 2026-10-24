@@ -81,6 +81,11 @@ On Windows, set `PYTHONUTF8=1`. The CLI prints emoji, which crashes a cp1252 con
 3. **Translator:** natural language becomes a typed, readable GoalSpec, which the command centre turns into learned payloads. A reverse translator decodes the payloads for monitoring.
 4. **A second, non-game domain,** to prove the interfaces are task-agnostic: in progress (step 1: hand-designed byte baselines done).
 5. **Real small models** behind the same specialist interface.
+   - R9 (two LoRA specialists on a shared Qwen3-1.7B, latent messages vs JSON): kill criterion not met, so JSON stays the default.
+     - Hidden-state messages got 0% exact match.
+     - A KV-prefix handoff matched JSON and saved about 43% latency, but is 11 MiB per record against 104 B, so it suits only same-host specialists.
+     - A single model matched the pipeline, so the task doesn't force a split.
+     - One task, one base, 3 seeds: [docs/results/r9_latent_vs_json.md](docs/results/r9_latent_vs_json.md).
 
 ## Layout
 
