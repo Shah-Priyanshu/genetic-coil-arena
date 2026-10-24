@@ -20,14 +20,14 @@ if (-not $env:NUMBA_CACHE_DIR) { $env:NUMBA_CACHE_DIR = "C:\ncc" }
 $env:GIT_TERMINAL_PROMPT = "0"
 
 function Update-Worktree {
-    git -C $Repo fetch -q $Remote $JobsBranch
+    git -C $Repo fetch -q $Remote $JobsBranch 2>&1 | Out-Null
     if ($LASTEXITCODE -ne 0) { Write-Host "fetch failed; using the existing runner worktree" }
     $ref = "$Remote/$JobsBranch"
     if (-not (Test-Path (Join-Path $Worktree ".git"))) {
-        git -C $Repo worktree prune
-        git -C $Repo worktree add --detach --force $Worktree $ref
+        git -C $Repo worktree prune 2>&1 | Out-Null
+        git -C $Repo worktree add --detach --force $Worktree $ref 2>&1 | Out-Null
     } else {
-        git -C $Worktree checkout -q -f --detach $ref
+        git -C $Worktree checkout -q -f --detach $ref 2>&1 | Out-Null
     }
     return (Test-Path (Join-Path $Worktree "scripts\gpu_runner.py"))
 }
