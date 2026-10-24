@@ -284,8 +284,14 @@ class Replicate:
         seed: int,
         params: dict[str, Any],
         prep: Optional[Prepared] = None,
+        centre: Optional[Any] = None,
+        hook: Optional[Callable[..., np.ndarray]] = None,
     ) -> dict[str, Any]:
         """Train, calibrate and replay the test runs; return the cell's metrics.
+
+        ``centre`` (a centre already fitted with ``fit_centre(prep, params)``) skips the
+        fit, and ``hook`` (``hook(messages, step, mask)``) alters the delivered messages, so
+        one trained centre can be replayed under several interventions.
 
         Returns:
             ``diagnosis_metrics`` at the calibrated threshold (``tau``), the same with a
@@ -300,16 +306,18 @@ class Replicate:
             encoding, budget, seed, features=encoding != "silent"
         )
         if encoding == "silent":
-            centre: Any = SilentCentre()
+            centre = SilentCentre()
             val_far = val_f1 = float("nan")
         else:
-            centre = self.fit_centre(prep, params)
+            centre = centre if centre is not None else self.fit_centre(prep, params)
             margin, fault = centre.score_features(prep.x_val, self.val["run"])
             normal = self.val["labels"] == 0
             val_far = float(np.mean(margin[normal] > centre.tau))
             val_f1 = self.validation_f1(centre, prep)
         env = self.env(prep.budget)
-        res = run_episodes(env, prep.encoder, centre, range(env.n_runs))
+        res = run_episodes(
+            env, prep.encoder, centre, range(env.n_runs), hook=hook
+        )
         out = diagnosis_metrics(res, p.n_classes)
         if hasattr(centre, "tau"):
             tau_matched = matched_far_tau(res, p.target_far)
