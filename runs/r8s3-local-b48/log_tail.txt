@@ -20,3 +20,8 @@ wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s3-local-b48\artifacts\p
   75/100 cells, 551s
   80/100 cells, 577s
   85/100 cells, 592s
+  90/100 cells, 610s
+  95/100 cells, 634s
+  100/100 cells, 645s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s3-local-b48\artifacts\plant_learned_local_b4_r0-10.json (10.8 min)
+done in 10.8 min
