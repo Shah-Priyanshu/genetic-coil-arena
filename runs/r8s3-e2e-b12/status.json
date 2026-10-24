@@ -1,0 +1,25 @@
+{
+  "id": "r8s3-e2e-b12",
+  "commit": "5450962e53a4946156746c59334b6121e4eec666",
+  "queued_args": [
+    "scripts/plant_learned_codes.py",
+    "--methods",
+    "e2e",
+    "--budgets",
+    "1,2",
+    "--replicates",
+    "10",
+    "--seeds",
+    "5",
+    "--workers",
+    "8",
+    "--ablate-budgets",
+    "1,2,4"
+  ],
+  "state": "running",
+  "started_at": "2026-10-24T19:16:04+00:00",
+  "updated_at": "2026-10-24T19:16:04+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 801 MiB, 12282 MiB, 41",
+  "host": "PC"
+}
