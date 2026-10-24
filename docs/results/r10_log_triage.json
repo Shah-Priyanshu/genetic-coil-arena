@@ -1,0 +1,761 @@
+{
+ "models": [
+  "ollama:qwen2.5-coder:14b",
+  "qwen3-1.7b"
+ ],
+ "n_records": 206,
+ "verdicts": {
+  "ollama:qwen2.5-coder:14b": {
+   "verdict": "KILL",
+   "reason": "single_selected is within the CI of the team (difference -50.0 points, CI [-100.0, 0.0] contains 0)",
+   "best_single": "single_selected",
+   "team_top1": 0.0,
+   "best_single_top1": 0.5,
+   "diff": -0.5,
+   "ci": [
+    -1.0,
+    0.0
+   ],
+   "n": 2,
+   "single_top1": {
+    "single_head": 0.0,
+    "single_selected": 0.5
+   }
+  },
+  "qwen3-1.7b": {
+   "verdict": "KILL",
+   "reason": "single_selected is within the CI of the team (difference -30.0 points, CI [-60.0, 0.0] contains 0)",
+   "best_single": "single_selected",
+   "team_top1": 0.1,
+   "best_single_top1": 0.4,
+   "diff": -0.3,
+   "ci": [
+    -0.6,
+    0.0
+   ],
+   "n": 10,
+   "single_top1": {
+    "single_head": 0.3,
+    "single_tail": 0.0,
+    "single_selected": 0.4
+   }
+  }
+ },
+ "tables": {
+  "ollama:qwen2.5-coder:14b": {
+   "heur_baro_logs": {
+    "n": 10,
+    "top1": [
+     0.1,
+     0.0,
+     0.3
+    ],
+    "top3": [
+     0.5,
+     0.2,
+     0.8
+    ],
+    "fault": [
+     0.1,
+     0.0,
+     0.3
+    ],
+    "tokens": 0.0,
+    "latency_s": 0.0
+   },
+   "heur_surprise_logs": {
+    "n": 10,
+    "top1": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "top3": [
+     0.6,
+     0.3,
+     0.9
+    ],
+    "fault": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tokens": 0.0,
+    "latency_s": 0.0
+   },
+   "heur_baro_metrics": {
+    "n": 10,
+    "top1": [
+     0.7,
+     0.4,
+     0.9
+    ],
+    "top3": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "fault": [
+     0.5,
+     0.2,
+     0.8
+    ],
+    "tokens": 0.0,
+    "latency_s": 0.0
+   },
+   "single_head": {
+    "n": 2,
+    "top1": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "top3": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "fault": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tokens": 3796.0,
+    "latency_s": 6.039493399999628
+   },
+   "single_selected": {
+    "n": 2,
+    "top1": [
+     0.5,
+     0.0,
+     1.0
+    ],
+    "top3": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "fault": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tokens": 4104.0,
+    "latency_s": 2.271442899997055
+   },
+   "oracle_selected": {
+    "n": 2,
+    "top1": [
+     0.5,
+     0.0,
+     1.0
+    ],
+    "top3": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "fault": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tokens": 8446.5,
+    "latency_s": 8.192884299998695
+   },
+   "team_typed": {
+    "n": 2,
+    "top1": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "top3": [
+     0.5,
+     0.0,
+     1.0
+    ],
+    "fault": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tokens": 14745.5,
+    "latency_s": 39.496786450006766
+   },
+   "team_free": {
+    "n": 2,
+    "top1": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "top3": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "fault": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tokens": 13164.0,
+    "latency_s": 29.349523450007837
+   }
+  },
+  "qwen3-1.7b": {
+   "heur_baro_logs": {
+    "n": 10,
+    "top1": [
+     0.1,
+     0.0,
+     0.3
+    ],
+    "top3": [
+     0.5,
+     0.2,
+     0.8
+    ],
+    "fault": [
+     0.1,
+     0.0,
+     0.3
+    ],
+    "tokens": 0.0,
+    "latency_s": 0.0
+   },
+   "heur_surprise_logs": {
+    "n": 10,
+    "top1": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "top3": [
+     0.6,
+     0.3,
+     0.9
+    ],
+    "fault": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tokens": 0.0,
+    "latency_s": 0.0
+   },
+   "heur_baro_metrics": {
+    "n": 10,
+    "top1": [
+     0.7,
+     0.4,
+     0.9
+    ],
+    "top3": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "fault": [
+     0.5,
+     0.2,
+     0.8
+    ],
+    "tokens": 0.0,
+    "latency_s": 0.0
+   },
+   "single_head": {
+    "n": 10,
+    "top1": [
+     0.3,
+     0.0,
+     0.6
+    ],
+    "top3": [
+     0.5,
+     0.2,
+     0.8
+    ],
+    "fault": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tokens": 3920.2,
+    "latency_s": 2.210656060000474
+   },
+   "single_tail": {
+    "n": 10,
+    "top1": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "top3": [
+     0.4,
+     0.1,
+     0.7
+    ],
+    "fault": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "tokens": 3913.7,
+    "latency_s": 2.1686782100005075
+   },
+   "single_selected": {
+    "n": 10,
+    "top1": [
+     0.4,
+     0.1,
+     0.7
+    ],
+    "top3": [
+     0.6,
+     0.3,
+     0.9
+    ],
+    "fault": [
+     0.2,
+     0.0,
+     0.5
+    ],
+    "tokens": 3992.3,
+    "latency_s": 2.28757877000171
+   },
+   "oracle_selected": {
+    "n": 10,
+    "top1": [
+     0.3,
+     0.0,
+     0.6
+    ],
+    "top3": [
+     0.4,
+     0.1,
+     0.7
+    ],
+    "fault": [
+     0.3,
+     0.0,
+     0.6
+    ],
+    "tokens": 32617.3,
+    "latency_s": 12.826184279998415
+   },
+   "team_typed": {
+    "n": 10,
+    "top1": [
+     0.1,
+     0.0,
+     0.3
+    ],
+    "top3": [
+     0.3,
+     0.0,
+     0.6
+    ],
+    "fault": [
+     0.3,
+     0.0,
+     0.6
+    ],
+    "tokens": 16054.4,
+    "latency_s": 24.781260589999146
+   },
+   "team_free": {
+    "n": 10,
+    "top1": [
+     0.2,
+     0.0,
+     0.5
+    ],
+    "top3": [
+     0.2,
+     0.0,
+     0.5
+    ],
+    "fault": [
+     0.2,
+     0.0,
+     0.5
+    ],
+    "tokens": 15044.5,
+    "latency_s": 22.12618009999569
+   },
+   "team_typed_heur": {
+    "n": 10,
+    "top1": [
+     0.2,
+     0.0,
+     0.5
+    ],
+    "top3": [
+     0.5,
+     0.2,
+     0.8
+    ],
+    "fault": [
+     0.4,
+     0.1,
+     0.7
+    ],
+    "tokens": 1039.7,
+    "latency_s": 0.2558314599955338
+   }
+  }
+ },
+ "note": "SMOKE ONLY: 10 Sock Shop dev incidents for Qwen3-1.7B and 2 for qwen2.5-coder:14b. These numbers are not the evaluation; the full run is queued as the r10-* jobs and replaces this file.",
+ "overflow": {
+  "n": 10,
+  "ratio_full_median": 670.669189453125,
+  "ratio_full_min": 416.149169921875,
+  "ratio_unique_median": 33.5484619140625,
+  "ctx": 4096,
+  "counter": "qwen3-1.7b"
+ },
+ "comparisons": {
+  "ollama:qwen2.5-coder:14b": [
+   {
+    "a": "team_typed",
+    "b": "single_head",
+    "n": 2,
+    "diff": 0.0,
+    "low": 0.0,
+    "high": 0.0,
+    "p": 1.0,
+    "p_holm": 1.0
+   },
+   {
+    "a": "team_typed",
+    "b": "single_selected",
+    "n": 2,
+    "diff": -0.5,
+    "low": -1.0,
+    "high": 0.0,
+    "p": 1.0,
+    "p_holm": 1.0
+   },
+   {
+    "a": "team_typed",
+    "b": "oracle_selected",
+    "n": 2,
+    "diff": -0.5,
+    "low": -1.0,
+    "high": 0.0,
+    "p": 1.0,
+    "p_holm": 1.0
+   },
+   {
+    "a": "team_typed",
+    "b": "heur_baro_metrics",
+    "n": 2,
+    "diff": -1.0,
+    "low": -1.0,
+    "high": -1.0,
+    "p": 0.5,
+    "p_holm": 1.0
+   },
+   {
+    "a": "team_free",
+    "b": "single_selected",
+    "n": 2,
+    "diff": -0.5,
+    "low": -1.0,
+    "high": 0.0,
+    "p": 1.0,
+    "p_holm": 1.0
+   },
+   {
+    "a": "team_free",
+    "b": "team_typed",
+    "n": 2,
+    "diff": 0.0,
+    "low": 0.0,
+    "high": 0.0,
+    "p": 1.0,
+    "p_holm": 1.0
+   },
+   {
+    "a": "single_selected",
+    "b": "heur_baro_metrics",
+    "n": 2,
+    "diff": -0.5,
+    "low": -1.0,
+    "high": 0.0,
+    "p": 1.0,
+    "p_holm": 1.0
+   }
+  ],
+  "qwen3-1.7b": [
+   {
+    "a": "team_typed",
+    "b": "single_head",
+    "n": 10,
+    "diff": -0.2,
+    "low": -0.5,
+    "high": 0.0,
+    "p": 0.5,
+    "p_holm": 1.0
+   },
+   {
+    "a": "team_typed",
+    "b": "single_tail",
+    "n": 10,
+    "diff": 0.1,
+    "low": 0.0,
+    "high": 0.3,
+    "p": 1.0,
+    "p_holm": 1.0
+   },
+   {
+    "a": "team_typed",
+    "b": "single_selected",
+    "n": 10,
+    "diff": -0.3,
+    "low": -0.6,
+    "high": 0.0,
+    "p": 0.25,
+    "p_holm": 1.0
+   },
+   {
+    "a": "team_typed",
+    "b": "oracle_selected",
+    "n": 10,
+    "diff": -0.2,
+    "low": -0.5,
+    "high": 0.0,
+    "p": 0.5,
+    "p_holm": 1.0
+   },
+   {
+    "a": "team_typed",
+    "b": "heur_baro_metrics",
+    "n": 10,
+    "diff": -0.6,
+    "low": -0.9,
+    "high": -0.3,
+    "p": 0.03125,
+    "p_holm": 0.3125
+   },
+   {
+    "a": "team_free",
+    "b": "single_selected",
+    "n": 10,
+    "diff": -0.2,
+    "low": -0.5,
+    "high": 0.0,
+    "p": 0.5,
+    "p_holm": 1.0
+   },
+   {
+    "a": "team_free",
+    "b": "team_typed",
+    "n": 10,
+    "diff": 0.1,
+    "low": 0.0,
+    "high": 0.3,
+    "p": 1.0,
+    "p_holm": 1.0
+   },
+   {
+    "a": "team_typed_heur",
+    "b": "team_typed",
+    "n": 10,
+    "diff": 0.1,
+    "low": 0.0,
+    "high": 0.3,
+    "p": 1.0,
+    "p_holm": 1.0
+   },
+   {
+    "a": "team_typed_heur",
+    "b": "single_selected",
+    "n": 10,
+    "diff": -0.2,
+    "low": -0.5,
+    "high": 0.0,
+    "p": 0.5,
+    "p_holm": 1.0
+   },
+   {
+    "a": "single_selected",
+    "b": "heur_baro_metrics",
+    "n": 10,
+    "diff": -0.3,
+    "low": -0.6,
+    "high": 0.0,
+    "p": 0.25,
+    "p_holm": 1.0
+   }
+  ]
+ },
+ "ablations": {
+  "ollama:qwen2.5-coder:14b": [
+   {
+    "team": "team_typed",
+    "mode": "drop_root",
+    "n": 2,
+    "intact": 0.0,
+    "ablated": 0.0,
+    "diff": 0.0,
+    "low": 0.0,
+    "high": 0.0
+   },
+   {
+    "team": "team_typed",
+    "mode": "shuffle_root",
+    "n": 2,
+    "intact": 0.0,
+    "ablated": 0.0,
+    "diff": 0.0,
+    "low": 0.0,
+    "high": 0.0
+   },
+   {
+    "team": "team_typed",
+    "mode": "drop_other",
+    "n": 2,
+    "intact": 0.0,
+    "ablated": 0.0,
+    "diff": 0.0,
+    "low": 0.0,
+    "high": 0.0
+   },
+   {
+    "team": "team_typed",
+    "mode": "shuffle_other",
+    "n": 2,
+    "intact": 0.0,
+    "ablated": 0.0,
+    "diff": 0.0,
+    "low": 0.0,
+    "high": 0.0
+   },
+   {
+    "team": "team_free",
+    "mode": "drop_root",
+    "n": 2,
+    "intact": 0.0,
+    "ablated": 0.0,
+    "diff": 0.0,
+    "low": 0.0,
+    "high": 0.0
+   },
+   {
+    "team": "team_free",
+    "mode": "shuffle_root",
+    "n": 2,
+    "intact": 0.0,
+    "ablated": 0.0,
+    "diff": 0.0,
+    "low": 0.0,
+    "high": 0.0
+   },
+   {
+    "team": "team_free",
+    "mode": "drop_other",
+    "n": 2,
+    "intact": 0.0,
+    "ablated": 0.0,
+    "diff": 0.0,
+    "low": 0.0,
+    "high": 0.0
+   },
+   {
+    "team": "team_free",
+    "mode": "shuffle_other",
+    "n": 2,
+    "intact": 0.0,
+    "ablated": 0.0,
+    "diff": 0.0,
+    "low": 0.0,
+    "high": 0.0
+   }
+  ],
+  "qwen3-1.7b": [
+   {
+    "team": "team_typed",
+    "mode": "drop_root",
+    "n": 10,
+    "intact": 0.1,
+    "ablated": 0.1,
+    "diff": 0.0,
+    "low": 0.0,
+    "high": 0.0
+   },
+   {
+    "team": "team_typed",
+    "mode": "shuffle_root",
+    "n": 10,
+    "intact": 0.1,
+    "ablated": 0.2,
+    "diff": 0.1,
+    "low": 0.0,
+    "high": 0.3
+   },
+   {
+    "team": "team_typed",
+    "mode": "drop_other",
+    "n": 10,
+    "intact": 0.1,
+    "ablated": 0.1,
+    "diff": 0.0,
+    "low": 0.0,
+    "high": 0.0
+   },
+   {
+    "team": "team_typed",
+    "mode": "shuffle_other",
+    "n": 10,
+    "intact": 0.1,
+    "ablated": 0.1,
+    "diff": 0.0,
+    "low": 0.0,
+    "high": 0.0
+   },
+   {
+    "team": "team_free",
+    "mode": "drop_root",
+    "n": 10,
+    "intact": 0.2,
+    "ablated": 0.0,
+    "diff": -0.2,
+    "low": -0.5,
+    "high": 0.0
+   },
+   {
+    "team": "team_free",
+    "mode": "shuffle_root",
+    "n": 10,
+    "intact": 0.2,
+    "ablated": 0.2,
+    "diff": 0.0,
+    "low": 0.0,
+    "high": 0.0
+   },
+   {
+    "team": "team_free",
+    "mode": "drop_other",
+    "n": 10,
+    "intact": 0.2,
+    "ablated": 0.2,
+    "diff": 0.0,
+    "low": 0.0,
+    "high": 0.0
+   },
+   {
+    "team": "team_free",
+    "mode": "shuffle_other",
+    "n": 10,
+    "intact": 0.2,
+    "ablated": 0.2,
+    "diff": 0.0,
+    "low": 0.0,
+    "high": 0.0
+   }
+  ]
+ }
+}

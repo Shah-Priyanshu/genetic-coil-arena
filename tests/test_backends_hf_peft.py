@@ -359,3 +359,30 @@ def test_memory_helpers_are_safe_on_cpu(backend):
     assert backend.peak_memory_mib() == 0.0
     backend.reset_peak_memory()
     backend.synchronize()
+
+
+def test_next_token_logprobs_are_true_log_probabilities(backend):
+    prompts = ["abc", "hello world"]
+    ids = [backend.tokenizer.encode(c, add_special_tokens=False)[0] for c in "abc"]
+    lp = backend.next_token_logprobs(prompts, ids)
+    assert len(lp) == 2 and all(len(row) == 3 for row in lp)
+    assert all(x < 0 for row in lp for x in row)
+    # the whole vocabulary sums to one, so the listed tokens sum to at most one
+    assert all(sum(torch.tensor(row).exp().tolist()) <= 1 + 1e-5 for row in lp)
+    # batch padding does not change a row's answer
+    alone = backend.next_token_logprobs(["abc"], ids)[0]
+    assert alone == pytest.approx(lp[0], abs=1e-4)
+    # it agrees with the greedy choice: the argmax over the vocabulary is generated first
+    full = backend.next_token_logprobs(["abc"], list(range(len(backend.tokenizer))))[0]
+    first = backend.generate(["abc"], max_new_tokens=1)[0].token_ids[0]
+    assert int(torch.tensor(full).argmax()) == first
+
+
+def test_next_token_logprobs_chunked_prefill_matches_one_pass(backend):
+    prompts = ["abc def ghi jkl mno", "hello world, this is longer text"]
+    ids = list(range(3, 12))
+    whole = backend.next_token_logprobs(prompts, ids)
+    for chunk in (4, 7):
+        chunked = backend.next_token_logprobs(prompts, ids, chunk_size=chunk)
+        for a, b in zip(whole, chunked):
+            assert a == pytest.approx(b, abs=1e-3)
