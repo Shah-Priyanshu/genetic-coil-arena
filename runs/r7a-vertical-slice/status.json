@@ -1,0 +1,15 @@
+{
+  "id": "r7a-vertical-slice",
+  "commit": "3232dd8124af86f1cdb9d06f7fe86cce7634e876",
+  "queued_args": [
+    "scripts/r7a_vertical_slice.py",
+    "--out",
+    "docs/results/r7a_vertical_slice"
+  ],
+  "state": "running",
+  "started_at": "2026-10-24T20:18:20+00:00",
+  "updated_at": "2026-10-24T20:18:20+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 804 MiB, 12282 MiB, 41",
+  "host": "PC"
+}
