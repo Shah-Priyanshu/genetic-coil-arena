@@ -1,0 +1,24 @@
+{
+  "id": "r8s3-local-b48",
+  "commit": "5450962e53a4946156746c59334b6121e4eec666",
+  "args": [
+    "scripts/plant_learned_codes.py",
+    "--methods",
+    "local",
+    "--budgets",
+    "4,8",
+    "--replicates",
+    "10",
+    "--seeds",
+    "5",
+    "--workers",
+    "8",
+    "--ablate-budgets",
+    "1,2,4"
+  ],
+  "timeout_min": 90,
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "priority": 10,
+  "outputs": []
+}
