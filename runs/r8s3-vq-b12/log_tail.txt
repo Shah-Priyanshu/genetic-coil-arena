@@ -1,0 +1,20 @@
+scale full: 2 groups, replicates 0:10 of 10, 5 seed(s); 8 processes x 1 torch thread(s) <= 8 workers
+100 cells in 2 groups on 8 workers
+  tuned ('vq', 1): {'whiten': False, 'dim': 8} val F1 0.832 (62s)
+  tuned ('vq', 2): {'whiten': False, 'dim': 8} val F1 0.895 (81s)
+  5/100 cells, 82s
+  10/100 cells, 102s
+  15/100 cells, 117s
+  20/100 cells, 136s
+  25/100 cells, 142s
+  30/100 cells, 156s
+  35/100 cells, 175s
+  40/100 cells, 188s
+  45/100 cells, 200s
+  50/100 cells, 215s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s3-vq-b12\artifacts\plant_learned_vq_b1_r0-10.json (3.6 min)
+  55/100 cells, 233s
+  60/100 cells, 251s
+  65/100 cells, 262s
+  70/100 cells, 278s
+  75/100 cells, 296s
