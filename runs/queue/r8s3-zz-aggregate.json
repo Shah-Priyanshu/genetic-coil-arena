@@ -1,0 +1,27 @@
+{
+  "id": "r8s3-zz-aggregate",
+  "commit": "5450962e53a4946156746c59334b6121e4eec666",
+  "args": [
+    "scripts/plant_learned_codes.py",
+    "--from-json",
+    "runs:r8s3-*",
+    "--out",
+    "docs/results/plant_learned_codes.md"
+  ],
+  "timeout_min": 20,
+  "lane": "cpu",
+  "cpu_workers": 1,
+  "priority": 10,
+  "after": [
+    "r8s3-e2e-b12",
+    "r8s3-e2e-b48",
+    "r8s3-local-b12",
+    "r8s3-local-b48",
+    "r8s3-vq-b12",
+    "r8s3-vq-b48"
+  ],
+  "outputs": [
+    "docs/results/plant_learned_codes.md",
+    "docs/results/plant_learned_codes.json"
+  ]
+}
