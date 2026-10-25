@@ -1,0 +1,4 @@
+scale full: 2 groups, replicates 0:10 of 10; 8 processes x 1 torch thread(s) <= 8 workers; splits (unseen faults): [(1, 10, 12, 13, 17), (1, 11, 17, 19, 20), (2, 8, 14, 17, 19), (5, 7, 11, 16, 19), (4, 5, 6, 8, 12), (5, 11, 13, 18, 19)]
+20 cells in 2 groups on 8 workers
+  tuned ('local', 8): {'hidden': 32, 'l2': 0.001, 'max_iter': 100, 'folds': 3} (206s)
+  tuned ('local', 4): {'hidden': 32, 'l2': 0.001, 'max_iter': 100, 'folds': 3} (206s)
