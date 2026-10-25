@@ -18,3 +18,16 @@ Loading weights:  87%|████████▋ | 270/311 [00:01<00:00, 178.53
 Loading weights:  93%|█████████▎| 288/311 [00:01<00:00, 177.99it/s]
 Loading weights: 100%|██████████| 311/311 [00:01<00:00, 187.66it/s]
 [05:25:07] 120 incidents (test), conditions ['heur_baro_logs', 'heur_surprise_logs', 'heur_baro_metrics', 'single_head', 'single_tail', 'single_selected', 'oracle_selected'], model qwen3-1.7b
+[05:26:34] simple conditions: 5/120 incidents (87s)
+[05:28:01] simple conditions: 10/120 incidents (174s)
+[05:29:28] simple conditions: 15/120 incidents (261s)
+[05:30:54] simple conditions: 20/120 incidents (348s)
+[05:32:22] simple conditions: 25/120 incidents (435s)
+[05:33:49] simple conditions: 30/120 incidents (523s)
+[05:35:17] simple conditions: 35/120 incidents (610s)
+[05:36:44] simple conditions: 40/120 incidents (697s)
+[05:38:11] simple conditions: 45/120 incidents (784s)
+[05:39:38] simple conditions: 50/120 incidents (871s)
+[05:41:05] simple conditions: 55/120 incidents (958s)
+[05:42:32] simple conditions: 60/120 incidents (1045s)
+[05:44:11] simple conditions: 65/120 incidents (1144s)
