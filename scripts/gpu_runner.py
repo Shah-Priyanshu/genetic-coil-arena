@@ -209,17 +209,25 @@ def sort_key(job: dict) -> tuple[int, str]:
     return (-job_priority(job), str(job.get("id")))
 
 
-def pick_jobs(queued: list[dict], running: list[dict], budget: int) -> list[dict]:
+def pick_jobs(
+    queued: list[dict], running: list[dict], budget: int, gpu_reserve: int = 0
+) -> list[dict]:
     """Which ready jobs to start now, in start order.
 
     Highest priority first (ties by id). Summed ``cpu_workers`` stays within
     ``budget`` and at most one gpu-lane job runs. A job without ``cpu_workers`` runs
     alone: while one runs nothing starts, and while one waits nothing behind it
-    starts, so that the machine can drain.
+    starts, so that the machine can drain. The first ``gpu_reserve`` workers of a
+    gpu-lane job come from a separate reserve, so a full CPU lane never starves
+    the GPU.
     """
+
+    def counted(job: dict, workers: int) -> int:
+        return max(0, workers - gpu_reserve) if job_lane(job) == "gpu" else workers
+
     if any(is_exclusive(j) for j in running):
         return []
-    used = sum(job_workers(j) or 0 for j in running)
+    used = sum(counted(j, job_workers(j) or 0) for j in running)
     gpu_busy = any(job_lane(j) == "gpu" for j in running)
     picked: list[dict] = []
     for job in sorted(queued, key=sort_key):
@@ -227,7 +235,7 @@ def pick_jobs(queued: list[dict], running: list[dict], budget: int) -> list[dict
             if not running and not picked:
                 picked.append(job)
             break
-        workers = min(job_workers(job) or 0, budget)
+        workers = counted(job, min(job_workers(job) or 0, budget))
         if used + workers > budget:
             continue
         if job_lane(job) == "gpu":
@@ -985,7 +993,10 @@ class Scheduler:
 
     def pick(self, ready: list[dict]) -> list[dict]:
         return pick_jobs(
-            ready, [r.job for r in self.running.values()], self.args.cpu_budget
+            ready,
+            [r.job for r in self.running.values()],
+            self.args.cpu_budget,
+            self.args.gpu_cpu_reserve,
         )
 
     def plan_ci(self) -> None:
@@ -1061,6 +1072,12 @@ def main() -> None:
         type=int,
         default=24,
         help="Max summed cpu_workers of concurrently running jobs",
+    )
+    parser.add_argument(
+        "--gpu-cpu-reserve",
+        type=int,
+        default=4,
+        help="Workers of the gpu-lane job not counted against --cpu-budget",
     )
     parser.add_argument(
         "--ci",

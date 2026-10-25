@@ -67,6 +67,7 @@ safe, because jobs that already finished are skipped.
 | `--push-every 300` | Seconds between progress pushes |
 | `--jobs-branch` | Branch to read jobs from |
 | `--cpu-budget 24` | Max summed `cpu_workers` of running jobs |
+| `--gpu-cpu-reserve 4` | Workers of the gpu-lane job that do not count against `--cpu-budget`, so a full CPU lane never blocks the GPU (24 + 4 = the PC's 28 threads) |
 | `--ci` / `--no-ci` | Automatic CI of the jobs-branch head (default on) |
 | `--ci-min-interval 30` | Minutes between CI runs |
 | `--update-drain-min 120` | Max wait for running jobs before an update restart |

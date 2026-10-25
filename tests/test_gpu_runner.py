@@ -52,6 +52,20 @@ class TestPickJobs:
         assert ids(runner.pick_jobs(queued, [], 24)) == ["c", "g1"]
         assert ids(runner.pick_jobs(queued, [J("g0", 2, "gpu")], 24)) == ["c"]
 
+    def test_gpu_reserve_keeps_gpu_lane_free_when_cpu_lane_is_full(self):
+        running = [J("c1", 8), J("c2", 8), J("c3", 8)]
+        queued = [J("g", 4, "gpu"), J("c4", 8)]
+        assert ids(runner.pick_jobs(queued, running, 24)) == []
+        assert ids(runner.pick_jobs(queued, running, 24, gpu_reserve=4)) == ["g"]
+
+    def test_gpu_workers_beyond_reserve_count_against_budget(self):
+        queued = [J("c", 20, priority=1), J("g", 8, "gpu")]
+        assert ids(runner.pick_jobs(queued, [], 24, gpu_reserve=4)) == ["c", "g"]
+        queued = [J("c", 21, priority=1), J("g", 8, "gpu")]
+        assert ids(runner.pick_jobs(queued, [], 24, gpu_reserve=4)) == ["c"]
+        running = [J("g", 8, "gpu")]
+        assert ids(runner.pick_jobs([J("c", 21)], running, 24, gpu_reserve=4)) == []
+
     def test_gpu_and_cpu_overlap(self):
         assert ids(runner.pick_jobs([J("c", 20)], [J("g", 0, "gpu")], 24)) == ["c"]
 
