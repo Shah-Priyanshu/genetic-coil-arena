@@ -1,0 +1,24 @@
+{
+  "id": "r10s2-runtime",
+  "commit": "585196f2a825bde056c555943872bc1a79cb11f1",
+  "queued_args": [
+    "scripts/r10_step2.py",
+    "runtime",
+    "--model",
+    "ollama:qwen2.5-coder:14b",
+    "--systems",
+    "SS,OB",
+    "--split",
+    "test",
+    "--limit",
+    "12"
+  ],
+  "state": "running",
+  "started_at": "2026-10-25T23:20:43+00:00",
+  "updated_at": "2026-10-25T23:20:43+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 744 MiB, 12282 MiB, 55",
+  "host": "PC",
+  "lane": "gpu",
+  "cpu_workers": 4
+}
