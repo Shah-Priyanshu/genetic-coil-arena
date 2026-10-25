@@ -13,12 +13,14 @@
     "--conditions",
     "heur_baro_logs,heur_surprise_logs,heur_baro_metrics,single_head,single_tail,single_selected,oracle_selected"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-25T09:24:55+00:00",
-  "updated_at": "2026-10-25T10:00:30+00:00",
-  "elapsed_min": 35.6,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 100 %, 10363 MiB, 12282 MiB, 76",
+  "updated_at": "2026-10-25T10:02:30+00:00",
+  "elapsed_min": 37.6,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 1 %, 708 MiB, 12282 MiB, 62",
   "host": "PC",
   "lane": "gpu",
-  "cpu_workers": 4
+  "cpu_workers": 4,
+  "returncode": 0,
+  "finished_at": "2026-10-25T10:02:30+00:00"
 }

@@ -40,3 +40,6 @@ Loading weights: 100%|██████████| 311/311 [00:01<00:00, 187.
 [05:55:49] simple conditions: 100/120 incidents (1842s)
 [05:57:29] simple conditions: 105/120 incidents (1942s)
 [05:59:09] simple conditions: 110/120 incidents (2042s)
+[06:00:49] simple conditions: 115/120 incidents (2142s)
+[06:02:30] simple conditions: 120/120 incidents (2243s)
+[06:02:30] done in 2242.9s; records in D:\Projects\genetic-coil-arena-gpu-results\runs\r10-q3-single\artifacts\artifacts\results.jsonl
