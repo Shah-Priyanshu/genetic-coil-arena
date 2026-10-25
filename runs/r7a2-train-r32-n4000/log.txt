@@ -70,3 +70,4 @@ Loading weights: 100%|██████████| 311/311 [00:01<00:00, 199.
 [02:26:14] r32-n4000: trained 1250 steps in 705s, loss 0.0022, peak 4607 MiB
 [02:27:11] r32-n4000 dev: 40/304 (squad-dev-ho-03)
 [02:28:02] r32-n4000 dev: 80/304 (plant-dev-in-07)
+[02:28:46] r32-n4000 dev: 120/304 (plant-dev-ho-11)
