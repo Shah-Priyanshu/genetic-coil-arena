@@ -1,0 +1,26 @@
+{
+  "id": "r7b2-train-hand-goal",
+  "commit": "df24038ac005140cecc992e0f1b715a71b8707cd",
+  "args": [
+    "scripts/r7b_goal_conditioned.py",
+    "--train-only",
+    "--modes",
+    "hand-goal",
+    "--runs",
+    "0:8",
+    "--generations",
+    "5000",
+    "--population",
+    "64",
+    "--eval-every",
+    "50",
+    "--workers",
+    "8",
+    "--progress",
+    "300"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "priority": 7,
+  "timeout_min": 720.0
+}
