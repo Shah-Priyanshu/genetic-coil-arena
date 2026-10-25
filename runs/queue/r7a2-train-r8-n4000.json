@@ -1,0 +1,29 @@
+{
+  "id": "r7a2-train-r8-n4000",
+  "commit": "e8236c4b1ce4ebcfee4dc2fa89d63d05805efe78",
+  "args": [
+    "scripts/r7a_step2.py",
+    "train",
+    "--pool",
+    "runs:r7a2-para-verify",
+    "--rank",
+    "8",
+    "--n",
+    "4000",
+    "--epochs",
+    "5",
+    "--name",
+    "r8-n4000"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 4,
+  "priority": 6,
+  "after": [
+    "r7a2-para-verify"
+  ],
+  "timeout_min": 120.0,
+  "env": {
+    "HF_HOME": "D:\\hf_cache",
+    "R7A2_STORE": "D:\\hf_cache\\r7a2_store"
+  }
+}
