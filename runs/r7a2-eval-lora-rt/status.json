@@ -5,12 +5,14 @@
     "scripts/r7a_step2.py",
     "eval-lora-rt"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-25T07:56:16+00:00",
-  "updated_at": "2026-10-25T08:01:24+00:00",
-  "elapsed_min": 5.1,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 21 %, 5257 MiB, 12282 MiB, 54",
+  "updated_at": "2026-10-25T08:01:50+00:00",
+  "elapsed_min": 5.6,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 708 MiB, 12282 MiB, 52",
   "host": "PC",
   "lane": "gpu",
-  "cpu_workers": 4
+  "cpu_workers": 4,
+  "returncode": 0,
+  "finished_at": "2026-10-25T08:01:50+00:00"
 }

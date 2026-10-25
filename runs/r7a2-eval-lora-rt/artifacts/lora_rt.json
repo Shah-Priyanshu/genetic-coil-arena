@@ -1,0 +1,3652 @@
+{
+ "round_trip_rows": [
+  {
+   "id": "sealed-squad-000",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red and blue snakes were ordered to forage at caution level normal with a step limit of 90 and no food target; the squad finished with mission score 6.2.",
+   "summary_latency_s": 0.9478595000109635,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "red",
+     "blue"
+    ],
+    "step_limit": 90,
+    "caution": "normal",
+    "food_target": 0
+   },
+   "recon_latency_s": 1.958953699999256,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-001",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The green snake was ordered to forage at caution level high with a step limit of 250 and no food target; the squad finished with mission score 5.2.",
+   "summary_latency_s": 0.8474419999984093,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "green"
+    ],
+    "step_limit": 250,
+    "food_target": 0
+   },
+   "recon_latency_s": 1.590402300003916,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-002",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The blue snake was ordered to forage at caution level low, with a step limit of 120 and a food target of 15; the squad finished with mission score 3.9.",
+   "summary_latency_s": 0.9538944000087213,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "low",
+    "eaters": [
+     "blue"
+    ],
+    "food_target": 15,
+    "step_limit": 120
+   },
+   "recon_latency_s": 1.7934584000031464,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-003",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high, with a step limit of 300 and a food target of 20; the squad finished with mission score 15.7.",
+   "summary_latency_s": 1.0801615999953356,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 20,
+    "step_limit": 300
+   },
+   "recon_latency_s": 1.2858461999858264,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-004",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The green and red snakes were ordered to forage at caution level normal with a step limit of 200 and no food target; the squad finished with mission score 13.3.",
+   "summary_latency_s": 0.90875150001375,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "green",
+     "red"
+    ],
+    "step_limit": 200,
+    "caution": "normal",
+    "food_target": 0
+   },
+   "recon_latency_s": 1.0781793000060134,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-005",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The blue and green snakes were ordered to forage at caution level low, with a step limit of 75 and a food target of 9; the squad finished with mission score 5.3.",
+   "summary_latency_s": 0.9318260000145528,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "low",
+    "eaters": [
+     "blue",
+     "green"
+    ],
+    "food_target": 9,
+    "step_limit": 75
+   },
+   "recon_latency_s": 1.633260300004622,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-006",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The green snake was ordered to forage at caution level high with a step limit of 100 and no food target; the squad finished with mission score 2.9.",
+   "summary_latency_s": 0.8507093999942299,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "green"
+    ],
+    "step_limit": 100,
+    "food_target": 0
+   },
+   "recon_latency_s": 1.2142508999968413,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-007",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level low, with a step limit of 300 and a food target of 12; the squad finished with mission score 10.8.",
+   "summary_latency_s": 1.0793506000190973,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "low",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 12,
+    "step_limit": 300
+   },
+   "recon_latency_s": 1.5964698999887332,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-009",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The blue snake was ordered to forage at caution level high, with a step limit of 300 and a food target of 7; the squad finished with mission score 4.1.",
+   "summary_latency_s": 0.929187700006878,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "blue"
+    ],
+    "food_target": 7,
+    "step_limit": 300
+   },
+   "recon_latency_s": 1.0782020000042394,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-010",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The green and blue snakes were ordered to forage at caution level normal, with a step limit of 140 and a food target of 14; the squad finished with mission score 9.9.",
+   "summary_latency_s": 0.9941220000036992,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "food_target": 14,
+    "step_limit": 140,
+    "caution": "normal"
+   },
+   "recon_latency_s": 1.273245600023074,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-011",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red snake was ordered to forage at caution level normal, with a step limit of 50 and a food target of 10; the squad finished with mission score 2.9.",
+   "summary_latency_s": 0.9214534000202548,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "red"
+    ],
+    "food_target": 10,
+    "step_limit": 50,
+    "caution": "normal"
+   },
+   "recon_latency_s": 1.3284494999970775,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-012",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red and blue snakes were ordered to forage at caution level high with a step limit of 180 and no food target; the squad finished with mission score 7.0.",
+   "summary_latency_s": 0.8850339000055101,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "blue"
+    ],
+    "step_limit": 180,
+    "food_target": 0
+   },
+   "recon_latency_s": 1.3616110000002664,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-013",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red and green snakes were ordered to forage at caution level normal, with a step limit of 300 and a food target of 30; the squad finished with mission score 16.0.",
+   "summary_latency_s": 1.0197865999944042,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "red",
+     "green"
+    ],
+    "food_target": 30,
+    "caution": "normal",
+    "step_limit": 300
+   },
+   "recon_latency_s": 1.1583121000148822,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-014",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 23.1.",
+   "summary_latency_s": 0.969394799991278,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "caution": "normal",
+    "step_limit": 300,
+    "food_target": 0
+   },
+   "recon_latency_s": 0.7395112999947742,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-015",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level low with a step limit of 55 and no food target; the squad finished with mission score 7.7.",
+   "summary_latency_s": 0.937384299992118,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "low",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "step_limit": 55,
+    "food_target": 0
+   },
+   "recon_latency_s": 1.2695525999879465,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-016",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red snake was ordered to forage at caution level high with a step limit of 180 and no food target; the squad finished with mission score 4.8.",
+   "summary_latency_s": 0.8504715000162832,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "red"
+    ],
+    "step_limit": 180,
+    "food_target": 0
+   },
+   "recon_latency_s": 1.2660027000238188,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-017",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The blue and red snakes were ordered to forage at caution level normal with a step limit of 250 and no food target; the squad finished with mission score 6.5.",
+   "summary_latency_s": 0.8902746000094339,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "blue",
+     "red"
+    ],
+    "step_limit": 250,
+    "caution": "normal",
+    "food_target": 0
+   },
+   "recon_latency_s": 1.1547694000182673,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-018",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The green and blue snakes were ordered to forage at caution level normal with a step limit of 120 and no food target; the squad finished with mission score 9.0.",
+   "summary_latency_s": 0.886818700004369,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "step_limit": 120,
+    "caution": "normal",
+    "food_target": 0
+   },
+   "recon_latency_s": 1.229779800021788,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-019",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The green snake was ordered to forage at caution level high, with a step limit of 200 and a food target of 25; the squad finished with mission score 4.6.",
+   "summary_latency_s": 0.9583110999956261,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "green"
+    ],
+    "food_target": 25,
+    "step_limit": 200
+   },
+   "recon_latency_s": 1.7790765000099782,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-020",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red snake was ordered to forage at caution level normal, with a step limit of 300 and a food target of 6; the squad finished with mission score 4.2.",
+   "summary_latency_s": 0.9322458000096958,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "red"
+    ],
+    "food_target": 6,
+    "caution": "normal",
+    "step_limit": 300
+   },
+   "recon_latency_s": 0.7373989000043366,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-021",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high, with a step limit of 300 and a food target of 24; the squad finished with mission score 16.5.",
+   "summary_latency_s": 1.0701217000023462,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 24,
+    "step_limit": 300
+   },
+   "recon_latency_s": 1.7608217000088189,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-022",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The blue and green snakes were ordered to forage at caution level low with a step limit of 150 and no food target; the squad finished with mission score 7.1.",
+   "summary_latency_s": 0.8933991999947466,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "low",
+    "eaters": [
+     "blue",
+     "green"
+    ],
+    "step_limit": 150,
+    "food_target": 0
+   },
+   "recon_latency_s": 1.4981453999935184,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-023",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red snake was ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 5.2.",
+   "summary_latency_s": 0.8463247999898158,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "red"
+    ],
+    "caution": "normal",
+    "step_limit": 300,
+    "food_target": 0
+   },
+   "recon_latency_s": 0.8060085999895819,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-024",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high with a step limit of 100 and no food target; the squad finished with mission score 10.1.",
+   "summary_latency_s": 0.9693422999989707,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "step_limit": 100,
+    "food_target": 0
+   },
+   "recon_latency_s": 1.5148767000064254,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-025",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red and green snakes were ordered to forage at caution level low with a step limit of 50 and no food target; the squad finished with mission score 5.3.",
+   "summary_latency_s": 0.8674377000133973,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "low",
+    "eaters": [
+     "red",
+     "green"
+    ],
+    "step_limit": 50,
+    "food_target": 0
+   },
+   "recon_latency_s": 1.4684470999927726,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-026",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The blue, green, and red snakes were ordered to forage at caution level high, with a step limit of 250 and a food target of 35; the squad finished with mission score 16.0.",
+   "summary_latency_s": 1.0830951999814715,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "blue",
+     "green",
+     "red"
+    ],
+    "food_target": 35,
+    "step_limit": 250
+   },
+   "recon_latency_s": 1.6767845999856945,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-027",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The green snake was ordered to forage at caution level normal, with a step limit of 300 and a food target of 40; the squad finished with mission score 11.3.",
+   "summary_latency_s": 0.9539928000012878,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "green"
+    ],
+    "food_target": 40,
+    "caution": "normal",
+    "step_limit": 300
+   },
+   "recon_latency_s": 0.7996588000096381,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-028",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red and blue snakes were ordered to forage at caution level high, with a step limit of 300 and a food target of 8; the squad finished with mission score 5.1.",
+   "summary_latency_s": 0.9741524999844842,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "blue"
+    ],
+    "food_target": 8,
+    "step_limit": 300
+   },
+   "recon_latency_s": 1.184796899993671,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-029",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red snake was ordered to forage at caution level low with a step limit of 55 and no food target; the squad finished with mission score 3.6.",
+   "summary_latency_s": 0.8298322000191547,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "low",
+    "eaters": [
+     "red"
+    ],
+    "step_limit": 55,
+    "food_target": 0
+   },
+   "recon_latency_s": 1.3485377999895718,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-030",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The green and blue snakes were ordered to forage at caution level normal, with a step limit of 90 and a food target of 10; the squad finished with mission score 7.1.",
+   "summary_latency_s": 0.9686663000029512,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "food_target": 10,
+    "step_limit": 90,
+    "caution": "normal"
+   },
+   "recon_latency_s": 1.4841138000192586,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-031",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 120 and a food target of 18; the squad finished with mission score 14.8.",
+   "summary_latency_s": 1.0728680999891367,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 18,
+    "step_limit": 120,
+    "caution": "normal"
+   },
+   "recon_latency_s": 1.6590445000038017,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-032",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red and green snakes were ordered to forage at caution level normal, with a step limit of 160 and a food target of 14; the squad finished with mission score 10.8.",
+   "summary_latency_s": 1.0142019000195432,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "red",
+     "green"
+    ],
+    "food_target": 14,
+    "step_limit": 160,
+    "caution": "normal"
+   },
+   "recon_latency_s": 1.3873189000005368,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-033",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The blue snake was ordered to forage at caution level high with a step limit of 210 and no food target; the squad finished with mission score 4.8.",
+   "summary_latency_s": 0.8433711999969091,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "blue"
+    ],
+    "step_limit": 210,
+    "food_target": 0
+   },
+   "recon_latency_s": 1.379904200002784,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-034",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The green and blue snakes were ordered to forage at caution level low, with a step limit of 65 and a food target of 11; the squad finished with mission score 5.1.",
+   "summary_latency_s": 0.9787771000119392,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "low",
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "food_target": 11,
+    "step_limit": 65
+   },
+   "recon_latency_s": 1.5400434999901336,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-036",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The green and red snakes were ordered to forage at caution level high, with a step limit of 130 and a food target of 16; the squad finished with mission score 8.1.",
+   "summary_latency_s": 0.9904864999989513,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "green",
+     "red"
+    ],
+    "food_target": 16,
+    "step_limit": 130
+   },
+   "recon_latency_s": 1.7176345000043511,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-037",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high, with a step limit of 300 and a food target of 10; the squad finished with mission score 10.4.",
+   "summary_latency_s": 1.0591289000003599,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 10,
+    "step_limit": 300
+   },
+   "recon_latency_s": 1.5951553999911994,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-038",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red snake was ordered to forage at caution level normal with a step limit of 90 and no food target; the squad finished with mission score 3.6.",
+   "summary_latency_s": 0.8321807000029366,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "red"
+    ],
+    "step_limit": 90,
+    "caution": "normal",
+    "food_target": 0
+   },
+   "recon_latency_s": 0.9765603999840096,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-039",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The blue and red snakes were ordered to forage at caution level low with a step limit of 100 and no food target; the squad finished with mission score 7.4.",
+   "summary_latency_s": 0.8704733999911696,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "low",
+    "eaters": [
+     "blue",
+     "red"
+    ],
+    "step_limit": 100,
+    "food_target": 0
+   },
+   "recon_latency_s": 1.4121721999836154,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-040",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 275 and a food target of 33; the squad finished with mission score 22.9.",
+   "summary_latency_s": 1.0802671000128612,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 33,
+    "step_limit": 275,
+    "caution": "normal"
+   },
+   "recon_latency_s": 1.3490767999901436,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-041",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The green snake was ordered to forage at caution level normal, with a step limit of 300 and a food target of 5; the squad finished with mission score 4.4.",
+   "summary_latency_s": 0.9223841000057291,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "green"
+    ],
+    "food_target": 5,
+    "caution": "normal",
+    "step_limit": 300
+   },
+   "recon_latency_s": 1.0448876000009477,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-042",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 300 and a food target of 40; the squad finished with mission score 23.1.",
+   "summary_latency_s": 1.0776929999992717,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 40,
+    "caution": "normal",
+    "step_limit": 300
+   },
+   "recon_latency_s": 1.1881228999991436,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-043",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 240 and no food target; the squad finished with mission score 21.0.",
+   "summary_latency_s": 0.9700710000179242,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "step_limit": 240,
+    "caution": "normal",
+    "food_target": 0
+   },
+   "recon_latency_s": 1.239310500008287,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-044",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red and green snakes were ordered to forage at caution level high with a step limit of 95 and no food target; the squad finished with mission score 7.2.",
+   "summary_latency_s": 0.8736640999850351,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green"
+    ],
+    "step_limit": 95,
+    "food_target": 0
+   },
+   "recon_latency_s": 1.31235170000582,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-045",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red snake was ordered to forage at caution level low, with a step limit of 300 and a food target of 22; the squad finished with mission score 9.4.",
+   "summary_latency_s": 0.9551788000098895,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "low",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 22,
+    "step_limit": 300
+   },
+   "recon_latency_s": 1.1385219000221696,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-046",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The green snake was ordered to forage at caution level high with a step limit of 120 and no food target; the squad finished with mission score 3.4.",
+   "summary_latency_s": 0.8511647999985144,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "green"
+    ],
+    "step_limit": 120,
+    "food_target": 0
+   },
+   "recon_latency_s": 1.3595258000132162,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-047",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The blue and green snakes were ordered to forage at caution level normal, with a step limit of 200 and a food target of 15; the squad finished with mission score 11.2.",
+   "summary_latency_s": 1.0223121000162791,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "blue",
+     "green"
+    ],
+    "food_target": 15,
+    "step_limit": 200,
+    "caution": "normal"
+   },
+   "recon_latency_s": 1.5128770000010263,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-048",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red snake was ordered to forage at caution level normal with a step limit of 70 and no food target; the squad finished with mission score 3.6.",
+   "summary_latency_s": 0.8268099000270013,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "red"
+    ],
+    "step_limit": 70,
+    "caution": "normal",
+    "food_target": 0
+   },
+   "recon_latency_s": 0.8570723999873735,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-049",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 150 and a food target of 26; the squad finished with mission score 16.9.",
+   "summary_latency_s": 1.0824332000047434,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 26,
+    "step_limit": 150,
+    "caution": "normal"
+   },
+   "recon_latency_s": 1.572882100008428,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-050",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The green and blue snakes were ordered to forage at caution level low with a step limit of 110 and no food target; the squad finished with mission score 6.2.",
+   "summary_latency_s": 0.8929028999991715,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "low",
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "step_limit": 110,
+    "food_target": 0
+   },
+   "recon_latency_s": 1.414718800020637,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-051",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 300 and a food target of 31; the squad finished with mission score 22.9.",
+   "summary_latency_s": 1.0764111000171397,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 31,
+    "caution": "normal",
+    "step_limit": 300
+   },
+   "recon_latency_s": 1.2260300000198185,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-054",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red and green snakes were ordered to forage at caution level low with a step limit of 58 and no food target; the squad finished with mission score 6.4.",
+   "summary_latency_s": 0.8553991999942809,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "low",
+    "eaters": [
+     "red",
+     "green"
+    ],
+    "step_limit": 58,
+    "food_target": 0
+   },
+   "recon_latency_s": 1.4022580000164453,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-055",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high, with a step limit of 225 and a food target of 28; the squad finished with mission score 15.3.",
+   "summary_latency_s": 1.0838102000125218,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 28,
+    "step_limit": 225
+   },
+   "recon_latency_s": 1.9104073999915272,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-056",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The blue snake was ordered to forage at caution level normal with a step limit of 190 and no food target; the squad finished with mission score 6.6.",
+   "summary_latency_s": 0.833676700014621,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "blue"
+    ],
+    "step_limit": 190,
+    "caution": "normal",
+    "food_target": 0
+   },
+   "recon_latency_s": 0.9618503999954555,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-057",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level low, with a step limit of 70 and a food target of 15; the squad finished with mission score 8.5.",
+   "summary_latency_s": 1.0317836999893188,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "low",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 15,
+    "step_limit": 70
+   },
+   "recon_latency_s": 1.8243897999927867,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-060",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red and blue snakes were ordered to forage at caution level high, with a step limit of 180 and a food target of 17; the squad finished with mission score 7.0.",
+   "summary_latency_s": 0.9971807999827433,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "blue"
+    ],
+    "food_target": 17,
+    "step_limit": 180
+   },
+   "recon_latency_s": 1.6811501999909524,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-061",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 240 and no food target; the squad finished with mission score 21.0.",
+   "summary_latency_s": 0.9691725000157021,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "step_limit": 240,
+    "caution": "normal",
+    "food_target": 0
+   },
+   "recon_latency_s": 1.366985000000568,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-062",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The blue snake was ordered to forage at caution level low with a step limit of 100 and no food target; the squad finished with mission score 3.6.",
+   "summary_latency_s": 0.8434349999879487,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "low",
+    "eaters": [
+     "blue"
+    ],
+    "step_limit": 100,
+    "food_target": 0
+   },
+   "recon_latency_s": 1.2626180999795906,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-063",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The blue and green snakes were ordered to forage at caution level low with a step limit of 300 and no food target; the squad finished with mission score 8.1.",
+   "summary_latency_s": 0.879091500013601,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "low",
+    "eaters": [
+     "blue",
+     "green"
+    ],
+    "step_limit": 300,
+    "food_target": 0
+   },
+   "recon_latency_s": 1.004731900000479,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-064",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red snake was ordered to forage at caution level high, with a step limit of 95 and a food target of 9; the squad finished with mission score 2.9.",
+   "summary_latency_s": 0.9106787000200711,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 9,
+    "step_limit": 95
+   },
+   "recon_latency_s": 1.5485158000083175,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-066",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The green snake was ordered to forage at caution level low with a step limit of 60 and no food target; the squad finished with mission score 2.9.",
+   "summary_latency_s": 0.825098600005731,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "low",
+    "eaters": [
+     "green"
+    ],
+    "step_limit": 60,
+    "food_target": 0
+   },
+   "recon_latency_s": 1.1419058999745175,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-067",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The blue and red snakes were ordered to forage at caution level normal, with a step limit of 135 and a food target of 12; the squad finished with mission score 6.6.",
+   "summary_latency_s": 0.9890535000013188,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "eaters": [
+     "blue",
+     "red"
+    ],
+    "food_target": 12,
+    "step_limit": 135,
+    "caution": "normal"
+   },
+   "recon_latency_s": 1.5269209999823943,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-068",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The green and blue snakes were ordered to forage at caution level high with a step limit of 175 and no food target; the squad finished with mission score 7.4.",
+   "summary_latency_s": 0.896434299997054,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "step_limit": 175,
+    "food_target": 0
+   },
+   "recon_latency_s": 1.271694099996239,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-069",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red snake was ordered to forage at caution level high, with a step limit of 220 and a food target of 25; the squad finished with mission score 5.9.",
+   "summary_latency_s": 0.9441144000156783,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 25,
+    "step_limit": 220
+   },
+   "recon_latency_s": 1.5932730000058655,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-071",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The blue and green snakes were ordered to forage at caution level high with a step limit of 50 and no food target; the squad finished with mission score 4.6.",
+   "summary_latency_s": 0.8476819999923464,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "blue",
+     "green"
+    ],
+    "step_limit": 50,
+    "food_target": 0
+   },
+   "recon_latency_s": 1.1733626000059303,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-squad-072",
+   "domain": "squad",
+   "split": "sealed",
+   "summary": "The red snake was ordered to forage at caution level high, with a step limit of 80 and a food target of 4; the squad finished with mission score 2.6.",
+   "summary_latency_s": 0.9031054000079166,
+   "facts": {
+    "eaters": true,
+    "caution": true,
+    "step_limit": true,
+    "food_target": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "caution": "high",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 4,
+    "step_limit": 80
+   },
+   "recon_latency_s": 1.6263699000119232,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-000",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and achieved 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, resulting in macro-F1 0.74.",
+   "summary_latency_s": 0.9991825000033714,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "target_far": 0.005,
+    "byte_budget": 16,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 0.8143174000142608,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-001",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 8 bytes per message and aimed for 1% false alarms on the reactor and stripper nodes, achieving macro-F1 0.49.",
+   "summary_latency_s": 0.7525392000097781,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "reactor",
+     "stripper"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.01
+   },
+   "recon_latency_s": 1.1754221000010148,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-002",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.69.",
+   "summary_latency_s": 0.906298699992476,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "byte_budget": 51,
+    "target_far": 0.01,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 0.5957140999962576,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-003",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 8 bytes per message and 2% false alarms on the separator and compressor_utilities nodes, achieving macro-F1 0.63.",
+   "summary_latency_s": 0.7472469000204001,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "separator",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.02
+   },
+   "recon_latency_s": 1.5144375000090804,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-004",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis for the stripper node used 51 bytes per message with a 0.5% target false alarm rate, achieving macro-F1 0.26.",
+   "summary_latency_s": 0.8079125999938697,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "stripper"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.005
+   },
+   "recon_latency_s": 1.40721149998717,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-005",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 8 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "summary_latency_s": 0.8499159000057261,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "byte_budget": 8,
+    "target_far": 0.01,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 0.6021032999851741,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-006",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and aimed for 0.1% false alarms on the separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.61.",
+   "summary_latency_s": 0.9162149999756366,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "target_far": 0.001,
+    "byte_budget": 16
+   },
+   "recon_latency_s": 1.4998171999759506,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-007",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and 5% false alarms on the stripper and reactor nodes, achieving macro-F1 0.5.",
+   "summary_latency_s": 0.7341114999726415,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "stripper",
+     "reactor"
+    ],
+    "target_far": 0.05,
+    "byte_budget": 16
+   },
+   "recon_latency_s": 1.2353757000237238,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-008",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and 5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.76.",
+   "summary_latency_s": 0.8547968000057153,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "target_far": 0.05,
+    "byte_budget": 16,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 0.723341300006723,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-009",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, and stripper nodes, achieving macro-F1 0.52.",
+   "summary_latency_s": 0.831745499977842,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.01
+   },
+   "recon_latency_s": 1.187923799996497,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-010",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and achieved 1% false alarms on the separator node, resulting in macro-F1 0.29.",
+   "summary_latency_s": 0.7497277999937069,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "separator"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.01
+   },
+   "recon_latency_s": 0.5461401000211481,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-011",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.7.",
+   "summary_latency_s": 0.9114257000037469,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "byte_budget": 8,
+    "target_far": 0.001,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 1.0653681000112556,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-012",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the reactor and separator nodes, achieving macro-F1 0.52.",
+   "summary_latency_s": 0.7474444000108633,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "reactor",
+     "separator"
+    ],
+    "target_far": 0.02,
+    "byte_budget": 16
+   },
+   "recon_latency_s": 1.3100682999938726,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-013",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis for the compressor_utilities node used 8 bytes per message with a 5% false alarm rate, achieving macro-F1 0.48.",
+   "summary_latency_s": 0.7439704000134952,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.05
+   },
+   "recon_latency_s": 1.3518173999909777,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-014",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.69.",
+   "summary_latency_s": 0.9123124000034295,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "byte_budget": 51,
+    "target_far": 0.01,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 0.5383877000131179,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-015",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 8 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "summary_latency_s": 0.8356533000187483,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "byte_budget": 8,
+    "target_far": 0.01,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 0.5903394000197295,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-016",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.75.",
+   "summary_latency_s": 0.8634891000110656,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "target_far": 0.02,
+    "byte_budget": 16,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 0.6050818000221625,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-018",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 51 bytes per message and aimed for 0.5% false alarms on the separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.56.",
+   "summary_latency_s": 0.91854450001847,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.005
+   },
+   "recon_latency_s": 1.7505637999856845,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-019",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and aimed for 1% false alarms on the reactor and separator nodes, achieving macro-F1 0.51.",
+   "summary_latency_s": 0.7866038999927696,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "reactor",
+     "separator"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.01
+   },
+   "recon_latency_s": 0.7981016999983694,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-021",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the reactor, separator, and compressor_utilities nodes, achieving macro-F1 0.72.",
+   "summary_latency_s": 0.8727129999897443,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.001
+   },
+   "recon_latency_s": 1.602335299976403,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-022",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 51 bytes per message with a 2% target false alarm rate on the reactor, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "summary_latency_s": 0.8961038999841549,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "reactor",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.02
+   },
+   "recon_latency_s": 2.006493799999589,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-023",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.74.",
+   "summary_latency_s": 0.8714269000047352,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "byte_budget": 16,
+    "target_far": 0.01,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 0.4060050999978557,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-024",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis for the reactor used 8 bytes per message with a 0.5% target false alarm rate, achieving macro-F1 0.47.",
+   "summary_latency_s": 0.7617280000122264,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "reactor"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.005
+   },
+   "recon_latency_s": 1.5349044000031427,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-025",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 51 bytes per message with a 5% false alarm rate on the reactor and compressor_utilities nodes, achieving macro-F1 0.76.",
+   "summary_latency_s": 0.8072764000098687,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "reactor",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.05
+   },
+   "recon_latency_s": 1.6624910999962594,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-026",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and aimed for 0.1% false alarms on the separator and reactor nodes, achieving macro-F1 0.5.",
+   "summary_latency_s": 0.81054989999393,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "separator",
+     "reactor"
+    ],
+    "target_far": 0.001,
+    "byte_budget": 16
+   },
+   "recon_latency_s": 1.335314299998572,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-027",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 8 bytes per message and aimed for 1% false alarms on the stripper, reactor, and separator nodes, achieving macro-F1 0.52.",
+   "summary_latency_s": 0.8285460000042804,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "stripper",
+     "reactor",
+     "separator"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.01
+   },
+   "recon_latency_s": 1.1522572000103537,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-028",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 51 bytes per message with a 2% target false alarm rate on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.7.",
+   "summary_latency_s": 0.8944879999908153,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "byte_budget": 51,
+    "target_far": 0.02,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 1.1210623999941163,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-029",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis for the compressor_utilities node used 16 bytes per message with a 1% target false alarm rate, achieving macro-F1 0.53.",
+   "summary_latency_s": 0.7918745999922976,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.01
+   },
+   "recon_latency_s": 0.6641100999841001,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-030",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and 5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.76.",
+   "summary_latency_s": 0.8781446999928448,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "target_far": 0.05,
+    "byte_budget": 16,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 0.74390690002474,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-031",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.5% false alarms on the separator and stripper nodes, achieving macro-F1 0.38.",
+   "summary_latency_s": 0.8107133000157773,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "separator",
+     "stripper"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.005
+   },
+   "recon_latency_s": 1.5906084000016563,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-032",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis for the reactor node used 51 bytes per message with a 0.1% false alarm rate, achieving macro-F1 0.51.",
+   "summary_latency_s": 0.7920039000164252,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "reactor"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.001
+   },
+   "recon_latency_s": 1.5199253000027966,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-033",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.63.",
+   "summary_latency_s": 0.8126198000099976,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "target_far": 0.02,
+    "byte_budget": 16
+   },
+   "recon_latency_s": 1.4421182999794837,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-034",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis for the stripper node used 16 bytes per message with a 5% false alarm rate, achieving macro-F1 0.28.",
+   "summary_latency_s": 0.7509588999964762,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "stripper"
+    ],
+    "target_far": 0.05,
+    "byte_budget": 16
+   },
+   "recon_latency_s": 0.9144666999927722,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-035",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 8 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "summary_latency_s": 0.8470032000041101,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "byte_budget": 8,
+    "target_far": 0.01,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 0.596181799977785,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-036",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 51 bytes per message and aimed for 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.68.",
+   "summary_latency_s": 0.9539973000064492,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "byte_budget": 51,
+    "target_far": 0.005,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 1.1299099000170827,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-037",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.69.",
+   "summary_latency_s": 0.8959495000017341,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "byte_budget": 51,
+    "target_far": 0.01,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 0.5127413000154775,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-038",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 8 bytes per message and 5% false alarms on the reactor and compressor_utilities nodes, achieving macro-F1 0.72.",
+   "summary_latency_s": 0.7533451000053901,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "reactor",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.05
+   },
+   "recon_latency_s": 1.4017093000002205,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-039",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 51 bytes per message and aimed for 0.1% false alarms on the reactor and separator nodes, achieving macro-F1 0.48.",
+   "summary_latency_s": 0.8254920999752358,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "reactor",
+     "separator"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.001
+   },
+   "recon_latency_s": 1.3090241999889258,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-041",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.5% false alarms on the reactor, stripper, and compressor_utilities nodes, achieving macro-F1 0.7.",
+   "summary_latency_s": 0.8654652999830432,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "reactor",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.005
+   },
+   "recon_latency_s": 1.609809999994468,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-042",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis for the separator node used 51 bytes per message with a 5% target false alarm rate, achieving macro-F1 0.3.",
+   "summary_latency_s": 0.7326943000080064,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "separator"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.05
+   },
+   "recon_latency_s": 1.209236000024248,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-043",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and aimed for 0.1% false alarms on the stripper and separator nodes, achieving macro-F1 0.35.",
+   "summary_latency_s": 0.8331733999948483,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "stripper",
+     "separator"
+    ],
+    "target_far": 0.001,
+    "byte_budget": 16
+   },
+   "recon_latency_s": 1.1374632000224665,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-045",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 8 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "summary_latency_s": 0.8513466000149492,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "byte_budget": 8,
+    "target_far": 0.01,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 0.48770690002129413,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-047",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis for the compressor_utilities node used 8 bytes per message with a 1% target false alarm rate, achieving macro-F1 0.48.",
+   "summary_latency_s": 0.752795700012939,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.01
+   },
+   "recon_latency_s": 1.1308851999929175,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-048",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 51 bytes per message with a 5% target false alarm rate on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.72.",
+   "summary_latency_s": 0.9132848000153899,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "byte_budget": 51,
+    "target_far": 0.05,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 1.1881113999988884,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-049",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and aimed for 0.5% false alarms on the reactor and separator nodes, achieving macro-F1 0.5.",
+   "summary_latency_s": 0.8142930000030901,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "reactor",
+     "separator"
+    ],
+    "target_far": 0.005,
+    "byte_budget": 16
+   },
+   "recon_latency_s": 1.209890500002075,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-050",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and aimed for 1% false alarms on the reactor, separator, and stripper nodes, achieving macro-F1 0.51.",
+   "summary_latency_s": 0.8503017000039108,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.01
+   },
+   "recon_latency_s": 0.9344046999758575,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-051",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.7.",
+   "summary_latency_s": 0.9139729000162333,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "byte_budget": 8,
+    "target_far": 0.001,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 0.9652690000075381,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-052",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and aimed for 1% false alarms on the separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.63.",
+   "summary_latency_s": 0.8677068999968469,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.01
+   },
+   "recon_latency_s": 1.0541583999875002,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-053",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and 5% false alarms on the reactor, separator, and stripper nodes, achieving macro-F1 0.53.",
+   "summary_latency_s": 0.8126779999874998,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper"
+    ],
+    "target_far": 0.05,
+    "byte_budget": 16
+   },
+   "recon_latency_s": 1.2509490000084043,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-054",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 8 bytes per message and 2% false alarms on the separator and stripper nodes, achieving macro-F1 0.39.",
+   "summary_latency_s": 0.7238083000120241,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "separator",
+     "stripper"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.02
+   },
+   "recon_latency_s": 1.5258123000094201,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-055",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 51 bytes per message and aimed for 0.5% false alarms on the reactor and compressor_utilities nodes, achieving macro-F1 0.75.",
+   "summary_latency_s": 0.8558434000005946,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "reactor",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.005
+   },
+   "recon_latency_s": 1.6011459000001196,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-056",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis for the stripper node used 51 bytes per message with a 1% target false alarm rate, achieving macro-F1 0.27.",
+   "summary_latency_s": 0.7504611999902409,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "stripper"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.01
+   },
+   "recon_latency_s": 0.9073495999909937,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-057",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.75.",
+   "summary_latency_s": 0.8644354999996722,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "target_far": 0.02,
+    "byte_budget": 16,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 0.6371027999848593,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-058",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the compressor_utilities and separator nodes, achieving macro-F1 0.62.",
+   "summary_latency_s": 0.8295963999989908,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "compressor_utilities",
+     "separator"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.001
+   },
+   "recon_latency_s": 1.5139782999758609,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-059",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and achieved 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, resulting in macro-F1 0.74.",
+   "summary_latency_s": 0.9569136000063736,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "target_far": 0.005,
+    "byte_budget": 16,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 0.6596542999905068,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-060",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis for the reactor node used 51 bytes per message with a 5% target false alarm rate, achieving macro-F1 0.54.",
+   "summary_latency_s": 0.7647553999850061,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "reactor"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.05
+   },
+   "recon_latency_s": 1.1899292999878526,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-061",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 8 bytes per message and aimed for 1% false alarms on the reactor, separator, and compressor_utilities nodes, achieving macro-F1 0.73.",
+   "summary_latency_s": 0.8525398000201676,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.01
+   },
+   "recon_latency_s": 1.1315955000172835,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-062",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the reactor and compressor_utilities nodes, achieving macro-F1 0.78.",
+   "summary_latency_s": 0.7723221999767702,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "reactor",
+     "compressor_utilities"
+    ],
+    "target_far": 0.02,
+    "byte_budget": 16
+   },
+   "recon_latency_s": 1.1242027999833226,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-063",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 8 bytes per message and 2% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "summary_latency_s": 0.8570300999854226,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "byte_budget": 8,
+    "target_far": 0.02,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 0.8707192000001669,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-065",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 51 bytes per message and 5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.72.",
+   "summary_latency_s": 0.8662710000062361,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "byte_budget": 51,
+    "target_far": 0.05,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 1.2457289999874774,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-066",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and achieved 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, resulting in macro-F1 0.74.",
+   "summary_latency_s": 0.951106799999252,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "target_far": 0.005,
+    "byte_budget": 16,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 0.8075025000143796,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-067",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and 5% false alarms on the separator and compressor_utilities nodes, achieving macro-F1 0.63.",
+   "summary_latency_s": 0.7524428999749944,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "separator",
+     "compressor_utilities"
+    ],
+    "target_far": 0.05,
+    "byte_budget": 16
+   },
+   "recon_latency_s": 1.2172577999881469,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-068",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the reactor, stripper, and compressor_utilities nodes, achieving macro-F1 0.7.",
+   "summary_latency_s": 0.8699695999966934,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "reactor",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.001
+   },
+   "recon_latency_s": 1.6869347000028938,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-069",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the stripper and compressor_utilities nodes, achieving macro-F1 0.6.",
+   "summary_latency_s": 0.7449376000149641,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "stripper",
+     "compressor_utilities"
+    ],
+    "target_far": 0.02,
+    "byte_budget": 16
+   },
+   "recon_latency_s": 1.404243899974972,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-070",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis for the separator node used 51 bytes per message with a 1% false alarm rate, achieving macro-F1 0.28.",
+   "summary_latency_s": 0.743682300002547,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "active_nodes": [
+     "separator"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.01
+   },
+   "recon_latency_s": 0.7697092999878805,
+   "round_trip": true
+  },
+  {
+   "id": "sealed-plant-071",
+   "domain": "plant",
+   "split": "sealed",
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "summary_latency_s": 0.9284792999969795,
+   "facts": {
+    "byte_budget": true,
+    "target_far": true,
+    "active_nodes": true,
+    "score": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_status": "ok",
+   "recon_params": {
+    "byte_budget": 8,
+    "target_far": 0.005,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "recon_latency_s": 1.024697799992282,
+   "round_trip": true
+  }
+ ],
+ "reverse": {
+  "all": {
+   "n": 131,
+   "round_trip": 1.0,
+   "round_trip_ci": [
+    0.9715102757605961,
+    0.9999999999999999
+   ],
+   "field_fidelity": 1.0,
+   "all_facts_rate": 1.0,
+   "all_facts_ci": [
+    0.9715102757605961,
+    0.9999999999999999
+   ],
+   "per_fact": {
+    "active_nodes": 1.0,
+    "byte_budget": 1.0,
+    "caution": 1.0,
+    "eaters": 1.0,
+    "food_target": 1.0,
+    "score": 1.0,
+    "step_limit": 1.0,
+    "target_far": 1.0
+   }
+  },
+  "plant": {
+   "n": 66,
+   "round_trip": 1.0,
+   "round_trip_ci": [
+    0.9449955327483907,
+    1.0
+   ],
+   "field_fidelity": 1.0,
+   "all_facts_rate": 1.0,
+   "all_facts_ci": [
+    0.9449955327483907,
+    1.0
+   ],
+   "per_fact": {
+    "active_nodes": 1.0,
+    "byte_budget": 1.0,
+    "score": 1.0,
+    "target_far": 1.0
+   }
+  },
+  "squad": {
+   "n": 65,
+   "round_trip": 1.0,
+   "round_trip_ci": [
+    0.9441965323292892,
+    0.9999999999999999
+   ],
+   "field_fidelity": 1.0,
+   "all_facts_rate": 1.0,
+   "all_facts_ci": [
+    0.9441965323292892,
+    0.9999999999999999
+   ],
+   "per_fact": {
+    "caution": 1.0,
+    "eaters": 1.0,
+    "food_target": 1.0,
+    "score": 1.0,
+    "step_limit": 1.0
+   }
+  },
+  "summary_latency": {
+   "p50": 0.8727129999897443,
+   "p95": 1.0770520500082057
+  }
+ }
+}
