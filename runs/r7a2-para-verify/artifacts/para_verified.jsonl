@@ -2385,3 +2385,9 @@
 {"base_id": "tpl-squad-00173", "style": "jargon", "text": "SQD SNK R/G/B FORAGE R/G/B CAUTION NORM STEP 300 FOOD 7", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00173", "style": "jargon", "text": "SNAKE SQUAD RED GREEN BLUE FORAGE ALL CAUTION NORMAL STEP 300 FOOD TARGET 7", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00173", "style": "jargon", "text": "SNK SQD R/G/B FORAGE R/G/B CAUTION ORDINARY STEP 300 FOOD 7", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00173", "style": "jargon", "text": "SQUAD SNK RED GREEN BLUE FORAGE ALL CAUTION DEFAULT STEP 300 FOOD TARGET 7", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00173", "style": "jargon", "text": "SNK SQUAD R/G/B FORAGING R/G/B CAUTION NORMAL STEP 300 FOOD 7", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00173", "style": "jargon", "text": "SQD SNK R/G/B FORAGE R/G/B CAUTION REGULAR STEP 300 FOOD TARGET 7", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00173", "style": "jargon", "text": "SNAKE GROUP RED GREEN BLUE FORAGE ALL CAUTION STANDARD STEP 300 FOOD 7", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00173", "style": "jargon", "text": "SNK UNIT R/G/B FORAGE R/G/B CAUTION ORDINARY STEP 300 FOOD TARGET 7", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-cla0004", "style": "numbers_in_words", "text": "Green forages for quite some time.", "verified": true, "verifier_status": "clarify"}
