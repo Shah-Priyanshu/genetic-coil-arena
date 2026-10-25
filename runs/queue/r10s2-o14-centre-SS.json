@@ -22,7 +22,7 @@
     "r10s2-q3-spec-SS",
     "r10s2-o14-spec-SS"
   ],
-  "timeout_min": 120.0,
+  "timeout_min": 240.0,
   "env": {
     "HF_HOME": "D:\\hf_cache"
   }
