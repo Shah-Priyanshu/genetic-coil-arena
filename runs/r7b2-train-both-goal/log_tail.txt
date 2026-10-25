@@ -1,11 +1,3 @@
-[progress] both-goal run 4: gen 2250/5000, val mission 15.17, best gen 2250, elapsed 11807 s
-[progress] both-goal run 0: gen 2300/5000, val mission 17.90, best gen 2250, elapsed 11904 s
-[progress] both-goal run 7: gen 2250/5000, val mission 16.93, best gen 1450, elapsed 11974 s
-[progress] both-goal run 6: gen 2250/5000, val mission 15.63, best gen 2250, elapsed 11983 s
-[progress] both-goal run 2: gen 2250/5000, val mission 14.00, best gen 2200, elapsed 12020 s
-[progress] both-goal run 5: gen 2550/5000, val mission 13.57, best gen 2300, elapsed 12166 s
-[progress] both-goal run 3: gen 2400/5000, val mission 18.97, best gen 2200, elapsed 12332 s
-[progress] both-goal run 1: gen 2350/5000, val mission 13.07, best gen 1750, elapsed 12349 s
 [progress] both-goal run 4: gen 2350/5000, val mission 13.17, best gen 2250, elapsed 12375 s
 [progress] both-goal run 0: gen 2400/5000, val mission 16.00, best gen 2250, elapsed 12478 s
 [progress] both-goal run 7: gen 2350/5000, val mission 17.07, best gen 1450, elapsed 12549 s
@@ -198,3 +190,11 @@
 [progress] both-goal run 5: gen 4950/5000, val mission 17.90, best gen 4500, elapsed 24344 s
 [progress] both-goal run 1: gen 4750/5000, val mission 14.57, best gen 3300, elapsed 24376 s
 [progress] both-goal run 4: gen 4750/5000, val mission 18.77, best gen 4650, elapsed 24471 s
+[progress] both-goal run 5: gen 5000/5000, val mission 17.83, best gen 4500, elapsed 24542 s
+[done] r7b_both-goal_run5: 409.0 min, best gen 4500, best val mission 18.73
+[progress] both-goal run 6: gen 4750/5000, val mission 16.00, best gen 4200, elapsed 24558 s
+[progress] both-goal run 3: gen 4800/5000, val mission 20.93, best gen 4000, elapsed 24559 s
+[progress] both-goal run 0: gen 4800/5000, val mission 19.57, best gen 4650, elapsed 24610 s
+[progress] both-goal run 7: gen 4750/5000, val mission 18.43, best gen 3150, elapsed 24629 s
+[progress] both-goal run 2: gen 4750/5000, val mission 18.83, best gen 3700, elapsed 24642 s
+[progress] both-goal run 1: gen 4850/5000, val mission 16.43, best gen 3300, elapsed 24752 s
