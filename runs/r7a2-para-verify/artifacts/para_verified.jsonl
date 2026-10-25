@@ -1662,3 +1662,36 @@
 {"base_id": "tpl-squad-00121", "style": "typos", "text": "squad red green blue go forage greeen blue caution low 300 steps", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00121", "style": "typos", "text": "red green blue snake group foragin green blue warn low step 300", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00121", "style": "typos", "text": "snakes red green blue forage green blue low caution default steps 300", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00274", "style": "self_correction", "text": "Wait, squad of snakes red green blue, foraging red green, caution high, step limit 300, food target 20", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00274", "style": "self_correction", "text": "No, make that snakes squad red green blue, foraging red green, caution high, step limit 300, food target 20", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00274", "style": "self_correction", "text": "Actually, snakes squad red green blue, foraging red green, caution high, step limit 300, food target 20", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00274", "style": "self_correction", "text": "Wait a minute, snake squad red green blue, foraging red green, caution high, step limit 300, food target 20", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00274", "style": "self_correction", "text": "Hold on, snakes group red green blue, foraging red green, caution high, step limit 300, food target 20", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00274", "style": "self_correction", "text": "Sorry, snake team red green blue, foraging red green, caution high, step limit 300, food target 20", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00274", "style": "self_correction", "text": "Correction, snake unit red green blue, foraging red green, caution high, step limit 300, food target 20", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00274", "style": "self_correction", "text": "Oops, snake crew red green blue, foraging red green, caution high, step limit 300, food target 20", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-ref0006", "style": "typos", "text": "cant do ood cant do ood", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0006", "style": "typos", "text": "ood no work ood no work", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0006", "style": "typos", "text": "oof cant do oof cant do", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0006", "style": "typos", "text": "no ood no ood no", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0006", "style": "typos", "text": "ood bad ood bad", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0006", "style": "typos", "text": "cant ood cant ood", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0006", "style": "typos", "text": "no no no ood", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-ref0006", "style": "typos", "text": "ood ood ood no", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-00321", "style": "jargon", "text": "diag reactor sep strip comp_util 51b msg 0.05 fa sep comp_util active", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00321", "style": "jargon", "text": "fault check reactor separator stripper compressor_util 51 bytes 5% false alarm sep comp_util on", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00321", "style": "jargon", "text": "sys diag reactor sep stripper comp_util 51b 0.05 false alarm active sep comp_util", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00321", "style": "jargon", "text": "reactor fault scan sep stripper comp_util 51 msg size 5% err rate sep comp_util working", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00321", "style": "jargon", "text": "sensor fault analysis reactor separator stripper compressor_util 51 bytes 0.05 false alarm sep comp_util nodes", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00321", "style": "jargon", "text": "plant fault monitor reactor sep stripper comp_util 51 byte messages 5% false alarms sep comp_util active", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00321", "style": "jargon", "text": "diagnostic system reactor separator stripper compressor_util 51 msg size 0.05 false rate sep comp_util operational", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00321", "style": "jargon", "text": "control system fault scan reactor sep stripper comp_util 51 bytes 0.05 false alarm sep comp_util running", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00192", "style": "multi_sentence", "text": "Red green blue squad. Foraging green blue. Low caution.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00192", "style": "multi_sentence", "text": "Squad consists of red green blue. Green and blue forage. Caution set to low.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00192", "style": "multi_sentence", "text": "Red green blue snakes. Green blue foraging. Low risk level.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00192", "style": "multi_sentence", "text": "Snake squad: red green blue. Foraging: green blue. Caution low.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00192", "style": "multi_sentence", "text": "Team red green blue. Foraging team green blue. Low risk tolerance.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00192", "style": "multi_sentence", "text": "Red green blue unit. Green blue foragers. Caution level low.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00192", "style": "multi_sentence", "text": "Squad members red green blue. Green and blue hunting. Risk low.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00192", "style": "multi_sentence", "text": "Red green blue group. Foraging green blue. Low danger zone.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00433", "style": "numbers_in_words", "text": "Request for plant fault diagnosis system with sensor nodes reactor separator stripper compressor utilities bytes per message sixteen false alarm rate zero point zero zero five active nodes separator compressor utilities", "verified": true, "verifier_status": "ok"}
