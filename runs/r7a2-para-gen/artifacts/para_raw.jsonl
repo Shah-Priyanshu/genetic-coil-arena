@@ -2054,3 +2054,27 @@
 {"base_id": "tpl-squad-00251", "style": "jargon", "text": "RED/GREEN/BLUE SNAKE GROUP GREEN FORAGING CAUTION HIGH STEP 80 EMPTY"}
 {"base_id": "tpl-squad-00251", "style": "jargon", "text": "SNAKE SQUAD R/G/B GREEN FORAGE CAUTION LEVEL 3 STEP 80 FOOD NULL"}
 {"base_id": "tpl-squad-00251", "style": "jargon", "text": "TEAM SNAKES R/G/B GREEN FORAGER CAUTION MAX STEP 80 FOOD NONE"}
+{"base_id": "tpl-plant-00017", "style": "negation", "text": "All nodes active except separator and stripper"}
+{"base_id": "tpl-plant-00017", "style": "negation", "text": "Everyone participating but the separator and stripper units"}
+{"base_id": "tpl-plant-00017", "style": "negation", "text": "Leave the separator and stripper out of the fault-diagnosis system"}
+{"base_id": "tpl-plant-00017", "style": "negation", "text": "No separator or stripper nodes included in diagnosis"}
+{"base_id": "tpl-plant-00017", "style": "negation", "text": "Active sensor nodes covering reactor, compressor_utilities only"}
+{"base_id": "tpl-plant-00017", "style": "negation", "text": "Fault system operates on reactor, compressor_utilities excluding others"}
+{"base_id": "tpl-plant-00017", "style": "negation", "text": "All but separator and stripper units engaged in monitoring"}
+{"base_id": "tpl-plant-00017", "style": "negation", "text": "Sensor network active for reactor and compressor_utilities alone"}
+{"base_id": "tpl-plant-cla0006", "style": "numbers_in_words", "text": "Deploy whatever amount of force seems appropriate for this situation"}
+{"base_id": "tpl-plant-cla0006", "style": "numbers_in_words", "text": "Execute with whatever level of power appears necessary here"}
+{"base_id": "tpl-plant-cla0006", "style": "numbers_in_words", "text": "Initiate using some reasonable quantity of energy or strength"}
+{"base_id": "tpl-plant-cla0006", "style": "numbers_in_words", "text": "Carry out this action with whatever degree of intensity is called for"}
+{"base_id": "tpl-plant-cla0006", "style": "numbers_in_words", "text": "Proceed employing an unspecified but suitable measure of effort"}
+{"base_id": "tpl-plant-cla0006", "style": "numbers_in_words", "text": "Activate using whatever adequate amount of resources would work best"}
+{"base_id": "tpl-plant-cla0006", "style": "numbers_in_words", "text": "Perform this task with whatever sufficient quantity of power appears right"}
+{"base_id": "tpl-plant-cla0006", "style": "numbers_in_words", "text": "Commence with whatever generous portion of force seems fitting"}
+{"base_id": "tpl-squad-00332", "style": "jargon", "text": "SQD SNAKES R/G/B FORAGE BLU SL180 CAUT NORM FOOD NONE"}
+{"base_id": "tpl-squad-00332", "style": "jargon", "text": "SNAKE SQD R/G/BLU FORAGE BLU STEP 180 CAUTION NORMAL FOOD NIL"}
+{"base_id": "tpl-squad-00332", "style": "jargon", "text": "GROUP SNAKES RED/GREEN/BLUE FORAGING BLU LIMIT 180 CARE ORDINARY NO FOOD"}
+{"base_id": "tpl-squad-00332", "style": "jargon", "text": "SQUAD SNK R/G/B BLU FORAGE STEP 180 NORMAL CAUTION NO FOOD TARGET"}
+{"base_id": "tpl-squad-00332", "style": "jargon", "text": "SNK SQD RGB FORAGE BLUE SL180 NORMAL CAUTION FOOD NONE"}
+{"base_id": "tpl-squad-00332", "style": "jargon", "text": "SNAKE GROUP R/G/BLUE FORAGE BLU STEP LIMIT 180 ORDINARY CARE NO FOOD"}
+{"base_id": "tpl-squad-00332", "style": "jargon", "text": "SQD SNAKES R/G/BLU FORAGE BLU SL180 CAUTION NORMAL NO FOOD TARGET"}
+{"base_id": "tpl-squad-00332", "style": "jargon", "text": "SNAKE SQUAD RED/GREEN/BLUE BLU FORAGING SL180 NORMAL CAUTION NIL FOOD"}
