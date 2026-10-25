@@ -18,9 +18,9 @@
   ],
   "state": "running",
   "started_at": "2026-10-25T08:47:53+00:00",
-  "updated_at": "2026-10-25T09:13:11+00:00",
-  "elapsed_min": 25.3,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 98 %, 9944 MiB, 12282 MiB, 76",
+  "updated_at": "2026-10-25T09:18:14+00:00",
+  "elapsed_min": 30.3,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 98 %, 9943 MiB, 12282 MiB, 76",
   "host": "PC",
   "lane": "gpu",
   "cpu_workers": 4
