@@ -31,3 +31,8 @@
 [19:16:55] conditions: 60/90 (498s)
 [19:17:31] conditions: 65/90 (535s)
 [19:18:07] conditions: 70/90 (571s)
+[19:18:47] conditions: 75/90 (611s)
+[19:19:19] conditions: 80/90 (643s)
+[19:19:54] conditions: 85/90 (678s)
+[19:20:32] conditions: 90/90 (716s)
+[19:20:32] done in 716.1s; records in D:\Projects\genetic-coil-arena-gpu-results\runs\r10s2-o14-centre-SS\artifacts\artifacts\results.jsonl
