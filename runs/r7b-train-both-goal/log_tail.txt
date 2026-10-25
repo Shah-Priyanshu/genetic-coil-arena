@@ -1,4 +1,3 @@
-[start] 8 training runs on 8 workers; cache D:\Projects\genetic-coil-arena-gpu-results\runs\r7b-train-both-goal\artifacts; GoalTrainSettings(radius=3, generations=3000, population=64, reps=1, sigma=0.05, lr=0.03, weight_decay=0.005, spec_hidden=24, centre_hidden=24, eval_every=50, val_reps=2, max_steps=300, time_limit_s=6600.0, progress_s=180.0)
 [progress] both-goal run 3: gen 100/3000, val mission -4.10, best gen 50, elapsed 222 s
 [progress] both-goal run 5: gen 100/3000, val mission -4.03, best gen 0, elapsed 233 s
 [progress] both-goal run 4: gen 100/3000, val mission -4.20, best gen 50, elapsed 239 s
@@ -182,3 +181,20 @@
 [progress] both-goal run 7: gen 1250/3000, val mission 17.47, best gen 1250, elapsed 6374 s
 [progress] both-goal run 3: gen 1350/3000, val mission 15.63, best gen 1100, elapsed 6409 s
 [progress] both-goal run 2: gen 1250/3000, val mission 12.43, best gen 1200, elapsed 6413 s
+[progress] both-goal run 6: gen 1250/3000, val mission 13.73, best gen 1050, elapsed 6452 s
+[progress] both-goal run 1: gen 1300/3000, val mission 12.30, best gen 1200, elapsed 6502 s
+[progress] both-goal run 0: gen 1350/3000, val mission 16.60, best gen 1250, elapsed 6540 s
+[done] r7b_both-goal_run1: 110.0 min, best gen 1200, best val mission 13.03
+[progress] both-goal run 5: gen 1548/3000, val mission 12.60, best gen 1350, elapsed 6601 s
+[done] r7b_both-goal_run5: 110.0 min, best gen 1350, best val mission 13.40
+[done] r7b_both-goal_run0: 110.0 min, best gen 1250, best val mission 16.77
+[done] r7b_both-goal_run6: 110.0 min, best gen 1050, best val mission 13.77
+[progress] both-goal run 2: gen 1287/3000, val mission 13.33, best gen 1200, elapsed 6602 s
+[done] r7b_both-goal_run2: 110.0 min, best gen 1200, best val mission 13.80
+[progress] both-goal run 3: gen 1387/3000, val mission 13.53, best gen 1100, elapsed 6602 s
+[done] r7b_both-goal_run3: 110.0 min, best gen 1100, best val mission 17.20
+[progress] both-goal run 4: gen 1300/3000, val mission 12.53, best gen 1300, elapsed 6603 s
+[done] r7b_both-goal_run4: 110.0 min, best gen 1300, best val mission 12.53
+[progress] both-goal run 7: gen 1294/3000, val mission 16.03, best gen 1250, elapsed 6603 s
+[done] r7b_both-goal_run7: 110.1 min, best gen 1250, best val mission 17.47
+[train] done in 110.1 min
