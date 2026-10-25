@@ -18,3 +18,4 @@ Loading weights:  86%|████████▌ | 268/311 [00:01<00:00, 203.42
 Loading weights:  93%|█████████▎| 289/311 [00:01<00:00, 199.51it/s]
 Loading weights: 100%|██████████| 311/311 [00:01<00:00, 192.21it/s]
 [03:29:35] lora sealed: 20/174 (sealed-squad-019)
+[03:30:03] lora sealed: 40/174 (sealed-squad-039)
