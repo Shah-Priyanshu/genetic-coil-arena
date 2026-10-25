@@ -2927,3 +2927,12 @@
 {"base_id": "tpl-squad-00093", "style": "indirect_hint", "text": "Would it be feasible to arrange a squad of red green and blue snakes where the green one forages with ordinary caution, step limit of 130, and food target of 10", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00093", "style": "indirect_hint", "text": "I was thinking perhaps we could establish a red green and blue snake group with green foraging, normal caution, step limit 130, and food target 10", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00422", "style": "typos", "text": "red green blue sqd snakes foragin blue caution norml step limt 250 food tgt 35", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00422", "style": "typos", "text": "snakes red grn blu squad foragin blu caution normal step limit 250 food target 35", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00422", "style": "typos", "text": "red grn blue snake squad foragin blu caution norml step limit 250 food tgt 35", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00422", "style": "typos", "text": "squad snks red green blue foragin blue caution normal step limt 250 food target 35", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00422", "style": "typos", "text": "red green blue snakes foragin blue cautiom normal step limit 250 food tgt 35", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00422", "style": "typos", "text": "snakes red grn blu squad foragin blu caution norml step limt 250 food target 35", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00422", "style": "typos", "text": "red green blue snks squad foragin blu caution normal step limt 250 food tgt 35", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00422", "style": "typos", "text": "squad snakes red green blue foragin blue caution norml step limit 250 food target 35", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00394", "style": "indirect_hint", "text": "It would be nice if the system could focus on reactor and stripper nodes for fault diagnosis with a 0.05 false alarm rate", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00394", "style": "indirect_hint", "text": "I was thinking about having sensor nodes monitor reactor and stripper specifically with 8 byte messages", "verified": false, "verifier_status": "ok"}
