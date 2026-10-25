@@ -1,0 +1,4 @@
+[14:53:45] 90 incidents (all), conditions ['team_hybrid_rule', 'single_selected', 'oracle_selected'], model ollama:qwen2.5-coder:14b
+[14:55:48] messages: 5/90 (123s)
+[14:57:31] messages: 10/90 (226s)
+[14:59:21] messages: 15/90 (337s)
