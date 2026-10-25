@@ -1,0 +1,24 @@
+{
+  "id": "r10-q3-team-free-SS",
+  "commit": "9d661b1db483679f82579bd8d8655f90e0fe1f11",
+  "queued_args": [
+    "scripts/r10_log_triage.py",
+    "run",
+    "--model",
+    "hf:Qwen/Qwen3-1.7B",
+    "--split",
+    "test",
+    "--systems",
+    "SS",
+    "--conditions",
+    "team_free"
+  ],
+  "state": "running",
+  "started_at": "2026-10-25T10:22:13+00:00",
+  "updated_at": "2026-10-25T10:22:13+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 708 MiB, 12282 MiB, 56",
+  "host": "PC",
+  "lane": "gpu",
+  "cpu_workers": 4
+}
