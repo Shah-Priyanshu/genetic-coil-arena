@@ -1,0 +1,14 @@
+{
+  "id": "r10-zz-aggregate",
+  "commit": "9d661b1db483679f82579bd8d8655f90e0fe1f11",
+  "queued_args": [
+    "scripts/r10_log_triage.py",
+    "report",
+    "--from",
+    "runs:r10-*",
+    "--out",
+    "docs/results/r10_log_triage.md"
+  ],
+  "state": "rejected",
+  "reason": "dependency r10-o14-team-free-OB ended failed"
+}
