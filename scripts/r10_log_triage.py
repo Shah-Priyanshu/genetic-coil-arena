@@ -334,7 +334,7 @@ def cmd_report(args: argparse.Namespace) -> int:
 
     paths: list[Path] = []
     for src in resolve_sources(args.sources):
-        paths += sorted(src.glob("results*.jsonl")) if src.is_dir() else [src]
+        paths += sorted(src.rglob("results*.jsonl")) if src.is_dir() else [src]
     if not paths:
         raise SystemExit("no results files found")
     records: list[dict[str, Any]] = []

@@ -68,7 +68,6 @@ CI_ARGS = [
     "pytest",
     "tests/",
     "--ignore=tests/test_viewer.py",
-    "-q",
     "-p",
     "no:cacheprovider",
 ]
