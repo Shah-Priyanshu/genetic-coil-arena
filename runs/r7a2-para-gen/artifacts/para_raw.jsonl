@@ -598,3 +598,107 @@
 {"base_id": "tpl-squad-00358", "style": "multi_sentence", "text": "Squad includes red green and blue snakes. Red green foraging permitted. Normal care level. 275 maximum steps."}
 {"base_id": "tpl-squad-00358", "style": "multi_sentence", "text": "Red green and blue snakes in operation. Red green foraging activity. Regular caution maintained. Step limit 275."}
 {"base_id": "tpl-squad-00358", "style": "multi_sentence", "text": "Snake group with red green and blue colors. Red and green foraging allowed. Standard safety protocol. 275 step maximum."}
+{"base_id": "tpl-squad-00330", "style": "jargon", "text": "SQD SNAKES R/G/B FORAGE BLU LMT 250 CAUT NORM FOOD 20"}
+{"base_id": "tpl-squad-00330", "style": "jargon", "text": "SNAKE SQD R/G/BLU FORAGE BLU STEP 250 CAUTION NORMAL FOOD 20"}
+{"base_id": "tpl-squad-00330", "style": "jargon", "text": "RED/GREEN/BLUE SNAKES FORAGING BLU STEP LIM 250 CAUTION ORDINARY FOOD TARGET 20"}
+{"base_id": "tpl-squad-00330", "style": "jargon", "text": "SQUAD SNAKES RGB FORAGE BLUE STEP MAX 250 CAUTION STD FOOD 20"}
+{"base_id": "tpl-squad-00330", "style": "jargon", "text": "SNAKE GROUP R/G/BLU FORAGE BLU LIMIT 250 CAUTION REG FOOD TARGET 20"}
+{"base_id": "tpl-squad-00330", "style": "jargon", "text": "SQUAD SNAKES R/G/B FORAGE BLU STEP 250 NORMAL CAUTION FOOD 20"}
+{"base_id": "tpl-squad-00330", "style": "jargon", "text": "RED/GREEN/BLUE SNAKE SQD FORAGE BLU MAX STEP 250 CAUTION NORMAL FOOD 20"}
+{"base_id": "tpl-squad-00330", "style": "jargon", "text": "SNAKE SQUAD RGB FORAGING BLU STEP LIMIT 250 CAUTION STANDARD FOOD TARGET 20"}
+{"base_id": "tpl-squad-00012", "style": "formal_memo", "text": "Requesting deployment of red green and blue snake units for foraging operations under standard caution protocols with 300 step limit and no food target specified."}
+{"base_id": "tpl-squad-00012", "style": "formal_memo", "text": "Dispatching squad containing red green and blue snakes for routine foraging mission with normal caution level and maximum 300 steps allowed."}
+{"base_id": "tpl-squad-00012", "style": "formal_memo", "text": "Snake squad activation required: red green and blue units assigned to foraging duty with ordinary caution measures and 300 step constraint."}
+{"base_id": "tpl-squad-00012", "style": "formal_memo", "text": "Operation authorization needed for red green and blue snake teams conducting foraging activities under standard safety protocols with 300 movement allowance."}
+{"base_id": "tpl-squad-00012", "style": "formal_memo", "text": "Control system command: deploy red green and blue snakes for foraging purposes with normal operational caution and 300 step parameter."}
+{"base_id": "tpl-squad-00012", "style": "formal_memo", "text": "Squad deployment request: red green and blue snake formations for foraging tasks utilizing standard caution procedures and 300 step maximum."}
+{"base_id": "tpl-squad-00012", "style": "formal_memo", "text": "System directive: red green and blue snake units to execute foraging mission under typical caution standards with 300 step restriction applied."}
+{"base_id": "tpl-squad-00012", "style": "formal_memo", "text": "Operational order: red green and blue snake teams authorized for foraging operations using normal caution protocols with default 300 step allowance."}
+{"base_id": "tpl-squad-00370", "style": "mixed_notation", "text": "Snakes squad: red, green, blue. Foraging: green, blue. Caution normal. Step limit 220. Food target 9."}
+{"base_id": "tpl-squad-00370", "style": "mixed_notation", "text": "Squad of serpents: red, green, blue. Foraging: green, blue. Caution ordinary. Step threshold 220. Food goal 9."}
+{"base_id": "tpl-squad-00370", "style": "mixed_notation", "text": "Red, green, blue serpent team. Foraging group: green, blue. Care level: normal. Step maximum 220. Target food 9."}
+{"base_id": "tpl-squad-00370", "style": "mixed_notation", "text": "Snake unit: red, green, blue. Foraging: green, blue. Caution standard. Step limit 220. Food target 9."}
+{"base_id": "tpl-squad-00370", "style": "mixed_notation", "text": "Squad snakes: red, green, blue. Foraging: green, blue. Caution normal. Step limit 220. Food target 9."}
+{"base_id": "tpl-squad-00370", "style": "mixed_notation", "text": "Red-green-blue serpent group. Foraging: green, blue. Caution regular. Step limit 220. Food target 9."}
+{"base_id": "tpl-squad-00370", "style": "mixed_notation", "text": "Serpent squad: red, green, blue. Foraging: green, blue. Caution normal. Step limit 220. Food target 9."}
+{"base_id": "tpl-squad-00370", "style": "mixed_notation", "text": "Snake team: red, green, blue. Foraging: green, blue. Caution standard. Step limit 220. Food target 9."}
+{"base_id": "tpl-squad-00168", "style": "self_correction", "text": "Wait, squad snakes red green blue. Foraging green blue. Caution normal. Step limit 300. Food target none."}
+{"base_id": "tpl-squad-00168", "style": "self_correction", "text": "No, make that red green blue squad. Green blue foraging. Caution ordinary. Step limit 300. Food target not stated."}
+{"base_id": "tpl-squad-00168", "style": "self_correction", "text": "Actually, snakes red green blue squad. Foraging green blue. Caution unremarkable. Step limit 300. Food target none."}
+{"base_id": "tpl-squad-00168", "style": "self_correction", "text": "Wait, red green blue snakes. Green blue foraging. Caution normal care. Step limit 300. Food target not specified."}
+{"base_id": "tpl-squad-00168", "style": "self_correction", "text": "No, make that squad of red green blue snakes. Foraging green blue. Caution ordinary. Step limit 300. Food target none."}
+{"base_id": "tpl-squad-00168", "style": "self_correction", "text": "Actually, red green blue snakes squad. Green blue foraging. Caution standard. Step limit 300. Food target not stated."}
+{"base_id": "tpl-squad-00168", "style": "self_correction", "text": "Wait, snakes red green blue. Foraging green blue. Caution normal. Step limit 300. Food target not specified."}
+{"base_id": "tpl-squad-00168", "style": "self_correction", "text": "No, make that red green blue snake squad. Green blue foraging. Caution ordinary care. Step limit 300. Food target none."}
+{"base_id": "tpl-squad-00259", "style": "numbers_in_words", "text": "Red green and blue snake squad foraging green and blue caution normal step limit two hundred food target none"}
+{"base_id": "tpl-squad-00259", "style": "numbers_in_words", "text": "Squad consists of red green and blue snakes with green and blue foraging caution normal step limit two hundred no food target"}
+{"base_id": "tpl-squad-00259", "style": "numbers_in_words", "text": "Three snake squad red green and blue foraging green and blue caution normal step limit two hundred food target not stated"}
+{"base_id": "tpl-squad-00259", "style": "numbers_in_words", "text": "Red green and blue snakes in squad green and blue foraging caution normal step limit two hundred food target none"}
+{"base_id": "tpl-squad-00259", "style": "numbers_in_words", "text": "Snake squad red green blue foraging green blue caution normal step limit two hundred no food target specified"}
+{"base_id": "tpl-squad-00259", "style": "numbers_in_words", "text": "Group of red green and blue snakes foraging green and blue caution normal step limit two hundred food target not mentioned"}
+{"base_id": "tpl-squad-00259", "style": "numbers_in_words", "text": "Red green and blue snake team green and blue foraging caution normal step limit two hundred zero food target"}
+{"base_id": "tpl-squad-00259", "style": "numbers_in_words", "text": "Squad with red green and blue snakes green and blue foraging caution normal step limit two hundred food target unspecified"}
+{"base_id": "tpl-squad-ref0010", "style": "casual_chat", "text": "hey dude can you reset the ood system but like it's already broken so nah"}
+{"base_id": "tpl-squad-ref0010", "style": "casual_chat", "text": "omg pls fix this ood thing but wait a sec that's impossible lol"}
+{"base_id": "tpl-squad-ref0010", "style": "casual_chat", "text": "yo the ood request failed man no way to make it work"}
+{"base_id": "tpl-squad-ref0010", "style": "casual_chat", "text": "can u reboot the ood system please but it's already dead sorry"}
+{"base_id": "tpl-squad-ref0010", "style": "casual_chat", "text": "hey ood can't be fixed like emali server was same issue"}
+{"base_id": "tpl-squad-ref0010", "style": "casual_chat", "text": "this ood thing is broken and nope can't reset it"}
+{"base_id": "tpl-squad-ref0010", "style": "casual_chat", "text": "reboot ood system? nah that's impossible like email server"}
+{"base_id": "tpl-squad-ref0010", "style": "casual_chat", "text": "oooooood system request failed because ood lol same as emali"}
+{"base_id": "tpl-squad-00423", "style": "indirect_hint", "text": "It would be wonderful if we could have a red, green, and blue snake squad with red and blue foraging, maintaining high caution levels, and a step limit of 300."}
+{"base_id": "tpl-squad-00423", "style": "indirect_hint", "text": "I was hoping for a snake team consisting of red, green, and blue colors where red and blue snakes would forage while keeping high safety standards and using the standard 300 step limit."}
+{"base_id": "tpl-squad-00423", "style": "indirect_hint", "text": "Would it be possible to set up a squad with red, green, and blue snakes, having red and blue foragers under high caution protocols with the default 300 step allowance?"}
+{"base_id": "tpl-squad-00423", "style": "indirect_hint", "text": "I was thinking it might work well to have red, green, and blue snake units with red and blue foraging parties maintaining careful operations at the standard 300 step limit."}
+{"base_id": "tpl-squad-00423", "style": "indirect_hint", "text": "It would be ideal if we could establish a red, green, blue snake formation with red and blue foragers operating under high safety measures and default 300 step parameters."}
+{"base_id": "tpl-squad-00423", "style": "indirect_hint", "text": "I was hoping for a snake configuration using red, green, and blue units where red and blue snakes forage cautiously while adhering to the standard 300 step allowance."}
+{"base_id": "tpl-squad-00423", "style": "indirect_hint", "text": "It would be nice if we could arrange red, green, and blue snake teams with red and blue foraging groups maintaining high caution levels and following the default 300 step count."}
+{"base_id": "tpl-squad-00423", "style": "indirect_hint", "text": "I was thinking perhaps a red, green, blue snake unit setup with red and blue foragers operating carefully at the standard 300 step limit would work well."}
+{"base_id": "tpl-squad-cla0015", "style": "casual_chat", "text": "hey can blue just like uh maybe hunt around for a bit carefully"}
+{"base_id": "tpl-squad-cla0015", "style": "casual_chat", "text": "blue idk man probably should just go look for a while careful like"}
+{"base_id": "tpl-squad-cla0015", "style": "casual_chat", "text": "uh blue like randomly wander around for a little while carefully"}
+{"base_id": "tpl-squad-cla0015", "style": "casual_chat", "text": "blue should probably just explore for a bit randomly careful"}
+{"base_id": "tpl-squad-cla0015", "style": "casual_chat", "text": "hey blue like uh search around for a while carefully"}
+{"base_id": "tpl-squad-cla0015", "style": "casual_chat", "text": "blue idk maybe just go hunt around randomly careful"}
+{"base_id": "tpl-squad-cla0015", "style": "casual_chat", "text": "uh blue should probably just look around for a bit carefully"}
+{"base_id": "tpl-squad-cla0015", "style": "casual_chat", "text": "blue like randomly search for a while careful"}
+{"base_id": "tpl-squad-00380", "style": "formal_memo", "text": "Initiate red green blue snake squad foraging protocol with high caution level and food target of ten units."}
+{"base_id": "tpl-squad-00380", "style": "formal_memo", "text": "Control system, deploy red green blue colored snakes for resource gathering under careful operation mode with food objective set to ten."}
+{"base_id": "tpl-squad-00380", "style": "formal_memo", "text": "Activate snake unit formation comprising red green and blue variants for search activities with elevated safety measures and ten food units required."}
+{"base_id": "tpl-squad-00380", "style": "formal_memo", "text": "Execute foraging mission using red green and blue snake entities at heightened alert status with target food quantity of ten items."}
+{"base_id": "tpl-squad-00380", "style": "formal_memo", "text": "Command red green blue snake team to conduct harvesting operation with maximum vigilance and ten unit food goal specification."}
+{"base_id": "tpl-squad-00380", "style": "formal_memo", "text": "Launch coordinated snake squad deployment including red green and blue members for collection tasks under strict safety parameters with ten food targets."}
+{"base_id": "tpl-squad-00380", "style": "formal_memo", "text": "Begin red green blue snake operational sequence for resource acquisition with critical caution protocols and ten food unit requisition."}
+{"base_id": "tpl-squad-00380", "style": "formal_memo", "text": "Start multi-colored snake squad activity for foraging purposes with extreme care measures and target food amount of ten units specified."}
+{"base_id": "tpl-plant-00128", "style": "formal_memo", "text": "Initiate plant fault diagnosis protocol for reactor separator stripper compressor_utilities with 16 byte message limit and 0.005 false alarm rate. Active sensors: separator compressor_utilities."}
+{"base_id": "tpl-plant-00128", "style": "formal_memo", "text": "Control system request: fault detection across reactor separator stripper compressor_utilities nodes. Message size 16 bytes, false alarm probability 0.005. Operating sensors: separator compressor_utilities."}
+{"base_id": "tpl-plant-00128", "style": "formal_memo", "text": "Activate diagnostic monitoring for reactor separator stripper compressor_utilities equipment. Set message length to 16 bytes with 0.005 false positive threshold. Currently active: separator compressor_utilities."}
+{"base_id": "tpl-plant-00128", "style": "formal_memo", "text": "Fault analysis initiation for reactor separator stripper compressor_utilities components. Configure 16 byte transmission capacity and 0.005 error rate tolerance. Active monitoring nodes: separator compressor_utilities."}
+{"base_id": "tpl-plant-00128", "style": "formal_memo", "text": "System command: execute plant fault identification routine involving reactor separator stripper compressor_utilities. Maintain 16 byte packet size with 0.005 false detection probability. Current active units: separator compressor_utilities."}
+{"base_id": "tpl-plant-00128", "style": "formal_memo", "text": "Plant supervision directive: implement diagnostic procedures for reactor separator stripper compressor_utilities infrastructure. Establish 16 byte communication limit and 0.005 false alarm criteria. Active sensor configuration: separator compressor_utilities."}
+{"base_id": "tpl-plant-00128", "style": "formal_memo", "text": "Operational instruction: deploy fault recognition system across reactor separator stripper compressor_utilities facilities. Enforce 16 byte data transmission and 0.005 false positive rate. Operational nodes: separator compressor_utilities."}
+{"base_id": "tpl-plant-00128", "style": "formal_memo", "text": "Control protocol activation: commence plant anomaly detection for reactor separator stripper compressor_utilities systems. Define 16 byte message structure with 0.005 false alarm specification. Active monitoring elements: separator compressor_utilities."}
+{"base_id": "tpl-squad-00233", "style": "negation", "text": "All snakes except red are foraging. Green and blue snakes caution low. Food target five."}
+{"base_id": "tpl-squad-00233", "style": "negation", "text": "Red snake excluded from foraging. Green and blue snakes forage with low caution. Target food five."}
+{"base_id": "tpl-squad-00233", "style": "negation", "text": "Leave red snake out of foraging group. Green and blue snakes forage cautiously. Food goal five."}
+{"base_id": "tpl-squad-00233", "style": "negation", "text": "Everyone but red snake forages. Green and blue snakes operate at low caution level. Food target set to five."}
+{"base_id": "tpl-squad-00233", "style": "negation", "text": "Red snake not foraging. Green and blue snakes forage with reckless behavior. Target food five."}
+{"base_id": "tpl-squad-00233", "style": "negation", "text": "No red snake in foraging squad. Green and blue snakes forage dangerously. Food target five."}
+{"base_id": "tpl-squad-00233", "style": "negation", "text": "All snakes except red are foraging. Green and blue snakes caution low. Food target 5."}
+{"base_id": "tpl-squad-00233", "style": "negation", "text": "Red snake excluded from foraging. Green and blue snakes forage with minimal caution. Target food five."}
+{"base_id": "tpl-squad-00436", "style": "multi_sentence", "text": "Red green blue squad. Foraging red blue. Normal caution. Twenty hundred step limit. No food target."}
+{"base_id": "tpl-squad-00436", "style": "multi_sentence", "text": "Squad contains red green blue. Red and blue foraging. Ordinary care. Two hundred steps. No food goal."}
+{"base_id": "tpl-squad-00436", "style": "multi_sentence", "text": "Snakes red green blue. Red blue foraging. Standard caution. Step maximum two hundred. Zero food target."}
+{"base_id": "tpl-squad-00436", "style": "multi_sentence", "text": "Red green blue unit. Foraging red blue. Regular care. Step cap two hundred. Null food objective."}
+{"base_id": "tpl-squad-00436", "style": "multi_sentence", "text": "Squad of red green blue snakes. Red and blue searching. Normal handling. Maximum steps two hundred. No food required."}
+{"base_id": "tpl-squad-00436", "style": "multi_sentence", "text": "Red green blue group. Red blue foraging. Average caution. Step threshold two hundred. Empty food target."}
+{"base_id": "tpl-squad-00436", "style": "multi_sentence", "text": "Snake squad red green blue. Red and blue foraging. Common care. Twenty hundred steps. No food needed."}
+{"base_id": "tpl-squad-00436", "style": "multi_sentence", "text": "Red green blue team. Foraging red blue. Standard handling. Two hundred step limit. Zero food goal."}
+{"base_id": "tpl-squad-ref0063", "style": "negation", "text": "Everyone except those with invalid identifiers should submit their requests"}
+{"base_id": "tpl-squad-ref0063", "style": "negation", "text": "All but the improperly named entries are acceptable for processing"}
+{"base_id": "tpl-squad-ref0063", "style": "negation", "text": "Leave out any submissions bearing incorrect designations"}
+{"base_id": "tpl-squad-ref0063", "style": "negation", "text": "No requests with malformed labels will be accepted"}
+{"base_id": "tpl-squad-ref0063", "style": "negation", "text": "Everyone but the ones using wrong nomenclature can proceed"}
+{"base_id": "tpl-squad-ref0063", "style": "negation", "text": "All submissions except those with bad naming conventions are valid"}
+{"base_id": "tpl-squad-ref0063", "style": "negation", "text": "Leave out any entries containing erroneous identification"}
+{"base_id": "tpl-squad-ref0063", "style": "negation", "text": "No input with incorrect terminology shall be processed"}
