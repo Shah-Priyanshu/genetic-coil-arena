@@ -1,0 +1,33 @@
+W1025 06:44:32.854000 29188 Lib\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]
+Loading weights:   7%|▋         | 22/311 [00:00<00:01, 207.97it/s]
+Loading weights:  14%|█▍        | 43/311 [00:00<00:01, 190.77it/s]
+Loading weights:  21%|██        | 64/311 [00:00<00:01, 189.08it/s]
+Loading weights:  27%|██▋       | 83/311 [00:00<00:01, 181.03it/s]
+Loading weights:  35%|███▌      | 109/311 [00:00<00:01, 199.41it/s]
+Loading weights:  42%|████▏     | 131/311 [00:00<00:00, 201.30it/s]
+Loading weights:  49%|████▉     | 152/311 [00:00<00:00, 200.11it/s]
+Loading weights:  56%|█████▌    | 174/311 [00:00<00:00, 195.33it/s]
+Loading weights:  64%|██████▍   | 199/311 [00:01<00:00, 205.27it/s]
+Loading weights:  71%|███████▏  | 222/311 [00:01<00:00, 204.26it/s]
+Loading weights:  78%|███████▊  | 243/311 [00:01<00:00, 203.76it/s]
+Loading weights:  85%|████████▌ | 265/311 [00:01<00:00, 203.49it/s]
+Loading weights:  92%|█████████▏| 286/311 [00:01<00:00, 202.50it/s]
+Loading weights:  99%|█████████▉| 309/311 [00:01<00:00, 209.95it/s]
+Loading weights: 100%|██████████| 311/311 [00:01<00:00, 202.88it/s]
+[06:44:36] 60 incidents (test), conditions ['team_typed', 'team_typed_heur'], model qwen3-1.7b
+[06:44:36] simple conditions: 5/60 incidents (0s)
+[06:44:36] simple conditions: 10/60 incidents (0s)
+[06:44:36] simple conditions: 15/60 incidents (0s)
+[06:44:36] simple conditions: 20/60 incidents (0s)
+[06:44:36] simple conditions: 25/60 incidents (0s)
+[06:44:36] simple conditions: 30/60 incidents (0s)
+[06:44:36] simple conditions: 35/60 incidents (0s)
+[06:44:36] simple conditions: 40/60 incidents (0s)
+[06:44:36] simple conditions: 45/60 incidents (0s)
+[06:44:36] simple conditions: 50/60 incidents (0s)
+[06:44:36] simple conditions: 55/60 incidents (0s)
+[06:44:36] simple conditions: 60/60 incidents (0s)
+[06:46:28] team_typed messages: 5/60 (113s)
+[06:48:14] team_typed messages: 10/60 (218s)
