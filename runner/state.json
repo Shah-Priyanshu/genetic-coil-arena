@@ -3,14 +3,8 @@
   "host": "PC",
   "draining_for_update": true,
   "cpu_budget": 24,
-  "cpu_workers_in_use": 24,
+  "cpu_workers_in_use": 16,
   "running": [
-    {
-      "id": "r8s4-e2e-b12",
-      "lane": "cpu",
-      "cpu_workers": 8,
-      "started_at": "2026-10-25T01:30:38+00:00"
-    },
     {
       "id": "r8s4-e2e-b48",
       "lane": "cpu",
@@ -63,7 +57,6 @@
         "blocked_by": [
           "r8s4-local-b12",
           "r8s4-local-b48",
-          "r8s4-e2e-b12",
           "r8s4-e2e-b48",
           "r8s4-e2e_aux-b12",
           "r8s4-e2e_aux-b48",
@@ -79,10 +72,10 @@
     "gpu": "2026-10-25T01:30:36+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-25T01:36:02+00:00",
-  "cpu_percent": 85.2,
+  "updated_at": "2026-10-25T01:36:43+00:00",
+  "cpu_percent": 62.0,
   "gpu": {
-    "util": 0.0,
+    "util": 2.0,
     "mem_used_mb": 838.0,
     "mem_total_mb": 12282.0
   }
