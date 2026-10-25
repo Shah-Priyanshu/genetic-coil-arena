@@ -1,0 +1,248 @@
+merged 21 partial files, 210 rows
+# Plant floor: can learned codes express faults they never saw? (R8, step 4, goal G2b)
+
+- Provenance: commits f37b78828; scale `full`; 21 partial result files; 155 CPU-minutes; 10 replicates with results.
+- Protocol: Rieth et al. 2017 runs, window 20 samples, one uplink per 10, disjoint run-level replicates as in step 3, centre calibrated on validation runs to 5% false alarms. Every number is mean ± 95% t-CI over replicates; replicate `r` uses split `r % 5`, so the intervals span splits and runs.
+- Seen/unseen splits (unseen faults; the last split tunes hyperparameters only): split 0: 1, 10, 12, 13, 17; split 1: 1, 11, 17, 19, 20; split 2: 2, 8, 14, 17, 19; split 3: 5, 7, 11, 16, 19; split 4: 4, 5, 6, 8, 12; split 5 (tuning): 5, 11, 13, 18, 19.
+- Training sees only seen faults and normal data: runs of unseen faults are dropped from training and validation. Codes and centre are trained and calibrated on that; the codes are then frozen (checked by a hash of all encoder state before and after each extension). Few-shot: the centre is retrained (all 17 faults) on the seen training data plus `k` labelled training runs of each unseen fault.
+- Codes: designed class-id code (`local`: each node sends its top classes and quantised posteriors, over the seen vocabulary), `e2e` (end-to-end sign bits), `e2e_aux` (e2e plus a per-node linear reconstruction of the standardised features from the bits, weight 1, fixed rather than tuned), `vq` (unsupervised residual k-means), `features` (hand-designed PCA/FFT), and `oracle` (no byte limit: float32 local features plus each node's full seen-class posteriors). Hyperparameters were chosen on the tuning block for seen-fault validation macro-F1 only.
+
+## Verdict (goal G2b)
+
+G2b passes if, at 1 to 4 B, a learned code (e2e or e2e_aux) beats the designed class-id code on few-shot unseen-fault macro-F1 at k = 3, with the 95% CI of the paired difference over replicates and splits excluding 0; it is killed if the designed code is at least as good as every learned code at every budget.
+
+**INCONCLUSIVE.** 2 learned (code, budget) cells are ahead on average (best: vq at 8 B, +0.017 ± 0.028) but none qualifies for a PASS (e2e or e2e_aux at 1, 2 or 4 B with the CI above 0).
+
+## Learned against the designed code, unseen-fault macro-F1 at k = 3
+
+| Code | Budget | Learned | Designed | Difference | p | p (Holm) | n | CI above 0 |
+|---|---|---|---|---|---|---|---|---|
+| (L1) end-to-end learned | 1 B | 0.832 | 0.837 | -0.005 ± 0.048 | 0.81 | 1 | 10 | no |
+| (L1+) end-to-end + reconstruction | 1 B | 0.799 | 0.837 | -0.038 ± 0.062 | 0.197 | 0.971 | 10 | no |
+| (L2) residual k-means (unsupervised) | 1 B | 0.680 | 0.837 | -0.157 ± 0.074 | 0.000943 | 0.0113 | 10 | no |
+| (L1) end-to-end learned | 2 B | 0.819 | 0.869 | -0.049 ± 0.032 | 0.0067 | 0.0603 | 10 | no |
+| (L1+) end-to-end + reconstruction | 2 B | 0.786 | 0.869 | -0.082 ± 0.046 | 0.00283 | 0.0283 | 10 | no |
+| (L2) residual k-means (unsupervised) | 2 B | 0.812 | 0.869 | -0.056 ± 0.067 | 0.0893 | 0.536 | 10 | no |
+| (L1) end-to-end learned | 4 B | 0.885 | 0.895 | -0.010 ± 0.033 | 0.524 | 1 | 10 | no |
+| (L1+) end-to-end + reconstruction | 4 B | 0.827 | 0.895 | -0.068 ± 0.035 | 0.0018 | 0.0198 | 10 | no |
+| (L2) residual k-means (unsupervised) | 4 B | 0.832 | 0.895 | -0.063 ± 0.071 | 0.0759 | 0.531 | 10 | no |
+| (L1) end-to-end learned | 8 B | 0.908 | 0.901 | +0.007 ± 0.035 | 0.642 | 1 | 10 | no |
+| (L1+) end-to-end + reconstruction | 8 B | 0.867 | 0.901 | -0.034 ± 0.029 | 0.0265 | 0.212 | 10 | no |
+| (L2) residual k-means (unsupervised) | 8 B | 0.918 | 0.901 | +0.017 ± 0.028 | 0.194 | 0.971 | 10 | no |
+
+## Macro-F1 on the unseen faults alone, k = 1
+
+| Code | 1 B | 2 B | 4 B | 8 B |
+|---|---|---|---|---|
+| designed class-id code (local classifier) | 0.778 ± 0.096 | 0.812 ± 0.084 | 0.836 ± 0.073 | 0.845 ± 0.070 |
+| (L1) end-to-end learned | 0.761 ± 0.084 | 0.741 ± 0.082 | 0.801 ± 0.075 | 0.819 ± 0.067 |
+| (L1+) end-to-end + reconstruction | 0.708 ± 0.091 | 0.695 ± 0.116 | 0.735 ± 0.093 | 0.767 ± 0.083 |
+| (L2) residual k-means (unsupervised) | 0.523 ± 0.134 | 0.685 ± 0.117 | 0.702 ± 0.145 | 0.790 ± 0.096 |
+| (c) quantised hand features (PCA/FFT) | 0.702 ± 0.061 | 0.704 ± 0.061 | 0.801 ± 0.047 | 0.856 ± 0.043 |
+| oracle (float32 local features + posteriors) | 0.882 ± 0.055 |  |  |  |
+
+## Macro-F1 over all 17 faults, k = 1
+
+| Code | 1 B | 2 B | 4 B | 8 B |
+|---|---|---|---|---|
+| designed class-id code (local classifier) | 0.898 ± 0.033 | 0.910 ± 0.029 | 0.919 ± 0.025 | 0.922 ± 0.024 |
+| (L1) end-to-end learned | 0.886 ± 0.027 | 0.880 ± 0.028 | 0.900 ± 0.025 | 0.906 ± 0.022 |
+| (L1+) end-to-end + reconstruction | 0.865 ± 0.029 | 0.862 ± 0.037 | 0.873 ± 0.031 | 0.886 ± 0.028 |
+| (L2) residual k-means (unsupervised) | 0.706 ± 0.023 | 0.796 ± 0.024 | 0.840 ± 0.048 | 0.882 ± 0.032 |
+| (c) quantised hand features (PCA/FFT) | 0.776 ± 0.007 | 0.788 ± 0.009 | 0.857 ± 0.017 | 0.903 ± 0.017 |
+| oracle (float32 local features + posteriors) | 0.929 ± 0.020 |  |  |  |
+
+## Macro-F1 on the unseen faults alone, k = 3
+
+| Code | 1 B | 2 B | 4 B | 8 B |
+|---|---|---|---|---|
+| designed class-id code (local classifier) | 0.837 ± 0.073 | 0.869 ± 0.056 | 0.895 ± 0.044 | 0.901 ± 0.042 |
+| (L1) end-to-end learned | 0.832 ± 0.070 | 0.819 ± 0.065 | 0.885 ± 0.048 | 0.908 ± 0.032 |
+| (L1+) end-to-end + reconstruction | 0.799 ± 0.077 | 0.786 ± 0.090 | 0.827 ± 0.067 | 0.867 ± 0.053 |
+| (L2) residual k-means (unsupervised) | 0.680 ± 0.122 | 0.812 ± 0.091 | 0.832 ± 0.106 | 0.918 ± 0.032 |
+| (c) quantised hand features (PCA/FFT) | 0.773 ± 0.068 | 0.783 ± 0.070 | 0.881 ± 0.031 | 0.926 ± 0.019 |
+| oracle (float32 local features + posteriors) | 0.949 ± 0.019 |  |  |  |
+
+## Macro-F1 over all 17 faults, k = 3
+
+| Code | 1 B | 2 B | 4 B | 8 B |
+|---|---|---|---|---|
+| designed class-id code (local classifier) | 0.921 ± 0.025 | 0.933 ± 0.019 | 0.942 ± 0.015 | 0.944 ± 0.015 |
+| (L1) end-to-end learned | 0.913 ± 0.022 | 0.908 ± 0.022 | 0.932 ± 0.016 | 0.940 ± 0.010 |
+| (L1+) end-to-end + reconstruction | 0.900 ± 0.024 | 0.896 ± 0.029 | 0.908 ± 0.022 | 0.924 ± 0.017 |
+| (L2) residual k-means (unsupervised) | 0.763 ± 0.017 | 0.845 ± 0.017 | 0.889 ± 0.036 | 0.929 ± 0.010 |
+| (c) quantised hand features (PCA/FFT) | 0.803 ± 0.007 | 0.817 ± 0.008 | 0.889 ± 0.007 | 0.931 ± 0.007 |
+| oracle (float32 local features + posteriors) | 0.954 ± 0.007 |  |  |  |
+
+## Macro-F1 on the unseen faults alone, k = 10
+
+| Code | 1 B | 2 B | 4 B | 8 B |
+|---|---|---|---|---|
+| designed class-id code (local classifier) | 0.867 ± 0.058 | 0.898 ± 0.043 | 0.920 ± 0.031 | 0.927 ± 0.027 |
+| (L1) end-to-end learned | 0.868 ± 0.060 | 0.862 ± 0.054 | 0.917 ± 0.034 | 0.940 ± 0.018 |
+| (L1+) end-to-end + reconstruction | 0.857 ± 0.060 | 0.841 ± 0.070 | 0.875 ± 0.052 | 0.914 ± 0.033 |
+| (L2) residual k-means (unsupervised) | 0.780 ± 0.093 | 0.879 ± 0.059 | 0.894 ± 0.064 | 0.950 ± 0.019 |
+| (c) quantised hand features (PCA/FFT) | 0.810 ± 0.066 | 0.828 ± 0.068 | 0.917 ± 0.027 | 0.954 ± 0.013 |
+| oracle (float32 local features + posteriors) | 0.968 ± 0.012 |  |  |  |
+
+## Macro-F1 over all 17 faults, k = 10
+
+| Code | 1 B | 2 B | 4 B | 8 B |
+|---|---|---|---|---|
+| designed class-id code (local classifier) | 0.933 ± 0.021 | 0.946 ± 0.015 | 0.953 ± 0.011 | 0.955 ± 0.010 |
+| (L1) end-to-end learned | 0.927 ± 0.019 | 0.925 ± 0.018 | 0.945 ± 0.011 | 0.953 ± 0.005 |
+| (L1+) end-to-end + reconstruction | 0.922 ± 0.019 | 0.917 ± 0.023 | 0.927 ± 0.018 | 0.943 ± 0.010 |
+| (L2) residual k-means (unsupervised) | 0.799 ± 0.011 | 0.870 ± 0.012 | 0.911 ± 0.024 | 0.943 ± 0.004 |
+| (c) quantised hand features (PCA/FFT) | 0.817 ± 0.007 | 0.836 ± 0.006 | 0.904 ± 0.005 | 0.944 ± 0.003 |
+| oracle (float32 local features + posteriors) | 0.963 ± 0.004 |  |  |  |
+
+## Before extension (k = 0): macro-F1 over all 17 faults, unseen faults scored 0
+
+| Code | 1 B | 2 B | 4 B | 8 B |
+|---|---|---|---|---|
+| designed class-id code (local classifier) | 0.620 ± 0.006 | 0.621 ± 0.006 | 0.618 ± 0.008 | 0.618 ± 0.007 |
+| (L1) end-to-end learned | 0.608 ± 0.008 | 0.610 ± 0.007 | 0.611 ± 0.008 | 0.611 ± 0.009 |
+| (L1+) end-to-end + reconstruction | 0.605 ± 0.010 | 0.611 ± 0.010 | 0.610 ± 0.007 | 0.615 ± 0.008 |
+| (L2) residual k-means (unsupervised) | 0.520 ± 0.033 | 0.553 ± 0.023 | 0.591 ± 0.014 | 0.599 ± 0.010 |
+| (c) quantised hand features (PCA/FFT) | 0.518 ± 0.023 | 0.530 ± 0.025 | 0.567 ± 0.011 | 0.591 ± 0.008 |
+| oracle (float32 local features + posteriors) | 0.616 ± 0.006 |  |  |  |
+
+## Detection of unseen faults by the seen-only centre
+
+Alarm rate on the fault windows of unseen faults at the calibrated 5% false-alarm threshold (seen-fault alarm rate for reference):
+
+| Code | 1 B | 2 B | 4 B | 8 B |
+|---|---|---|---|---|
+| designed class-id code (local classifier) | 0.653 ± 0.088 | 0.656 ± 0.103 | 0.695 ± 0.105 | 0.679 ± 0.097 |
+| (L1) end-to-end learned | 0.684 ± 0.104 | 0.699 ± 0.081 | 0.685 ± 0.087 | 0.670 ± 0.093 |
+| (L1+) end-to-end + reconstruction | 0.717 ± 0.104 | 0.690 ± 0.091 | 0.683 ± 0.081 | 0.644 ± 0.091 |
+| (L2) residual k-means (unsupervised) | 0.650 ± 0.115 | 0.677 ± 0.106 | 0.624 ± 0.107 | 0.664 ± 0.075 |
+| (c) quantised hand features (PCA/FFT) | 0.861 ± 0.075 | 0.861 ± 0.073 | 0.802 ± 0.080 | 0.787 ± 0.084 |
+| oracle (float32 local features + posteriors) | 0.638 ± 0.100 |  |  |  |
+
+Seen faults, same measure:
+
+| Code | 1 B | 2 B | 4 B | 8 B |
+|---|---|---|---|---|
+| designed class-id code (local classifier) | 0.973 ± 0.005 | 0.974 ± 0.005 | 0.975 ± 0.005 | 0.976 ± 0.004 |
+| (L1) end-to-end learned | 0.969 ± 0.005 | 0.973 ± 0.005 | 0.969 ± 0.006 | 0.968 ± 0.006 |
+| (L1+) end-to-end + reconstruction | 0.968 ± 0.006 | 0.972 ± 0.005 | 0.971 ± 0.004 | 0.970 ± 0.005 |
+| (L2) residual k-means (unsupervised) | 0.840 ± 0.033 | 0.887 ± 0.023 | 0.928 ± 0.018 | 0.954 ± 0.009 |
+| (c) quantised hand features (PCA/FFT) | 0.894 ± 0.024 | 0.894 ± 0.025 | 0.908 ± 0.020 | 0.951 ± 0.008 |
+| oracle (float32 local features + posteriors) | 0.967 ± 0.006 |  |  |  |
+
+Fraction of unseen-fault runs detected:
+
+| Code | 1 B | 2 B | 4 B | 8 B |
+|---|---|---|---|---|
+| designed class-id code (local classifier) | 0.990 ± 0.011 | 0.992 ± 0.012 | 0.994 ± 0.011 | 0.998 ± 0.005 |
+| (L1) end-to-end learned | 0.998 ± 0.002 | 0.998 ± 0.002 | 0.998 ± 0.002 | 0.998 ± 0.004 |
+| (L1+) end-to-end + reconstruction | 0.995 ± 0.007 | 0.998 ± 0.004 | 0.998 ± 0.004 | 0.998 ± 0.005 |
+| (L2) residual k-means (unsupervised) | 0.994 ± 0.008 | 0.997 ± 0.006 | 0.991 ± 0.010 | 0.994 ± 0.010 |
+| (c) quantised hand features (PCA/FFT) | 0.998 ± 0.004 | 0.997 ± 0.006 | 0.998 ± 0.004 | 0.995 ± 0.009 |
+| oracle (float32 local features + posteriors) | 0.995 ± 0.006 |  |  |  |
+
+Detection delay on detected unseen-fault runs (samples):
+
+| Code | 1 B | 2 B | 4 B | 8 B |
+|---|---|---|---|---|
+| designed class-id code (local classifier) | 50.7 ± 16.0 | 53.5 ± 14.4 | 43.3 ± 12.6 | 43.0 ± 13.7 |
+| (L1) end-to-end learned | 47.1 ± 8.8 | 39.1 ± 11.1 | 43.6 ± 7.7 | 47.3 ± 7.8 |
+| (L1+) end-to-end + reconstruction | 45.7 ± 9.6 | 39.7 ± 9.2 | 41.2 ± 10.2 | 53.4 ± 13.2 |
+| (L2) residual k-means (unsupervised) | 58.5 ± 9.3 | 53.5 ± 5.4 | 62.0 ± 10.3 | 52.8 ± 6.9 |
+| (c) quantised hand features (PCA/FFT) | 42.2 ± 15.4 | 42.4 ± 14.4 | 50.0 ± 14.5 | 45.4 ± 18.1 |
+| oracle (float32 local features + posteriors) | 52.4 ± 15.5 |  |  |  |
+
+Realised false-alarm rate on normal test windows (target 0.05):
+
+| Code | 1 B | 2 B | 4 B | 8 B |
+|---|---|---|---|---|
+| designed class-id code (local classifier) | 0.054 ± 0.006 | 0.057 ± 0.005 | 0.055 ± 0.006 | 0.057 ± 0.005 |
+| (L1) end-to-end learned | 0.053 ± 0.005 | 0.053 ± 0.005 | 0.053 ± 0.003 | 0.056 ± 0.006 |
+| (L1+) end-to-end + reconstruction | 0.049 ± 0.005 | 0.049 ± 0.004 | 0.056 ± 0.003 | 0.055 ± 0.005 |
+| (L2) residual k-means (unsupervised) | 0.045 ± 0.005 | 0.048 ± 0.005 | 0.054 ± 0.005 | 0.057 ± 0.004 |
+| (c) quantised hand features (PCA/FFT) | 0.046 ± 0.004 | 0.046 ± 0.004 | 0.048 ± 0.004 | 0.051 ± 0.004 |
+| oracle (float32 local features + posteriors) | 0.055 ± 0.006 |  |  |  |
+
+## Separability of the frozen messages of the unseen faults
+
+Linear-probe accuracy (probe trained on half the runs, tested on the rest; chance is 0.2 for 5 unseen faults):
+
+| Code | 1 B | 2 B | 4 B | 8 B |
+|---|---|---|---|---|
+| designed class-id code (local classifier) | 0.867 ± 0.044 | 0.897 ± 0.036 | 0.912 ± 0.031 | 0.921 ± 0.030 |
+| (L1) end-to-end learned | 0.854 ± 0.051 | 0.867 ± 0.054 | 0.925 ± 0.030 | 0.948 ± 0.018 |
+| (L1+) end-to-end + reconstruction | 0.845 ± 0.050 | 0.832 ± 0.073 | 0.876 ± 0.052 | 0.923 ± 0.031 |
+| (L2) residual k-means (unsupervised) | 0.783 ± 0.090 | 0.875 ± 0.056 | 0.915 ± 0.052 | 0.964 ± 0.016 |
+| (c) quantised hand features (PCA/FFT) | 0.814 ± 0.054 | 0.830 ± 0.059 | 0.912 ± 0.038 | 0.971 ± 0.007 |
+| oracle (float32 local features + posteriors) | 0.983 ± 0.011 |  |  |  |
+
+Normalised mutual information of k-means (one cluster per unseen fault) against the true faults:
+
+| Code | 1 B | 2 B | 4 B | 8 B |
+|---|---|---|---|---|
+| designed class-id code (local classifier) | 0.509 ± 0.081 | 0.600 ± 0.069 | 0.631 ± 0.069 | 0.640 ± 0.065 |
+| (L1) end-to-end learned | 0.561 ± 0.123 | 0.520 ± 0.111 | 0.626 ± 0.108 | 0.631 ± 0.107 |
+| (L1+) end-to-end + reconstruction | 0.560 ± 0.116 | 0.524 ± 0.111 | 0.558 ± 0.145 | 0.527 ± 0.143 |
+| (L2) residual k-means (unsupervised) | 0.353 ± 0.140 | 0.382 ± 0.151 | 0.594 ± 0.098 | 0.610 ± 0.109 |
+| (c) quantised hand features (PCA/FFT) | 0.590 ± 0.061 | 0.554 ± 0.076 | 0.630 ± 0.057 | 0.620 ± 0.053 |
+| oracle (float32 local features + posteriors) | 0.532 ± 0.078 |  |  |  |
+
+## Seen-fault macro-F1 (is the oracle now an upper bound?)
+
+Macro-F1 over the 12 seen faults on test runs, seen-only system:
+
+| Code | 1 B | 2 B | 4 B | 8 B |
+|---|---|---|---|---|
+| designed class-id code (local classifier) | 0.970 ± 0.007 | 0.971 ± 0.007 | 0.972 ± 0.007 | 0.972 ± 0.007 |
+| (L1) end-to-end learned | 0.964 ± 0.009 | 0.964 ± 0.008 | 0.965 ± 0.008 | 0.965 ± 0.008 |
+| (L1+) end-to-end + reconstruction | 0.963 ± 0.008 | 0.962 ± 0.009 | 0.961 ± 0.009 | 0.964 ± 0.009 |
+| (L2) residual k-means (unsupervised) | 0.823 ± 0.041 | 0.879 ± 0.029 | 0.929 ± 0.018 | 0.947 ± 0.010 |
+| (c) quantised hand features (PCA/FFT) | 0.847 ± 0.023 | 0.860 ± 0.025 | 0.907 ± 0.012 | 0.947 ± 0.009 |
+| oracle (float32 local features + posteriors) | 0.965 ± 0.007 |  |  |  |
+
+The oracle is significantly above 8 of 20 coded cells and significantly below 4. Cells where a code beats it: local 1 B (+0.005), local 2 B (+0.006), local 4 B (+0.007), local 8 B (+0.007).
+
+## How the designed code fails on unseen faults
+
+With a fixed vocabulary the seen-only centre can only name a known class. `map_share` is the share of an unseen fault's alarms that go to its single most frequent known class (1 means it is always mapped to the same known fault).
+
+| Code | 1 B | 2 B | 4 B | 8 B |
+|---|---|---|---|---|
+| designed class-id code (local classifier) | 0.733 ± 0.067 | 0.712 ± 0.049 | 0.696 ± 0.057 | 0.694 ± 0.054 |
+| (L1) end-to-end learned | 0.631 ± 0.055 | 0.691 ± 0.035 | 0.651 ± 0.066 | 0.647 ± 0.055 |
+| (L1+) end-to-end + reconstruction | 0.617 ± 0.040 | 0.703 ± 0.048 | 0.669 ± 0.041 | 0.647 ± 0.037 |
+| (L2) residual k-means (unsupervised) | 0.583 ± 0.051 | 0.600 ± 0.038 | 0.631 ± 0.060 | 0.633 ± 0.031 |
+| (c) quantised hand features (PCA/FFT) | 0.674 ± 0.049 | 0.696 ± 0.057 | 0.708 ± 0.056 | 0.699 ± 0.050 |
+| oracle (float32 local features + posteriors) | 0.729 ± 0.072 |  |  |  |
+
+Most frequent (unseen fault -> known fault) mappings of the designed code at 1 B, over replicates (count of replicates in which the pair occurred):
+
+12 -> 18 (4), 17 -> 18 (4), 11 -> 4 (4), 8 -> 13 (4), 19 -> 20 (4), 5 -> 10 (4), 1 -> 8 (3), 10 -> 16 (2)
+
+## Hyperparameters chosen on the tuning block
+
+- e2e_aux|1: {"bottleneck": "ste", "hidden": 64, "head": 128, "epochs": 20, "lr": 0.005, "recon": 1.0}
+- e2e_aux|2: {"bottleneck": "gumbel", "hidden": 64, "head": 128, "epochs": 20, "lr": 0.002, "recon": 1.0}
+- e2e_aux|4: {"bottleneck": "gumbel", "hidden": 64, "head": 128, "epochs": 20, "lr": 0.002, "recon": 1.0}
+- e2e_aux|8: {"bottleneck": "gumbel", "hidden": 64, "head": 128, "epochs": 20, "lr": 0.002, "recon": 1.0}
+- e2e|1: {"bottleneck": "ste", "hidden": 64, "head": 128, "epochs": 20, "lr": 0.002}
+- e2e|2: {"bottleneck": "gumbel", "hidden": 64, "head": 128, "epochs": 20, "lr": 0.002}
+- e2e|4: {"bottleneck": "ste", "hidden": 64, "head": 128, "epochs": 20, "lr": 0.002}
+- e2e|8: {"bottleneck": "ste", "hidden": 64, "head": 128, "epochs": 20, "lr": 0.002}
+- features|1: {}
+- features|2: {}
+- features|4: {}
+- features|8: {}
+- local|1: {"hidden": 32, "l2": 0.001, "max_iter": 100, "folds": 3}
+- local|2: {"hidden": 32, "l2": 0.001, "max_iter": 100, "folds": 3}
+- local|4: {"hidden": 32, "l2": 0.001, "max_iter": 100, "folds": 3}
+- local|8: {"hidden": 32, "l2": 0.001, "max_iter": 100, "folds": 3}
+- oracle|0: {"hidden": 64}
+- vq|1: {"whiten": false, "dim": 8}
+- vq|2: {"whiten": false, "dim": 8}
+- vq|4: {"whiten": false, "dim": 32}
+- vq|8: {"whiten": false, "dim": 32}
+
+G2b verdict: INCONCLUSIVE. 2 learned (code, budget) cells are ahead on average (best: vq at 8 B, +0.017 ± 0.028) but none qualifies for a PASS (e2e or e2e_aux at 1, 2 or 4 B with the CI above 0).
+wrote docs\results\plant_novel_faults.md and docs\results\plant_novel_faults.json
