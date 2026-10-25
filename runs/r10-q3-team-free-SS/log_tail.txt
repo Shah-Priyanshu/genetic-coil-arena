@@ -44,3 +44,13 @@ Loading weights: 100%|██████████| 311/311 [00:01<00:00, 185.
 [06:41:53] team_free decisions: 5/60 (1174s)
 [06:42:07] team_free decisions: 10/60 (1187s)
 [06:42:20] team_free decisions: 15/60 (1201s)
+[06:42:34] team_free decisions: 20/60 (1214s)
+[06:42:48] team_free decisions: 25/60 (1228s)
+[06:43:01] team_free decisions: 30/60 (1242s)
+[06:43:15] team_free decisions: 35/60 (1255s)
+[06:43:28] team_free decisions: 40/60 (1269s)
+[06:43:42] team_free decisions: 45/60 (1282s)
+[06:43:55] team_free decisions: 50/60 (1295s)
+[06:44:09] team_free decisions: 55/60 (1309s)
+[06:44:23] team_free decisions: 60/60 (1323s)
+[06:44:23] done in 1323.5s; records in D:\Projects\genetic-coil-arena-gpu-results\runs\r10-q3-team-free-SS\artifacts\artifacts\results.jsonl
