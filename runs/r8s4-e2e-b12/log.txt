@@ -1,2 +1,11 @@
 scale full: 2 groups, replicates 0:10 of 10; 8 processes x 1 torch thread(s) <= 8 workers; splits (unseen faults): [(1, 10, 12, 13, 17), (1, 11, 17, 19, 20), (2, 8, 14, 17, 19), (5, 7, 11, 16, 19), (4, 5, 6, 8, 12), (5, 11, 13, 18, 19)]
 20 cells in 2 groups on 8 workers
+  tuned ('e2e', 1): {'bottleneck': 'ste', 'hidden': 64, 'head': 128, 'epochs': 20, 'lr': 0.002} (92s)
+  tuned ('e2e', 2): {'bottleneck': 'gumbel', 'hidden': 64, 'head': 128, 'epochs': 20, 'lr': 0.002} (113s)
+  5/20 cells, 169s
+  10/20 cells, 248s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s4-e2e-b12\artifacts\plant_novel_e2e_b1_r0-10.json (4.1 min)
+  15/20 cells, 279s
+  20/20 cells, 357s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s4-e2e-b12\artifacts\plant_novel_e2e_b2_r0-10.json (6.0 min)
+done in 6.0 min
