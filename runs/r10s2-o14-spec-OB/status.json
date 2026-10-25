@@ -13,12 +13,14 @@
     "--conditions",
     "team_hybrid_rule,single_selected,oracle_selected"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-25T17:34:40+00:00",
-  "updated_at": "2026-10-25T18:51:09+00:00",
-  "elapsed_min": 76.5,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 70 %, 11225 MiB, 12282 MiB, 63",
+  "updated_at": "2026-10-25T18:52:25+00:00",
+  "elapsed_min": 77.7,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 1026 MiB, 12282 MiB, 51",
   "host": "PC",
   "lane": "gpu",
-  "cpu_workers": 4
+  "cpu_workers": 4,
+  "returncode": 0,
+  "finished_at": "2026-10-25T18:52:25+00:00"
 }
