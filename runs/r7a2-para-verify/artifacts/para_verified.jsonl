@@ -2996,3 +2996,22 @@
 {"base_id": "tpl-squad-00177", "style": "casual_chat", "text": "hey can you make me a snake squad with red green and blue snakes foraging ones green blue caution normal step limit 175 food target 16", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00177", "style": "casual_chat", "text": "so like i need red green and blue snakes for the squad green and blue are foraging caution normal step limit 175 food target 16 okay", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00177", "style": "casual_chat", "text": "um yeah i want red green and blue snake squad green and blue foraging caution normal step limit 175 food target 16 that's it", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00177", "style": "casual_chat", "text": "hey can you set up a squad with red green and blue snakes green blue foraging caution normal step limit 175 food target 16", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00177", "style": "casual_chat", "text": "so like i'm asking for red green and blue snakes squad green blue foraging caution normal step limit 175 food target 16", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00188", "style": "terse_note", "text": "SQUAD: RED GREEN BLUE | FORAGE: GREEN BLUE | CAUTION: LOW | STEP: 120 | FOOD: NONE", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00188", "style": "terse_note", "text": "RED GREEN BLUE SQUAD | GREEN BLUE FORAGING | LOW CAUTION | 120 STEPS | NO FOOD TARGET", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00188", "style": "terse_note", "text": "SNK R G B | FGRN BLU | CAUT LOW | STP 120 | FD N/A", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00188", "style": "terse_note", "text": "SQUAD R/G/B | FORAGE G/B | CAUTION L | STEP 120 | FOOD NULL", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00188", "style": "terse_note", "text": "RED GREEN BLUE UNIT | GREEN BLUE FORAGING | CAUTION LEVEL: LOW | MAX STEPS: 120 | NO FOOD TARGET", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00188", "style": "terse_note", "text": "SNAKE SQUAD: R G B | FORAGE GROUP: G B | DANGER: LOW | LIMIT: 120 | TARGET: NONE", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00188", "style": "terse_note", "text": "R G B SNK TEAM | G B FORAGE | CAUTION LOW | STEP MAX 120 | FOOD TARGET: N/A", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00188", "style": "terse_note", "text": "SQUAD COLORS: RED GREEN BLUE | FORAGING: GREEN BLUE | RISK: LOW | MAX STEP: 120 | FOOD: NULL", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00234", "style": "casual_chat", "text": "hey so like red snakes are foraging right? high caution mode activated with 240 step limit no food target specified", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00234", "style": "casual_chat", "text": "yo team red snakes foraging okay high alert set to max 240 steps no food goal mentioned", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00234", "style": "casual_chat", "text": "um so red snakes hunting yeah high risk level 240 movement cap no food objective stated", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00234", "style": "casual_chat", "text": "like dude red snake squad foraging okay caution level max 240 step limit nothing about food target", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00234", "style": "casual_chat", "text": "hey wait red snakes foraging right? high safety mode 240 steps no food goal specified", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00234", "style": "casual_chat", "text": "so like red snakes searching food yeah high danger zone 240 step maximum no food target given", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00234", "style": "casual_chat", "text": "red snakes foraging okay high alert 240 step limit no food target stated", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00234", "style": "casual_chat", "text": "yo red snake team foraging yeah high caution 240 steps no food objective mentioned", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00304", "style": "numbers_in_words", "text": "Red green and blue snake squad please foraging green caution normal step limit eighty food target fifteen", "verified": false, "verifier_status": "ok"}
