@@ -17,3 +17,5 @@
 [22:09:41] team_typed messages: 20/60 (588s)
 [22:11:51] team_typed messages: 25/60 (717s)
 [22:13:56] team_typed messages: 30/60 (843s)
+[22:16:06] team_typed messages: 35/60 (972s)
+[22:18:17] team_typed messages: 40/60 (1104s)
