@@ -1,11 +1,3 @@
-[progress] hand-goal run 6: gen 1150/5000, val mission 13.33, best gen 1100, elapsed 4788 s
-[progress] hand-goal run 0: gen 1250/5000, val mission 9.13, best gen 1200, elapsed 4795 s
-[progress] hand-goal run 1: gen 1150/5000, val mission 16.37, best gen 1150, elapsed 4802 s
-[progress] hand-goal run 4: gen 1200/5000, val mission 12.47, best gen 1100, elapsed 4807 s
-[progress] hand-goal run 7: gen 1150/5000, val mission 12.40, best gen 850, elapsed 4823 s
-[progress] hand-goal run 5: gen 1150/5000, val mission 15.17, best gen 700, elapsed 4922 s
-[progress] hand-goal run 2: gen 1200/5000, val mission 12.87, best gen 750, elapsed 4922 s
-[progress] hand-goal run 3: gen 1350/5000, val mission 8.97, best gen 1300, elapsed 5028 s
 [progress] hand-goal run 6: gen 1250/5000, val mission 11.77, best gen 1200, elapsed 5228 s
 [progress] hand-goal run 0: gen 1350/5000, val mission 9.17, best gen 1200, elapsed 5231 s
 [progress] hand-goal run 1: gen 1250/5000, val mission 14.27, best gen 1200, elapsed 5248 s
@@ -198,3 +190,11 @@
 [progress] hand-goal run 1: gen 3550/5000, val mission 19.20, best gen 2850, elapsed 15601 s
 [progress] hand-goal run 5: gen 3550/5000, val mission 20.37, best gen 2750, elapsed 15658 s
 [progress] hand-goal run 2: gen 3600/5000, val mission 14.30, best gen 2450, elapsed 15660 s
+[progress] hand-goal run 7: gen 3650/5000, val mission 13.33, best gen 2650, elapsed 15912 s
+[progress] hand-goal run 6: gen 3650/5000, val mission 18.83, best gen 3100, elapsed 15936 s
+[progress] hand-goal run 0: gen 3750/5000, val mission 17.63, best gen 3150, elapsed 15940 s
+[progress] hand-goal run 4: gen 3700/5000, val mission 15.30, best gen 3300, elapsed 16000 s
+[progress] hand-goal run 3: gen 3850/5000, val mission 12.97, best gen 3350, elapsed 16002 s
+[progress] hand-goal run 1: gen 3650/5000, val mission 19.63, best gen 2850, elapsed 16043 s
+[progress] hand-goal run 2: gen 3700/5000, val mission 13.93, best gen 2450, elapsed 16095 s
+[progress] hand-goal run 5: gen 3650/5000, val mission 19.73, best gen 2750, elapsed 16098 s
