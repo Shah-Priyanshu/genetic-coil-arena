@@ -1,0 +1,18 @@
+{
+  "id": "ci-57ffb8b20a23",
+  "commit": "57ffb8b20a23ef2657e4f98598797d2d99f9a0b6",
+  "args": [
+    "-m",
+    "pytest",
+    "tests/",
+    "--ignore=tests/test_viewer.py",
+    "-q",
+    "-p",
+    "no:cacheprovider"
+  ],
+  "timeout_min": 60,
+  "lane": "cpu",
+  "cpu_workers": 2,
+  "priority": -1000,
+  "internal": "ci"
+}
