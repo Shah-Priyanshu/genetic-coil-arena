@@ -66,3 +66,9 @@
 [01:17:34] para-verify 3200/3840
 [01:18:21] para-verify 3250/3840
 [01:19:13] para-verify 3300/3840
+[01:19:59] para-verify 3350/3840
+[01:20:55] para-verify 3400/3840
+[01:21:46] para-verify 3450/3840
+[01:22:36] para-verify 3500/3840
+[01:23:26] para-verify 3550/3840
+[01:24:15] para-verify 3600/3840
