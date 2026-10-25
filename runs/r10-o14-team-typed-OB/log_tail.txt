@@ -12,3 +12,6 @@
 [21:59:54] simple conditions: 55/60 incidents (1s)
 [21:59:54] simple conditions: 60/60 incidents (1s)
 [22:02:26] team_typed messages: 5/60 (153s)
+[22:05:12] team_typed messages: 10/60 (318s)
+[22:07:20] team_typed messages: 15/60 (447s)
+[22:09:41] team_typed messages: 20/60 (588s)
