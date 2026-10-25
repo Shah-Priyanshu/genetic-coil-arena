@@ -1,0 +1,26 @@
+{
+  "id": "r7a2-train-r8-n1000",
+  "commit": "e8236c4b1ce4ebcfee4dc2fa89d63d05805efe78",
+  "queued_args": [
+    "scripts/r7a_step2.py",
+    "train",
+    "--pool",
+    "runs:r7a2-para-verify",
+    "--rank",
+    "8",
+    "--n",
+    "1000",
+    "--epochs",
+    "8",
+    "--name",
+    "r8-n1000"
+  ],
+  "state": "running",
+  "started_at": "2026-10-25T06:32:38+00:00",
+  "updated_at": "2026-10-25T06:32:38+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 708 MiB, 12282 MiB, 50",
+  "host": "PC",
+  "lane": "gpu",
+  "cpu_workers": 4
+}
