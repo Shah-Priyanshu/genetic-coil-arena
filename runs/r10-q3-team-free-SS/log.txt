@@ -29,3 +29,6 @@ Loading weights: 100%|██████████| 311/311 [00:01<00:00, 185.
 [06:22:20] simple conditions: 50/60 incidents (0s)
 [06:22:20] simple conditions: 55/60 incidents (0s)
 [06:22:20] simple conditions: 60/60 incidents (0s)
+[06:23:57] team_free messages: 5/60 (97s)
+[06:25:32] team_free messages: 10/60 (192s)
+[06:27:11] team_free messages: 15/60 (291s)
