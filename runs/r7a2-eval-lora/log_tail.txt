@@ -1,0 +1,25 @@
+[03:29:00] best run by dev score: r32-n4000 (95.5%); considered 6
+W1025 03:29:03.720000 26620 Lib\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]
+Loading weights:   1%|          | 2/311 [00:00<00:20, 15.31it/s]
+Loading weights:   8%|▊         | 24/311 [00:00<00:02, 121.90it/s]
+Loading weights:  15%|█▌        | 48/311 [00:00<00:01, 170.36it/s]
+Loading weights:  22%|██▏       | 69/311 [00:00<00:01, 185.15it/s]
+Loading weights:  29%|██▉       | 91/311 [00:00<00:01, 194.86it/s]
+Loading weights:  36%|███▌      | 112/311 [00:00<00:01, 195.22it/s]
+Loading weights:  42%|████▏     | 132/311 [00:00<00:00, 190.63it/s]
+Loading weights:  50%|█████     | 156/311 [00:00<00:00, 200.02it/s]
+Loading weights:  57%|█████▋    | 177/311 [00:00<00:00, 193.59it/s]
+Loading weights:  64%|██████▍   | 199/311 [00:01<00:00, 196.99it/s]
+Loading weights:  71%|███████   | 220/311 [00:01<00:00, 195.99it/s]
+Loading weights:  77%|███████▋  | 241/311 [00:01<00:00, 182.26it/s]
+Loading weights:  86%|████████▌ | 268/311 [00:01<00:00, 203.42it/s]
+Loading weights:  93%|█████████▎| 289/311 [00:01<00:00, 199.51it/s]
+Loading weights: 100%|██████████| 311/311 [00:01<00:00, 192.21it/s]
+[03:29:35] lora sealed: 20/174 (sealed-squad-019)
+[03:30:03] lora sealed: 40/174 (sealed-squad-039)
+[03:30:33] lora sealed: 60/174 (sealed-squad-059)
+[03:31:03] lora sealed: 80/174 (sealed-squad-079)
+[03:32:00] lora sealed: 100/174 (sealed-plant-010)
+[03:33:09] lora sealed: 120/174 (sealed-plant-030)
