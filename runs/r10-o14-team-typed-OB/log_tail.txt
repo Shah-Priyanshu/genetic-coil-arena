@@ -31,3 +31,8 @@
 [22:29:17] team_typed decisions: 30/60 (1764s)
 [22:29:37] team_typed decisions: 35/60 (1784s)
 [22:29:57] team_typed decisions: 40/60 (1804s)
+[22:30:16] team_typed decisions: 45/60 (1823s)
+[22:30:34] team_typed decisions: 50/60 (1840s)
+[22:30:52] team_typed decisions: 55/60 (1859s)
+[22:31:11] team_typed decisions: 60/60 (1878s)
+[22:31:11] done in 1877.8s; records in D:\Projects\genetic-coil-arena-gpu-results\runs\r10-o14-team-typed-OB\artifacts\artifacts\results.jsonl
