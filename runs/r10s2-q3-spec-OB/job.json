@@ -1,0 +1,21 @@
+{
+  "id": "r10s2-q3-spec-OB",
+  "commit": "585196f2a825bde056c555943872bc1a79cb11f1",
+  "args": [
+    "scripts/r10_step2.py",
+    "run",
+    "--model",
+    "hf:Qwen/Qwen3-1.7B",
+    "--systems",
+    "OB",
+    "--conditions",
+    "team_hybrid_rule,single_selected,oracle_selected"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 4,
+  "priority": 6,
+  "timeout_min": 240.0,
+  "env": {
+    "HF_HOME": "D:\\hf_cache"
+  }
+}

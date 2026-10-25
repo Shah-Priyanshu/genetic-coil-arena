@@ -1,0 +1,22 @@
+{
+  "id": "r10s2-q3-spec-OB",
+  "commit": "585196f2a825bde056c555943872bc1a79cb11f1",
+  "queued_args": [
+    "scripts/r10_step2.py",
+    "run",
+    "--model",
+    "hf:Qwen/Qwen3-1.7B",
+    "--systems",
+    "OB",
+    "--conditions",
+    "team_hybrid_rule,single_selected,oracle_selected"
+  ],
+  "state": "running",
+  "started_at": "2026-10-25T20:19:13+00:00",
+  "updated_at": "2026-10-25T20:19:13+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 934 MiB, 12282 MiB, 47",
+  "host": "PC",
+  "lane": "gpu",
+  "cpu_workers": 4
+}
