@@ -124,3 +124,6 @@ Loading weights: 100%|██████████| 311/311 [00:03<00:00, 102.
 [02:10:59] r32-n12000 dev: 160/304 (squad-indist-15)
 [02:12:01] r32-n12000 dev: 200/304 (squad-heldout-15)
 [02:12:55] r32-n12000 dev: 240/304 (plant-indist-15)
+[02:13:47] r32-n12000 dev: 280/304 (plant-heldout-15)
+[02:14:15] r32-n12000 dev: 304/304 (plant-heldout-x3)
+[02:14:15] r32-n12000: dev+step-1 exact 95.1% on 288 valid items; adapter 133 MiB at D:\hf_cache\r7a2_store\r32-n12000.pt
