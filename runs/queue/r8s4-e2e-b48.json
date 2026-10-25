@@ -1,0 +1,17 @@
+{
+  "id": "r8s4-e2e-b48",
+  "commit": "f37b7882833846170df9493a9c33f287e1d74904",
+  "args": [
+    "scripts/plant_novel_faults.py",
+    "--codes",
+    "e2e",
+    "--budgets",
+    "4+8",
+    "--workers",
+    "8"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "priority": 8,
+  "timeout_min": 120.0
+}

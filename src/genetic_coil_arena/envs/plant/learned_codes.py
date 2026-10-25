@@ -32,6 +32,8 @@ from .encoders import N_BANDS, UplinkEncoder, band_energies, window_stats
 from .windows import NodeLayout
 
 METHODS = ("e2e", "vq", "local")
+# Step 4 (novel faults) adds a variant of e2e with an auxiliary reconstruction term
+NOVEL_METHODS = (*METHODS, "e2e_aux")
 N_STATS = 5 + N_BANDS  # mean, std, slope, min, max + band energies, per variable
 CLIP = 8.0
 LEVEL_EDGES = np.array([0.05, 0.15, 0.30, 0.50, 0.70, 0.85, 0.95])
@@ -361,6 +363,8 @@ def train_end_to_end(
     batch: int = 256,
     weight_decay: float = 1e-4,
     bottleneck: str = "ste",
+    recon: float = 0.0,
+    mask: Optional[np.ndarray] = None,
 ) -> tuple[dict[str, np.ndarray], dict[str, float]]:
     """Train the node encoders and a classifier head jointly (torch, CPU).
 
@@ -374,6 +378,12 @@ def train_end_to_end(
         epochs, lr, batch, weight_decay: Adam settings
         bottleneck: "ste" (sign forward, tanh gradient) or "gumbel" (logistic noise on
             the logits and an annealed temperature while training; hard bits forward)
+        recon: Weight of an auxiliary reconstruction term (``e2e_aux``): a linear decoder
+            per node maps the node's bits back to its standardised features, and the mean
+            squared error over the real (``mask``) features is added to the loss. It asks
+            the code to keep general information about the window, not only what separates
+            the training classes. 0 turns it off (plain end to end).
+        mask: (N, F) real-feature mask for the reconstruction error (default: all)
 
     Returns:
         ``(weights, info)``: numpy weights ``w1, b1, w2, b2`` for ``EndToEndEncoder`` and
@@ -408,7 +418,14 @@ def train_end_to_end(
         torch.nn.Tanh(),
         torch.nn.Linear(head, n_classes),
     )
+    w3 = init(nodes, k, f, fan_in=k) if recon > 0 else None
+    b3 = torch.nn.Parameter(torch.zeros(nodes, f)) if recon > 0 else None
+    fmask = torch.from_numpy(
+        np.ones((nodes, f), np.float32) if mask is None else mask.astype(np.float32)
+    )
     params = [w1, b1, w2, b2, *head_net.parameters()]
+    if w3 is not None and b3 is not None:
+        params += [w3, b3]
     opt = torch.optim.AdamW(params, lr=lr, weight_decay=weight_decay)
 
     def forward(xb: Any, tau: float, noisy: bool) -> Any:
@@ -420,7 +437,7 @@ def train_end_to_end(
         soft = torch.tanh(z / tau)
         hard = torch.where(z > 0, 1.0, -1.0)
         bits = soft + (hard - soft).detach()
-        return head_net(bits.reshape(bits.shape[0], -1))
+        return head_net(bits.reshape(bits.shape[0], -1)), bits
 
     loss_value, acc = float("nan"), float("nan")
     steps = max(1, epochs)
@@ -430,8 +447,12 @@ def train_end_to_end(
         total, hit = 0.0, 0
         for a in range(0, n, batch):
             idx = perm[a : a + batch]
-            logits = forward(x[idx], tau, bottleneck == "gumbel")
+            logits, bits = forward(x[idx], tau, bottleneck == "gumbel")
             loss = torch.nn.functional.cross_entropy(logits, y[idx], weight=cw)
+            if w3 is not None and b3 is not None:
+                rec = torch.einsum("bnk,nkf->bnf", bits, w3) + b3
+                err = ((rec - x[idx]) ** 2 * fmask).sum() / (len(idx) * fmask.sum())
+                loss = loss + recon * err
             opt.zero_grad()
             loss.backward()
             opt.step()
@@ -455,6 +476,14 @@ DEFAULT_HP: dict[str, dict[str, Any]] = {
         "head": 128,
         "epochs": 20,
         "lr": 2e-3,
+    },
+    "e2e_aux": {
+        "bottleneck": "ste",
+        "hidden": 64,
+        "head": 128,
+        "epochs": 20,
+        "lr": 2e-3,
+        "recon": 1.0,
     },
     "vq": {"whiten": False, "dim": 16},
     "local": {"hidden": 64, "l2": 1e-2, "max_iter": 100, "folds": 3},
@@ -488,13 +517,16 @@ def fit_encoder(
         ``(encoder, x_train)``; ``x_train`` replaces the centre's training features when
         the code must be cross-fitted (the local classifiers), else ``None``
     """
-    if method not in METHODS:
-        raise ValueError(f"Unknown method {method!r}; expected {METHODS}")
+    if method not in NOVEL_METHODS:
+        raise ValueError(f"Unknown method {method!r}; expected {NOVEL_METHODS}")
     hp = {**DEFAULT_HP[method], **hp}
     feats = featuriser(train["windows"])
     labels = np.asarray(train["labels"], dtype=np.int64)
-    if method == "e2e":
-        kwargs = {k: hp[k] for k in ("bottleneck", "hidden", "head", "epochs", "lr")}
+    if method in ("e2e", "e2e_aux"):
+        keys = ("bottleneck", "hidden", "head", "epochs", "lr")
+        kwargs: dict[str, Any] = {k: hp[k] for k in keys}
+        if method == "e2e_aux":
+            kwargs.update(recon=hp["recon"], mask=featuriser.mask)
         weights, _ = train_end_to_end(feats, labels, n_classes, budget, seed, **kwargs)
         return EndToEndEncoder(budget, layout, featuriser, weights), None
     if method == "vq":
@@ -523,6 +555,7 @@ def max_message(messages: np.ndarray) -> tuple[int, int]:
 __all__: Sequence[str] = [
     "DEFAULT_HP",
     "METHODS",
+    "NOVEL_METHODS",
     "EndToEndEncoder",
     "Featuriser",
     "LocalClassifierEncoder",

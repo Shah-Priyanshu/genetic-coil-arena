@@ -1,0 +1,30 @@
+{
+  "id": "r8s4-zz-aggregate",
+  "commit": "f37b7882833846170df9493a9c33f287e1d74904",
+  "args": [
+    "scripts/plant_novel_faults.py",
+    "--from-json",
+    "runs:r8s4-*",
+    "--out",
+    "docs/results/plant_novel_faults.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 1,
+  "priority": 8,
+  "after": [
+    "r8s4-local-b12",
+    "r8s4-local-b48",
+    "r8s4-e2e-b12",
+    "r8s4-e2e-b48",
+    "r8s4-e2e_aux-b12",
+    "r8s4-e2e_aux-b48",
+    "r8s4-vq-b12",
+    "r8s4-vq-b48",
+    "r8s4-ref"
+  ],
+  "timeout_min": 20.0,
+  "outputs": [
+    "docs/results/plant_novel_faults.md",
+    "docs/results/plant_novel_faults.json"
+  ]
+}
