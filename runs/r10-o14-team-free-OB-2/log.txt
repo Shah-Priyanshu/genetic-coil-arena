@@ -32,3 +32,7 @@
 [04:20:42] team_free decisions: 35/60 (1118s)
 [04:21:01] team_free decisions: 40/60 (1137s)
 [04:21:19] team_free decisions: 45/60 (1155s)
+[04:21:37] team_free decisions: 50/60 (1172s)
+[04:21:55] team_free decisions: 55/60 (1191s)
+[04:22:13] team_free decisions: 60/60 (1208s)
+[04:22:13] done in 1208.4s; records in D:\Projects\genetic-coil-arena-gpu-results\runs\r10-o14-team-free-OB-2\artifacts\artifacts\results.jsonl
