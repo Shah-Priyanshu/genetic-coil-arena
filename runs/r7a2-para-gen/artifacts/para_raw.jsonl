@@ -1054,3 +1054,99 @@
 {"base_id": "tpl-squad-00180", "style": "polite_question", "text": "Would it be possible to initiate a group with red, green, and blue snakes? Foraging snakes are red and green, normal caution required, and step limit set to 300 as default."}
 {"base_id": "tpl-squad-00180", "style": "polite_question", "text": "Could you kindly establish a snake team of red, green, and blue members? The foraging snakes should be red and green with ordinary caution settings and the standard 300 step limit."}
 {"base_id": "tpl-squad-00180", "style": "polite_question", "text": "Would you please configure a squad including red, green, and blue snakes? Foraging snakes are red and green, caution level normal, and step limit of 300 as default setting."}
+{"base_id": "tpl-squad-00157", "style": "indirect_hint", "text": "It would be wonderful if we could have a red green and blue snake squad with foraging set to red and green while keeping caution at normal level and stepping limit at 110 with no food target specified"}
+{"base_id": "tpl-squad-00157", "style": "indirect_hint", "text": "I was thinking it might be helpful to configure a snake team consisting of red green and blue colors where foraging includes red and green snakes but caution remains ordinary with step restriction of 110 and no food target indicated"}
+{"base_id": "tpl-squad-00157", "style": "indirect_hint", "text": "Would it be possible to establish a squad featuring red green and blue snakes with foraging covering red and green while maintaining normal caution level and 110 step limit without any stated food target requirement"}
+{"base_id": "tpl-squad-00157", "style": "indirect_hint", "text": "I was wondering if we could arrange a red green and blue snake group with foraging targeting red and green snakes keeping caution as standard and setting step limit to 110 with no food target specified"}
+{"base_id": "tpl-squad-00157", "style": "indirect_hint", "text": "It would be great if we could set up a team of red green and blue snakes where foraging applies to red and green with normal caution level and step limit of 110 without any food target mentioned"}
+{"base_id": "tpl-squad-00157", "style": "indirect_hint", "text": "I was thinking perhaps we could have a red green and blue snake formation with foraging including red and green snakes but with ordinary caution and step limit at 110 and no food target stated"}
+{"base_id": "tpl-squad-00157", "style": "indirect_hint", "text": "It would be nice if we could create a squad of red green and blue snakes having foraging cover red and green while keeping caution normal and step limit 110 with no food target specified"}
+{"base_id": "tpl-squad-00157", "style": "indirect_hint", "text": "I was considering whether it might work to configure red green and blue snakes for foraging with red and green included while maintaining normal caution level and 110 step limit without any food target requirement"}
+{"base_id": "tpl-plant-00268", "style": "negation", "text": "Activate fault diagnosis for all components except compressor_utilities with 16 byte messages and 5% false alarm rate"}
+{"base_id": "tpl-plant-00268", "style": "negation", "text": "Initiate system monitoring excluding compressor_utilities node while maintaining 16 byte message size and 0.05 false alarm threshold"}
+{"base_id": "tpl-plant-00268", "style": "negation", "text": "Start diagnostic protocol for reactor, separator, stripper, and compressor_utilities with 16 bytes per message and 5% false alarm probability"}
+{"base_id": "tpl-plant-00268", "style": "negation", "text": "Run fault detection on every node except utilities compartment using 16 byte communication frames and 0.05 error rate"}
+{"base_id": "tpl-plant-00268", "style": "negation", "text": "Execute monitoring routine for all units minus compressor utilities with 16 byte packet size and 5% false positive allowance"}
+{"base_id": "tpl-plant-00268", "style": "negation", "text": "Begin system analysis excluding the compressor_utilities sensor array while keeping 16 byte message format and 0.05 false alarm limit"}
+{"base_id": "tpl-plant-00268", "style": "negation", "text": "Deploy diagnostic process covering reactor, separator, stripper, and compressor_utilities with 16 byte transmission length and 5% error margin"}
+{"base_id": "tpl-plant-00268", "style": "negation", "text": "Launch fault identification for all sections except utilities component maintaining 16 byte message structure and 0.05 false alarm criteria"}
+{"base_id": "tpl-plant-00146", "style": "numbers_in_words", "text": "Request for plant fault diagnosis system with sensor nodes reactor separator stripper compressor utilities bytes per message fifty one false alarm rate zero point zero one active nodes separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00146", "style": "numbers_in_words", "text": "System control command to activate fault detection with reactor separator stripper compressor utilities sensor nodes message size fifty one bytes false alarm probability one percent active separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00146", "style": "numbers_in_words", "text": "Control instruction for industrial plant monitoring system utilizing reactor separator stripper compressor utilities nodes message length fifty one bytes error rate point zero one active components separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00146", "style": "numbers_in_words", "text": "Diagnostic system activation request containing reactor separator stripper compressor utilities sensor network message byte count fifty one false positive level point zero one operating separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00146", "style": "numbers_in_words", "text": "Process control query for fault identification system with reactor separator stripper compressor utilities monitoring nodes message transmission fifty one bytes alarm threshold point zero one running separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00146", "style": "numbers_in_words", "text": "Automated plant supervision command using reactor separator stripper compressor utilities detection network message payload fifty one bytes misidentification rate point zero one operational separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00146", "style": "numbers_in_words", "text": "Industrial monitoring control signal requesting fault analysis system with reactor separator stripper compressor utilities sensor array message capacity fifty one bytes erroneous trigger probability point zero one running separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00146", "style": "numbers_in_words", "text": "Equipment diagnostic protocol activation for reactor separator stripper compressor utilities network nodes message size fifty one bytes incorrect alert rate point zero one running separator stripper compressor utilities"}
+{"base_id": "tpl-squad-00473", "style": "negation", "text": "All snakes except red are foraging. Blue snake is foraging. High caution required. Step limit 175. Food target 12."}
+{"base_id": "tpl-squad-00473", "style": "negation", "text": "Red snakes not foraging. Blue snake foraging. Caution level high. Maximum steps 175. Target food 12."}
+{"base_id": "tpl-squad-00473", "style": "negation", "text": "Everyone except red snakes forages. Blue snake forages. Safety critical. Step allowance 175. Food goal 12."}
+{"base_id": "tpl-squad-00473", "style": "negation", "text": "No red snakes foraging. Blue snake foraging. Extreme caution. Maximum 175 steps. Food target 12."}
+{"base_id": "tpl-squad-00473", "style": "negation", "text": "All but red snakes forage. Blue snake foraging. High safety risk. Step threshold 175. Target 12 food units."}
+{"base_id": "tpl-squad-00473", "style": "negation", "text": "Leave red snakes out of foraging. Blue snake forages. Careful approach needed. Step cap 175. Food objective 12."}
+{"base_id": "tpl-squad-00473", "style": "negation", "text": "Red snakes not included in foraging. Blue snake forages. Safety priority high. Movement limit 175. Target food count 12."}
+{"base_id": "tpl-squad-00473", "style": "negation", "text": "Everyone except red snakes foraging. Blue snake foraging. Caution level maximum. Step boundary 175. Food target 12 units."}
+{"base_id": "tpl-plant-ref0016", "style": "casual_chat", "text": "hey can you like clean my desk but like ood is bad so no can do"}
+{"base_id": "tpl-plant-ref0016", "style": "casual_chat", "text": "ooooooood why u even tryin to make me clean your desk lol"}
+{"base_id": "tpl-plant-ref0016", "style": "casual_chat", "text": "yo u cant make me clean your desk because ood yknow"}
+{"base_id": "tpl-plant-ref0016", "style": "casual_chat", "text": "ummm sorry but ood makes it impossible to clean ur desk"}
+{"base_id": "tpl-plant-ref0016", "style": "casual_chat", "text": "hey listen i cant clean your desk because of ood reasons"}
+{"base_id": "tpl-plant-ref0016", "style": "casual_chat", "text": "oh come on u really think i can clean your desk with ood"}
+{"base_id": "tpl-plant-ref0016", "style": "casual_chat", "text": "u know what just forget it ood is the problem here"}
+{"base_id": "tpl-plant-ref0016", "style": "casual_chat", "text": "please no not cleaning ur desk ood makes this impossible"}
+{"base_id": "tpl-plant-00127", "style": "numbers_in_words", "text": "Request fault diagnosis system with sensor nodes reactor separator stripper compressor utilities bytes per message eight false alarm rate zero point zero two active nodes separator compressor utilities"}
+{"base_id": "tpl-plant-00127", "style": "numbers_in_words", "text": "Control system needs plant fault diagnostic with sensor reactor separator stripper compressor utilities message size eight false alarm probability two percent active separator compressor utilities"}
+{"base_id": "tpl-plant-00127", "style": "numbers_in_words", "text": "System query for fault detection with sensor reactor separator stripper compressor utilities byte count eight false alert ratio point zero two active separator compressor utilities"}
+{"base_id": "tpl-plant-00127", "style": "numbers_in_words", "text": "Plant monitoring request fault analysis system sensor nodes reactor separator stripper compressor utilities message length eight false positive rate two percent active separator compressor utilities"}
+{"base_id": "tpl-plant-00127", "style": "numbers_in_words", "text": "Diagnostic control command sensor reactor separator stripper compressor utilities message size eight false alarm probability zero point zero two active separator compressor utilities"}
+{"base_id": "tpl-plant-00127", "style": "numbers_in_words", "text": "Fault detection system activation sensor nodes reactor separator stripper compressor utilities bytes per transmission eight false error rate two percent active separator compressor utilities"}
+{"base_id": "tpl-plant-00127", "style": "numbers_in_words", "text": "Process supervision query fault system with sensor reactor separator stripper compressor utilities message capacity eight false alert fraction point zero two active separator compressor utilities"}
+{"base_id": "tpl-plant-00127", "style": "numbers_in_words", "text": "Equipment monitoring request plant fault system sensor reactor separator stripper compressor utilities transmission size eight false positive probability two percent active separator compressor utilities"}
+{"base_id": "tpl-squad-cla0018", "style": "jargon", "text": "G1 Z up, G20 feedrate, G91 relative mode"}
+{"base_id": "tpl-squad-cla0018", "style": "jargon", "text": "X Y Z axis move, no units specified, absolute positioning"}
+{"base_id": "tpl-squad-cla0018", "style": "jargon", "text": "M3 spindle on, M7 coolant, M99 subprogram return"}
+{"base_id": "tpl-squad-cla0018", "style": "jargon", "text": "F feedrate, S speed, T tool change, G43 length compensation"}
+{"base_id": "tpl-squad-cla0018", "style": "jargon", "text": "G0 rapid move, G1 linear interpolation, G2 arc cw, G3 arc ccw"}
+{"base_id": "tpl-squad-cla0018", "style": "jargon", "text": "A B C axis rotation, no backlash correction, G54 work coordinate"}
+{"base_id": "tpl-squad-cla0018", "style": "jargon", "text": "D diameter, R radius, H offset, L count, P pause"}
+{"base_id": "tpl-squad-cla0018", "style": "jargon", "text": "TLO tool length offset, WCS work coordinate system, MCR machine reference"}
+{"base_id": "tpl-squad-00098", "style": "negation", "text": "Red snakes forage while green and blue snakes stay put. Caution high. Step limit 275. Food target 8."}
+{"base_id": "tpl-squad-00098", "style": "negation", "text": "All snakes except red ones forage. Green and blue snakes remain still. Caution high. Step limit 275. Food target 8."}
+{"base_id": "tpl-squad-00098", "style": "negation", "text": "Leave red snakes out of foraging. Green and blue snakes forage. Caution high. Step limit 275. Food target 8."}
+{"base_id": "tpl-squad-00098", "style": "negation", "text": "No red snakes forage. Green and blue snakes forage. Caution high. Step limit 275. Food target 8."}
+{"base_id": "tpl-squad-00098", "style": "negation", "text": "Red snakes are excluded from foraging. All but red snakes forage. Caution high. Step limit 275. Food target 8."}
+{"base_id": "tpl-squad-00098", "style": "negation", "text": "Everyone except red snakes forages. Green and blue snakes forage. Caution high. Step limit 275. Food target 8."}
+{"base_id": "tpl-squad-00098", "style": "negation", "text": "Red snakes stay safe while others forage. Caution high. Step limit 275. Food target 8."}
+{"base_id": "tpl-squad-00098", "style": "negation", "text": "Green and blue snakes forage. Red snakes remain. Caution high. Step limit 275. Food target 8."}
+{"base_id": "tpl-squad-00206", "style": "jargon", "text": "Squad: R,G,B. Forage: R,G. Caution: norm. Step: 300. Food: 32."}
+{"base_id": "tpl-squad-00206", "style": "jargon", "text": "Red, green, blue snakes. Foraging: red, green. Normal caution. 300 steps. Target food: 32."}
+{"base_id": "tpl-squad-00206", "style": "jargon", "text": "Squad R,G,B. Forage R,G. Caution normal. Steps 300. Food target 32."}
+{"base_id": "tpl-squad-00206", "style": "jargon", "text": "Snakes: red, green, blue. Foraging red, green. Normal care. Step limit 300. Food 32."}
+{"base_id": "tpl-squad-00206", "style": "jargon", "text": "R,G,B squad. Red, green foraging. Caution: normal. Steps: 300. Food goal: 32."}
+{"base_id": "tpl-squad-00206", "style": "jargon", "text": "Squad snakes R,G,B. Forage R,G. Normal caution. 300 step limit. Food target 32."}
+{"base_id": "tpl-squad-00206", "style": "jargon", "text": "Red, green, blue snake squad. Foraging red, green. Standard caution. Steps 300. Food: 32."}
+{"base_id": "tpl-squad-00206", "style": "jargon", "text": "Squad R,G,B. Forage R,G. Normal care. Step limit 300. Target food: 32."}
+{"base_id": "tpl-plant-00078", "style": "typos", "text": "need fault diag sys for reactor sep stripper comp util nodes msg size 51 bytes false alarm rate 0.01 active nodes reactor sep stripper comp util"}
+{"base_id": "tpl-plant-00078", "style": "typos", "text": "plant fault detect system sensor nodes reactor separator stripper compressor utilities msg 51 bytes false alarm 1 percent active reactor sep stripper comp util"}
+{"base_id": "tpl-plant-00078", "style": "typos", "text": "fault diagnosis system reactor separator stripper compressor utilities sensor nodes msg size 51 bytes false alarm 0.01 active reactor sep stripper comp util"}
+{"base_id": "tpl-plant-00078", "style": "typos", "text": "need reactor separator stripper compressor utilities fault diag system sensor nodes msg 51 bytes false alarm rate 0.01 active nodes reactor sep stripper comp util"}
+{"base_id": "tpl-plant-00078", "style": "typos", "text": "plant fault detection with sensor nodes reactor separator stripper compressor utilities msg size 51 bytes false alarm 0.01 active reactor sep stripper comp util"}
+{"base_id": "tpl-plant-00078", "style": "typos", "text": "fault system for reactor separator stripper compressor utilities sensor nodes msg 51 bytes false alarm 0.01 active reactor sep stripper comp util"}
+{"base_id": "tpl-plant-00078", "style": "typos", "text": "reactor separator stripper compressor utilities fault diag system with sensor nodes msg 51 bytes false alarm rate 0.01 active reactor sep stripper comp util"}
+{"base_id": "tpl-plant-00078", "style": "typos", "text": "need plant fault diagnosis with reactor separator stripper compressor utilities sensor nodes msg 51 bytes false alarm 0.01 active reactor sep stripper comp util"}
+{"base_id": "tpl-squad-cla0001", "style": "typos", "text": "shrt th msin plz"}
+{"base_id": "tpl-squad-cla0001", "style": "typos", "text": "make it less long"}
+{"base_id": "tpl-squad-cla0001", "style": "typos", "text": "cut down on time"}
+{"base_id": "tpl-squad-cla0001", "style": "typos", "text": "speed it up a bit"}
+{"base_id": "tpl-squad-cla0001", "style": "typos", "text": "reduce mission dur"}
+{"base_id": "tpl-squad-cla0001", "style": "typos", "text": "make shorter"}
+{"base_id": "tpl-squad-cla0001", "style": "typos", "text": "less time needed"}
+{"base_id": "tpl-squad-cla0001", "style": "typos", "text": "trim the mission"}
+{"base_id": "tpl-plant-00334", "style": "numbers_in_words", "text": "Requesting fault diagnosis system for plant with sensor nodes reactor separator stripper compressor utilities message size five one bytes false alarm rate zero point zero one percent active nodes stripper compressor utilities"}
+{"base_id": "tpl-plant-00334", "style": "numbers_in_words", "text": "Plant diagnostic system needs sensor nodes reactor separator stripper compressor utilities message length fifty one bytes false alarm probability one percent active sensor nodes stripper compressor utilities"}
+{"base_id": "tpl-plant-00334", "style": "numbers_in_words", "text": "Control system request for fault detection plant sensors reactor separator stripper compressor utilities message capacity fifty one bytes false alert chance zero point zero one percent active monitoring nodes stripper compressor utilities"}
+{"base_id": "tpl-plant-00334", "style": "numbers_in_words", "text": "Fault analysis system activation required for plant components reactor separator stripper compressor utilities data packet size fifty one bytes error rate one percent active sensor units stripper compressor utilities"}
+{"base_id": "tpl-plant-00334", "style": "numbers_in_words", "text": "System query for industrial plant fault identification reactor separator stripper compressor utilities transmission size fifty one bytes misdiagnosis probability zero point zero one percent operational nodes stripper compressor utilities"}
+{"base_id": "tpl-plant-00334", "style": "numbers_in_words", "text": "Diagnostic program request plant equipment reactor separator stripper compressor utilities communication payload fifty one bytes incorrect detection rate one percent running sensor elements stripper compressor utilities"}
+{"base_id": "tpl-plant-00334", "style": "numbers_in_words", "text": "Control system command for plant failure detection reactor separator stripper compressor utilities data transfer fifty one bytes erroneous alert ratio zero point zero one percent working sensor assemblies stripper compressor utilities"}
+{"base_id": "tpl-plant-00334", "style": "numbers_in_words", "text": "Plant monitoring system need reactor separator stripper compressor utilities message dimension fifty one bytes false positive rate one percent operating sensor stations stripper compressor utilities"}
