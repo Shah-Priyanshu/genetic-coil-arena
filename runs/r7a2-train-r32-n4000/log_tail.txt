@@ -1,0 +1,39 @@
+[02:14:23] r32-n4000: 4000 training records (1920 paraphrases, 160 retries)
+W1025 02:14:26.111000 23696 Lib\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]
+Loading weights:   3%|▎         | 8/311 [00:00<00:03, 77.16it/s]
+Loading weights:   8%|▊         | 25/311 [00:00<00:02, 129.63it/s]
+Loading weights:  15%|█▍        | 46/311 [00:00<00:01, 161.74it/s]
+Loading weights:  22%|██▏       | 67/311 [00:00<00:01, 179.55it/s]
+Loading weights:  29%|██▉       | 91/311 [00:00<00:01, 193.63it/s]
+Loading weights:  37%|███▋      | 114/311 [00:00<00:00, 202.13it/s]
+Loading weights:  44%|████▍     | 138/311 [00:00<00:00, 210.23it/s]
+Loading weights:  51%|█████     | 159/311 [00:00<00:00, 208.02it/s]
+Loading weights:  58%|█████▊    | 180/311 [00:00<00:00, 203.47it/s]
+Loading weights:  65%|██████▍   | 202/311 [00:01<00:00, 206.40it/s]
+Loading weights:  72%|███████▏  | 223/311 [00:01<00:00, 207.43it/s]
+Loading weights:  78%|███████▊  | 244/311 [00:01<00:00, 203.55it/s]
+Loading weights:  85%|████████▌ | 265/311 [00:01<00:00, 201.57it/s]
+Loading weights:  92%|█████████▏| 286/311 [00:01<00:00, 192.78it/s]
+Loading weights: 100%|██████████| 311/311 [00:01<00:00, 199.55it/s]
+[02:14:42] [r32-n4000] step 25/1250 loss 2.0229 (13s)
+[02:14:56] [r32-n4000] step 50/1250 loss 0.2197 (28s)
+[02:15:10] [r32-n4000] step 75/1250 loss 0.1326 (41s)
+[02:15:24] [r32-n4000] step 100/1250 loss 0.0871 (55s)
+[02:15:37] [r32-n4000] step 125/1250 loss 0.0654 (69s)
+[02:15:52] [r32-n4000] step 150/1250 loss 0.0479 (83s)
+[02:16:06] [r32-n4000] step 175/1250 loss 0.0371 (97s)
+[02:16:21] [r32-n4000] step 200/1250 loss 0.0257 (112s)
+[02:16:36] [r32-n4000] step 225/1250 loss 0.0278 (127s)
+[02:16:50] [r32-n4000] step 250/1250 loss 0.0234 (141s)
+[02:17:03] [r32-n4000] step 275/1250 loss 0.0127 (155s)
+[02:17:17] [r32-n4000] step 300/1250 loss 0.0245 (169s)
+[02:17:30] [r32-n4000] step 325/1250 loss 0.0175 (181s)
+[02:17:43] [r32-n4000] step 350/1250 loss 0.0057 (194s)
+[02:17:59] [r32-n4000] step 375/1250 loss 0.0086 (210s)
+[02:18:13] [r32-n4000] step 400/1250 loss 0.0066 (225s)
+[02:18:26] [r32-n4000] step 425/1250 loss 0.0074 (237s)
+[02:18:41] [r32-n4000] step 450/1250 loss 0.0080 (252s)
+[02:18:55] [r32-n4000] step 475/1250 loss 0.0041 (266s)
+[02:19:10] [r32-n4000] step 500/1250 loss 0.0060 (281s)
