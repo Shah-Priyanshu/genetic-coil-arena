@@ -34,6 +34,7 @@
     "ready": [
       "r10s2-q3-spec-OB",
       "r10s2-q3-spec-SS",
+      "r10s2-runtime",
       "r10s2-stat-OB",
       "r10s2-stat-SS",
       "r7b2-train-blind",
@@ -49,14 +50,7 @@
       {
         "id": "r10s2-o14-centre-SS",
         "blocked_by": [
-          "r10s2-q3-spec-SS",
-          "r10s2-o14-spec-SS"
-        ]
-      },
-      {
-        "id": "r10s2-runtime",
-        "blocked_by": [
-          "r10s2-o14-spec-SS"
+          "r10s2-q3-spec-SS"
         ]
       },
       {
@@ -66,7 +60,6 @@
           "r10s2-stat-OB",
           "r10s2-q3-spec-SS",
           "r10s2-q3-spec-OB",
-          "r10s2-o14-spec-SS",
           "r10s2-o14-centre-SS",
           "r10s2-o14-centre-OB",
           "r10s2-runtime"
@@ -88,8 +81,8 @@
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-25T20:17:50+00:00",
-  "cpu_percent": 96.9,
+  "updated_at": "2026-10-25T20:19:03+00:00",
+  "cpu_percent": 97.5,
   "gpu": {
     "util": 100.0,
     "mem_used_mb": 11131.0,
