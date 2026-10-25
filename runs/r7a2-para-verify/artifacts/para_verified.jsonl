@@ -288,3 +288,49 @@
 {"base_id": "tpl-plant-00138", "style": "formal_memo", "text": "System directive to initiate fault assessment across reactor separator stripper compressor_utilities. Establish 16 byte communication limit with 0.001 false alarm percentage. Separator stripper nodes currently engaged.", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00263", "style": "negation", "text": "All snakes except red ones are foraging. Red snakes are cautious. Low risk behavior. Step limit 300.", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00263", "style": "negation", "text": "Red snakes are foraging. Everyone else is cautious. Low risk-taking. Default step limit applies.", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-00263", "style": "negation", "text": "Leave red snakes out of foraging. Blue and green snakes forage. Caution level low. Steps limited to 300.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00263", "style": "negation", "text": "No red snakes foraging. Green and blue snakes are foraging. Reckless behavior. Step count 300.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00263", "style": "negation", "text": "All snakes except red are foraging. Red snakes cautious. Low risk tolerance. Default step limit used.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00263", "style": "negation", "text": "Red snakes not foraging. Blue and green snakes forage. Caution level set to low. Step limit 300.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00263", "style": "negation", "text": "Exclude red snakes from foraging group. Green and blue snakes forage. Risk-taking is low. Step count 300.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00263", "style": "negation", "text": "Everyone but red snakes forages. Red snakes cautious. Low risk behavior. Default step limit of 300.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-ref0019", "style": "mixed_notation", "text": "Request denied due to range limitation. Equivalent to 1/8th of maximum capacity.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0019", "style": "mixed_notation", "text": "Cannot process. Range exceeds permissible bounds. Ratio stands at 1:500.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0019", "style": "mixed_notation", "text": "Out of range. Value surpasses threshold. Hexadecimal notation: 0x7A.", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-ref0019", "style": "mixed_notation", "text": "Unfulfillable. Range constraint violation. Scientific notation: 2.5E-3.", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-ref0019", "style": "mixed_notation", "text": "Request invalid. Range exceeded. Per thousand value: 750‰.", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-ref0019", "style": "mixed_notation", "text": "Impossible fulfillment. Range boundary crossed. Half a hundred: 50 units.", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-ref0019", "style": "mixed_notation", "text": "Processing failed. Range restriction applies. A dozen equals 12 units.", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-ref0019", "style": "mixed_notation", "text": "Command rejected. Range limitation. Food collection ratio: 1/50.", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0040", "style": "negation", "text": "All parameters except the price set to previous values", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-cla0040", "style": "negation", "text": "Everything identical to before excluding cost considerations", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0040", "style": "negation", "text": "Same configuration but omitting monetary constraints", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-cla0040", "style": "negation", "text": "Previous settings with no mention of budget limits", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-cla0040", "style": "negation", "text": "All variables as previously specified minus financial parameters", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-cla0040", "style": "negation", "text": "Default options except pricing not included", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-cla0040", "style": "negation", "text": "Settings unchanged apart from removing cost references", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-cla0040", "style": "negation", "text": "Prior specifications without any monetary requirements", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-cla0021", "style": "negation", "text": "All settings except temperature and pressure to default values", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-cla0021", "style": "negation", "text": "Everything but the lighting controls and fan speeds unchanged", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-cla0021", "style": "negation", "text": "Leave out flow rate and voltage parameters from modification", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0021", "style": "negation", "text": "No adjustments to timeout periods or alert thresholds", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-cla0021", "style": "negation", "text": "All configurations except user permissions and access levels", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-cla0021", "style": "negation", "text": "Everyone except the display brightness and volume controls", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-cla0021", "style": "negation", "text": "Nothing but the network settings and security protocols", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-cla0021", "style": "negation", "text": "All variables but time delays and frequency ranges", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-00114", "style": "jargon", "text": "diag reactor sep strip comp_util 51b msg 0.01 fa 4 nodes active", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00114", "style": "jargon", "text": "fault check rct sep strip compu 51 bytes 1% false alarm 4 active", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00114", "style": "jargon", "text": "sys diag react sep strip compress util 51 msg size 0.01 f/a 4 nodes", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00114", "style": "jargon", "text": "reactor sep stripper compu fault sys 51 byte message 1% false 4 active", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00114", "style": "jargon", "text": "sensor fault diag rct sep strip comp_util 51 msg 0.01 fa rate 4 nodes", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00114", "style": "jargon", "text": "plant fault analysis rct sep strip comp_util 51 bytes 0.01 false alarm", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00114", "style": "jargon", "text": "control system diag reactor separator stripper compressor 51b msg 1% fa", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00114", "style": "jargon", "text": "fault detection rct sep strip compu 51 byte messages 0.01 false 4 nodes", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00028", "style": "casual_chat", "text": "hey hey, red green blue snake squad go foraging okay? low caution mode, 160 step limit, no food target", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00028", "style": "casual_chat", "text": "yo, snakes red green blue need to forage, low risk setting, 160 max steps, none food target", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00028", "style": "casual_chat", "text": "ok so red green blue snakes foraging time, cautious low, step count 160, no food goal", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00028", "style": "casual_chat", "text": "red green blue snake team foraging, careful mode low, 160 steps max, food none stated", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-00028", "style": "casual_chat", "text": "hey, red green blue snakes go forage, low risk, 160 steps, no food target specified", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00028", "style": "casual_chat", "text": "snakes red green blue need to forage, low caution, step limit 160, food target none", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00028", "style": "casual_chat", "text": "red green blue snake squad foraging, low risk taking, 160 max steps, no food target", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00028", "style": "casual_chat", "text": "yo, red green blue snakes foraging, cautious low, 160 step limit, food none stated", "verified": true, "verifier_status": "ok"}
