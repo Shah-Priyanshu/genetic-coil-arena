@@ -1,7 +1,7 @@
 {
   "version": "bbe6d27f867df5e74442fb804b0177062b0f81f0",
   "host": "PC",
-  "draining_for_update": false,
+  "draining_for_update": true,
   "cpu_budget": 24,
   "cpu_workers_in_use": 4,
   "running": [
@@ -47,11 +47,11 @@
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-25T01:10:22+00:00",
-  "cpu_percent": 29.7,
+  "updated_at": "2026-10-25T01:11:24+00:00",
+  "cpu_percent": 22.7,
   "gpu": {
-    "util": 24.0,
-    "mem_used_mb": 9141.0,
+    "util": 100.0,
+    "mem_used_mb": 10255.0,
     "mem_total_mb": 12282.0
   }
 }
