@@ -1,0 +1,27 @@
+{
+  "id": "r10s2-runtime",
+  "commit": "585196f2a825bde056c555943872bc1a79cb11f1",
+  "args": [
+    "scripts/r10_step2.py",
+    "runtime",
+    "--model",
+    "ollama:qwen2.5-coder:14b",
+    "--systems",
+    "SS,OB",
+    "--split",
+    "test",
+    "--limit",
+    "12"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 4,
+  "priority": 6,
+  "after": [
+    "r10s2-o14-spec-SS",
+    "r10s2-o14-spec-OB"
+  ],
+  "timeout_min": 40.0,
+  "env": {
+    "HF_HOME": "D:\\hf_cache"
+  }
+}

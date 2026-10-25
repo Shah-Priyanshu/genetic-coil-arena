@@ -176,7 +176,11 @@ class Reasoner:
         raise NotImplementedError
 
     def write(
-        self, prompts: Sequence[str], max_new_tokens: int, typed: bool
+        self,
+        prompts: Sequence[str],
+        max_new_tokens: int,
+        typed: bool,
+        schema: Optional[dict[str, Any]] = None,
     ) -> list[Written]:
         raise NotImplementedError
 
@@ -265,7 +269,11 @@ class HFReasoner(Reasoner):
         return 1 if ctx > 8192 else 4
 
     def write(
-        self, prompts: Sequence[str], max_new_tokens: int, typed: bool
+        self,
+        prompts: Sequence[str],
+        max_new_tokens: int,
+        typed: bool,
+        schema: Optional[dict[str, Any]] = None,
     ) -> list[Written]:
         chats = [self.chat(p) for p in prompts]
         results = self.backend.generate(
@@ -331,11 +339,15 @@ class OllamaReasoner(Reasoner):
         return out
 
     def write(
-        self, prompts: Sequence[str], max_new_tokens: int, typed: bool
+        self,
+        prompts: Sequence[str],
+        max_new_tokens: int,
+        typed: bool,
+        schema: Optional[dict[str, Any]] = None,
     ) -> list[Written]:
         out = []
         for prompt in prompts:
-            schema = msgs.MESSAGE_SCHEMA if typed else None
+            schema = schema or (msgs.MESSAGE_SCHEMA if typed else None)
             (res,) = self.backend.generate(
                 [prompt],
                 system=SYSTEM_PROMPT,

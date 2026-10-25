@@ -1,0 +1,38 @@
+{
+  "id": "r10s2-zz-aggregate",
+  "commit": "585196f2a825bde056c555943872bc1a79cb11f1",
+  "args": [
+    "scripts/r10_step2.py",
+    "report",
+    "--from",
+    "runs:r10s2-stat-*",
+    "runs:r10s2-q3-spec-*",
+    "runs:r10s2-o14-spec-*",
+    "runs:r10s2-o14-centre-*",
+    "runs:r10s2-runtime",
+    "--out",
+    "docs/results/r10_step2.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 1,
+  "priority": 6,
+  "after": [
+    "r10s2-stat-SS",
+    "r10s2-stat-OB",
+    "r10s2-q3-spec-SS",
+    "r10s2-q3-spec-OB",
+    "r10s2-o14-spec-SS",
+    "r10s2-o14-spec-OB",
+    "r10s2-o14-centre-SS",
+    "r10s2-o14-centre-OB",
+    "r10s2-runtime"
+  ],
+  "timeout_min": 20.0,
+  "outputs": [
+    "docs/results/r10_step2.md",
+    "docs/results/r10_step2.json"
+  ],
+  "env": {
+    "HF_HOME": "D:\\hf_cache"
+  }
+}

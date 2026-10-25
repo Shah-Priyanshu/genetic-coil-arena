@@ -1,0 +1,19 @@
+{
+  "id": "r10s2-stat-SS",
+  "commit": "585196f2a825bde056c555943872bc1a79cb11f1",
+  "args": [
+    "scripts/r10_step2.py",
+    "run",
+    "--systems",
+    "SS",
+    "--conditions",
+    "baro_metrics,team_metric_rule"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 2,
+  "priority": 6,
+  "timeout_min": 30.0,
+  "env": {
+    "HF_HOME": "D:\\hf_cache"
+  }
+}
