@@ -1,0 +1,31 @@
+W1025 07:08:57.481000 6348 Lib\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]
+Loading weights:   5%|▍         | 15/311 [00:00<00:02, 133.79it/s]
+Loading weights:  11%|█         | 33/311 [00:00<00:01, 155.25it/s]
+Loading weights:  17%|█▋        | 53/311 [00:00<00:01, 166.03it/s]
+Loading weights:  24%|██▍       | 75/311 [00:00<00:01, 184.96it/s]
+Loading weights:  32%|███▏      | 98/311 [00:00<00:01, 186.62it/s]
+Loading weights:  38%|███▊      | 119/311 [00:00<00:01, 179.20it/s]
+Loading weights:  46%|████▌     | 143/311 [00:00<00:00, 184.49it/s]
+Loading weights:  53%|█████▎    | 166/311 [00:00<00:00, 192.29it/s]
+Loading weights:  61%|██████    | 189/311 [00:01<00:00, 194.97it/s]
+Loading weights:  67%|██████▋   | 209/311 [00:01<00:00, 183.27it/s]
+Loading weights:  74%|███████▍  | 230/311 [00:01<00:00, 184.31it/s]
+Loading weights:  81%|████████▏ | 253/311 [00:01<00:00, 192.15it/s]
+Loading weights:  88%|████████▊ | 275/311 [00:01<00:00, 186.05it/s]
+Loading weights:  96%|█████████▌| 298/311 [00:01<00:00, 187.53it/s]
+Loading weights: 100%|██████████| 311/311 [00:01<00:00, 189.35it/s]
+[07:09:00] 60 incidents (test), conditions ['team_typed', 'team_typed_heur'], model qwen3-1.7b
+[07:09:00] simple conditions: 5/60 incidents (0s)
+[07:09:01] simple conditions: 10/60 incidents (0s)
+[07:09:01] simple conditions: 15/60 incidents (0s)
+[07:09:01] simple conditions: 20/60 incidents (0s)
+[07:09:01] simple conditions: 25/60 incidents (0s)
+[07:09:01] simple conditions: 30/60 incidents (0s)
+[07:09:01] simple conditions: 35/60 incidents (0s)
+[07:09:01] simple conditions: 40/60 incidents (0s)
+[07:09:01] simple conditions: 45/60 incidents (0s)
+[07:09:01] simple conditions: 50/60 incidents (0s)
+[07:09:01] simple conditions: 55/60 incidents (0s)
+[07:09:01] simple conditions: 60/60 incidents (0s)
