@@ -35,3 +35,9 @@
 [00:52:27] para-verify 1650/3840
 [00:53:13] para-verify 1700/3840
 [00:54:02] para-verify 1750/3840
+[00:54:48] para-verify 1800/3840
+[00:55:38] para-verify 1850/3840
+[00:56:34] para-verify 1900/3840
+[00:57:27] para-verify 1950/3840
+[00:58:14] para-verify 2000/3840
+[00:59:05] para-verify 2050/3840
