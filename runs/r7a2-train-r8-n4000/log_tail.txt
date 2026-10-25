@@ -72,3 +72,9 @@ Loading weights: 100%|██████████| 311/311 [00:01<00:00, 185.
 [03:24:40] r8-n4000 dev: 80/304 (plant-dev-in-07)
 [03:25:26] r8-n4000 dev: 120/304 (plant-dev-ho-11)
 [03:26:12] r8-n4000 dev: 160/304 (squad-indist-15)
+[03:27:03] r8-n4000 dev: 200/304 (squad-heldout-15)
+[03:27:49] r8-n4000 dev: 240/304 (plant-indist-15)
+[03:28:30] r8-n4000 dev: 280/304 (plant-heldout-15)
+[03:28:53] r8-n4000 dev: 304/304 (plant-heldout-x3)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[03:28:53] r8-n4000: dev+step-1 exact 87.5% on 288 valid items; adapter 33 MiB at D:\hf_cache\r7a2_store\r8-n4000.pt
