@@ -934,3 +934,75 @@
 {"base_id": "tpl-plant-00402", "style": "polite_question", "text": "Would it be possible to create the fault-diagnosis system with sensor nodes covering reactor, separator, stripper, and compressor_utilities? Each message should be 51 bytes, false-alarm rate of 0.005, and reactor, stripper, and compressor_utilities must be active."}
 {"base_id": "tpl-plant-00402", "style": "polite_question", "text": "Could you configure the plant fault-diagnosis system using reactor, separator, stripper, and compressor_utilities nodes? Messages must contain 51 bytes, false-alarm rate 0.005, and only reactor, stripper, and compressor_utilities should operate actively."}
 {"base_id": "tpl-plant-00402", "style": "polite_question", "text": "Would it be feasible to implement a fault-diagnosis system with sensor nodes for reactor, separator, stripper, and compressor_utilities? Message size 51 bytes, false-alarm rate 0.005, and active nodes including reactor, stripper, and compressor_utilities."}
+{"base_id": "tpl-squad-00256", "style": "indirect_hint", "text": "It would be wonderful if we could have a red green and blue snake squad with foraging set to red and green while maintaining high caution level"}
+{"base_id": "tpl-squad-00256", "style": "indirect_hint", "text": "I was hoping for a snake team consisting of red green and blue colors where red and green snakes are foraging under strict high safety protocols"}
+{"base_id": "tpl-squad-00256", "style": "indirect_hint", "text": "Would it be possible to configure a trio of snakes - red green and blue - with red and green engaged in foraging activities at maximum alertness"}
+{"base_id": "tpl-squad-00256", "style": "indirect_hint", "text": "I'd really appreciate having a red green and blue snake formation with foraging focused on red and green while keeping careful monitoring standards"}
+{"base_id": "tpl-squad-00256", "style": "indirect_hint", "text": "It would be great if the system could support a red green and blue snake unit where red and green snakes are foraging under high safety measures"}
+{"base_id": "tpl-squad-00256", "style": "indirect_hint", "text": "I was thinking about setting up red green and blue snakes with foraging duties assigned to red and green while maintaining careful operational protocols"}
+{"base_id": "tpl-squad-00256", "style": "indirect_hint", "text": "It would be nice if we could establish a red green and blue snake group with red and green foraging roles at high caution levels"}
+{"base_id": "tpl-squad-00256", "style": "indirect_hint", "text": "I was hoping the control system might accommodate red green and blue snakes with red and green engaged in foraging under strict safety conditions"}
+{"base_id": "tpl-plant-00471", "style": "casual_chat", "text": "hey can u set up the fault diag system with those four nodes reactor separator stripper and compressor utilities please"}
+{"base_id": "tpl-plant-00471", "style": "casual_chat", "text": "yo i need the plant fault system running with reactor separator stripper and compressor utilities sensors activated"}
+{"base_id": "tpl-plant-00471", "style": "casual_chat", "text": "what's the deal with this fault diagnosis setup for reactor separator stripper and compressor utilities nodes"}
+{"base_id": "tpl-plant-00471", "style": "casual_chat", "text": "can you fire up the fault detection system with reactor separator stripper and compressor utilities monitoring"}
+{"base_id": "tpl-plant-00471", "style": "casual_chat", "text": "gimme a fault diag system with reactor separator stripper and compressor utilities nodes working"}
+{"base_id": "tpl-plant-00471", "style": "casual_chat", "text": "hey let's get this plant fault system going with reactor separator stripper and compressor utilities sensors"}
+{"base_id": "tpl-plant-00471", "style": "casual_chat", "text": "want the fault diagnosis system configured for reactor separator stripper and compressor utilities nodes now"}
+{"base_id": "tpl-plant-00471", "style": "casual_chat", "text": "quick, activate the fault detection system with reactor separator stripper and compressor utilities nodes"}
+{"base_id": "tpl-squad-00084", "style": "terse_note", "text": "Squad: red/green/blue | Forage: red/green/blue | Care: normal | Step: 300"}
+{"base_id": "tpl-squad-00084", "style": "terse_note", "text": "Snakes: red+green+blue | Foraging: red+green+blue | Caution: normal | Limit: 300"}
+{"base_id": "tpl-squad-00084", "style": "terse_note", "text": "RED-GREEN-BLUE squad | FORAGING: red,green,blue | CAUTION: normal | STEPS: 300"}
+{"base_id": "tpl-squad-00084", "style": "terse_note", "text": "SNAKE GROUP: red|green|blue | FEEDING: red|green|blue | WARNING: normal | MAX: 300"}
+{"base_id": "tpl-squad-00084", "style": "terse_note", "text": "Team: red/green/blue | Search: red/green/blue | Safety: normal | Moves: 300"}
+{"base_id": "tpl-squad-00084", "style": "terse_note", "text": "SERPENT UNIT: red+green+blue | HUNTING: red+green+blue | PROTOCOL: normal | CYCLES: 300"}
+{"base_id": "tpl-squad-00084", "style": "terse_note", "text": "GROUP: red,green,blue | FORAGE: red,green,blue | DANGER: normal | COUNT: 300"}
+{"base_id": "tpl-squad-00084", "style": "terse_note", "text": "SQUAD SNakes: red|green|blue | FORAGING: red|green|blue | CAUTION: normal | LIMIT: 300"}
+{"base_id": "tpl-plant-00211", "style": "negation", "text": "Activate fault diagnosis for all components except separator and stripper nodes"}
+{"base_id": "tpl-plant-00211", "style": "negation", "text": "Initiate system check excluding reactor and compressor_utilities sensor groups"}
+{"base_id": "tpl-plant-00211", "style": "negation", "text": "Run diagnostics leaving out stripper and separator monitoring units"}
+{"base_id": "tpl-plant-00211", "style": "negation", "text": "Execute plant analysis without reactor and compressor_utilities subsystems"}
+{"base_id": "tpl-plant-00211", "style": "negation", "text": "Start fault detection process excluding separator and stripper modules"}
+{"base_id": "tpl-plant-00211", "style": "negation", "text": "Begin monitoring system for everyone except compressor_utilities and separator"}
+{"base_id": "tpl-plant-00211", "style": "negation", "text": "Launch diagnostic protocol omitting stripper and reactor sensor networks"}
+{"base_id": "tpl-plant-00211", "style": "negation", "text": "Process fault evaluation with all nodes active except stripper and separator"}
+{"base_id": "tpl-plant-00234", "style": "negation", "text": "All nodes active except compressor_utilities in fault-diagnosis system"}
+{"base_id": "tpl-plant-00234", "style": "negation", "text": "Fault-diagnosis system with sensor nodes reactor, separator, stripper, and compressor_utilities, excluding none"}
+{"base_id": "tpl-plant-00234", "style": "negation", "text": "Leave compressor_utilities out of the plant fault-diagnosis system with sensor nodes"}
+{"base_id": "tpl-plant-00234", "style": "negation", "text": "Everyone active but compressor_utilities in reactor, separator, stripper, and compressor_utilities"}
+{"base_id": "tpl-plant-00234", "style": "negation", "text": "No compressor_utilities in the fault-diagnosis system with sensor nodes reactor, separator, stripper"}
+{"base_id": "tpl-plant-00234", "style": "negation", "text": "All but compressor_utilities in fault-diagnosis system with sensor nodes reactor, separator, stripper"}
+{"base_id": "tpl-plant-00234", "style": "negation", "text": "Fault-diagnosis system excluding compressor_utilities from reactor, separator, stripper, and compressor_utilities"}
+{"base_id": "tpl-plant-00234", "style": "negation", "text": "Active nodes reactor, separator, stripper, and compressor_utilities with no compressor_utilities left out"}
+{"base_id": "tpl-plant-00110", "style": "formal_memo", "text": "Initiate plant fault diagnosis system with sensor nodes reactor separator stripper compressor_utilities. Message size 8 bytes. False alarm rate 0.001. Active nodes reactor separator stripper compressor_utilities."}
+{"base_id": "tpl-plant-00110", "style": "formal_memo", "text": "Activate control system fault diagnostic protocol for reactor separator stripper compressor_utilities. Set message length to 8 bytes. Configure false alarm threshold at 0.001. Enable reactor separator stripper compressor_utilities nodes."}
+{"base_id": "tpl-plant-00110", "style": "formal_memo", "text": "Request plant fault detection system activation with sensor network covering reactor separator stripper compressor_utilities. Transmission packet size 8 bytes. Alarm rate 0.001. Operational nodes reactor separator stripper compressor_utilities."}
+{"base_id": "tpl-plant-00110", "style": "formal_memo", "text": "Command fault analysis system start with reactor separator stripper compressor_utilities monitoring nodes. Byte count per transmission 8. Error probability 0.001. Running active components reactor separator stripper compressor_utilities."}
+{"base_id": "tpl-plant-00110", "style": "formal_memo", "text": "Begin automated plant diagnostic operation using sensor array reactor separator stripper compressor_utilities. Data payload 8 bytes. False positive rate 0.001. Enabled processing units reactor separator stripper compressor_utilities."}
+{"base_id": "tpl-plant-00110", "style": "formal_memo", "text": "Execute control system fault identification routine with reactor separator stripper compressor_utilities nodes. Message format 8 bytes. Incorrect detection probability 0.001. Active monitoring reactor separator stripper compressor_utilities."}
+{"base_id": "tpl-plant-00110", "style": "formal_memo", "text": "Start industrial fault detection procedure utilizing reactor separator stripper compressor_utilities sensor network. Frame size 8 bytes. False alarm ratio 0.001. Operating stations reactor separator stripper compressor_utilities."}
+{"base_id": "tpl-plant-00110", "style": "formal_memo", "text": "Launch process control fault diagnosis with reactor separator stripper compressor_utilities nodes enabled. Packet length 8 bytes. Spurious alarm rate 0.001. Activated elements reactor separator stripper compressor_utilities."}
+{"base_id": "tpl-squad-cla0034", "style": "polite_question", "text": "Could you please clarify what specific action you'd like me to take with the resource allocation?"}
+{"base_id": "tpl-squad-cla0034", "style": "polite_question", "text": "Would it be possible to specify which option you prefer for the parameter settings?"}
+{"base_id": "tpl-squad-cla0034", "style": "polite_question", "text": "Could you help me understand what target value you're aiming for in this calculation?"}
+{"base_id": "tpl-squad-cla0034", "style": "polite_question", "text": "Would you mind indicating what quantity you'd like me to process here?"}
+{"base_id": "tpl-squad-cla0034", "style": "polite_question", "text": "Could you please define what constraint you want me to apply to this system?"}
+{"base_id": "tpl-squad-cla0034", "style": "polite_question", "text": "Would it be possible to state which method you'd prefer for this operation?"}
+{"base_id": "tpl-squad-cla0034", "style": "polite_question", "text": "Could you help clarify what threshold value you're requesting for this function?"}
+{"base_id": "tpl-squad-cla0034", "style": "polite_question", "text": "Would you mind specifying what parameter you'd like me to optimize in this case?"}
+{"base_id": "tpl-plant-ref0057", "style": "formal_memo", "text": "Request denied due to logical inconsistency. Cannot simultaneously deactivate and maintain operation of identical system components."}
+{"base_id": "tpl-plant-ref0057", "style": "formal_memo", "text": "System cannot process command. Contradictory requirements exist within request parameters."}
+{"base_id": "tpl-plant-ref0057", "style": "formal_memo", "text": "Operation impossible. Request contains mutually exclusive directives preventing execution."}
+{"base_id": "tpl-plant-ref0057", "style": "formal_memo", "text": "Command rejected. Incompatible instructions provided within control input parameters."}
+{"base_id": "tpl-plant-ref0057", "style": "formal_memo", "text": "Process failure. Contradictory system states requested cannot be simultaneously maintained."}
+{"base_id": "tpl-plant-ref0057", "style": "formal_memo", "text": "Control input invalid. Conflicting operational requirements exceed system capabilities."}
+{"base_id": "tpl-plant-ref0057", "style": "formal_memo", "text": "System error. Request contains contradictory commands incompatible with current configuration."}
+{"base_id": "tpl-plant-ref0057", "style": "formal_memo", "text": "Instruction invalid. Parallel operational states specified cannot be fulfilled concurrently."}
+{"base_id": "tpl-squad-cla0022", "style": "polite_question", "text": "Could you please specify the exact quantity for the forae request over 220 ticks?"}
+{"base_id": "tpl-squad-cla0022", "style": "polite_question", "text": "Would it be possible to clarify what amount of forae you need for this 220 tick period?"}
+{"base_id": "tpl-squad-cla0022", "style": "polite_question", "text": "Could you advise on the precise measurement for the forae requirement during these 220 ticks?"}
+{"base_id": "tpl-squad-cla0022", "style": "polite_question", "text": "Would you mind stating the specific quantity needed for the forae operation across 220 ticks?"}
+{"base_id": "tpl-squad-cla0022", "style": "polite_question", "text": "Could you please define the exact units for the forae request spanning 220 time periods?"}
+{"base_id": "tpl-squad-cla0022", "style": "polite_question", "text": "Would it be possible to determine the particular amount for forae during this 220 tick duration?"}
+{"base_id": "tpl-squad-cla0022", "style": "polite_question", "text": "Could you clarify what measurement size you require for the forae in these 220 ticks?"}
+{"base_id": "tpl-squad-cla0022", "style": "polite_question", "text": "Would you please indicate the concrete quantity needed for forae over this 220 tick interval?"}
