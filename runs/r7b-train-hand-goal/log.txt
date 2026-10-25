@@ -128,3 +128,6 @@
 [progress] hand-goal run 1: gen 1700/3000, val mission 16.90, best gen 1600, elapsed 3187 s
 [progress] hand-goal run 4: gen 1750/3000, val mission 16.97, best gen 1650, elapsed 3194 s
 [progress] hand-goal run 7: gen 1750/3000, val mission 12.10, best gen 1350, elapsed 3265 s
+[progress] hand-goal run 2: gen 1800/3000, val mission 15.83, best gen 1650, elapsed 3312 s
+[progress] hand-goal run 5: gen 1750/3000, val mission 18.20, best gen 1350, elapsed 3333 s
+[progress] hand-goal run 3: gen 1950/3000, val mission 11.17, best gen 1950, elapsed 3342 s
