@@ -12,3 +12,58 @@
 [21:41:34] simple conditions: 50/60 incidents (1s)
 [21:41:34] simple conditions: 55/60 incidents (1s)
 [21:41:34] simple conditions: 60/60 incidents (1s)
+Traceback (most recent call last):
+  File "C:\Users\priya\AppData\Local\Temp\gca-r10-o14-team-free-OB-d0xiynel\src\genetic_coil_arena\backends\ollama.py", line 46, in call
+    with urllib.request.urlopen(request, timeout=timeout) as response:
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\priya\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 189, in urlopen
+    return opener.open(url, data, timeout)
+           ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\priya\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 495, in open
+    response = meth(req, response)
+  File "C:\Users\priya\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 604, in http_response
+    response = self.parent.error(
+        'http', request, response, code, msg, hdrs)
+  File "C:\Users\priya\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 533, in error
+    return self._call_chain(*args)
+           ~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\priya\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 466, in _call_chain
+    result = func(*args)
+  File "C:\Users\priya\AppData\Local\Programs\Python\Python313\Lib\urllib\request.py", line 613, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 500: Internal Server Error
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\priya\AppData\Local\Temp\gca-r10-o14-team-free-OB-d0xiynel\scripts\r10_log_triage.py", line 400, in <module>
+    sys.exit(main())
+             ~~~~^^
+  File "C:\Users\priya\AppData\Local\Temp\gca-r10-o14-team-free-OB-d0xiynel\scripts\r10_log_triage.py", line 396, in main
+    return cmd_run(args) if args.cmd == "run" else cmd_report(args)
+           ~~~~~~~^^^^^^
+  File "C:\Users\priya\AppData\Local\Temp\gca-r10-o14-team-free-OB-d0xiynel\scripts\r10_log_triage.py", line 252, in cmd_run
+    messages, info = lt.specialist_messages(inc, kind, reasoner, cfg)
+                     ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\priya\AppData\Local\Temp\gca-r10-o14-team-free-OB-d0xiynel\src\genetic_coil_arena\experiments\log_triage.py", line 520, in specialist_messages
+    written += reasoner.write(
+               ~~~~~~~~~~~~~~^
+        prompts[lo : lo + cfg.spec_batch], cfg.spec_new_tokens, typed
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\priya\AppData\Local\Temp\gca-r10-o14-team-free-OB-d0xiynel\src\genetic_coil_arena\experiments\log_triage.py", line 339, in write
+    (res,) = self.backend.generate(
+             ~~~~~~~~~~~~~~~~~~~~~^
+        [prompt],
+        ^^^^^^^^^
+    ...<3 lines>...
+        options={"num_ctx": 4096},
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\priya\AppData\Local\Temp\gca-r10-o14-team-free-OB-d0xiynel\src\genetic_coil_arena\backends\ollama.py", line 185, in generate
+    reply = self._transport("POST", "/api/chat", body, self.timeout)
+  File "C:\Users\priya\AppData\Local\Temp\gca-r10-o14-team-free-OB-d0xiynel\src\genetic_coil_arena\backends\ollama.py", line 50, in call
+    raise OllamaError(f"HTTP {exc.code} from {path}: {detail}") from exc
+genetic_coil_arena.backends.ollama.OllamaError: HTTP 500 from /api/chat: {"error":"an error was encountered while running the model: CUDA error: out of memory\nCUDA error"}

@@ -16,12 +16,14 @@
     "--conditions",
     "team_free"
   ],
-  "state": "running",
+  "state": "failed",
   "started_at": "2026-10-25T01:41:18+00:00",
-  "updated_at": "2026-10-25T01:46:26+00:00",
-  "elapsed_min": 5.1,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 33 %, 11904 MiB, 12282 MiB, 52",
+  "updated_at": "2026-10-25T01:50:57+00:00",
+  "elapsed_min": 9.6,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 599 MiB, 12282 MiB, 54",
   "host": "PC",
   "lane": "gpu",
-  "cpu_workers": 4
+  "cpu_workers": 4,
+  "returncode": 1,
+  "finished_at": "2026-10-25T01:50:57+00:00"
 }
