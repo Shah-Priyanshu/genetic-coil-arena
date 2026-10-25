@@ -28,3 +28,5 @@
 [05:21:36] team_typed decisions: 15/60 (2019s)
 [05:21:57] team_typed decisions: 20/60 (2040s)
 [05:22:20] team_typed decisions: 25/60 (2063s)
+[05:22:42] team_typed decisions: 30/60 (2085s)
+[05:23:05] team_typed decisions: 35/60 (2108s)
