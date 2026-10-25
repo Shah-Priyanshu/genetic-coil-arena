@@ -28,3 +28,6 @@ Loading weights: 100%|██████████| 311/311 [00:01<00:00, 187.
 [05:36:44] simple conditions: 40/120 incidents (697s)
 [05:38:11] simple conditions: 45/120 incidents (784s)
 [05:39:38] simple conditions: 50/120 incidents (871s)
+[05:41:05] simple conditions: 55/120 incidents (958s)
+[05:42:32] simple conditions: 60/120 incidents (1045s)
+[05:44:11] simple conditions: 65/120 incidents (1144s)
