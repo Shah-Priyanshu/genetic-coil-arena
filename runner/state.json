@@ -46,7 +46,6 @@
       {
         "id": "r8s4-zz-aggregate",
         "blocked_by": [
-          "r8s4-e2e_aux-b48",
           "r8s4-vq-b12",
           "r8s4-vq-b48",
           "r8s4-ref"
@@ -59,11 +58,11 @@
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-25T01:54:19+00:00",
-  "cpu_percent": 97.8,
+  "updated_at": "2026-10-25T01:54:59+00:00",
+  "cpu_percent": 97.7,
   "gpu": {
-    "util": 93.0,
-    "mem_used_mb": 9826.0,
+    "util": 10.0,
+    "mem_used_mb": 8902.0,
     "mem_total_mb": 12282.0
   }
 }
