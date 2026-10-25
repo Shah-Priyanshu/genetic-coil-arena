@@ -1,0 +1,13 @@
+[21:59:53] 60 incidents (test), conditions ['team_typed'], model ollama:qwen2.5-coder:14b
+[21:59:53] simple conditions: 5/60 incidents (0s)
+[21:59:53] simple conditions: 10/60 incidents (0s)
+[21:59:54] simple conditions: 15/60 incidents (0s)
+[21:59:54] simple conditions: 20/60 incidents (0s)
+[21:59:54] simple conditions: 25/60 incidents (0s)
+[21:59:54] simple conditions: 30/60 incidents (0s)
+[21:59:54] simple conditions: 35/60 incidents (0s)
+[21:59:54] simple conditions: 40/60 incidents (1s)
+[21:59:54] simple conditions: 45/60 incidents (1s)
+[21:59:54] simple conditions: 50/60 incidents (1s)
+[21:59:54] simple conditions: 55/60 incidents (1s)
+[21:59:54] simple conditions: 60/60 incidents (1s)
