@@ -1,0 +1,19 @@
+[02:44:04] r8-n12000: 12000 training records (2686 paraphrases, 480 retries)
+W1025 02:44:07.817000 19756 Lib\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]
+Loading weights:   2%|▏         | 5/311 [00:00<00:06, 48.47it/s]
+Loading weights:   8%|▊         | 24/311 [00:00<00:02, 129.37it/s]
+Loading weights:  14%|█▍        | 44/311 [00:00<00:01, 159.88it/s]
+Loading weights:  22%|██▏       | 67/311 [00:00<00:01, 184.65it/s]
+Loading weights:  28%|██▊       | 87/311 [00:00<00:01, 174.89it/s]
+Loading weights:  35%|███▍      | 108/311 [00:00<00:01, 180.45it/s]
+Loading weights:  41%|████      | 127/311 [00:00<00:01, 175.98it/s]
+Loading weights:  50%|████▉     | 155/311 [00:00<00:00, 192.82it/s]
+Loading weights:  57%|█████▋    | 177/311 [00:00<00:00, 199.37it/s]
+Loading weights:  64%|██████▍   | 200/311 [00:01<00:00, 204.37it/s]
+Loading weights:  71%|███████   | 221/311 [00:01<00:00, 204.60it/s]
+Loading weights:  78%|███████▊  | 244/311 [00:01<00:00, 205.44it/s]
+Loading weights:  85%|████████▌ | 265/311 [00:01<00:00, 187.15it/s]
+Loading weights:  92%|█████████▏| 285/311 [00:01<00:00, 188.10it/s]
+Loading weights: 100%|██████████| 311/311 [00:01<00:00, 191.87it/s]
