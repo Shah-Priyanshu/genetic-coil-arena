@@ -1,0 +1,11 @@
+[03:35:57] Ollama already running at http://localhost:11434
+[03:36:23] gemma4:e4b sealed: 20/174 (sealed-squad-019)
+[03:36:33] gemma4:e4b sealed: 40/174 (sealed-squad-039)
+[03:36:43] gemma4:e4b sealed: 60/174 (sealed-squad-059)
+[03:36:52] gemma4:e4b sealed: 80/174 (sealed-squad-079)
+[03:37:35] gemma4:e4b sealed: 100/174 (sealed-plant-010)
+[03:38:37] gemma4:e4b sealed: 120/174 (sealed-plant-030)
+[03:39:29] gemma4:e4b sealed: 140/174 (sealed-plant-050)
+[03:40:17] gemma4:e4b sealed: 160/174 (sealed-plant-070)
+[03:40:26] gemma4:e4b sealed: 174/174 (sealed-plant-084)
+[03:40:53] qwen2.5-coder:14b sealed: 20/174 (sealed-squad-019)
