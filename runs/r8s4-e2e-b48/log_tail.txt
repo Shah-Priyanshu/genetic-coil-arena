@@ -6,3 +6,6 @@ scale full: 2 groups, replicates 0:10 of 10; 8 processes x 1 torch thread(s) <= 
   10/20 cells, 429s
 wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s4-e2e-b48\artifacts\plant_novel_e2e_b4_r0-10.json (7.1 min)
   15/20 cells, 501s
+  20/20 cells, 627s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s4-e2e-b48\artifacts\plant_novel_e2e_b8_r0-10.json (10.5 min)
+done in 10.5 min
