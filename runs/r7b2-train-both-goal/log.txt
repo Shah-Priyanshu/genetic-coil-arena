@@ -295,3 +295,4 @@
 [progress] both-goal run 6: gen 3750/5000, val mission 16.40, best gen 3300, elapsed 20355 s
 [progress] both-goal run 0: gen 3800/5000, val mission 19.27, best gen 2700, elapsed 20368 s
 [progress] both-goal run 7: gen 3750/5000, val mission 16.87, best gen 3150, elapsed 20449 s
+[progress] both-goal run 2: gen 3750/5000, val mission 18.10, best gen 3700, elapsed 20471 s
