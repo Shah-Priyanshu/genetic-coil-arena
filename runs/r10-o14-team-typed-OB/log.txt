@@ -23,3 +23,4 @@
 [22:22:51] team_typed messages: 50/60 (1378s)
 [22:24:51] team_typed messages: 55/60 (1498s)
 [22:26:56] team_typed messages: 60/60 (1622s)
+[22:27:25] team_typed decisions: 5/60 (1652s)
