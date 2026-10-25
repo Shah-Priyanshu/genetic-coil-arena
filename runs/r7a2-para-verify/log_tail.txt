@@ -72,3 +72,9 @@
 [01:22:36] para-verify 3500/3840
 [01:23:26] para-verify 3550/3840
 [01:24:15] para-verify 3600/3840
+[01:25:09] para-verify 3650/3840
+[01:25:55] para-verify 3700/3840
+[01:26:47] para-verify 3750/3840
+[01:27:41] para-verify 3800/3840
+[01:28:18] para-verify 3840/3840
+[01:28:19] pool: 18141 records ({'template': 14888, 'paraphrase': 2686, 'retry': 567}), overlap drops {'templates': 472, 'paraphrases': 32}

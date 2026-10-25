@@ -1,0 +1,104 @@
+{
+ "sealed_sha256": "ca6ff07b5fb66ef21c288ba9a82d5e7763992fe2142b1a582baf597e542b5e01",
+ "n_pool": 18141,
+ "templates": 14888,
+ "paraphrases": 2686,
+ "retries": 567,
+ "raw_paraphrases": 3840,
+ "verified_paraphrases": 2730,
+ "accept_by_style": {
+  "casual_chat": {
+   "n": 376,
+   "accepted": 273,
+   "rate": 0.726063829787234
+  },
+  "formal_memo": {
+   "n": 240,
+   "accepted": 206,
+   "rate": 0.8583333333333333
+  },
+  "indirect_hint": {
+   "n": 288,
+   "accepted": 158,
+   "rate": 0.5486111111111112
+  },
+  "jargon": {
+   "n": 296,
+   "accepted": 231,
+   "rate": 0.7804054054054054
+  },
+  "mixed_notation": {
+   "n": 264,
+   "accepted": 143,
+   "rate": 0.5416666666666666
+  },
+  "multi_sentence": {
+   "n": 344,
+   "accepted": 260,
+   "rate": 0.7558139534883721
+  },
+  "negation": {
+   "n": 328,
+   "accepted": 110,
+   "rate": 0.3353658536585366
+  },
+  "numbers_in_words": {
+   "n": 408,
+   "accepted": 313,
+   "rate": 0.7671568627450981
+  },
+  "polite_question": {
+   "n": 352,
+   "accepted": 277,
+   "rate": 0.7869318181818182
+  },
+  "self_correction": {
+   "n": 360,
+   "accepted": 307,
+   "rate": 0.8527777777777777
+  },
+  "terse_note": {
+   "n": 296,
+   "accepted": 251,
+   "rate": 0.847972972972973
+  },
+  "typos": {
+   "n": 288,
+   "accepted": 201,
+   "rate": 0.6979166666666666
+  }
+ },
+ "accept_by_kind": {
+  "clarify": {
+   "n": 384,
+   "accepted": 221,
+   "rate": 0.5755208333333334
+  },
+  "refuse": {
+   "n": 384,
+   "accepted": 296,
+   "rate": 0.7708333333333334
+  },
+  "spec": {
+   "n": 3072,
+   "accepted": 2213,
+   "rate": 0.7203776041666666
+  }
+ },
+ "dropped_by_overlap": {
+  "templates": 472,
+  "paraphrases": 32
+ },
+ "overlap_threshold": 0.5,
+ "kinds": {
+  "spec": 15015,
+  "refuse": 1708,
+  "clarify": 851,
+  "retry": 567
+ },
+ "sources": {
+  "template": 14888,
+  "paraphrase": 2686,
+  "retry": 567
+ }
+}
