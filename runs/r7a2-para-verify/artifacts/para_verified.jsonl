@@ -1633,3 +1633,32 @@
 {"base_id": "tpl-squad-00136", "style": "typos", "text": "red green blue sqd forag red caution norm step 150 food none", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00136", "style": "typos", "text": "snakes red green blue squad foraging red normal caution steps 150 no food target", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00136", "style": "typos", "text": "red green blue snake group red forager caution normal step limit 150 no food", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00136", "style": "typos", "text": "squad snakes red green blue forage red caution normal step 150 food none", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00136", "style": "typos", "text": "red green blue snake team red foraging caution normal 150 steps no food target", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00136", "style": "typos", "text": "snakes red green blue squad red forager caution norm step limit 150 food none", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00136", "style": "typos", "text": "red green blue snake group foraging red normal caution step 150 no food target", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00136", "style": "typos", "text": "squad red green blue snakes forage red caution normal 150 steps food none", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00317", "style": "terse_note", "text": "SQUAD: RED GREEN BLUE | FORAGE: GREEN BLUE | CAUTION: NORMAL | STEP: 200 | FOOD: NONE", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00317", "style": "terse_note", "text": "RED GREEN BLUE SQUAD | GREEN BLUE FORAGING | NORMAL CAUTION | 200 STEPS | NO FOOD TARGET", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00317", "style": "terse_note", "text": "SNakes: R G B | Forage: G B | Care: Normal | Limit: 200 | Food: None", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00317", "style": "terse_note", "text": "Q: RED GREEN BLUE | F: GREEN BLUE | C: NORMAL | S: 200 | T: NONE", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00317", "style": "terse_note", "text": "Squad=RED GREEN BLUE | Foraging=GREEN BLUE | Caution=NORMAL | Steps=200 | Food=NONE", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00317", "style": "terse_note", "text": "R G B SQUAD | G B FORAGE | NORMAL CAUTION | 200 STEP LIMIT | NO FOOD TARGET", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00317", "style": "terse_note", "text": "Snakes: R-G-B | Forage: G-B | Care: Normal | Step: 200 | Target: None", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00317", "style": "terse_note", "text": "RED GREEN BLUE TEAM | GREEN BLUE FORAGING | ORDINARY CARE | 200 MAX STEPS | FOOD: NIL", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00389", "style": "casual_chat", "text": "hey can u set up the fault diag system with those four nodes reactor separator stripper and compressor utilities please", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00389", "style": "casual_chat", "text": "yo i need the plant fault diagnosis running with sensor nodes for reactor sep stripper and compressor utils", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00389", "style": "casual_chat", "text": "can you activate that fault detection system with reactor separator stripper and compressor utilities nodes", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00389", "style": "casual_chat", "text": "whats the deal with the fault diagnostic system using reactor separator stripper and compressor utilities", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-00389", "style": "casual_chat", "text": "hey quick question about the fault diag system with reactor separator stripper and compressor utilities nodes", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-00389", "style": "casual_chat", "text": "want to turn on the plant fault diagnosis with reactor separator stripper and compressor utilities active", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00389", "style": "casual_chat", "text": "is it possible to configure fault detection with reactor separator stripper and compressor utilities nodes", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00389", "style": "casual_chat", "text": "gotta get this fault diagnostic system working with reactor separator stripper and compressor utilities", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00121", "style": "typos", "text": "red green blue snak squad foragin greeen blue caution low step 300", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00121", "style": "typos", "text": "snakes red green blue go forage green blue warn low steps 300", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-00121", "style": "typos", "text": "squad red green blue foragin greeen blue warn low 300 steps", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00121", "style": "typos", "text": "red green blue snake team foraging green blue caution low default steps", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00121", "style": "typos", "text": "snakes red green blue forage green blue warn low step limit 300", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-00121", "style": "typos", "text": "squad red green blue go forage greeen blue caution low 300 steps", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00121", "style": "typos", "text": "red green blue snake group foragin green blue warn low step 300", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00121", "style": "typos", "text": "snakes red green blue forage green blue low caution default steps 300", "verified": false, "verifier_status": "ok"}
