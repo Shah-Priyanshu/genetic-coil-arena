@@ -15,12 +15,14 @@
     "--name",
     "r8-n12000"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-25T06:44:03+00:00",
-  "updated_at": "2026-10-25T07:09:21+00:00",
-  "elapsed_min": 25.3,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 29 %, 5417 MiB, 12282 MiB, 49",
+  "updated_at": "2026-10-25T07:11:09+00:00",
+  "elapsed_min": 27.1,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 708 MiB, 12282 MiB, 49",
   "host": "PC",
   "lane": "gpu",
-  "cpu_workers": 4
+  "cpu_workers": 4,
+  "returncode": 0,
+  "finished_at": "2026-10-25T07:11:09+00:00"
 }
