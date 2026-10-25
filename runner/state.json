@@ -26,7 +26,8 @@
   ],
   "backlog": {
     "ready": [
-      "r7b2-train-blind"
+      "r7b2-train-blind",
+      "ci-1e0c7ac324e5"
     ],
     "blocked": [
       {
@@ -45,11 +46,11 @@
     "gpu": "2026-10-25T16:22:13+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-25T16:51:58+00:00",
-  "cpu_percent": 94.8,
+  "updated_at": "2026-10-25T16:53:04+00:00",
+  "cpu_percent": 94.0,
   "gpu": {
-    "util": 92.0,
-    "mem_used_mb": 9943.0,
+    "util": 70.0,
+    "mem_used_mb": 10137.0,
     "mem_total_mb": 12282.0
   }
 }
