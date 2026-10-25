@@ -1,3 +1,28 @@
 [20:52:47] starting `C:\Users\priya\AppData\Local\Programs\Ollama\ollama.exe serve`
 Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
 [20:52:55] 120 incidents (test), conditions ['single_head', 'single_tail', 'single_selected', 'oracle_selected'], model ollama:qwen2.5-coder:14b
+[20:54:25] simple conditions: 5/120 incidents (90s)
+[20:55:53] simple conditions: 10/120 incidents (178s)
+[20:57:21] simple conditions: 15/120 incidents (266s)
+[20:58:49] simple conditions: 20/120 incidents (354s)
+[21:00:17] simple conditions: 25/120 incidents (442s)
+[21:01:45] simple conditions: 30/120 incidents (530s)
+[21:03:13] simple conditions: 35/120 incidents (618s)
+[21:04:49] simple conditions: 40/120 incidents (714s)
+[21:06:22] simple conditions: 45/120 incidents (807s)
+[21:07:50] simple conditions: 50/120 incidents (895s)
+[21:09:18] simple conditions: 55/120 incidents (983s)
+[21:10:56] simple conditions: 60/120 incidents (1081s)
+[21:12:34] simple conditions: 65/120 incidents (1179s)
+[21:14:20] simple conditions: 70/120 incidents (1285s)
+[21:15:58] simple conditions: 75/120 incidents (1383s)
+[21:17:35] simple conditions: 80/120 incidents (1480s)
+[21:19:11] simple conditions: 85/120 incidents (1576s)
+[21:20:49] simple conditions: 90/120 incidents (1674s)
+[21:22:26] simple conditions: 95/120 incidents (1771s)
+[21:24:03] simple conditions: 100/120 incidents (1868s)
+[21:25:39] simple conditions: 105/120 incidents (1965s)
+[21:27:16] simple conditions: 110/120 incidents (2061s)
+[21:28:52] simple conditions: 115/120 incidents (2157s)
+[21:30:30] simple conditions: 120/120 incidents (2255s)
+[21:30:30] done in 2255.1s; records in D:\Projects\genetic-coil-arena-gpu-results\runs\r10-o14-single\artifacts\artifacts\results.jsonl

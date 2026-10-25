@@ -23,3 +23,6 @@ Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF
 [21:24:03] simple conditions: 100/120 incidents (1868s)
 [21:25:39] simple conditions: 105/120 incidents (1965s)
 [21:27:16] simple conditions: 110/120 incidents (2061s)
+[21:28:52] simple conditions: 115/120 incidents (2157s)
+[21:30:30] simple conditions: 120/120 incidents (2255s)
+[21:30:30] done in 2255.1s; records in D:\Projects\genetic-coil-arena-gpu-results\runs\r10-o14-single\artifacts\artifacts\results.jsonl
