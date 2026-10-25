@@ -1,0 +1,23 @@
+{
+  "id": "r10-q3-single",
+  "commit": "9d661b1db483679f82579bd8d8655f90e0fe1f11",
+  "args": [
+    "scripts/r10_log_triage.py",
+    "run",
+    "--model",
+    "hf:Qwen/Qwen3-1.7B",
+    "--split",
+    "test",
+    "--systems",
+    "SS,OB",
+    "--conditions",
+    "heur_baro_logs,heur_surprise_logs,heur_baro_metrics,single_head,single_tail,single_selected,oracle_selected"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 4,
+  "priority": 5,
+  "timeout_min": 150,
+  "env": {
+    "HF_HOME": "D:\\hf_cache"
+  }
+}
