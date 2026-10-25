@@ -1,0 +1,23 @@
+W1025 05:24:58.816000 10752 Lib\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]
+Loading weights:   7%|▋         | 21/311 [00:00<00:01, 189.34it/s]
+Loading weights:  14%|█▍        | 43/311 [00:00<00:01, 188.13it/s]
+Loading weights:  21%|██        | 64/311 [00:00<00:01, 182.68it/s]
+Loading weights:  28%|██▊       | 86/311 [00:00<00:01, 179.19it/s]
+Loading weights:  33%|███▎      | 104/311 [00:00<00:01, 179.16it/s]
+Loading weights:  41%|████      | 126/311 [00:00<00:01, 175.55it/s]
+Loading weights:  47%|████▋     | 146/311 [00:00<00:00, 179.98it/s]
+Loading weights:  55%|█████▍    | 170/311 [00:00<00:00, 194.93it/s]
+Loading weights:  61%|██████    | 190/311 [00:01<00:00, 187.88it/s]
+Loading weights:  68%|██████▊   | 210/311 [00:01<00:00, 184.91it/s]
+Loading weights:  75%|███████▍  | 232/311 [00:01<00:00, 188.84it/s]
+Loading weights:  81%|████████  | 251/311 [00:01<00:00, 179.71it/s]
+Loading weights:  87%|████████▋ | 270/311 [00:01<00:00, 178.53it/s]
+Loading weights:  93%|█████████▎| 288/311 [00:01<00:00, 177.99it/s]
+Loading weights: 100%|██████████| 311/311 [00:01<00:00, 187.66it/s]
+[05:25:07] 120 incidents (test), conditions ['heur_baro_logs', 'heur_surprise_logs', 'heur_baro_metrics', 'single_head', 'single_tail', 'single_selected', 'oracle_selected'], model qwen3-1.7b
+[05:26:34] simple conditions: 5/120 incidents (87s)
+[05:28:01] simple conditions: 10/120 incidents (174s)
+[05:29:28] simple conditions: 15/120 incidents (261s)
