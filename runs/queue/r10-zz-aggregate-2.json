@@ -1,0 +1,38 @@
+{
+  "id": "r10-zz-aggregate-2",
+  "commit": "9d661b1db483679f82579bd8d8655f90e0fe1f11",
+  "args": [
+    "scripts/r10_log_triage.py",
+    "report",
+    "--from",
+    "runs:r10-q3-*",
+    "runs:r10-o14-single",
+    "runs:r10-o14-team-typed-*",
+    "runs:r10-o14-team-free-*-2",
+    "--out",
+    "docs/results/r10_log_triage.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 1,
+  "priority": 5,
+  "after": [
+    "r10-q3-single",
+    "r10-q3-team-typed-SS",
+    "r10-q3-team-typed-OB",
+    "r10-q3-team-free-SS",
+    "r10-q3-team-free-OB",
+    "r10-o14-single",
+    "r10-o14-team-typed-SS",
+    "r10-o14-team-typed-OB",
+    "r10-o14-team-free-SS-2",
+    "r10-o14-team-free-OB-2"
+  ],
+  "timeout_min": 20,
+  "outputs": [
+    "docs/results/r10_log_triage.md",
+    "docs/results/r10_log_triage.json"
+  ],
+  "env": {
+    "HF_HOME": "D:\\hf_cache"
+  }
+}

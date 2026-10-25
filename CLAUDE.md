@@ -45,6 +45,7 @@ ruff check <files>; black <files>
   - Set `NUMBA_CACHE_DIR` to a short path if a long path breaks caching (Windows' 260-character limit).
 - **Git worktrees:** the venv's editable install points at the main checkout, so in a worktree run with `PYTHONPATH=<worktree>/src` or you will import the main checkout's code.
 - **Windows GPU jobs:** call `torch.cuda.set_per_process_memory_fraction(0.85)`. WDDM silently spills VRAM to system RAM instead of raising out-of-memory, so a job can crawl instead of failing (found in the R4 spike, see `docs/results/r4_translator_lora_spike.md`).
+- **Don't use the GPU beside a runner GPU job.** Check `runner/state.json` on `gpu-results` (or `nvidia-smi`) first. An agent's LoRA smoke test running next to an Ollama 14B job ran the 12 GB card out of memory and failed two R10 jobs (2026-10-25).
 - **Translator model:** the default is qwen2.5-coder:14b through Ollama structured outputs. Load it on demand and unload it with `keep_alive` 0, because at 9.1 GB it can't sit beside training on 12 GB.
 - **Windows process spawning:** fitness evaluation uses `ProcessPoolExecutor`, so any script that calls `evolve()` needs an `if __name__ == "__main__":` guard.
 - **pytest settings:** `filterwarnings = error` turns warnings into failures, except UserWarning and DeprecationWarning. `--strict-markers` is on; the markers are `slow`, `integration` and `benchmark`.
