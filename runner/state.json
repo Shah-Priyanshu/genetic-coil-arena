@@ -3,7 +3,7 @@
   "host": "PC",
   "draining_for_update": false,
   "cpu_budget": 24,
-  "cpu_workers_in_use": 17,
+  "cpu_workers_in_use": 16,
   "running": [
     {
       "id": "r7b2-train-both-goal",
@@ -16,12 +16,6 @@
       "lane": "cpu",
       "cpu_workers": 8,
       "started_at": "2026-10-25T22:33:16+00:00"
-    },
-    {
-      "id": "r10s2-zz-aggregate",
-      "lane": "cpu",
-      "cpu_workers": 1,
-      "started_at": "2026-10-25T23:24:40+00:00"
     }
   ],
   "backlog": {
@@ -41,8 +35,8 @@
     "gpu": "2026-10-25T23:24:36+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-25T23:24:40+00:00",
-  "cpu_percent": 63.7,
+  "updated_at": "2026-10-25T23:24:50+00:00",
+  "cpu_percent": 61.5,
   "gpu": {
     "util": 0.0,
     "mem_used_mb": 744.0,
