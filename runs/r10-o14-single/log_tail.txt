@@ -1,0 +1,6 @@
+[20:52:47] starting `C:\Users\priya\AppData\Local\Programs\Ollama\ollama.exe serve`
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[20:52:55] 120 incidents (test), conditions ['single_head', 'single_tail', 'single_selected', 'oracle_selected'], model ollama:qwen2.5-coder:14b
+[20:54:25] simple conditions: 5/120 incidents (90s)
+[20:55:53] simple conditions: 10/120 incidents (178s)
+[20:57:21] simple conditions: 15/120 incidents (266s)
