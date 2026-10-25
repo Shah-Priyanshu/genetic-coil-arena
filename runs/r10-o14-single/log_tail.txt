@@ -17,3 +17,6 @@ Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF
 [21:14:20] simple conditions: 70/120 incidents (1285s)
 [21:15:58] simple conditions: 75/120 incidents (1383s)
 [21:17:35] simple conditions: 80/120 incidents (1480s)
+[21:19:11] simple conditions: 85/120 incidents (1576s)
+[21:20:49] simple conditions: 90/120 incidents (1674s)
+[21:22:26] simple conditions: 95/120 incidents (1771s)
