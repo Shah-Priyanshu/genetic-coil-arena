@@ -2066,3 +2066,13 @@
 {"base_id": "tpl-plant-cla0006", "style": "numbers_in_words", "text": "Execute with whatever level of power appears necessary here", "verified": false, "verifier_status": "refused"}
 {"base_id": "tpl-plant-cla0006", "style": "numbers_in_words", "text": "Initiate using some reasonable quantity of energy or strength", "verified": false, "verifier_status": "refused"}
 {"base_id": "tpl-plant-cla0006", "style": "numbers_in_words", "text": "Carry out this action with whatever degree of intensity is called for", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-cla0006", "style": "numbers_in_words", "text": "Proceed employing an unspecified but suitable measure of effort", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0006", "style": "numbers_in_words", "text": "Activate using whatever adequate amount of resources would work best", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0006", "style": "numbers_in_words", "text": "Perform this task with whatever sufficient quantity of power appears right", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-cla0006", "style": "numbers_in_words", "text": "Commence with whatever generous portion of force seems fitting", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-squad-00332", "style": "jargon", "text": "SQD SNAKES R/G/B FORAGE BLU SL180 CAUT NORM FOOD NONE", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00332", "style": "jargon", "text": "SNAKE SQD R/G/BLU FORAGE BLU STEP 180 CAUTION NORMAL FOOD NIL", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00332", "style": "jargon", "text": "GROUP SNAKES RED/GREEN/BLUE FORAGING BLU LIMIT 180 CARE ORDINARY NO FOOD", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00332", "style": "jargon", "text": "SQUAD SNK R/G/B BLU FORAGE STEP 180 NORMAL CAUTION NO FOOD TARGET", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00332", "style": "jargon", "text": "SNK SQD RGB FORAGE BLUE SL180 NORMAL CAUTION FOOD NONE", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00332", "style": "jargon", "text": "SNAKE GROUP R/G/BLUE FORAGE BLU STEP LIMIT 180 ORDINARY CARE NO FOOD", "verified": false, "verifier_status": "ok"}
