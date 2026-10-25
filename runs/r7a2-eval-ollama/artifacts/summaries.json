@@ -1,0 +1,2780 @@
+{
+ "gemma": {
+  "sealed-squad-000": {
+   "summary": "The red and blue snakes were ordered to forage at caution level normal with a step limit of 90 and no food target; the squad finished with mission score 6.2.",
+   "latency_s": 1.3750797999964561,
+   "error": ""
+  },
+  "sealed-squad-001": {
+   "summary": "The green snake was ordered to forage at caution level high with a step limit of 250 and no food target; the squad finished with mission score 5.2.",
+   "latency_s": 0.8446493999799713,
+   "error": ""
+  },
+  "sealed-squad-002": {
+   "summary": "The blue snake was ordered to forage at caution level low, with a step limit of 120 and a food target of 15; the squad finished with mission score 3.9.",
+   "latency_s": 0.9530095999944024,
+   "error": ""
+  },
+  "sealed-squad-003": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high, with a step limit of 300 and a food target of 20; the squad finished with mission score 15.7.",
+   "latency_s": 1.076345899986336,
+   "error": ""
+  },
+  "sealed-squad-004": {
+   "summary": "The red and green snakes were ordered to forage at caution level normal with a step limit of 200 and no food target; the squad finished with mission score 13.3.",
+   "latency_s": 0.9061799999908544,
+   "error": ""
+  },
+  "sealed-squad-005": {
+   "summary": "The blue and green snakes were ordered to forage at caution level low, with a step limit of 75 and a food target of 9; the squad finished with mission score 5.3.",
+   "latency_s": 0.9459406999812927,
+   "error": ""
+  },
+  "sealed-squad-006": {
+   "summary": "The green snake was ordered to forage at caution level high with a step limit of 100 and no food target; the squad finished with mission score 2.9.",
+   "latency_s": 0.8453343999863137,
+   "error": ""
+  },
+  "sealed-squad-007": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level low, with a step limit of 300 and a food target of 12; the squad finished with mission score 10.8.",
+   "latency_s": 1.0666981000103988,
+   "error": ""
+  },
+  "sealed-squad-008": {
+   "summary": "The red snake was ordered to forage at caution level normal with a step limit of 60 and no food target; the squad finished with mission score 3.2.",
+   "latency_s": 0.8279006999800913,
+   "error": ""
+  },
+  "sealed-squad-009": {
+   "summary": "The blue snake was ordered to forage at caution level high, with a step limit of 300 and a food target of 7; the squad finished with mission score 4.1.",
+   "latency_s": 0.9362932000076398,
+   "error": ""
+  },
+  "sealed-squad-010": {
+   "summary": "The green and blue snakes were ordered to forage at caution level normal, with a step limit of 140 and a food target of 13; the squad finished with mission score 9.8.",
+   "latency_s": 0.9820023999782279,
+   "error": ""
+  },
+  "sealed-squad-011": {
+   "summary": "The red snake was ordered to forage at caution level normal, with a step limit of 50 and a food target of 10; the squad finished with mission score 2.9.",
+   "latency_s": 0.9308734999794979,
+   "error": ""
+  },
+  "sealed-squad-012": {
+   "summary": "The red and blue snakes were ordered to forage at caution level high with a step limit of 180 and no food target; the squad finished with mission score 7.0.",
+   "latency_s": 0.8813335000013467,
+   "error": ""
+  },
+  "sealed-squad-013": {
+   "summary": "The red and green snakes were ordered to forage at caution level normal, with a step limit of 300 and a food target of 30; the squad finished with mission score 16.0.",
+   "latency_s": 1.0107903000025544,
+   "error": ""
+  },
+  "sealed-squad-014": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 23.1.",
+   "latency_s": 0.9690416999801528,
+   "error": ""
+  },
+  "sealed-squad-015": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level low with a step limit of 55 and no food target; the squad finished with mission score 7.7.",
+   "latency_s": 0.9119191000063438,
+   "error": ""
+  },
+  "sealed-squad-016": {
+   "summary": "The red snake was ordered to forage at caution level high with a step limit of 180 and no food target; the squad finished with mission score 4.8.",
+   "latency_s": 0.8529151999973692,
+   "error": ""
+  },
+  "sealed-squad-017": {
+   "summary": "The blue and red snakes were ordered to forage at caution level normal with a step limit of 250 and no food target; the squad finished with mission score 6.5.",
+   "latency_s": 0.8950026000093203,
+   "error": ""
+  },
+  "sealed-squad-018": {
+   "summary": "The green and blue snakes were ordered to forage at caution level low with a step limit of 120 and no food target; the squad finished with mission score 6.4.",
+   "latency_s": 0.8699692999944091,
+   "error": ""
+  },
+  "sealed-squad-019": {
+   "summary": "The green snake was ordered to forage at caution level high, with a step limit of 200 and a food target of 25; the squad finished with mission score 4.6.",
+   "latency_s": 0.9329358999966644,
+   "error": ""
+  },
+  "sealed-squad-020": {
+   "summary": "The red snake was ordered to forage at caution level normal, with a step limit of 300 and a food target of 6; the squad finished with mission score 4.2.",
+   "latency_s": 0.9119839999766555,
+   "error": ""
+  },
+  "sealed-squad-021": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high, with a step limit of 300 and a food target of 24; the squad finished with mission score 16.5.",
+   "latency_s": 1.0566066000028513,
+   "error": ""
+  },
+  "sealed-squad-022": {
+   "summary": "The blue and green snakes were ordered to forage at caution level low, with a step limit of 150 and a food target of 20; the squad finished with mission score 7.1.",
+   "latency_s": 0.973497099999804,
+   "error": ""
+  },
+  "sealed-squad-023": {
+   "summary": "The red snake was ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 5.2.",
+   "latency_s": 0.8410632999730296,
+   "error": ""
+  },
+  "sealed-squad-024": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high with a step limit of 100 and no food target; the squad finished with mission score 10.1.",
+   "latency_s": 0.977280699997209,
+   "error": ""
+  },
+  "sealed-squad-025": {
+   "summary": "The red and green snakes were ordered to forage at caution level low with a step limit of 50 and no food target; the squad finished with mission score 5.3.",
+   "latency_s": 0.875366699998267,
+   "error": ""
+  },
+  "sealed-squad-026": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 250 and a food target of 35; the squad finished with mission score 21.2.",
+   "latency_s": 1.0577097000204958,
+   "error": ""
+  },
+  "sealed-squad-027": {
+   "summary": "The green snake was ordered to forage at caution level normal, with a step limit of 300 and a food target of 40; the squad finished with mission score 11.3.",
+   "latency_s": 0.9473379999981262,
+   "error": ""
+  },
+  "sealed-squad-028": {
+   "summary": "The red and blue snakes were ordered to forage at caution level high, with a step limit of 300 and a food target of 8; the squad finished with mission score 5.1.",
+   "latency_s": 0.9521416999923531,
+   "error": ""
+  },
+  "sealed-squad-029": {
+   "summary": "The red snake was ordered to forage at caution level low with a step limit of 55 and no food target; the squad finished with mission score 3.6.",
+   "latency_s": 0.8109445000009146,
+   "error": ""
+  },
+  "sealed-squad-030": {
+   "summary": "The green and blue snakes were ordered to forage at caution level low, with a step limit of 90 and a food target of 10; the squad finished with mission score 5.6.",
+   "latency_s": 0.9448034999950323,
+   "error": ""
+  },
+  "sealed-squad-031": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 120 and a food target of 18; the squad finished with mission score 14.8.",
+   "latency_s": 1.0599931000033394,
+   "error": ""
+  },
+  "sealed-squad-032": {
+   "summary": "The red and green snakes were ordered to forage at caution level normal, with a step limit of 160 and a food target of 14; the squad finished with mission score 10.8.",
+   "latency_s": 0.9904224000056274,
+   "error": ""
+  },
+  "sealed-squad-033": {
+   "summary": "The blue snake was ordered to forage at caution level high with a step limit of 210 and no food target; the squad finished with mission score 4.8.",
+   "latency_s": 0.8444205999840051,
+   "error": ""
+  },
+  "sealed-squad-034": {
+   "summary": "The green and blue snakes were ordered to forage at caution level low, with a step limit of 65 and a food target of 11; the squad finished with mission score 5.1.",
+   "latency_s": 0.9503828000160865,
+   "error": ""
+  },
+  "sealed-squad-035": {
+   "summary": "The blue snake was ordered to forage at caution level normal with a step limit of 77 and no food target; the squad finished with mission score 4.6.",
+   "latency_s": 0.8108877000049688,
+   "error": ""
+  },
+  "sealed-squad-036": {
+   "summary": "The red and green snakes were ordered to forage at caution level high, with a step limit of 130 and a food target of 16; the squad finished with mission score 8.1.",
+   "latency_s": 0.9888918999931775,
+   "error": ""
+  },
+  "sealed-squad-037": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high, with a step limit of 300 and a food target of 10; the squad finished with mission score 10.4.",
+   "latency_s": 1.0710141000163276,
+   "error": ""
+  },
+  "sealed-squad-038": {
+   "summary": "The red snake was ordered to forage at caution level normal with a step limit of 90 and no food target; the squad finished with mission score 3.6.",
+   "latency_s": 0.8132161000103224,
+   "error": ""
+  },
+  "sealed-squad-039": {
+   "summary": "The blue and red snakes were ordered to forage at caution level low with a step limit of 100 and no food target; the squad finished with mission score 7.4.",
+   "latency_s": 0.893709800002398,
+   "error": ""
+  },
+  "sealed-squad-040": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 275 and a food target of 33; the squad finished with mission score 22.9.",
+   "latency_s": 1.074881299980916,
+   "error": ""
+  },
+  "sealed-squad-041": {
+   "summary": "The green snake was ordered to forage at caution level normal, with a step limit of 300 and a food target of 5; the squad finished with mission score 4.4.",
+   "latency_s": 0.9298243000230286,
+   "error": ""
+  },
+  "sealed-squad-042": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 300 and a food target of 40; the squad finished with mission score 23.1.",
+   "latency_s": 1.0693388000072446,
+   "error": ""
+  },
+  "sealed-squad-043": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 240 and no food target; the squad finished with mission score 21.0.",
+   "latency_s": 0.9602394999819808,
+   "error": ""
+  },
+  "sealed-squad-044": {
+   "summary": "The red and green snakes were ordered to forage at caution level high with a step limit of 95 and no food target; the squad finished with mission score 7.2.",
+   "latency_s": 0.8702198000100907,
+   "error": ""
+  },
+  "sealed-squad-045": {
+   "summary": "The red snake was ordered to forage at caution level low, with a step limit of 300 and a food target of 22; the squad finished with mission score 9.4.",
+   "latency_s": 0.9559864999901038,
+   "error": ""
+  },
+  "sealed-squad-046": {
+   "summary": "The green snake was ordered to forage at caution level high with a step limit of 120 and no food target; the squad finished with mission score 3.4.",
+   "latency_s": 0.852379199990537,
+   "error": ""
+  },
+  "sealed-squad-047": {
+   "summary": "The blue and green snakes were ordered to forage at caution level normal, with a step limit of 200 and a food target of 15; the squad finished with mission score 11.2.",
+   "latency_s": 1.0101718000078108,
+   "error": ""
+  },
+  "sealed-squad-048": {
+   "summary": "The red snake was ordered to forage at caution level high with a step limit of 70 and no food target; the squad finished with mission score 2.2.",
+   "latency_s": 0.8333230999996886,
+   "error": ""
+  },
+  "sealed-squad-049": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 150 and a food target of 26; the squad finished with mission score 16.9.",
+   "latency_s": 1.07559819999733,
+   "error": ""
+  },
+  "sealed-squad-050": {
+   "summary": "The green and blue snakes were ordered to forage at caution level low with a step limit of 110 and no food target; the squad finished with mission score 6.2.",
+   "latency_s": 0.8926473000028636,
+   "error": ""
+  },
+  "sealed-squad-051": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 300 and a food target of 31; the squad finished with mission score 22.9.",
+   "latency_s": 1.0776918999908958,
+   "error": ""
+  },
+  "sealed-squad-052": {
+   "summary": "The red snake was ordered to forage at caution level high, with a step limit of 85 and a food target of 3; the squad finished with mission score 2.1.",
+   "latency_s": 0.8927713000157382,
+   "error": ""
+  },
+  "sealed-squad-053": {
+   "summary": "The green snake was ordered to forage at caution level normal, with a step limit of 300 and a food target of 1; the squad finished with mission score 1.3.",
+   "latency_s": 0.9135942999855615,
+   "error": ""
+  },
+  "sealed-squad-054": {
+   "summary": "The red and green snakes were ordered to forage at caution level low with a step limit of 58 and no food target; the squad finished with mission score 6.4.",
+   "latency_s": 0.8527685000153724,
+   "error": ""
+  },
+  "sealed-squad-055": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high, with a step limit of 225 and a food target of 28; the squad finished with mission score 15.3.",
+   "latency_s": 1.0763781999994535,
+   "error": ""
+  },
+  "sealed-squad-056": {
+   "summary": "The blue snake was ordered to forage at caution level normal with a step limit of 190 and no food target; the squad finished with mission score 6.6.",
+   "latency_s": 0.8508255000051577,
+   "error": ""
+  },
+  "sealed-squad-057": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level low, with a step limit of 70 and a food target of 15; the squad finished with mission score 8.5.",
+   "latency_s": 1.0330386999994516,
+   "error": ""
+  },
+  "sealed-squad-058": {
+   "summary": "The green snake was ordered to forage at caution level normal with a step limit of 120 and no food target; the squad finished with mission score 5.4.",
+   "latency_s": 0.8455409999878611,
+   "error": ""
+  },
+  "sealed-squad-059": {
+   "summary": "The red and green snakes were ordered to forage at caution level normal with a step limit of 150 and no food target; the squad finished with mission score 10.9.",
+   "latency_s": 0.9001499000005424,
+   "error": ""
+  },
+  "sealed-squad-060": {
+   "summary": "The red and blue snakes were ordered to forage at caution level high, with a step limit of 180 and a food target of 17; the squad finished with mission score 7.0.",
+   "latency_s": 0.9723649999941699,
+   "error": ""
+  },
+  "sealed-squad-061": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 240 and no food target; the squad finished with mission score 21.0.",
+   "latency_s": 0.9719774999830406,
+   "error": ""
+  },
+  "sealed-squad-062": {
+   "summary": "The blue snake was ordered to forage at caution level low with a step limit of 100 and no food target; the squad finished with mission score 3.6.",
+   "latency_s": 0.8441093000001274,
+   "error": ""
+  },
+  "sealed-squad-063": {
+   "summary": "The blue and green snakes were ordered to forage at caution level low with a step limit of 300 and no food target; the squad finished with mission score 8.1.",
+   "latency_s": 0.8782485999981873,
+   "error": ""
+  },
+  "sealed-squad-064": {
+   "summary": "The red snake was ordered to forage at caution level high, with a step limit of 95 and a food target of 9; the squad finished with mission score 2.9.",
+   "latency_s": 0.89144700000179,
+   "error": ""
+  },
+  "sealed-squad-065": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 280 and a food target of 40; the squad finished with mission score 22.9.",
+   "latency_s": 1.0817001000104938,
+   "error": ""
+  },
+  "sealed-squad-066": {
+   "summary": "The green snake was ordered to forage at caution level low with a step limit of 60 and no food target; the squad finished with mission score 2.9.",
+   "latency_s": 0.8125874999968801,
+   "error": ""
+  },
+  "sealed-squad-067": {
+   "summary": "The blue and red snakes were ordered to forage at caution level normal, with a step limit of 135 and a food target of 12; the squad finished with mission score 6.6.",
+   "latency_s": 0.9732226000051014,
+   "error": ""
+  },
+  "sealed-squad-068": {
+   "summary": "The green and blue snakes were ordered to forage at caution level high with a step limit of 175 and no food target; the squad finished with mission score 7.4.",
+   "latency_s": 0.8695020999875851,
+   "error": ""
+  },
+  "sealed-squad-069": {
+   "summary": "The red snake was ordered to forage at caution level normal, with a step limit of 220 and a food target of 25; the squad finished with mission score 5.3.",
+   "latency_s": 0.9499688000069,
+   "error": ""
+  },
+  "sealed-squad-070": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 300 and a food target of 40; the squad finished with mission score 23.1.",
+   "latency_s": 1.0575435000064317,
+   "error": ""
+  },
+  "sealed-squad-071": {
+   "summary": "The blue and green snakes were ordered to forage at caution level high with a step limit of 50 and no food target; the squad finished with mission score 4.6.",
+   "latency_s": 0.8636908000044059,
+   "error": ""
+  },
+  "sealed-squad-072": {
+   "summary": "The red snake was ordered to forage at caution level high, with a step limit of 80 and a food target of 4; the squad finished with mission score 2.6.",
+   "latency_s": 0.8868097999948077,
+   "error": ""
+  },
+  "sealed-plant-000": {
+   "summary": "The diagnosis used 16 bytes per message and achieved 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, resulting in macro-F1 0.74.",
+   "latency_s": 1.1919340000022203,
+   "error": ""
+  },
+  "sealed-plant-001": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 1% false alarms on the reactor and stripper nodes, achieving macro-F1 0.49.",
+   "latency_s": 0.7514500999823213,
+   "error": ""
+  },
+  "sealed-plant-002": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.68.",
+   "latency_s": 0.9342285000020638,
+   "error": ""
+  },
+  "sealed-plant-003": {
+   "summary": "The diagnosis used 8 bytes per message and 2% false alarms on the separator and compressor_utilities nodes, achieving macro-F1 0.63.",
+   "latency_s": 0.7518697999767028,
+   "error": ""
+  },
+  "sealed-plant-004": {
+   "summary": "The diagnosis for the stripper node used 51 bytes per message with a 0.5% target false alarm rate, achieving macro-F1 0.26.",
+   "latency_s": 0.8071204999869224,
+   "error": ""
+  },
+  "sealed-plant-005": {
+   "summary": "The diagnosis used 8 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.8529899999848567,
+   "error": ""
+  },
+  "sealed-plant-007": {
+   "summary": "The diagnosis used 16 bytes per message and 5% false alarms on the reactor and stripper nodes, achieving macro-F1 0.5.",
+   "latency_s": 0.7206521999905817,
+   "error": ""
+  },
+  "sealed-plant-008": {
+   "summary": "The diagnosis used 16 bytes per message and achieved 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, resulting in macro-F1 0.74.",
+   "latency_s": 0.9343130000052042,
+   "error": ""
+  },
+  "sealed-plant-009": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, and stripper nodes, achieving macro-F1 0.52.",
+   "latency_s": 0.8580061999964528,
+   "error": ""
+  },
+  "sealed-plant-010": {
+   "summary": "The diagnosis used 16 bytes per message and achieved 1% false alarms on the separator node, resulting in macro-F1 0.29.",
+   "latency_s": 0.7525240000104532,
+   "error": ""
+  },
+  "sealed-plant-011": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.7.",
+   "latency_s": 0.9114792000036687,
+   "error": ""
+  },
+  "sealed-plant-012": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the reactor and separator nodes, achieving macro-F1 0.52.",
+   "latency_s": 0.7303022999840323,
+   "error": ""
+  },
+  "sealed-plant-013": {
+   "summary": "The diagnosis for the compressor_utilities node used 8 bytes per message with a 5% false alarm rate, achieving macro-F1 0.48.",
+   "latency_s": 0.7287763000058476,
+   "error": ""
+  },
+  "sealed-plant-014": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.69.",
+   "latency_s": 0.9102809999894816,
+   "error": ""
+  },
+  "sealed-plant-015": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.7.",
+   "latency_s": 0.9079645999881905,
+   "error": ""
+  },
+  "sealed-plant-016": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.75.",
+   "latency_s": 0.864302800007863,
+   "error": ""
+  },
+  "sealed-plant-018": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 0.5% false alarms on the separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.56.",
+   "latency_s": 0.9061312999983784,
+   "error": ""
+  },
+  "sealed-plant-019": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 1% false alarms on the reactor and separator nodes, achieving macro-F1 0.51.",
+   "latency_s": 0.784814999991795,
+   "error": ""
+  },
+  "sealed-plant-022": {
+   "summary": "The diagnosis used 51 bytes per message with a 2% target false alarm rate on the reactor, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.8972709999943618,
+   "error": ""
+  },
+  "sealed-plant-023": {
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.74.",
+   "latency_s": 0.868927600007737,
+   "error": ""
+  },
+  "sealed-plant-024": {
+   "summary": "The diagnosis for the reactor used 8 bytes per message with a 0.5% target false alarm rate, achieving macro-F1 0.47.",
+   "latency_s": 0.7659285000117961,
+   "error": ""
+  },
+  "sealed-plant-025": {
+   "summary": "The diagnosis used 51 bytes per message with a 5% false alarm rate on the reactor and compressor_utilities nodes, achieving macro-F1 0.76.",
+   "latency_s": 0.8105773999996018,
+   "error": ""
+  },
+  "sealed-plant-026": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 0.1% false alarms on the reactor and separator nodes, achieving macro-F1 0.5.",
+   "latency_s": 0.8103702000225894,
+   "error": ""
+  },
+  "sealed-plant-027": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 1% false alarms on the reactor, separator, and stripper nodes, achieving macro-F1 0.52.",
+   "latency_s": 0.827283599996008,
+   "error": ""
+  },
+  "sealed-plant-028": {
+   "summary": "The diagnosis used 51 bytes per message and 2% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.7.",
+   "latency_s": 0.8570980000076815,
+   "error": ""
+  },
+  "sealed-plant-029": {
+   "summary": "The diagnosis for the compressor_utilities node used 16 bytes per message with a 1% target false alarm rate, achieving macro-F1 0.53.",
+   "latency_s": 0.7843263999966439,
+   "error": ""
+  },
+  "sealed-plant-030": {
+   "summary": "The diagnosis used 16 bytes per message and achieved 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, resulting in macro-F1 0.74.",
+   "latency_s": 0.9545522000116762,
+   "error": ""
+  },
+  "sealed-plant-031": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.5% false alarms on the separator and stripper nodes, achieving macro-F1 0.38.",
+   "latency_s": 0.8153821000014432,
+   "error": ""
+  },
+  "sealed-plant-032": {
+   "summary": "The diagnosis for the reactor node used 51 bytes per message with a 0.1% false alarm rate, achieving macro-F1 0.51.",
+   "latency_s": 0.7915061000094283,
+   "error": ""
+  },
+  "sealed-plant-033": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.63.",
+   "latency_s": 0.8336857999966014,
+   "error": ""
+  },
+  "sealed-plant-034": {
+   "summary": "The diagnosis for the stripper node used 16 bytes per message with a 5% false alarm rate, achieving macro-F1 0.28.",
+   "latency_s": 0.7451605999958701,
+   "error": ""
+  },
+  "sealed-plant-035": {
+   "summary": "The diagnosis used 8 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.8476930999895558,
+   "error": ""
+  },
+  "sealed-plant-036": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.68.",
+   "latency_s": 0.9282398999785073,
+   "error": ""
+  },
+  "sealed-plant-037": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.69.",
+   "latency_s": 0.8846412999846507,
+   "error": ""
+  },
+  "sealed-plant-038": {
+   "summary": "The diagnosis used 8 bytes per message and 5% false alarms on the reactor and compressor_utilities nodes, achieving macro-F1 0.72.",
+   "latency_s": 0.7321927000011783,
+   "error": ""
+  },
+  "sealed-plant-039": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 0.1% false alarms on the reactor and separator nodes, achieving macro-F1 0.48.",
+   "latency_s": 0.8148667000059504,
+   "error": ""
+  },
+  "sealed-plant-040": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.75.",
+   "latency_s": 0.8720211000181735,
+   "error": ""
+  },
+  "sealed-plant-042": {
+   "summary": "The diagnosis for the separator node used 51 bytes per message with a 5% target false alarm rate, achieving macro-F1 0.3.",
+   "latency_s": 0.7527521000010893,
+   "error": ""
+  },
+  "sealed-plant-043": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 0.1% false alarms on the stripper and separator nodes, achieving macro-F1 0.35.",
+   "latency_s": 0.8263711000035983,
+   "error": ""
+  },
+  "sealed-plant-044": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.69.",
+   "latency_s": 0.9090533999842592,
+   "error": ""
+  },
+  "sealed-plant-045": {
+   "summary": "The diagnosis used 8 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.8361853999958839,
+   "error": ""
+  },
+  "sealed-plant-046": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 0.1% false alarms across the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.73.",
+   "latency_s": 0.9482030999788549,
+   "error": ""
+  },
+  "sealed-plant-047": {
+   "summary": "The diagnosis for the compressor_utilities node used 8 bytes per message with a 1% target false alarm rate, achieving macro-F1 0.48.",
+   "latency_s": 0.7512128999806009,
+   "error": ""
+  },
+  "sealed-plant-048": {
+   "summary": "The diagnosis used 51 bytes per message with a 5% target false alarm rate on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.72.",
+   "latency_s": 0.9340131999924779,
+   "error": ""
+  },
+  "sealed-plant-049": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 0.5% false alarms on the reactor and separator nodes, achieving macro-F1 0.5.",
+   "latency_s": 0.7941920000012033,
+   "error": ""
+  },
+  "sealed-plant-050": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 1% false alarms on the reactor, separator, and stripper nodes, achieving macro-F1 0.51.",
+   "latency_s": 0.8440388000162784,
+   "error": ""
+  },
+  "sealed-plant-051": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.7.",
+   "latency_s": 0.9046625999908429,
+   "error": ""
+  },
+  "sealed-plant-052": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 0.1% false alarms on the separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.61.",
+   "latency_s": 0.8952692000020761,
+   "error": ""
+  },
+  "sealed-plant-053": {
+   "summary": "The diagnosis used 16 bytes per message and 5% false alarms on the reactor, separator, and stripper nodes, achieving macro-F1 0.53.",
+   "latency_s": 0.812637299997732,
+   "error": ""
+  },
+  "sealed-plant-054": {
+   "summary": "The diagnosis used 8 bytes per message and 2% false alarms on the separator and stripper nodes, achieving macro-F1 0.39.",
+   "latency_s": 0.7260358999774326,
+   "error": ""
+  },
+  "sealed-plant-055": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 0.5% false alarms on the reactor and compressor_utilities nodes, achieving macro-F1 0.75.",
+   "latency_s": 0.8319727999914903,
+   "error": ""
+  },
+  "sealed-plant-056": {
+   "summary": "The diagnosis for the stripper node used 51 bytes per message with a 1% target false alarm rate, achieving macro-F1 0.27.",
+   "latency_s": 0.7505748000112362,
+   "error": ""
+  },
+  "sealed-plant-057": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.75.",
+   "latency_s": 0.8668289000052027,
+   "error": ""
+  },
+  "sealed-plant-058": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the separator and compressor_utilities nodes, achieving macro-F1 0.62.",
+   "latency_s": 0.8119022999890149,
+   "error": ""
+  },
+  "sealed-plant-059": {
+   "summary": "The diagnosis used 16 bytes per message and achieved 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, resulting in macro-F1 0.74.",
+   "latency_s": 0.9524878000083845,
+   "error": ""
+  },
+  "sealed-plant-060": {
+   "summary": "The diagnosis for the reactor node used 51 bytes per message with a 5% target false alarm rate, achieving macro-F1 0.54.",
+   "latency_s": 0.7726888000033796,
+   "error": ""
+  },
+  "sealed-plant-061": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 1% false alarms on the reactor, separator, and compressor_utilities nodes, achieving macro-F1 0.73.",
+   "latency_s": 0.8323077000095509,
+   "error": ""
+  },
+  "sealed-plant-062": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the reactor and compressor_utilities nodes, achieving macro-F1 0.78.",
+   "latency_s": 0.7745692000025883,
+   "error": ""
+  },
+  "sealed-plant-064": {
+   "summary": "The diagnosis used 8 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.8431956999993417,
+   "error": ""
+  },
+  "sealed-plant-065": {
+   "summary": "The diagnosis used 51 bytes per message and 5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.72.",
+   "latency_s": 0.8729359999997541,
+   "error": ""
+  },
+  "sealed-plant-066": {
+   "summary": "The diagnosis used 16 bytes per message and achieved 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, resulting in macro-F1 0.74.",
+   "latency_s": 0.9376387000083923,
+   "error": ""
+  },
+  "sealed-plant-067": {
+   "summary": "The diagnosis used 51 bytes per message with a 5% target false alarm rate on the separator and compressor_utilities nodes, achieving macro-F1 0.61.",
+   "latency_s": 0.8334632999903988,
+   "error": ""
+  },
+  "sealed-plant-068": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the reactor, separator, and stripper nodes, achieving macro-F1 0.52.",
+   "latency_s": 0.8771090999944136,
+   "error": ""
+  },
+  "sealed-plant-069": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the stripper and compressor_utilities nodes, achieving macro-F1 0.6.",
+   "latency_s": 0.7492272999952547,
+   "error": ""
+  },
+  "sealed-plant-070": {
+   "summary": "The diagnosis for the separator node used 51 bytes per message with a 1% false alarm rate, achieving macro-F1 0.28.",
+   "latency_s": 0.7549459000001661,
+   "error": ""
+  },
+  "sealed-plant-071": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.9261767000134569,
+   "error": ""
+  }
+ },
+ "o14": {
+  "sealed-squad-000": {
+   "summary": "The red and blue snakes were ordered to forage at caution level normal with a step limit of 90 and no food target; the squad finished with mission score 6.2.",
+   "latency_s": 0.9357952999998815,
+   "error": ""
+  },
+  "sealed-squad-001": {
+   "summary": "The green snake was ordered to forage at caution level high with a step limit of 250 and no food target; the squad finished with mission score 5.2.",
+   "latency_s": 0.8323213999974541,
+   "error": ""
+  },
+  "sealed-squad-002": {
+   "summary": "The blue snake was ordered to forage at caution level low, with a step limit of 120 and a food target of 15; the squad finished with mission score 3.9.",
+   "latency_s": 0.9475328999978956,
+   "error": ""
+  },
+  "sealed-squad-003": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high, with a step limit of 300 and a food target of 20; the squad finished with mission score 15.7.",
+   "latency_s": 1.0699061999912374,
+   "error": ""
+  },
+  "sealed-squad-004": {
+   "summary": "The red and green snakes were ordered to forage at caution level normal with a step limit of 200 and no food target; the squad finished with mission score 13.3.",
+   "latency_s": 0.891873900021892,
+   "error": ""
+  },
+  "sealed-squad-005": {
+   "summary": "The blue and green snakes were ordered to forage at caution level low, with a step limit of 75 and a food target of 9; the squad finished with mission score 5.3.",
+   "latency_s": 0.9488555999996606,
+   "error": ""
+  },
+  "sealed-squad-006": {
+   "summary": "The green snake was ordered to forage at caution level high with a step limit of 100 and no food target; the squad finished with mission score 2.9.",
+   "latency_s": 0.8312753000063822,
+   "error": ""
+  },
+  "sealed-squad-007": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level low, with a step limit of 300 and a food target of 12; the squad finished with mission score 10.8.",
+   "latency_s": 1.0577297999989241,
+   "error": ""
+  },
+  "sealed-squad-008": {
+   "summary": "The red snake was ordered to forage at caution level normal with a step limit of 60 and no food target; the squad finished with mission score 3.2.",
+   "latency_s": 0.8098560000071302,
+   "error": ""
+  },
+  "sealed-squad-010": {
+   "summary": "The green and blue snakes were ordered to forage at caution level normal, with a step limit of 140 and a food target of 13; the squad finished with mission score 9.8.",
+   "latency_s": 0.9904019000241533,
+   "error": ""
+  },
+  "sealed-squad-011": {
+   "summary": "The red snake was ordered to forage at caution level normal, with a step limit of 50 and a food target of 10; the squad finished with mission score 2.9.",
+   "latency_s": 0.9207449000095949,
+   "error": ""
+  },
+  "sealed-squad-012": {
+   "summary": "The red and blue snakes were ordered to forage at caution level high with a step limit of 180 and no food target; the squad finished with mission score 7.0.",
+   "latency_s": 0.8985049999901094,
+   "error": ""
+  },
+  "sealed-squad-013": {
+   "summary": "The red and green snakes were ordered to forage at caution level normal, with a step limit of 300 and a food target of 30; the squad finished with mission score 16.0.",
+   "latency_s": 0.9970940999919549,
+   "error": ""
+  },
+  "sealed-squad-014": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 23.1.",
+   "latency_s": 0.9753983999835327,
+   "error": ""
+  },
+  "sealed-squad-015": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level low with a step limit of 55 and no food target; the squad finished with mission score 7.7.",
+   "latency_s": 0.934956900018733,
+   "error": ""
+  },
+  "sealed-squad-016": {
+   "summary": "The red snake was ordered to forage at caution level high with a step limit of 180 and no food target; the squad finished with mission score 4.8.",
+   "latency_s": 0.8424697000009473,
+   "error": ""
+  },
+  "sealed-squad-018": {
+   "summary": "The green and blue snakes were ordered to forage at caution level low with a step limit of 120 and no food target; the squad finished with mission score 6.4.",
+   "latency_s": 0.884177500003716,
+   "error": ""
+  },
+  "sealed-squad-019": {
+   "summary": "The green snake was ordered to forage at caution level high, with a step limit of 200 and a food target of 25; the squad finished with mission score 4.6.",
+   "latency_s": 0.9474775000126101,
+   "error": ""
+  },
+  "sealed-squad-020": {
+   "summary": "The red snake was ordered to forage at caution level normal, with a step limit of 300 and a food target of 6; the squad finished with mission score 4.2.",
+   "latency_s": 0.9280231000157073,
+   "error": ""
+  },
+  "sealed-squad-021": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high, with a step limit of 300 and a food target of 24; the squad finished with mission score 16.5.",
+   "latency_s": 1.0769495000131428,
+   "error": ""
+  },
+  "sealed-squad-022": {
+   "summary": "The blue and green snakes were ordered to forage at caution level low, with a step limit of 150 and a food target of 20; the squad finished with mission score 7.1.",
+   "latency_s": 0.9922332999994978,
+   "error": ""
+  },
+  "sealed-squad-023": {
+   "summary": "The red snake was ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 5.2.",
+   "latency_s": 0.8327258000208531,
+   "error": ""
+  },
+  "sealed-squad-024": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high with a step limit of 100 and no food target; the squad finished with mission score 10.1.",
+   "latency_s": 0.9686318000021856,
+   "error": ""
+  },
+  "sealed-squad-025": {
+   "summary": "The red and green snakes were ordered to forage at caution level low with a step limit of 50 and no food target; the squad finished with mission score 5.3.",
+   "latency_s": 0.876367900025798,
+   "error": ""
+  },
+  "sealed-squad-026": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 250 and a food target of 35; the squad finished with mission score 21.2.",
+   "latency_s": 1.0743597999971826,
+   "error": ""
+  },
+  "sealed-squad-027": {
+   "summary": "The green snake was ordered to forage at caution level normal, with a step limit of 300 and a food target of 40; the squad finished with mission score 11.3.",
+   "latency_s": 0.9469365999975707,
+   "error": ""
+  },
+  "sealed-squad-028": {
+   "summary": "The red and blue snakes were ordered to forage at caution level high, with a step limit of 300 and a food target of 8; the squad finished with mission score 5.1.",
+   "latency_s": 0.9731322999869008,
+   "error": ""
+  },
+  "sealed-squad-029": {
+   "summary": "The red snake was ordered to forage at caution level low with a step limit of 55 and no food target; the squad finished with mission score 3.6.",
+   "latency_s": 0.8207985000044573,
+   "error": ""
+  },
+  "sealed-squad-030": {
+   "summary": "The green and blue snakes were ordered to forage at caution level low, with a step limit of 90 and a food target of 10; the squad finished with mission score 5.6.",
+   "latency_s": 0.9652373999997508,
+   "error": ""
+  },
+  "sealed-squad-031": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 120 and a food target of 18; the squad finished with mission score 14.8.",
+   "latency_s": 1.0836431999923661,
+   "error": ""
+  },
+  "sealed-squad-032": {
+   "summary": "The red and green snakes were ordered to forage at caution level normal, with a step limit of 160 and a food target of 14; the squad finished with mission score 10.8.",
+   "latency_s": 1.0090511000016704,
+   "error": ""
+  },
+  "sealed-squad-033": {
+   "summary": "The blue snake was ordered to forage at caution level high with a step limit of 210 and no food target; the squad finished with mission score 4.8.",
+   "latency_s": 0.8416855999967083,
+   "error": ""
+  },
+  "sealed-squad-034": {
+   "summary": "The green and blue snakes were ordered to forage at caution level low, with a step limit of 65 and a food target of 11; the squad finished with mission score 5.1.",
+   "latency_s": 0.965577700000722,
+   "error": ""
+  },
+  "sealed-squad-035": {
+   "summary": "The blue snake was ordered to forage at caution level normal with a step limit of 77 and no food target; the squad finished with mission score 4.6.",
+   "latency_s": 0.8316818000166677,
+   "error": ""
+  },
+  "sealed-squad-036": {
+   "summary": "The red and green snakes were ordered to forage at caution level high, with a step limit of 130 and a food target of 16; the squad finished with mission score 8.1.",
+   "latency_s": 0.9743149999994785,
+   "error": ""
+  },
+  "sealed-squad-037": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high, with a step limit of 300 and a food target of 10; the squad finished with mission score 10.4.",
+   "latency_s": 1.0807226999895647,
+   "error": ""
+  },
+  "sealed-squad-038": {
+   "summary": "The red snake was ordered to forage at caution level normal with a step limit of 90 and no food target; the squad finished with mission score 3.6.",
+   "latency_s": 0.8142881999956444,
+   "error": ""
+  },
+  "sealed-squad-039": {
+   "summary": "The blue and red snakes were ordered to forage at caution level low with a step limit of 100 and no food target; the squad finished with mission score 7.4.",
+   "latency_s": 0.881619599997066,
+   "error": ""
+  },
+  "sealed-squad-040": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 275 and a food target of 33; the squad finished with mission score 22.9.",
+   "latency_s": 1.0791261999984272,
+   "error": ""
+  },
+  "sealed-squad-041": {
+   "summary": "The green snake was ordered to forage at caution level normal, with a step limit of 300 and a food target of 5; the squad finished with mission score 4.4.",
+   "latency_s": 0.9059880999848247,
+   "error": ""
+  },
+  "sealed-squad-042": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 300 and a food target of 40; the squad finished with mission score 23.1.",
+   "latency_s": 1.0767431000131182,
+   "error": ""
+  },
+  "sealed-squad-043": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 240 and no food target; the squad finished with mission score 21.0.",
+   "latency_s": 0.9488975999993272,
+   "error": ""
+  },
+  "sealed-squad-044": {
+   "summary": "The red and green snakes were ordered to forage at caution level high with a step limit of 95 and no food target; the squad finished with mission score 7.2.",
+   "latency_s": 0.8687573000206612,
+   "error": ""
+  },
+  "sealed-squad-045": {
+   "summary": "The red snake was ordered to forage at caution level low, with a step limit of 300 and a food target of 22; the squad finished with mission score 9.4.",
+   "latency_s": 0.9552822000114247,
+   "error": ""
+  },
+  "sealed-squad-046": {
+   "summary": "The green snake was ordered to forage at caution level high with a step limit of 120 and no food target; the squad finished with mission score 3.4.",
+   "latency_s": 0.8534235999977682,
+   "error": ""
+  },
+  "sealed-squad-047": {
+   "summary": "The blue and green snakes were ordered to forage at caution level normal, with a step limit of 200 and a food target of 15; the squad finished with mission score 11.2.",
+   "latency_s": 0.9972491999797057,
+   "error": ""
+  },
+  "sealed-squad-048": {
+   "summary": "The red snake was ordered to forage at caution level high with a step limit of 70 and no food target; the squad finished with mission score 2.2.",
+   "latency_s": 0.8255402999930084,
+   "error": ""
+  },
+  "sealed-squad-049": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 150 and a food target of 26; the squad finished with mission score 16.9.",
+   "latency_s": 1.0578881000110414,
+   "error": ""
+  },
+  "sealed-squad-050": {
+   "summary": "The green and blue snakes were ordered to forage at caution level low with a step limit of 110 and no food target; the squad finished with mission score 6.2.",
+   "latency_s": 0.8747949000098743,
+   "error": ""
+  },
+  "sealed-squad-051": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 300 and a food target of 31; the squad finished with mission score 22.9.",
+   "latency_s": 1.0846389000071213,
+   "error": ""
+  },
+  "sealed-squad-052": {
+   "summary": "The red snake was ordered to forage at caution level high, with a step limit of 85 and a food target of 3; the squad finished with mission score 2.1.",
+   "latency_s": 0.9143170999886934,
+   "error": ""
+  },
+  "sealed-squad-053": {
+   "summary": "The green snake was ordered to forage at caution level normal, with a step limit of 300 and a food target of 1; the squad finished with mission score 1.3.",
+   "latency_s": 0.9249431000207551,
+   "error": ""
+  },
+  "sealed-squad-054": {
+   "summary": "The red and green snakes were ordered to forage at caution level low with a step limit of 58 and no food target; the squad finished with mission score 6.4.",
+   "latency_s": 0.8737044000008609,
+   "error": ""
+  },
+  "sealed-squad-055": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high, with a step limit of 225 and a food target of 28; the squad finished with mission score 15.3.",
+   "latency_s": 1.057825199997751,
+   "error": ""
+  },
+  "sealed-squad-056": {
+   "summary": "The blue snake was ordered to forage at caution level normal with a step limit of 190 and no food target; the squad finished with mission score 6.6.",
+   "latency_s": 0.8465203999949154,
+   "error": ""
+  },
+  "sealed-squad-057": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level low, with a step limit of 70 and a food target of 15; the squad finished with mission score 8.5.",
+   "latency_s": 1.0318737999768928,
+   "error": ""
+  },
+  "sealed-squad-058": {
+   "summary": "The green snake was ordered to forage at caution level normal with a step limit of 120 and no food target; the squad finished with mission score 5.4.",
+   "latency_s": 0.8473253999836743,
+   "error": ""
+  },
+  "sealed-squad-059": {
+   "summary": "The red and green snakes were ordered to forage at caution level normal with a step limit of 150 and no food target; the squad finished with mission score 10.9.",
+   "latency_s": 0.9030686999903992,
+   "error": ""
+  },
+  "sealed-squad-060": {
+   "summary": "The red and blue snakes were ordered to forage at caution level high, with a step limit of 180 and a food target of 17; the squad finished with mission score 7.0.",
+   "latency_s": 0.9735296999861021,
+   "error": ""
+  },
+  "sealed-squad-061": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 240 and no food target; the squad finished with mission score 21.0.",
+   "latency_s": 0.9804524999926798,
+   "error": ""
+  },
+  "sealed-squad-062": {
+   "summary": "The blue snake was ordered to forage at caution level low with a step limit of 100 and no food target; the squad finished with mission score 3.6.",
+   "latency_s": 0.8479341999918688,
+   "error": ""
+  },
+  "sealed-squad-063": {
+   "summary": "The blue and green snakes were ordered to forage at caution level low with a step limit of 300 and no food target; the squad finished with mission score 8.1.",
+   "latency_s": 0.8880307000072207,
+   "error": ""
+  },
+  "sealed-squad-064": {
+   "summary": "The red snake was ordered to forage at caution level high, with a step limit of 95 and a food target of 9; the squad finished with mission score 2.9.",
+   "latency_s": 0.914437800005544,
+   "error": ""
+  },
+  "sealed-squad-065": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 280 and a food target of 40; the squad finished with mission score 22.9.",
+   "latency_s": 1.0699052999843843,
+   "error": ""
+  },
+  "sealed-squad-066": {
+   "summary": "The green snake was ordered to forage at caution level low with a step limit of 60 and no food target; the squad finished with mission score 2.9.",
+   "latency_s": 0.8348880999838002,
+   "error": ""
+  },
+  "sealed-squad-067": {
+   "summary": "The blue and red snakes were ordered to forage at caution level normal, with a step limit of 135 and a food target of 12; the squad finished with mission score 6.6.",
+   "latency_s": 0.9738958000089042,
+   "error": ""
+  },
+  "sealed-squad-068": {
+   "summary": "The green and blue snakes were ordered to forage at caution level high with a step limit of 175 and no food target; the squad finished with mission score 7.4.",
+   "latency_s": 0.8930387000145856,
+   "error": ""
+  },
+  "sealed-squad-069": {
+   "summary": "The red snake was ordered to forage at caution level normal, with a step limit of 220 and a food target of 25; the squad finished with mission score 5.3.",
+   "latency_s": 0.9509710000129417,
+   "error": ""
+  },
+  "sealed-squad-070": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 300 and a food target of 40; the squad finished with mission score 23.1.",
+   "latency_s": 1.0785366999916732,
+   "error": ""
+  },
+  "sealed-squad-071": {
+   "summary": "The blue and green snakes were ordered to forage at caution level high with a step limit of 50 and no food target; the squad finished with mission score 4.6.",
+   "latency_s": 0.8711491999856662,
+   "error": ""
+  },
+  "sealed-squad-072": {
+   "summary": "The red snake was ordered to forage at caution level high, with a step limit of 80 and a food target of 4; the squad finished with mission score 2.6.",
+   "latency_s": 0.9086914999934379,
+   "error": ""
+  },
+  "sealed-plant-000": {
+   "summary": "The diagnosis used 16 bytes per message and achieved 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, resulting in macro-F1 0.74.",
+   "latency_s": 0.9867308000102639,
+   "error": ""
+  },
+  "sealed-plant-001": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 1% false alarms on the reactor and stripper nodes, achieving macro-F1 0.49.",
+   "latency_s": 0.7696464999753516,
+   "error": ""
+  },
+  "sealed-plant-002": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.68.",
+   "latency_s": 0.9474666000169236,
+   "error": ""
+  },
+  "sealed-plant-003": {
+   "summary": "The diagnosis used 8 bytes per message and 2% false alarms on the separator and compressor_utilities nodes, achieving macro-F1 0.63.",
+   "latency_s": 0.7467950999853201,
+   "error": ""
+  },
+  "sealed-plant-004": {
+   "summary": "The diagnosis for the stripper node used 51 bytes per message with a 0.5% target false alarm rate, achieving macro-F1 0.26.",
+   "latency_s": 0.8087083999998868,
+   "error": ""
+  },
+  "sealed-plant-005": {
+   "summary": "The diagnosis used 8 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.8523709999863058,
+   "error": ""
+  },
+  "sealed-plant-006": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 0.1% false alarms on the separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.61.",
+   "latency_s": 0.9211553000204731,
+   "error": ""
+  },
+  "sealed-plant-007": {
+   "summary": "The diagnosis used 16 bytes per message and 5% false alarms on the reactor and stripper nodes, achieving macro-F1 0.5.",
+   "latency_s": 0.7363901000062469,
+   "error": ""
+  },
+  "sealed-plant-008": {
+   "summary": "The diagnosis used 16 bytes per message and 5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.76.",
+   "latency_s": 0.8749502999999095,
+   "error": ""
+  },
+  "sealed-plant-009": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, and stripper nodes, achieving macro-F1 0.52.",
+   "latency_s": 0.8502343999862205,
+   "error": ""
+  },
+  "sealed-plant-010": {
+   "summary": "The diagnosis used 16 bytes per message and achieved 1% false alarms on the separator node, resulting in macro-F1 0.29.",
+   "latency_s": 0.7325308000145014,
+   "error": ""
+  },
+  "sealed-plant-011": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.7.",
+   "latency_s": 0.8934203999815509,
+   "error": ""
+  },
+  "sealed-plant-012": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the reactor and separator nodes, achieving macro-F1 0.52.",
+   "latency_s": 0.7300458000099752,
+   "error": ""
+  },
+  "sealed-plant-013": {
+   "summary": "The diagnosis for the compressor_utilities node used 8 bytes per message with a 5% false alarm rate, achieving macro-F1 0.48.",
+   "latency_s": 0.7330427999841049,
+   "error": ""
+  },
+  "sealed-plant-014": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.69.",
+   "latency_s": 0.8958815999794751,
+   "error": ""
+  },
+  "sealed-plant-015": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.7.",
+   "latency_s": 0.9047927999927197,
+   "error": ""
+  },
+  "sealed-plant-016": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.75.",
+   "latency_s": 0.8692039999878034,
+   "error": ""
+  },
+  "sealed-plant-017": {
+   "summary": "The diagnosis used 16 bytes per message and 5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.76.",
+   "latency_s": 0.8472508999984711,
+   "error": ""
+  },
+  "sealed-plant-018": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 0.5% false alarms on the separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.56.",
+   "latency_s": 0.9144790999998804,
+   "error": ""
+  },
+  "sealed-plant-019": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 1% false alarms on the reactor and separator nodes, achieving macro-F1 0.51.",
+   "latency_s": 0.7703381000028457,
+   "error": ""
+  },
+  "sealed-plant-020": {
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.74.",
+   "latency_s": 0.8525084000139032,
+   "error": ""
+  },
+  "sealed-plant-021": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the reactor, separator, and compressor_utilities nodes, achieving macro-F1 0.72.",
+   "latency_s": 0.8722284999967087,
+   "error": ""
+  },
+  "sealed-plant-022": {
+   "summary": "The diagnosis used 51 bytes per message with a 2% target false alarm rate on the reactor, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.8816634000104386,
+   "error": ""
+  },
+  "sealed-plant-023": {
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.74.",
+   "latency_s": 0.8751170000177808,
+   "error": ""
+  },
+  "sealed-plant-024": {
+   "summary": "The diagnosis for the reactor used 8 bytes per message with a 0.5% target false alarm rate, achieving macro-F1 0.47.",
+   "latency_s": 0.7463143999921158,
+   "error": ""
+  },
+  "sealed-plant-025": {
+   "summary": "The diagnosis used 51 bytes per message with a 5% false alarm rate on the reactor and compressor_utilities nodes, achieving macro-F1 0.76.",
+   "latency_s": 0.8078788999991957,
+   "error": ""
+  },
+  "sealed-plant-026": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 0.1% false alarms on the reactor and separator nodes, achieving macro-F1 0.5.",
+   "latency_s": 0.8082339999964461,
+   "error": ""
+  },
+  "sealed-plant-027": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 1% false alarms on the stripper, reactor, and separator nodes, achieving macro-F1 0.52.",
+   "latency_s": 0.8131009000062477,
+   "error": ""
+  },
+  "sealed-plant-028": {
+   "summary": "The diagnosis used 51 bytes per message with a 2% target false alarm rate on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.7.",
+   "latency_s": 0.8937333000067156,
+   "error": ""
+  },
+  "sealed-plant-029": {
+   "summary": "The diagnosis for the compressor_utilities node used 16 bytes per message with a 1% target false alarm rate, achieving macro-F1 0.53.",
+   "latency_s": 0.7692335000028834,
+   "error": ""
+  },
+  "sealed-plant-030": {
+   "summary": "The diagnosis used 16 bytes per message and 5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.76.",
+   "latency_s": 0.8712493999919388,
+   "error": ""
+  },
+  "sealed-plant-031": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.5% false alarms on the separator and stripper nodes, achieving macro-F1 0.38.",
+   "latency_s": 0.7924063999962527,
+   "error": ""
+  },
+  "sealed-plant-032": {
+   "summary": "The diagnosis for the reactor node used 51 bytes per message with a 0.1% false alarm rate, achieving macro-F1 0.51.",
+   "latency_s": 0.7870122000167612,
+   "error": ""
+  },
+  "sealed-plant-033": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.63.",
+   "latency_s": 0.811425899999449,
+   "error": ""
+  },
+  "sealed-plant-034": {
+   "summary": "The diagnosis for the stripper node used 16 bytes per message with a 5% false alarm rate, achieving macro-F1 0.28.",
+   "latency_s": 0.7320649999892339,
+   "error": ""
+  },
+  "sealed-plant-035": {
+   "summary": "The diagnosis used 8 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.8328970999864396,
+   "error": ""
+  },
+  "sealed-plant-036": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.68.",
+   "latency_s": 0.94925079998211,
+   "error": ""
+  },
+  "sealed-plant-037": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.69.",
+   "latency_s": 0.8882356000249274,
+   "error": ""
+  },
+  "sealed-plant-038": {
+   "summary": "The diagnosis used 8 bytes per message and 5% false alarms on the reactor and compressor_utilities nodes, achieving macro-F1 0.72.",
+   "latency_s": 0.7424580999941099,
+   "error": ""
+  },
+  "sealed-plant-039": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 0.1% false alarms on the reactor and separator nodes, achieving macro-F1 0.48.",
+   "latency_s": 0.8292546000157017,
+   "error": ""
+  },
+  "sealed-plant-040": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.75.",
+   "latency_s": 0.8656218999822158,
+   "error": ""
+  },
+  "sealed-plant-041": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.5% false alarms on the reactor, stripper, and compressor_utilities nodes, achieving macro-F1 0.7.",
+   "latency_s": 0.874538100004429,
+   "error": ""
+  },
+  "sealed-plant-042": {
+   "summary": "The diagnosis for the separator node used 51 bytes per message with a 5% target false alarm rate, achieving macro-F1 0.3.",
+   "latency_s": 0.7518692999728955,
+   "error": ""
+  },
+  "sealed-plant-043": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 0.1% false alarms on the stripper and separator nodes, achieving macro-F1 0.35.",
+   "latency_s": 0.824649500020314,
+   "error": ""
+  },
+  "sealed-plant-044": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.69.",
+   "latency_s": 0.9093949999951292,
+   "error": ""
+  },
+  "sealed-plant-045": {
+   "summary": "The diagnosis used 8 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.8489466000173707,
+   "error": ""
+  },
+  "sealed-plant-046": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 0.1% false alarms across the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.73.",
+   "latency_s": 0.928502099995967,
+   "error": ""
+  },
+  "sealed-plant-047": {
+   "summary": "The diagnosis for the compressor_utilities node used 8 bytes per message with a 1% target false alarm rate, achieving macro-F1 0.48.",
+   "latency_s": 0.7652081999985967,
+   "error": ""
+  },
+  "sealed-plant-048": {
+   "summary": "The diagnosis used 51 bytes per message with a 5% target false alarm rate on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.72.",
+   "latency_s": 0.932447700004559,
+   "error": ""
+  },
+  "sealed-plant-049": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 0.5% false alarms on the reactor and separator nodes, achieving macro-F1 0.5.",
+   "latency_s": 0.7938179000047967,
+   "error": ""
+  },
+  "sealed-plant-050": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 1% false alarms on the reactor, separator, and stripper nodes, achieving macro-F1 0.51.",
+   "latency_s": 0.8312158999906387,
+   "error": ""
+  },
+  "sealed-plant-051": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.7.",
+   "latency_s": 0.892191199993249,
+   "error": ""
+  },
+  "sealed-plant-052": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 0.1% false alarms on the separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.61.",
+   "latency_s": 0.9065637000021525,
+   "error": ""
+  },
+  "sealed-plant-053": {
+   "summary": "The diagnosis used 16 bytes per message and 5% false alarms on the reactor, separator, and stripper nodes, achieving macro-F1 0.53.",
+   "latency_s": 0.8167933000077028,
+   "error": ""
+  },
+  "sealed-plant-054": {
+   "summary": "The diagnosis used 8 bytes per message and 2% false alarms on the separator and stripper nodes, achieving macro-F1 0.39.",
+   "latency_s": 0.711905400006799,
+   "error": ""
+  },
+  "sealed-plant-055": {
+   "summary": "The diagnosis used 51 bytes per message with a 5% false alarm rate on the reactor and compressor_utilities nodes, achieving macro-F1 0.76.",
+   "latency_s": 0.8081252999836579,
+   "error": ""
+  },
+  "sealed-plant-056": {
+   "summary": "The diagnosis for the stripper node used 51 bytes per message with a 1% target false alarm rate, achieving macro-F1 0.27.",
+   "latency_s": 0.769875800004229,
+   "error": ""
+  },
+  "sealed-plant-057": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.75.",
+   "latency_s": 0.8527886000229046,
+   "error": ""
+  },
+  "sealed-plant-058": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the separator and compressor_utilities nodes, achieving macro-F1 0.62.",
+   "latency_s": 0.8233266999886837,
+   "error": ""
+  },
+  "sealed-plant-059": {
+   "summary": "The diagnosis used 16 bytes per message and achieved 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, resulting in macro-F1 0.74.",
+   "latency_s": 0.9321766000066418,
+   "error": ""
+  },
+  "sealed-plant-060": {
+   "summary": "The diagnosis for the reactor node used 51 bytes per message with a 5% target false alarm rate, achieving macro-F1 0.54.",
+   "latency_s": 0.7687705999996979,
+   "error": ""
+  },
+  "sealed-plant-061": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 1% false alarms on the reactor, separator, and compressor_utilities nodes, achieving macro-F1 0.73.",
+   "latency_s": 0.8555301000014879,
+   "error": ""
+  },
+  "sealed-plant-062": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the reactor and compressor_utilities nodes, achieving macro-F1 0.78.",
+   "latency_s": 0.7513739999849349,
+   "error": ""
+  },
+  "sealed-plant-063": {
+   "summary": "The diagnosis used 8 bytes per message and 2% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.8325341999880038,
+   "error": ""
+  },
+  "sealed-plant-064": {
+   "summary": "The diagnosis used 8 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.834794199996395,
+   "error": ""
+  },
+  "sealed-plant-065": {
+   "summary": "The diagnosis used 51 bytes per message and 5% false alarms on the reactor, stripper, separator, and compressor_utilities nodes, achieving macro-F1 0.72.",
+   "latency_s": 0.8545879000157584,
+   "error": ""
+  },
+  "sealed-plant-066": {
+   "summary": "The diagnosis used 16 bytes per message and achieved 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, resulting in macro-F1 0.74.",
+   "latency_s": 0.9575374000123702,
+   "error": ""
+  },
+  "sealed-plant-067": {
+   "summary": "The diagnosis used 51 bytes per message with a 5% target false alarm rate on the separator and compressor_utilities nodes, achieving macro-F1 0.61.",
+   "latency_s": 0.8246560999832582,
+   "error": ""
+  },
+  "sealed-plant-068": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the reactor, stripper, and separator nodes, achieving macro-F1 0.52.",
+   "latency_s": 0.877987599989865,
+   "error": ""
+  },
+  "sealed-plant-069": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the stripper and compressor_utilities nodes, achieving macro-F1 0.6.",
+   "latency_s": 0.745542699994985,
+   "error": ""
+  },
+  "sealed-plant-070": {
+   "summary": "The diagnosis for the separator node used 51 bytes per message with a 1% false alarm rate, achieving macro-F1 0.28.",
+   "latency_s": 0.7559079999919049,
+   "error": ""
+  },
+  "sealed-plant-071": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.9221854000061285,
+   "error": ""
+  }
+ },
+ "regex": {
+  "sealed-squad-000": {
+   "summary": "The red and blue snakes were ordered to forage at caution level normal with a step limit of 90 and no food target; the squad finished with mission score 6.2.",
+   "latency_s": 0.9407711000239942,
+   "error": ""
+  },
+  "sealed-squad-001": {
+   "summary": "The green snake was ordered to forage at caution level normal with a step limit of 250 and no food target; the squad finished with mission score 9.5.",
+   "latency_s": 0.8492506000038702,
+   "error": ""
+  },
+  "sealed-squad-002": {
+   "summary": "The blue snake was ordered to forage at caution level low with a step limit of 300 and no food target; the squad finished with mission score 5.7.",
+   "latency_s": 0.8575941000017338,
+   "error": ""
+  },
+  "sealed-squad-003": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 23.1.",
+   "latency_s": 0.9733912000083365,
+   "error": ""
+  },
+  "sealed-squad-004": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 23.1.",
+   "latency_s": 0.9228628000128083,
+   "error": ""
+  },
+  "sealed-squad-005": {
+   "summary": "The green and blue snakes were ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 14.1.",
+   "latency_s": 0.9036784000054467,
+   "error": ""
+  },
+  "sealed-squad-006": {
+   "summary": "The green snake was ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 11.3.",
+   "latency_s": 0.8471926999918651,
+   "error": ""
+  },
+  "sealed-squad-007": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level low with a step limit of 300 and no food target; the squad finished with mission score 14.6.",
+   "latency_s": 0.9762694000091869,
+   "error": ""
+  },
+  "sealed-squad-008": {
+   "summary": "The red snake was ordered to forage at caution level normal with a step limit of 60 and no food target; the squad finished with mission score 3.2.",
+   "latency_s": 0.8099114999931771,
+   "error": ""
+  },
+  "sealed-squad-009": {
+   "summary": "The blue snake was ordered to forage at caution level high, with a step limit of 300 and a food target of 7; the squad finished with mission score 4.1.",
+   "latency_s": 0.9108662999933586,
+   "error": ""
+  },
+  "sealed-squad-010": {
+   "summary": "The green and blue snakes were ordered to forage at caution level normal with a step limit of 140 and no food target; the squad finished with mission score 10.0.",
+   "latency_s": 0.9151921000157017,
+   "error": ""
+  },
+  "sealed-squad-011": {
+   "summary": "The red snake was ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 5.2.",
+   "latency_s": 0.8254407999920659,
+   "error": ""
+  },
+  "sealed-squad-012": {
+   "summary": "The red and blue snakes were ordered to forage at caution level high with a step limit of 180 and no food target; the squad finished with mission score 7.0.",
+   "latency_s": 0.8730191999929957,
+   "error": ""
+  },
+  "sealed-squad-013": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 23.1.",
+   "latency_s": 0.9605205999978352,
+   "error": ""
+  },
+  "sealed-squad-014": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 23.1.",
+   "latency_s": 0.9261438999965321,
+   "error": ""
+  },
+  "sealed-squad-016": {
+   "summary": "The red snake was ordered to forage at caution level high with a step limit of 300 and no food target; the squad finished with mission score 6.6.",
+   "latency_s": 0.8299179999739863,
+   "error": ""
+  },
+  "sealed-squad-017": {
+   "summary": "The red and blue snakes were ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 6.5.",
+   "latency_s": 0.872098099993309,
+   "error": ""
+  },
+  "sealed-squad-019": {
+   "summary": "The green snake was ordered to forage at caution level high, with a step limit of 200 and a food target of 25; the squad finished with mission score 4.6.",
+   "latency_s": 0.9580499999865424,
+   "error": ""
+  },
+  "sealed-squad-020": {
+   "summary": "The red snake was ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 5.2.",
+   "latency_s": 0.8440666000242345,
+   "error": ""
+  },
+  "sealed-squad-022": {
+   "summary": "The green and blue snakes were ordered to forage at caution level low with a step limit of 150 and no food target; the squad finished with mission score 7.1.",
+   "latency_s": 0.893225000007078,
+   "error": ""
+  },
+  "sealed-squad-023": {
+   "summary": "The red snake was ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 5.2.",
+   "latency_s": 0.8476471999892965,
+   "error": ""
+  },
+  "sealed-squad-024": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 100 and no food target; the squad finished with mission score 14.4.",
+   "latency_s": 0.973881900019478,
+   "error": ""
+  },
+  "sealed-squad-025": {
+   "summary": "The red and green snakes were ordered to forage at caution level normal with a step limit of 50 and no food target; the squad finished with mission score 5.5.",
+   "latency_s": 0.8686951999843586,
+   "error": ""
+  },
+  "sealed-squad-026": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level low, with a step limit of 250 and a food target of 35; the squad finished with mission score 14.4.",
+   "latency_s": 1.0783857999776956,
+   "error": ""
+  },
+  "sealed-squad-027": {
+   "summary": "The green snake was ordered to forage at caution level normal, with a step limit of 300 and a food target of 40; the squad finished with mission score 11.3.",
+   "latency_s": 0.9667616999940947,
+   "error": ""
+  },
+  "sealed-squad-028": {
+   "summary": "The red and blue snakes were ordered to forage at caution level low, with a step limit of 300 and a food target of 8; the squad finished with mission score 7.1.",
+   "latency_s": 0.9558286000101361,
+   "error": ""
+  },
+  "sealed-squad-029": {
+   "summary": "The red snake was ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 5.2.",
+   "latency_s": 0.8315193000016734,
+   "error": ""
+  },
+  "sealed-squad-030": {
+   "summary": "The green and blue snakes were ordered to forage at caution level normal, with a step limit of 90 and a food target of 10; the squad finished with mission score 7.1.",
+   "latency_s": 0.9479731000028551,
+   "error": ""
+  },
+  "sealed-squad-031": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 120 and a food target of 18; the squad finished with mission score 14.8.",
+   "latency_s": 1.0602246000198647,
+   "error": ""
+  },
+  "sealed-squad-032": {
+   "summary": "The red and green snakes were ordered to forage at caution level normal with a step limit of 160 and no food target; the squad finished with mission score 11.5.",
+   "latency_s": 0.8903718999936245,
+   "error": ""
+  },
+  "sealed-squad-033": {
+   "summary": "The blue snake was ordered to forage at caution level normal with a step limit of 210 and no food target; the squad finished with mission score 6.5.",
+   "latency_s": 0.8281169999972917,
+   "error": ""
+  },
+  "sealed-squad-034": {
+   "summary": "The green and blue snakes were ordered to forage at caution level low with a step limit of 65 and no food target; the squad finished with mission score 5.1.",
+   "latency_s": 0.8529215999878943,
+   "error": ""
+  },
+  "sealed-squad-035": {
+   "summary": "The blue snake was ordered to forage at caution level normal with a step limit of 77 and no food target; the squad finished with mission score 4.6.",
+   "latency_s": 0.8139882999821566,
+   "error": ""
+  },
+  "sealed-squad-036": {
+   "summary": "The red and green snakes were ordered to forage at caution level normal, with a step limit of 130 and a food target of 16; the squad finished with mission score 9.9.",
+   "latency_s": 0.9923541999887675,
+   "error": ""
+  },
+  "sealed-squad-037": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high, with a step limit of 300 and a food target of 10; the squad finished with mission score 10.4.",
+   "latency_s": 1.0792403999948874,
+   "error": ""
+  },
+  "sealed-squad-038": {
+   "summary": "The red snake was ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 5.2.",
+   "latency_s": 0.8360161999880802,
+   "error": ""
+  },
+  "sealed-squad-039": {
+   "summary": "The red and blue snakes were ordered to forage at caution level normal with a step limit of 100 and no food target; the squad finished with mission score 6.2.",
+   "latency_s": 0.8919721000129357,
+   "error": ""
+  },
+  "sealed-squad-040": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 275 and a food target of 33; the squad finished with mission score 22.9.",
+   "latency_s": 1.0591848000185564,
+   "error": ""
+  },
+  "sealed-squad-041": {
+   "summary": "The green snake was ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 11.3.",
+   "latency_s": 0.8591003000037745,
+   "error": ""
+  },
+  "sealed-squad-042": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 300 and a food target of 40; the squad finished with mission score 23.1.",
+   "latency_s": 1.0759868000168353,
+   "error": ""
+  },
+  "sealed-squad-043": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 23.1.",
+   "latency_s": 0.9662742000073195,
+   "error": ""
+  },
+  "sealed-squad-044": {
+   "summary": "The blue snake was ordered to forage at caution level high with a step limit of 95 and no food target; the squad finished with mission score 3.2.",
+   "latency_s": 0.8373158000176772,
+   "error": ""
+  },
+  "sealed-squad-045": {
+   "summary": "The red snake was ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 5.2.",
+   "latency_s": 0.8528672999818809,
+   "error": ""
+  },
+  "sealed-squad-046": {
+   "summary": "The green snake was ordered to forage at caution level normal with a step limit of 120 and no food target; the squad finished with mission score 5.4.",
+   "latency_s": 0.8464470999897458,
+   "error": ""
+  },
+  "sealed-squad-047": {
+   "summary": "The green and blue snakes were ordered to forage at caution level normal, with a step limit of 200 and a food target of 15; the squad finished with mission score 11.2.",
+   "latency_s": 1.0177613999985624,
+   "error": ""
+  },
+  "sealed-squad-048": {
+   "summary": "The red snake was ordered to forage at caution level high with a step limit of 70 and no food target; the squad finished with mission score 2.2.",
+   "latency_s": 0.8269894999975804,
+   "error": ""
+  },
+  "sealed-squad-049": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 150 and a food target of 26; the squad finished with mission score 16.9.",
+   "latency_s": 1.0791585000115447,
+   "error": ""
+  },
+  "sealed-squad-050": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level low with a step limit of 110 and no food target; the squad finished with mission score 9.8.",
+   "latency_s": 0.9332782999845222,
+   "error": ""
+  },
+  "sealed-squad-051": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 300 and a food target of 31; the squad finished with mission score 22.9.",
+   "latency_s": 1.0835400999931153,
+   "error": ""
+  },
+  "sealed-squad-052": {
+   "summary": "The red snake was ordered to forage at caution level high, with a step limit of 85 and a food target of 3; the squad finished with mission score 2.1.",
+   "latency_s": 0.8937264999840409,
+   "error": ""
+  },
+  "sealed-squad-053": {
+   "summary": "The green snake was ordered to forage at caution level normal, with a step limit of 300 and a food target of 1; the squad finished with mission score 1.3.",
+   "latency_s": 0.9163968000211753,
+   "error": ""
+  },
+  "sealed-squad-054": {
+   "summary": "The red and green snakes were ordered to forage at caution level low with a step limit of 300 and no food target; the squad finished with mission score 10.4.",
+   "latency_s": 0.8960164000163786,
+   "error": ""
+  },
+  "sealed-squad-055": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 225 and a food target of 28; the squad finished with mission score 20.1.",
+   "latency_s": 1.0738639000046533,
+   "error": ""
+  },
+  "sealed-squad-056": {
+   "summary": "The blue snake was ordered to forage at caution level normal with a step limit of 190 and no food target; the squad finished with mission score 6.6.",
+   "latency_s": 0.8277753999864217,
+   "error": ""
+  },
+  "sealed-squad-057": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 70 and no food target; the squad finished with mission score 10.8.",
+   "latency_s": 0.9528962000040337,
+   "error": ""
+  },
+  "sealed-squad-058": {
+   "summary": "The red and green snakes were ordered to forage at caution level normal with a step limit of 120 and no food target; the squad finished with mission score 9.2.",
+   "latency_s": 0.8708079000061844,
+   "error": ""
+  },
+  "sealed-squad-059": {
+   "summary": "The red and green snakes were ordered to forage at caution level normal with a step limit of 100 and no food target; the squad finished with mission score 8.2.",
+   "latency_s": 0.8665760000003502,
+   "error": ""
+  },
+  "sealed-squad-060": {
+   "summary": "The red and blue snakes were ordered to forage at caution level high with a step limit of 180 and no food target; the squad finished with mission score 7.0.",
+   "latency_s": 0.8714730000065174,
+   "error": ""
+  },
+  "sealed-squad-061": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 240 and no food target; the squad finished with mission score 21.0.",
+   "latency_s": 0.9573304000077769,
+   "error": ""
+  },
+  "sealed-squad-062": {
+   "summary": "The blue snake was ordered to forage at caution level low with a step limit of 100 and no food target; the squad finished with mission score 3.6.",
+   "latency_s": 0.856489199999487,
+   "error": ""
+  },
+  "sealed-squad-063": {
+   "summary": "The green and blue snakes were ordered to forage at caution level low with a step limit of 300 and no food target; the squad finished with mission score 8.1.",
+   "latency_s": 0.8684340000036173,
+   "error": ""
+  },
+  "sealed-squad-064": {
+   "summary": "The red snake was ordered to forage at caution level high, with a step limit of 95 and a food target of 9; the squad finished with mission score 2.9.",
+   "latency_s": 0.9091742000018712,
+   "error": ""
+  },
+  "sealed-squad-065": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 280 and a food target of 40; the squad finished with mission score 22.9.",
+   "latency_s": 1.0790579000022262,
+   "error": ""
+  },
+  "sealed-squad-066": {
+   "summary": "The green snake was ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 11.3.",
+   "latency_s": 0.8491901000088546,
+   "error": ""
+  },
+  "sealed-squad-067": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 135 and a food target of 12; the squad finished with mission score 12.4.",
+   "latency_s": 1.0601015999855008,
+   "error": ""
+  },
+  "sealed-squad-068": {
+   "summary": "The green and blue snakes were ordered to forage at caution level high with a step limit of 175 and no food target; the squad finished with mission score 7.4.",
+   "latency_s": 0.8929396999883465,
+   "error": ""
+  },
+  "sealed-squad-069": {
+   "summary": "The red snake was ordered to forage at caution level low, with a step limit of 220 and a food target of 25; the squad finished with mission score 7.7.",
+   "latency_s": 0.9371528000046965,
+   "error": ""
+  },
+  "sealed-squad-070": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 23.1.",
+   "latency_s": 0.9796682999876793,
+   "error": ""
+  },
+  "sealed-squad-071": {
+   "summary": "The green and blue snakes were ordered to forage at caution level high with a step limit of 300 and no food target; the squad finished with mission score 8.3.",
+   "latency_s": 0.8898321000160649,
+   "error": ""
+  },
+  "sealed-squad-072": {
+   "summary": "The red snake was ordered to forage at caution level high, with a step limit of 80 and a food target of 4; the squad finished with mission score 2.6.",
+   "latency_s": 0.8880038000061177,
+   "error": ""
+  },
+  "sealed-plant-000": {
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.74.",
+   "latency_s": 0.9452365000033751,
+   "error": ""
+  },
+  "sealed-plant-001": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 1% false alarms on the reactor and stripper nodes, achieving macro-F1 0.49.",
+   "latency_s": 0.752716999995755,
+   "error": ""
+  },
+  "sealed-plant-002": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.69.",
+   "latency_s": 0.8947453000000678,
+   "error": ""
+  },
+  "sealed-plant-003": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the separator and compressor_utilities nodes, achieving macro-F1 0.62.",
+   "latency_s": 0.7522139999782667,
+   "error": ""
+  },
+  "sealed-plant-004": {
+   "summary": "The diagnosis for the stripper node used 16 bytes per message with a 1% target false alarm rate, achieving macro-F1 0.26.",
+   "latency_s": 0.7703735000104643,
+   "error": ""
+  },
+  "sealed-plant-005": {
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.74.",
+   "latency_s": 0.8744936999864876,
+   "error": ""
+  },
+  "sealed-plant-006": {
+   "summary": "The diagnosis for the reactor node used 16 bytes per message with a 0.1% false alarm rate, achieving macro-F1 0.47.",
+   "latency_s": 0.7835487999836914,
+   "error": ""
+  },
+  "sealed-plant-007": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 1% false alarms on the reactor and stripper nodes, achieving macro-F1 0.48.",
+   "latency_s": 0.7878901999793015,
+   "error": ""
+  },
+  "sealed-plant-008": {
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.74.",
+   "latency_s": 0.8546999999962281,
+   "error": ""
+  },
+  "sealed-plant-009": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 1% false alarms on the reactor, separator, and stripper nodes, achieving macro-F1 0.51.",
+   "latency_s": 0.8498869999893941,
+   "error": ""
+  },
+  "sealed-plant-010": {
+   "summary": "The diagnosis used 16 bytes per message and achieved 1% false alarms on the separator node, resulting in macro-F1 0.29.",
+   "latency_s": 0.7328528999933042,
+   "error": ""
+  },
+  "sealed-plant-011": {
+   "summary": "The diagnosis used 8 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.8567465999803971,
+   "error": ""
+  },
+  "sealed-plant-013": {
+   "summary": "The diagnosis for the compressor_utilities node used 16 bytes per message with a 1% target false alarm rate, achieving macro-F1 0.53.",
+   "latency_s": 0.7869115000066813,
+   "error": ""
+  },
+  "sealed-plant-014": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.69.",
+   "latency_s": 0.9079139000095893,
+   "error": ""
+  },
+  "sealed-plant-015": {
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.74.",
+   "latency_s": 0.8472226999874692,
+   "error": ""
+  },
+  "sealed-plant-016": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.75.",
+   "latency_s": 0.8569139000028372,
+   "error": ""
+  },
+  "sealed-plant-017": {
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.74.",
+   "latency_s": 0.8676066999905743,
+   "error": ""
+  },
+  "sealed-plant-018": {
+   "summary": "The diagnosis used 51 bytes per message with a 5% target false alarm rate on the separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.6.",
+   "latency_s": 0.8749125000031199,
+   "error": ""
+  },
+  "sealed-plant-019": {
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.74.",
+   "latency_s": 0.8691845999856014,
+   "error": ""
+  },
+  "sealed-plant-020": {
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.74.",
+   "latency_s": 0.8230050000129268,
+   "error": ""
+  },
+  "sealed-plant-021": {
+   "summary": "The diagnosis for the stripper node used 8 bytes per message with a 1% target false alarm rate, achieving macro-F1 0.29.",
+   "latency_s": 0.7342591999913566,
+   "error": ""
+  },
+  "sealed-plant-022": {
+   "summary": "The diagnosis used 51 bytes per message with a 1% false alarm rate on the reactor, stripper, and compressor_utilities nodes, achieving macro-F1 0.7.",
+   "latency_s": 0.8499471000104677,
+   "error": ""
+  },
+  "sealed-plant-023": {
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.74.",
+   "latency_s": 0.8557509999955073,
+   "error": ""
+  },
+  "sealed-plant-024": {
+   "summary": "The diagnosis for the reactor used 8 bytes per message with a 0.5% target false alarm rate, achieving macro-F1 0.47.",
+   "latency_s": 0.746865599998273,
+   "error": ""
+  },
+  "sealed-plant-025": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 1% false alarms on the reactor, separator, and compressor_utilities nodes, achieving macro-F1 0.76.",
+   "latency_s": 0.8524239000107627,
+   "error": ""
+  },
+  "sealed-plant-026": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 1% false alarms on the reactor and separator nodes, achieving macro-F1 0.51.",
+   "latency_s": 0.7733369000197854,
+   "error": ""
+  },
+  "sealed-plant-027": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 1% false alarms on the reactor, separator, and stripper nodes, achieving macro-F1 0.52.",
+   "latency_s": 0.8140020999999251,
+   "error": ""
+  },
+  "sealed-plant-028": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.69.",
+   "latency_s": 0.9157243000227027,
+   "error": ""
+  },
+  "sealed-plant-029": {
+   "summary": "The diagnosis for the compressor_utilities node used 16 bytes per message with a 1% target false alarm rate, achieving macro-F1 0.53.",
+   "latency_s": 0.7826121000107378,
+   "error": ""
+  },
+  "sealed-plant-030": {
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.74.",
+   "latency_s": 0.8569214000017382,
+   "error": ""
+  },
+  "sealed-plant-031": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 1% false alarms on the separator and stripper nodes, achieving macro-F1 0.36.",
+   "latency_s": 0.788044400018407,
+   "error": ""
+  },
+  "sealed-plant-032": {
+   "summary": "The diagnosis for the reactor node used 16 bytes per message with a 0.1% false alarm rate, achieving macro-F1 0.47.",
+   "latency_s": 0.7858536000130698,
+   "error": ""
+  },
+  "sealed-plant-033": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 1% false alarms on the separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.63.",
+   "latency_s": 0.8728386000148021,
+   "error": ""
+  },
+  "sealed-plant-034": {
+   "summary": "The diagnosis for the stripper node used 16 bytes per message with a 1% target false alarm rate, achieving macro-F1 0.26.",
+   "latency_s": 0.7653790000185836,
+   "error": ""
+  },
+  "sealed-plant-035": {
+   "summary": "The diagnosis used 8 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.851917299994966,
+   "error": ""
+  },
+  "sealed-plant-036": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.69.",
+   "latency_s": 0.8870199999946635,
+   "error": ""
+  },
+  "sealed-plant-037": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.69.",
+   "latency_s": 0.838117199979024,
+   "error": ""
+  },
+  "sealed-plant-038": {
+   "summary": "The diagnosis used 8 bytes per message and 5% false alarms on the reactor and compressor_utilities nodes, achieving macro-F1 0.72.",
+   "latency_s": 0.7547137000074144,
+   "error": ""
+  },
+  "sealed-plant-039": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor and separator nodes, achieving macro-F1 0.51.",
+   "latency_s": 0.770532299997285,
+   "error": ""
+  },
+  "sealed-plant-040": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.75.",
+   "latency_s": 0.8650735999981407,
+   "error": ""
+  },
+  "sealed-plant-041": {
+   "summary": "The diagnosis for the separator node used 8 bytes per message with a 1% target false alarm rate, achieving macro-F1 0.32.",
+   "latency_s": 0.735263299982762,
+   "error": ""
+  },
+  "sealed-plant-042": {
+   "summary": "The diagnosis for the separator node used 51 bytes per message with a 5% target false alarm rate, achieving macro-F1 0.3.",
+   "latency_s": 0.7246804999886081,
+   "error": ""
+  },
+  "sealed-plant-043": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 0.1% false alarms on the separator and stripper nodes, achieving macro-F1 0.35.",
+   "latency_s": 0.8279954000026919,
+   "error": ""
+  },
+  "sealed-plant-044": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.69.",
+   "latency_s": 0.9134037999901921,
+   "error": ""
+  },
+  "sealed-plant-045": {
+   "summary": "The diagnosis used 8 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.8478536999900825,
+   "error": ""
+  },
+  "sealed-plant-046": {
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.74.",
+   "latency_s": 0.8463997000071686,
+   "error": ""
+  },
+  "sealed-plant-047": {
+   "summary": "The diagnosis for the compressor_utilities node used 16 bytes per message with a 1% target false alarm rate, achieving macro-F1 0.53.",
+   "latency_s": 0.7717298000061419,
+   "error": ""
+  },
+  "sealed-plant-048": {
+   "summary": "The diagnosis used 51 bytes per message with a 5% target false alarm rate on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.72.",
+   "latency_s": 0.9275086999987252,
+   "error": ""
+  },
+  "sealed-plant-049": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 1% false alarms on the reactor and separator nodes, achieving macro-F1 0.51.",
+   "latency_s": 0.7855501000012737,
+   "error": ""
+  },
+  "sealed-plant-050": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 1% false alarms on the reactor, separator, and stripper nodes, achieving macro-F1 0.51.",
+   "latency_s": 0.8312125999946147,
+   "error": ""
+  },
+  "sealed-plant-051": {
+   "summary": "The diagnosis used 8 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.8556778999918606,
+   "error": ""
+  },
+  "sealed-plant-052": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 1% false alarms on the separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.63.",
+   "latency_s": 0.8531912999751512,
+   "error": ""
+  },
+  "sealed-plant-053": {
+   "summary": "The diagnosis used 16 bytes per message and 5% false alarms on the compressor_utilities node, achieving macro-F1 0.53.",
+   "latency_s": 0.7263511999917682,
+   "error": ""
+  },
+  "sealed-plant-054": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the separator and stripper nodes, achieving macro-F1 0.36.",
+   "latency_s": 0.7433097000175621,
+   "error": ""
+  },
+  "sealed-plant-055": {
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the reactor and compressor_utilities nodes, achieving macro-F1 0.77.",
+   "latency_s": 0.7523228999925777,
+   "error": ""
+  },
+  "sealed-plant-056": {
+   "summary": "The diagnosis for the stripper node used 51 bytes per message with a 1% target false alarm rate, achieving macro-F1 0.27.",
+   "latency_s": 0.7500335000222549,
+   "error": ""
+  },
+  "sealed-plant-057": {
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.74.",
+   "latency_s": 0.8731578000006266,
+   "error": ""
+  },
+  "sealed-plant-058": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 1% false alarms on the separator and compressor_utilities nodes, achieving macro-F1 0.62.",
+   "latency_s": 0.7853276999958325,
+   "error": ""
+  },
+  "sealed-plant-059": {
+   "summary": "The diagnosis used 16 bytes per message and achieved 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, resulting in macro-F1 0.74.",
+   "latency_s": 0.9329535999859218,
+   "error": ""
+  },
+  "sealed-plant-060": {
+   "summary": "The diagnosis for the reactor node used 51 bytes per message with a 5% target false alarm rate, achieving macro-F1 0.54.",
+   "latency_s": 0.7656525000056718,
+   "error": ""
+  },
+  "sealed-plant-061": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 1% false alarms on the reactor, separator, and compressor_utilities nodes, achieving macro-F1 0.73.",
+   "latency_s": 0.8313402999774553,
+   "error": ""
+  },
+  "sealed-plant-062": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 1% false alarms on the separator and stripper nodes, achieving macro-F1 0.36.",
+   "latency_s": 0.7825349000049755,
+   "error": ""
+  },
+  "sealed-plant-063": {
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.74.",
+   "latency_s": 0.8708900999918114,
+   "error": ""
+  },
+  "sealed-plant-064": {
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.74.",
+   "latency_s": 0.8134863000013866,
+   "error": ""
+  },
+  "sealed-plant-065": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.69.",
+   "latency_s": 0.8861620999814477,
+   "error": ""
+  },
+  "sealed-plant-066": {
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.74.",
+   "latency_s": 0.8578385000000708,
+   "error": ""
+  },
+  "sealed-plant-067": {
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the separator and compressor_utilities nodes, achieving macro-F1 0.62.",
+   "latency_s": 0.7701758999901358,
+   "error": ""
+  },
+  "sealed-plant-068": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the reactor, separator, and stripper nodes, achieving macro-F1 0.52.",
+   "latency_s": 0.863217900012387,
+   "error": ""
+  },
+  "sealed-plant-069": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the stripper and compressor_utilities nodes, achieving macro-F1 0.6.",
+   "latency_s": 0.7465580000134651,
+   "error": ""
+  },
+  "sealed-plant-070": {
+   "summary": "The diagnosis for the separator node used 51 bytes per message with a 1% false alarm rate, achieving macro-F1 0.28.",
+   "latency_s": 0.7298563999938779,
+   "error": ""
+  },
+  "sealed-plant-071": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.9259619000076782,
+   "error": ""
+  }
+ },
+ "lora": {
+  "sealed-squad-000": {
+   "summary": "The red and blue snakes were ordered to forage at caution level normal with a step limit of 90 and no food target; the squad finished with mission score 6.2.",
+   "latency_s": 0.9478595000109635,
+   "error": ""
+  },
+  "sealed-squad-001": {
+   "summary": "The green snake was ordered to forage at caution level high with a step limit of 250 and no food target; the squad finished with mission score 5.2.",
+   "latency_s": 0.8474419999984093,
+   "error": ""
+  },
+  "sealed-squad-002": {
+   "summary": "The blue snake was ordered to forage at caution level low, with a step limit of 120 and a food target of 15; the squad finished with mission score 3.9.",
+   "latency_s": 0.9538944000087213,
+   "error": ""
+  },
+  "sealed-squad-003": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high, with a step limit of 300 and a food target of 20; the squad finished with mission score 15.7.",
+   "latency_s": 1.0801615999953356,
+   "error": ""
+  },
+  "sealed-squad-004": {
+   "summary": "The green and red snakes were ordered to forage at caution level normal with a step limit of 200 and no food target; the squad finished with mission score 13.3.",
+   "latency_s": 0.90875150001375,
+   "error": ""
+  },
+  "sealed-squad-005": {
+   "summary": "The blue and green snakes were ordered to forage at caution level low, with a step limit of 75 and a food target of 9; the squad finished with mission score 5.3.",
+   "latency_s": 0.9318260000145528,
+   "error": ""
+  },
+  "sealed-squad-006": {
+   "summary": "The green snake was ordered to forage at caution level high with a step limit of 100 and no food target; the squad finished with mission score 2.9.",
+   "latency_s": 0.8507093999942299,
+   "error": ""
+  },
+  "sealed-squad-007": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level low, with a step limit of 300 and a food target of 12; the squad finished with mission score 10.8.",
+   "latency_s": 1.0793506000190973,
+   "error": ""
+  },
+  "sealed-squad-009": {
+   "summary": "The blue snake was ordered to forage at caution level high, with a step limit of 300 and a food target of 7; the squad finished with mission score 4.1.",
+   "latency_s": 0.929187700006878,
+   "error": ""
+  },
+  "sealed-squad-010": {
+   "summary": "The green and blue snakes were ordered to forage at caution level normal, with a step limit of 140 and a food target of 14; the squad finished with mission score 9.9.",
+   "latency_s": 0.9941220000036992,
+   "error": ""
+  },
+  "sealed-squad-011": {
+   "summary": "The red snake was ordered to forage at caution level normal, with a step limit of 50 and a food target of 10; the squad finished with mission score 2.9.",
+   "latency_s": 0.9214534000202548,
+   "error": ""
+  },
+  "sealed-squad-012": {
+   "summary": "The red and blue snakes were ordered to forage at caution level high with a step limit of 180 and no food target; the squad finished with mission score 7.0.",
+   "latency_s": 0.8850339000055101,
+   "error": ""
+  },
+  "sealed-squad-013": {
+   "summary": "The red and green snakes were ordered to forage at caution level normal, with a step limit of 300 and a food target of 30; the squad finished with mission score 16.0.",
+   "latency_s": 1.0197865999944042,
+   "error": ""
+  },
+  "sealed-squad-014": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 23.1.",
+   "latency_s": 0.969394799991278,
+   "error": ""
+  },
+  "sealed-squad-015": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level low with a step limit of 55 and no food target; the squad finished with mission score 7.7.",
+   "latency_s": 0.937384299992118,
+   "error": ""
+  },
+  "sealed-squad-016": {
+   "summary": "The red snake was ordered to forage at caution level high with a step limit of 180 and no food target; the squad finished with mission score 4.8.",
+   "latency_s": 0.8504715000162832,
+   "error": ""
+  },
+  "sealed-squad-017": {
+   "summary": "The blue and red snakes were ordered to forage at caution level normal with a step limit of 250 and no food target; the squad finished with mission score 6.5.",
+   "latency_s": 0.8902746000094339,
+   "error": ""
+  },
+  "sealed-squad-018": {
+   "summary": "The green and blue snakes were ordered to forage at caution level normal with a step limit of 120 and no food target; the squad finished with mission score 9.0.",
+   "latency_s": 0.886818700004369,
+   "error": ""
+  },
+  "sealed-squad-019": {
+   "summary": "The green snake was ordered to forage at caution level high, with a step limit of 200 and a food target of 25; the squad finished with mission score 4.6.",
+   "latency_s": 0.9583110999956261,
+   "error": ""
+  },
+  "sealed-squad-020": {
+   "summary": "The red snake was ordered to forage at caution level normal, with a step limit of 300 and a food target of 6; the squad finished with mission score 4.2.",
+   "latency_s": 0.9322458000096958,
+   "error": ""
+  },
+  "sealed-squad-021": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high, with a step limit of 300 and a food target of 24; the squad finished with mission score 16.5.",
+   "latency_s": 1.0701217000023462,
+   "error": ""
+  },
+  "sealed-squad-022": {
+   "summary": "The blue and green snakes were ordered to forage at caution level low with a step limit of 150 and no food target; the squad finished with mission score 7.1.",
+   "latency_s": 0.8933991999947466,
+   "error": ""
+  },
+  "sealed-squad-023": {
+   "summary": "The red snake was ordered to forage at caution level normal with a step limit of 300 and no food target; the squad finished with mission score 5.2.",
+   "latency_s": 0.8463247999898158,
+   "error": ""
+  },
+  "sealed-squad-024": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high with a step limit of 100 and no food target; the squad finished with mission score 10.1.",
+   "latency_s": 0.9693422999989707,
+   "error": ""
+  },
+  "sealed-squad-025": {
+   "summary": "The red and green snakes were ordered to forage at caution level low with a step limit of 50 and no food target; the squad finished with mission score 5.3.",
+   "latency_s": 0.8674377000133973,
+   "error": ""
+  },
+  "sealed-squad-026": {
+   "summary": "The blue, green, and red snakes were ordered to forage at caution level high, with a step limit of 250 and a food target of 35; the squad finished with mission score 16.0.",
+   "latency_s": 1.0830951999814715,
+   "error": ""
+  },
+  "sealed-squad-027": {
+   "summary": "The green snake was ordered to forage at caution level normal, with a step limit of 300 and a food target of 40; the squad finished with mission score 11.3.",
+   "latency_s": 0.9539928000012878,
+   "error": ""
+  },
+  "sealed-squad-028": {
+   "summary": "The red and blue snakes were ordered to forage at caution level high, with a step limit of 300 and a food target of 8; the squad finished with mission score 5.1.",
+   "latency_s": 0.9741524999844842,
+   "error": ""
+  },
+  "sealed-squad-029": {
+   "summary": "The red snake was ordered to forage at caution level low with a step limit of 55 and no food target; the squad finished with mission score 3.6.",
+   "latency_s": 0.8298322000191547,
+   "error": ""
+  },
+  "sealed-squad-030": {
+   "summary": "The green and blue snakes were ordered to forage at caution level normal, with a step limit of 90 and a food target of 10; the squad finished with mission score 7.1.",
+   "latency_s": 0.9686663000029512,
+   "error": ""
+  },
+  "sealed-squad-031": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 120 and a food target of 18; the squad finished with mission score 14.8.",
+   "latency_s": 1.0728680999891367,
+   "error": ""
+  },
+  "sealed-squad-032": {
+   "summary": "The red and green snakes were ordered to forage at caution level normal, with a step limit of 160 and a food target of 14; the squad finished with mission score 10.8.",
+   "latency_s": 1.0142019000195432,
+   "error": ""
+  },
+  "sealed-squad-033": {
+   "summary": "The blue snake was ordered to forage at caution level high with a step limit of 210 and no food target; the squad finished with mission score 4.8.",
+   "latency_s": 0.8433711999969091,
+   "error": ""
+  },
+  "sealed-squad-034": {
+   "summary": "The green and blue snakes were ordered to forage at caution level low, with a step limit of 65 and a food target of 11; the squad finished with mission score 5.1.",
+   "latency_s": 0.9787771000119392,
+   "error": ""
+  },
+  "sealed-squad-036": {
+   "summary": "The green and red snakes were ordered to forage at caution level high, with a step limit of 130 and a food target of 16; the squad finished with mission score 8.1.",
+   "latency_s": 0.9904864999989513,
+   "error": ""
+  },
+  "sealed-squad-037": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high, with a step limit of 300 and a food target of 10; the squad finished with mission score 10.4.",
+   "latency_s": 1.0591289000003599,
+   "error": ""
+  },
+  "sealed-squad-038": {
+   "summary": "The red snake was ordered to forage at caution level normal with a step limit of 90 and no food target; the squad finished with mission score 3.6.",
+   "latency_s": 0.8321807000029366,
+   "error": ""
+  },
+  "sealed-squad-039": {
+   "summary": "The blue and red snakes were ordered to forage at caution level low with a step limit of 100 and no food target; the squad finished with mission score 7.4.",
+   "latency_s": 0.8704733999911696,
+   "error": ""
+  },
+  "sealed-squad-040": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 275 and a food target of 33; the squad finished with mission score 22.9.",
+   "latency_s": 1.0802671000128612,
+   "error": ""
+  },
+  "sealed-squad-041": {
+   "summary": "The green snake was ordered to forage at caution level normal, with a step limit of 300 and a food target of 5; the squad finished with mission score 4.4.",
+   "latency_s": 0.9223841000057291,
+   "error": ""
+  },
+  "sealed-squad-042": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 300 and a food target of 40; the squad finished with mission score 23.1.",
+   "latency_s": 1.0776929999992717,
+   "error": ""
+  },
+  "sealed-squad-043": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 240 and no food target; the squad finished with mission score 21.0.",
+   "latency_s": 0.9700710000179242,
+   "error": ""
+  },
+  "sealed-squad-044": {
+   "summary": "The red and green snakes were ordered to forage at caution level high with a step limit of 95 and no food target; the squad finished with mission score 7.2.",
+   "latency_s": 0.8736640999850351,
+   "error": ""
+  },
+  "sealed-squad-045": {
+   "summary": "The red snake was ordered to forage at caution level low, with a step limit of 300 and a food target of 22; the squad finished with mission score 9.4.",
+   "latency_s": 0.9551788000098895,
+   "error": ""
+  },
+  "sealed-squad-046": {
+   "summary": "The green snake was ordered to forage at caution level high with a step limit of 120 and no food target; the squad finished with mission score 3.4.",
+   "latency_s": 0.8511647999985144,
+   "error": ""
+  },
+  "sealed-squad-047": {
+   "summary": "The blue and green snakes were ordered to forage at caution level normal, with a step limit of 200 and a food target of 15; the squad finished with mission score 11.2.",
+   "latency_s": 1.0223121000162791,
+   "error": ""
+  },
+  "sealed-squad-048": {
+   "summary": "The red snake was ordered to forage at caution level normal with a step limit of 70 and no food target; the squad finished with mission score 3.6.",
+   "latency_s": 0.8268099000270013,
+   "error": ""
+  },
+  "sealed-squad-049": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 150 and a food target of 26; the squad finished with mission score 16.9.",
+   "latency_s": 1.0824332000047434,
+   "error": ""
+  },
+  "sealed-squad-050": {
+   "summary": "The green and blue snakes were ordered to forage at caution level low with a step limit of 110 and no food target; the squad finished with mission score 6.2.",
+   "latency_s": 0.8929028999991715,
+   "error": ""
+  },
+  "sealed-squad-051": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal, with a step limit of 300 and a food target of 31; the squad finished with mission score 22.9.",
+   "latency_s": 1.0764111000171397,
+   "error": ""
+  },
+  "sealed-squad-054": {
+   "summary": "The red and green snakes were ordered to forage at caution level low with a step limit of 58 and no food target; the squad finished with mission score 6.4.",
+   "latency_s": 0.8553991999942809,
+   "error": ""
+  },
+  "sealed-squad-055": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level high, with a step limit of 225 and a food target of 28; the squad finished with mission score 15.3.",
+   "latency_s": 1.0838102000125218,
+   "error": ""
+  },
+  "sealed-squad-056": {
+   "summary": "The blue snake was ordered to forage at caution level normal with a step limit of 190 and no food target; the squad finished with mission score 6.6.",
+   "latency_s": 0.833676700014621,
+   "error": ""
+  },
+  "sealed-squad-057": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level low, with a step limit of 70 and a food target of 15; the squad finished with mission score 8.5.",
+   "latency_s": 1.0317836999893188,
+   "error": ""
+  },
+  "sealed-squad-060": {
+   "summary": "The red and blue snakes were ordered to forage at caution level high, with a step limit of 180 and a food target of 17; the squad finished with mission score 7.0.",
+   "latency_s": 0.9971807999827433,
+   "error": ""
+  },
+  "sealed-squad-061": {
+   "summary": "The red, green, and blue snakes were ordered to forage at caution level normal with a step limit of 240 and no food target; the squad finished with mission score 21.0.",
+   "latency_s": 0.9691725000157021,
+   "error": ""
+  },
+  "sealed-squad-062": {
+   "summary": "The blue snake was ordered to forage at caution level low with a step limit of 100 and no food target; the squad finished with mission score 3.6.",
+   "latency_s": 0.8434349999879487,
+   "error": ""
+  },
+  "sealed-squad-063": {
+   "summary": "The blue and green snakes were ordered to forage at caution level low with a step limit of 300 and no food target; the squad finished with mission score 8.1.",
+   "latency_s": 0.879091500013601,
+   "error": ""
+  },
+  "sealed-squad-064": {
+   "summary": "The red snake was ordered to forage at caution level high, with a step limit of 95 and a food target of 9; the squad finished with mission score 2.9.",
+   "latency_s": 0.9106787000200711,
+   "error": ""
+  },
+  "sealed-squad-066": {
+   "summary": "The green snake was ordered to forage at caution level low with a step limit of 60 and no food target; the squad finished with mission score 2.9.",
+   "latency_s": 0.825098600005731,
+   "error": ""
+  },
+  "sealed-squad-067": {
+   "summary": "The blue and red snakes were ordered to forage at caution level normal, with a step limit of 135 and a food target of 12; the squad finished with mission score 6.6.",
+   "latency_s": 0.9890535000013188,
+   "error": ""
+  },
+  "sealed-squad-068": {
+   "summary": "The green and blue snakes were ordered to forage at caution level high with a step limit of 175 and no food target; the squad finished with mission score 7.4.",
+   "latency_s": 0.896434299997054,
+   "error": ""
+  },
+  "sealed-squad-069": {
+   "summary": "The red snake was ordered to forage at caution level high, with a step limit of 220 and a food target of 25; the squad finished with mission score 5.9.",
+   "latency_s": 0.9441144000156783,
+   "error": ""
+  },
+  "sealed-squad-071": {
+   "summary": "The blue and green snakes were ordered to forage at caution level high with a step limit of 50 and no food target; the squad finished with mission score 4.6.",
+   "latency_s": 0.8476819999923464,
+   "error": ""
+  },
+  "sealed-squad-072": {
+   "summary": "The red snake was ordered to forage at caution level high, with a step limit of 80 and a food target of 4; the squad finished with mission score 2.6.",
+   "latency_s": 0.9031054000079166,
+   "error": ""
+  },
+  "sealed-plant-000": {
+   "summary": "The diagnosis used 16 bytes per message and achieved 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, resulting in macro-F1 0.74.",
+   "latency_s": 0.9991825000033714,
+   "error": ""
+  },
+  "sealed-plant-001": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 1% false alarms on the reactor and stripper nodes, achieving macro-F1 0.49.",
+   "latency_s": 0.7525392000097781,
+   "error": ""
+  },
+  "sealed-plant-002": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.69.",
+   "latency_s": 0.906298699992476,
+   "error": ""
+  },
+  "sealed-plant-003": {
+   "summary": "The diagnosis used 8 bytes per message and 2% false alarms on the separator and compressor_utilities nodes, achieving macro-F1 0.63.",
+   "latency_s": 0.7472469000204001,
+   "error": ""
+  },
+  "sealed-plant-004": {
+   "summary": "The diagnosis for the stripper node used 51 bytes per message with a 0.5% target false alarm rate, achieving macro-F1 0.26.",
+   "latency_s": 0.8079125999938697,
+   "error": ""
+  },
+  "sealed-plant-005": {
+   "summary": "The diagnosis used 8 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.8499159000057261,
+   "error": ""
+  },
+  "sealed-plant-006": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 0.1% false alarms on the separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.61.",
+   "latency_s": 0.9162149999756366,
+   "error": ""
+  },
+  "sealed-plant-007": {
+   "summary": "The diagnosis used 16 bytes per message and 5% false alarms on the stripper and reactor nodes, achieving macro-F1 0.5.",
+   "latency_s": 0.7341114999726415,
+   "error": ""
+  },
+  "sealed-plant-008": {
+   "summary": "The diagnosis used 16 bytes per message and 5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.76.",
+   "latency_s": 0.8547968000057153,
+   "error": ""
+  },
+  "sealed-plant-009": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, and stripper nodes, achieving macro-F1 0.52.",
+   "latency_s": 0.831745499977842,
+   "error": ""
+  },
+  "sealed-plant-010": {
+   "summary": "The diagnosis used 16 bytes per message and achieved 1% false alarms on the separator node, resulting in macro-F1 0.29.",
+   "latency_s": 0.7497277999937069,
+   "error": ""
+  },
+  "sealed-plant-011": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.7.",
+   "latency_s": 0.9114257000037469,
+   "error": ""
+  },
+  "sealed-plant-012": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the reactor and separator nodes, achieving macro-F1 0.52.",
+   "latency_s": 0.7474444000108633,
+   "error": ""
+  },
+  "sealed-plant-013": {
+   "summary": "The diagnosis for the compressor_utilities node used 8 bytes per message with a 5% false alarm rate, achieving macro-F1 0.48.",
+   "latency_s": 0.7439704000134952,
+   "error": ""
+  },
+  "sealed-plant-014": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.69.",
+   "latency_s": 0.9123124000034295,
+   "error": ""
+  },
+  "sealed-plant-015": {
+   "summary": "The diagnosis used 8 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.8356533000187483,
+   "error": ""
+  },
+  "sealed-plant-016": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.75.",
+   "latency_s": 0.8634891000110656,
+   "error": ""
+  },
+  "sealed-plant-018": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 0.5% false alarms on the separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.56.",
+   "latency_s": 0.91854450001847,
+   "error": ""
+  },
+  "sealed-plant-019": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 1% false alarms on the reactor and separator nodes, achieving macro-F1 0.51.",
+   "latency_s": 0.7866038999927696,
+   "error": ""
+  },
+  "sealed-plant-021": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the reactor, separator, and compressor_utilities nodes, achieving macro-F1 0.72.",
+   "latency_s": 0.8727129999897443,
+   "error": ""
+  },
+  "sealed-plant-022": {
+   "summary": "The diagnosis used 51 bytes per message with a 2% target false alarm rate on the reactor, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.8961038999841549,
+   "error": ""
+  },
+  "sealed-plant-023": {
+   "summary": "The diagnosis used 16 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.74.",
+   "latency_s": 0.8714269000047352,
+   "error": ""
+  },
+  "sealed-plant-024": {
+   "summary": "The diagnosis for the reactor used 8 bytes per message with a 0.5% target false alarm rate, achieving macro-F1 0.47.",
+   "latency_s": 0.7617280000122264,
+   "error": ""
+  },
+  "sealed-plant-025": {
+   "summary": "The diagnosis used 51 bytes per message with a 5% false alarm rate on the reactor and compressor_utilities nodes, achieving macro-F1 0.76.",
+   "latency_s": 0.8072764000098687,
+   "error": ""
+  },
+  "sealed-plant-026": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 0.1% false alarms on the separator and reactor nodes, achieving macro-F1 0.5.",
+   "latency_s": 0.81054989999393,
+   "error": ""
+  },
+  "sealed-plant-027": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 1% false alarms on the stripper, reactor, and separator nodes, achieving macro-F1 0.52.",
+   "latency_s": 0.8285460000042804,
+   "error": ""
+  },
+  "sealed-plant-028": {
+   "summary": "The diagnosis used 51 bytes per message with a 2% target false alarm rate on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.7.",
+   "latency_s": 0.8944879999908153,
+   "error": ""
+  },
+  "sealed-plant-029": {
+   "summary": "The diagnosis for the compressor_utilities node used 16 bytes per message with a 1% target false alarm rate, achieving macro-F1 0.53.",
+   "latency_s": 0.7918745999922976,
+   "error": ""
+  },
+  "sealed-plant-030": {
+   "summary": "The diagnosis used 16 bytes per message and 5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.76.",
+   "latency_s": 0.8781446999928448,
+   "error": ""
+  },
+  "sealed-plant-031": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.5% false alarms on the separator and stripper nodes, achieving macro-F1 0.38.",
+   "latency_s": 0.8107133000157773,
+   "error": ""
+  },
+  "sealed-plant-032": {
+   "summary": "The diagnosis for the reactor node used 51 bytes per message with a 0.1% false alarm rate, achieving macro-F1 0.51.",
+   "latency_s": 0.7920039000164252,
+   "error": ""
+  },
+  "sealed-plant-033": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.63.",
+   "latency_s": 0.8126198000099976,
+   "error": ""
+  },
+  "sealed-plant-034": {
+   "summary": "The diagnosis for the stripper node used 16 bytes per message with a 5% false alarm rate, achieving macro-F1 0.28.",
+   "latency_s": 0.7509588999964762,
+   "error": ""
+  },
+  "sealed-plant-035": {
+   "summary": "The diagnosis used 8 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.8470032000041101,
+   "error": ""
+  },
+  "sealed-plant-036": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.68.",
+   "latency_s": 0.9539973000064492,
+   "error": ""
+  },
+  "sealed-plant-037": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.69.",
+   "latency_s": 0.8959495000017341,
+   "error": ""
+  },
+  "sealed-plant-038": {
+   "summary": "The diagnosis used 8 bytes per message and 5% false alarms on the reactor and compressor_utilities nodes, achieving macro-F1 0.72.",
+   "latency_s": 0.7533451000053901,
+   "error": ""
+  },
+  "sealed-plant-039": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 0.1% false alarms on the reactor and separator nodes, achieving macro-F1 0.48.",
+   "latency_s": 0.8254920999752358,
+   "error": ""
+  },
+  "sealed-plant-041": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.5% false alarms on the reactor, stripper, and compressor_utilities nodes, achieving macro-F1 0.7.",
+   "latency_s": 0.8654652999830432,
+   "error": ""
+  },
+  "sealed-plant-042": {
+   "summary": "The diagnosis for the separator node used 51 bytes per message with a 5% target false alarm rate, achieving macro-F1 0.3.",
+   "latency_s": 0.7326943000080064,
+   "error": ""
+  },
+  "sealed-plant-043": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 0.1% false alarms on the stripper and separator nodes, achieving macro-F1 0.35.",
+   "latency_s": 0.8331733999948483,
+   "error": ""
+  },
+  "sealed-plant-045": {
+   "summary": "The diagnosis used 8 bytes per message and 1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.8513466000149492,
+   "error": ""
+  },
+  "sealed-plant-047": {
+   "summary": "The diagnosis for the compressor_utilities node used 8 bytes per message with a 1% target false alarm rate, achieving macro-F1 0.48.",
+   "latency_s": 0.752795700012939,
+   "error": ""
+  },
+  "sealed-plant-048": {
+   "summary": "The diagnosis used 51 bytes per message with a 5% target false alarm rate on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.72.",
+   "latency_s": 0.9132848000153899,
+   "error": ""
+  },
+  "sealed-plant-049": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 0.5% false alarms on the reactor and separator nodes, achieving macro-F1 0.5.",
+   "latency_s": 0.8142930000030901,
+   "error": ""
+  },
+  "sealed-plant-050": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 1% false alarms on the reactor, separator, and stripper nodes, achieving macro-F1 0.51.",
+   "latency_s": 0.8503017000039108,
+   "error": ""
+  },
+  "sealed-plant-051": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.7.",
+   "latency_s": 0.9139729000162333,
+   "error": ""
+  },
+  "sealed-plant-052": {
+   "summary": "The diagnosis used 16 bytes per message and aimed for 1% false alarms on the separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.63.",
+   "latency_s": 0.8677068999968469,
+   "error": ""
+  },
+  "sealed-plant-053": {
+   "summary": "The diagnosis used 16 bytes per message and 5% false alarms on the reactor, separator, and stripper nodes, achieving macro-F1 0.53.",
+   "latency_s": 0.8126779999874998,
+   "error": ""
+  },
+  "sealed-plant-054": {
+   "summary": "The diagnosis used 8 bytes per message and 2% false alarms on the separator and stripper nodes, achieving macro-F1 0.39.",
+   "latency_s": 0.7238083000120241,
+   "error": ""
+  },
+  "sealed-plant-055": {
+   "summary": "The diagnosis used 51 bytes per message and aimed for 0.5% false alarms on the reactor and compressor_utilities nodes, achieving macro-F1 0.75.",
+   "latency_s": 0.8558434000005946,
+   "error": ""
+  },
+  "sealed-plant-056": {
+   "summary": "The diagnosis for the stripper node used 51 bytes per message with a 1% target false alarm rate, achieving macro-F1 0.27.",
+   "latency_s": 0.7504611999902409,
+   "error": ""
+  },
+  "sealed-plant-057": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.75.",
+   "latency_s": 0.8644354999996722,
+   "error": ""
+  },
+  "sealed-plant-058": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the compressor_utilities and separator nodes, achieving macro-F1 0.62.",
+   "latency_s": 0.8295963999989908,
+   "error": ""
+  },
+  "sealed-plant-059": {
+   "summary": "The diagnosis used 16 bytes per message and achieved 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, resulting in macro-F1 0.74.",
+   "latency_s": 0.9569136000063736,
+   "error": ""
+  },
+  "sealed-plant-060": {
+   "summary": "The diagnosis for the reactor node used 51 bytes per message with a 5% target false alarm rate, achieving macro-F1 0.54.",
+   "latency_s": 0.7647553999850061,
+   "error": ""
+  },
+  "sealed-plant-061": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 1% false alarms on the reactor, separator, and compressor_utilities nodes, achieving macro-F1 0.73.",
+   "latency_s": 0.8525398000201676,
+   "error": ""
+  },
+  "sealed-plant-062": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the reactor and compressor_utilities nodes, achieving macro-F1 0.78.",
+   "latency_s": 0.7723221999767702,
+   "error": ""
+  },
+  "sealed-plant-063": {
+   "summary": "The diagnosis used 8 bytes per message and 2% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.8570300999854226,
+   "error": ""
+  },
+  "sealed-plant-065": {
+   "summary": "The diagnosis used 51 bytes per message and 5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.72.",
+   "latency_s": 0.8662710000062361,
+   "error": ""
+  },
+  "sealed-plant-066": {
+   "summary": "The diagnosis used 16 bytes per message and achieved 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, resulting in macro-F1 0.74.",
+   "latency_s": 0.951106799999252,
+   "error": ""
+  },
+  "sealed-plant-067": {
+   "summary": "The diagnosis used 16 bytes per message and 5% false alarms on the separator and compressor_utilities nodes, achieving macro-F1 0.63.",
+   "latency_s": 0.7524428999749944,
+   "error": ""
+  },
+  "sealed-plant-068": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.1% false alarms on the reactor, stripper, and compressor_utilities nodes, achieving macro-F1 0.7.",
+   "latency_s": 0.8699695999966934,
+   "error": ""
+  },
+  "sealed-plant-069": {
+   "summary": "The diagnosis used 16 bytes per message and 2% false alarms on the stripper and compressor_utilities nodes, achieving macro-F1 0.6.",
+   "latency_s": 0.7449376000149641,
+   "error": ""
+  },
+  "sealed-plant-070": {
+   "summary": "The diagnosis for the separator node used 51 bytes per message with a 1% false alarm rate, achieving macro-F1 0.28.",
+   "latency_s": 0.743682300002547,
+   "error": ""
+  },
+  "sealed-plant-071": {
+   "summary": "The diagnosis used 8 bytes per message and aimed for 0.5% false alarms on the reactor, separator, stripper, and compressor_utilities nodes, achieving macro-F1 0.71.",
+   "latency_s": 0.9284792999969795,
+   "error": ""
+  }
+ }
+}
