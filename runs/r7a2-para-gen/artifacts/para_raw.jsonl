@@ -1774,3 +1774,35 @@
 {"base_id": "tpl-plant-00279", "style": "self_correction", "text": "Actually, I need a plant system with sensor nodes reactor, separator, stripper, and compressor_utilities. Message size 51 bytes, false-alarm rate 0.05, and these four active nodes only."}
 {"base_id": "tpl-plant-00279", "style": "self_correction", "text": "Wait, what I meant was a fault-diagnosis system for reactor, separator, stripper, and compressor_utilities. Bytes per message 51, false-alarm rate 0.05, with those four active nodes."}
 {"base_id": "tpl-plant-00279", "style": "self_correction", "text": "No, make that a plant fault-diagnosis system with sensor nodes reactor, separator, stripper, and compressor_utilities. Message size 51 bytes, false-alarm rate 0.05, and all four listed nodes as active."}
+{"base_id": "tpl-squad-00100", "style": "jargon", "text": "Squad: red, grn, blu. Forage: red, grn. Caut: norm. Step: 100. Food: none"}
+{"base_id": "tpl-squad-00100", "style": "jargon", "text": "Red, grn, blu snakes. Foraging: red, grn. Caution normal. Steps 100. No food target"}
+{"base_id": "tpl-squad-00100", "style": "jargon", "text": "Squad snk: red, green, blue. Forage: red, green. Caut: normal. Step limit 100. Food none"}
+{"base_id": "tpl-squad-00100", "style": "jargon", "text": "Red, green, blue squad. Foraging red, green. Caution normal. Steps 100. Food target: none"}
+{"base_id": "tpl-squad-00100", "style": "jargon", "text": "Snakes: red, grn, blu. Forage: red, grn. Caut:nrm. Step:100. Food:none"}
+{"base_id": "tpl-squad-00100", "style": "jargon", "text": "Squad r,g,b. Forage r,g. Caut:norm. Step:100. Food:not stated"}
+{"base_id": "tpl-squad-00100", "style": "jargon", "text": "Red, green, blue snakes. Foraging: red, green. Caution normal. Steps 100. No food target"}
+{"base_id": "tpl-squad-00100", "style": "jargon", "text": "Squad: red grn blu. Forage: red grn. Caut: normal. Step limit 100. Food: none"}
+{"base_id": "tpl-plant-00259", "style": "numbers_in_words", "text": "Requesting fault diagnosis system for plant with sensor nodes reactor separator stripper compressor utilities bytes per message sixteen false alarm rate zero point zero five active nodes separator compressor utilities"}
+{"base_id": "tpl-plant-00259", "style": "numbers_in_words", "text": "Plant diagnostic system needs sensor network covering reactor separator stripper compressor utilities message size sixteen bytes false alarm probability five percent active monitoring separator compressor utilities"}
+{"base_id": "tpl-plant-00259", "style": "numbers_in_words", "text": "Control system query for industrial fault detection using sensor array reactor separator stripper compressor utilities transmission length sixteen characters error rate point zero five active elements separator compressor utilities"}
+{"base_id": "tpl-plant-00259", "style": "numbers_in_words", "text": "System command for process fault analysis with sensor deployment reactor separator stripper compressor utilities packet size sixteen characters misdiagnosis chance zero point zero five currently operating separator compressor utilities"}
+{"base_id": "tpl-plant-00259", "style": "numbers_in_words", "text": "Technical specification request for automated plant monitoring sensor nodes reactor separator stripper compressor utilities data payload sixteen characters false detection level point zero five operational separator compressor utilities"}
+{"base_id": "tpl-plant-00259", "style": "numbers_in_words", "text": "Plant supervision system needs fault identification sensor configuration reactor separator stripper compressor utilities message capacity sixteen bytes incorrect alarm ratio zero point zero five running separator compressor utilities"}
+{"base_id": "tpl-plant-00259", "style": "numbers_in_words", "text": "Automated diagnostic procedure requires sensor setup reactor separator stripper compressor utilities communication size sixteen characters erroneous trigger rate point zero five operating separator compressor utilities"}
+{"base_id": "tpl-plant-00259", "style": "numbers_in_words", "text": "Industrial control query for malfunction detection using sensor grid reactor separator stripper compressor utilities transmission unit sixteen characters bad alarm frequency point zero five functioning separator compressor utilities"}
+{"base_id": "tpl-plant-ref0019", "style": "polite_question", "text": "Could you please advise if it's possible to set the threshold to 250 per thousand false-alarm rate?"}
+{"base_id": "tpl-plant-ref0019", "style": "polite_question", "text": "Would it be feasible to configure the system for a 250 per thousand false-alarm rate target?"}
+{"base_id": "tpl-plant-ref0019", "style": "polite_question", "text": "Could you determine if achieving 250 per thousand false-alarm rate is within operational range?"}
+{"base_id": "tpl-plant-ref0019", "style": "polite_question", "text": "Is it possible to establish a 250 per thousand false-alarm rate parameter setting?"}
+{"base_id": "tpl-plant-ref0019", "style": "polite_question", "text": "Would you be able to check if 250 per thousand false-alarm rate falls within acceptable limits?"}
+{"base_id": "tpl-plant-ref0019", "style": "polite_question", "text": "Could you verify whether 250 per thousand false-alarm rate can be implemented?"}
+{"base_id": "tpl-plant-ref0019", "style": "polite_question", "text": "Is it within capability to set the false-alarm rate target to 250 per thousand?"}
+{"base_id": "tpl-plant-ref0019", "style": "polite_question", "text": "Would it be possible to adjust system parameters for 250 per thousand false-alarm rate?"}
+{"base_id": "tpl-plant-00106", "style": "negation", "text": "Activate fault diagnosis for all nodes except compressor_utilities, with 16 byte messages and 0.001 false alarm rate"}
+{"base_id": "tpl-plant-00106", "style": "negation", "text": "Run system diagnostics on reactor, separator, stripper while excluding utilities, using 16 bytes per message"}
+{"base_id": "tpl-plant-00106", "style": "negation", "text": "Fault detection covering everyone but compressor_utilities, maintaining 0.001 false alarm probability"}
+{"base_id": "tpl-plant-00106", "style": "negation", "text": "System monitoring for reactor, separator, stripper nodes only, with 16 byte message size"}
+{"base_id": "tpl-plant-00106", "style": "negation", "text": "Diagnostic protocol excluding compressor_utilities, keeping false alarm rate at 0.001"}
+{"base_id": "tpl-plant-00106", "style": "negation", "text": "All nodes active except utilities in fault analysis, 16 bytes per transmission"}
+{"base_id": "tpl-plant-00106", "style": "negation", "text": "Fault detection system targeting reactor, separator, stripper nodes with 0.001 false alarm threshold"}
+{"base_id": "tpl-plant-00106", "style": "negation", "text": "Sensor network diagnosis for all but compressor_utilities, maintaining 16 byte message format"}
