@@ -2,3 +2,7 @@ scale full: 2 groups, replicates 0:10 of 10; 8 processes x 1 torch thread(s) <= 
 20 cells in 2 groups on 8 workers
   tuned ('vq', 4): {'whiten': False, 'dim': 32} (143s)
   tuned ('vq', 8): {'whiten': False, 'dim': 32} (249s)
+  5/20 cells, 311s
+  10/20 cells, 450s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s4-vq-b48\artifacts\plant_novel_vq_b4_r0-10.json (7.5 min)
+  15/20 cells, 484s
