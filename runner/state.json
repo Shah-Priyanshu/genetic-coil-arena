@@ -3,29 +3,55 @@
   "host": "PC",
   "draining_for_update": false,
   "cpu_budget": 24,
-  "cpu_workers_in_use": 2,
+  "cpu_workers_in_use": 4,
   "running": [
     {
-      "id": "ci-1e08056722f3",
-      "lane": "cpu",
-      "cpu_workers": 2,
-      "started_at": "2026-10-25T00:51:26+00:00"
+      "id": "r10-o14-single",
+      "lane": "gpu",
+      "cpu_workers": 4,
+      "started_at": "2026-10-25T00:52:43+00:00"
     }
   ],
   "backlog": {
-    "ready": [],
-    "blocked": []
+    "ready": [
+      "r10-o14-team-free-OB",
+      "r10-o14-team-free-SS",
+      "r10-o14-team-typed-OB",
+      "r10-o14-team-typed-SS",
+      "r10-q3-single",
+      "r10-q3-team-free-OB",
+      "r10-q3-team-free-SS",
+      "r10-q3-team-typed-OB",
+      "r10-q3-team-typed-SS"
+    ],
+    "blocked": [
+      {
+        "id": "r10-zz-aggregate",
+        "blocked_by": [
+          "r10-q3-single",
+          "r10-q3-team-typed-SS",
+          "r10-q3-team-typed-OB",
+          "r10-q3-team-free-SS",
+          "r10-q3-team-free-OB",
+          "r10-o14-single",
+          "r10-o14-team-typed-SS",
+          "r10-o14-team-typed-OB",
+          "r10-o14-team-free-SS",
+          "r10-o14-team-free-OB"
+        ]
+      }
+    ]
   },
   "idle_since": {
-    "cpu": "2026-10-25T00:51:24+00:00",
+    "cpu": "2026-10-25T00:52:41+00:00",
     "gpu": "2026-10-25T00:51:24+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-25T00:51:26+00:00",
-  "cpu_percent": 0.0,
+  "updated_at": "2026-10-25T00:52:43+00:00",
+  "cpu_percent": 7.2,
   "gpu": {
-    "util": 0.0,
-    "mem_used_mb": 849.0,
+    "util": 2.0,
+    "mem_used_mb": 829.0,
     "mem_total_mb": 12282.0
   }
 }
