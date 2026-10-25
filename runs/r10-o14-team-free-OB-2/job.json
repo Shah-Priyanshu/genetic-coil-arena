@@ -1,0 +1,26 @@
+{
+  "id": "r10-o14-team-free-OB-2",
+  "commit": "9d661b1db483679f82579bd8d8655f90e0fe1f11",
+  "args": [
+    "scripts/r10_log_triage.py",
+    "run",
+    "--model",
+    "ollama:qwen2.5-coder:14b",
+    "--split",
+    "test",
+    "--no-overflow",
+    "--oracle-ctx",
+    "8192",
+    "--systems",
+    "OB",
+    "--conditions",
+    "team_free"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 4,
+  "priority": 5,
+  "timeout_min": 150,
+  "env": {
+    "HF_HOME": "D:\\hf_cache"
+  }
+}
