@@ -1446,3 +1446,155 @@
 {"base_id": "tpl-plant-00083", "style": "casual_chat", "text": "hey sorry to bother but i need reactor separator stripper and compressor_utilities nodes active in the fault diag system with 51 byte messages and 0.001 false alarm rate"}
 {"base_id": "tpl-plant-00083", "style": "casual_chat", "text": "what's the setup for this plant fault system with reactor separator stripper and compressor_utilities sensors at 51 bytes per message and 0.001 false alarm rate"}
 {"base_id": "tpl-plant-00083", "style": "casual_chat", "text": "quick config request for fault diagnosis system reactor separator stripper and compressor_utilities nodes with 51 byte messages and false alarm rate of 0.001"}
+{"base_id": "tpl-squad-00146", "style": "formal_memo", "text": "Red green blue snake squad foraging red caution normal step limit sixty food target fourteen"}
+{"base_id": "tpl-squad-00146", "style": "formal_memo", "text": "Snake unit requires red green blue configuration with red foraging, normal caution, sixty steps, fourteen food target"}
+{"base_id": "tpl-squad-00146", "style": "formal_memo", "text": "Control system activate red green blue snake team, forage red, normal caution, sixty step maximum, food target set to fourteen"}
+{"base_id": "tpl-squad-00146", "style": "formal_memo", "text": "Squad deployment: red green blue snakes, red foraging mode, standard caution level, sixty movement limit, food objective fourteen"}
+{"base_id": "tpl-squad-00146", "style": "formal_memo", "text": "Snake formation: red green blue units, red foraging group, ordinary caution, sixty steps allowed, target food count fourteen"}
+{"base_id": "tpl-squad-00146", "style": "formal_memo", "text": "Operational directive: red green blue snake squad, red foraging activity, normal care protocol, sixty step threshold, fourteen food goal"}
+{"base_id": "tpl-squad-00146", "style": "formal_memo", "text": "Snake control protocol: red green blue team, red foraging unit, standard caution, sixty step allowance, fourteen food target specified"}
+{"base_id": "tpl-squad-00146", "style": "formal_memo", "text": "System command: red green blue snake configuration, red foraging, normal caution setting, sixty step limit, fourteen food objective"}
+{"base_id": "tpl-plant-00171", "style": "indirect_hint", "text": "It would be nice if the system could handle fault diagnosis across reactor, separator, stripper, and compressor utilities with 51 byte messages and 5% false alarm rate"}
+{"base_id": "tpl-plant-00171", "style": "indirect_hint", "text": "I was thinking it might work well to have sensor nodes for reactor, separator, stripper, and compressor utilities in the fault-diagnosis system"}
+{"base_id": "tpl-plant-00171", "style": "indirect_hint", "text": "It would be helpful if the control system could manage these specific sensor nodes with 51 bytes per message and 0.05 false-alarm rate"}
+{"base_id": "tpl-plant-00171", "style": "indirect_hint", "text": "I was wondering if we could configure the fault-diagnosis system to include reactor, separator, stripper, and compressor utilities sensors"}
+{"base_id": "tpl-plant-00171", "style": "indirect_hint", "text": "It would be great if the system supported these four sensor nodes with specified message size and false-alarm parameters"}
+{"base_id": "tpl-plant-00171", "style": "indirect_hint", "text": "I was thinking about having sensor nodes covering reactor, separator, stripper, and compressor utilities in the diagnostic setup"}
+{"base_id": "tpl-plant-00171", "style": "indirect_hint", "text": "It would be useful to have the fault-diagnosis system work with these particular sensor nodes and their messaging requirements"}
+{"base_id": "tpl-plant-00171", "style": "indirect_hint", "text": "I was hoping the control system could accommodate reactor, separator, stripper, and compressor utilities node configurations"}
+{"base_id": "tpl-plant-00445", "style": "terse_note", "text": "fault diag plant sensor nodes reactor separator stripper compressor_utilities bytes_msg=8 false_alarm_rate=0.01 active_nodes=separator compressor_utilities"}
+{"base_id": "tpl-plant-00445", "style": "terse_note", "text": "plant fault diagnosis system reactor|separator|stripper|compressor_utilities sensor nodes bytes=8 false alarm rate=1% active=separator,compressor_utilities"}
+{"base_id": "tpl-plant-00445", "style": "terse_note", "text": "diag system plant nodes reactor separator stripper compressor_utilities msg_bytes=8 f_rate=0.01 actv=separator,compressor_utilities"}
+{"base_id": "tpl-plant-00445", "style": "terse_note", "text": "fault detection reactor separator stripper compressor_utilities sensor network msg=8 false alarm 1% active nodes: separator,compressor_utilities"}
+{"base_id": "tpl-plant-00445", "style": "terse_note", "text": "plant monitoring system fault diag sensor reactor|separator|stripper|compressor_utilities bytes=8 f_rate=0.01 active=separator,compressor_utilities"}
+{"base_id": "tpl-plant-00445", "style": "terse_note", "text": "diagnostic system reactor separator stripper compressor_utilities sensor nodes msg=8 false_alarm=0.01 active_nodes=separator,compressor_utilities"}
+{"base_id": "tpl-plant-00445", "style": "terse_note", "text": "fault diagnosis plant nodes reactor separator stripper compressor_utilities bytes=8 rate=0.01 active=separator,compressor_utilities"}
+{"base_id": "tpl-plant-00445", "style": "terse_note", "text": "system fault diag reactor separator stripper compressor_utilities sensor msg=8 f_rate=0.01 actv_nodes=separator,compressor_utilities"}
+{"base_id": "tpl-squad-00108", "style": "mixed_notation", "text": "Snakes squad: red, green, blue. Foraging: green, blue. Caution level: 0.25. Step cap: 220. Food goal: 32."}
+{"base_id": "tpl-squad-00108", "style": "mixed_notation", "text": "Squad members: red, green, blue. Foraging group: green, blue. Risk tolerance: 1/4. Steps allowed: 220. Target food: 32."}
+{"base_id": "tpl-squad-00108", "style": "mixed_notation", "text": "Snake team: red, green, blue. Foragers: green, blue. Danger threshold: 250‰. Movement limit: 220. Nutrient target: 32."}
+{"base_id": "tpl-squad-00108", "style": "mixed_notation", "text": "Group of serpents: red, green, blue. Foraging units: green, blue. Risk factor: 0.25. Step allowance: 220. Energy goal: 32."}
+{"base_id": "tpl-squad-00108", "style": "mixed_notation", "text": "Serpentine squad: red, green, blue. Foraging team: green, blue. Caution level: 1:4. Max steps: 220. Food quota: 32."}
+{"base_id": "tpl-squad-00108", "style": "mixed_notation", "text": "Snake collective: red, green, blue. Foraging crew: green, blue. Risk setting: 0x40. Step count: 220. Target nutrition: 32."}
+{"base_id": "tpl-squad-00108", "style": "mixed_notation", "text": "Squad of vipers: red, green, blue. Foraging party: green, blue. Danger level: 2.5e-1. Step ceiling: 220. Food objective: 32."}
+{"base_id": "tpl-squad-00108", "style": "mixed_notation", "text": "Snake formation: red, green, blue. Foraging section: green, blue. Risk parameter: 12.5%. Steps available: 220. Target sustenance: 32."}
+{"base_id": "tpl-squad-00109", "style": "numbers_in_words", "text": "Red snake team green snake team blue snake team all foraging with low caution level three hundred steps maximum no food target specified"}
+{"base_id": "tpl-squad-00109", "style": "numbers_in_words", "text": "Squad consisting of red green and blue snakes all searching for food under cautious low risk behavior three hundred step limit default food target none"}
+{"base_id": "tpl-squad-00109", "style": "numbers_in_words", "text": "Three colored snake units red green and blue engaged in foraging activity with minimal safety precautions three hundred movement allowance no food objective"}
+{"base_id": "tpl-squad-00109", "style": "numbers_in_words", "text": "Red serpent group green serpent group blue serpent group all hunting for sustenance operating under reckless low caution protocol three hundred action limit no food goal stated"}
+{"base_id": "tpl-squad-00109", "style": "numbers_in_words", "text": "Snake collective including red green and blue members actively seeking resources while taking dangerous risks three hundred command iterations default food target unspecified"}
+{"base_id": "tpl-squad-00109", "style": "numbers_in_words", "text": "Team of red green and blue snakes foraging with hazardous approach three hundred operational constraints no specified food destination"}
+{"base_id": "tpl-squad-00109", "style": "numbers_in_words", "text": "Red green and blue snake formations searching for nourishment under reckless low safety standards three hundred iteration allowance food target not required"}
+{"base_id": "tpl-squad-00109", "style": "numbers_in_words", "text": "Snake squad composed of red green and blue units engaged in exploration with dangerous risk tolerance three hundred step allowance no food requirement stated"}
+{"base_id": "tpl-squad-00150", "style": "multi_sentence", "text": "Red green blue squad snakes. Foraging green blue only. Normal caution. Food target 40."}
+{"base_id": "tpl-squad-00150", "style": "multi_sentence", "text": "Squad consists of red green and blue snakes. Green and blue forage. Ordinary care needed. Target food 40."}
+{"base_id": "tpl-squad-00150", "style": "multi_sentence", "text": "Snakes in red green blue squad. Green blue foraging. Standard caution. Food goal 40."}
+{"base_id": "tpl-squad-00150", "style": "multi_sentence", "text": "Red green blue snake team. Green blue searching. Regular attention. Food objective 40."}
+{"base_id": "tpl-squad-00150", "style": "multi_sentence", "text": "Squad members red green blue. Green blue foraging. Typical care. Food target set to 40."}
+{"base_id": "tpl-squad-00150", "style": "multi_sentence", "text": "Red green blue snakes group. Green blue forage. Normal handling. Target food 40."}
+{"base_id": "tpl-squad-00150", "style": "multi_sentence", "text": "Team of red green blue snakes. Green blue foraging. Standard care. Food goal 40."}
+{"base_id": "tpl-squad-00150", "style": "multi_sentence", "text": "Red green blue snake squad. Green blue searching. Ordinary maintenance. Food target 40."}
+{"base_id": "tpl-squad-00285", "style": "numbers_in_words", "text": "Red green and blue snake squad foraging red and green caution normal step limit one hundred thirty food target six"}
+{"base_id": "tpl-squad-00285", "style": "numbers_in_words", "text": "Squad consists of red green and blue snakes with red and green foraging while caution remains ordinary step limit one hundred thirty food target six"}
+{"base_id": "tpl-squad-00285", "style": "numbers_in_words", "text": "Three snake squad red green and blue foraging red and green normal caution step limit one hundred thirty food target six"}
+{"base_id": "tpl-squad-00285", "style": "numbers_in_words", "text": "Red green and blue snakes in squad foraging red and green caution normal step limit one hundred thirty food target six"}
+{"base_id": "tpl-squad-00285", "style": "numbers_in_words", "text": "Snake team red green blue foraging red green ordinary caution step limit one hundred thirty food target six"}
+{"base_id": "tpl-squad-00285", "style": "numbers_in_words", "text": "Squad of red green and blue snakes foraging red and green with normal caution step limit one hundred thirty food target six"}
+{"base_id": "tpl-squad-00285", "style": "numbers_in_words", "text": "Red green and blue snake group foraging red and green caution normal step limit one hundred thirty food target six"}
+{"base_id": "tpl-squad-00285", "style": "numbers_in_words", "text": "Three snake squad red green and blue foraging red and green normal care step limit one hundred thirty food target six"}
+{"base_id": "tpl-plant-00177", "style": "terse_note", "text": "fault diag system sensor nodes reactor separator stripper compressor_utilities 16 bytes msg 0.001 false alarm rate active reactor separator compressor_utilities"}
+{"base_id": "tpl-plant-00177", "style": "terse_note", "text": "plant fault diagnosis reactor separator stripper compressor_utilities 16 byte messages 0.001 false alarm active nodes reactor separator compressor_utilities"}
+{"base_id": "tpl-plant-00177", "style": "terse_note", "text": "diag system reactor separator stripper compressor_utilities 16 bytes per msg 0.001 false alarm rate active reactor separator compressor_utilities"}
+{"base_id": "tpl-plant-00177", "style": "terse_note", "text": "fault detection system nodes reactor separator stripper compressor_utilities 16 byte messages 0.001 false alarm active reactor separator compressor_utilities"}
+{"base_id": "tpl-plant-00177", "style": "terse_note", "text": "system fault diag reactor separator stripper compressor_utilities 16 byte msg 0.001 false alarm active reactor separator compressor_utilities"}
+{"base_id": "tpl-plant-00177", "style": "terse_note", "text": "plant monitoring system reactor separator stripper compressor_utilities 16 bytes 0.001 false alarm rate active reactor separator compressor_utilities"}
+{"base_id": "tpl-plant-00177", "style": "terse_note", "text": "diagnosis network reactor separator stripper compressor_utilities 16 byte messages 0.001 false alarm active reactor separator compressor_utilities"}
+{"base_id": "tpl-plant-00177", "style": "terse_note", "text": "control fault system reactor separator stripper compressor_utilities 16 bytes per msg 0.001 false alarm active reactor separator compressor_utilities"}
+{"base_id": "tpl-squad-00127", "style": "multi_sentence", "text": "Red snake squad foraging. Low caution level. Step limit 300."}
+{"base_id": "tpl-squad-00127", "style": "multi_sentence", "text": "Squad contains red green and blue snakes. Red snake foraging. Low risk behavior."}
+{"base_id": "tpl-squad-00127", "style": "multi_sentence", "text": "Foraging red snake in squad. Caution low. Thirty step limit."}
+{"base_id": "tpl-squad-00127", "style": "multi_sentence", "text": "Snake squad with red green and blue members. Red snake foraging. Low risk tolerance."}
+{"base_id": "tpl-squad-00127", "style": "multi_sentence", "text": "Red snake squad foraging. Caution level set to low. Step limit 300."}
+{"base_id": "tpl-squad-00127", "style": "multi_sentence", "text": "Squad of snakes including red green and blue. Red snake foraging. Low caution setting."}
+{"base_id": "tpl-squad-00127", "style": "multi_sentence", "text": "Red green and blue snake squad. Foraging red snake. Low risk behavior."}
+{"base_id": "tpl-squad-00127", "style": "multi_sentence", "text": "Snake squad with red foraging member. Low caution required. Step limit 300."}
+{"base_id": "tpl-plant-00207", "style": "jargon", "text": "diag reactor sep stripper comp_util 16b 0.01fa sep comp_util active"}
+{"base_id": "tpl-plant-00207", "style": "jargon", "text": "fault sys sens nodes react sep strip comp_util msg 16 bytes fa 0.01 sep comp_util on"}
+{"base_id": "tpl-plant-00207", "style": "jargon", "text": "sensor network fault detect reactor sep stripper comp_util 16byte msg 1% false alarm sep comp_util working"}
+{"base_id": "tpl-plant-00207", "style": "jargon", "text": "control system fault analysis reactor sep stripper comp_util 16b message rate 0.01 sep comp_util operational"}
+{"base_id": "tpl-plant-00207", "style": "jargon", "text": "plant diagnostics sensor nodes react sep strip comp_util 16 bytes per msg false alarm 0.01 sep comp_util active"}
+{"base_id": "tpl-plant-00207", "style": "jargon", "text": "system fault monitoring reactor sep stripper comp_util 16byte packets 1% false alarm sep comp_util running"}
+{"base_id": "tpl-plant-00207", "style": "jargon", "text": "reactor separator stripper compressor utilities fault detection 16b messages 0.01 false alarm sep comp_util"}
+{"base_id": "tpl-plant-00207", "style": "jargon", "text": "process control fault system sensor nodes react sep strip comp_util 16 byte msg rate 0.01 sep comp_util"}
+{"base_id": "tpl-squad-00289", "style": "numbers_in_words", "text": "Red snake squad with green and blue members, foraging red and blue only, caution normal, step limit one hundred thirty, food target thirty two"}
+{"base_id": "tpl-squad-00289", "style": "numbers_in_words", "text": "Squad consists of red green and blue snakes, foraging red and blue, caution ordinary, step limit one hundred thirty, food target thirty two"}
+{"base_id": "tpl-squad-00289", "style": "numbers_in_words", "text": "Red green and blue snake team, foraging red and blue snakes, normal caution, step limit one hundred thirty, food target thirty two"}
+{"base_id": "tpl-squad-00289", "style": "numbers_in_words", "text": "Snake squad with red green and blue colors, foraging red and blue types only, ordinary caution level, step limit one hundred thirty, food target thirty two"}
+{"base_id": "tpl-squad-00289", "style": "numbers_in_words", "text": "Red green and blue snakes in squad, foraging red and blue specimens, standard caution, one hundred thirty steps maximum, thirty two food target"}
+{"base_id": "tpl-squad-00289", "style": "numbers_in_words", "text": "Snake group including red green and blue, foraging red and blue variants, normal care level, maximum one hundred thirty steps, food goal thirty two"}
+{"base_id": "tpl-squad-00289", "style": "numbers_in_words", "text": "Red green and blue snake unit, red and blue foragers, ordinary caution setting, step allowance one hundred thirty, food objective thirty two"}
+{"base_id": "tpl-squad-00289", "style": "numbers_in_words", "text": "Squad of snakes colored red green and blue, red and blue foraging members, standard caution, maximum one hundred thirty steps, food target thirty two"}
+{"base_id": "tpl-squad-00080", "style": "casual_chat", "text": "hey can u make me a snake squad with red green and blue snakes? red one is foraging tho and caution level normal and food target 30"}
+{"base_id": "tpl-squad-00080", "style": "casual_chat", "text": "yo wanna help me set up some snakes? red green blue squad red forages caution normal step limit 300 food target 30"}
+{"base_id": "tpl-squad-00080", "style": "casual_chat", "text": "can you create a snake team with red green and blue guys? red one hunts though caution normal step 300 food 30"}
+{"base_id": "tpl-squad-00080", "style": "casual_chat", "text": "whats up i need a red green blue snake group red foraging caution normal step limit default food target 30"}
+{"base_id": "tpl-squad-00080", "style": "casual_chat", "text": "hey lets make some snakes red green blue squad red one forages caution normal step 300 food target 30"}
+{"base_id": "tpl-squad-00080", "style": "casual_chat", "text": "want to build a snake team with red green and blue? red hunts caution normal step limit 300 food target 30"}
+{"base_id": "tpl-squad-00080", "style": "casual_chat", "text": "can u setup a snake squad red green blue red foraging caution normal step limit default food target 30"}
+{"base_id": "tpl-squad-00080", "style": "casual_chat", "text": "im gonna need a snake group red green blue red one forages caution normal step 300 food target 30"}
+{"base_id": "tpl-squad-00476", "style": "mixed_notation", "text": "Squad snakes red green blue. Forage green blue. Caution normal. Step limit 240. Food target none"}
+{"base_id": "tpl-squad-00476", "style": "mixed_notation", "text": "Red green blue snake team. Foraging green blue. Care level normal. 240 steps. No food target"}
+{"base_id": "tpl-squad-00476", "style": "mixed_notation", "text": "Snakes: red, green, blue. Foraging: green, blue. Caution: normal. Steps: 240. Food: none"}
+{"base_id": "tpl-squad-00476", "style": "mixed_notation", "text": "Squad of snakes - red, green, blue. Foraging: green, blue. Caution normal. Step limit 240. No food target"}
+{"base_id": "tpl-squad-00476", "style": "mixed_notation", "text": "Red green blue snakes. Foraging green blue. Normal caution. 240 steps. Food target none"}
+{"base_id": "tpl-squad-00476", "style": "mixed_notation", "text": "Snake squad: red, green, blue. Foraging: green, blue. Caution normal. Steps 240. No food target stated"}
+{"base_id": "tpl-squad-00476", "style": "mixed_notation", "text": "Squad red green blue snakes. Foraging green blue. Normal caution. Step limit 240. Food target not specified"}
+{"base_id": "tpl-squad-00476", "style": "mixed_notation", "text": "Snakes red green blue. Forage green blue. Normal care. 240 steps. Food none"}
+{"base_id": "tpl-plant-cla0028", "style": "numbers_in_words", "text": "Allow some unspecified amount of false notifications to occur"}
+{"base_id": "tpl-plant-cla0028", "style": "numbers_in_words", "text": "Permit a variable quantity of erroneous alerts to happen"}
+{"base_id": "tpl-plant-cla0028", "style": "numbers_in_words", "text": "Let a flexible number of incorrect warnings take place"}
+{"base_id": "tpl-plant-cla0028", "style": "numbers_in_words", "text": "Authorize an indeterminate portion of faulty alarms"}
+{"base_id": "tpl-plant-cla0028", "style": "numbers_in_words", "text": "Accept a miscellaneous collection of inaccurate notifications"}
+{"base_id": "tpl-plant-cla0028", "style": "numbers_in_words", "text": "Grant a random selection of misleading alert messages"}
+{"base_id": "tpl-plant-cla0028", "style": "numbers_in_words", "text": "Enable a fluctuating total of erroneous system warnings"}
+{"base_id": "tpl-plant-cla0028", "style": "numbers_in_words", "text": "Approve a non-specific batch of false alarm occurrences"}
+{"base_id": "tpl-plant-00372", "style": "casual_chat", "text": "hey can u set up the fault diag system with those four nodes reactor separator stripper and compressor utilities please"}
+{"base_id": "tpl-plant-00372", "style": "casual_chat", "text": "yo i need the plant fault detection running with sensor nodes for reactor sep stripper and compressors"}
+{"base_id": "tpl-plant-00372", "style": "casual_chat", "text": "can you config the fault analysis thing with reactor separator stripper and compressor utilities sensors"}
+{"base_id": "tpl-plant-00372", "style": "casual_chat", "text": "quick setup for fault monitoring system using reactor separator stripper and compressor utilities nodes"}
+{"base_id": "tpl-plant-00372", "style": "casual_chat", "text": "hey can we activate the fault diagnosis with those four reactor separator stripper and compressor_utilites"}
+{"base_id": "tpl-plant-00372", "style": "casual_chat", "text": "want to enable fault detection on reactor separator stripper and compressor_utilities sensor network"}
+{"base_id": "tpl-plant-00372", "style": "casual_chat", "text": "could you start the plant fault checking system with these nodes reactor separator stripper and compressors"}
+{"base_id": "tpl-plant-00372", "style": "casual_chat", "text": "need fault diag system activated for reactor separator stripper and compressor utilities sensor array"}
+{"base_id": "tpl-squad-cla0019", "style": "formal_memo", "text": "Operation requires specified quantity parameter. Default value not acceptable for critical system integrity."}
+{"base_id": "tpl-squad-cla0019", "style": "formal_memo", "text": "System command pending selection of required numerical input. Missing specification prevents execution."}
+{"base_id": "tpl-squad-cla0019", "style": "formal_memo", "text": "Control protocol necessitates defined target metric. Undefined parameter creates operational ambiguity."}
+{"base_id": "tpl-squad-cla0019", "style": "formal_memo", "text": "Administrative directive demands explicit choice allocation. Vague requirement prohibits process initiation."}
+{"base_id": "tpl-squad-cla0019", "style": "formal_memo", "text": "Technical procedure requires quantified decision point. Missing data element prevents system activation."}
+{"base_id": "tpl-squad-cla0019", "style": "formal_memo", "text": "Operational framework needs determined parameter value. Unclear specification blocks processing sequence."}
+{"base_id": "tpl-squad-cla0019", "style": "formal_memo", "text": "Control mechanism awaits identified numerical selection. Ambiguous input terminates command cycle."}
+{"base_id": "tpl-squad-cla0019", "style": "formal_memo", "text": "System protocol requires stated target quantity. Unspecified parameter creates execution failure condition."}
+{"base_id": "tpl-plant-00419", "style": "negation", "text": "Activate fault diagnosis for reactor, separator, stripper, compressor_utilities excluding compressor_utilities"}
+{"base_id": "tpl-plant-00419", "style": "negation", "text": "All nodes active except compressor_utilities in fault-diagnosis system"}
+{"base_id": "tpl-plant-00419", "style": "negation", "text": "Fault detection system running on everyone but compressor_utilities"}
+{"base_id": "tpl-plant-00419", "style": "negation", "text": "Leave compressor_utilities out of the plant fault-diagnosis process"}
+{"base_id": "tpl-plant-00419", "style": "negation", "text": "Active sensor nodes include reactor, separator, stripper, compressor_utilities minus compressor_utilities"}
+{"base_id": "tpl-plant-00419", "style": "negation", "text": "No compressor_utilities in the fault-diagnosis system"}
+{"base_id": "tpl-plant-00419", "style": "negation", "text": "All but compressor_utilities participate in fault diagnosis"}
+{"base_id": "tpl-plant-00419", "style": "negation", "text": "Fault-monitoring system covers reactor, separator, stripper, compressor_utilities excluding compressor_utilities"}
+{"base_id": "tpl-squad-00324", "style": "polite_question", "text": "Could you please set up a squad with red, green, and blue snakes, where the foraging snake is red, caution level is normal, and food target is 10?"}
+{"base_id": "tpl-squad-00324", "style": "polite_question", "text": "Would it be possible to configure a snake squad consisting of red, green, and blue snakes with red foraging, normal caution, and food target of 10?"}
+{"base_id": "tpl-squad-00324", "style": "polite_question", "text": "Could you arrange a control system setup with red, green, and blue snakes, having red as foraging snake, normal caution, and food target at 10?"}
+{"base_id": "tpl-squad-00324", "style": "polite_question", "text": "Would you be able to establish a squad featuring red, green, and blue snakes, with red foraging, normal caution level, and food target of 10?"}
+{"base_id": "tpl-squad-00324", "style": "polite_question", "text": "Could you please create a snake squad with red, green, and blue colors, red foraging snake, normal caution, and food target set to 10?"}
+{"base_id": "tpl-squad-00324", "style": "polite_question", "text": "Would it be possible to program a control system with red, green, and blue snakes, red foraging, normal caution, and food target of 10?"}
+{"base_id": "tpl-squad-00324", "style": "polite_question", "text": "Could you kindly configure a squad of red, green, and blue snakes, where red is foraging, caution is normal, and food target equals 10?"}
+{"base_id": "tpl-squad-00324", "style": "polite_question", "text": "Would you mind setting up a snake squad with red, green, and blue snakes, red foraging, normal caution level, and food target at 10?"}
+{"base_id": "tpl-plant-cla0037", "style": "typos", "text": "need more info on alars plz send details"}
+{"base_id": "tpl-plant-cla0037", "style": "typos", "text": "falas need clarifiction how many"}
+{"base_id": "tpl-plant-cla0037", "style": "typos", "text": "alarms must be rare give me specs"}
+{"base_id": "tpl-plant-cla0037", "style": "typos", "text": "faleas alars unclear quantity"}
+{"base_id": "tpl-plant-cla0037", "style": "typos", "text": "need more alars details please"}
+{"base_id": "tpl-plant-cla0037", "style": "typos", "text": "alarms rare but how many"}
+{"base_id": "tpl-plant-cla0037", "style": "typos", "text": "falas alars vague need info"}
+{"base_id": "tpl-plant-cla0037", "style": "typos", "text": "alarms must be rare how many"}
