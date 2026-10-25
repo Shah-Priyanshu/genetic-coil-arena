@@ -1830,3 +1830,43 @@
 {"base_id": "tpl-plant-00314", "style": "negation", "text": "Sensor activation request for reactor, separator, stripper, and compressor_utilities with 51 byte payload, excluding fault in compressor_utilities"}
 {"base_id": "tpl-plant-00314", "style": "negation", "text": "Control system to process reactor, separator, stripper, and compressor_utilities data streams, 51 byte message format, 0.01 false positive rate"}
 {"base_id": "tpl-plant-00314", "style": "negation", "text": "Plant diagnostics command for all nodes except compressor_utilities, 51 byte transmission size, 1% false alarm setting active"}
+{"base_id": "tpl-squad-00129", "style": "numbers_in_words", "text": "Red snake squad with green and blue foragers operating at low caution level with maximum twenty seven five steps and food goal of twenty eight"}
+{"base_id": "tpl-squad-00129", "style": "numbers_in_words", "text": "Control system activate red green blue snake team where green and blue search for food under low risk conditions with step cap two hundred seventy five and target twenty eight"}
+{"base_id": "tpl-squad-00129", "style": "numbers_in_words", "text": "Snake unit consisting of red green and blue members with green and blue foraging parties maintaining low reckless behavior while following maximum two hundred seventy five movement limit and targeting twenty eight food units"}
+{"base_id": "tpl-squad-00129", "style": "numbers_in_words", "text": "Red green blue snake group with green and blue personnel foraging under low risk parameters having maximum two hundred seventy five steps allowed and aiming for twenty eight food items"}
+{"base_id": "tpl-squad-00129", "style": "numbers_in_words", "text": "Squad of red green and blue snakes with green and blue searching parties operating at low caution level restricting maximum two hundred seventy five movements and targeting twenty eight food sources"}
+{"base_id": "tpl-squad-00129", "style": "numbers_in_words", "text": "Control command for red green blue snake formation where green and blue units forage with low risk approach limiting two hundred seventy five steps and setting food goal to twenty eight"}
+{"base_id": "tpl-squad-00129", "style": "numbers_in_words", "text": "Snake team composition including red green and blue individuals with green and blue foraging crews functioning under low reckless settings maximum two hundred seventy five actions and twenty eight food target"}
+{"base_id": "tpl-squad-00129", "style": "numbers_in_words", "text": "Red green blue snake collective with green and blue foragers maintaining low risk tolerance through two hundred seventy five step restriction while pursuing twenty eight food objectives"}
+{"base_id": "tpl-plant-00413", "style": "terse_note", "text": "fault diag system reactor|separator|stripper|compressor_utilities 51b msg 0.05 FA rate stripper active"}
+{"base_id": "tpl-plant-00413", "style": "terse_note", "text": "plant fault diagnosis sensor nodes: reactor, separator, stripper, compressor_utilities 51 bytes 0.05 false alarm stripper online"}
+{"base_id": "tpl-plant-00413", "style": "terse_note", "text": "diag system nodes reactor/separator/stripper/compressor_utilities 51 msg size 0.05 FA rate active stripper"}
+{"base_id": "tpl-plant-00413", "style": "terse_note", "text": "fault detection system reactor|separator|stripper|compressor_utilities 51 byte message 5% false alarm stripper node"}
+{"base_id": "tpl-plant-00413", "style": "terse_note", "text": "control system fault diagnosis reactor, separator, stripper, compressor_utilities 51 bytes per message 0.05 false alarm stripper active"}
+{"base_id": "tpl-plant-00413", "style": "terse_note", "text": "sensor network fault diag reactor/separator/stripper/compressor_utilities 51 message bytes 0.05 FA rate stripper operational"}
+{"base_id": "tpl-plant-00413", "style": "terse_note", "text": "reactor separator stripper compressor_utilities fault system 51 bytes 0.05 false alarm rate stripper node active"}
+{"base_id": "tpl-plant-00413", "style": "terse_note", "text": "plant monitoring fault detection reactor|separator|stripper|compressor_utilities 51 byte limit 0.05 FA stripper working"}
+{"base_id": "tpl-squad-cla0032", "style": "negation", "text": "Everyone except the primary target, all but one food item, careful play only, 140 moves"}
+{"base_id": "tpl-squad-cla0032", "style": "negation", "text": "Leave the main objective out, no additional resources, careful play only, 140 moves"}
+{"base_id": "tpl-squad-cla0032", "style": "negation", "text": "All but the specified food type, everyone except the default choice, careful play only, 140 moves"}
+{"base_id": "tpl-squad-cla0032", "style": "negation", "text": "No target selection, everyone except the baseline option, careful play only, 140 moves"}
+{"base_id": "tpl-squad-cla0032", "style": "negation", "text": "Leave one food item out, all but the required choice, careful play only, 140 moves"}
+{"base_id": "tpl-squad-cla0032", "style": "negation", "text": "Everyone except the main resource, no extra targets, careful play only, 140 moves"}
+{"base_id": "tpl-squad-cla0032", "style": "negation", "text": "All but one quantity, leave the primary target out, careful play only, 140 moves"}
+{"base_id": "tpl-squad-cla0032", "style": "negation", "text": "No specified selection, everyone except the standard choice, careful play only, 140 moves"}
+{"base_id": "tpl-plant-00441", "style": "terse_note", "text": "fault diag system sensor nodes reactor separator stripper compressor_utilities 8 bytes msg 0.01 false alarm rate active nodes reactor separator stripper compressor_utilities"}
+{"base_id": "tpl-plant-00441", "style": "terse_note", "text": "plant fault diagnosis system with sensor nodes reactor separator stripper compressor_utilities 8 byte message size 0.01 false alarm rate active nodes reactor separator stripper compressor_utilities"}
+{"base_id": "tpl-plant-00441", "style": "terse_note", "text": "fault diag system nodes reactor separator stripper compressor_utilities 8 bytes per msg 0.01 false alarm rate active reactor separator stripper compressor_utilities"}
+{"base_id": "tpl-plant-00441", "style": "terse_note", "text": "system fault diagnosis sensor reactor separator stripper compressor_utilities 8 byte messages 0.01 false alarm rate active nodes reactor separator stripper compressor_utilities"}
+{"base_id": "tpl-plant-00441", "style": "terse_note", "text": "fault detection system reactor separator stripper compressor_utilities 8 byte message 0.01 false alarm rate active nodes reactor separator stripper compressor_utilities"}
+{"base_id": "tpl-plant-00441", "style": "terse_note", "text": "diagnosis system sensor nodes reactor separator stripper compressor_utilities 8 bytes per msg false alarm 0.01 active reactor separator stripper compressor_utilities"}
+{"base_id": "tpl-plant-00441", "style": "terse_note", "text": "plant fault monitor sensor reactor separator stripper compressor_utilities 8 byte msg size 0.01 false alarm rate active nodes reactor separator stripper compressor_utilities"}
+{"base_id": "tpl-plant-00441", "style": "terse_note", "text": "fault diagnosis system reactor separator stripper compressor_utilities 8 byte message 0.01 false alarm rate active reactor separator stripper compressor_utilities"}
+{"base_id": "tpl-squad-00052", "style": "jargon", "text": "SQD SNAKES RED GRN BLU FORAGE RG CAUTION LOW STEP 275 FOOD 1"}
+{"base_id": "tpl-squad-00052", "style": "jargon", "text": "SNAKE SQUAD RED GRN BLU FORAGING RG CAUTION LVL 1 STEP 275 TARGET 1"}
+{"base_id": "tpl-squad-00052", "style": "jargon", "text": "RED GRN BLU SNAKE TEAM FORAGE RG WARNING LOW MOVES 275 FOOD GOAL 1"}
+{"base_id": "tpl-squad-00052", "style": "jargon", "text": "SQUAD SNAKES R G B FORAGE R G ALERT LOW CYCLES 275 NUTRITION 1"}
+{"base_id": "tpl-squad-00052", "style": "jargon", "text": "SNK SQD RED GRN BLU FORAGE RG CAUTION LVL 1 MAX 275 TARGET 1"}
+{"base_id": "tpl-squad-00052", "style": "jargon", "text": "RED GREEN BLUE SNAKE GROUP FORAGE RG DANGER LOW STEPS 275 FOOD 1"}
+{"base_id": "tpl-squad-00052", "style": "jargon", "text": "SNAKE SQUAD R G B FORAGING RG CAUTION LOW STEP LIMIT 275 FOOD 1"}
+{"base_id": "tpl-squad-00052", "style": "jargon", "text": "TEAM SNAKES RED GRN BLU FORAGE RG CAUTION LEVEL 1 MAXSTEP 275 FOOD TARGET 1"}
