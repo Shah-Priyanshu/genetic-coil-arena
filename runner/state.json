@@ -12,12 +12,6 @@
       "started_at": "2026-10-25T01:41:18+00:00"
     },
     {
-      "id": "r10-o14-team-free-OB",
-      "lane": "gpu",
-      "cpu_workers": 4,
-      "started_at": "2026-10-25T01:41:18+00:00"
-    },
-    {
       "id": "r8s4-ref",
       "lane": "cpu",
       "cpu_workers": 8,
@@ -28,12 +22,17 @@
       "lane": "cpu",
       "cpu_workers": 8,
       "started_at": "2026-10-25T01:50:32+00:00"
+    },
+    {
+      "id": "r10-o14-team-free-SS",
+      "lane": "gpu",
+      "cpu_workers": 4,
+      "started_at": "2026-10-25T01:51:04+00:00"
     }
   ],
   "backlog": {
     "ready": [
       "r8s4-vq-b48",
-      "r10-o14-team-free-SS",
       "r10-o14-team-typed-OB",
       "r10-o14-team-typed-SS",
       "r10-q3-single",
@@ -44,20 +43,6 @@
       "ci-0510844d455d"
     ],
     "blocked": [
-      {
-        "id": "r10-zz-aggregate",
-        "blocked_by": [
-          "r10-q3-single",
-          "r10-q3-team-typed-SS",
-          "r10-q3-team-typed-OB",
-          "r10-q3-team-free-SS",
-          "r10-q3-team-free-OB",
-          "r10-o14-team-typed-SS",
-          "r10-o14-team-typed-OB",
-          "r10-o14-team-free-SS",
-          "r10-o14-team-free-OB"
-        ]
-      },
       {
         "id": "r8s4-zz-aggregate",
         "blocked_by": [
@@ -71,14 +56,14 @@
   },
   "idle_since": {
     "cpu": null,
-    "gpu": null
+    "gpu": "2026-10-25T01:50:59+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-25T01:50:32+00:00",
-  "cpu_percent": 48.8,
+  "updated_at": "2026-10-25T01:51:04+00:00",
+  "cpu_percent": 76.7,
   "gpu": {
-    "util": 97.0,
-    "mem_used_mb": 9842.0,
+    "util": 0.0,
+    "mem_used_mb": 599.0,
     "mem_total_mb": 12282.0
   }
 }
