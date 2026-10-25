@@ -24,15 +24,14 @@
       "started_at": "2026-10-25T16:24:01+00:00"
     },
     {
-      "id": "r10s2-o14-spec-SS",
+      "id": "r10s2-q3-spec-OB",
       "lane": "gpu",
       "cpu_workers": 4,
-      "started_at": "2026-10-25T18:52:34+00:00"
+      "started_at": "2026-10-25T20:19:12+00:00"
     }
   ],
   "backlog": {
     "ready": [
-      "r10s2-q3-spec-OB",
       "r10s2-q3-spec-SS",
       "r10s2-runtime",
       "r10s2-stat-OB",
@@ -78,14 +77,14 @@
   },
   "idle_since": {
     "cpu": null,
-    "gpu": null
+    "gpu": "2026-10-25T20:19:06+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-25T20:19:03+00:00",
-  "cpu_percent": 97.5,
+  "updated_at": "2026-10-25T20:19:12+00:00",
+  "cpu_percent": 96.1,
   "gpu": {
-    "util": 100.0,
-    "mem_used_mb": 11131.0,
+    "util": 0.0,
+    "mem_used_mb": 934.0,
     "mem_total_mb": 12282.0
   }
 }
