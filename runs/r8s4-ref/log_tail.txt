@@ -14,3 +14,6 @@ wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s4-ref\artifacts\plant_n
   30/50 cells, 236s
 wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s4-ref\artifacts\plant_novel_features_b2_r0-10.json (3.9 min)
   35/50 cells, 291s
+  40/50 cells, 350s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s4-ref\artifacts\plant_novel_features_b8_r0-10.json (5.8 min)
+  tuned ('oracle', 0): {'hidden': 64} (466s)
