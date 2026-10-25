@@ -1,0 +1,28 @@
+{
+  "id": "r7b-zz-aggregate",
+  "commit": "3fbe057ae434ffc3369df0efae32797af879b152",
+  "args": [
+    "scripts/r7b_goal_conditioned.py",
+    "--from-json",
+    "runs:r7b-train-*",
+    "--out",
+    "docs/results/r7b_goal_conditioned.md",
+    "--workers",
+    "8"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "priority": 7,
+  "after": [
+    "r7b-train-blind",
+    "r7b-train-centre-goal",
+    "r7b-train-both-goal",
+    "r7b-train-hand-goal"
+  ],
+  "timeout_min": 90.0,
+  "outputs": [
+    "docs/results/r7b_goal_conditioned.md",
+    "docs/results/r7b_goal_conditioned.json",
+    "docs/results/r7b_goal_conditioned_curves.csv"
+  ]
+}
