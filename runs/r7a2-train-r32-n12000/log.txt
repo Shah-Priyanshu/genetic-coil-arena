@@ -1,0 +1,11 @@
+[01:43:17] r32-n12000: 12000 training records (2686 paraphrases, 480 retries)
+W1025 01:43:22.988000 28724 Lib\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/311 [00:00<00:43,  7.17it/s]
+Loading weights:   1%|          | 2/311 [00:00<00:45,  6.73it/s]
+Loading weights:   4%|▍         | 13/311 [00:00<00:06, 42.87it/s]
+Loading weights:  10%|▉         | 30/311 [00:00<00:03, 72.23it/s]
+Loading weights:  15%|█▍        | 46/311 [00:00<00:02, 93.92it/s]
+Loading weights:  21%|██        | 66/311 [00:00<00:02, 116.01it/s]
+Loading weights:  25%|██▌       | 78/311 [00:00<00:02, 99.22it/s] 
