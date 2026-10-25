@@ -561,7 +561,8 @@
    "best_generation": 1,
    "generations_done": 1,
    "seconds": 0.2324679000012111,
-   "n_params": 3347
+   "n_params": 3347,
+   "cached": true
   }
  ],
  "scale": "smoke",
@@ -598,7 +599,7 @@
   "n_shuffles": 100,
   "n_boot": 2000
  },
- "train_seconds": 1.685515299992403,
- "eval_seconds": 1.8308926000026986,
+ "train_seconds": 1.7459855000051903,
+ "eval_seconds": 1.9578591999888886,
  "workers": 1
 }
