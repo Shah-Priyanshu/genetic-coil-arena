@@ -1,0 +1,18 @@
+{
+  "id": "r7a2-eval-ollama",
+  "commit": "e8236c4b1ce4ebcfee4dc2fa89d63d05805efe78",
+  "args": [
+    "scripts/r7a_step2.py",
+    "eval-ollama"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 4,
+  "priority": 6,
+  "after": [
+    "r7a2-eval-lora"
+  ],
+  "timeout_min": 240.0,
+  "env": {
+    "HF_HOME": "D:\\hf_cache"
+  }
+}

@@ -150,6 +150,11 @@ def main(argv: Optional[list[str]] = None) -> int:
     parser.add_argument("--jobs-branch", default="claude/vibrant-hawking-zodb5a")
     parser.add_argument("--repo", type=Path, default=Path.cwd())
     parser.add_argument("--force", action="store_true", help="overwrite job files")
+    parser.add_argument(
+        "--unpushed", action="store_true",
+        help="allow a commit that is not yet on the jobs branch (push it before the "
+        "runner polls: the runner rejects commits it cannot find there)",
+    )  # fmt: skip
     args = parser.parse_args(argv)
 
     try:
@@ -157,7 +162,15 @@ def main(argv: Optional[list[str]] = None) -> int:
         if top.returncode != 0:
             raise ValueError(f"{args.repo} is not a git repository")
         repo = Path(top.stdout.strip())
-        commit = resolve_commit(repo, args.commit, f"{args.remote}/{args.jobs_branch}")
+        if args.unpushed:
+            out = git_out(repo, "rev-parse", "--verify", args.commit + "^{commit}")
+            if out.returncode != 0:
+                raise ValueError(f"unknown commit {args.commit!r}")
+            commit = out.stdout.strip()
+        else:
+            commit = resolve_commit(
+                repo, args.commit, f"{args.remote}/{args.jobs_branch}"
+            )
         env = {}
         for item in args.env:
             key, sep, value = item.partition("=")

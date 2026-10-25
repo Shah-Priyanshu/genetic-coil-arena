@@ -8,6 +8,7 @@ the GoalSpec and outcome, and re-translates the summary for the round trip.
 and ``verdict`` compares it with the G3 and G6 targets in ``docs/goals.md``.
 """
 
+import json
 import math
 from collections import defaultdict
 from collections.abc import Callable, Sequence
@@ -18,6 +19,7 @@ import numpy as np
 from ..evaluation.stats import mean_ci
 from ..protocol.goalspec import SpecRegistry
 from ..translator import (
+    CLARIFY,
     OK,
     ReverseTranslator,
     TranslationResult,
@@ -64,17 +66,39 @@ def select_items(items: Sequence[EvalItem], n: int, seed: int = 0) -> list[EvalI
 # ---------------------------------------------------------------------- forward
 
 
+def _cached_execute(
+    cache: Optional[dict[str, Any]],
+    domain: Domain,
+    registry: SpecRegistry,
+    spec: Any,
+    text: str,
+) -> Any:
+    """``execute``, remembering runs of equal (domain, params) in ``cache`` when given."""
+    if cache is None:
+        return execute(domain, registry, spec, text)
+    key = domain.name + json.dumps(spec.params, sort_keys=True)
+    if key not in cache:
+        cache[key] = execute(domain, registry, spec, text)
+    return cache[key]
+
+
 def evaluate_forward(
     translate: Callable[[EvalItem], TranslationResult],
     items: Sequence[EvalItem],
     domains: dict[str, Domain],
     registry: SpecRegistry,
     progress: Optional[Callable[[int, int, str], None]] = None,
+    cache: Optional[dict[str, Any]] = None,
+    execute_tasks: bool = True,
 ) -> list[dict[str, Any]]:
     """Per-item records: translation outcome, exactness, and NL-driven vs gold-driven score.
 
     A valid item whose translation failed scores 0 on every seed (the mission was not
-    run). Gold-invalid items have no score.
+    run). Gold-invalid items have no score. ``refused`` means no spec and no question;
+    ``clarified`` means the translator asked a question. With a ``cache``, specs with
+    equal params share one command-centre run (execution is deterministic per seed), so
+    the NL-driven and gold-driven scores of an exact translation are identical. With
+    ``execute_tasks=False`` nothing is executed (language metrics only, for model selection).
     """
     records = []
     for k, item in enumerate(items):
@@ -90,7 +114,9 @@ def evaluate_forward(
             "text": item.text,
             "gold": item.gold,
             "status": res.status,
-            "refused": res.status != OK,
+            "kind": item.expected,
+            "refused": res.status not in (OK, CLARIFY),
+            "clarified": res.status == CLARIFY,
             "pred": pred,
             "reason": res.reason,
             "attempts": res.attempts,
@@ -101,12 +127,13 @@ def evaluate_forward(
         if item.gold is not None:
             rec["exact"] = exact_match(pred, item.gold, schema)
             rec["fields"] = field_matches(pred, item.gold, schema)
+        if item.gold is not None and execute_tasks:
             gold_spec = registry.make(domain.spec_name, item.gold)
-            gold_run = execute(domain, registry, gold_spec, item.text)
+            gold_run = _cached_execute(cache, domain, registry, gold_spec, item.text)
             rec["gold_state"] = gold_run.state
             rec["gold_per_seed"] = gold_run.per_seed
             if res.spec is not None:
-                nl_run = execute(domain, registry, res.spec, item.text)
+                nl_run = _cached_execute(cache, domain, registry, res.spec, item.text)
                 rec["nl_state"] = nl_run.state
                 rec["nl_per_seed"] = nl_run.per_seed
                 rec["nl_view"] = nl_run.view
@@ -155,15 +182,53 @@ def _task_block(recs: Sequence[dict[str, Any]]) -> Optional[dict[str, Any]]:
         "diff_mean": d,
         "diff_ci": _num(hw),
         "within_ci": bool(d >= 0 or (not math.isnan(hw) and abs(d) <= hw)),
-        "failed_translations": int(sum(1 for r in scored if r["refused"])),
+        "failed_translations": int(sum(1 for r in scored if r["pred"] is None)),
     }
 
 
+def _gold_kind(rec: dict[str, Any]) -> str:
+    return rec.get("kind") or ("refuse" if rec["gold"] is None else "spec")
+
+
+def clarify_scores(records: Sequence[dict[str, Any]]) -> dict[str, Any]:
+    """How often the translator asked a question, and whether it should have.
+
+    ``rate`` is over all items; ``on_spec_rate`` over items whose gold is a spec (a
+    question where an answer was possible, counted against exactness); ``precision`` and
+    ``recall`` are against the gold ``clarify`` items.
+    """
+    asked = [bool(r.get("clarified")) for r in records]
+    kinds = [_gold_kind(r) for r in records]
+    n_spec = sum(k == "spec" for k in kinds)
+    n_gold = sum(k == "clarify" for k in kinds)
+    tp = sum(a and k == "clarify" for a, k in zip(asked, kinds))
+    on_spec = sum(a and k == "spec" for a, k in zip(asked, kinds))
+    n_asked = sum(asked)
+    return {
+        "asked": n_asked,
+        "rate": n_asked / len(records) if records else math.nan,
+        "on_spec": on_spec,
+        "on_spec_rate": on_spec / n_spec if n_spec else math.nan,
+        "gold": n_gold,
+        "tp": tp,
+        "precision": tp / n_asked if n_asked else math.nan,
+        "recall": tp / n_gold if n_gold else math.nan,
+    }
+
+
+SPLIT_ORDER = ("indist", "heldout", "dev", "sealed")
+
+
 def forward_metrics(records: Sequence[dict[str, Any]]) -> dict[str, Any]:
-    """Aggregate forward records: exact match, per-field accuracy, task score, refusals, latency."""
+    """Aggregate forward records: exact match, per-field accuracy, task score, refusals, latency.
+
+    Refusal precision and recall are against the gold ``refuse`` items; a clarifying
+    question is neither a refusal nor an exact match and is reported in ``clarify``.
+    """
     out: dict[str, Any] = {"n_items": len(records)}
     groups: dict[str, list[dict[str, Any]]] = {}
-    for split in ("indist", "heldout"):
+    splits = [s for s in SPLIT_ORDER if any(r["split"] == s for r in records)]
+    for split in splits:
         groups[split] = [r for r in records if r["split"] == split]
         for domain in sorted({r["domain"] for r in records}):
             groups[f"{split}/{domain}"] = [
@@ -172,14 +237,15 @@ def forward_metrics(records: Sequence[dict[str, Any]]) -> dict[str, Any]:
     groups["all"] = list(records)
     out["exact"] = {k: _exact_block(v) for k, v in groups.items() if v}
     out["task"] = {}
-    for split in ("indist", "heldout", "all"):
+    for split in (*splits, "all"):
         pool = groups[split]
         for domain in ("squad", "plant"):
             block = _task_block([r for r in pool if r["domain"] == domain])
             if block is not None:
                 out["task"][f"{split}/{domain}"] = block
-    ref = refusal_scores((r["gold"] is None, r["refused"]) for r in records)
+    ref = refusal_scores((_gold_kind(r) == "refuse", r["refused"]) for r in records)
     out["refusal"] = {k: _num(v) for k, v in ref.items()}
+    out["clarify"] = {k: _num(v) for k, v in clarify_scores(records).items()}
     out["status_counts"] = dict(sorted(_count(r["status"] for r in records).items()))
     out["retried"] = int(sum(1 for r in records if r["attempts"] > 1))
     lat = [r["latency_s"] for r in records]
@@ -286,8 +352,13 @@ def verdict(
     warm_p95: Optional[float],
     vram_gb: Optional[float],
     smoke: bool,
+    split: str = "heldout",
 ) -> dict[str, Any]:
-    """Compare a primary translator's metrics with the G3 and G6 targets."""
+    """Compare a primary translator's metrics with the G3 and G6 targets.
+
+    ``split`` names the exact-match group the G3 accuracy criterion is read from
+    (``heldout`` in step 1, ``sealed`` in step 2).
+    """
     rows = []
 
     def row(
@@ -308,10 +379,10 @@ def verdict(
             }
         )
 
-    held = forward["exact"].get("heldout", {})
+    held = forward["exact"].get(split, {})
     ex = held.get("exact")
     row(
-        "G3 exact match, held-out valid items",
+        f"G3 exact match, {'held-out' if split == 'heldout' else split} valid items",
         f">= {G3_EXACT_PASS:.0%} (kill < {G3_EXACT_KILL:.0%})",
         ex,
         None if ex is None else ex >= G3_EXACT_PASS,
