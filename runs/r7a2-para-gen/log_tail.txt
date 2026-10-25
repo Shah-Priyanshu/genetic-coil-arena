@@ -1,0 +1,7 @@
+[22:31:19] 480 bases, 0 already done
+[22:31:19] Ollama already running at http://localhost:11434
+[22:32:32] para-gen 10/480
+[22:33:18] para-gen 20/480
+[22:34:12] para-gen 30/480
+[22:34:50] para-gen 40/480
+[22:35:35] para-gen 50/480
