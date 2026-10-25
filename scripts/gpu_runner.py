@@ -494,7 +494,17 @@ class Results:
                     "Save files left by a stopped runner",
                 )
             if git(self.repo, "ls-remote", "--heads", self.remote, self.branch).strip():
-                git(self.root, "pull", "--rebase", "--quiet", self.remote, self.branch)
+                # Running jobs write into runs/<id>/artifacts here between commits,
+                # so the tree can be dirty again by now.
+                git(
+                    self.root,
+                    "pull",
+                    "--rebase",
+                    "--autostash",
+                    "--quiet",
+                    self.remote,
+                    self.branch,
+                )
 
     def job_dir(self, job_id: str) -> Path:
         path = self.root / "runs" / job_id
@@ -912,10 +922,15 @@ class Scheduler:
         cpu, gpu = self.sample()
         try:
             git(self.repo, "fetch", "-q", args.remote, args.jobs_branch)
-            self.results.pull()
         except RuntimeError as err:
             print(f"sync failed ({err}); retrying in {args.poll} s", file=sys.stderr)
             return False
+        try:
+            self.results.pull()
+        except RuntimeError as err:
+            # Final states are read from the local results tree, which this runner
+            # writes itself, so scheduling can go on; the next push retries the sync.
+            print(f"results sync failed ({err}); scheduling anyway", file=sys.stderr)
 
         if self.update_requested() and self.drain_started is None:
             self.drain_started = time.time()
