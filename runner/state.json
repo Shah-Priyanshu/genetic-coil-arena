@@ -6,15 +6,14 @@
   "cpu_workers_in_use": 4,
   "running": [
     {
-      "id": "r7a2-zz-aggregate",
+      "id": "r10-o14-team-free-OB-2",
       "lane": "gpu",
       "cpu_workers": 4,
-      "started_at": "2026-10-25T08:01:53+00:00"
+      "started_at": "2026-10-25T08:02:00+00:00"
     }
   ],
   "backlog": {
     "ready": [
-      "r10-o14-team-free-OB-2",
       "r10-o14-team-free-SS-2",
       "r10-o14-team-typed-SS",
       "r10-q3-single",
@@ -44,8 +43,8 @@
     "gpu": "2026-10-25T08:01:51+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-25T08:01:53+00:00",
-  "cpu_percent": 7.7,
+  "updated_at": "2026-10-25T08:02:00+00:00",
+  "cpu_percent": 4.3,
   "gpu": {
     "util": 0.0,
     "mem_used_mb": 708.0,
