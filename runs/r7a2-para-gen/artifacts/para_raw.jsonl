@@ -2078,3 +2078,51 @@
 {"base_id": "tpl-squad-00332", "style": "jargon", "text": "SNAKE GROUP R/G/BLUE FORAGE BLU STEP LIMIT 180 ORDINARY CARE NO FOOD"}
 {"base_id": "tpl-squad-00332", "style": "jargon", "text": "SQD SNAKES R/G/BLU FORAGE BLU SL180 CAUTION NORMAL NO FOOD TARGET"}
 {"base_id": "tpl-squad-00332", "style": "jargon", "text": "SNAKE SQUAD RED/GREEN/BLUE BLU FORAGING SL180 NORMAL CAUTION NIL FOOD"}
+{"base_id": "tpl-squad-00056", "style": "multi_sentence", "text": "Red green blue squad requested. Foraging snakes green blue. Caution normal step limit 80."}
+{"base_id": "tpl-squad-00056", "style": "multi_sentence", "text": "Squad contains red green blue. Green and blue foraging. Normal caution 80 step limit."}
+{"base_id": "tpl-squad-00056", "style": "multi_sentence", "text": "Request red green blue snakes. Foraging green blue only. Caution normal step limit 80."}
+{"base_id": "tpl-squad-00056", "style": "multi_sentence", "text": "Snakes red green blue squad. Green blue foraging. Normal caution 80 steps maximum."}
+{"base_id": "tpl-squad-00056", "style": "multi_sentence", "text": "Red green blue snake team. Foraging green and blue. Caution ordinary step limit 80."}
+{"base_id": "tpl-squad-00056", "style": "multi_sentence", "text": "Squad snakes red green blue. Green blue foraging. Normal care 80 step allowance."}
+{"base_id": "tpl-squad-00056", "style": "multi_sentence", "text": "Red green blue snake group. Foraging green blue. Standard caution 80 step limit."}
+{"base_id": "tpl-squad-00056", "style": "multi_sentence", "text": "Snakes red green blue requested. Green blue foraging. Normal routine 80 step maximum."}
+{"base_id": "tpl-plant-00290", "style": "terse_note", "text": "fault diag system | sensor nodes: reactor, separator, stripper, compressor_utilities | bytes/msg: 8 | false alarm rate: 0.001 | active nodes: reactor, separator, stripper, compressor_utilities"}
+{"base_id": "tpl-plant-00290", "style": "terse_note", "text": "plant fault-diagnosis | sensor nodes reactor|separator|stripper|compressor_utilities | msg size 8 bytes | false alarm 0.001 | active reactor|separator|stripper|compressor_utilities"}
+{"base_id": "tpl-plant-00290", "style": "terse_note", "text": "diag system + sensor nodes: reactor, separator, stripper, compressor_utilities | message 8 bytes | false alarm 0.001 | active nodes: reactor, separator, stripper, compressor_utilities"}
+{"base_id": "tpl-plant-00290", "style": "terse_note", "text": "fault detection system | nodes reactor|separator|stripper|compressor_utilities | msg size = 8 bytes | false alarm rate = 0.001 | active nodes reactor|separator|stripper|compressor_utilities"}
+{"base_id": "tpl-plant-00290", "style": "terse_note", "text": "control system fault diag | sensor nodes: reactor, separator, stripper, compressor_utilities | bytes per msg: 8 | false alarm: 0.001 | active: reactor, separator, stripper, compressor_utilities"}
+{"base_id": "tpl-plant-00290", "style": "terse_note", "text": "plant monitoring system | sensor network reactor|separator|stripper|compressor_utilities | message length 8 bytes | false alarm rate 0.001 | active nodes reactor|separator|stripper|compressor_utilities"}
+{"base_id": "tpl-plant-00290", "style": "terse_note", "text": "diagnostic system | node list: reactor, separator, stripper, compressor_utilities | packet size 8 bytes | false alarm prob 0.001 | running nodes reactor, separator, stripper, compressor_utilities"}
+{"base_id": "tpl-plant-00290", "style": "terse_note", "text": "process fault detection | sensor array reactor|separator|stripper|compressor_utilities | frame size = 8 bytes | error rate = 0.001 | operating reactor|separator|stripper|compressor_utilities"}
+{"base_id": "tpl-squad-00463", "style": "self_correction", "text": "Wait, squad of snakes red green blue, foraging green, caution normal, step limit 300, food target none"}
+{"base_id": "tpl-squad-00463", "style": "self_correction", "text": "No make that, snakes squad red green blue, foraging snakes green, caution normal, step limit 300, no food target"}
+{"base_id": "tpl-squad-00463", "style": "self_correction", "text": "Actually, squad snakes red green blue, foraging green, caution normal, step limit 300, food target none"}
+{"base_id": "tpl-squad-00463", "style": "self_correction", "text": "Wait, snake squad red green blue, foraging green, caution normal, step limit 300, food target none"}
+{"base_id": "tpl-squad-00463", "style": "self_correction", "text": "No, make that red green blue snakes squad, foraging green, caution normal, step limit 300, food target none"}
+{"base_id": "tpl-squad-00463", "style": "self_correction", "text": "Actually, snakes red green blue squad, foraging green, caution normal, step limit 300, no food target"}
+{"base_id": "tpl-squad-00463", "style": "self_correction", "text": "Wait, squad of snakes red green blue, foraging green, caution normal, 300 steps, food target none"}
+{"base_id": "tpl-squad-00463", "style": "self_correction", "text": "No make that, snake squad red green blue, foraging green, caution normal, step limit 300, food target none"}
+{"base_id": "tpl-squad-ref0030", "style": "typos", "text": "cant do it range is wrong 30 ticks foraging green snake"}
+{"base_id": "tpl-squad-ref0030", "style": "typos", "text": "out of range cant fulfill request foraging 30 ticks green snake"}
+{"base_id": "tpl-squad-ref0030", "style": "typos", "text": "range problem cant do 30 ticks foraging green snake"}
+{"base_id": "tpl-squad-ref0030", "style": "typos", "text": "nope out of range cant do 30 ticks foraging green snake"}
+{"base_id": "tpl-squad-ref0030", "style": "typos", "text": "range limit reached cant complete 30 ticks foraging green snake"}
+{"base_id": "tpl-squad-ref0030", "style": "typos", "text": "too far out cant fulfill this 30 ticks foraging green snake"}
+{"base_id": "tpl-squad-ref0030", "style": "typos", "text": "range exceeded cant do 30 ticks foraging green snake"}
+{"base_id": "tpl-squad-ref0030", "style": "typos", "text": "out of bounds cant execute 30 ticks foraging green snake"}
+{"base_id": "tpl-squad-00410", "style": "typos", "text": "red green blue snake squad foragin need cauti normal step 140 food none"}
+{"base_id": "tpl-squad-00410", "style": "typos", "text": "snakes red green blue go foragin caution normal step limit 140 no food target"}
+{"base_id": "tpl-squad-00410", "style": "typos", "text": "red green blue snakes forage warn normal step 140 food none stated"}
+{"base_id": "tpl-squad-00410", "style": "typos", "text": "squad red green blue snakes foraging caution normal step 140 no food target"}
+{"base_id": "tpl-squad-00410", "style": "typos", "text": "snakes red green blue foragin caution normal step 140 food not stated"}
+{"base_id": "tpl-squad-00410", "style": "typos", "text": "red green blue snake team foragin normal care step limit 140 no food"}
+{"base_id": "tpl-squad-00410", "style": "typos", "text": "foragin snakes red green blue caution normal step 140 food none target"}
+{"base_id": "tpl-squad-00410", "style": "typos", "text": "squad snakes red green blue foraging caution normal step 140 no food target"}
+{"base_id": "tpl-plant-ref0035", "style": "numbers_in_words", "text": "cannot process this request due to invalid name specification"}
+{"base_id": "tpl-plant-ref0035", "style": "numbers_in_words", "text": "this command fails because of improper naming convention"}
+{"base_id": "tpl-plant-ref0035", "style": "numbers_in_words", "text": "rejecting input since name format is unacceptable"}
+{"base_id": "tpl-plant-ref0035", "style": "numbers_in_words", "text": "system cannot handle this due to bad identifier usage"}
+{"base_id": "tpl-plant-ref0035", "style": "numbers_in_words", "text": "request denied because name field contains errors"}
+{"base_id": "tpl-plant-ref0035", "style": "numbers_in_words", "text": "control system unable to accept this with incorrect naming"}
+{"base_id": "tpl-plant-ref0035", "style": "numbers_in_words", "text": "cannot execute command owing to malformed name parameter"}
+{"base_id": "tpl-plant-ref0035", "style": "numbers_in_words", "text": "this input invalidates the request because of wrong name value"}
