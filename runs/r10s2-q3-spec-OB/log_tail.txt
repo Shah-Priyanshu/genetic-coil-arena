@@ -45,3 +45,5 @@ Loading weights:  96%|█████████▌| 299/311 [00:05<00:00, 43.3
 Loading weights: 100%|██████████| 311/311 [00:06<00:00, 51.80it/s]
 [16:20:34] 90 incidents (all), conditions ['team_hybrid_rule', 'single_selected', 'oracle_selected'], model qwen3-1.7b
 [16:23:11] messages: 5/90 (157s)
+[16:25:53] messages: 10/90 (319s)
+[16:28:33] messages: 15/90 (479s)
