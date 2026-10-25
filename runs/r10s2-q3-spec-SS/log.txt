@@ -76,3 +76,6 @@ Loading weights: 100%|██████████| 311/311 [00:05<00:00, 53.2
 [19:03:13] conditions: 70/90 (4493s)
 [19:04:27] conditions: 75/90 (4568s)
 [19:05:42] conditions: 80/90 (4643s)
+[19:06:56] conditions: 85/90 (4717s)
+[19:08:11] conditions: 90/90 (4792s)
+[19:08:11] done in 4792.3s; records in D:\Projects\genetic-coil-arena-gpu-results\runs\r10s2-q3-spec-SS\artifacts\artifacts\results.jsonl
