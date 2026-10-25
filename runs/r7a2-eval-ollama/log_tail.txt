@@ -73,3 +73,7 @@
 [03:55:40] round trip gemma: 80/139 (sealed-plant-007)
 [03:55:51] round trip gemma: 100/139 (sealed-plant-030)
 [03:56:02] round trip gemma: 120/139 (sealed-plant-051)
+[03:56:12] round trip gemma: 139/139 (sealed-plant-071)
+[03:56:12] gemma: sealed exact 92.4% (n=145)
+[03:56:12] o14: sealed exact 95.9% (n=145)
+[03:56:12] regex: sealed exact 36.6% (n=145)
