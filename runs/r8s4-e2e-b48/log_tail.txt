@@ -2,3 +2,7 @@ scale full: 2 groups, replicates 0:10 of 10; 8 processes x 1 torch thread(s) <= 
 20 cells in 2 groups on 8 workers
   tuned ('e2e', 4): {'bottleneck': 'ste', 'hidden': 64, 'head': 128, 'epochs': 20, 'lr': 0.002} (175s)
   tuned ('e2e', 8): {'bottleneck': 'ste', 'hidden': 64, 'head': 128, 'epochs': 20, 'lr': 0.002} (300s)
+  5/20 cells, 330s
+  10/20 cells, 429s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s4-e2e-b48\artifacts\plant_novel_e2e_b4_r0-10.json (7.1 min)
+  15/20 cells, 501s
