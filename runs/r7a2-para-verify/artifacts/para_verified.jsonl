@@ -542,3 +542,8 @@
 {"base_id": "tpl-plant-00369", "style": "terse_note", "text": "reactor sep stripper compressor_utilities fault system 51byte msg 0.01 fa rate active compressor_utilities", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-plant-00369", "style": "terse_note", "text": "plant diagnostic system sensor reactor separator stripper compressor_utilities 51b 0.01% false alarm active compressor_utilities", "verified": false, "verifier_status": "refused"}
 {"base_id": "tpl-plant-00369", "style": "terse_note", "text": "fault monitor reactor separator stripper compressor_utilities 51 bytes 0.01% fa rate active compressor_utilities", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00219", "style": "typos", "text": "red green blue snake squad foragin blue snakz cautiun norml step limit 120 food target 40", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00219", "style": "typos", "text": "snakes red grn blu squad foragin blu caution normal step limt 120 food trgt 40", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00219", "style": "typos", "text": "squad red grn blu snks foragin blue snakz caution normal step limit 120 food target 40", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00219", "style": "typos", "text": "red grn blu snake team foragin blue cautiun norml step limt 120 food trgt 40", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00219", "style": "typos", "text": "snakes red green blue squad foragin blue caution normal step limit 120 food target 40", "verified": false, "verifier_status": "ok"}
