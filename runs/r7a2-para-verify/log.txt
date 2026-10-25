@@ -5,3 +5,14 @@
 [00:27:07] para-verify 150/3840
 [00:28:03] para-verify 200/3840
 [00:28:55] para-verify 250/3840
+[00:29:49] para-verify 300/3840
+[00:30:34] para-verify 350/3840
+[00:31:26] para-verify 400/3840
+[00:32:15] para-verify 450/3840
+[00:33:13] para-verify 500/3840
+[00:34:09] para-verify 550/3840
+[00:34:58] para-verify 600/3840
+[00:35:49] para-verify 650/3840
+[00:36:40] para-verify 700/3840
+[00:37:35] para-verify 750/3840
+[00:38:20] para-verify 800/3840
