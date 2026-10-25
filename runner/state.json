@@ -3,19 +3,13 @@
   "host": "PC",
   "draining_for_update": false,
   "cpu_budget": 24,
-  "cpu_workers_in_use": 28,
+  "cpu_workers_in_use": 22,
   "running": [
     {
       "id": "r8s4-ref",
       "lane": "cpu",
       "cpu_workers": 8,
       "started_at": "2026-10-25T01:50:24+00:00"
-    },
-    {
-      "id": "r8s4-vq-b12",
-      "lane": "cpu",
-      "cpu_workers": 8,
-      "started_at": "2026-10-25T01:50:32+00:00"
     },
     {
       "id": "r10-o14-team-free-SS",
@@ -28,6 +22,12 @@
       "lane": "cpu",
       "cpu_workers": 8,
       "started_at": "2026-10-25T01:56:04+00:00"
+    },
+    {
+      "id": "ci-0510844d455d",
+      "lane": "cpu",
+      "cpu_workers": 2,
+      "started_at": "2026-10-25T01:56:26+00:00"
     }
   ],
   "backlog": {
@@ -38,14 +38,12 @@
       "r10-q3-team-free-OB",
       "r10-q3-team-free-SS",
       "r10-q3-team-typed-OB",
-      "r10-q3-team-typed-SS",
-      "ci-0510844d455d"
+      "r10-q3-team-typed-SS"
     ],
     "blocked": [
       {
         "id": "r8s4-zz-aggregate",
         "blocked_by": [
-          "r8s4-vq-b12",
           "r8s4-vq-b48",
           "r8s4-ref"
         ]
@@ -57,10 +55,10 @@
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-25T01:56:04+00:00",
-  "cpu_percent": 73.1,
+  "updated_at": "2026-10-25T01:56:26+00:00",
+  "cpu_percent": 64.3,
   "gpu": {
-    "util": 97.0,
+    "util": 77.0,
     "mem_used_mb": 9826.0,
     "mem_total_mb": 12282.0
   }
