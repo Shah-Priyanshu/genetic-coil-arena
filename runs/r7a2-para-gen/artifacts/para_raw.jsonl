@@ -1718,3 +1718,51 @@
 {"base_id": "tpl-squad-00331", "style": "polite_question", "text": "Would it be possible to program a control system with red, green, and blue snakes, where red and blue snakes forage, caution set to low, maximum 75 steps, and food target of 35?"}
 {"base_id": "tpl-squad-00331", "style": "polite_question", "text": "Could you establish a snake squad containing red, green, and blue members, with red and blue foraging, low caution level, step limit of 75, and food target amount 35?"}
 {"base_id": "tpl-squad-00331", "style": "polite_question", "text": "Would you mind configuring a snake team with red, green, and blue snakes, having red and blue foraging, low caution setting, maximum 75 steps, and target food count of 35?"}
+{"base_id": "tpl-squad-00353", "style": "negation", "text": "Red and blue snakes are inactive, green snakes forage, normal caution, 100 steps, 6 food target"}
+{"base_id": "tpl-squad-00353", "style": "negation", "text": "All snakes except green forage, red and blue remain still, ordinary caution, step limit 100, food target 6"}
+{"base_id": "tpl-squad-00353", "style": "negation", "text": "Leave green snakes out of foraging, red and blue snakes active, standard caution, 100 steps maximum, seek 6 food"}
+{"base_id": "tpl-squad-00353", "style": "negation", "text": "No green snakes forage, red and blue snakes search, normal care protocol, 100 step allowance, 6 food goal"}
+{"base_id": "tpl-squad-00353", "style": "negation", "text": "Everyone except green snakes forages, red and blue stay idle, regular caution level, 100 movement limit, target 6 nutrition"}
+{"base_id": "tpl-squad-00353", "style": "negation", "text": "Green snakes excluded from foraging, red and blue active, ordinary safety measures, 100 steps allowed, 6 food required"}
+{"base_id": "tpl-squad-00353", "style": "negation", "text": "All but green snakes forage, red and blue remain stationary, standard alertness, 100 step quota, 6 food objective"}
+{"base_id": "tpl-squad-00353", "style": "negation", "text": "Red and blue snakes inactive, only green snakes forage, normal operating conditions, 100 step restriction, 6 food target"}
+{"base_id": "tpl-squad-00038", "style": "negation", "text": "Red snakes forage, green and blue snakes stay idle. Normal caution. Sixty steps maximum. Four food targets."}
+{"base_id": "tpl-squad-00038", "style": "negation", "text": "All snakes except red forage. Red snakes remain still. Ordinary caution level. Step limit sixty. Food target four."}
+{"base_id": "tpl-squad-00038", "style": "negation", "text": "Leave red snakes out of foraging. Green and blue snakes forage normally. Standard caution. Maximum sixty steps. Target four food items."}
+{"base_id": "tpl-squad-00038", "style": "negation", "text": "No red snakes foraging. Green and blue snakes forage. Normal care protocol. Step allowance sixty. Food goal four."}
+{"base_id": "tpl-squad-00038", "style": "negation", "text": "Everyone except red snakes forages. Red snakes idle. Regular caution. Sixty step limit. Four food targets required."}
+{"base_id": "tpl-squad-00038", "style": "negation", "text": "Green and blue snakes forage, red snakes do not. Standard caution. Maximum sixty steps allowed. Target food count four."}
+{"base_id": "tpl-squad-00038", "style": "negation", "text": "Red snakes excluded from foraging activity. Green and blue snakes forage. Ordinary care level. Step threshold sixty. Food target of four."}
+{"base_id": "tpl-squad-00038", "style": "negation", "text": "All but red snakes forage. Red snakes remain stationary. Normal safety protocol. Sixty movement limit. Four food objectives."}
+{"base_id": "tpl-squad-cla0008", "style": "mixed_notation", "text": "Set the temperature to 1/4 of maximum power for a period of 3.14159e+2 seconds"}
+{"base_id": "tpl-squad-cla0008", "style": "mixed_notation", "text": "Adjust the flow rate to 750 parts per thousand of full capacity"}
+{"base_id": "tpl-squad-cla0008", "style": "mixed_notation", "text": "Configure the system to operate at 0x1A in hexadecimal notation for 120 minutes"}
+{"base_id": "tpl-squad-cla0008", "style": "mixed_notation", "text": "Initiate the process with a ratio of 2:3 between input and output"}
+{"base_id": "tpl-squad-cla0008", "style": "mixed_notation", "text": "Run the cycle for half a hundred units of time at 5.0E-1 power level"}
+{"base_id": "tpl-squad-cla0008", "style": "mixed_notation", "text": "Establish the parameter at 12/24 of total capacity for 1.0E+1 minutes"}
+{"base_id": "tpl-squad-cla0008", "style": "mixed_notation", "text": "Activate the function with 0.5% of maximum threshold for 1.2e+3 seconds"}
+{"base_id": "tpl-squad-cla0008", "style": "mixed_notation", "text": "Define the setting as one dozen divided by two for 7.5e-1 cycles"}
+{"base_id": "tpl-plant-00070", "style": "terse_note", "text": "fault diag system sensor nodes reactor separator stripper compressor_utilities bytes_per_message=8 false_alarm_rate=0.001 active_nodes=reactor stripper"}
+{"base_id": "tpl-plant-00070", "style": "terse_note", "text": "plant fault diagnosis with sensor nodes reactor separator stripper compressor_utilities 8 bytes message 0.001 false alarm rate reactor stripper active"}
+{"base_id": "tpl-plant-00070", "style": "terse_note", "text": "diag system sensor nodes reactor separator stripper compressor_utilities 8 byte msg 0.001 FA rate reactor stripper active"}
+{"base_id": "tpl-plant-00070", "style": "terse_note", "text": "fault detection system reactor separator stripper compressor_utilities 8 bytes per msg 0.001 false alarm reactor stripper active"}
+{"base_id": "tpl-plant-00070", "style": "terse_note", "text": "sensor node fault diag system reactor separator stripper compressor_utilities 8 bytes message false alarm 0.001 reactor stripper active"}
+{"base_id": "tpl-plant-00070", "style": "terse_note", "text": "plant fault monitor sensor nodes reactor separator stripper compressor_utilities 8 byte messages 0.001 FA rate reactor stripper active"}
+{"base_id": "tpl-plant-00070", "style": "terse_note", "text": "diagnostic system reactor separator stripper compressor_utilities 8 bytes msg 0.001 false alarm rate reactor stripper active nodes"}
+{"base_id": "tpl-plant-00070", "style": "terse_note", "text": "fault analysis system sensor reactor separator stripper compressor_utilities 8 bytes message 0.001 false alarm reactor stripper active"}
+{"base_id": "tpl-plant-cla0022", "style": "casual_chat", "text": "hey can we tweak the alert threshold a little bit or should i just leave it as is for now"}
+{"base_id": "tpl-plant-cla0022", "style": "casual_chat", "text": "what if we bump up the sensitivity a smidge but not too much since idk how that'd affect things"}
+{"base_id": "tpl-plant-cla0022", "style": "casual_chat", "text": "maybe we could adjust the trigger level a little bit to be honest i'm not sure what's optimal"}
+{"base_id": "tpl-plant-cla0022", "style": "casual_chat", "text": "could we dial back the false alarm rate by a bit or is that too aggressive of a change"}
+{"base_id": "tpl-plant-cla0022", "style": "casual_chat", "text": "idk if we should go with a more lenient setting or keep it where it is right now"}
+{"base_id": "tpl-plant-cla0022", "style": "casual_chat", "text": "what do you think about tweaking the response parameters a little bit from current settings"}
+{"base_id": "tpl-plant-cla0022", "style": "casual_chat", "text": "should i just leave the defaults or try to fine tune this thing a bit further somehow"}
+{"base_id": "tpl-plant-cla0022", "style": "casual_chat", "text": "is there any room for adjustment here or should we just stick with the existing values"}
+{"base_id": "tpl-squad-ref0014", "style": "multi_sentence", "text": "System cannot process request due to ood. Same as asking what is 17 times 23."}
+{"base_id": "tpl-squad-ref0014", "style": "multi_sentence", "text": "Request impossible to fulfill because of ood. Equivalent to 17 multiplied by 23."}
+{"base_id": "tpl-squad-ref0014", "style": "multi_sentence", "text": "Cannot execute command since ood. Similar to computing 17 times 23."}
+{"base_id": "tpl-squad-ref0014", "style": "multi_sentence", "text": "System unable to comply with request owing to ood. Like calculating 17 multiplied by 23."}
+{"base_id": "tpl-squad-ref0014", "style": "multi_sentence", "text": "Request cannot be satisfied because of ood. Comparable to finding 17 times 23."}
+{"base_id": "tpl-squad-ref0014", "style": "multi_sentence", "text": "Command impossible to carry out due to ood. Same as determining 17 multiplied by 23."}
+{"base_id": "tpl-squad-ref0014", "style": "multi_sentence", "text": "System cannot handle request because of ood. Equivalent to working out 17 times 23."}
+{"base_id": "tpl-squad-ref0014", "style": "multi_sentence", "text": "Request unfulfillable since ood. Similar to solving 17 multiplied by 23."}
