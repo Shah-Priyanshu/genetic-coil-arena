@@ -1,7 +1,7 @@
 {
   "version": "dfac474d62e9343d6888c91f3a2a26f0a47cc9c3",
   "host": "PC",
-  "draining_for_update": false,
+  "draining_for_update": true,
   "cpu_budget": 24,
   "cpu_workers_in_use": 24,
   "running": [
@@ -41,7 +41,7 @@
       "r10-q3-team-free-SS",
       "r10-q3-team-typed-OB",
       "r10-q3-team-typed-SS",
-      "ci-a4e4e3e5bc44"
+      "ci-0510844d455d"
     ],
     "blocked": [
       {
@@ -79,11 +79,11 @@
     "gpu": "2026-10-25T01:30:36+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-25T01:33:53+00:00",
-  "cpu_percent": 81.0,
+  "updated_at": "2026-10-25T01:34:57+00:00",
+  "cpu_percent": 98.9,
   "gpu": {
     "util": 0.0,
-    "mem_used_mb": 833.0,
+    "mem_used_mb": 838.0,
     "mem_total_mb": 12282.0
   }
 }
