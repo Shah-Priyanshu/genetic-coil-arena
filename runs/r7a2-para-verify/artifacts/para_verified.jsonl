@@ -740,3 +740,5 @@
 {"base_id": "tpl-squad-00210", "style": "indirect_hint", "text": "Perhaps we could arrange for red snakes to forage under normal conditions with standard step count and no food requirements", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00210", "style": "indirect_hint", "text": "I was thinking it might work well to have red snake squads for foraging with ordinary caution and the typical 300 step limit", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00210", "style": "indirect_hint", "text": "It would be nice if we could establish a red snake team for searching with normal safety measures and default parameters", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00210", "style": "indirect_hint", "text": "I was wondering if we could get red snakes for foraging with standard caution levels and the usual 300 step allowance", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-00210", "style": "indirect_hint", "text": "Would it be feasible to have red snake units for foraging using normal care protocols and default step restrictions", "verified": false, "verifier_status": "clarify"}
