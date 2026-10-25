@@ -1369,3 +1369,14 @@
 {"base_id": "tpl-plant-00418", "style": "mixed_notation", "text": "Fault detect system reactor sep stripper compress util 8 byte msg 1% false alarm rate 12 active nodes", "verified": false, "verifier_status": "refused"}
 {"base_id": "tpl-plant-00418", "style": "mixed_notation", "text": "Reactor separator stripper compressor utilities fault diagnosis 8 bytes per message 0.01 false alarm ratio 12 active nodes", "verified": false, "verifier_status": "refused"}
 {"base_id": "tpl-plant-00418", "style": "mixed_notation", "text": "Plant sensor network fault detection 8 byte messages 10‰ false alarm rate 12 active elements", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-00418", "style": "mixed_notation", "text": "Control system reactor sep stripper compress util fault monitor 8 byte packet size 1% false alarm 12 active nodes", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-00418", "style": "mixed_notation", "text": "Process monitoring system 8 bytes per transmission 1e-2 false alarm rate 12 operating nodes", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-00418", "style": "mixed_notation", "text": "Reactor separator stripper compressor utilities diagnostic system 8 byte frame 1/100 false alarm ratio 12 nodes active", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-00418", "style": "mixed_notation", "text": "Chemical plant fault detection 8 byte data packets 1% error rate 12 active sensor nodes", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-00418", "style": "mixed_notation", "text": "Industrial control network 8 bytes per message 1000e-3 false alarm rate 12 working nodes", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-squad-00354", "style": "typos", "text": "red green blue sqd foragin snks green caution norml step limt 275 food tgt 3", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00354", "style": "typos", "text": "snakes red grn blu foragin grn caution normal step limit 275 food target 3", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00354", "style": "typos", "text": "squad red green blue foraging green caution normal step 275 food target 3", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00354", "style": "typos", "text": "red grn blu snake grp foragin green caution norml step limt 275 food tgt 3", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00354", "style": "typos", "text": "snakes red green blue foragin snks green caution normal step limit 275 food 3", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00354", "style": "typos", "text": "red grn blu squad foragin green caution norml step limit 275 food target 3", "verified": false, "verifier_status": "ok"}
