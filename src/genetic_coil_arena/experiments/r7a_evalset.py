@@ -40,7 +40,9 @@ class EvalItem:
         split: ``indist`` or ``heldout``
         style: Phrasing style tag
         text: The instruction
-        gold: Gold params, or None when the request must be refused
+        gold: Gold params, or None when the request must be refused or clarified
+        kind: Expected outcome: ``spec``, ``refuse`` or ``clarify`` (``None`` gold means
+            ``refuse`` unless ``kind`` says ``clarify``)
     """
 
     id: str
@@ -49,6 +51,12 @@ class EvalItem:
     style: str
     text: str
     gold: Optional[dict[str, Any]]
+    kind: str = ""
+
+    @property
+    def expected(self) -> str:
+        """``spec``, ``refuse`` or ``clarify``."""
+        return self.kind or ("refuse" if self.gold is None else "spec")
 
     @property
     def spec_name(self) -> str:
@@ -58,7 +66,7 @@ class EvalItem:
     @property
     def invalid(self) -> bool:
         """Whether the expected outcome is a refusal."""
-        return self.gold is None
+        return self.expected == "refuse"
 
 
 def _join(names: list[str], word: str = "and") -> str:
