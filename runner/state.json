@@ -26,6 +26,7 @@
   ],
   "backlog": {
     "ready": [
+      "r7a2-para-gen",
       "r10-o14-team-typed-SS",
       "r10-q3-single",
       "r10-q3-team-free-OB",
@@ -34,6 +35,77 @@
       "r10-q3-team-typed-SS"
     ],
     "blocked": [
+      {
+        "id": "r7a2-eval-lora",
+        "blocked_by": [
+          "r7a2-train-r8-n1000",
+          "r7a2-train-r32-n1000",
+          "r7a2-train-r8-n4000",
+          "r7a2-train-r32-n4000",
+          "r7a2-train-r8-n12000",
+          "r7a2-train-r32-n12000"
+        ]
+      },
+      {
+        "id": "r7a2-eval-lora-rt",
+        "blocked_by": [
+          "r7a2-eval-ollama"
+        ]
+      },
+      {
+        "id": "r7a2-eval-ollama",
+        "blocked_by": [
+          "r7a2-eval-lora"
+        ]
+      },
+      {
+        "id": "r7a2-para-verify",
+        "blocked_by": [
+          "r7a2-para-gen"
+        ]
+      },
+      {
+        "id": "r7a2-train-r32-n1000",
+        "blocked_by": [
+          "r7a2-para-verify"
+        ]
+      },
+      {
+        "id": "r7a2-train-r32-n12000",
+        "blocked_by": [
+          "r7a2-para-verify"
+        ]
+      },
+      {
+        "id": "r7a2-train-r32-n4000",
+        "blocked_by": [
+          "r7a2-para-verify"
+        ]
+      },
+      {
+        "id": "r7a2-train-r8-n1000",
+        "blocked_by": [
+          "r7a2-para-verify"
+        ]
+      },
+      {
+        "id": "r7a2-train-r8-n12000",
+        "blocked_by": [
+          "r7a2-para-verify"
+        ]
+      },
+      {
+        "id": "r7a2-train-r8-n4000",
+        "blocked_by": [
+          "r7a2-para-verify"
+        ]
+      },
+      {
+        "id": "r7a2-zz-aggregate",
+        "blocked_by": [
+          "r7a2-eval-lora-rt"
+        ]
+      },
       {
         "id": "r8s4-zz-aggregate",
         "blocked_by": [
@@ -48,11 +120,11 @@
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-25T02:04:15+00:00",
-  "cpu_percent": 74.8,
+  "updated_at": "2026-10-25T02:05:19+00:00",
+  "cpu_percent": 65.3,
   "gpu": {
     "util": 96.0,
-    "mem_used_mb": 9825.0,
+    "mem_used_mb": 9828.0,
     "mem_total_mb": 12282.0
   }
 }
