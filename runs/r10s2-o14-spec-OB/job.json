@@ -1,0 +1,23 @@
+{
+  "id": "r10s2-o14-spec-OB",
+  "commit": "585196f2a825bde056c555943872bc1a79cb11f1",
+  "args": [
+    "scripts/r10_step2.py",
+    "run",
+    "--model",
+    "ollama:qwen2.5-coder:14b",
+    "--systems",
+    "OB",
+    "--oracle-ctx",
+    "8192",
+    "--conditions",
+    "team_hybrid_rule,single_selected,oracle_selected"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 4,
+  "priority": 6,
+  "timeout_min": 240.0,
+  "env": {
+    "HF_HOME": "D:\\hf_cache"
+  }
+}
