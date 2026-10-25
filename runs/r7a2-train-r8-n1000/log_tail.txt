@@ -44,3 +44,6 @@ Loading weights: 100%|██████████| 311/311 [00:01<00:00, 195.
 [02:40:49] r8-n1000 dev: 160/304 (squad-indist-15)
 [02:41:43] r8-n1000 dev: 200/304 (squad-heldout-15)
 [02:42:39] r8-n1000 dev: 240/304 (plant-indist-15)
+[02:43:30] r8-n1000 dev: 280/304 (plant-heldout-15)
+[02:43:57] r8-n1000 dev: 304/304 (plant-heldout-x3)
+[02:43:57] r8-n1000: dev+step-1 exact 81.2% on 288 valid items; adapter 33 MiB at D:\hf_cache\r7a2_store\r8-n1000.pt
