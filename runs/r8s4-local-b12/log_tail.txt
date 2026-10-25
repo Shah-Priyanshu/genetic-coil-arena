@@ -2,3 +2,10 @@ scale full: 2 groups, replicates 0:10 of 10; 8 processes x 1 torch thread(s) <= 
 20 cells in 2 groups on 8 workers
   tuned ('local', 1): {'hidden': 32, 'l2': 0.001, 'max_iter': 100, 'folds': 3} (201s)
   tuned ('local', 2): {'hidden': 32, 'l2': 0.001, 'max_iter': 100, 'folds': 3} (208s)
+  5/20 cells, 330s
+  10/20 cells, 451s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s4-local-b12\artifacts\plant_novel_local_b1_r0-10.json (7.6 min)
+  15/20 cells, 459s
+  20/20 cells, 540s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s4-local-b12\artifacts\plant_novel_local_b2_r0-10.json (9.0 min)
+done in 9.0 min
