@@ -1,26 +1,40 @@
 {
-  "version": "dfac474d62e9343d6888c91f3a2a26f0a47cc9c3",
+  "version": "49949fc8debb903d1d93f85032e6cce7b99d030d",
   "host": "PC",
-  "draining_for_update": true,
+  "draining_for_update": false,
   "cpu_budget": 24,
-  "cpu_workers_in_use": 8,
+  "cpu_workers_in_use": 28,
   "running": [
     {
-      "id": "r8s4-e2e-b48",
+      "id": "r8s4-e2e_aux-b48",
       "lane": "cpu",
       "cpu_workers": 8,
-      "started_at": "2026-10-25T01:30:38+00:00"
+      "started_at": "2026-10-25T01:41:18+00:00"
+    },
+    {
+      "id": "r8s4-local-b12",
+      "lane": "cpu",
+      "cpu_workers": 8,
+      "started_at": "2026-10-25T01:41:18+00:00"
+    },
+    {
+      "id": "r8s4-local-b48",
+      "lane": "cpu",
+      "cpu_workers": 8,
+      "started_at": "2026-10-25T01:41:18+00:00"
+    },
+    {
+      "id": "r10-o14-team-free-OB",
+      "lane": "gpu",
+      "cpu_workers": 4,
+      "started_at": "2026-10-25T01:41:18+00:00"
     }
   ],
   "backlog": {
     "ready": [
-      "r8s4-e2e_aux-b48",
-      "r8s4-local-b12",
-      "r8s4-local-b48",
       "r8s4-ref",
       "r8s4-vq-b12",
       "r8s4-vq-b48",
-      "r10-o14-team-free-OB",
       "r10-o14-team-free-SS",
       "r10-o14-team-typed-OB",
       "r10-o14-team-typed-SS",
@@ -60,14 +74,14 @@
     ]
   },
   "idle_since": {
-    "cpu": null,
-    "gpu": "2026-10-25T01:30:36+00:00"
+    "cpu": "2026-10-25T01:41:16+00:00",
+    "gpu": "2026-10-25T01:41:16+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-25T01:41:11+00:00",
-  "cpu_percent": 19.4,
+  "updated_at": "2026-10-25T01:41:18+00:00",
+  "cpu_percent": 0.0,
   "gpu": {
-    "util": 97.0,
+    "util": 100.0,
     "mem_used_mb": 5671.0,
     "mem_total_mb": 12282.0
   }
