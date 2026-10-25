@@ -1,2 +1,11 @@
 scale full: 2 groups, replicates 0:10 of 10; 8 processes x 1 torch thread(s) <= 8 workers; splits (unseen faults): [(1, 10, 12, 13, 17), (1, 11, 17, 19, 20), (2, 8, 14, 17, 19), (5, 7, 11, 16, 19), (4, 5, 6, 8, 12), (5, 11, 13, 18, 19)]
 20 cells in 2 groups on 8 workers
+  tuned ('vq', 1): {'whiten': False, 'dim': 8} (119s)
+  tuned ('vq', 2): {'whiten': False, 'dim': 8} (149s)
+  5/20 cells, 205s
+  10/20 cells, 283s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s4-vq-b12\artifacts\plant_novel_vq_b1_r0-10.json (4.7 min)
+  15/20 cells, 289s
+  20/20 cells, 346s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s4-vq-b12\artifacts\plant_novel_vq_b2_r0-10.json (5.8 min)
+done in 5.8 min
