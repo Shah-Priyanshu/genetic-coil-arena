@@ -33,6 +33,7 @@
   "backlog": {
     "ready": [
       "r7b-train-hand-goal",
+      "r7a2-para-verify",
       "r10-o14-team-free-OB-2",
       "r10-o14-team-free-SS-2",
       "r10-o14-team-typed-SS",
@@ -78,12 +79,6 @@
         "id": "r7a2-eval-ollama",
         "blocked_by": [
           "r7a2-eval-lora"
-        ]
-      },
-      {
-        "id": "r7a2-para-verify",
-        "blocked_by": [
-          "r7a2-para-gen"
         ]
       },
       {
@@ -144,11 +139,11 @@
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-25T04:22:41+00:00",
+  "updated_at": "2026-10-25T04:23:49+00:00",
   "cpu_percent": 99.7,
   "gpu": {
-    "util": 20.0,
-    "mem_used_mb": 10937.0,
+    "util": 1.0,
+    "mem_used_mb": 708.0,
     "mem_total_mb": 12282.0
   }
 }
