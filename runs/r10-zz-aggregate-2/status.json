@@ -1,0 +1,23 @@
+{
+  "id": "r10-zz-aggregate-2",
+  "commit": "9d661b1db483679f82579bd8d8655f90e0fe1f11",
+  "queued_args": [
+    "scripts/r10_log_triage.py",
+    "report",
+    "--from",
+    "runs:r10-q3-*",
+    "runs:r10-o14-single",
+    "runs:r10-o14-team-typed-*",
+    "runs:r10-o14-team-free-*-2",
+    "--out",
+    "docs/results/r10_log_triage.md"
+  ],
+  "state": "running",
+  "started_at": "2026-10-25T11:36:52+00:00",
+  "updated_at": "2026-10-25T11:36:52+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 708 MiB, 12282 MiB, 57",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 1
+}
