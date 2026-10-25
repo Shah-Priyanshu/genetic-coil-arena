@@ -401,3 +401,6 @@
 [done] r7b_hand-goal_run6: 362.2 min, best gen 3850, best val mission 21.97
 [progress] hand-goal run 1: gen 5000/5000, val mission 19.60, best gen 4300, elapsed 21804 s
 [done] r7b_hand-goal_run1: 363.4 min, best gen 4300, best val mission 21.50
+[progress] hand-goal run 5: gen 5000/5000, val mission 20.27, best gen 4700, elapsed 21825 s
+[done] r7b_hand-goal_run5: 363.8 min, best gen 4700, best val mission 21.97
+[train] done in 363.8 min
