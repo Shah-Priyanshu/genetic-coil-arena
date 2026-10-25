@@ -1,0 +1,13 @@
+[19:21:14] OB/checkoutservice_disk/3: top1 1 fault 0 46 envelopes
+[19:21:28] OB/checkoutservice_loss/3: top1 1 fault 0 50 envelopes
+[19:21:42] OB/currencyservice_mem/2: top1 1 fault 1 50 envelopes
+[19:21:56] OB/productcatalogservice_delay/2: top1 1 fault 1 50 envelopes
+[19:22:10] OB/productcatalogservice_mem/2: top1 1 fault 1 50 envelopes
+[19:22:24] OB/recommendationservice_delay/3: top1 1 fault 1 50 envelopes
+[19:22:45] SS/carts_socket/3: top1 1 fault 0 62 envelopes
+[19:23:04] SS/orders_delay/3: top1 1 fault 1 62 envelopes
+[19:23:24] SS/user_cpu/2: top1 1 fault 1 62 envelopes
+[19:23:44] SS/user_disk/3: top1 1 fault 0 62 envelopes
+[19:24:10] SS/user_loss/3: top1 0 fault 0 62 envelopes
+[19:24:32] SS/user_socket/2: top1 1 fault 0 62 envelopes
+[19:24:32] runtime check: {"model": "ollama:qwen2.5-coder:14b", "n_incidents": 12, "top1": 0.9166666666666666, "fault_ok": 0.5, "joint": 0.5, "batch_ranking_equal": true, "batch_fault_equal": true, "envelopes_per_incident": 55.666666666666664, "envelope_bytes_per_incident": 30656.166666666668, "report_bytes_per_incident": 2486.6666666666665, "wall_s_per_incident": 18.16869090833158, "trace": "trace_hybrid.jsonl"}
