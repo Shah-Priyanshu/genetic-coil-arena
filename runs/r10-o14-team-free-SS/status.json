@@ -1,0 +1,27 @@
+{
+  "id": "r10-o14-team-free-SS",
+  "commit": "9d661b1db483679f82579bd8d8655f90e0fe1f11",
+  "queued_args": [
+    "scripts/r10_log_triage.py",
+    "run",
+    "--model",
+    "ollama:qwen2.5-coder:14b",
+    "--split",
+    "test",
+    "--no-overflow",
+    "--oracle-ctx",
+    "8192",
+    "--systems",
+    "SS",
+    "--conditions",
+    "team_free"
+  ],
+  "state": "running",
+  "started_at": "2026-10-25T01:51:06+00:00",
+  "updated_at": "2026-10-25T01:51:06+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 604 MiB, 12282 MiB, 50",
+  "host": "PC",
+  "lane": "gpu",
+  "cpu_workers": 4
+}
