@@ -3,15 +3,8 @@
   "host": "PC",
   "draining_for_update": false,
   "cpu_budget": 24,
-  "cpu_workers_in_use": 1,
-  "running": [
-    {
-      "id": "r10-zz-aggregate-2",
-      "lane": "cpu",
-      "cpu_workers": 1,
-      "started_at": "2026-10-25T11:36:51+00:00"
-    }
-  ],
+  "cpu_workers_in_use": 0,
+  "running": [],
   "backlog": {
     "ready": [],
     "blocked": []
@@ -21,8 +14,8 @@
     "gpu": "2026-10-25T11:36:50+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-25T11:36:51+00:00",
-  "cpu_percent": 4.4,
+  "updated_at": "2026-10-25T11:36:59+00:00",
+  "cpu_percent": 3.9,
   "gpu": {
     "util": 0.0,
     "mem_used_mb": 708.0,
