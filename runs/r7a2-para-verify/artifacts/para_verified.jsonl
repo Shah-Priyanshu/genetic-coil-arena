@@ -3628,3 +3628,9 @@
 {"base_id": "tpl-plant-00084", "style": "negation", "text": "System operates with all but stripper node active in reactor, separator, compressor_utilities monitoring", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-plant-00084", "style": "negation", "text": "No stripper node included in the control system's diagnostic coverage", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-plant-00084", "style": "negation", "text": "Fault detection covers reactor, separator, compressor_utilities while stripper remains excluded", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00084", "style": "negation", "text": "Sensor nodes active are reactor, separator, compressor_utilities with stripper disabled", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00084", "style": "negation", "text": "All components participate except stripper which is not part of fault-diagnosis protocol", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00475", "style": "jargon", "text": "SQUAD SNK R/G/B FORAGE G/B CAUTION HIGH STEP 275 FOOD NONE", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00475", "style": "jargon", "text": "SNK SQD R/G/B FORAGE G/B CAUTION H STEP 275 NO FOOD TARGET", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00475", "style": "jargon", "text": "SQUAD SNAKE R/G/B FORAGE G/B CAUTION H 275 STEP LIMIT FOOD NIL", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00475", "style": "jargon", "text": "SNK GROUP R/G/B GREEN/BLUE FORAGE CAUTION HIGH STEP 275 NO FOOD", "verified": true, "verifier_status": "ok"}
