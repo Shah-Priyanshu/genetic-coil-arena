@@ -1,0 +1,2 @@
+[22:31:19] 480 bases, 0 already done
+[22:31:19] Ollama already running at http://localhost:11434
