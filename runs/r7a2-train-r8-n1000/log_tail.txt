@@ -38,3 +38,9 @@ Loading weights: 100%|██████████| 311/311 [00:01<00:00, 195.
 [02:37:08] [r8-n1000] step 475/500 loss 0.0005 (262s)
 [02:37:21] [r8-n1000] step 500/500 loss 0.0004 (275s)
 [02:37:21] r8-n1000: trained 500 steps in 275s, loss 0.0004, peak 4307 MiB
+[02:38:17] r8-n1000 dev: 40/304 (squad-dev-ho-03)
+[02:39:11] r8-n1000 dev: 80/304 (plant-dev-in-07)
+[02:39:56] r8-n1000 dev: 120/304 (plant-dev-ho-11)
+[02:40:49] r8-n1000 dev: 160/304 (squad-indist-15)
+[02:41:43] r8-n1000 dev: 200/304 (squad-heldout-15)
+[02:42:39] r8-n1000 dev: 240/304 (plant-indist-15)
