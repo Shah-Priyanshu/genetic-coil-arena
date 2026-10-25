@@ -27,7 +27,7 @@ import copy
 import json
 import time
 from collections.abc import Mapping, Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Any, Optional, Protocol
 
 from ..protocol.envelope import Envelope
@@ -37,7 +37,8 @@ OK = "ok"
 REFUSED = "refused"  # the model declined: the request is out of scope or unsatisfiable
 INVALID = "invalid"  # the reply never validated (after the retry)
 ERROR = "error"  # the backend failed
-STATUSES = (OK, REFUSED, INVALID, ERROR)
+CLARIFY = "clarify"  # in domain but ambiguous: a question comes back instead of a spec
+STATUSES = (OK, REFUSED, INVALID, ERROR, CLARIFY)
 
 
 class StructuredBackend(Protocol):
@@ -59,17 +60,21 @@ class Example:
 
     Attributes:
         text: The instruction
-        params: Params of the expected goal (``None`` for a refusal)
+        params: Params of the expected goal (``None`` for a refusal or a question)
         refusal: Why the request is refused (empty when ``params`` is given)
+        clarify: The question asked back when the request is ambiguous (policy translator)
     """
 
     text: str
     params: Optional[Mapping[str, Any]] = None
     refusal: str = ""
+    clarify: str = ""
 
-    def reply(self) -> str:
-        """The JSON reply the model should produce."""
+    def reply(self, policy: bool = False) -> str:
+        """The JSON reply the model should produce (``policy``: always with ``clarify``)."""
         body: dict[str, Any] = {"refusal": self.refusal}
+        if self.clarify or policy:
+            body["clarify"] = self.clarify
         if self.params is not None:
             body["params"] = dict(self.params)
         return json.dumps(body, sort_keys=False)
@@ -84,12 +89,17 @@ class TranslationPack:
         system: System prompt (the domain's conventions and defaults)
         examples: Few-shot examples
         version: Spec version (latest if None)
+        defaults: Documented defaults of optional params (used by the policy translator:
+            a param the request does not mention takes its default)
+        questions: Question to ask per mandatory param that has no default and is missing
     """
 
     spec_name: str
     system: str
     examples: tuple[Example, ...] = ()
     version: Optional[int] = None
+    defaults: Mapping[str, Any] = field(default_factory=dict)
+    questions: Mapping[str, str] = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -113,9 +123,9 @@ class TranslationResult:
 
     Attributes:
         text: The instruction
-        status: ``ok``, ``refused``, ``invalid`` or ``error``
+        status: ``ok``, ``refused``, ``invalid``, ``error`` or ``clarify``
         spec: The validated GoalSpec when ``status`` is ``ok``
-        reason: The model's refusal, or the last problem found
+        reason: The model's refusal, the question asked back, or the last problem found
         errors: Validation errors of the last attempt
         attempts: Model calls made (1 or 2)
         latency_s: Total model time
@@ -139,6 +149,11 @@ class TranslationResult:
     def ok(self) -> bool:
         """Whether a validated GoalSpec came out."""
         return self.status == OK
+
+    @property
+    def question(self) -> str:
+        """The question asked back when ``status`` is ``clarify`` (else empty)."""
+        return self.reason if self.status == CLARIFY else ""
 
     @property
     def params(self) -> Optional[dict[str, Any]]:

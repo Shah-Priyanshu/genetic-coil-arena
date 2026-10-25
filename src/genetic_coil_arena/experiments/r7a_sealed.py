@@ -72,7 +72,9 @@ def load_dev() -> list[EvalItem]:
             continue
         out.append(
             EvalItem(
-                item.id.replace("-indist-", "-dev-in-").replace("-heldout-", "-dev-ho-"),
+                item.id.replace("-indist-", "-dev-in-").replace(
+                    "-heldout-", "-dev-ho-"
+                ),
                 item.domain,
                 "dev",
                 item.style,

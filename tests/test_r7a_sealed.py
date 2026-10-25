@@ -16,10 +16,9 @@ from genetic_coil_arena.experiments.r7a_evalset import few_shot_texts
 from genetic_coil_arena.translator import OverlapIndex
 
 MASKS = {
-    **{c: "<C>" for c in COLOURS},
-    **{
-        w: "<K>"
-        for w in (
+    **dict.fromkeys(COLOURS, "<C>"),
+    **dict.fromkeys(
+        (
             "reactor",
             "reactr",
             "separator",
@@ -27,8 +26,9 @@ MASKS = {
             "stripper",
             "compressor",
             "utilities",
-        )
-    },
+        ),
+        "<K>",
+    ),
 }
 
 

@@ -5,11 +5,13 @@
   hidden-state capture, soft-prompt injection, KV-prefix forwarding and selective-logits
   training
 - ``ollama``: ``OllamaBackend``, text-only generation with JSON-schema output
+- ``adapter_text``: ``AdapterTextBackend``, one LoRA adapter as a distilled-translator backend
 
 Importing this package needs neither torch, transformers nor peft: they load on the
 first call that needs them.
 """
 
+from .adapter_text import AdapterTextBackend
 from .base import (
     CAP_GENERATE,
     CAP_HIDDEN,
@@ -40,6 +42,7 @@ from .ollama import (
 )
 
 __all__ = [
+    "AdapterTextBackend",
     "CAP_GENERATE",
     "CAP_HIDDEN",
     "CAP_KV",
