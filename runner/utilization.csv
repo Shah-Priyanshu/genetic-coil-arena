@@ -1,0 +1,2 @@
+hour_utc,samples,cpu_mean_pct,gpu_util_mean_pct,gpu_mem_mean_mb,cpu_lane_busy_frac,gpu_lane_busy_frac,cpu_workers_mean,psutil
+2026-10-25T00:00Z,10,5.1,52.9,7548.3,0.100,0.700,3.0,yes
