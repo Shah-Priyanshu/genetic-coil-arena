@@ -1,0 +1,28 @@
+{
+  "model": "ollama:qwen2.5-coder:14b",
+  "model_name": "ollama:qwen2.5-coder:14b",
+  "conditions": [
+    "team_free"
+  ],
+  "systems": [
+    "SS"
+  ],
+  "split": "test",
+  "n_incidents": 60,
+  "settings": {
+    "ctx_tokens": 4096,
+    "spec_ctx_tokens": 3072,
+    "message_tokens": 128,
+    "oracle_ctx_tokens": 8192,
+    "spec_new_tokens": 200,
+    "spec_batch": 4,
+    "decide_batch": 4,
+    "margin": 48,
+    "use_metrics": true
+  },
+  "counter": "qwen3-tok",
+  "wall_s": 1513.9,
+  "python": "3.13.7",
+  "commit": "9d661b1db483679f82579bd8d8655f90e0fe1f11",
+  "finished": "2026-10-25T04:47:48"
+}
