@@ -1,0 +1,16 @@
+scale full: 5 groups, replicates 0:10 of 10; 8 processes x 1 torch thread(s) <= 8 workers; splits (unseen faults): [(1, 10, 12, 13, 17), (1, 11, 17, 19, 20), (2, 8, 14, 17, 19), (5, 7, 11, 16, 19), (4, 5, 6, 8, 12), (5, 11, 13, 18, 19)]
+50 cells in 5 groups on 8 workers
+  tuned ('features', 4): {} (1s)
+  tuned ('features', 1): {} (1s)
+  tuned ('features', 2): {} (1s)
+  tuned ('features', 8): {} (1s)
+  5/50 cells, 56s
+  10/50 cells, 92s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s4-ref\artifacts\plant_novel_features_b4_r0-10.json (1.7 min)
+  15/50 cells, 123s
+  20/50 cells, 140s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s4-ref\artifacts\plant_novel_features_b1_r0-10.json (2.3 min)
+  25/50 cells, 183s
+  30/50 cells, 236s
+wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r8s4-ref\artifacts\plant_novel_features_b2_r0-10.json (3.9 min)
+  35/50 cells, 291s
