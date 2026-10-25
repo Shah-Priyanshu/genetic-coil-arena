@@ -1,0 +1,27 @@
+{
+  "model": "ollama:qwen2.5-coder:14b",
+  "model_name": "ollama:qwen2.5-coder:14b",
+  "conditions": [
+    "team_hybrid_rule",
+    "single_selected",
+    "oracle_selected"
+  ],
+  "systems": "SS",
+  "split": "all",
+  "n_incidents": 90,
+  "settings": {
+    "log_view_tokens": 1500,
+    "log_new_tokens": 120,
+    "log_batch": 4,
+    "before_s": 120.0,
+    "after_s": 300.0,
+    "policy": "log_c50",
+    "ctx_tokens": 4096,
+    "margin": 48,
+    "llm_ablate_dev": false
+  },
+  "wall_s": 5107.0,
+  "python": "3.13.7",
+  "commit": "585196f2a825bde056c555943872bc1a79cb11f1",
+  "finished": "2026-10-25T16:18:52"
+}
