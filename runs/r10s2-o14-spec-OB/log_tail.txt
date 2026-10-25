@@ -24,3 +24,5 @@
 [14:12:56] conditions: 25/90 (2280s)
 [14:15:57] conditions: 30/90 (2461s)
 [14:19:02] conditions: 35/90 (2646s)
+[14:22:08] conditions: 40/90 (2831s)
+[14:25:12] conditions: 45/90 (3016s)
