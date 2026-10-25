@@ -6,10 +6,10 @@
   "cpu_workers_in_use": 4,
   "running": [
     {
-      "id": "r7a2-train-r8-n4000",
+      "id": "r7a2-eval-lora",
       "lane": "gpu",
       "cpu_workers": 4,
-      "started_at": "2026-10-25T07:11:16+00:00"
+      "started_at": "2026-10-25T07:28:57+00:00"
     }
   ],
   "backlog": {
@@ -38,12 +38,6 @@
         ]
       },
       {
-        "id": "r7a2-eval-lora",
-        "blocked_by": [
-          "r7a2-train-r8-n4000"
-        ]
-      },
-      {
         "id": "r7a2-eval-lora-rt",
         "blocked_by": [
           "r7a2-eval-ollama"
@@ -65,14 +59,14 @@
   },
   "idle_since": {
     "cpu": "2026-10-25T06:12:18+00:00",
-    "gpu": null
+    "gpu": "2026-10-25T07:28:55+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-25T07:28:00+00:00",
-  "cpu_percent": 7.5,
+  "updated_at": "2026-10-25T07:28:57+00:00",
+  "cpu_percent": 7.2,
   "gpu": {
-    "util": 22.0,
-    "mem_used_mb": 5437.0,
+    "util": 0.0,
+    "mem_used_mb": 708.0,
     "mem_total_mb": 12282.0
   }
 }
