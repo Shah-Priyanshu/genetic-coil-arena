@@ -1990,3 +1990,43 @@
 {"base_id": "tpl-plant-00035", "style": "typos", "text": "req fault diagnosis sys sensor nodes reactr sep stripper compresor_utilitiz message 51 bytes false alarm 0.02 active strip"}
 {"base_id": "tpl-plant-00035", "style": "typos", "text": "fault detect system reqd sensor nodes reactor separator stripper compressors_utilits msg size 51 fals alarm rate 2 percent active stripper node"}
 {"base_id": "tpl-plant-00035", "style": "typos", "text": "quick fault diag system wit sensr nodes reactr sep stripper compresor_utilitiz bytes per msg 51 false alarm 0.02 strip activ nod"}
+{"base_id": "tpl-plant-00042", "style": "terse_note", "text": "fault diag system sensor nodes reactor|separator|stripper|compressor_utilities msg=51 bytes false alarm=0.001 active=reactor|compressor_utilities"}
+{"base_id": "tpl-plant-00042", "style": "terse_note", "text": "plant fault diagnosis with reactor separator stripper compressor_utilities 51bytes 0.001fa active:reactor compressor_utilities"}
+{"base_id": "tpl-plant-00042", "style": "terse_note", "text": "diag system nodes:reactor|separator|stripper|compressor_utilities msg=51 bytes fa=0.001 active:reactor|compressor_utilities"}
+{"base_id": "tpl-plant-00042", "style": "terse_note", "text": "fault detection reactor|separator|stripper|compressor_utilities 51b 0.001% false alarm active:reactor|compressor_utilities"}
+{"base_id": "tpl-plant-00042", "style": "terse_note", "text": "system fault diag sensor nodes reactor/separator/stripper/compressor_utilities msg=51 bytes fa=0.001 active=reactor compressor_utilities"}
+{"base_id": "tpl-plant-00042", "style": "terse_note", "text": "plant monitoring fault system reactor|separator|stripper|compressor_utilities 51b false alarm=0.001 active:reactor|compressor_utilities"}
+{"base_id": "tpl-plant-00042", "style": "terse_note", "text": "diagnosis system nodes reactor,separator,stripper,compressor_utilities 51 bytes fa=0.001 active=reactor,compressor_utilities"}
+{"base_id": "tpl-plant-00042", "style": "terse_note", "text": "fault analysis system reactor|separator|stripper|compressor_utilities 51 byte msg fa=0.001 active:reactor|compressor_utilities"}
+{"base_id": "tpl-plant-00045", "style": "typos", "text": "need fault diag sys for reactor sep stripper comp utliz with 51 byte msg n 1 percent false alarm rate active reactor stripper"}
+{"base_id": "tpl-plant-00045", "style": "typos", "text": "quick fix needed fault sys reactor sep stripper compressor utilz 51 bytes msg 1percent false alarm active reactor stripper"}
+{"base_id": "tpl-plant-00045", "style": "typos", "text": "fault diagnos system reactor sep stripper compress utilz 51 bytes per message false alarm 1percent active reactor stripper"}
+{"base_id": "tpl-plant-00045", "style": "typos", "text": "reactor separator stripper compressor utility fault diag system 51 byte messages 1 percent false alarm rate active nodes reactor stripper"}
+{"base_id": "tpl-plant-00045", "style": "typos", "text": "need urgent fault system for reactor sep stripper comp utliz 51 bytes 1 percent false alarm active reactor stripper"}
+{"base_id": "tpl-plant-00045", "style": "typos", "text": "fault diagnosis system reactor sep stripper compress utilz 51 byte msg false alarm rate 1percent active reactor stripper"}
+{"base_id": "tpl-plant-00045", "style": "typos", "text": "quick fault diag system reactor separator stripper compressor utilities 51 bytes per message 1 percent false alarm active reactor stripper"}
+{"base_id": "tpl-plant-00045", "style": "typos", "text": "reactor sep stripper comp utliz fault system 51 byte messages 1 percent false alarm rate active reactor stripper only"}
+{"base_id": "tpl-plant-ref0058", "style": "jargon", "text": "NAMING ERROR, CANNOT ADD HEAT EXCHANGER TO ACTIVE NODES, 16 BYTES INVALID"}
+{"base_id": "tpl-plant-ref0058", "style": "jargon", "text": "BAD NAME, NO HEAT EXCHANGER ADDED TO ACTIVE NODES, 16 BYTES"}
+{"base_id": "tpl-plant-ref0058", "style": "jargon", "text": "NAME CONFLICT, HEAT EXCHANGER NOT ADDED TO ACTIVE NODES, 16 BYTES"}
+{"base_id": "tpl-plant-ref0058", "style": "jargon", "text": "INVALID NAME, CANNOT INSERT HEAT EXCHANGER INTO ACTIVE NODES, 16 BYTES"}
+{"base_id": "tpl-plant-ref0058", "style": "jargon", "text": "NAME FAILURE, HEAT EXCHANGER REJECTED FROM ACTIVE NODES, 16 BYTES"}
+{"base_id": "tpl-plant-ref0058", "style": "jargon", "text": "BAD IDENTIFIER, NO HEAT EXCHANGER TO ACTIVE NODES, 16 BYTES"}
+{"base_id": "tpl-plant-ref0058", "style": "jargon", "text": "NAME ERROR, CANNOT PLACE HEAT EXCHANGER IN ACTIVE NODES, 16 BYTES"}
+{"base_id": "tpl-plant-ref0058", "style": "jargon", "text": "INVALID NAME, HEAT EXCHANGER NOT ACCEPTED BY ACTIVE NODES, 16 BYTES"}
+{"base_id": "tpl-plant-00436", "style": "formal_memo", "text": "Initiate fault diagnosis protocol for reactor separator stripper compressor_utilities with 16 byte message limit and 0.01 false alarm threshold"}
+{"base_id": "tpl-plant-00436", "style": "formal_memo", "text": "Activate diagnostic system across reactor separator stripper compressor_utilities nodes using 16 byte communication format at 1% false alarm rate"}
+{"base_id": "tpl-plant-00436", "style": "formal_memo", "text": "Execute plant fault detection routine for reactor separator stripper compressor_utilities sensor network with 16 byte packet size and 0.01 error probability"}
+{"base_id": "tpl-plant-00436", "style": "formal_memo", "text": "Deploy monitoring protocol for reactor separator stripper compressor_utilities equipment utilizing 16 byte data transmission and 0.01 false positive tolerance"}
+{"base_id": "tpl-plant-00436", "style": "formal_memo", "text": "Start operational fault analysis for reactor separator stripper compressor_utilities components using 16 byte message structure with 1% false alarm setting"}
+{"base_id": "tpl-plant-00436", "style": "formal_memo", "text": "Launch diagnostic procedure for reactor separator stripper compressor_utilities system with 16 byte frame length and 0.01 erroneous signal rate"}
+{"base_id": "tpl-plant-00436", "style": "formal_memo", "text": "Implement sensor fault detection for reactor separator stripper compressor_utilities nodes employing 16 byte communication standard at 1% false alarm level"}
+{"base_id": "tpl-plant-00436", "style": "formal_memo", "text": "Begin plant monitoring protocol for reactor separator stripper compressor_utilities with 16 byte message capacity and 0.01 false alarm probability"}
+{"base_id": "tpl-plant-00123", "style": "indirect_hint", "text": "It would be nice if the system could handle fault diagnosis with those specific sensor nodes and maintain that false alarm rate."}
+{"base_id": "tpl-plant-00123", "style": "indirect_hint", "text": "I was thinking about having the plant monitoring work with reactor, separator, stripper, and compressor utilities nodes."}
+{"base_id": "tpl-plant-00123", "style": "indirect_hint", "text": "Would it be possible to configure the system with these four active nodes and keep the message size at sixteen bytes?"}
+{"base_id": "tpl-plant-00123", "style": "indirect_hint", "text": "It would be helpful if the fault detection could include those particular units with that specific false alarm threshold."}
+{"base_id": "tpl-plant-00123", "style": "indirect_hint", "text": "I was hoping the system might support those sensor nodes with the specified byte limit and low false positive rate."}
+{"base_id": "tpl-plant-00123", "style": "indirect_hint", "text": "It would be wonderful if we could set up the diagnosis system with these exact components and parameters."}
+{"base_id": "tpl-plant-00123", "style": "indirect_hint", "text": "I was thinking about running the fault analysis with these four processing units at that message length."}
+{"base_id": "tpl-plant-00123", "style": "indirect_hint", "text": "It would be ideal if the control system could accommodate those nodes while maintaining the stated error probability."}
