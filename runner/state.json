@@ -14,6 +14,15 @@
   ],
   "backlog": {
     "ready": [
+      "r8s4-e2e-b12",
+      "r8s4-e2e-b48",
+      "r8s4-e2e_aux-b12",
+      "r8s4-e2e_aux-b48",
+      "r8s4-local-b12",
+      "r8s4-local-b48",
+      "r8s4-ref",
+      "r8s4-vq-b12",
+      "r8s4-vq-b48",
       "r10-o14-team-free-OB",
       "r10-o14-team-free-SS",
       "r10-o14-team-typed-OB",
@@ -39,6 +48,20 @@
           "r10-o14-team-free-SS",
           "r10-o14-team-free-OB"
         ]
+      },
+      {
+        "id": "r8s4-zz-aggregate",
+        "blocked_by": [
+          "r8s4-local-b12",
+          "r8s4-local-b48",
+          "r8s4-e2e-b12",
+          "r8s4-e2e-b48",
+          "r8s4-e2e_aux-b12",
+          "r8s4-e2e_aux-b48",
+          "r8s4-vq-b12",
+          "r8s4-vq-b48",
+          "r8s4-ref"
+        ]
       }
     ]
   },
@@ -47,11 +70,11 @@
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-25T01:13:30+00:00",
-  "cpu_percent": 11.9,
+  "updated_at": "2026-10-25T01:14:32+00:00",
+  "cpu_percent": 14.6,
   "gpu": {
-    "util": 25.0,
-    "mem_used_mb": 9141.0,
+    "util": 100.0,
+    "mem_used_mb": 10255.0,
     "mem_total_mb": 12282.0
   }
 }
