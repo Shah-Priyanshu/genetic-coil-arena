@@ -17,3 +17,9 @@
 [00:37:35] para-verify 750/3840
 [00:38:20] para-verify 800/3840
 [00:39:01] para-verify 850/3840
+[00:40:03] para-verify 900/3840
+[00:40:58] para-verify 950/3840
+[00:41:43] para-verify 1000/3840
+[00:42:32] para-verify 1050/3840
+[00:43:21] para-verify 1100/3840
+[00:44:04] para-verify 1150/3840
