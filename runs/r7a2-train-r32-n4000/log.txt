@@ -74,3 +74,6 @@ Loading weights: 100%|██████████| 311/311 [00:01<00:00, 199.
 [02:29:44] r32-n4000 dev: 160/304 (squad-indist-15)
 [02:30:33] r32-n4000 dev: 200/304 (squad-heldout-15)
 [02:31:21] r32-n4000 dev: 240/304 (plant-indist-15)
+[02:32:05] r32-n4000 dev: 280/304 (plant-heldout-15)
+[02:32:32] r32-n4000 dev: 304/304 (plant-heldout-x3)
+[02:32:33] r32-n4000: dev+step-1 exact 95.5% on 288 valid items; adapter 133 MiB at D:\hf_cache\r7a2_store\r32-n4000.pt
