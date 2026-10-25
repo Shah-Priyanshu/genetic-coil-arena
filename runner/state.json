@@ -44,14 +44,14 @@
   },
   "idle_since": {
     "cpu": null,
-    "gpu": "2026-10-25T23:20:37+00:00"
+    "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-25T23:20:41+00:00",
-  "cpu_percent": 64.3,
+  "updated_at": "2026-10-25T23:21:48+00:00",
+  "cpu_percent": 62.4,
   "gpu": {
-    "util": 0.0,
-    "mem_used_mb": 744.0,
+    "util": 94.0,
+    "mem_used_mb": 9977.0,
     "mem_total_mb": 12282.0
   }
 }

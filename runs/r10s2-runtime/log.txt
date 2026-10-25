@@ -1,0 +1,3 @@
+[19:21:14] OB/checkoutservice_disk/3: top1 1 fault 0 46 envelopes
+[19:21:28] OB/checkoutservice_loss/3: top1 1 fault 0 50 envelopes
+[19:21:42] OB/currencyservice_mem/2: top1 1 fault 1 50 envelopes
