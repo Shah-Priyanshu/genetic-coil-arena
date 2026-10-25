@@ -41,8 +41,7 @@
       {
         "id": "r7a2-eval-lora",
         "blocked_by": [
-          "r7a2-train-r8-n4000",
-          "r7a2-train-r8-n12000"
+          "r7a2-train-r8-n4000"
         ]
       },
       {
@@ -70,11 +69,11 @@
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-25T07:10:09+00:00",
-  "cpu_percent": 7.4,
+  "updated_at": "2026-10-25T07:11:12+00:00",
+  "cpu_percent": 7.0,
   "gpu": {
-    "util": 27.0,
-    "mem_used_mb": 5417.0,
+    "util": 0.0,
+    "mem_used_mb": 708.0,
     "mem_total_mb": 12282.0
   }
 }
