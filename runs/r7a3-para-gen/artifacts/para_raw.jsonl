@@ -9198,3 +9198,19 @@
 {"base_id": "tpl-plant-01343", "style": "negation", "text": "Create monitoring setup without reactor and compressor_utilities nodes, only separator and stripper active, 5% false alarm rate"}
 {"base_id": "tpl-plant-01343", "style": "negation", "text": "Deploy system excluding reactor and compressor_utilities sensors, activate separator and stripper, 16 byte message size"}
 {"base_id": "tpl-plant-01343", "style": "negation", "text": "Initiate plant fault detection leaving out reactor and compressor_utilities, include separator and stripper, 16 byte messages"}
+{"base_id": "tpl-plant-00221", "style": "mixed_notation", "text": "Fault diag system reactor sep stripper comp_util 16byte msg 0.01 false alarm rate sep active"}
+{"base_id": "tpl-plant-00221", "style": "mixed_notation", "text": "System needs reactor separator stripper compressor utilities fault detection 16 bytes per message 10 per thousand false alarms separator node active"}
+{"base_id": "tpl-plant-00221", "style": "mixed_notation", "text": "Plant diagnostic network with sensor nodes reactor separator stripper compressor_utilities 16 byte messages 1% error rate separator operational"}
+{"base_id": "tpl-plant-00221", "style": "mixed_notation", "text": "Control system requires fault analysis for reactor separator stripper compressor utilities 16 byte transmission limit 0.01 failure probability separator working"}
+{"base_id": "tpl-plant-00221", "style": "mixed_notation", "text": "Reactor separator stripper compressor_utilities monitoring system 16 bytes per packet 0.01 false positive ratio separator node engaged"}
+{"base_id": "tpl-plant-00221", "style": "mixed_notation", "text": "Process control system fault detection reactor separator stripper compressor_utilities 16 byte message size 10e-3 erroneous alerts separator activated"}
+{"base_id": "tpl-plant-00221", "style": "mixed_notation", "text": "Sensor network for reactor separator stripper compressor_utilities 16 byte frame limit 1/100 error probability separator node running"}
+{"base_id": "tpl-plant-00221", "style": "mixed_notation", "text": "Industrial diagnostic system reactor separator stripper compressor_utilities 16 bytes per transmission 0.01 failure rate separator node active"}
+{"base_id": "tpl-squad-00588", "style": "mixed_notation", "text": "Squad snakes 3/1 red green blue foraging 32 food target 150 step limit normal caution per thousand 150000"}
+{"base_id": "tpl-squad-00588", "style": "mixed_notation", "text": "Red green blue snake squad ratio 1:1:1 foraging 32 food target 150 steps hex 96 caution ordinary care dozen 12"}
+{"base_id": "tpl-squad-00588", "style": "mixed_notation", "text": "Snakes 32 food target 150 step limit 3/1 squad ratio caution normal half hundred 50 per thousand 150000"}
+{"base_id": "tpl-squad-00588", "style": "mixed_notation", "text": "Squad snakes red green blue foraging 32 food target 150 step limit 150 caution ordinary care hex 96"}
+{"base_id": "tpl-squad-00588", "style": "mixed_notation", "text": "Snake squad 3/1 red green blue foraging 32 food target 150 step limit normal caution per thousand 150000"}
+{"base_id": "tpl-squad-00588", "style": "mixed_notation", "text": "Red green blue snakes 32 food target 150 steps hex 96 caution normal care dozen 12 per thousand 150000"}
+{"base_id": "tpl-squad-00588", "style": "mixed_notation", "text": "Squad of snakes ratio 1:1:1 foraging 32 food target 150 step limit 150 caution ordinary care half hundred 50"}
+{"base_id": "tpl-squad-00588", "style": "mixed_notation", "text": "Snakes red green blue squad foraging 32 food target 150 steps hex 96 caution normal per thousand 150000 dozen 12"}
