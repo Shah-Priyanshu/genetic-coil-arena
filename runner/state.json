@@ -27,7 +27,7 @@
   "backlog": {
     "ready": [
       "r7b3-train-hand-goal",
-      "ci-28ee1f428df6"
+      "ci-9aec3047aa75"
     ],
     "blocked": [
       {
@@ -46,11 +46,11 @@
     "gpu": "2026-10-25T23:24:36+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-26T16:10:26+00:00",
-  "cpu_percent": 94.4,
+  "updated_at": "2026-10-26T16:11:33+00:00",
+  "cpu_percent": 94.9,
   "gpu": {
-    "util": 4.0,
-    "mem_used_mb": 931.0,
+    "util": 6.0,
+    "mem_used_mb": 935.0,
     "mem_total_mb": 12282.0
   }
 }
