@@ -1,0 +1,30 @@
+{
+  "id": "r7b3-train-blind",
+  "commit": "91a6da9045d498e0d39fe9013bbd1a947f154fcb",
+  "queued_args": [
+    "scripts/r7b_goal_conditioned.py",
+    "--train-only",
+    "--modes",
+    "blind",
+    "--runs",
+    "0:8",
+    "--generations",
+    "10000",
+    "--population",
+    "64",
+    "--eval-every",
+    "50",
+    "--workers",
+    "8",
+    "--progress",
+    "600"
+  ],
+  "state": "running",
+  "started_at": "2026-10-26T16:06:59+00:00",
+  "updated_at": "2026-10-26T16:06:59+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 927 MiB, 12282 MiB, 37",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 8
+}
