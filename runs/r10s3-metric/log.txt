@@ -1,0 +1,15 @@
+[16:21:19] train: loaded 25/150 (1s)
+[16:21:19] train: loaded 50/150 (1s)
+[16:21:20] train: loaded 75/150 (2s)
+[16:21:21] train: loaded 100/150 (2s)
+[16:21:21] train: loaded 125/150 (3s)
+[16:21:22] train: loaded 150/150 (3s)
+[16:21:22] 150 training rows, 59 features, {'n': 150, 'by_system': {'TT': 90, 'SS': 30, 'OB': 30}, 'by_system_rep': {'TT/1': 30, 'TT/2': 30, 'TT/3': 30, 'SS/1': 30, 'OB/1': 30}, 'by_fault': {'cpu': 25, 'delay': 25, 'disk': 25, 'loss': 25, 'mem': 25, 'socket': 25}}
+[16:21:22] metric cv 1/7 {'hidden': 0, 'l2': 0.01, 'epochs': 400}: mean 0.600 {'OB': 0.7, 'SS': 0.6666666666666666, 'TT': 0.43333333333333335}
+[16:21:22] metric cv 2/7 {'hidden': 0, 'l2': 0.1, 'epochs': 400}: mean 0.622 {'OB': 0.7, 'SS': 0.7, 'TT': 0.4666666666666667}
+[16:21:22] metric cv 3/7 {'hidden': 0, 'l2': 1.0, 'epochs': 400}: mean 0.644 {'OB': 0.7, 'SS': 0.6666666666666666, 'TT': 0.5666666666666667}
+[16:21:23] metric cv 4/7 {'hidden': 16, 'l2': 0.01, 'epochs': 300, 'n_models': 5}: mean 0.622 {'OB': 0.7333333333333333, 'SS': 0.7, 'TT': 0.43333333333333335}
+[16:21:24] metric cv 5/7 {'hidden': 16, 'l2': 0.1, 'epochs': 300, 'n_models': 5}: mean 0.644 {'OB': 0.7666666666666667, 'SS': 0.6666666666666666, 'TT': 0.5}
+[16:21:25] metric cv 6/7 {'hidden': 32, 'l2': 0.1, 'epochs': 300, 'n_models': 5}: mean 0.633 {'OB': 0.7333333333333333, 'SS': 0.6666666666666666, 'TT': 0.5}
+[16:21:26] metric cv 7/7 {'hidden': 32, 'l2': 1.0, 'epochs': 300, 'n_models': 5}: mean 0.326 {'OB': 0.3, 'SS': 0.3333333333333333, 'TT': 0.34444444444444444}
+[16:21:26] chosen {'hidden': 0, 'l2': 1.0, 'epochs': 400}: leave-one-system-out accuracy {'OB': 0.7, 'SS': 0.6666666666666666, 'TT': 0.5666666666666667}; metric-kind heuristic {np.str_('OB'): 0.43333333333333335, np.str_('SS'): 0.4, np.str_('TT'): 0.43333333333333335}
