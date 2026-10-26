@@ -1,0 +1,1 @@
+[start] 8 training runs on 8 workers; cache D:\Projects\genetic-coil-arena-gpu-results\runs\r7b3-train-centre-goal\artifacts; GoalTrainSettings(radius=3, generations=10000, population=64, reps=1, sigma=0.05, lr=0.03, weight_decay=0.005, spec_hidden=24, centre_hidden=24, eval_every=50, val_reps=2, max_steps=300, time_limit_s=inf, progress_s=600.0)
