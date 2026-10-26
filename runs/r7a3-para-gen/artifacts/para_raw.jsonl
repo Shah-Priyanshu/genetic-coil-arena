@@ -4630,3 +4630,27 @@
 {"base_id": "tpl-squad-01051", "style": "polite_question", "text": "Would it be possible to design a control setup with red, green, and blue snakes, foraging snakes red and blue, low caution setting, 70 maximum steps, and food target 28?"}
 {"base_id": "tpl-squad-01051", "style": "polite_question", "text": "Could you configure a snake squad having red, green, and blue snakes, with red and blue foraging, low caution level, 70 step allowance, and food target at 28?"}
 {"base_id": "tpl-squad-01051", "style": "polite_question", "text": "Would it be feasible to establish a control system with red, green, and blue snakes, foraging snakes red and blue, low caution, 70 step limit, and food target of 28?"}
+{"base_id": "tpl-squad-01074", "style": "negation", "text": "Snakes excluding green form a squad with red and blue foragers under high caution with 300 step limit and 12 food target"}
+{"base_id": "tpl-squad-01074", "style": "negation", "text": "All snakes except the green one constitute the squad with red and blue foraging, high caution, 300 steps, 12 food"}
+{"base_id": "tpl-squad-01074", "style": "negation", "text": "Leave the green snake out while including red and blue foragers with high safety and 300 step default to reach 12 food"}
+{"base_id": "tpl-squad-01074", "style": "negation", "text": "Red and blue snakes form the squad with green excluded, foraging under high caution with 300 step limit for 12 food target"}
+{"base_id": "tpl-squad-01074", "style": "negation", "text": "Everyone but the green snake makes up the squad with red and blue foragers, high caution, 300 steps, 12 food goal"}
+{"base_id": "tpl-squad-01074", "style": "negation", "text": "Snakes excluding green form a group with red and blue foragers under high safety, default 300 steps, 12 food target"}
+{"base_id": "tpl-squad-01074", "style": "negation", "text": "No green snake in squad, red and blue foragers only, high caution, 300 step limit, 12 food target required"}
+{"base_id": "tpl-squad-01074", "style": "negation", "text": "Red and blue snakes constitute the squad excluding green, foraging with high caution, 300 default steps, 12 food objective"}
+{"base_id": "tpl-squad-00373", "style": "self_correction", "text": "Wait, squad snakes red green blue foraging blue caution low reckless step limit twenty seven five food target four"}
+{"base_id": "tpl-squad-00373", "style": "self_correction", "text": "No, make that red green blue squad with blue foraging caution low risk taking step limit two seventy five food target four"}
+{"base_id": "tpl-squad-00373", "style": "self_correction", "text": "Actually, snakes red green blue squad blue foraging caution low reckless step limit two hundred seventy five food target four"}
+{"base_id": "tpl-squad-00373", "style": "self_correction", "text": "Wait, make that red green blue snakes squad blue foraging caution low reckless step limit two seventy five food target four"}
+{"base_id": "tpl-squad-00373", "style": "self_correction", "text": "No, actually red green blue squad snakes with blue foraging caution low risk taking step limit two seventy five food target four"}
+{"base_id": "tpl-squad-00373", "style": "self_correction", "text": "Wait, blue foraging snakes red green blue caution low reckless step limit two seventy five food target four"}
+{"base_id": "tpl-squad-00373", "style": "self_correction", "text": "Actually, red green blue squad snakes blue foraging caution low reckless step limit two seventy five food target four"}
+{"base_id": "tpl-squad-00373", "style": "self_correction", "text": "No, make that snakes red green blue squad blue foraging caution low risk taking step limit two seventy five food target four"}
+{"base_id": "tpl-squad-01413", "style": "mixed_notation", "text": "Squad snakes red green blue. Foraging blue. Caution low 1/250. Step limit 60. Food target none."}
+{"base_id": "tpl-squad-01413", "style": "mixed_notation", "text": "Snakes red green blue squad. Foraging blue. Caution 40‰ reckless. Step 60. Food none stated."}
+{"base_id": "tpl-squad-01413", "style": "mixed_notation", "text": "Red green blue snake team. Foraging blue. Caution 1:250 risk. Steps 60. Food target absent."}
+{"base_id": "tpl-squad-01413", "style": "mixed_notation", "text": "Squad snakes rgb. Foraging blue. Caution 0.004. Steps 60. Food target null."}
+{"base_id": "tpl-squad-01413", "style": "mixed_notation", "text": "Red green blue snake group. Foraging blue. Caution 1/250 reckless. Step limit 60. Food none."}
+{"base_id": "tpl-squad-01413", "style": "mixed_notation", "text": "Snake squad red green blue. Foraging blue. Caution 40 per thousand risk-taking. Step 60. Food none."}
+{"base_id": "tpl-squad-01413", "style": "mixed_notation", "text": "Squad snakes 3 colors. Foraging blue. Caution 1:250 reckless. Steps 60. Food target undefined."}
+{"base_id": "tpl-squad-01413", "style": "mixed_notation", "text": "Red green blue snake unit. Foraging blue. Caution 0.004 risk. Step limit 60. Food target missing."}
