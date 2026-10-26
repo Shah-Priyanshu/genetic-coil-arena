@@ -1,0 +1,15 @@
+{
+  "id": "r10s3-metric",
+  "commit": "bb91b029c6830478b7166b5f8fabac389e2f3876",
+  "args": [
+    "scripts/r10_step3.py",
+    "metric"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 2,
+  "priority": 6,
+  "after": [
+    "r10s3-data"
+  ],
+  "timeout_min": 60.0
+}

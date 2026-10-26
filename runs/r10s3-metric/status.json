@@ -1,0 +1,16 @@
+{
+  "id": "r10s3-metric",
+  "commit": "bb91b029c6830478b7166b5f8fabac389e2f3876",
+  "queued_args": [
+    "scripts/r10_step3.py",
+    "metric"
+  ],
+  "state": "running",
+  "started_at": "2026-10-26T20:21:18+00:00",
+  "updated_at": "2026-10-26T20:21:18+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 1004 MiB, 12282 MiB, 43",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 2
+}
