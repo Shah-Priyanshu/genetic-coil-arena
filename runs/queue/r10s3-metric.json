@@ -11,5 +11,5 @@
   "after": [
     "r10s3-data"
   ],
-  "timeout_min": 30.0
+  "timeout_min": 60.0
 }

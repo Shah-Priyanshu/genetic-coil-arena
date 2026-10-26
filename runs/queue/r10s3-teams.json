@@ -19,5 +19,5 @@
     "r10s3-lora-ob",
     "r10s3-lora-final"
   ],
-  "timeout_min": 40.0
+  "timeout_min": 60.0
 }
