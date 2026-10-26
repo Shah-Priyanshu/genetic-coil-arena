@@ -89,8 +89,8 @@
   }
  },
  "source_sha256": "f1511983b767eb734f772a1f66220cce6d27be102827b6c881c46f42383366ff",
- "train_seconds": 6.172546400048304,
- "eval_seconds": 10.625271300028544,
+ "train_seconds": 6.321987100003753,
+ "eval_seconds": 7.352687000005972,
  "cpu_hours": 0.00046571147222291783,
  "analysis": {
   "target": 0.9,
@@ -1167,7 +1167,8 @@
    "generations_done": 2,
    "seconds": 0.8819401999935508,
    "n_params": 3611,
-   "n_trainable": 3611
+   "n_trainable": 3611,
+   "cached": true
   },
   {
    "condition": "joint",
@@ -1177,7 +1178,8 @@
    "generations_done": 2,
    "seconds": 0.1424919000128284,
    "n_params": 3611,
-   "n_trainable": 3611
+   "n_trainable": 3611,
+   "cached": true
   },
   {
    "condition": "learned",
@@ -1187,7 +1189,8 @@
    "generations_done": 2,
    "seconds": 0.0875635000411421,
    "n_params": 6958,
-   "n_trainable": 3347
+   "n_trainable": 3347,
+   "cached": true
   },
   {
    "condition": "hand-coded",
@@ -1197,7 +1200,8 @@
    "generations_done": 2,
    "seconds": 0.1165428000385873,
    "n_params": 6694,
-   "n_trainable": 3347
+   "n_trainable": 3347,
+   "cached": true
   },
   {
    "condition": "silent",
@@ -1207,7 +1211,8 @@
    "generations_done": 2,
    "seconds": 0.07544579997193068,
    "n_params": 6694,
-   "n_trainable": 3347
+   "n_trainable": 3347,
+   "cached": true
   },
   {
    "condition": "learned",
@@ -1217,7 +1222,8 @@
    "generations_done": 2,
    "seconds": 0.18117329996312037,
    "n_params": 6958,
-   "n_trainable": 3347
+   "n_trainable": 3347,
+   "cached": true
   },
   {
    "condition": "hand-coded",
@@ -1227,7 +1233,8 @@
    "generations_done": 2,
    "seconds": 0.09958739997819066,
    "n_params": 6694,
-   "n_trainable": 3347
+   "n_trainable": 3347,
+   "cached": true
   },
   {
    "condition": "silent",
@@ -1237,7 +1244,8 @@
    "generations_done": 2,
    "seconds": 0.09181640000315383,
    "n_params": 6694,
-   "n_trainable": 3347
+   "n_trainable": 3347,
+   "cached": true
   }
  ]
 }
