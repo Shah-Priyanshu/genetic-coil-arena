@@ -1,1 +1,9 @@
 [start] 8 training runs on 8 workers; cache D:\Projects\genetic-coil-arena-gpu-results\runs\r7b3-train-centre-goal\artifacts; GoalTrainSettings(radius=3, generations=10000, population=64, reps=1, sigma=0.05, lr=0.03, weight_decay=0.005, spec_hidden=24, centre_hidden=24, eval_every=50, val_reps=2, max_steps=300, time_limit_s=inf, progress_s=600.0)
+[progress] centre-goal run 1: gen 350/10000, val mission -3.90, best gen 350, elapsed 610 s
+[progress] centre-goal run 2: gen 250/10000, val mission -4.03, best gen 0, elapsed 622 s
+[progress] centre-goal run 0: gen 350/10000, val mission -3.83, best gen 350, elapsed 646 s
+[progress] centre-goal run 3: gen 350/10000, val mission -4.07, best gen 200, elapsed 654 s
+[progress] centre-goal run 4: gen 350/10000, val mission -4.03, best gen 300, elapsed 699 s
+[progress] centre-goal run 7: gen 300/10000, val mission -2.77, best gen 300, elapsed 707 s
+[progress] centre-goal run 5: gen 350/10000, val mission -2.73, best gen 350, elapsed 728 s
+[progress] centre-goal run 6: gen 300/10000, val mission -4.07, best gen 150, elapsed 734 s
