@@ -21,6 +21,8 @@
   ],
   "timeout_min": 120.0,
   "outputs": [
-    "docs/results/r7b_goal_conditioned_10k.md,docs/results/r7b_goal_conditioned_10k.json,docs/results/r7b_goal_conditioned_10k_curves.csv"
+    "docs/results/r7b_goal_conditioned_10k.md",
+    "docs/results/r7b_goal_conditioned_10k.json",
+    "docs/results/r7b_goal_conditioned_10k_curves.csv"
   ]
 }

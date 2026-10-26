@@ -1,0 +1,31 @@
+{
+  "id": "r7a3-train-r32-n12k-p50",
+  "commit": "9aec3047aa7506cfbcf75c24093305c35cb955f6",
+  "args": [
+    "scripts/r7a_step2.py",
+    "train",
+    "--pool",
+    "runs:r7a3-para-verify",
+    "--rank",
+    "32",
+    "--n",
+    "12000",
+    "--epochs",
+    "3",
+    "--paraphrase-share",
+    "0.5",
+    "--name",
+    "r32-n12k-p50"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 4,
+  "priority": 3,
+  "after": [
+    "r7a3-para-verify"
+  ],
+  "timeout_min": 240.0,
+  "env": {
+    "HF_HOME": "D:\\hf_cache",
+    "R7A2_STORE": "D:\\hf_cache\\r7a3_store"
+  }
+}

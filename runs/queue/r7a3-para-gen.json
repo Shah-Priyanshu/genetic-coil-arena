@@ -1,0 +1,22 @@
+{
+  "id": "r7a3-para-gen",
+  "commit": "9aec3047aa7506cfbcf75c24093305c35cb955f6",
+  "args": [
+    "scripts/r7a_step2.py",
+    "para-gen",
+    "--bases",
+    "1440",
+    "--per-call",
+    "8",
+    "--seed",
+    "1"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 4,
+  "priority": 3,
+  "timeout_min": 1200.0,
+  "env": {
+    "HF_HOME": "D:\\hf_cache",
+    "R7A2_STORE": "D:\\hf_cache\\r7a3_store"
+  }
+}

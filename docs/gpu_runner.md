@@ -103,6 +103,16 @@ UTC hour (goal G0). `runner/state.json` holds the runner version (blob sha of
 `gpu_runner.py`), running jobs, the backlog (ready jobs; blocked jobs and what blocks them)
 and idle-since per lane.
 
+## Watching for idle lanes
+
+`scripts/runner_watch.py` reads the results worktree and prints every job start and end, appending them to `%LOCALAPPDATA%\genetic_coil_arena\runner_watch.log`. For CI jobs it also prints the test counts. It exits when the PC needs attention:
+- `pc-idle`: both lanes idle for `--idle-min` (default 10);
+- `lane-idle`: a lane that was busy during the watch is now idle;
+- `failure`: a job failed or timed out, or a CI run has failed tests;
+- `stale`: `state.json` has not been updated for 20 minutes, so the runner is down.
+
+A Claude session runs it in the background, so the exit wakes the session. The session then reads the new results, queues the next work and starts the watcher again.
+
 ## Queueing jobs
 
 `scripts/queue_job.py` writes the job files; commit and push them yourself. The commit

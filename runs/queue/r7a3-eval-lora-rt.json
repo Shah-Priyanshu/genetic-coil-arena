@@ -1,0 +1,23 @@
+{
+  "id": "r7a3-eval-lora-rt",
+  "commit": "9aec3047aa7506cfbcf75c24093305c35cb955f6",
+  "args": [
+    "scripts/r7a_step2.py",
+    "eval-lora-rt",
+    "--lora-forward",
+    "runs:r7a3-eval-lora",
+    "--ollama",
+    "runs:r7a2-eval-ollama"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 4,
+  "priority": 3,
+  "after": [
+    "r7a3-eval-lora"
+  ],
+  "timeout_min": 120.0,
+  "env": {
+    "HF_HOME": "D:\\hf_cache",
+    "R7A2_STORE": "D:\\hf_cache\\r7a3_store"
+  }
+}
