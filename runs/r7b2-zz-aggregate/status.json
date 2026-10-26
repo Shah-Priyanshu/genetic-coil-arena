@@ -1,0 +1,21 @@
+{
+  "id": "r7b2-zz-aggregate",
+  "commit": "df24038ac005140cecc992e0f1b715a71b8707cd",
+  "queued_args": [
+    "scripts/r7b_goal_conditioned.py",
+    "--from-json",
+    "runs:r7b2-train-*",
+    "--out",
+    "docs/results/r7b_goal_conditioned_5k.md",
+    "--workers",
+    "8"
+  ],
+  "state": "running",
+  "started_at": "2026-10-26T00:38:15+00:00",
+  "updated_at": "2026-10-26T00:38:15+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 744 MiB, 12282 MiB, 38",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 8
+}
