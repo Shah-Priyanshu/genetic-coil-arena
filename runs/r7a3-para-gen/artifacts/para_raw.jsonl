@@ -4670,3 +4670,363 @@
 {"base_id": "tpl-squad-01150", "style": "polite_question", "text": "Would it be possible to create a squad using red, green, and blue snakes where the foraging snake is red, caution level at low, maximum steps 50, and food target of 5?"}
 {"base_id": "tpl-squad-01150", "style": "polite_question", "text": "Could you configure a system with red, green, and blue snakes, red as foraging snake, low caution level, step limit of 50, and food target set to 5?"}
 {"base_id": "tpl-squad-01150", "style": "polite_question", "text": "Would it be possible to initialize a control setup with red, green, and blue snakes, foraging snake red, low caution, step limit 50, and food target at 5?"}
+{"base_id": "tpl-squad-01277", "style": "mixed_notation", "text": "Snakes squad: red, green, blue. Foraging: green. Caution: normal. Step limit: 300. Food target: 28."}
+{"base_id": "tpl-squad-01277", "style": "mixed_notation", "text": "Red, green, blue snake team. Green foraging. Normal caution. 300 steps max. Target food: 28."}
+{"base_id": "tpl-squad-01277", "style": "mixed_notation", "text": "Squad snakes: red, green, blue. Foraging green. Caution normal. Step limit 300. Food target 28."}
+{"base_id": "tpl-squad-01277", "style": "mixed_notation", "text": "Snakes: red, green, blue. Foraging: green. Caution: normal. Steps: 300. Food goal: 28."}
+{"base_id": "tpl-squad-01277", "style": "mixed_notation", "text": "Red, green, blue snake group. Green foraging. Normal caution. Step limit: 300. Food target: 28."}
+{"base_id": "tpl-squad-01277", "style": "mixed_notation", "text": "Squad of snakes: red, green, blue. Foraging snake: green. Caution: normal. Steps: 300. Food target: 28."}
+{"base_id": "tpl-squad-01277", "style": "mixed_notation", "text": "Red, green, blue snakes. Green foraging. Normal caution. Step limit 300. Food target 28."}
+{"base_id": "tpl-squad-01277", "style": "mixed_notation", "text": "Snake squad: red, green, blue. Foraging green. Caution normal. Steps 300. Food target 28."}
+{"base_id": "tpl-squad-00285", "style": "multi_sentence", "text": "Red and green snakes are foraging. Caution level normal. Step limit seventy five."}
+{"base_id": "tpl-squad-00285", "style": "multi_sentence", "text": "Squad includes red, green, blue snakes. Foraging: red and green only. Step limit 75."}
+{"base_id": "tpl-squad-00285", "style": "multi_sentence", "text": "Snakes: red, green, blue. Foraging team: red and green. Normal caution. 75 steps."}
+{"base_id": "tpl-squad-00285", "style": "multi_sentence", "text": "Red and green snakes foraging. Caution normal. Step limit seventy five. No food target."}
+{"base_id": "tpl-squad-00285", "style": "multi_sentence", "text": "Squad composition: red, green, blue snakes. Red and green foraging. Step limit 75."}
+{"base_id": "tpl-squad-00285", "style": "multi_sentence", "text": "Foraging snakes: red and green. Caution level normal. Step limit 75. Food target none."}
+{"base_id": "tpl-squad-00285", "style": "multi_sentence", "text": "Red, green, blue snake squad. Red and green foraging. Normal caution. 75 step limit."}
+{"base_id": "tpl-squad-00285", "style": "multi_sentence", "text": "Snakes: red, green, blue. Foraging: red and green. Caution normal. Step limit 75."}
+{"base_id": "tpl-squad-01320", "style": "typos", "text": "red green blue snak squad foragin 2 red n greem caution norml step limt 60 food tget none"}
+{"base_id": "tpl-squad-01320", "style": "typos", "text": "snakes red grn blu formg red grn cauti normal step 60 no food target"}
+{"base_id": "tpl-squad-01320", "style": "typos", "text": "red grn blu snake team forag red grn caution norml step limit 60 food none"}
+{"base_id": "tpl-squad-01320", "style": "typos", "text": "squad red grn blue snakz forag red grn caution normal step 60 no food target"}
+{"base_id": "tpl-squad-01320", "style": "typos", "text": "red grn blu snakes formg red grn cauti norml step limt 60 food target none"}
+{"base_id": "tpl-squad-01320", "style": "typos", "text": "snak squad red grn blue forag red grn caution normal step 60 no food"}
+{"base_id": "tpl-squad-01320", "style": "typos", "text": "red grn blu snake group forag red grn caution norml step limit 60 food none"}
+{"base_id": "tpl-squad-01320", "style": "typos", "text": "snakes red grn blue forag red grn cauti normal step limt 60 no food target"}
+{"base_id": "tpl-plant-01178", "style": "typos", "text": "plz init fault diag systm w/sensor nodes reactor sep stripper comprtr_utilits msg size 8 bytes false alarm rate 0.01 activ nodes reactor sep stripper comprtr_utilits"}
+{"base_id": "tpl-plant-01178", "style": "typos", "text": "need fault diagnos system activat reactor sep stripper comprtr_utilits msg len 8 bytes fals alarm prob 0.01 sensor nodes listd"}
+{"base_id": "tpl-plant-01178", "style": "typos", "text": "activat plant fault diag system reactor sep stripper comprtr_utilits 8 byte msgs fals alarm 1 percent sensor node list"}
+{"base_id": "tpl-plant-01178", "style": "typos", "text": "init fault detect systm reactor sep stripper comprtr_utilits msg size 8 bytes false alarm rate 0.01 active nodes shown"}
+{"base_id": "tpl-plant-01178", "style": "typos", "text": "fault diag system start reactor sep stripper comprtr_utilits 8 byte messages fals alarm 0.01 activ nodes reactor sep stripper"}
+{"base_id": "tpl-plant-01178", "style": "typos", "text": "plant fault diagnos system on reactor sep stripper comprtr_utilits msg 8 bytes fals alarm 1 percent node list complete"}
+{"base_id": "tpl-plant-01178", "style": "typos", "text": "start fault detection systm reactor sep stripper comprtr_utilits 8 byte packets false alarm rate 0.01 active node list"}
+{"base_id": "tpl-plant-01178", "style": "typos", "text": "engag fault diag system reactor sep stripper comprtr_utilits msg size 8 bytes fals alarm 0.01 activ nodes reactor sep stripper"}
+{"base_id": "tpl-squad-00867", "style": "mixed_notation", "text": "Squad snakes red green blue; foraging red green; caution low reckless risk-taking; step limit 250; food target 18"}
+{"base_id": "tpl-squad-00867", "style": "mixed_notation", "text": "Red green blue snake squad; foraging red green; caution level 0.125 risky; step allowance 0x00FA; food goal 18"}
+{"base_id": "tpl-squad-00867", "style": "mixed_notation", "text": "Snakes: red green blue; foraging: red green; caution: 125‰ reckless; steps: 2.5e2; food: 18"}
+{"base_id": "tpl-squad-00867", "style": "mixed_notation", "text": "Snake team red/green/blue; foraging red/green; caution low risky; step limit 100H; food target 18"}
+{"base_id": "tpl-squad-00867", "style": "mixed_notation", "text": "Squad of snakes red green blue; foraging red green; caution low risky; steps 250; food 18"}
+{"base_id": "tpl-squad-00867", "style": "mixed_notation", "text": "Red green blue snake group; foraging red green; caution 1/8 reckless; steps 250; food target 18"}
+{"base_id": "tpl-squad-00867", "style": "mixed_notation", "text": "Snake unit red green blue; foraging red green; caution 12.5% risk-taking; steps 250; food 18"}
+{"base_id": "tpl-squad-00867", "style": "mixed_notation", "text": "Squad snakes red green blue; foraging red green; caution low risky; steps 2.5e2; food target 18"}
+{"base_id": "tpl-plant-00880", "style": "jargon", "text": "diag reactor sensor fault system msg 16 bytes fa rate 0.005 active reactor"}
+{"base_id": "tpl-plant-00880", "style": "jargon", "text": "fault check reactor sep stripper comp util sensors 16 byte msgs 0.005 false alarm"}
+{"base_id": "tpl-plant-00880", "style": "jargon", "text": "reactor diagnostics sensor network 16 bytes per msg fault rate 0.005 active node reactor"}
+{"base_id": "tpl-plant-00880", "style": "jargon", "text": "sensor fault detection system reactor sep stripper compressor utilities 16 byte messages"}
+{"base_id": "tpl-plant-00880", "style": "jargon", "text": "plant fault analysis reactor node only 16 byte packets false alarm 0.005"}
+{"base_id": "tpl-plant-00880", "style": "jargon", "text": "reactor sensor monitoring system 16 byte frames 0.005 false alarm rate active reactor"}
+{"base_id": "tpl-plant-00880", "style": "jargon", "text": "diagnostic system reactor separator stripper compressor utilities 16 bytes msg 0.005 fa"}
+{"base_id": "tpl-plant-00880", "style": "jargon", "text": "fault detection reactor sensor nodes 16 byte messages 0.005 false alarm active reactor only"}
+{"base_id": "tpl-plant-01434", "style": "indirect_hint", "text": "It would be nice if the system could handle fault diagnosis across reactor, separator, stripper, and compressor utilities with 51 byte messages and maintain a 0.02 false alarm rate"}
+{"base_id": "tpl-plant-01434", "style": "indirect_hint", "text": "I was thinking it might work well if sensor nodes for reactor, separator, stripper, and compressor utilities could operate with 51 bytes per message and 2% false alarm rate"}
+{"base_id": "tpl-plant-01434", "style": "indirect_hint", "text": "It would be helpful if the plant fault-diagnosis system included reactor, separator, stripper, and compressor utilities nodes with 51 byte messages at 0.02 false alarm rate"}
+{"base_id": "tpl-plant-01434", "style": "indirect_hint", "text": "I was hoping the system could support sensor nodes for reactor, separator, stripper, and compressor utilities with exactly 51 bytes per message and 0.02 false alarm rate"}
+{"base_id": "tpl-plant-01434", "style": "indirect_hint", "text": "It would be great if we could have fault diagnosis covering reactor, separator, stripper, and compressor utilities with 51 byte message size and 0.02 false alarm probability"}
+{"base_id": "tpl-plant-01434", "style": "indirect_hint", "text": "I was considering that it might be useful to have sensor nodes for reactor, separator, stripper, and compressor utilities with 51 bytes per message at 0.02 false alarm rate"}
+{"base_id": "tpl-plant-01434", "style": "indirect_hint", "text": "It would be wonderful if the system could process reactor, separator, stripper, and compressor utilities with 51 byte messages while keeping false alarm rate at 0.02"}
+{"base_id": "tpl-plant-01434", "style": "indirect_hint", "text": "I was thinking perhaps it would be beneficial to include reactor, separator, stripper, and compressor utilities sensor nodes with 51 byte messages and 0.02 false alarm rate"}
+{"base_id": "tpl-plant-00272", "style": "numbers_in_words", "text": "Requesting fault diagnosis system for plant with sensor nodes reactor separator stripper compressor utilities message size sixteen bytes false alarm rate zero point zero zero five active nodes reactor separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00272", "style": "numbers_in_words", "text": "Plant fault detection system requiring sensor nodes reactor separator stripper compressor utilities message length sixteen bytes false alarm probability zero point zero zero five active components reactor separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00272", "style": "numbers_in_words", "text": "Control system request for diagnostic plant with sensor nodes reactor separator stripper compressor utilities data packet size sixteen bytes false positive rate zero point zero zero five operational nodes reactor separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00272", "style": "numbers_in_words", "text": "System command for fault analysis plant using sensor nodes reactor separator stripper compressor utilities message payload sixteen bytes false alarm ratio zero point zero zero five running nodes reactor separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00272", "style": "numbers_in_words", "text": "Diagnostic system query for industrial plant with sensor nodes reactor separator stripper compressor utilities communication size sixteen bytes false detection rate zero point zero zero five enabled nodes reactor separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00272", "style": "numbers_in_words", "text": "Plant monitoring system instruction with sensor nodes reactor separator stripper compressor utilities transmission length sixteen bytes false trigger rate zero point zero zero five operating nodes reactor separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00272", "style": "numbers_in_words", "text": "Process control request for fault identification plant with sensor nodes reactor separator stripper compressor utilities data transfer sixteen bytes false notification rate zero point zero zero five functioning nodes reactor separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00272", "style": "numbers_in_words", "text": "Automated system query for plant failure detection using sensor nodes reactor separator stripper compressor utilities message capacity sixteen bytes false alert rate zero point zero zero five activated nodes reactor separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00138", "style": "indirect_hint", "text": "It would be helpful if the system could monitor those four key components with proper fault detection."}
+{"base_id": "tpl-plant-00138", "style": "indirect_hint", "text": "I was wondering if we could set up monitoring for the reactor and separator units specifically."}
+{"base_id": "tpl-plant-00138", "style": "indirect_hint", "text": "Would it be possible to configure sensor nodes for the stripper and compressor utilities?"}
+{"base_id": "tpl-plant-00138", "style": "indirect_hint", "text": "I'm hoping the system might handle fault diagnosis across these essential plant sections."}
+{"base_id": "tpl-plant-00138", "style": "indirect_hint", "text": "It would be nice to have the sensor network cover all those major processing areas."}
+{"base_id": "tpl-plant-00138", "style": "indirect_hint", "text": "I was thinking about how useful it would be to track those specific unit failures."}
+{"base_id": "tpl-plant-00138", "style": "indirect_hint", "text": "Could we perhaps establish monitoring for the reactor and compressor utilities?"}
+{"base_id": "tpl-plant-00138", "style": "indirect_hint", "text": "I'd appreciate if the system could support fault detection in these critical sections."}
+{"base_id": "tpl-squad-00626", "style": "casual_chat", "text": "hey so like uh i want a squad with red green and blue snakes yeah red and blue are foraging okay normal caution cool and food target 14"}
+{"base_id": "tpl-squad-00626", "style": "casual_chat", "text": "yo im requesting a snake squad red green blue all that plus red and blue foraging normal care nothing fancy just 14 food target"}
+{"base_id": "tpl-squad-00626", "style": "casual_chat", "text": "ok so like i need red green and blue snakes in the squad red and blue foraging yeah normal caution whatever and food target 14"}
+{"base_id": "tpl-squad-00626", "style": "casual_chat", "text": "hey can you make me a squad with red green and blue snakes red and blue foraging normal caution and food target 14"}
+{"base_id": "tpl-squad-00626", "style": "casual_chat", "text": "so like uh i want red green and blue snakes yeah red and blue are foraging normal care and food target 14"}
+{"base_id": "tpl-squad-00626", "style": "casual_chat", "text": "yo give me a snake squad red green blue red and blue foraging normal caution food target 14"}
+{"base_id": "tpl-squad-00626", "style": "casual_chat", "text": "hey so i need red green and blue snakes red and blue foraging normal caution 14 food target"}
+{"base_id": "tpl-squad-00626", "style": "casual_chat", "text": "can you make me a squad with red green and blue snakes red and blue foraging normal caution food target 14"}
+{"base_id": "tpl-squad-01376", "style": "mixed_notation", "text": "Red snakes 1/3, green 1/3, blue 1/3. Forage 1/3 each. Risk level 250 per thousand. Limit 300."}
+{"base_id": "tpl-squad-01376", "style": "mixed_notation", "text": "Snakes ratio red:blue:green 1:1:1. Foraging 1:1:1. Caution low 0.025. Step limit 0x12C."}
+{"base_id": "tpl-squad-01376", "style": "mixed_notation", "text": "Red snake 12.5%, green 12.5%, blue 12.5%. Forage 12.5% each. Risk 2.5e-2. Step 300."}
+{"base_id": "tpl-squad-01376", "style": "mixed_notation", "text": "Squad: red, green, blue snakes 1:1:1 ratio. Forage 1/3 each. Low caution. Step limit 300."}
+{"base_id": "tpl-squad-01376", "style": "mixed_notation", "text": "Red snake 1/4 dozen, green 1/4 dozen, blue 1/4 dozen. Forage 1/4 dozen each. Risk 0.025. Step 300."}
+{"base_id": "tpl-squad-01376", "style": "mixed_notation", "text": "Snakes: red 0.25, green 0.25, blue 0.25. Forage 0.25 each. Caution level 250‰. Step 300."}
+{"base_id": "tpl-squad-01376", "style": "mixed_notation", "text": "Red snake 12.5%, green 12.5%, blue 12.5%. Forage 1/8 dozen each. Risk 0.025. Step limit 300."}
+{"base_id": "tpl-squad-01376", "style": "mixed_notation", "text": "Squad: red 1/3, green 1/3, blue 1/3 snakes. Forage 1/3 each. Caution low 0.025. Step 300."}
+{"base_id": "tpl-plant-00040", "style": "polite_question", "text": "Could you please set up a plant fault-diagnosis system with sensor nodes for reactor, separator, stripper, and compressor_utilities? Each message should be 16 bytes with a 0.02 false-alarm rate, and only separator and stripper nodes should be active."}
+{"base_id": "tpl-plant-00040", "style": "polite_question", "text": "Would it be possible to configure the fault-diagnosis system with reactor, separator, stripper, and compressor_utilities sensor nodes? Messages must be 16 bytes, false-alarm rate at 0.02, and only separator and stripper active."}
+{"base_id": "tpl-plant-00040", "style": "polite_question", "text": "Could you configure a plant fault-diagnosis system using sensor nodes for reactor, separator, stripper, and compressor_utilities? Each message should contain 16 bytes, with 0.02 false-alarm rate, and only separator and stripper nodes active."}
+{"base_id": "tpl-plant-00040", "style": "polite_question", "text": "Would it be possible to establish a fault-diagnosis system with sensor nodes reactor, separator, stripper, and compressor_utilities? Messages must be 16 bytes each, false-alarm rate of 0.02, and separator and stripper as active nodes only."}
+{"base_id": "tpl-plant-00040", "style": "polite_question", "text": "Could you please set up the fault-diagnosis system with sensor nodes for reactor, separator, stripper, and compressor_utilities? Each message should have 16 bytes, 0.02 false-alarm rate, and separator and stripper active only."}
+{"base_id": "tpl-plant-00040", "style": "polite_question", "text": "Would it be possible to create a plant fault-diagnosis system with sensor nodes reactor, separator, stripper, and compressor_utilities? Messages of 16 bytes, false-alarm rate 0.02, with separator and stripper as active nodes."}
+{"base_id": "tpl-plant-00040", "style": "polite_question", "text": "Could you configure the system with sensor nodes reactor, separator, stripper, and compressor_utilities? Each message must be 16 bytes, false-alarm rate at 0.02, and only separator and stripper should be active."}
+{"base_id": "tpl-plant-00040", "style": "polite_question", "text": "Would it be possible to initialize a fault-diagnosis system using reactor, separator, stripper, and compressor_utilities sensor nodes? Messages 16 bytes, false-alarm rate 0.02, with separator and stripper as active nodes only."}
+{"base_id": "tpl-squad-00327", "style": "negation", "text": "Red, green, and blue snakes form the squad. Foraging snakes are red and green only. Caution level normal. Step limit 160. Food target 15."}
+{"base_id": "tpl-squad-00327", "style": "negation", "text": "All snakes included except no caution specified. Red and green forage. Normal care. Step limit 160. Food target 15."}
+{"base_id": "tpl-squad-00327", "style": "negation", "text": "Squad comprises red, green, blue. Foraging members: red and green. No special caution required. Step allowance 160. Target food 15."}
+{"base_id": "tpl-squad-00327", "style": "negation", "text": "Everyone except blue snake in squad. Red and green forage. Ordinary care. Step limit 160. Food target 15."}
+{"base_id": "tpl-squad-00327", "style": "negation", "text": "Blue snake excluded from foraging group. Red and green snakes forage. Standard caution. Step limit 160. Food target 15."}
+{"base_id": "tpl-squad-00327", "style": "negation", "text": "All snakes participate except no special treatment needed. Red and green forage. Normal procedure. Step count 160. Target 15 food units."}
+{"base_id": "tpl-squad-00327", "style": "negation", "text": "Red, green, blue snake squad. Foraging snakes: red and green. Regular caution. Step limit 160. Food target 15."}
+{"base_id": "tpl-squad-00327", "style": "negation", "text": "No blue snake in foraging group. Red and green snakes forage. Ordinary care. Step limit 160. Food target 15."}
+{"base_id": "tpl-plant-cla0022", "style": "indirect_hint", "text": "It would be nice if the system could permit some limited number of false alarms without triggering major alerts"}
+{"base_id": "tpl-plant-cla0022", "style": "indirect_hint", "text": "I was thinking it might work well to allow a small quantity of erroneous notifications before activating full response protocols"}
+{"base_id": "tpl-plant-cla0022", "style": "indirect_hint", "text": "Would it be possible to configure the system so that only a few incorrect warnings are permitted before escalation occurs"}
+{"base_id": "tpl-plant-cla0022", "style": "indirect_hint", "text": "It would be helpful if the control system could accommodate a modest amount of faulty indicators before raising critical alerts"}
+{"base_id": "tpl-plant-cla0022", "style": "indirect_hint", "text": "I was hoping the system might tolerate a handful of inaccurate signals without immediately initiating emergency procedures"}
+{"base_id": "tpl-plant-cla0022", "style": "indirect_hint", "text": "It would be ideal if there could be some allowance for a few erroneous reports before full alarm activation happens"}
+{"base_id": "tpl-plant-cla0022", "style": "indirect_hint", "text": "I was considering whether the system could handle a limited number of false positives without excessive reaction"}
+{"base_id": "tpl-plant-cla0022", "style": "indirect_hint", "text": "It would be useful if the control system permitted a small count of incorrect notifications before full alert status"}
+{"base_id": "tpl-squad-ref0190", "style": "casual_chat", "text": "hey dude can you like make this request work but the name is wrong so nope not happening sorry"}
+{"base_id": "tpl-squad-ref0190", "style": "casual_chat", "text": "omg this thing wont work because the name is bad like totally wrong and that's why it's not gonna happen"}
+{"base_id": "tpl-squad-ref0190", "style": "casual_chat", "text": "yo check this out the name is messed up so this whole thing is basically impossible to do"}
+{"base_id": "tpl-squad-ref0190", "style": "casual_chat", "text": "uhhh this request can't be done because the name is terrible and i'm not even sure what you mean"}
+{"base_id": "tpl-squad-ref0190", "style": "casual_chat", "text": "hey listen this thing isn't working because of the bad name and it's just not gonna happen at all"}
+{"base_id": "tpl-squad-ref0190", "style": "casual_chat", "text": "wait what how can this be requested when the name is so wrong like come on man"}
+{"base_id": "tpl-squad-ref0190", "style": "casual_chat", "text": "dude this is impossible because the name is wrong and that makes everything fail"}
+{"base_id": "tpl-squad-ref0190", "style": "casual_chat", "text": "so like, this request is no good because the name is wrong and nothing will work"}
+{"base_id": "tpl-squad-01173", "style": "numbers_in_words", "text": "Red green and blue snake squad please foraging green snake with high caution safe mode food target four step limit three hundred"}
+{"base_id": "tpl-squad-01173", "style": "numbers_in_words", "text": "Requesting red green and blue snakes team foraging green type cautious high safety level food goal four without changing default step count three hundred"}
+{"base_id": "tpl-squad-01173", "style": "numbers_in_words", "text": "Snake unit composed of red green and blue colors with green foraging snake under extreme care protocol food objective four maximum steps three hundred"}
+{"base_id": "tpl-squad-01173", "style": "numbers_in_words", "text": "Three colored serpent group red green and blue with green foraging member operating under severe alert status food requirement four path limit three hundred"}
+{"base_id": "tpl-squad-01173", "style": "numbers_in_words", "text": "Red green and blue snake formation foraging green specimen proceed carefully high danger zone food goal four default step allowance three hundred"}
+{"base_id": "tpl-squad-01173", "style": "numbers_in_words", "text": "Serpentine team including red green and blue members where green searches for food while maintaining extreme vigilance food target four normal step maximum three hundred"}
+{"base_id": "tpl-squad-01173", "style": "numbers_in_words", "text": "Colored snake collective red green and blue with green foraging unit functioning under critical safety measures food objective four standard movement limit three hundred"}
+{"base_id": "tpl-squad-01173", "style": "numbers_in_words", "text": "Snake platoon of red green and blue hues featuring green forager under serious caution food quota four usual step ceiling three hundred"}
+{"base_id": "tpl-plant-00728", "style": "mixed_notation", "text": "Request fault diagnosis system with sensor nodes reactor, separator, stripper, compressor_utilities. Message size 16 bytes. False alarm rate 1% or 0.01. Active nodes reactor, separator, stripper, compressor_utilities."}
+{"base_id": "tpl-plant-00728", "style": "mixed_notation", "text": "System needs plant fault-diagnosis with sensor nodes reactor, separator, stripper, compressor_utilities. Bytes per message: 16. False-alarm rate 0.01. Active nodes: reactor, separator, stripper, compressor_utilities."}
+{"base_id": "tpl-plant-00728", "style": "mixed_notation", "text": "Fault diagnosis system request for reactor, separator, stripper, compressor_utilities sensors. Message size 16 bytes. False-alarm rate 1/100. Active nodes: reactor, separator, stripper, compressor_utilities."}
+{"base_id": "tpl-plant-00728", "style": "mixed_notation", "text": "Control system requires fault-diagnosis with sensor nodes reactor, separator, stripper, compressor_utilities. Bytes per message: 16. False-alarm rate 0.01 or 10‰. Active nodes reactor, separator, stripper, compressor_utilities."}
+{"base_id": "tpl-plant-00728", "style": "mixed_notation", "text": "Plant fault diagnosis system request for reactor, separator, stripper, compressor_utilities. Message size 16 bytes. False alarm rate 1%. Active nodes reactor, separator, stripper, compressor_utilities."}
+{"base_id": "tpl-plant-00728", "style": "mixed_notation", "text": "System needs fault diagnosis with sensor nodes reactor, separator, stripper, compressor_utilities. Message size 16 bytes. False-alarm rate 1/100. Active nodes: reactor, separator, stripper, compressor_utilities."}
+{"base_id": "tpl-plant-00728", "style": "mixed_notation", "text": "Request for plant fault-diagnosis system with reactor, separator, stripper, compressor_utilities sensors. Message size 16 bytes. False alarm rate 0.01. Active nodes: reactor, separator, stripper, compressor_utilities."}
+{"base_id": "tpl-plant-00728", "style": "mixed_notation", "text": "Fault diagnosis control request for sensor nodes reactor, separator, stripper, compressor_utilities. Message size 16 bytes. False-alarm rate 0.01 or 10 per thousand. Active nodes: reactor, separator, stripper, compressor_utilities."}
+{"base_id": "tpl-squad-cla0022", "style": "polite_question", "text": "Could you please set the temperature to some comfortable level? I'm not sure what would work best."}
+{"base_id": "tpl-squad-cla0022", "style": "polite_question", "text": "Would it be possible to adjust the lighting to a moderate brightness? I haven't decided on the exact intensity needed."}
+{"base_id": "tpl-squad-cla0022", "style": "polite_question", "text": "Could you perhaps run the fan at a medium speed? I'm uncertain about the optimal setting."}
+{"base_id": "tpl-squad-cla0022", "style": "polite_question", "text": "Would it be feasible to activate the heater for a short duration? I haven't specified how long exactly."}
+{"base_id": "tpl-squad-cla0022", "style": "polite_question", "text": "Could you please configure the audio volume to an appropriate level? I haven't determined the precise amount."}
+{"base_id": "tpl-squad-cla0022", "style": "polite_question", "text": "Would it be possible to dim the screen for a while? I haven't decided on the exact darkness level."}
+{"base_id": "tpl-squad-cla0022", "style": "polite_question", "text": "Could you perhaps set the humidity to some reasonable value? I'm not certain what the best setting would be."}
+{"base_id": "tpl-squad-cla0022", "style": "polite_question", "text": "Would it be acceptable to start the motor briefly? I haven't specified how long the operation should last."}
+{"base_id": "tpl-squad-ref0063", "style": "multi_sentence", "text": "System please execute the process for 200 cycles. Wait that contradicts the requirement of exactly 150 cycles."}
+{"base_id": "tpl-squad-ref0063", "style": "multi_sentence", "text": "Initiate the procedure for 500 units. Negative, it must also be precisely 300 units simultaneously."}
+{"base_id": "tpl-squad-ref0063", "style": "multi_sentence", "text": "Start the operation for 100 time periods. Cancel that, it needs to equal both 75 and 100 time units."}
+{"base_id": "tpl-squad-ref0063", "style": "multi_sentence", "text": "Begin the task for 400 iterations. Hold on, this conflicts with requiring exactly 200 iterations."}
+{"base_id": "tpl-squad-ref0063", "style": "multi_sentence", "text": "Execute the function for 600 seconds. No, that's impossible since it must also be exactly 450 seconds."}
+{"base_id": "tpl-squad-ref0063", "style": "multi_sentence", "text": "Proceed with the process for 150 minutes. Impossible, it requires both 120 and 150 minutes at once."}
+{"base_id": "tpl-squad-ref0063", "style": "multi_sentence", "text": "Activate the sequence for 300 operations. That cannot happen because it must equal 250 operations too."}
+{"base_id": "tpl-squad-ref0063", "style": "multi_sentence", "text": "Commence the cycle for 700 steps. Contradictory, it must also be exactly 500 steps simultaneously."}
+{"base_id": "tpl-squad-01212", "style": "jargon", "text": "SNAKE SQD: RED, GRN, BLU. FORAGE GRN,BLU. CAUTN NORM. STEP 75. FOOD 32."}
+{"base_id": "tpl-squad-01212", "style": "jargon", "text": "RED,GRN,BLU SQUAD. GREEN,BLUE FORAGING. NORMAL CAUTION. 75 STEP LIMIT. TARGET 32 FOOD."}
+{"base_id": "tpl-squad-01212", "style": "jargon", "text": "SNAKE GROUP: RED GRN BLU. FORAGE GRN BLU. CAUTION NORMAL. STEP 75. FOOD TARGET 32."}
+{"base_id": "tpl-squad-01212", "style": "jargon", "text": "SQD SNAKES: RED GRN BLU. FORAGING GRN BLU. CAUTION NORM. STEP LIMIT 75. FOOD 32."}
+{"base_id": "tpl-squad-01212", "style": "jargon", "text": "RED GRN BLU SQUAD. GREEN BLUE FORAGE. NORMAL CAUTION. 75 STEPS. FOOD TARGET 32."}
+{"base_id": "tpl-squad-01212", "style": "jargon", "text": "SNAKE TEAM: RED GRN BLU. FORAGE GRN BLU. CAUTION ORDINARY. STEP 75. FOOD 32."}
+{"base_id": "tpl-squad-01212", "style": "jargon", "text": "SQD SNK: RED GRN BLU. GRN BLU FORAGING. NORMAL CARE. MAX 75 STEPS. TARGET FOOD 32."}
+{"base_id": "tpl-squad-01212", "style": "jargon", "text": "RED GRN BLU SQUAD. GRN BLU FORAGE. CAUTION NORMAL. STEP LIMIT 75. FOOD TARGET 32."}
+{"base_id": "tpl-squad-00106", "style": "typos", "text": "red green blue snak squad foragin green caution norml step 300 food 12"}
+{"base_id": "tpl-squad-00106", "style": "typos", "text": "snakes red grn blu squad foragin green cauti normal step 300 food 12"}
+{"base_id": "tpl-squad-00106", "style": "typos", "text": "red grn blu snake squad foragin green caution norml step limit 300 food target 12"}
+{"base_id": "tpl-squad-00106", "style": "typos", "text": "squad of snak red grn blu foragin green caution normal step 300 food 12"}
+{"base_id": "tpl-squad-00106", "style": "typos", "text": "red grn blu snak team foragin green normal cauti step 300 food 12"}
+{"base_id": "tpl-squad-00106", "style": "typos", "text": "snakes red grn blu squad foragin green caution norml step limit 300 food target 12"}
+{"base_id": "tpl-squad-00106", "style": "typos", "text": "red grn blu snake group foragin green normal caution step 300 food 12"}
+{"base_id": "tpl-squad-00106", "style": "typos", "text": "squad snak red grn blu foragin green cauti normal step 300 food 12"}
+{"base_id": "tpl-plant-00113", "style": "self_correction", "text": "Wait, actually no, make that a fault-diagnosis system with sensor nodes for reactor, separator, stripper, compressor_utilities. Bytes per message: 51, false-alarm rate: 0.001, active nodes: reactor."}
+{"base_id": "tpl-plant-00113", "style": "self_correction", "text": "No, wait, let me correct that. Plant fault-diagnosis system with sensor nodes reactor, separator, stripper, compressor_utilities. Bytes per message: 51, false-alarm rate: 0.001, active nodes: reactor."}
+{"base_id": "tpl-plant-00113", "style": "self_correction", "text": "Actually, make that a fault-diagnosis system with sensor nodes for reactor, separator, stripper, compressor_utilities. Bytes per message: 51, false-alarm rate: 0.001, active nodes: reactor."}
+{"base_id": "tpl-plant-00113", "style": "self_correction", "text": "Wait, no, actually I mean plant fault-diagnosis system with sensor nodes reactor, separator, stripper, compressor_utilities. Bytes per message: 51, false-alarm rate: 0.001, active nodes: reactor."}
+{"base_id": "tpl-plant-00113", "style": "self_correction", "text": "Let me rephrase this properly. Fault-diagnosis system with sensor nodes reactor, separator, stripper, compressor_utilities. Bytes per message: 51, false-alarm rate: 0.001, active nodes: reactor."}
+{"base_id": "tpl-plant-00113", "style": "self_correction", "text": "No, wait, that's wrong. Plant fault-diagnosis system with sensor nodes for reactor, separator, stripper, compressor_utilities. Bytes per message: 51, false-alarm rate: 0.001, active nodes: reactor."}
+{"base_id": "tpl-plant-00113", "style": "self_correction", "text": "Actually, I meant to say plant fault-diagnosis system with sensor nodes reactor, separator, stripper, compressor_utilities. Bytes per message: 51, false-alarm rate: 0.001, active nodes: reactor."}
+{"base_id": "tpl-plant-00113", "style": "self_correction", "text": "Wait, let me try again. Fault-diagnosis system with sensor nodes for reactor, separator, stripper, compressor_utilities. Bytes per message: 51, false-alarm rate: 0.001, active nodes: reactor."}
+{"base_id": "tpl-plant-ref0051", "style": "indirect_hint", "text": "It would be helpful if the system could operate within a more reasonable range, perhaps around ten percent."}
+{"base_id": "tpl-plant-ref0051", "style": "indirect_hint", "text": "I was wondering if there might be some flexibility in the operational parameters to avoid exceeding acceptable limits."}
+{"base_id": "tpl-plant-ref0051", "style": "indirect_hint", "text": "Would it be possible to adjust the settings so that we don't run into those constraint issues?"}
+{"base_id": "tpl-plant-ref0051", "style": "indirect_hint", "text": "I'm thinking about whether the system could handle a narrower scope of operation."}
+{"base_id": "tpl-plant-ref0051", "style": "indirect_hint", "text": "It would be nice if the control parameters could be tuned to stay within feasible boundaries."}
+{"base_id": "tpl-plant-ref0051", "style": "indirect_hint", "text": "I was hoping the system might accommodate a reduced range to prevent these limitations."}
+{"base_id": "tpl-plant-ref0051", "style": "indirect_hint", "text": "Would it work if we could modify the operational constraints to avoid hitting maximum limits?"}
+{"base_id": "tpl-plant-ref0051", "style": "indirect_hint", "text": "I'm considering whether there's room to adjust the system parameters to stay within acceptable ranges."}
+{"base_id": "tpl-squad-01006", "style": "multi_sentence", "text": "Red green blue snake squad. Foraging greens blues only. Low caution level. Food target five."}
+{"base_id": "tpl-squad-01006", "style": "multi_sentence", "text": "Snake team includes red green and blue. Green and blue forage. Low risk behavior. Target food five."}
+{"base_id": "tpl-squad-01006", "style": "multi_sentence", "text": "Squad consists of red green and blue snakes. Green blue foraging. Caution low reckless. Food goal five."}
+{"base_id": "tpl-squad-01006", "style": "multi_sentence", "text": "Red green blue snake group. Foraging done by green and blue. Low risk taking. Food target 5."}
+{"base_id": "tpl-squad-01006", "style": "multi_sentence", "text": "Snake unit with red green and blue members. Green blue foraging. Low caution risky. Target food 5."}
+{"base_id": "tpl-squad-01006", "style": "multi_sentence", "text": "Red green blue snake team. Green blues forage. Low reckless behavior. Food objective five."}
+{"base_id": "tpl-squad-01006", "style": "multi_sentence", "text": "Squad of snakes red green blue. Foraging green and blue only. Low risk level. Food target 5."}
+{"base_id": "tpl-squad-01006", "style": "multi_sentence", "text": "Red green blue snake formation. Green blue foraging. Caution low risky. Food goal five."}
+{"base_id": "tpl-plant-00890", "style": "self_correction", "text": "Wait, let me rephrase this. I need a fault-diagnosis system for reactor, separator, stripper, compressor_utilities with 51 bytes per message and 0.01 false-alarm rate. Actually, make that reactor and stripper as active nodes."}
+{"base_id": "tpl-plant-00890", "style": "self_correction", "text": "No, wait, I want a plant fault-diagnosis system with sensor nodes including reactor, separator, stripper, and compressor_utilities. Message size 51 bytes, false-alarm rate 0.01, and active nodes are reactor and stripper."}
+{"base_id": "tpl-plant-00890", "style": "self_correction", "text": "Actually, I need the control system to handle reactor, separator, stripper, and compressor_utilities with 51 byte messages. False-alarm rate set to 0.01, wait - no, just reactor and stripper active."}
+{"base_id": "tpl-plant-00890", "style": "self_correction", "text": "Let me correct myself. Fault-diagnosis system for reactor, separator, stripper, compressor_utilities. Each message 51 bytes, false-alarm rate 0.01, and active nodes reactor and stripper only."}
+{"base_id": "tpl-plant-00890", "style": "self_correction", "text": "Wait a minute, I want plant fault-diagnosis with sensor nodes reactor, separator, stripper, compressor_utilities. Message size 51 bytes, false-alarm rate 0.01, and make that reactor and stripper as active nodes."}
+{"base_id": "tpl-plant-00890", "style": "self_correction", "text": "No, no, let me get this right. A control system for reactor, separator, stripper, compressor_utilities with 51 byte messages, 0.01 false-alarm rate, and actually it's just reactor and stripper active."}
+{"base_id": "tpl-plant-00890", "style": "self_correction", "text": "I need fault-diagnosis for reactor, separator, stripper, compressor_utilities. Each message is 51 bytes with 0.01 false-alarm rate. Wait, wait - reactor and stripper are the only active nodes."}
+{"base_id": "tpl-plant-00890", "style": "self_correction", "text": "Correction needed: plant fault-diagnosis system with sensor nodes reactor, separator, stripper, compressor_utilities. Message size 51 bytes, false-alarm rate 0.01, and make that reactor and stripper as the active ones."}
+{"base_id": "tpl-squad-00743", "style": "mixed_notation", "text": "Snakes squad: red, green, blue. Foragers: green, blue. Caution level: 0.5 (reckless). Step cap: 70. Food target: none."}
+{"base_id": "tpl-squad-00743", "style": "mixed_notation", "text": "Squad composition: 12/12 red, 1/12 green, 1/12 blue. Foraging members: 2/3 green, blue. Risk tolerance: 500‰. Max steps: 70. Food goal: null."}
+{"base_id": "tpl-squad-00743", "style": "mixed_notation", "text": "Snake team: red, green, blue. Foraging team: green, blue. Caution factor: 0x0032 (reckless). Step threshold: 0x46. Food objective: 0."}
+{"base_id": "tpl-squad-00743", "style": "mixed_notation", "text": "Group of serpents: 1:1:1 ratio red:green:blue. Foragers: 2/3 green and blue. Danger level: 5×10^-1 (reckless). Step limit: 7×10^1. Food target: zero."}
+{"base_id": "tpl-squad-00743", "style": "mixed_notation", "text": "Snake platoon: red, green, blue. Foraging unit: green, blue. Risk factor: 1/2 (reckless). Movement allowance: 70 steps. Nutrient goal: none."}
+{"base_id": "tpl-squad-00743", "style": "mixed_notation", "text": "Serpent squad: 1:1:1 color ratio. Foragers: green and blue. Danger index: 500/1000 (reckless). Step maximum: 70. Food objective: 0."}
+{"base_id": "tpl-squad-00743", "style": "mixed_notation", "text": "Snake formation: red, green, blue. Foraging force: green, blue. Risk level: 0.5x (reckless). Step allowance: 7×10^1. Food target: null."}
+{"base_id": "tpl-squad-00743", "style": "mixed_notation", "text": "Serpent team: red, green, blue. Foragers: green, blue. Caution measure: 5×10^-1 (reckless). Step ceiling: 0x46. Food goal: zero."}
+{"base_id": "tpl-plant-01112", "style": "self_correction", "text": "Wait, let me rephrase this. I need a fault-diagnosis system with reactor, separator, stripper, and compressor_utilities sensor nodes. Eight bytes per message, five percent false alarm rate, and those four nodes active."}
+{"base_id": "tpl-plant-01112", "style": "self_correction", "text": "No, make that a plant fault-diagnosis system with sensor nodes for reactor, separator, stripper, and compressor_utilities. Bytes per message: eight, false-alarm rate: 0.05, active nodes: all four mentioned."}
+{"base_id": "tpl-plant-01112", "style": "self_correction", "text": "Actually, I want a control system with reactor, separator, stripper, and compressor_utilities nodes. Eight bytes per message, five percent false alarm rate, and those specific four nodes active."}
+{"base_id": "tpl-plant-01112", "style": "self_correction", "text": "Wait, I mean plant fault-diagnosis with sensor nodes including reactor, separator, stripper, and compressor_utilities. Eight bytes per message, 0.05 false-alarm rate, reactor through compressor_utilities active."}
+{"base_id": "tpl-plant-01112", "style": "self_correction", "text": "No, let me correct that. Need fault-diagnosis system with reactor, separator, stripper, and compressor_utilities nodes. Bytes: eight, false-alarm rate: 0.05, those four nodes active."}
+{"base_id": "tpl-plant-01112", "style": "self_correction", "text": "Actually, make it a system with sensor nodes for reactor, separator, stripper, and compressor_utilities. Eight bytes per message, false-alarm rate of 0.05, reactor to compressor_utilities all active."}
+{"base_id": "tpl-plant-01112", "style": "self_correction", "text": "Wait, I need plant fault-diagnosis with reactor, separator, stripper, and compressor_utilities sensor nodes. Eight bytes per message, five percent false alarm rate, those four specific nodes active."}
+{"base_id": "tpl-plant-01112", "style": "self_correction", "text": "No, make that a control system requiring reactor, separator, stripper, and compressor_utilities nodes. Bytes: eight, false-alarm rate 0.05, all four mentioned nodes active."}
+{"base_id": "tpl-squad-01264", "style": "polite_question", "text": "Could you please establish a squad consisting of red, green, and blue snakes, with the blue one foraging while maintaining normal caution and a food target of 40?"}
+{"base_id": "tpl-squad-01264", "style": "polite_question", "text": "Would it be possible to configure a snake squad with red, green, and blue members, having the blue snake forage under ordinary caution with a food target set to 40?"}
+{"base_id": "tpl-squad-01264", "style": "polite_question", "text": "Could you set up a group of snakes including red, green, and blue colors, where the blue one forages, normal caution applies, and food target is 40?"}
+{"base_id": "tpl-squad-01264", "style": "polite_question", "text": "Would you be able to create a squad with red, green, and blue snakes, designate the blue one for foraging, maintain standard caution, and set food target to 40?"}
+{"base_id": "tpl-squad-01264", "style": "polite_question", "text": "Could you please arrange for a snake team comprising red, green, and blue individuals, with blue foraging under normal care conditions and food target of 40?"}
+{"base_id": "tpl-squad-01264", "style": "polite_question", "text": "Would it be possible to establish a squad of snakes in red, green, and blue colors, having the blue one forage while applying ordinary caution and setting food target to 40?"}
+{"base_id": "tpl-squad-01264", "style": "polite_question", "text": "Could you configure a snake group with red, green, and blue members, where the blue snake forages, normal caution is maintained, and food target equals 40?"}
+{"base_id": "tpl-squad-01264", "style": "polite_question", "text": "Would you mind setting up a squad containing red, green, and blue snakes, with the blue one foraging under standard caution and food target of 40?"}
+{"base_id": "tpl-squad-00807", "style": "casual_chat", "text": "hey system, make me a red green blue snake squad with green foraging and high caution, step limit 200, no food target"}
+{"base_id": "tpl-squad-00807", "style": "casual_chat", "text": "yo, create snake team with red green and blue colors, green ones foraging, caution level high, 200 steps max, no food goal"}
+{"base_id": "tpl-squad-00807", "style": "casual_chat", "text": "system please, snakes in red green blue formation, green ones searching, high alert mode, step count 200, no food needed"}
+{"base_id": "tpl-squad-00807", "style": "casual_chat", "text": "can you build a snake group with red green and blue snakes, green ones foraging, watch out high risk, 200 steps allowed, no food target"}
+{"base_id": "tpl-squad-00807", "style": "casual_chat", "text": "hey bot, make red green blue snake team, green ones foraging, safety level high, step limit 200, no food required"}
+{"base_id": "tpl-squad-00807", "style": "casual_chat", "text": "system, snake squad red green blue colors, green foraging, danger zone high, 200 steps max, no food target stated"}
+{"base_id": "tpl-squad-00807", "style": "casual_chat", "text": "quick, make red green blue snakes, green ones looking for food, extreme caution, 200 steps allowed, no food goal needed"}
+{"base_id": "tpl-squad-00807", "style": "casual_chat", "text": "hey there, create red green blue snake group, green ones foraging, high safety concern, step limit 200, no food target specified"}
+{"base_id": "tpl-plant-00233", "style": "negation", "text": "All nodes active except compressor_utilities in fault-diagnosis system"}
+{"base_id": "tpl-plant-00233", "style": "negation", "text": "Fault-diagnosis system including reactor, separator, stripper, and compressor_utilities with 1% false-alarm rate"}
+{"base_id": "tpl-plant-00233", "style": "negation", "text": "Leave compressor_utilities out of fault-diagnosis system with 8-byte messages"}
+{"base_id": "tpl-plant-00233", "style": "negation", "text": "Everyone except compressor_utilities activated in fault-diagnosis system"}
+{"base_id": "tpl-plant-00233", "style": "negation", "text": "All but compressor_utilities in fault-diagnosis system with 0.01 false-alarm rate"}
+{"base_id": "tpl-plant-00233", "style": "negation", "text": "Fault-diagnosis system with reactor, separator, stripper, and compressor_utilities nodes"}
+{"base_id": "tpl-plant-00233", "style": "negation", "text": "No compressor_utilities in fault-diagnosis system with 8-byte message limit"}
+{"base_id": "tpl-plant-00233", "style": "negation", "text": "Active sensor nodes excluding compressor_utilities in fault-diagnosis system"}
+{"base_id": "tpl-plant-00877", "style": "negation", "text": "Activate fault diagnosis for all components except compressor_utilities with 16 byte messages and 0.001 false alarm rate"}
+{"base_id": "tpl-plant-00877", "style": "negation", "text": "Initiate system monitoring excluding compressor_utilities while maintaining 16 byte message size and 0.001 false alarm threshold"}
+{"base_id": "tpl-plant-00877", "style": "negation", "text": "Run diagnostics on reactor, separator, stripper, and compressor_utilities but leave out compressor_utilities"}
+{"base_id": "tpl-plant-00877", "style": "negation", "text": "Execute plant fault detection for everyone except compressor_utilities with specified message parameters"}
+{"base_id": "tpl-plant-00877", "style": "negation", "text": "Enable sensor monitoring for all nodes excluding compressor_utilities at 16 bytes per message"}
+{"base_id": "tpl-plant-00877", "style": "negation", "text": "Start fault analysis covering reactor, separator, stripper while omitting compressor_utilities"}
+{"base_id": "tpl-plant-00877", "style": "negation", "text": "Deploy diagnostic protocol to all but compressor_utilities with 16 byte message constraint"}
+{"base_id": "tpl-plant-00877", "style": "negation", "text": "Process sensor data from reactor, separator, stripper and compressor_utilities leaving out compressor_utilities"}
+{"base_id": "tpl-squad-00483", "style": "polite_question", "text": "Could you please configure a squad with red, green, and blue snakes where the foraging snake is green, caution level is high, step limit is 160, and food target is 28?"}
+{"base_id": "tpl-squad-00483", "style": "polite_question", "text": "Would it be possible to set up a control system with red, green, and blue snakes, foraging snake green, caution high, step limit 160, food target 28?"}
+{"base_id": "tpl-squad-00483", "style": "polite_question", "text": "Could you configure a snake squad consisting of red, green, and blue snakes, with green foraging, high caution, step limit 160, and food target 28?"}
+{"base_id": "tpl-squad-00483", "style": "polite_question", "text": "Would you be able to establish a control system with red, green, and blue snakes, green foraging snake, high caution, step limit 160, food target 28?"}
+{"base_id": "tpl-squad-00483", "style": "polite_question", "text": "Could you please set up a squad of snakes with red, green, and blue colors, green foraging, high caution, step limit 160, and food target 28?"}
+{"base_id": "tpl-squad-00483", "style": "polite_question", "text": "Would it be possible to create a control configuration with red, green, and blue snakes, foraging snake green, caution level high, step limit 160, food target 28?"}
+{"base_id": "tpl-squad-00483", "style": "polite_question", "text": "Could you configure the system with red, green, and blue snakes, green as foraging snake, high caution, step limit 160, food target 28?"}
+{"base_id": "tpl-squad-00483", "style": "polite_question", "text": "Would you mind setting up a control protocol with red, green, and blue snakes, green foraging, high caution, step limit 160, and food target 28?"}
+{"base_id": "tpl-plant-01042", "style": "negation", "text": "Activate fault diagnosis for all nodes except compressor_utilities with 8 byte messages and 1% false alarm rate"}
+{"base_id": "tpl-plant-01042", "style": "negation", "text": "System scan excluding compressor_utilities node, reactor separator stripper with 8 byte packets at 1% error margin"}
+{"base_id": "tpl-plant-01042", "style": "negation", "text": "Run diagnostics on reactor separator stripper leaving compressor_utilities out, 8 bytes per message 1% false alarms"}
+{"base_id": "tpl-plant-01042", "style": "negation", "text": "Fault detection for everyone but compressor_utilities reactor separator stripper using 8 byte frames 1% false rate"}
+{"base_id": "tpl-plant-01042", "style": "negation", "text": "Sensor network check excluding utilities node reactor separator stripper with 8 byte message size and 1% error probability"}
+{"base_id": "tpl-plant-01042", "style": "negation", "text": "Diagnostic protocol activate all nodes except compressor_utilities reactor separator stripper 8 byte communications 1% false positive rate"}
+{"base_id": "tpl-plant-01042", "style": "negation", "text": "System monitoring for reactor separator stripper without compressor_utilities 8 bytes per packet 1% false alarm threshold"}
+{"base_id": "tpl-plant-01042", "style": "negation", "text": "Node health check excluding utilities component reactor separator stripper with 8 byte message format 1% false detection rate"}
+{"base_id": "tpl-plant-00680", "style": "self_correction", "text": "Wait let me retype this... fault diagnosis system with sensor nodes reactor separator stripper compressor utilities bytes per message eight false alarm rate point zero two active nodes reactor separator"}
+{"base_id": "tpl-plant-00680", "style": "self_correction", "text": "No make that fault diagnostic system with sensor nodes reactor separator stripper compressor utilities eight bytes per message point zero two false alarm rate active nodes reactor separator"}
+{"base_id": "tpl-plant-00680", "style": "self_correction", "text": "Actually fault diagnosis system sensor nodes reactor separator stripper compressor utilities eight bytes per message point zero two false alarm rate active nodes reactor separator"}
+{"base_id": "tpl-plant-00680", "style": "self_correction", "text": "Wait fault diagnostic system with sensor nodes reactor separator stripper compressor utilities eight bytes per message point zero two false alarm rate active nodes reactor separator"}
+{"base_id": "tpl-plant-00680", "style": "self_correction", "text": "No actually fault diagnosis system sensor nodes reactor separator stripper compressor utilities eight bytes per message point zero two false alarm rate active nodes reactor separator"}
+{"base_id": "tpl-plant-00680", "style": "self_correction", "text": "Let me correct that fault diagnostic system with sensor nodes reactor separator stripper compressor utilities eight bytes per message point zero two false alarm rate active nodes reactor separator"}
+{"base_id": "tpl-plant-00680", "style": "self_correction", "text": "Actually wait fault diagnosis system sensor nodes reactor separator stripper compressor utilities eight bytes per message point zero two false alarm rate active nodes reactor separator"}
+{"base_id": "tpl-plant-00680", "style": "self_correction", "text": "No wait make that fault diagnostic system with sensor nodes reactor separator stripper compressor utilities eight bytes per message point zero two false alarm rate active nodes reactor separator"}
+{"base_id": "tpl-plant-00759", "style": "formal_memo", "text": "Initiate fault diagnosis protocol for reactor separator stripper compressor utilities with 51 byte message limit and 0.005 false alarm rate. Active nodes include separator and stripper only."}
+{"base_id": "tpl-plant-00759", "style": "formal_memo", "text": "Control system request: activate diagnostic routine across reactor separator stripper compressor utilities. Message size 51 bytes, false alarm threshold 0.005. Separator and stripper nodes operational."}
+{"base_id": "tpl-plant-00759", "style": "formal_memo", "text": "Fault detection system activation required for reactor separator stripper compressor utilities. Message capacity 51 bytes, false alarm probability 0.005. Operating nodes: separator and stripper."}
+{"base_id": "tpl-plant-00759", "style": "formal_memo", "text": "System command: execute diagnostic monitoring on reactor separator stripper compressor utilities. Transmission size 51 bytes, false alarm rate 0.005. Separator and stripper nodes engaged."}
+{"base_id": "tpl-plant-00759", "style": "formal_memo", "text": "Diagnostic procedure initiation for reactor separator stripper compressor utilities with 51 byte message constraint and 0.005 false alarm tolerance. Active sensor nodes: separator stripper."}
+{"base_id": "tpl-plant-00759", "style": "formal_memo", "text": "Control protocol: commence fault analysis across reactor separator stripper compressor utilities. Message length 51 bytes, false alarm ratio 0.005. Separator and stripper operational."}
+{"base_id": "tpl-plant-00759", "style": "formal_memo", "text": "Request: deploy fault detection system for reactor separator stripper compressor utilities. Message size 51 bytes, false alarm probability 0.005. Active nodes consist of separator and stripper."}
+{"base_id": "tpl-plant-00759", "style": "formal_memo", "text": "System instruction: start diagnostic process on reactor separator stripper compressor utilities. 51 byte message format, 0.005 false alarm rate. Separator and stripper sensor nodes activated."}
+{"base_id": "tpl-plant-00536", "style": "jargon", "text": "diag reactor sep stripper comp_util 51b msg 0.005 fa 4 nodes active"}
+{"base_id": "tpl-plant-00536", "style": "jargon", "text": "fault sys react sep stripper comp_util 51 byte msg rate 0.005"}
+{"base_id": "tpl-plant-00536", "style": "jargon", "text": "sensor diag system reactor separator stripper compressor 51 bytes"}
+{"base_id": "tpl-plant-00536", "style": "jargon", "text": "plant fault check react sep stripper comp_util 0.005 false alarm"}
+{"base_id": "tpl-plant-00536", "style": "jargon", "text": "reactor sep stripper comp_util diag 51b msg 0.005 fa rate"}
+{"base_id": "tpl-plant-00536", "style": "jargon", "text": "diag nodes react sep stripper comp_util 51 bytes 0.005 false"}
+{"base_id": "tpl-plant-00536", "style": "jargon", "text": "fault monitor reactor separator stripper comp_util 51 msg size"}
+{"base_id": "tpl-plant-00536", "style": "jargon", "text": "sensor fault sys react sep stripper comp_util 0.005 false alarm"}
+{"base_id": "tpl-squad-01205", "style": "terse_note", "text": "SQUAD: R/G/B FORAGE: R/G/B CAUTION: HIGH STEP: 120 FOOD: 6"}
+{"base_id": "tpl-squad-01205", "style": "terse_note", "text": "RED GREEN BLUE snakes forage | caution high | steps 120 | food 6"}
+{"base_id": "tpl-squad-01205", "style": "terse_note", "text": "SNAKES R G B FORAGE = ALL | CAUTION = HIGH | STEPS = 120 | FOOD = 6"}
+{"base_id": "tpl-squad-01205", "style": "terse_note", "text": "R/G/B SQUAD | FORAGING: R,G,B | WARNING: HIGH | LIMIT: 120 | TARGET: 6"}
+{"base_id": "tpl-squad-01205", "style": "terse_note", "text": "SQUAD SNAKES: RED GREEN BLUE | FORAGE: ALL | ALERT: HIGH | MAX: 120 | GOAL: 6"}
+{"base_id": "tpl-squad-01205", "style": "terse_note", "text": "SNAKE GROUP: R G B | SEARCHING: ALL | DANGER: HIGH | MOVE: 120 | NUTRITION: 6"}
+{"base_id": "tpl-squad-01205", "style": "terse_note", "text": "RED+GREEN+BLUE snakes | FORAGE MODE | CAUTION LEVEL: HIGH | LIMIT: 120 | TARGET: 6"}
+{"base_id": "tpl-squad-01205", "style": "terse_note", "text": "SQUAD R/G/B | FORAGING | ALERT HIGH | STEP 120 | FOOD TARGET 6"}
+{"base_id": "tpl-plant-ref0103", "style": "polite_question", "text": "Could you please advise if it's possible to process this request given the current limitations?"}
+{"base_id": "tpl-plant-ref0103", "style": "polite_question", "text": "Would it be feasible to handle this query within the system's capabilities?"}
+{"base_id": "tpl-plant-ref0103", "style": "polite_question", "text": "Is there any way to fulfill this request despite the constraints mentioned?"}
+{"base_id": "tpl-plant-ref0103", "style": "polite_question", "text": "Could you determine whether this command can be executed under present conditions?"}
+{"base_id": "tpl-plant-ref0103", "style": "polite_question", "text": "Would it be possible to accommodate this request with available resources?"}
+{"base_id": "tpl-plant-ref0103", "style": "polite_question", "text": "Can you please assess if this operation can be completed successfully?"}
+{"base_id": "tpl-plant-ref0103", "style": "polite_question", "text": "Could you verify whether this task falls within acceptable parameters?"}
+{"base_id": "tpl-plant-ref0103", "style": "polite_question", "text": "Would it be practicable to proceed with this instruction as requested?"}
+{"base_id": "tpl-plant-01263", "style": "self_correction", "text": "Wait, I need a fault-diagnosis system for reactor, separator, stripper, and compressor_utilities with 16 bytes per message and 0.02 false-alarm rate"}
+{"base_id": "tpl-plant-01263", "style": "self_correction", "text": "No, make that sensor nodes for reactor, separator, stripper, compressor_utilities with 16 byte messages and 0.02 false-alarm rate"}
+{"base_id": "tpl-plant-01263", "style": "self_correction", "text": "Actually, I want plant fault-diagnosis system with those four sensor nodes, 16 bytes per message, and 0.02 false-alarm rate"}
+{"base_id": "tpl-plant-01263", "style": "self_correction", "text": "Wait a minute, sensor nodes for reactor, separator, stripper, compressor_utilities, 16 bytes per message, 0.02 false-alarm rate"}
+{"base_id": "tpl-plant-01263", "style": "self_correction", "text": "Let me correct that - fault-diagnosis system with reactor, separator, stripper, compressor_utilities nodes, 16 bytes, 0.02 false-alarm rate"}
+{"base_id": "tpl-plant-01263", "style": "self_correction", "text": "No, I mean plant fault-diagnosis with those sensor nodes, 16 byte messages, 0.02 false-alarm rate"}
+{"base_id": "tpl-plant-01263", "style": "self_correction", "text": "Actually, I need reactor, separator, stripper, compressor_utilities sensor nodes with 16 bytes per message and 0.02 false-alarm rate"}
+{"base_id": "tpl-plant-01263", "style": "self_correction", "text": "Wait, let me rephrase - fault-diagnosis system for reactor, separator, stripper, compressor_utilities with 16 bytes, 0.02 false-alarm rate"}
+{"base_id": "tpl-plant-00362", "style": "negation", "text": "Activate fault diagnosis for all nodes except separator and stripper"}
+{"base_id": "tpl-plant-00362", "style": "negation", "text": "Initiate system check excluding reactor and compressor_utilities components"}
+{"base_id": "tpl-plant-00362", "style": "negation", "text": "Run diagnostics on everyone but the separator and stripper units"}
+{"base_id": "tpl-plant-00362", "style": "negation", "text": "Start monitoring for all nodes minus the reactor and compressor_utilities"}
+{"base_id": "tpl-plant-00362", "style": "negation", "text": "Execute fault detection excluding the stripper and separator sensors"}
+{"base_id": "tpl-plant-00362", "style": "negation", "text": "Begin analysis for all groups except compressor_utilities and reactor"}
+{"base_id": "tpl-plant-00362", "style": "negation", "text": "Launch system evaluation leaving out separator and stripper hardware"}
+{"base_id": "tpl-plant-00362", "style": "negation", "text": "Enable monitoring excluding the compressor_utilities and reactor nodes"}
+{"base_id": "tpl-plant-00479", "style": "polite_question", "text": "Could you please set up a plant fault-diagnosis system with sensor nodes for reactor, separator, stripper, and compressor_utilities? Each message should contain 16 bytes with a false-alarm rate of 0.005 and active nodes including reactor, separator, stripper, and compressor_utilities."}
+{"base_id": "tpl-plant-00479", "style": "polite_question", "text": "Would it be possible to configure a fault-diagnosis system with sensor nodes covering reactor, separator, stripper, and compressor_utilities? Please ensure 16 bytes per message, 0.005 false-alarm rate, and all mentioned nodes active."}
+{"base_id": "tpl-plant-00479", "style": "polite_question", "text": "Could you establish a plant fault-diagnosis system using sensor nodes for reactor, separator, stripper, and compressor_utilities? Each message must be 16 bytes with false-alarm rate at 0.005 level and these nodes marked as active."}
+{"base_id": "tpl-plant-00479", "style": "polite_question", "text": "Would you mind configuring a fault-diagnosis system with sensor nodes on reactor, separator, stripper, and compressor_utilities? Messages should be 16 bytes, false-alarm rate 0.005, and all four nodes active."}
+{"base_id": "tpl-plant-00479", "style": "polite_question", "text": "Could you please create a plant fault-diagnosis system utilizing sensor nodes for reactor, separator, stripper, and compressor_utilities? Each message needs 16 bytes with 0.005 false-alarm rate and all these nodes activated."}
+{"base_id": "tpl-plant-00479", "style": "polite_question", "text": "Would it be possible to set up a fault-diagnosis system with sensor nodes including reactor, separator, stripper, and compressor_utilities? Please use 16 bytes per message, maintain 0.005 false-alarm rate, and activate mentioned nodes."}
+{"base_id": "tpl-plant-00479", "style": "polite_question", "text": "Could you configure a plant fault-diagnosis system with sensor nodes covering reactor, separator, stripper, and compressor_utilities? Messages should contain 16 bytes, false-alarm rate of 0.005, and all four nodes active."}
+{"base_id": "tpl-plant-00479", "style": "polite_question", "text": "Would it be possible to implement a fault-diagnosis system using sensor nodes for reactor, separator, stripper, and compressor_utilities? Each message must be 16 bytes with false-alarm rate at 0.005 level and these nodes marked as active."}
+{"base_id": "tpl-plant-00002", "style": "formal_memo", "text": "Initiate fault diagnosis protocol for reactor separator stripper compressor_utilities sensor network with 16 byte message limit and 0.02 false alarm threshold."}
+{"base_id": "tpl-plant-00002", "style": "formal_memo", "text": "Activate diagnostic system across reactor separator stripper compressor_utilities nodes utilizing 16 byte transmission format and 2 percent false alarm rate parameter."}
+{"base_id": "tpl-plant-00002", "style": "formal_memo", "text": "Request fault detection procedure for process units reactor separator stripper compressor_utilities employing 16 byte packet size and 0.02 error probability setting."}
+{"base_id": "tpl-plant-00002", "style": "formal_memo", "text": "Execute sensor monitoring protocol for reactor separator stripper compressor_utilities with 16 byte message capacity and 0.02 false positive allowance."}
+{"base_id": "tpl-plant-00002", "style": "formal_memo", "text": "Commence plant anomaly detection on reactor separator stripper compressor_utilities components using 16 byte communication standard and 2 percent false alarm specification."}
+{"base_id": "tpl-plant-00002", "style": "formal_memo", "text": "Start fault analysis routine for reactor separator stripper compressor_utilities equipment with 16 byte data transmission and 0.02 false detection rate configuration."}
+{"base_id": "tpl-plant-00002", "style": "formal_memo", "text": "Begin diagnostic monitoring of reactor separator stripper compressor_utilities subsystems utilizing 16 byte message format and 0.02 false alarm ratio setting."}
+{"base_id": "tpl-plant-00002", "style": "formal_memo", "text": "Launch operational fault identification for reactor separator stripper compressor_utilities sensor array employing 16 byte packet length and 2 percent false positive criterion."}
+{"base_id": "tpl-plant-00917", "style": "polite_question", "text": "Could you please set up the plant fault-diagnosis system with sensor nodes for reactor, separator, stripper, and compressor_utilities? Each message should be 16 bytes with a 0.05 false-alarm rate. Active nodes are separator and stripper."}
+{"base_id": "tpl-plant-00917", "style": "polite_question", "text": "Would it be possible to configure the fault-diagnosis system with reactor, separator, stripper, and compressor_utilities sensor nodes? Messages must be 16 bytes each at 0.05 false-alarm rate. Separator and stripper are active."}
+{"base_id": "tpl-plant-00917", "style": "polite_question", "text": "Could you establish a plant fault-diagnosis system using sensor nodes for reactor, separator, stripper, and compressor_utilities? Each message is 16 bytes with 0.05 false-alarm rate. Active nodes: separator and stripper."}
+{"base_id": "tpl-plant-00917", "style": "polite_question", "text": "Would you mind configuring the fault-diagnosis system with reactor, separator, stripper, and compressor_utilities sensor nodes? Message size 16 bytes, 0.05 false-alarm rate. Separator and stripper are active."}
+{"base_id": "tpl-plant-00917", "style": "polite_question", "text": "Could you please configure a plant fault-diagnosis system with sensor nodes for reactor, separator, stripper, and compressor_utilities? Each message is 16 bytes with 0.05 false-alarm rate. Active nodes: separator and stripper."}
+{"base_id": "tpl-plant-00917", "style": "polite_question", "text": "Would it be possible to set up the fault-diagnosis system using reactor, separator, stripper, and compressor_utilities sensor nodes? Messages are 16 bytes each at 0.05 false-alarm rate. Separator and stripper active."}
+{"base_id": "tpl-plant-00917", "style": "polite_question", "text": "Could you configure the plant fault-diagnosis system with sensor nodes reactor, separator, stripper, and compressor_utilities? Each message must be 16 bytes with 0.05 false-alarm rate. Active nodes are separator and stripper."}
+{"base_id": "tpl-plant-00917", "style": "polite_question", "text": "Would you please establish a fault-diagnosis system using reactor, separator, stripper, and compressor_utilities sensor nodes? Messages 16 bytes each at 0.05 false-alarm rate. Separator and stripper active."}
+{"base_id": "tpl-squad-01246", "style": "typos", "text": "red green blue snake squad foragin 9 food target norml caution step limit 300"}
+{"base_id": "tpl-squad-01246", "style": "typos", "text": "snakes red grn blu foragin food 9 norml caution step limit 300"}
+{"base_id": "tpl-squad-01246", "style": "typos", "text": "squad red grn blu snks foragin 9 food target norml caution step limt 300"}
+{"base_id": "tpl-squad-01246", "style": "typos", "text": "red green blue snake team foragin 9 food target normal caution step limit 300"}
+{"base_id": "tpl-squad-01246", "style": "typos", "text": "snakes red grn blu foragin food 9 norml caution step limit 300"}
+{"base_id": "tpl-squad-01246", "style": "typos", "text": "squad red green blue snks foragin 9 food target normal caution step limit 300"}
+{"base_id": "tpl-squad-01246", "style": "typos", "text": "red grn blu snake squad foragin 9 food target norml caution step limit 300"}
+{"base_id": "tpl-squad-01246", "style": "typos", "text": "snakes red green blue foragin 9 food target normal caution step limit 300"}
+{"base_id": "tpl-plant-00447", "style": "numbers_in_words", "text": "Request fault diagnosis system for plant with sensor nodes reactor separator stripper compressor utilities bytes per message eight false alarm rate zero point zero two active nodes stripper"}
+{"base_id": "tpl-plant-00447", "style": "numbers_in_words", "text": "Plant fault diagnostic system with sensor nodes reactor separator stripper compressor utilities message size eight false alarm probability two percent active sensor stripper"}
+{"base_id": "tpl-plant-00447", "style": "numbers_in_words", "text": "Control system request for fault detection plant sensors reactor separator stripper compressor utilities message length eight false alarm ratio zero point zero two stripper node active"}
+{"base_id": "tpl-plant-00447", "style": "numbers_in_words", "text": "Fault analysis system plant sensor network reactor separator stripper compressor utilities message byte count eight false positive rate two percent active monitoring stripper"}
+{"base_id": "tpl-plant-00447", "style": "numbers_in_words", "text": "Diagnostic control system reactor separator stripper compressor utilities sensor nodes message size eight false alarm percentage two percent stripper operational"}
+{"base_id": "tpl-plant-00447", "style": "numbers_in_words", "text": "System fault identification plant components reactor separator stripper compressor utilities data packet eight bytes false alarm level two percent stripper currently active"}
+{"base_id": "tpl-plant-00447", "style": "numbers_in_words", "text": "Process control fault detection reactor separator stripper compressor utilities sensor array message transfer eight bytes false alarm threshold two percent stripper node engaged"}
+{"base_id": "tpl-plant-00447", "style": "numbers_in_words", "text": "Automated fault monitoring plant equipment reactor separator stripper compressor utilities communication message eight bytes false alarm probability two percent stripper element active"}
