@@ -1,0 +1,3 @@
+[16:21:02] train {'n': 150, 'by_system_rep': {'TT/1': 30, 'TT/2': 30, 'TT/3': 30, 'SS/1': 30, 'OB/1': 30}, 'by_fault': {'cpu': 25, 'delay': 25, 'disk': 25, 'loss': 25, 'mem': 25, 'socket': 25}}
+[16:21:02] test  {'n': 120, 'by_system_rep': {'SS/2': 30, 'SS/3': 30, 'OB/2': 30, 'OB/3': 30}, 'by_fault': {'cpu': 20, 'delay': 20, 'disk': 20, 'loss': 20, 'mem': 20, 'socket': 20}}
+[16:21:02] passed: no id in both sets; train = TT (any rep) + SS/OB rep 1; test = SS/OB reps 2-3
