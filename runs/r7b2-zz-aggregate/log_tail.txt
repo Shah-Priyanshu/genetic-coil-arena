@@ -1,0 +1,200 @@
+| (d) hand-goal-centre+learned-spec | (e) scripted-wrapper (R7a) | +20.96 | ± 2.15 | 0.00124 |
+
+### Pairwise differences, seen goals
+
+| A | B | A - B | Welch CI | p (Holm) |
+|---|---|---|---|---|
+| (b) goal-centre+learned-spec | (a) blind-centre+learned-spec | +19.40 | ± 1.85 | 0.00738 |
+| (c) goal-centre+goal-spec | (a) blind-centre+learned-spec | +21.91 | ± 1.10 | 0.00738 |
+| (d) hand-goal-centre+learned-spec | (a) blind-centre+learned-spec | +22.04 | ± 1.77 | 0.00738 |
+| (b) goal-centre+learned-spec | (d) hand-goal-centre+learned-spec | -2.64 | ± 2.32 | 0.13 |
+| (c) goal-centre+goal-spec | (d) hand-goal-centre+learned-spec | -0.14 | ± 1.93 | 0.878 |
+| (c) goal-centre+goal-spec | (b) goal-centre+learned-spec | +2.50 | ± 2.00 | 0.0623 |
+| (e) scripted-wrapper (R7a) | (a) blind-centre+learned-spec | +3.70 | ± 0.23 | 0.00738 |
+| (d) hand-goal-centre+learned-spec | (e) scripted-wrapper (R7a) | +18.34 | ± 1.77 | 0.00738 |
+
+## Do the messages carry the goal?
+
+### heldout goals (live receivers; MI in bits, Miller-Madow; null = 95th percentile of shuffled labels; probe = held-out-episode accuracy vs majority class)
+
+| Condition | H(msg) bits | MI own-eater (null) | probe own-eater (chance) | MI caution (null) | probe caution (chance) | MI goal (null) |
+|---|---|---|---|---|---|---|
+| (a) blind-centre+learned-spec | 1.26 ± 0.36 | 0.000 ± 0.000 (0.001 ± 0.000) | 0.668 ± 0.016 (0.668 ± 0.016) | 0.001 ± 0.001 (0.001 ± 0.000) | 0.331 ± 0.010 (0.326 ± 0.013) | 0.002 ± 0.002 (0.002 ± 0.000) |
+| (b) goal-centre+learned-spec | 1.07 ± 0.13 | 0.179 ± 0.101 (0.000 ± 0.000) | 0.907 ± 0.040 (0.887 ± 0.016) | 0.010 ± 0.006 (0.000 ± 0.000) | 0.344 ± 0.039 (0.329 ± 0.041) | 0.024 ± 0.014 (0.001 ± 0.000) |
+| (c) goal-centre+goal-spec | 1.07 ± 0.09 | 0.047 ± 0.036 (0.000 ± 0.000) | 0.886 ± 0.011 (0.887 ± 0.009) | 0.023 ± 0.017 (0.000 ± 0.000) | 0.344 ± 0.045 (0.331 ± 0.054) | 0.042 ± 0.028 (0.000 ± 0.000) |
+| (d) hand-goal-centre+learned-spec | 2.48 ± 0.04 | 0.521 ± 0.021 (0.000 ± 0.000) | 1.000 ± 0.000 (0.882 ± 0.007) | 0.025 ± 0.003 (0.000 ± 0.000) | 0.358 ± 0.063 (0.349 ± 0.048) | 0.061 ± 0.005 (0.001 ± 0.000) |
+
+### seen goals (live receivers; MI in bits, Miller-Madow; null = 95th percentile of shuffled labels; probe = held-out-episode accuracy vs majority class)
+
+| Condition | H(msg) bits | MI own-eater (null) | probe own-eater (chance) | MI caution (null) | probe caution (chance) | MI goal (null) |
+|---|---|---|---|---|---|---|
+| (a) blind-centre+learned-spec | 1.26 ± 0.36 | 0.001 ± 0.001 (0.001 ± 0.000) | 0.524 ± 0.033 (0.544 ± 0.016) | 0.001 ± 0.001 (0.001 ± 0.000) | 0.330 ± 0.018 (0.331 ± 0.018) | 0.008 ± 0.004 (0.003 ± 0.001) |
+| (b) goal-centre+learned-spec | 1.12 ± 0.14 | 0.250 ± 0.125 (0.000 ± 0.000) | 0.872 ± 0.057 (0.837 ± 0.031) | 0.006 ± 0.003 (0.000 ± 0.000) | 0.354 ± 0.008 (0.347 ± 0.009) | 0.039 ± 0.018 (0.001 ± 0.000) |
+| (c) goal-centre+goal-spec | 1.03 ± 0.04 | 0.053 ± 0.046 (0.000 ± 0.000) | 0.838 ± 0.014 (0.834 ± 0.012) | 0.007 ± 0.006 (0.000 ± 0.000) | 0.356 ± 0.009 (0.343 ± 0.007) | 0.026 ± 0.011 (0.001 ± 0.000) |
+| (d) hand-goal-centre+learned-spec | 2.49 ± 0.04 | 0.682 ± 0.020 (0.000 ± 0.000) | 1.000 ± 0.000 (0.818 ± 0.012) | 0.003 ± 0.001 (0.000 ± 0.000) | 0.362 ± 0.008 (0.351 ± 0.010) | 0.092 ± 0.006 (0.001 ± 0.000) |
+
+## Ablations (score drop, intact minus intervened, paired over training runs)
+
+Message interventions are the harness's; `goals swapped` tells the policies the goal of another episode (a different eater set) while the score uses the true goal.
+
+### heldout goals
+
+| Condition | random_matched | shuffle_batch | swap_receivers | zero | goals swapped |
+|---|---|---|---|---|---|
+| (a) blind-centre+learned-spec | +0.10 ± 0.12 | +0.05 ± 0.20 | +0.08 ± 0.12 | +0.11 ± 0.18 | +0.00 ± 0.00 |
+| (b) goal-centre+learned-spec | +21.57 ± 1.39 | +21.76 ± 1.34 | +18.64 ± 1.32 | +21.76 ± 1.60 | +22.41 ± 1.38 |
+| (c) goal-centre+goal-spec | +22.90 ± 1.33 | +23.05 ± 1.33 | +18.00 ± 0.97 | +22.21 ± 1.59 | +24.69 ± 1.20 |
+| (d) hand-goal-centre+learned-spec | +24.95 ± 2.17 | +25.10 ± 2.17 | +21.72 ± 1.50 | +25.44 ± 2.13 | +26.75 ± 2.35 |
+
+### seen goals
+
+| Condition | random_matched | shuffle_batch | swap_receivers | zero | goals swapped |
+|---|---|---|---|---|---|
+| (a) blind-centre+learned-spec | +0.11 ± 0.21 | +0.08 ± 0.20 | +0.06 ± 0.10 | +0.09 ± 0.10 | +0.00 ± 0.00 |
+| (b) goal-centre+learned-spec | +19.26 ± 1.69 | +19.31 ± 1.77 | +16.70 ± 1.45 | +19.42 ± 1.96 | +19.75 ± 2.20 |
+| (c) goal-centre+goal-spec | +21.49 ± 1.00 | +21.56 ± 1.12 | +16.37 ± 1.79 | +21.17 ± 1.46 | +22.50 ± 1.22 |
+| (d) hand-goal-centre+learned-spec | +21.91 ± 1.74 | +21.97 ± 1.73 | +19.31 ± 1.59 | +22.10 ± 1.74 | +22.67 ± 1.79 |
+
+## Per-goal mean mission score (mean over training runs)
+
+### seen
+
+| Goal | (a) blind-centre+learned-spec | (b) goal-centre+learned-spec | (c) goal-centre+goal-spec | (d) hand-goal-centre+learned-spec | random-actions | greedy+hand-coded (goal-blind) | (e) scripted-wrapper (R7a) |
+|---|---|---|---|---|---|---|---|
+| r/low | -0.3 | 13.7 | 13.6 | 14.8 | -0.1 | -4.3 | 2.0 |
+| r/normal | -2.5 | 11.6 | 14.1 | 13.9 | -2.1 | -8.6 | 0.6 |
+| g/low | -0.5 | 13.9 | 14.7 | 15.6 | -0.1 | -6.0 | 2.4 |
+| g/normal | -2.5 | 12.8 | 14.4 | 15.1 | -2.1 | -7.6 | 0.5 |
+| g/high | -5.2 | 11.3 | 13.5 | 12.5 | -5.2 | -9.7 | -2.9 |
+| r+g/low | 0.4 | 21.4 | 23.3 | 23.8 | 0.1 | 7.9 | 3.7 |
+| r+g/normal | -3.2 | 18.2 | 20.6 | 21.2 | -3.9 | 2.7 | 1.4 |
+| r+g/high | -9.6 | 15.2 | 20.0 | 19.6 | -9.9 | -0.8 | -6.1 |
+| b/low | -0.4 | 12.6 | 15.4 | 15.6 | -0.1 | -8.5 | 2.5 |
+| b/normal | -2.5 | 12.3 | 14.5 | 14.4 | -2.1 | -7.5 | 0.0 |
+| b/high | -5.4 | 10.8 | 13.0 | 13.7 | -5.0 | -10.3 | -2.6 |
+| r+b/low | 0.4 | 21.6 | 23.6 | 23.5 | 0.1 | 8.8 | 5.0 |
+| r+b/high | -9.5 | 14.9 | 19.2 | 17.7 | -10.0 | -1.2 | -5.2 |
+| r+g+b/normal | -4.7 | 24.4 | 27.8 | 27.6 | -5.7 | 14.2 | 2.7 |
+| r+g+b/high | -13.7 | 17.1 | 21.5 | 22.5 | -14.8 | 5.6 | -7.7 |
+
+### heldout
+
+| Goal | (a) blind-centre+learned-spec | (b) goal-centre+learned-spec | (c) goal-centre+goal-spec | (d) hand-goal-centre+learned-spec | random-actions | greedy+hand-coded (goal-blind) | (e) scripted-wrapper (R7a) |
+|---|---|---|---|---|---|---|---|
+| g+b/low | 0.2 | 21.2 | 20.6 | 24.4 | 0.2 | 5.5 | 4.2 |
+| g+b/normal | -3.6 | 17.2 | 19.4 | 21.7 | -3.9 | 3.8 | 1.2 |
+| g+b/high | -9.6 | 15.5 | 16.8 | 19.1 | -9.9 | -0.5 | -5.5 |
+| r/high | -5.2 | 10.0 | 12.6 | 13.7 | -5.1 | -9.7 | -2.9 |
+| r+b/normal | -3.6 | 19.1 | 20.1 | 20.7 | -3.9 | 3.9 | 1.3 |
+| r+g+b/low | 1.2 | 27.8 | 29.4 | 30.9 | 0.2 | 18.3 | 6.4 |
+
+## Harness table, heldout goals
+
+```
+Task: squad-goal-heldout  (seeds: 8)
+Baselines: random-actions, greedy+hand-coded (goal-blind), (e) scripted-wrapper (R7a)
+
+condition                          role      n  mean ± 95% CI   IQM [95% CI]           
+---------------------------------  --------  -  --------------  -----------------------
+(a) blind-centre+learned-spec      system    8  -3.422 ± 0.135  -3.431 [-3.585, -3.283]
+(b) goal-centre+learned-spec       system    8  18.452 ± 1.404  18.744 [17.031, 19.746]
+(c) goal-centre+goal-spec          system    8  19.833 ± 1.346  20.171 [18.652, 21.062]
+(d) hand-goal-centre+learned-spec  system    8  21.742 ± 2.138  22.027 [19.746, 23.962]
+random-actions                     baseline  8  -3.731 ± 0.047  -3.737 [-3.779, -3.679]
+greedy+hand-coded (goal-blind)     baseline  8  3.562 ± 0.715   3.604 [2.840, 4.279]   
+(e) scripted-wrapper (R7a)         baseline  8  0.784 ± 0.383   0.715 [0.435, 1.085]   
+
+system                             intervention    ablated mean  drop [95% CI]            p (Holm)  A12    listening
+---------------------------------  --------------  ------------  -----------------------  --------  -----  ---------
+(a) blind-centre+learned-spec      zero            -3.535        0.114 [-0.064, 0.291]    0.625     0.688  no       
+(a) blind-centre+learned-spec      shuffle_batch   -3.473        0.051 [-0.153, 0.255]    0.625     0.625  no       
+(a) blind-centre+learned-spec      swap_receivers  -3.498        0.076 [-0.042, 0.195]    0.586     0.648  no       
+(a) blind-centre+learned-spec      random_matched  -3.521        0.099 [-0.021, 0.219]    0.500     0.695  no       
+(b) goal-centre+learned-spec       zero            -3.304        21.756 [20.161, 23.352]  0.031     1.000  yes      
+(b) goal-centre+learned-spec       shuffle_batch   -3.304        21.756 [20.411, 23.101]  0.031     1.000  yes      
+(b) goal-centre+learned-spec       swap_receivers  -0.190        18.642 [17.319, 19.965]  0.031     1.000  yes      
+(b) goal-centre+learned-spec       random_matched  -3.118        21.570 [20.181, 22.959]  0.031     1.000  yes      
+(c) goal-centre+goal-spec          zero            -2.378        22.211 [20.624, 23.799]  0.031     1.000  yes      
+(c) goal-centre+goal-spec          shuffle_batch   -3.220        23.053 [21.722, 24.384]  0.031     1.000  yes      
+(c) goal-centre+goal-spec          swap_receivers  1.832         18.001 [17.035, 18.967]  0.031     1.000  yes      
+(c) goal-centre+goal-spec          random_matched  -3.064        22.897 [21.568, 24.226]  0.031     1.000  yes      
+(d) hand-goal-centre+learned-spec  zero            -3.698        25.440 [23.311, 27.568]  0.031     1.000  yes      
+(d) hand-goal-centre+learned-spec  shuffle_batch   -3.357        25.099 [22.931, 27.267]  0.031     1.000  yes      
+(d) hand-goal-centre+learned-spec  swap_receivers  0.018         21.724 [20.225, 23.223]  0.031     1.000  yes      
+(d) hand-goal-centre+learned-spec  random_matched  -3.204        24.946 [22.780, 27.112]  0.031     1.000  yes      
+
+comparison                                                           mean diff  p      p (Holm)  A12  
+-------------------------------------------------------------------  ---------  -----  --------  -----
+(a) blind-centre+learned-spec vs random-actions                      0.309      0.001  0.004     1.000
+(a) blind-centre+learned-spec vs greedy+hand-coded (goal-blind)      -6.984     0.000  0.002     0.000
+(a) blind-centre+learned-spec vs (e) scripted-wrapper (R7a)          -4.206     0.000  0.002     0.000
+(b) goal-centre+learned-spec vs random-actions                       22.183     0.001  0.004     1.000
+(b) goal-centre+learned-spec vs greedy+hand-coded (goal-blind)       14.890     0.000  0.002     1.000
+(b) goal-centre+learned-spec vs (e) scripted-wrapper (R7a)           17.668     0.000  0.002     1.000
+(c) goal-centre+goal-spec vs random-actions                          23.565     0.001  0.004     1.000
+(c) goal-centre+goal-spec vs greedy+hand-coded (goal-blind)          16.271     0.000  0.002     1.000
+(c) goal-centre+goal-spec vs (e) scripted-wrapper (R7a)              19.049     0.000  0.002     1.000
+(d) hand-goal-centre+learned-spec vs random-actions                  25.473     0.001  0.004     1.000
+(d) hand-goal-centre+learned-spec vs greedy+hand-coded (goal-blind)  18.179     0.000  0.002     1.000
+(d) hand-goal-centre+learned-spec vs (e) scripted-wrapper (R7a)      20.957     0.000  0.002     1.000
+```
+
+## Harness table, seen goals
+
+```
+Task: squad-goal-seen  (seeds: 8)
+Baselines: random-actions, greedy+hand-coded (goal-blind), (e) scripted-wrapper (R7a)
+
+condition                          role      n  mean ± 95% CI   IQM [95% CI]           
+---------------------------------  --------  -  --------------  -----------------------
+(a) blind-centre+learned-spec      system    8  -3.947 ± 0.105  -3.954 [-4.050, -3.846]
+(b) goal-centre+learned-spec       system    8  15.456 ± 1.850  15.823 [13.346, 17.538]
+(c) goal-centre+goal-spec          system    8  17.960 ± 1.103  18.162 [16.698, 19.050]
+(d) hand-goal-centre+learned-spec  system    8  18.096 ± 1.771  18.092 [16.552, 19.841]
+random-actions                     baseline  8  -4.054 ± 0.017  -4.058 [-4.071, -4.035]
+greedy+hand-coded (goal-blind)     baseline  8  -1.680 ± 0.905  -1.606 [-2.760, -0.744]
+(e) scripted-wrapper (R7a)         baseline  8  -0.243 ± 0.224  -0.179 [-0.394, -0.092]
+
+system                             intervention    ablated mean  drop [95% CI]            p (Holm)  A12    listening
+---------------------------------  --------------  ------------  -----------------------  --------  -----  ---------
+(a) blind-centre+learned-spec      zero            -4.040        0.093 [-0.010, 0.196]    0.469     0.695  no       
+(a) blind-centre+learned-spec      shuffle_batch   -4.023        0.076 [-0.120, 0.273]    0.938     0.602  no       
+(a) blind-centre+learned-spec      swap_receivers  -4.004        0.057 [-0.046, 0.160]    0.938     0.617  no       
+(a) blind-centre+learned-spec      random_matched  -4.058        0.111 [-0.100, 0.323]    0.938     0.758  no       
+(b) goal-centre+learned-spec       zero            -3.968        19.424 [17.460, 21.388]  0.031     1.000  yes      
+(b) goal-centre+learned-spec       shuffle_batch   -3.849        19.305 [17.537, 21.074]  0.031     1.000  yes      
+(b) goal-centre+learned-spec       swap_receivers  -1.245        16.701 [15.256, 18.146]  0.031     1.000  yes      
+(b) goal-centre+learned-spec       random_matched  -3.801        19.257 [17.563, 20.952]  0.031     1.000  yes      
+(c) goal-centre+goal-spec          zero            -3.208        21.169 [19.708, 22.630]  0.031     1.000  yes      
+(c) goal-centre+goal-spec          shuffle_batch   -3.598        21.558 [20.443, 22.674]  0.031     1.000  yes      
+(c) goal-centre+goal-spec          swap_receivers  1.587         16.373 [14.585, 18.161]  0.031     1.000  yes      
+(c) goal-centre+goal-spec          random_matched  -3.531        21.492 [20.493, 22.490]  0.031     1.000  yes      
+(d) hand-goal-centre+learned-spec  zero            -4.006        22.102 [20.360, 23.845]  0.031     1.000  yes      
+(d) hand-goal-centre+learned-spec  shuffle_batch   -3.877        21.973 [20.239, 23.707]  0.031     1.000  yes      
+(d) hand-goal-centre+learned-spec  swap_receivers  -1.209        19.305 [17.717, 20.893]  0.031     1.000  yes      
+(d) hand-goal-centre+learned-spec  random_matched  -3.817        21.912 [20.175, 23.650]  0.031     1.000  yes      
+
+comparison                                                           mean diff  p      p (Holm)  A12  
+-------------------------------------------------------------------  ---------  -----  --------  -----
+(a) blind-centre+learned-spec vs random-actions                      0.107      0.090  0.090     0.758
+(a) blind-centre+learned-spec vs greedy+hand-coded (goal-blind)      -2.267     0.001  0.008     0.000
+(a) blind-centre+learned-spec vs (e) scripted-wrapper (R7a)          -3.704     0.001  0.008     0.000
+(b) goal-centre+learned-spec vs random-actions                       19.510     0.001  0.008     1.000
+(b) goal-centre+learned-spec vs greedy+hand-coded (goal-blind)       17.136     0.000  0.002     1.000
+(b) goal-centre+learned-spec vs (e) scripted-wrapper (R7a)           15.699     0.001  0.008     1.000
+(c) goal-centre+goal-spec vs random-actions                          22.015     0.001  0.008     1.000
+(c) goal-centre+goal-spec vs greedy+hand-coded (goal-blind)          19.641     0.000  0.002     1.000
+(c) goal-centre+goal-spec vs (e) scripted-wrapper (R7a)              18.203     0.001  0.008     1.000
+(d) hand-goal-centre+learned-spec vs random-actions                  22.150     0.001  0.008     1.000
+(d) hand-goal-centre+learned-spec vs greedy+hand-coded (goal-blind)  19.776     0.000  0.002     1.000
+(d) hand-goal-centre+learned-spec vs (e) scripted-wrapper (R7a)      18.339     0.001  0.008     1.000
+```
+
+## Notes
+
+- Checkpoints are selected on validation episodes of the training goals only.
+- Snakes not ordered to eat starve after about 60 steps; their deaths cost nothing, so the score rewards leaving their food alone, not surviving.
+- `step_limit` and `food_target` are valid GoalSpec fields but fixed at 300 and 0.
+- Reproduce: `python scripts/r7b_goal_conditioned.py --from-json runs:r7b-train-* --out docs/results/r7b_goal_conditioned_5k.md` (after the `r7b-train-*` jobs).
+
+wrote docs\results\r7b_goal_conditioned_5k.md and docs\results\r7b_goal_conditioned_5k.json
