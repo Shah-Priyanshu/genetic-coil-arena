@@ -1,1 +1,7 @@
 [start] 8 training runs on 8 workers; cache D:\Projects\genetic-coil-arena-gpu-results\runs\r7b3-train-blind\artifacts; GoalTrainSettings(radius=3, generations=10000, population=64, reps=1, sigma=0.05, lr=0.03, weight_decay=0.005, spec_hidden=24, centre_hidden=24, eval_every=50, val_reps=2, max_steps=300, time_limit_s=inf, progress_s=600.0)
+[progress] blind run 1: gen 350/10000, val mission -3.93, best gen 350, elapsed 624 s
+[progress] blind run 2: gen 450/10000, val mission -4.17, best gen 50, elapsed 633 s
+[progress] blind run 5: gen 350/10000, val mission -3.90, best gen 350, elapsed 633 s
+[progress] blind run 0: gen 350/10000, val mission -4.00, best gen 200, elapsed 636 s
+[progress] blind run 6: gen 350/10000, val mission -4.17, best gen 0, elapsed 646 s
+[progress] blind run 7: gen 300/10000, val mission -3.83, best gen 300, elapsed 659 s
