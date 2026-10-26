@@ -1,0 +1,24 @@
+{
+  "id": "r7a3-zz-aggregate",
+  "commit": "9aec3047aa7506cfbcf75c24093305c35cb955f6",
+  "args": [
+    "scripts/r7a_step2.py",
+    "aggregate",
+    "--runs",
+    "runs:r7a3-*",
+    "runs:r7a2-eval-ollama",
+    "--stem",
+    "docs/results/r7a_step3"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 1,
+  "priority": 3,
+  "after": [
+    "r7a3-eval-lora-rt"
+  ],
+  "timeout_min": 30.0,
+  "outputs": [
+    "docs/results/r7a_step3.md",
+    "docs/results/r7a_step3.json"
+  ]
+}
