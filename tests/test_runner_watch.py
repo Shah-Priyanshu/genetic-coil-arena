@@ -52,6 +52,12 @@ class TestCheck:
         assert self.check(st, self.never) is None
         assert self.check(st, self.busy)[0] == "lane-idle"
 
+    def test_running_job_overrides_stale_idle_since(self):
+        st = state(
+            self.now, cpu_idle_min=None, gpu_idle_min=900, running=[("g", "gpu")]
+        )
+        assert self.check(st, self.busy) is None
+
     def test_short_idle_waits(self):
         assert self.check(state(self.now, 5, 5), self.busy) is None
 

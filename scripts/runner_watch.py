@@ -51,10 +51,13 @@ def check(
     updated = parse_time(state.get("updated_at"))
     if updated is None or now - updated > 60 * stale_min:
         return "stale", f"state.json last updated {state.get('updated_at')}"
+    # a running job wins over idle_since, which the runner refreshes only when it samples
+    busy = {r.get("lane", "cpu") for r in state.get("running", [])}
     idle_for = {}
     for lane in LANES:
         since = parse_time((state.get("idle_since") or {}).get(lane))
-        idle_for[lane] = (now - since) / 60 if since is not None else 0.0
+        lane_idle = since is not None and lane not in busy
+        idle_for[lane] = (now - since) / 60 if lane_idle else 0.0
     idle = [lane for lane in LANES if idle_for[lane] >= idle_min]
     if len(idle) == len(LANES):
         return "pc-idle", ", ".join(
