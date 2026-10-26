@@ -1,0 +1,23 @@
+{
+  "id": "r10s3-teams",
+  "commit": "bb91b029c6830478b7166b5f8fabac389e2f3876",
+  "args": [
+    "scripts/r10_step3.py",
+    "teams",
+    "--metric-from",
+    "runs:r10s3-metric",
+    "--lora-from",
+    "runs:r10s3-lora-*"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 2,
+  "priority": 6,
+  "after": [
+    "r10s3-metric",
+    "r10s3-lora-tt",
+    "r10s3-lora-ss",
+    "r10s3-lora-ob",
+    "r10s3-lora-final"
+  ],
+  "timeout_min": 40.0
+}

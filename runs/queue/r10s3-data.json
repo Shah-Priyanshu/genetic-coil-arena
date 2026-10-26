@@ -1,0 +1,12 @@
+{
+  "id": "r10s3-data",
+  "commit": "bb91b029c6830478b7166b5f8fabac389e2f3876",
+  "args": [
+    "scripts/r10_step3.py",
+    "data"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 1,
+  "priority": 6,
+  "timeout_min": 30.0
+}

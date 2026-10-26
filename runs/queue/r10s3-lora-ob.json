@@ -1,0 +1,21 @@
+{
+  "id": "r10s3-lora-ob",
+  "commit": "bb91b029c6830478b7166b5f8fabac389e2f3876",
+  "args": [
+    "scripts/r10_step3.py",
+    "lora",
+    "--fold",
+    "ob"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 2,
+  "priority": 6,
+  "after": [
+    "r10s3-data"
+  ],
+  "timeout_min": 60.0,
+  "env": {
+    "HF_HOME": "D:\\hf_cache",
+    "R10S3_STORE": "D:\\hf_cache\\r10s3_store"
+  }
+}
