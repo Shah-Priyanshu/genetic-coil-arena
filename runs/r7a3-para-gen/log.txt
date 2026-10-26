@@ -1,2 +1,19 @@
 [16:21:11] 1440 bases, 635 already done
 [16:21:11] Ollama already running at http://localhost:11434
+[16:22:46] para-gen 640/1440
+[16:25:42] para-gen 650/1440
+[16:28:18] para-gen 660/1440
+[16:31:39] para-gen 670/1440
+[16:34:26] para-gen 680/1440
+[16:37:43] para-gen 690/1440
+[16:41:26] para-gen 700/1440
+[16:44:52] para-gen 710/1440
+[16:48:10] para-gen 720/1440
+[16:51:22] para-gen 730/1440
+[16:54:16] para-gen 740/1440
+[16:57:39] para-gen 750/1440
+[17:01:23] para-gen 760/1440
+[17:05:09] para-gen 770/1440
+[17:08:35] para-gen 780/1440
+[17:12:25] para-gen 790/1440
+[17:15:48] para-gen 800/1440
