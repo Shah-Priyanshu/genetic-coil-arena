@@ -15,3 +15,10 @@
 [progress] blind run 5: gen 700/10000, val mission -3.87, best gen 550, elapsed 1365 s
 [progress] blind run 6: gen 650/10000, val mission -4.13, best gen 450, elapsed 1382 s
 [progress] blind run 7: gen 550/10000, val mission -4.10, best gen 350, elapsed 1429 s
+[progress] blind run 0: gen 1700/10000, val mission -3.87, best gen 1700, elapsed 1928 s
+[progress] blind run 3: gen 850/10000, val mission -4.00, best gen 650, elapsed 1942 s
+[progress] blind run 2: gen 1100/10000, val mission -4.17, best gen 850, elapsed 1956 s
+[progress] blind run 4: gen 850/10000, val mission -3.90, best gen 100, elapsed 1973 s
+[progress] blind run 6: gen 850/10000, val mission -4.43, best gen 450, elapsed 2006 s
+[progress] blind run 5: gen 950/10000, val mission -3.87, best gen 550, elapsed 2066 s
+[progress] blind run 1: gen 950/10000, val mission -3.87, best gen 950, elapsed 2072 s
