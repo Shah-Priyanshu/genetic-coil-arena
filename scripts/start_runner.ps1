@@ -6,7 +6,7 @@
 #   .\scripts\start_runner.ps1 -Python D:\venvs\gca\Scripts\python.exe --cpu-budget 20
 param(
     [string]$Python = "D:\venvs\gca\Scripts\python.exe",
-    [string]$Repo = (Split-Path -Parent $PSScriptRoot),
+    [string]$Repo = "",
     [string]$JobsBranch = "claude/vibrant-hawking-zodb5a",
     [string]$Remote = "origin",
     [Parameter(ValueFromRemainingArguments = $true)]
@@ -14,6 +14,8 @@ param(
 )
 
 $ErrorActionPreference = "Continue"
+# Windows PowerShell 5.1 leaves $PSScriptRoot empty in param() defaults under -File
+if (-not $Repo) { $Repo = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path) }
 $Repo = (Resolve-Path $Repo).Path
 $Worktree = Join-Path (Split-Path -Parent $Repo) "$(Split-Path -Leaf $Repo)-runner"
 if (-not $env:NUMBA_CACHE_DIR) { $env:NUMBA_CACHE_DIR = "C:\ncc" }
