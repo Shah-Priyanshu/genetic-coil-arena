@@ -131,3 +131,5 @@
 [progress] centre-goal run 7: gen 2550/10000, val mission 11.23, best gen 2150, elapsed 12430 s
 [progress] centre-goal run 3: gen 3100/10000, val mission 10.03, best gen 2650, elapsed 12440 s
 [progress] centre-goal run 0: gen 2900/10000, val mission 15.53, best gen 2900, elapsed 12567 s
+[progress] centre-goal run 4: gen 3050/10000, val mission 15.10, best gen 3000, elapsed 12628 s
+[progress] centre-goal run 6: gen 3000/10000, val mission 12.23, best gen 2850, elapsed 12796 s
