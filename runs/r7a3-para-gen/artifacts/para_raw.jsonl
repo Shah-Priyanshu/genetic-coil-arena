@@ -9214,3 +9214,27 @@
 {"base_id": "tpl-squad-00588", "style": "mixed_notation", "text": "Red green blue snakes 32 food target 150 steps hex 96 caution normal care dozen 12 per thousand 150000"}
 {"base_id": "tpl-squad-00588", "style": "mixed_notation", "text": "Squad of snakes ratio 1:1:1 foraging 32 food target 150 step limit 150 caution ordinary care half hundred 50"}
 {"base_id": "tpl-squad-00588", "style": "mixed_notation", "text": "Snakes red green blue squad foraging 32 food target 150 steps hex 96 caution normal per thousand 150000 dozen 12"}
+{"base_id": "tpl-squad-ref0143", "style": "terse_note", "text": "REQ | OUT OF RANGE | CANNOT FULFILL | BLUE FORAGES UNTIL 41 FOOD COLLECTED"}
+{"base_id": "tpl-squad-ref0143", "style": "terse_note", "text": "REQUEST REJECTED | RANGE LIMIT EXCEEDED | SAME AS BLUE FORAGING 41 FOOD"}
+{"base_id": "tpl-squad-ref0143", "style": "terse_note", "text": "OUT OF BOUNDS | REQUEST INVALID | BLUE GATHERING 41 FOOD ONLY"}
+{"base_id": "tpl-squad-ref0143", "style": "terse_note", "text": "SYSTEM ERROR | RANGE PROHIBITS | LIKE BLUE FOOD COLLECTION 41"}
+{"base_id": "tpl-squad-ref0143", "style": "terse_note", "text": "DENIED | DISTANCE TOO GREAT | SIMILAR TO BLUE FORAGE UNTIL 41"}
+{"base_id": "tpl-squad-ref0143", "style": "terse_note", "text": "NOT POSSIBLE | RANGE RESTRICTION | SAME AS BLUE GATHERING 41 FOOD"}
+{"base_id": "tpl-squad-ref0143", "style": "terse_note", "text": "INVALID REQUEST | RANGE CONSTRAINT | BLUE FORAGING TERMINATES AT 41"}
+{"base_id": "tpl-squad-ref0143", "style": "terse_note", "text": "CANNOT PROCESS | RANGE VIOLATION | EQUAL TO BLUE FOOD COLLECT 41"}
+{"base_id": "tpl-plant-00223", "style": "negation", "text": "Activate fault diagnosis for all nodes except reactor"}
+{"base_id": "tpl-plant-00223", "style": "negation", "text": "Initiate system check excluding reactor node"}
+{"base_id": "tpl-plant-00223", "style": "negation", "text": "Run diagnostics on separator, stripper, compressor_utilities only"}
+{"base_id": "tpl-plant-00223", "style": "negation", "text": "Execute monitoring protocol without reactor involvement"}
+{"base_id": "tpl-plant-00223", "style": "negation", "text": "Start fault detection for everyone but reactor component"}
+{"base_id": "tpl-plant-00223", "style": "negation", "text": "Process sensor data from all nodes apart from reactor"}
+{"base_id": "tpl-plant-00223", "style": "negation", "text": "Enable alert system excluding reactor sensor"}
+{"base_id": "tpl-plant-00223", "style": "negation", "text": "Trigger diagnostic routine leaving reactor out"}
+{"base_id": "tpl-plant-00966", "style": "numbers_in_words", "text": "Request for plant fault diagnosis system with sensor nodes reactor separator stripper compressor utilities bytes per message eight false alarm rate zero point zero one active nodes reactor separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00966", "style": "numbers_in_words", "text": "System query requiring fault detection network including reactor separator stripper compressor utilities sensor nodes message size eight bytes false alarm probability one percent active components reactor separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00966", "style": "numbers_in_words", "text": "Control system command requesting diagnostic monitoring of reactor separator stripper compressor utilities with eight byte transmission format false positive rate point zero one active monitoring units reactor separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00966", "style": "numbers_in_words", "text": "Plant monitoring instruction asking for fault analysis system with reactor separator stripper compressor utilities sensor elements message length eight bytes error rate one percent operational nodes reactor separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00966", "style": "numbers_in_words", "text": "Technical request for process fault detection using reactor separator stripper compressor utilities sensor configuration eight character data packets false alarm level point zero one active elements reactor separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00966", "style": "numbers_in_words", "text": "Automated system prompt requiring reactor separator stripper compressor utilities diagnostic network with eight byte communication protocol false alert threshold one percent operating nodes reactor separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00966", "style": "numbers_in_words", "text": "Engineering command seeking fault identification system involving reactor separator stripper compressor utilities sensor placement eight bit message structure false detection rate point zero one active units reactor separator stripper compressor utilities"}
+{"base_id": "tpl-plant-00966", "style": "numbers_in_words", "text": "Operational query for plant troubleshooting network including reactor separator stripper compressor utilities sensor coverage eight character message format false positive ratio one percent running components reactor separator stripper compressor utilities"}
