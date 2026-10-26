@@ -105,7 +105,7 @@ and idle-since per lane.
 
 ## Watching for idle lanes
 
-`scripts/runner_watch.py` reads the results worktree and prints every job start and end, appending them to `%LOCALAPPDATA%\genetic_coil_arenaunner_watch.log`. For CI jobs it also prints the test counts. It exits when the PC needs attention:
+`scripts/runner_watch.py` reads the results worktree and prints every job start and end, appending them to `%LOCALAPPDATA%\genetic_coil_arena\runner_watch.log`. For CI jobs it also prints the test counts. It exits when the PC needs attention:
 - `pc-idle`: both lanes idle for `--idle-min` (default 10);
 - `lane-idle`: a lane that was busy during the watch is now idle;
 - `failure`: a job failed or timed out, or a CI run has failed tests;
