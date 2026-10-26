@@ -6,30 +6,23 @@
   "cpu_workers_in_use": 8,
   "running": [
     {
-      "id": "r7b2-train-blind",
+      "id": "r7b2-zz-aggregate",
       "lane": "cpu",
       "cpu_workers": 8,
-      "started_at": "2026-10-25T22:33:16+00:00"
+      "started_at": "2026-10-26T00:38:14+00:00"
     }
   ],
   "backlog": {
     "ready": [],
-    "blocked": [
-      {
-        "id": "r7b2-zz-aggregate",
-        "blocked_by": [
-          "r7b2-train-blind"
-        ]
-      }
-    ]
+    "blocked": []
   },
   "idle_since": {
-    "cpu": null,
+    "cpu": "2026-10-26T00:38:11+00:00",
     "gpu": "2026-10-25T23:24:36+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-26T00:37:30+00:00",
-  "cpu_percent": 5.6,
+  "updated_at": "2026-10-26T00:38:14+00:00",
+  "cpu_percent": 5.8,
   "gpu": {
     "util": 0.0,
     "mem_used_mb": 744.0,
