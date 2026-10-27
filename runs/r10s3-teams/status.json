@@ -1,0 +1,20 @@
+{
+  "id": "r10s3-teams",
+  "commit": "bb91b029c6830478b7166b5f8fabac389e2f3876",
+  "queued_args": [
+    "scripts/r10_step3.py",
+    "teams",
+    "--metric-from",
+    "runs:r10s3-metric",
+    "--lora-from",
+    "runs:r10s3-lora-*"
+  ],
+  "state": "running",
+  "started_at": "2026-10-27T04:47:42+00:00",
+  "updated_at": "2026-10-27T04:47:42+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 95 %, 10045 MiB, 12282 MiB, 78",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 2
+}
