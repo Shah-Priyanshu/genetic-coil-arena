@@ -2287,3 +2287,20 @@
 {"base_id": "tpl-plant-01007", "style": "mixed_notation", "text": "Sensor network fault diagnosis reactor separator stripper compressor utilities 51 bytes per message 10‰ false alarm rate separator stripper active", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-plant-01007", "style": "mixed_notation", "text": "Reactor separator stripper compressor utilities fault detection system 51 byte message frames 1% false alarm probability separator stripper nodes in use", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-01272", "style": "jargon", "text": "SQD SNAKE R/G/B FORAGE R/G CAUTION NORM STEP 240 FOOD 6", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01272", "style": "jargon", "text": "SNAKE SQD R/G/B FORAGE R/G CAUTION NORM STEP 240 FOOD 6", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01272", "style": "jargon", "text": "SQD SNAKE R/G/B FORAGE R/G CAUTION NORMAL STEP 240 FOOD 6", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01272", "style": "jargon", "text": "SNAKE SQUAD R/G/B FORAGE R/G CAUTION NORM STEP 240 FOOD 6", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01272", "style": "jargon", "text": "SQD SNAKE R/G/B FORAGE R/G CAUTION NORM STEP 240 FOOD TARGET 6", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01272", "style": "jargon", "text": "SNAKE SQD R/G/B FORAGE R/G CAUTION NORM STEP 240 FOOD TARGET 6", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01272", "style": "jargon", "text": "SQD SNAKE R/G/B FORAGE R/G CAUTION NORMAL STEP 240 FOOD TARGET 6", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01272", "style": "jargon", "text": "SNAKE SQUAD R/G/B FORAGE R/G CAUTION NORMAL STEP 240 FOOD 6", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00027", "style": "typos", "text": "red green blue sqd forag gn blu cauti normal step 150 food 16", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00027", "style": "typos", "text": "snakes red grn blu forag gn blu caution norm step 150 food 16", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00027", "style": "typos", "text": "squad red green blue forag green blue caution normal steps 150 food target 16", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00027", "style": "typos", "text": "red grn blu snake sqd forag gn blu cauti normal 150 steps food 16", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00027", "style": "typos", "text": "snakes red green blue forag gn blu caution norm step limit 150 food target 16", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00027", "style": "typos", "text": "squad red green blue forag gn blu caution normal steps 150 food 16 target", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00027", "style": "typos", "text": "red grn blu snakes forag gn blu cauti normal step 150 food 16", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00027", "style": "typos", "text": "snakes red green blue forag gn blu normal caution step 150 food target 16", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00042", "style": "multi_sentence", "text": "System requires fault diagnosis for reactor separator stripper and compressor utilities. Message size set to fifty one bytes. False alarm rate at two percent.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00042", "style": "multi_sentence", "text": "Requesting plant fault detection across reactor separator stripper and compressor utilities nodes. Each message contains fifty one bytes. Alarm rate maintained at point zero two.", "verified": false, "verifier_status": "ok"}
