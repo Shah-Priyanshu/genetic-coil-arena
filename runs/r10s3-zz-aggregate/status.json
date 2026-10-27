@@ -12,12 +12,14 @@
     "--out",
     "docs/results/r10_step3.md"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-27T04:47:56+00:00",
-  "updated_at": "2026-10-27T04:47:56+00:00",
-  "elapsed_min": 0.0,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 95 %, 10045 MiB, 12282 MiB, 78",
+  "updated_at": "2026-10-27T04:47:59+00:00",
+  "elapsed_min": 0.1,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 96 %, 10045 MiB, 12282 MiB, 78",
   "host": "PC",
   "lane": "cpu",
-  "cpu_workers": 1
+  "cpu_workers": 1,
+  "returncode": 0,
+  "finished_at": "2026-10-27T04:47:59+00:00"
 }
