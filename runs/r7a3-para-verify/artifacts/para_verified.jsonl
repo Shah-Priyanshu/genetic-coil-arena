@@ -10537,3 +10537,6 @@
 {"base_id": "tpl-squad-00374", "style": "jargon", "text": "Squad snks red grn blu. Forag red. Caution norm. Step 300. Food 8.", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00374", "style": "jargon", "text": "Snk squad red grn blu. Foraging red only. Norm caution. 300 steps. Target 8 food.", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00374", "style": "jargon", "text": "Red grn blu snk team. Red foraging. Normal cautions. 300 step limit. 8 food target.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00374", "style": "jargon", "text": "Squad snakes: red, grn, blu. Red forage. Caution normal. Steps 300. Food 8.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00374", "style": "jargon", "text": "Red grn blu snk group. Foraging red. Normal caution. Step limit 300. Food target 8.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00374", "style": "jargon", "text": "Snakes: red grn blu squad. Red foraging. Norm cautions. 300 steps. Food 8 target.", "verified": true, "verifier_status": "ok"}
