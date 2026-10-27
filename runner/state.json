@@ -3,14 +3,8 @@
   "host": "PC",
   "draining_for_update": false,
   "cpu_budget": 24,
-  "cpu_workers_in_use": 28,
+  "cpu_workers_in_use": 26,
   "running": [
-    {
-      "id": "r7b3-train-hand-goal",
-      "lane": "cpu",
-      "cpu_workers": 8,
-      "started_at": "2026-10-27T04:48:08+00:00"
-    },
     {
       "id": "r7b4-train-both-goal",
       "lane": "cpu",
@@ -28,16 +22,37 @@
       "lane": "gpu",
       "cpu_workers": 4,
       "started_at": "2026-10-27T16:27:41+00:00"
+    },
+    {
+      "id": "r10s4-zz-aggregate",
+      "lane": "cpu",
+      "cpu_workers": 1,
+      "started_at": "2026-10-27T16:33:32+00:00"
+    },
+    {
+      "id": "r11-team",
+      "lane": "cpu",
+      "cpu_workers": 2,
+      "started_at": "2026-10-27T16:33:32+00:00"
+    },
+    {
+      "id": "r10s4x-zz-aggregate",
+      "lane": "cpu",
+      "cpu_workers": 1,
+      "started_at": "2026-10-27T16:33:32+00:00"
+    },
+    {
+      "id": "ci-9717e10a7c9b",
+      "lane": "cpu",
+      "cpu_workers": 2,
+      "started_at": "2026-10-27T16:33:32+00:00"
     }
   ],
   "backlog": {
     "ready": [
-      "r10s4-zz-aggregate",
-      "r11-team",
+      "r7b3-zz-aggregate",
       "r7b4-train-hand-goal",
-      "r10s4x-zz-aggregate",
-      "r10s4y-q30-2",
-      "ci-9717e10a7c9b"
+      "r10s4y-q30-2"
     ],
     "blocked": [
       {
@@ -73,12 +88,6 @@
           "r11-gemma-sealed",
           "r11-keyword-sealed"
         ]
-      },
-      {
-        "id": "r7b3-zz-aggregate",
-        "blocked_by": [
-          "r7b3-train-hand-goal"
-        ]
       }
     ]
   },
@@ -87,10 +96,10 @@
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-27T16:32:28+00:00",
-  "cpu_percent": 92.8,
+  "updated_at": "2026-10-27T16:33:32+00:00",
+  "cpu_percent": 92.3,
   "gpu": {
-    "util": 14.0,
+    "util": 23.0,
     "mem_used_mb": 11003.0,
     "mem_total_mb": 12282.0
   }
