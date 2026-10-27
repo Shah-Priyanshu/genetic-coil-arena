@@ -1,0 +1,12 @@
+{
+  "id": "r10s4-gate",
+  "commit": "34a24be26c25024e5dc109c82b2a513fbba9ab2d",
+  "args": [
+    "scripts/r10_step4.py",
+    "gate"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 1,
+  "priority": 6,
+  "timeout_min": 20.0
+}
