@@ -9954,3 +9954,18 @@
 {"base_id": "tpl-squad-01430", "style": "terse_note", "text": "red green blue snakes | forage: green blue | watch: high | food target: 4", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-01430", "style": "terse_note", "text": "SNAKES: red/green/blue | FORAGE: green/blue | ALERT: HIGH | FOOD: 4", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-01430", "style": "terse_note", "text": "red-green-blue squad | green-blue foraging | caution high | food 4", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01430", "style": "terse_note", "text": "Snakes: red+green+blue | Forage: green+blue | Warning: high | Target: 4", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01430", "style": "terse_note", "text": "RED GREEN BLUE team | GREEN BLUE foragers | DANGER: HIGH | FOOD: 4", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01430", "style": "terse_note", "text": "Squad members: red/green/blue | Foraging: green/blue | Risk: high | Goal: 4", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01430", "style": "terse_note", "text": "red green blue unit | green blue hunting | safety: high | nourishment: 4", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00520", "style": "typos", "text": "plz run fault diag systm reactr sep strpr compr util 16byt msg fals alarm 1 percent activ node reactr", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00520", "style": "typos", "text": "need fault detect system for reactor separator stripper compressor util 16 bytes per msg 1percent false alarm rate active reactor only", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00520", "style": "typos", "text": "fault diag system reqd reactor sep stripper compr util 16 byte messages false alarm 0.01 active reactor node", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00520", "style": "typos", "text": "quick fault monitor reactor sep stripper compressor util 16bytes msg fals alarm 1 percent reactr active", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00520", "style": "typos", "text": "plant fault detect systm reactor sep stripper compr util 16byt msg 1percent false alarm activ reactr only", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00520", "style": "typos", "text": "fault diag system reactor separator stripper compressor util 16byte msg fals alarm rate 0.01 activ node reactor", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00520", "style": "typos", "text": "urgent fault detection for reactor sep stripper compr util 16 byte msg false alarm 1 percent reactor active", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00520", "style": "typos", "text": "need fault sys reactor sep stripper compr util 16bytes per msg fals alarm 1percent activ reactor node", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00944", "style": "self_correction", "text": "Wait, squad of snakes red green blue foraging red caution normal step limit seventy food target five", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00944", "style": "self_correction", "text": "No, make that snakes squad red green blue foraging red caution normal step limit seventy food target five", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00944", "style": "self_correction", "text": "Actually, snakes squad red green blue foraging red caution normal step limit seventy food target five", "verified": true, "verifier_status": "ok"}
