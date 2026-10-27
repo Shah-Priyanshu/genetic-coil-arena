@@ -11057,3 +11057,5 @@
 {"base_id": "tpl-plant-00681", "style": "indirect_hint", "text": "It would be nice if the system could monitor those specific nodes with a low false alarm rate", "verified": false, "verifier_status": "clarify"}
 {"base_id": "tpl-plant-00681", "style": "indirect_hint", "text": "I was thinking about having sensor data from reactor and stripper processed with minimal errors", "verified": false, "verifier_status": "clarify"}
 {"base_id": "tpl-plant-00681", "style": "indirect_hint", "text": "Would it be possible to set up the compressor utilities monitoring with that particular error threshold", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-00681", "style": "indirect_hint", "text": "It would be helpful if the fault detection focused on these exact components only", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-00681", "style": "indirect_hint", "text": "I was wondering if the system could handle those four nodes with 1% false alarms", "verified": false, "verifier_status": "ok"}
