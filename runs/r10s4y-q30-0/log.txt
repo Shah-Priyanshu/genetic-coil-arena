@@ -40,3 +40,5 @@
 [12:21:09] conditions 14/25 RE3-SS/front-end_f2/2 (4103s)
 [12:21:44] conditions 15/25 RE3-SS/front-end_f3/3 (4137s)
 [12:22:11] conditions 16/25 RE3-SS/orders_f3/1 (4164s)
+[12:22:42] conditions 17/25 RE3-SS/orders_f3/3 (4196s)
+[12:23:17] conditions 18/25 RE3-SS/orders_f4/3 (4230s)
