@@ -138,3 +138,5 @@ Loading weights: 100%|██████████| 311/311 [00:06<00:00, 45.8
 [02:34:33] r32-n12k-p80: trained 2250 steps in 2096s, loss 0.0003, peak 4716 MiB
 [02:36:57] r32-n12k-p80 dev: 40/304 (squad-dev-ho-03)
 [02:39:11] r32-n12k-p80 dev: 80/304 (plant-dev-in-07)
+[02:41:02] r32-n12k-p80 dev: 120/304 (plant-dev-ho-11)
+[02:43:05] r32-n12k-p80 dev: 160/304 (squad-indist-15)
