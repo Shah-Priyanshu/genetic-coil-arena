@@ -44,7 +44,6 @@
       {
         "id": "r10s4-zz-aggregate",
         "blocked_by": [
-          "r10s4-o14-2",
           "r10s4-q3-0",
           "r10s4-q3-1"
         ]
@@ -52,7 +51,6 @@
       {
         "id": "r10s4x-zz-aggregate",
         "blocked_by": [
-          "r10s4-o14-2",
           "r10s4-q3-0",
           "r10s4-q3-1",
           "r10s4x-g4b-0",
@@ -73,10 +71,10 @@
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-27T11:48:20+00:00",
-  "cpu_percent": 94.7,
+  "updated_at": "2026-10-27T11:49:35+00:00",
+  "cpu_percent": 94.5,
   "gpu": {
-    "util": 98.0,
+    "util": 100.0,
     "mem_used_mb": 10627.0,
     "mem_total_mb": 12282.0
   }
