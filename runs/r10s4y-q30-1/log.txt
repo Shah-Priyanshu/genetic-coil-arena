@@ -1,0 +1,1 @@
+[12:27:59] 32 incidents, conditions ['team4_rule', 'team4_llm', 'single_all', 'single_logs'], model ollama:qwen3-coder:30b
