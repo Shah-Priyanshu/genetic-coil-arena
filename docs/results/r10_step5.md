@@ -1,0 +1,166 @@
+# R10 step 5: an LLM final reader over the fusion's top-3 (goal G4e)
+
+Built locally from the r10s5-o14, r10s5-g4b and r10s5-q30 job artifacts on gpu-results (the CPU lane was full with R7b training, so the r10s5-zz-aggregate job was still waiting).
+
+**G4e verdict: KILL**
+
+Reference: nonllm_fusion, test top-1 80.6, top-3 93.5 (RE3 test split, repetitions 2-4). Readers see the fusion's top three only, so their top-3 equals the fusion's by construction.
+
+## Main results (test split, root-cause top-1 and top-3, %)
+
+| system | model | n | top-1 [95% CI] | top-3 | valid replies |
+|---|---|---|---|---|---|
+| non-LLM fusion (dev-fitted reciprocal ranks) | - | 62 | 80.6 [71.0, 90.3] | 93.5 | 100% |
+| LLM reads the fusion's top-3 (ranker order and score shown) | gemma4:e4b | 62 | 74.2 [62.9, 85.5] | 93.5 | 100% |
+| LLM reads the fusion's top-3 (ranker order and score shown) | qwen2.5-coder:14b | 62 | 77.4 [66.1, 87.1] | 93.5 | 100% |
+| LLM reads the fusion's top-3 (ranker order and score shown) | qwen3-coder:30b | 62 | 72.6 [61.3, 83.9] | 93.5 | 100% |
+| same, overriding the fusion's top-1 only above a dev-chosen confidence | gemma4:e4b | 62 | 80.6 [69.4, 90.3] | 93.5 | 100% |
+| same, overriding the fusion's top-1 only above a dev-chosen confidence | qwen2.5-coder:14b | 62 | 80.6 [71.0, 90.3] | 93.5 | 100% |
+| same, overriding the fusion's top-1 only above a dev-chosen confidence | qwen3-coder:30b | 62 | 75.8 [64.5, 85.5] | 93.5 | 100% |
+| ablation: candidates shuffled, ranker position still shown | gemma4:e4b | 62 | 74.2 [62.9, 85.5] | 93.5 | 100% |
+| ablation: candidates shuffled, ranker position still shown | qwen2.5-coder:14b | 62 | 69.4 [58.1, 80.6] | 93.5 | 100% |
+| ablation: candidates shuffled, ranker position still shown | qwen3-coder:30b | 62 | 69.4 [58.1, 80.6] | 93.5 | 100% |
+| ablation: candidates shuffled, ranker position hidden | gemma4:e4b | 62 | 62.9 [51.6, 74.2] | 93.5 | 100% |
+| ablation: candidates shuffled, ranker position hidden | qwen2.5-coder:14b | 62 | 61.3 [48.4, 72.6] | 93.5 | 100% |
+| ablation: candidates shuffled, ranker position hidden | qwen3-coder:30b | 62 | 62.9 [51.6, 75.8] | 93.5 | 100% |
+
+## G4e comparisons (paired, test split)
+
+| model | top-1 | reader - fusion [95% CI] | p (Holm) | verdict |
+|---|---|---|---|---|
+| gemma4:e4b | 74.2 | -6.5 [-16.1, +1.6] | 0.315 | KILL |
+| qwen2.5-coder:14b | 77.4 | -3.2 [-11.3, +4.8] | 0.414 | KILL |
+| qwen3-coder:30b | 72.6 | -8.1 [-17.7, +1.6] | 0.287 | KILL |
+
+## Threshold variant (not part of the verdict)
+
+| model | top-1 | reader - fusion [95% CI] | p (Holm) | verdict |
+|---|---|---|---|---|
+| gemma4:e4b | 80.6 | +0.0 [-4.8, +4.8] | 1.000 | KILL |
+| qwen2.5-coder:14b | 80.6 | +0.0 [-6.5, +6.5] | 1.000 | KILL |
+| qwen3-coder:30b | 75.8 | -4.8 [-12.9, +3.2] | 0.771 | KILL |
+
+## Override threshold chosen on dev
+
+| model | n dev | dev top-1 by threshold | chosen |
+|---|---|---|---|
+| qwen2.5-coder:14b | 28 | 0.5: 86, 0.6: 86, 0.7: 86, 0.8: 86, 0.9: 86, 0.95: 86 | 0.95 |
+| gemma4:e4b | 28 | 0.5: 82, 0.6: 82, 0.7: 82, 0.8: 82, 0.9: 82, 0.95: 82 | 0.95 |
+| qwen3-coder:30b | 28 | 0.5: 71, 0.6: 71, 0.7: 71, 0.8: 71, 0.9: 75, 0.95: 75 | 0.95 |
+
+## Overrides of the fusion's top-1 (test split)
+
+| model | condition | n | valid | overrides | right (fixes a miss) | wrong (breaks a hit) | both wrong | net |
+|---|---|---|---|---|---|---|---|---|
+| gemma4:e4b | rerank3 | 62 | 100% | 8 | 2 | 6 | 0 | -4 |
+| gemma4:e4b | rerank3:shuffle | 62 | 100% | 10 | 3 | 7 | 0 | -4 |
+| gemma4:e4b | rerank3:shuffle_blind | 62 | 100% | 21 | 4 | 15 | 2 | -11 |
+| gemma4:e4b | rerank3_thr | 62 | 100% | 2 | 1 | 1 | 0 | +0 |
+| qwen2.5-coder:14b | rerank3 | 62 | 100% | 7 | 2 | 4 | 1 | -2 |
+| qwen2.5-coder:14b | rerank3:shuffle | 62 | 100% | 12 | 1 | 8 | 3 | -7 |
+| qwen2.5-coder:14b | rerank3:shuffle_blind | 62 | 100% | 19 | 2 | 14 | 3 | -12 |
+| qwen2.5-coder:14b | rerank3_thr | 62 | 100% | 4 | 2 | 2 | 0 | +0 |
+| qwen3-coder:30b | rerank3 | 62 | 100% | 9 | 2 | 7 | 0 | -5 |
+| qwen3-coder:30b | rerank3:shuffle | 62 | 100% | 11 | 2 | 9 | 0 | -7 |
+| qwen3-coder:30b | rerank3:shuffle_blind | 62 | 100% | 20 | 3 | 14 | 3 | -11 |
+| qwen3-coder:30b | rerank3_thr | 62 | 100% | 7 | 2 | 5 | 0 | -3 |
+
+## Does the reader copy the ranker? (test split)
+
+| model | condition | n | picks the fusion's top-1 | picks the first block shown |
+|---|---|---|---|---|
+| gemma4:e4b | rerank3 | 62 | 87% | 87% |
+| gemma4:e4b | rerank3:shuffle | 62 | 84% | 19% |
+| gemma4:e4b | rerank3:shuffle_blind | 62 | 66% | 31% |
+| qwen2.5-coder:14b | rerank3 | 62 | 89% | 89% |
+| qwen2.5-coder:14b | rerank3:shuffle | 62 | 81% | 26% |
+| qwen2.5-coder:14b | rerank3:shuffle_blind | 62 | 69% | 24% |
+| qwen3-coder:30b | rerank3 | 62 | 85% | 85% |
+| qwen3-coder:30b | rerank3:shuffle | 62 | 82% | 18% |
+| qwen3-coder:30b | rerank3:shuffle_blind | 62 | 68% | 29% |
+
+## Shuffle ablations (test split, against the intact reader)
+
+| system | ablation | intact top-1 | ablated top-1 | change [95% CI] |
+|---|---|---|---|---|
+| rerank3[gemma4:e4b] | shuffle | 74.2 | 74.2 | +0.0 [-8.1, +8.1] |
+| rerank3[gemma4:e4b] | shuffle_blind | 74.2 | 62.9 | -11.3 [-22.6, +0.0] |
+| rerank3[qwen2.5-coder:14b] | shuffle | 77.4 | 69.4 | -8.1 [-16.1, +0.0] |
+| rerank3[qwen2.5-coder:14b] | shuffle_blind | 77.4 | 61.3 | -16.1 [-25.8, -6.5] |
+| rerank3[qwen3-coder:30b] | shuffle | 72.6 | 69.4 | -3.2 [-8.1, +0.0] |
+| rerank3[qwen3-coder:30b] | shuffle_blind | 72.6 | 62.9 | -9.7 [-19.4, -1.6] |
+
+## Top-1 per RE3 system (test split, %)
+
+| system | OB | SS | TT |
+|---|---|---|---|
+| nonllm_fusion | 70 | 95 | 76 |
+| rerank3[gemma4:e4b] | 75 | 95 | 52 |
+| rerank3[qwen2.5-coder:14b] | 65 | 100 | 67 |
+| rerank3[qwen3-coder:30b] | 75 | 100 | 43 |
+| rerank3_thr[gemma4:e4b] | 70 | 95 | 76 |
+| rerank3_thr[qwen2.5-coder:14b] | 65 | 100 | 76 |
+| rerank3_thr[qwen3-coder:30b] | 75 | 100 | 52 |
+| rerank3:shuffle[gemma4:e4b] | 70 | 100 | 52 |
+| rerank3:shuffle[qwen2.5-coder:14b] | 50 | 90 | 67 |
+| rerank3:shuffle[qwen3-coder:30b] | 70 | 95 | 43 |
+| rerank3:shuffle_blind[gemma4:e4b] | 60 | 90 | 38 |
+| rerank3:shuffle_blind[qwen2.5-coder:14b] | 45 | 90 | 48 |
+| rerank3:shuffle_blind[qwen3-coder:30b] | 65 | 95 | 29 |
+
+## Analysis
+
+<!-- analysis:start -->
+**G4e is a kill.** No model beats the non-LLM fusion, and all three score below it on the pre-registered `rerank3` condition. The fusion reproduced its G4d result (80.6 top-1, 93.5 top-3).
+
+| Model | rerank3 top-1 | Δ vs fusion [95% CI] |
+|---|---|---|
+| qwen2.5-coder:14b | 77.4 | −3.2 [−11.3, +4.8] |
+| gemma4:e4b | 74.2 | −6.5 [−16.1, +1.6] |
+| qwen3-coder:30b | 72.6 | −8.1 [−17.7, +1.6] |
+
+The setup gave the readers no excuse:
+- Every reply was valid (100%).
+- The evidence used 755 of the 1,500 allowed tokens on average, and at most 1,204.
+
+**Readers mostly copy the ranker; when they deviate, they are usually wrong.**
+- With the fusion's order shown, each reader keeps the fusion's top-1 in 85 to 89% of incidents.
+- Over the 62 test incidents, each model overrode the fusion 7 to 9 times. Each fixed 2 misses and broke 4 to 7 hits.
+- Most of the losses are on Train Ticket, the largest system (68 services, against 12 for OB and 15 for SS):
+  - Breaks of a correct fusion answer on TT: 14B 2, gemma 5, 30B 7.
+  - TT top-1: 67, 52 and 43, against the fusion's 76.
+  - Not one TT override fixed a miss.
+- On Sock Shop, the 14B and the 30B each fix one miss (95 to 100).
+
+**The evidence alone is worth about 62%, and the ranker's order about 18 points more.**
+- With candidates shuffled and ranker positions hidden, all three models fall to 61.3 to 62.9 top-1. For the 14B that is −16.1 [−25.8, −6.5] against its intact run.
+- Picking uniformly among the three would give about 31%. So the models do read real signal in the evidence blocks, about twice chance.
+- But that signal is weaker than the fusion's ordering. Given both, the models do best by deferring to the order, and every deviation costs on net.
+- Shuffling while still showing positions costs 0 to 8 points. Presentation order matters: the 14B picks the first block shown 26% of the time against the fusion's top-1 81%.
+
+**Stated confidence carries no information.**
+- Test incidents with a stated confidence of 0.95: 14B 55 of 62, 30B 60 of 62, gemma 42 of 62.
+- The dev grid was flat for the 14B and gemma, so the pre-registered tie-break chose the highest threshold (0.95). Overrides at exactly 0.95 still pass it.
+- With the threshold, the 14B and gemma end exactly level with the fusion (net 0 overrides), and the 30B still loses 3.
+
+**Scale does not help.** The 30B is the worst reader, as in the R10 step 4 scale check, where it was also below the fusion.
+
+**What this closes.** Across four goals the LLM has now had four roles on incident data, and in none did it beat the code beside it:
+
+| Goal | LLM role |
+|---|---|
+| G4 | whole-context reader |
+| G4b, G4d | per-service log specialist |
+| G4b, G4d | centre over typed reports |
+| G4e | final reader of a three-item shortlist |
+
+The final-reader role was the most favourable to the LLM:
+- the shortlist holds the root 93.5% of the time;
+- the evidence is compact;
+- the answer is a closed choice.
+
+It still lost.
+- **Hypothesis, not checked:** on TT, services that call a failing service log new errors of their own, so the candidate with the most new error templates is often a caller. The fusion's metric half resists that pull.
+- **Supported:** across R10, the specialists that earn their place are code and small trained models.
+- **Also supported:** the LLMs that earn theirs work at the language edges, the translator and the summariser. G8b confirmed that the same day, on the same kind of real incidents.
+<!-- analysis:end -->
