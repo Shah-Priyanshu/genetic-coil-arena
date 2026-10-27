@@ -11059,3 +11059,7 @@
 {"base_id": "tpl-plant-00681", "style": "indirect_hint", "text": "Would it be possible to set up the compressor utilities monitoring with that particular error threshold", "verified": false, "verifier_status": "clarify"}
 {"base_id": "tpl-plant-00681", "style": "indirect_hint", "text": "It would be helpful if the fault detection focused on these exact components only", "verified": false, "verifier_status": "clarify"}
 {"base_id": "tpl-plant-00681", "style": "indirect_hint", "text": "I was wondering if the system could handle those four nodes with 1% false alarms", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00681", "style": "indirect_hint", "text": "It would be great if the reactor separator and stripper could be checked regularly", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00681", "style": "indirect_hint", "text": "I was hoping for a setup that includes compressor utilities in the monitoring system", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00681", "style": "indirect_hint", "text": "Would it work well if we could configure sensor nodes with that specific false alarm rate", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-01409", "style": "indirect_hint", "text": "It would be wonderful if we could have a squad with red, green, and blue snakes, where red and blue are foraging while the caution level remains normal, and the food target is set to 14.", "verified": true, "verifier_status": "ok"}
