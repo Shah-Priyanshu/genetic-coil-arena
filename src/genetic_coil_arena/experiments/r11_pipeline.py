@@ -80,7 +80,13 @@ class _Backend(Protocol):
 class KeywordBackend:
     """A model-free stand-in for tests and smoke runs: the keyword router and parser behind
     the structured-output interface (plain-text calls, i.e. summaries, get a fixed line).
+
+    Args:
+        parser: ``text -> params or None`` (default: the v1 regex parser)
     """
+
+    def __init__(self, parser: Optional[Any] = None):
+        self.parser = parser or inc.keyword_incident
 
     def generate(self, prompts: Any, **kw: Any) -> list[Any]:
         from types import SimpleNamespace
@@ -91,7 +97,7 @@ class KeywordBackend:
             if "domain" in schema.get("properties", {}):
                 body: Any = {"domain": inc.keyword_route(text)}
             elif schema:
-                params = inc.keyword_incident(text)
+                params = self.parser(text)
                 body = (
                     {"refusal": "keyword parser found nothing", "clarify": ""}
                     if params is None
