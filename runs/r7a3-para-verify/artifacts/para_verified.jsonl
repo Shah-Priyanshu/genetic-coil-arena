@@ -3581,3 +3581,12 @@
 {"base_id": "tpl-squad-01267", "style": "casual_chat", "text": "system please red green blue snakes blue foraging caution low reckless step 50 food target none not stated", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-01267", "style": "casual_chat", "text": "control system need red green blue snake group blue foraging caution low reckless step limit 50 food target none", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-01267", "style": "casual_chat", "text": "hey control system want red green blue snakes squad blue foraging caution low reckless step 50 no food target", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01267", "style": "casual_chat", "text": "system red green blue snake team blue foraging caution low reckless step limit 50 food target none stated", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00121", "style": "typos", "text": "snakes red green blue foragin green caution norml step 80 food none", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00121", "style": "typos", "text": "red green blue squad green foragin norml caution step limit 80 no food target", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00121", "style": "typos", "text": "squad snks red grn blu foragin grn cntrl norml step 80 food none", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00121", "style": "typos", "text": "snakes red green blue foragin grn caution normal step limt 80 food not stated", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00121", "style": "typos", "text": "red grn blu snks foragin grn norml caution step 80 no food target", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00121", "style": "typos", "text": "squad red green blue foragin green cntrl norml step limit 80 food none", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00121", "style": "typos", "text": "snakes red grn blu foragin grn caution normal step 80 food not stated", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00121", "style": "typos", "text": "red green blue snks foragin grn norml cntrl step 80 no food target", "verified": false, "verifier_status": "ok"}
