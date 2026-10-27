@@ -1,0 +1,1 @@
+[14:11:25] Ollama already running at http://localhost:11434
