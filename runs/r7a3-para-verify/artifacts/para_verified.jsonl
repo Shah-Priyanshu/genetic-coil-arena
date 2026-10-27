@@ -5576,3 +5576,16 @@
 {"base_id": "tpl-squad-00101", "style": "mixed_notation", "text": "Snake team: red, green, blue. Green foraging member. Standard caution. Step allowance: 175. Food objective: not specified.", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-01426", "style": "jargon", "text": "SQD SNAKES RED GRN BLU FORAGE RED BLU CAUTION LOW STEP 220 FOOD NONE", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-01426", "style": "jargon", "text": "SQUAD SNAKE R G B FORAGE R B CAUTION L STEP 220 NO FOOD TARGET", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01426", "style": "jargon", "text": "SNK SQD RD GN BLU FORAGE RD BLU CAUTION LMT STEP 220 FOD NONE", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01426", "style": "jargon", "text": "SQUAD SNAKES RED GRN BLU FORAGING RD BLU CAUTION LOW STEP 220 FOD NULL", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01426", "style": "jargon", "text": "SQD SNAKES R G B FORAGE R BLU CAUTION L STEP 220 FOOD N/A", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01426", "style": "jargon", "text": "SNAKE SQD RD GN BLU FORAGE RD BLU CAUTION LIM STEP 220 NO FOD", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01426", "style": "jargon", "text": "SQUAD SNAKES RED GREEN BLUE FORAGE RED BLUE CAUTION LOW STEP 220 FOOD NULL", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01426", "style": "jargon", "text": "SNK SQD R G B FORAGE R BLU CAUTION LOW STEP 220 FOOD NONE STATED", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-ref0121", "style": "typos", "text": "cant fufill this requst its conradictory like sayng blue be carefull but also recklesss", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0121", "style": "typos", "text": "this is imposible to do contradiction in strucure like blue must be carefull n reckless at same time", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0121", "style": "typos", "text": "cant complte request due to logical flaw same as saying blue should b carefull and reckless simultaniously", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0121", "style": "typos", "text": "request invalid cause contradictiion like telling blue to be careful yet reckless both at once", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0121", "style": "typos", "text": "impossible fulfill reqest contradiction like saying blue must be cautious but also reckless same time", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0121", "style": "typos", "text": "cant make this happen contradiction like blue being carefull n reckless in same command", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0121", "style": "typos", "text": "this request cant work contradiction like blue having to be careful and reckless simultaneously", "verified": true, "verifier_status": "refused"}
