@@ -1,0 +1,21 @@
+{
+  "id": "r10s4y-q30-0",
+  "commit": "24539c000cd60f950129573e21bdf0371e4ececf",
+  "args": [
+    "scripts/r10_step4.py",
+    "run",
+    "--model",
+    "ollama:qwen3-coder:30b",
+    "--shard",
+    "0/3",
+    "--conditions",
+    "team4_rule,team4_llm,single_all,single_logs"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 4,
+  "priority": 3,
+  "timeout_min": 480.0,
+  "env": {
+    "HF_HOME": "D:/hf_cache"
+  }
+}
