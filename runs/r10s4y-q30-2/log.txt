@@ -63,3 +63,6 @@
 [16:10:05] conditions 29/33 RE3-TT/ts-route-service_f2/1 (6304s)
 [16:10:44] conditions 30/33 RE3-TT/ts-route-service_f2/2 (6343s)
 [16:11:25] conditions 31/33 RE3-TT/ts-route-service_f3/2 (6384s)
+[16:11:56] conditions 32/33 RE3-TT/ts-route-service_f3_1/1 (6415s)
+[16:12:31] conditions 33/33 RE3-TT/ts-route-service_f4/3 (6450s)
+[16:12:31] done in 6450.2s; records in D:\Projects\genetic-coil-arena-gpu-results\runs\r10s4y-q30-2\artifacts\artifacts\results.jsonl
