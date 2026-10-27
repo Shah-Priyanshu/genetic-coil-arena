@@ -1,1 +1,9 @@
 [16:32:25] Ollama already running at http://localhost:11434
+[16:33:26] qwen2.5-coder_14b dev: 8/50 (61s)
+[16:34:30] qwen2.5-coder_14b dev: 19/50 (125s)
+[16:35:31] qwen2.5-coder_14b dev: 29/50 (186s)
+[16:36:33] qwen2.5-coder_14b dev: 48/50 (248s)
+[16:36:36] qwen2.5-coder_14b dev: 50/50 (251s)
+[16:37:07] qwen2.5-coder_14b routing (R7a items): 144/144 (282s)
+[16:37:07] qwen2.5-coder_14b: wrote summary; exact 0.9230769230769231 (n=39), routing 1.0
+[16:37:07] qwen2.5-coder_14b: wrote summary; exact 0.9230769230769231 (n=39), routing 1.0
