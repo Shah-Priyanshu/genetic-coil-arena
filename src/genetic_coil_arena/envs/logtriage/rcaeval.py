@@ -4,6 +4,9 @@ RCAEval is a benchmark of microservice systems with injected faults; RE2 has mul
 telemetry (metrics, logs, traces). Only the **logs** are used here: each case directory
 ``<root service>_<fault>/<rep>/`` has ``logs.csv`` (``timestamp`` in ns, ``container_name``,
 ``message``) and ``inject_time.txt``. The label is the injected service and fault type.
+RE3 (systems ``RE3-SS``, ``RE3-OB``, ``RE3-TT``; same record) has the same layout with
+code-level faults: cases are ``<service>_f<k>`` (``carts_f1``), the label is the root service
+and a fault id that is specific to the service, and repetitions are numbered 1 to 4.
 The alert time is taken to be the injection time, so every condition sees the same
 "time zero" a real alert would give.
 
@@ -50,14 +53,23 @@ ARCHIVES: dict[str, tuple[str, int, str]] = {
     "SS": ("RE2-SS.zip", 245629018, "bd747a8fc7c5be00c613e13fbf9dd74b"),
     "OB": ("RE2-OB.zip", 1191025569, "b9e23f8842c404b396ffd2becff15de4"),
     "TT": ("RE2-TT.zip", 2801345134, "a7fbcd1ada406067dcc50771ae398408"),
+    # RE3 (code-level faults, same record). Keys are ``RE3-<system>`` so the RE2 incident
+    # folders and their consumers are untouched.
+    "RE3-SS": ("RE3-SS.zip", 101485651, "467964eddb2a4fef4d6486c4679e749b"),
+    "RE3-OB": ("RE3-OB.zip", 190838064, "96947589084348f9d12cba370313458e"),
+    "RE3-TT": ("RE3-TT.zip", 241715689, "ae1eb5906fb4d13a16a6a5e58faaf30b"),
 }
 DEFAULT_SYSTEMS = ("SS", "OB")
+RE3_SYSTEMS = ("RE3-SS", "RE3-OB", "RE3-TT")
 FAULT_TYPES = ("cpu", "mem", "disk", "delay", "loss", "socket")
 SOURCE_FILE = "SOURCE.json"
 CONVERT_VERSION = 3
 DEV_REPS = (1,)
 
 _CASE = re.compile(r"^(?P<service>.+)_(?P<fault>[a-z]+)$")
+# RE3 injects code-level faults: ``carts_f1``, ``ts-route-service_f3_1``. The fault id is
+# specific to the service (f1 of one service is not f1 of another).
+_CASE_RE3 = re.compile(r"^(?P<service>.+?)_(?P<fault>f\d+(?:_\d+)?)$")
 
 
 def cache_dir(override: Optional[Path] = None) -> Path:
@@ -96,10 +108,15 @@ def _download(url: str, dest: Path, timeout: float) -> None:
 
 def parse_case(name: str) -> tuple[str, str]:
     """``payment_mem`` -> (``payment``, ``mem``)."""
-    match = _CASE.match(name)
+    match = _CASE.match(name) or _CASE_RE3.match(name)
     if not match:
         raise ValueError(f"unrecognised case name {name!r}")
     return match.group("service"), match.group("fault")
+
+
+def dataset_of(system: str) -> str:
+    """``RE2`` for ``SS``/``OB``/``TT``, ``RE3`` for ``RE3-*``."""
+    return "RE3" if system.startswith("RE3-") else "RE2"
 
 
 class NoRootLogsError(ValueError):
@@ -312,6 +329,9 @@ def fetch(
 ) -> Path:
     """Download (if needed), verify and convert the chosen systems; write ``SOURCE.json``.
 
+    ``systems`` are keys of :data:`ARCHIVES` (RE2: ``SS``, ``OB``, ``TT``; RE3: ``RE3-SS``,
+    ``RE3-OB``, ``RE3-TT``).
+
     Re-running skips archives whose incidents are all converted.
     """
     base = cache_dir(root)
@@ -345,7 +365,7 @@ def fetch(
     source_path.write_text(
         json.dumps(
             {
-                "dataset": "RCAEval RE2 (logs only)",
+                "dataset": "RCAEval RE2 and RE3 (logs and metrics)",
                 "record": RECORD,
                 "doi": DOI,
                 "license": LICENSE,
@@ -383,7 +403,7 @@ def _convert_archive(
                 if n.endswith("/logs.csv")
                 and n.count("/") == 3
                 and n.split("/")[2].isdigit()
-                and _CASE.match(n.split("/")[1])
+                and (_CASE.match(n.split("/")[1]) or _CASE_RE3.match(n.split("/")[1]))
             }
         )
         for k, (case, rep_s) in enumerate(cases):

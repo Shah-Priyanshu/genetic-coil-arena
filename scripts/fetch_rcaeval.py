@@ -8,6 +8,7 @@ written inside the repo.
 
     python scripts/fetch_rcaeval.py                    # SS and OB
     python scripts/fetch_rcaeval.py --systems SS,OB,TT --drop-raw
+    python scripts/fetch_rcaeval.py --systems RE3-SS,RE3-OB,RE3-TT   # RE3 (0.5 GB, code faults)
     python scripts/fetch_rcaeval.py --check            # list the cache, no network
 
 The cache is %LOCALAPPDATA%\\genetic_coil_arena\\rcaeval on Windows, otherwise
@@ -33,7 +34,9 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--cache-dir", type=Path, default=None)
     parser.add_argument(
-        "--systems", default=",".join(DEFAULT_SYSTEMS), help="comma list of SS,OB,TT"
+        "--systems",
+        default=",".join(DEFAULT_SYSTEMS),
+        help="comma list of SS,OB,TT (RE2) and RE3-SS,RE3-OB,RE3-TT (RE3)",
     )
     parser.add_argument("--check", action="store_true", help="only count the cache")
     parser.add_argument("--drop-raw", action="store_true", help="delete the zips after")

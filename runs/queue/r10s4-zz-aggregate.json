@@ -1,0 +1,28 @@
+{
+  "id": "r10s4-zz-aggregate",
+  "commit": "34a24be26c25024e5dc109c82b2a513fbba9ab2d",
+  "args": [
+    "scripts/r10_step4.py",
+    "report",
+    "--from",
+    "runs:r10s4-*",
+    "--out",
+    "docs/results/r10_step4.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 1,
+  "priority": 6,
+  "after": [
+    "r10s4-gate",
+    "r10s4-o14-0",
+    "r10s4-o14-1",
+    "r10s4-o14-2",
+    "r10s4-q3-0",
+    "r10s4-q3-1"
+  ],
+  "timeout_min": 20.0,
+  "outputs": [
+    "docs/results/r10_step4.md",
+    "docs/results/r10_step4.json"
+  ]
+}
