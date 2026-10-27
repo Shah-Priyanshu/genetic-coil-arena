@@ -7435,3 +7435,12 @@
 {"base_id": "tpl-plant-01146", "style": "multi_sentence", "text": "Fault detection required for reactor separator stripper compressor_utilities sensors. Message length 51 bytes. Alarm rate 0.02 specified.", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-plant-01146", "style": "multi_sentence", "text": "Activate diagnostic protocol for reactor separator stripper compressor_utilities. Message payload 51 bytes. False positive rate 0.02.", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-plant-01146", "style": "multi_sentence", "text": "Initiate plant fault monitoring on reactor separator stripper utilities. 51 byte message limit. 2 percent false alarm threshold.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-01146", "style": "multi_sentence", "text": "Sensor network diagnosis needed for reactor separator stripper compressor. Message size 51 bytes. Error rate 0.02 set.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-01146", "style": "multi_sentence", "text": "Emergency system check for reactor separator stripper utilities nodes. 51 byte transmission limit. 0.02 false detection rate.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-01146", "style": "multi_sentence", "text": "Fault identification request for reactor separator stripper compressor_units. Bytes per message 51. False alarm probability 0.02.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00404", "style": "typos", "text": "red green blue sqd foragin greeen blu caution low step limt 200 food target 6", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00404", "style": "typos", "text": "snakes red grn blu foragin gbn blu cautin low step limit 200 food tgt 6", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00404", "style": "typos", "text": "squad red green blue foragin green blue caution low step limit 200 food 6", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00404", "style": "typos", "text": "red grn blu snk sqd foragin grn blu cautin low step limt 200 food tgt 6", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00404", "style": "typos", "text": "snakes red green blue foragin grn blu caution low step 200 food target 6", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00404", "style": "typos", "text": "red green blue squad foragin green blue caution low step limit 200 food 6", "verified": false, "verifier_status": "ok"}
