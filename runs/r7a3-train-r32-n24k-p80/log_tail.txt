@@ -1,0 +1,57 @@
+[02:50:51] r32-n24k-p80: 23556 training records (8086 paraphrases, 565 retries)
+W1027 02:51:04.297000 31764 Lib\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/311 [00:00<02:02,  2.53it/s]
+Loading weights:   1%|          | 2/311 [00:00<01:33,  3.31it/s]
+Loading weights:   4%|▍         | 12/311 [00:00<00:14, 20.53it/s]
+Loading weights:   6%|▋         | 20/311 [00:00<00:09, 31.39it/s]
+Loading weights:   8%|▊         | 25/311 [00:01<00:08, 34.95it/s]
+Loading weights:  10%|▉         | 31/311 [00:01<00:07, 39.10it/s]
+Loading weights:  12%|█▏        | 38/311 [00:01<00:06, 41.57it/s]
+Loading weights:  15%|█▍        | 46/311 [00:01<00:05, 46.54it/s]
+Loading weights:  17%|█▋        | 54/311 [00:01<00:06, 42.79it/s]
+Loading weights:  21%|██        | 64/311 [00:01<00:04, 52.15it/s]
+Loading weights:  23%|██▎       | 70/311 [00:01<00:04, 53.11it/s]
+Loading weights:  24%|██▍       | 76/311 [00:02<00:05, 42.15it/s]
+Loading weights:  28%|██▊       | 86/311 [00:02<00:04, 51.30it/s]
+Loading weights:  30%|██▉       | 92/311 [00:02<00:04, 50.90it/s]
+Loading weights:  32%|███▏      | 100/311 [00:02<00:04, 49.43it/s]
+Loading weights:  35%|███▌      | 109/311 [00:02<00:03, 53.79it/s]
+Loading weights:  37%|███▋      | 115/311 [00:02<00:03, 51.81it/s]
+Loading weights:  39%|███▉      | 121/311 [00:02<00:03, 48.29it/s]
+Loading weights:  42%|████▏     | 132/311 [00:03<00:03, 57.58it/s]
+Loading weights:  44%|████▍     | 138/311 [00:03<00:03, 51.38it/s]
+Loading weights:  46%|████▋     | 144/311 [00:03<00:03, 46.55it/s]
+Loading weights:  49%|████▉     | 153/311 [00:03<00:03, 47.86it/s]
+Loading weights:  52%|█████▏    | 162/311 [00:03<00:02, 56.54it/s]
+Loading weights:  54%|█████▍    | 169/311 [00:03<00:02, 50.49it/s]
+Loading weights:  56%|█████▋    | 175/311 [00:04<00:02, 46.59it/s]
+Loading weights:  60%|█████▉    | 186/311 [00:04<00:02, 55.88it/s]
+Loading weights:  62%|██████▏   | 192/311 [00:04<00:02, 52.92it/s]
+Loading weights:  64%|██████▎   | 198/311 [00:04<00:02, 45.20it/s]
+Loading weights:  67%|██████▋   | 208/311 [00:04<00:01, 55.48it/s]
+Loading weights:  69%|██████▉   | 215/311 [00:04<00:01, 51.57it/s]
+Loading weights:  71%|███████   | 221/311 [00:04<00:01, 48.26it/s]
+Loading weights:  74%|███████▍  | 230/311 [00:05<00:01, 49.18it/s]
+Loading weights:  76%|███████▌  | 236/311 [00:05<00:01, 50.57it/s]
+Loading weights:  78%|███████▊  | 242/311 [00:05<00:01, 45.74it/s]
+Loading weights:  81%|████████▏ | 253/311 [00:05<00:01, 56.67it/s]
+Loading weights:  83%|████████▎ | 259/311 [00:05<00:01, 47.03it/s]
+Loading weights:  85%|████████▌ | 265/311 [00:05<00:00, 46.41it/s]
+Loading weights:  88%|████████▊ | 275/311 [00:06<00:00, 45.28it/s]
+Loading weights:  92%|█████████▏| 286/311 [00:06<00:00, 53.03it/s]
+Loading weights:  94%|█████████▍| 292/311 [00:06<00:00, 47.74it/s]
+Loading weights:  96%|█████████▌| 299/311 [00:06<00:00, 46.94it/s]
+Loading weights: 100%|██████████| 311/311 [00:06<00:00, 47.02it/s]
+[02:51:41] [r32-n24k-p80] step 25/2944 loss 2.1054 (25s)
+[02:52:05] [r32-n24k-p80] step 50/2944 loss 0.2315 (49s)
+[02:52:27] [r32-n24k-p80] step 75/2944 loss 0.1326 (72s)
+[02:52:50] [r32-n24k-p80] step 100/2944 loss 0.0835 (94s)
+[02:53:13] [r32-n24k-p80] step 125/2944 loss 0.0676 (117s)
+[02:53:36] [r32-n24k-p80] step 150/2944 loss 0.0524 (140s)
+[02:53:59] [r32-n24k-p80] step 175/2944 loss 0.0409 (163s)
+[02:54:23] [r32-n24k-p80] step 200/2944 loss 0.0344 (188s)
+[02:54:47] [r32-n24k-p80] step 225/2944 loss 0.0249 (211s)
+[02:55:10] [r32-n24k-p80] step 250/2944 loss 0.0249 (234s)
+[02:55:34] [r32-n24k-p80] step 275/2944 loss 0.0215 (258s)
