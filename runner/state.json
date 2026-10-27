@@ -24,15 +24,14 @@
       "started_at": "2026-10-27T11:08:45+00:00"
     },
     {
-      "id": "r10s4-o14-2",
+      "id": "r10s4-q3-0",
       "lane": "gpu",
       "cpu_workers": 2,
-      "started_at": "2026-10-27T11:13:00+00:00"
+      "started_at": "2026-10-27T11:49:46+00:00"
     }
   ],
   "backlog": {
     "ready": [
-      "r10s4-q3-0",
       "r10s4-q3-1",
       "r7b4-train-hand-goal",
       "r10s4x-g4b-0",
@@ -68,14 +67,14 @@
   },
   "idle_since": {
     "cpu": null,
-    "gpu": null
+    "gpu": "2026-10-27T11:49:38+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-27T11:49:35+00:00",
-  "cpu_percent": 94.5,
+  "updated_at": "2026-10-27T11:49:46+00:00",
+  "cpu_percent": 97.0,
   "gpu": {
-    "util": 100.0,
-    "mem_used_mb": 10627.0,
+    "util": 0.0,
+    "mem_used_mb": 813.0,
     "mem_total_mb": 12282.0
   }
 }
