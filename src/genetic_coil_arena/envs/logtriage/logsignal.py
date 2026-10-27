@@ -39,6 +39,11 @@ _LIFECYCLE = re.compile(
 )
 
 
+def is_lifecycle(text: str) -> bool:
+    """Whether a template is a crash/restart/traceback line (see ``new_ext``)."""
+    return bool(_LIFECYCLE.search(text))
+
+
 def _new_mask(inc: Incident) -> np.ndarray:
     st = inc.stats()
     return (st.pre == 0) & (st.post > 0)
