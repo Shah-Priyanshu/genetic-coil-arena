@@ -9948,3 +9948,9 @@
 {"base_id": "tpl-squad-cla0005", "style": "numbers_in_words", "text": "Change the constraints such that the result becomes moderately extended or condensed", "verified": true, "verifier_status": "clarify"}
 {"base_id": "tpl-squad-cla0005", "style": "numbers_in_words", "text": "Alter the specifications to produce a solution that lies somewhere between extremes", "verified": true, "verifier_status": "clarify"}
 {"base_id": "tpl-squad-cla0005", "style": "numbers_in_words", "text": "Reconfigure the limits so that the final product achieves moderate complexity or simplicity", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-cla0005", "style": "numbers_in_words", "text": "Modify the boundaries to ensure the result remains within a comfortable range of values", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-cla0005", "style": "numbers_in_words", "text": "Adjust the conditions so that the outcome becomes neither overly lengthy nor excessively brief", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-01430", "style": "terse_note", "text": "Squad: red green blue | Foraging: green blue | Caution: high | Food: 4", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01430", "style": "terse_note", "text": "red green blue snakes | forage: green blue | watch: high | food target: 4", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01430", "style": "terse_note", "text": "SNAKES: red/green/blue | FORAGE: green/blue | ALERT: HIGH | FOOD: 4", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01430", "style": "terse_note", "text": "red-green-blue squad | green-blue foraging | caution high | food 4", "verified": true, "verifier_status": "ok"}
