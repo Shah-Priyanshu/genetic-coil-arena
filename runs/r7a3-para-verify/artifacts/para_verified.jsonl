@@ -3225,3 +3225,12 @@
 {"base_id": "tpl-squad-01408", "style": "formal_memo", "text": "Initiate red green blue snake squad foraging protocol with standard caution level and food target of three units.", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-01408", "style": "formal_memo", "text": "Activate snake squad consisting of red green and blue specimens for routine foraging operations under normal caution parameters.", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-01408", "style": "formal_memo", "text": "Deploy red green and blue snake units for food gathering activity with ordinary care requirements and target quantity set to three.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01408", "style": "formal_memo", "text": "Execute foraging mission with red green and blue snake contingents using standard operational procedures and three unit food objective.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01408", "style": "formal_memo", "text": "Commence snake squad operations featuring red green and blue individuals with regular caution standards and food goal of three items.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01408", "style": "formal_memo", "text": "Begin foraging activity with red green and blue snakes maintaining normal safety protocols and targeting three food units.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01408", "style": "formal_memo", "text": "Proceed with red green and blue snake team foraging using standard care measures and establishing three unit food target threshold.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01408", "style": "formal_memo", "text": "Start snake squad foraging sequence involving red green and blue specimens with typical caution requirements and three food unit objective.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00086", "style": "jargon", "text": "snk red/green/blue sqd, forage blu, caution low, step 300", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00086", "style": "jargon", "text": "squad snk rgbl, blue foraging, cautious low, 300 steps", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00086", "style": "jargon", "text": "red grn blu snake team, blue hunt, risk low, 300 limit", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00086", "style": "jargon", "text": "snakes red green blue, blue forage, danger low, step 300", "verified": true, "verifier_status": "ok"}
