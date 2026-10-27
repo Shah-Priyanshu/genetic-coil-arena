@@ -23,3 +23,8 @@
 [18:07:58] dev 22/28 RE3-TT/ts-auth-service_f3/1 (110s)
 [18:08:02] dev 23/28 RE3-TT/ts-auth-service_f4/1 (113s)
 [18:08:04] dev 24/28 RE3-TT/ts-route-service_f1/1 (116s)
+[18:08:07] dev 25/28 RE3-TT/ts-route-service_f2/1 (119s)
+[18:08:10] dev 26/28 RE3-TT/ts-route-service_f3/1 (122s)
+[18:08:13] dev 27/28 RE3-TT/ts-route-service_f3_1/1 (125s)
+[18:08:16] dev 28/28 RE3-TT/ts-route-service_f4/1 (128s)
+[18:08:16] dev valid-reply rate 1.00
