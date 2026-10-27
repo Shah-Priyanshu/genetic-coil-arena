@@ -1,0 +1,1 @@
+[18:12:08] 28 dev / 62 test incidents; fusion fuse(baro_metrics=0.5,new_ext=0.5)
