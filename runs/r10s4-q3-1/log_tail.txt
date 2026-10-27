@@ -75,3 +75,5 @@ Loading weights: 100%|██████████| 311/311 [00:05<00:00, 59.8
 [09:21:05] reports 33/47 RE3-TT/ts-auth-service_f1/2 valid 9/68 (1644s)
 [09:24:14] reports 34/47 RE3-TT/ts-auth-service_f1/3 valid 10/68 (1832s)
 [09:27:21] reports 35/47 RE3-TT/ts-auth-service_f2/4 valid 9/68 (2020s)
+[09:30:28] reports 36/47 RE3-TT/ts-auth-service_f3/1 valid 8/68 (2206s)
+[09:33:39] reports 37/47 RE3-TT/ts-auth-service_f3/2 valid 8/68 (2398s)
