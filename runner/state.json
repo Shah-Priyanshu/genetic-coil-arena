@@ -35,7 +35,13 @@
       "r10s4-o14-1",
       "r10s4-o14-2",
       "r10s4-q3-0",
-      "r10s4-q3-1"
+      "r10s4-q3-1",
+      "r7b4-train-both-goal",
+      "r7b4-train-centre-goal",
+      "r7b4-train-hand-goal",
+      "r10s4x-g4b-0",
+      "r10s4x-g4b-1",
+      "r10s4x-g4b-2"
     ],
     "blocked": [
       {
@@ -46,6 +52,19 @@
           "r10s4-o14-2",
           "r10s4-q3-0",
           "r10s4-q3-1"
+        ]
+      },
+      {
+        "id": "r10s4x-zz-aggregate",
+        "blocked_by": [
+          "r10s4-o14-0",
+          "r10s4-o14-1",
+          "r10s4-o14-2",
+          "r10s4-q3-0",
+          "r10s4-q3-1",
+          "r10s4x-g4b-0",
+          "r10s4x-g4b-1",
+          "r10s4x-g4b-2"
         ]
       },
       {
@@ -62,11 +81,11 @@
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-27T10:15:15+00:00",
-  "cpu_percent": 73.1,
+  "updated_at": "2026-10-27T10:16:21+00:00",
+  "cpu_percent": 73.0,
   "gpu": {
-    "util": 95.0,
-    "mem_used_mb": 9657.0,
+    "util": 99.0,
+    "mem_used_mb": 10047.0,
     "mem_total_mb": 12282.0
   }
 }

@@ -6,3 +6,5 @@
 [06:14:34] reports 5/25 RE3-OB/currencyservice_f1/3 valid 12/12 (109s)
 [06:14:55] reports 6/25 RE3-OB/emailservice_f1/1 valid 12/12 (130s)
 [06:15:32] reports 7/25 RE3-OB/emailservice_f1/2 valid 12/12 (167s)
+[06:15:51] reports 8/25 RE3-OB/emailservice_f4/2 valid 11/12 (186s)
+[06:16:12] reports 9/25 RE3-OB/emailservice_f5/1 valid 12/12 (207s)
