@@ -67,7 +67,6 @@
       {
         "id": "r7b3-zz-aggregate",
         "blocked_by": [
-          "r7b3-train-both-goal",
           "r7b3-train-hand-goal"
         ]
       }
@@ -78,11 +77,11 @@
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-27T11:07:26+00:00",
-  "cpu_percent": 70.6,
+  "updated_at": "2026-10-27T11:08:35+00:00",
+  "cpu_percent": 68.9,
   "gpu": {
-    "util": 93.0,
-    "mem_used_mb": 10625.0,
+    "util": 0.0,
+    "mem_used_mb": 10627.0,
     "mem_total_mb": 12282.0
   }
 }
