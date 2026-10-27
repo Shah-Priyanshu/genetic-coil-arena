@@ -170,3 +170,5 @@ Loading weights: 100%|██████████| 311/311 [00:06<00:00, 47.0
 [03:46:57] r32-n24k-p80 dev: 200/304 (squad-heldout-15)
 [03:49:11] r32-n24k-p80 dev: 240/304 (plant-indist-15)
 [03:51:10] r32-n24k-p80 dev: 280/304 (plant-heldout-15)
+[03:52:20] r32-n24k-p80 dev: 304/304 (plant-heldout-x3)
+[03:52:21] r32-n24k-p80: dev+step-1 exact 91.7% on 288 valid items; adapter 133 MiB at D:\hf_cache\r7a3_store\r32-n24k-p80.pt
