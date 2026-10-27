@@ -1,0 +1,54 @@
+W1027 07:50:08.237000 33076 Lib\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]
+Loading weights:   1%|          | 2/311 [00:00<00:34,  8.93it/s]
+Loading weights:   3%|▎         | 10/311 [00:00<00:12, 23.80it/s]
+Loading weights:   7%|▋         | 21/311 [00:00<00:08, 34.95it/s]
+Loading weights:  10%|▉         | 31/311 [00:00<00:05, 46.82it/s]
+Loading weights:  12%|█▏        | 37/311 [00:00<00:05, 49.30it/s]
+Loading weights:  14%|█▍        | 43/311 [00:01<00:05, 44.85it/s]
+Loading weights:  15%|█▌        | 48/311 [00:01<00:05, 44.59it/s]
+Loading weights:  18%|█▊        | 55/311 [00:01<00:05, 44.70it/s]
+Loading weights:  21%|██        | 64/311 [00:01<00:04, 53.66it/s]
+Loading weights:  23%|██▎       | 70/311 [00:01<00:04, 55.05it/s]
+Loading weights:  24%|██▍       | 76/311 [00:01<00:04, 51.64it/s]
+Loading weights:  26%|██▋       | 82/311 [00:01<00:04, 47.42it/s]
+Loading weights:  29%|██▊       | 89/311 [00:02<00:04, 47.53it/s]
+Loading weights:  32%|███▏      | 99/311 [00:02<00:04, 47.73it/s]
+Loading weights:  35%|███▍      | 108/311 [00:02<00:03, 55.22it/s]
+Loading weights:  37%|███▋      | 114/311 [00:02<00:03, 54.87it/s]
+Loading weights:  39%|███▊      | 120/311 [00:02<00:04, 46.16it/s]
+Loading weights:  42%|████▏     | 132/311 [00:02<00:03, 51.13it/s]
+Loading weights:  46%|████▌     | 142/311 [00:02<00:02, 57.76it/s]
+Loading weights:  48%|████▊     | 149/311 [00:03<00:02, 54.59it/s]
+Loading weights:  50%|████▉     | 155/311 [00:03<00:02, 54.71it/s]
+Loading weights:  52%|█████▏    | 163/311 [00:03<00:02, 60.19it/s]
+Loading weights:  55%|█████▍    | 170/311 [00:03<00:02, 51.18it/s]
+Loading weights:  57%|█████▋    | 177/311 [00:03<00:02, 48.71it/s]
+Loading weights:  60%|██████    | 187/311 [00:03<00:02, 54.39it/s]
+Loading weights:  63%|██████▎   | 195/311 [00:03<00:01, 59.83it/s]
+Loading weights:  65%|██████▍   | 202/311 [00:04<00:02, 52.51it/s]
+Loading weights:  67%|██████▋   | 208/311 [00:04<00:01, 52.82it/s]
+Loading weights:  69%|██████▉   | 216/311 [00:04<00:01, 57.65it/s]
+Loading weights:  72%|███████▏  | 223/311 [00:04<00:01, 52.19it/s]
+Loading weights:  74%|███████▍  | 230/311 [00:04<00:01, 47.00it/s]
+Loading weights:  76%|███████▌  | 236/311 [00:04<00:01, 48.30it/s]
+Loading weights:  78%|███████▊  | 243/311 [00:04<00:01, 44.76it/s]
+Loading weights:  81%|████████  | 251/311 [00:05<00:01, 45.75it/s]
+Loading weights:  83%|████████▎ | 259/311 [00:05<00:00, 52.02it/s]
+Loading weights:  85%|████████▌ | 265/311 [00:05<00:00, 46.96it/s]
+Loading weights:  88%|████████▊ | 274/311 [00:05<00:00, 53.64it/s]
+Loading weights:  90%|█████████ | 280/311 [00:05<00:00, 51.65it/s]
+Loading weights:  92%|█████████▏| 286/311 [00:05<00:00, 44.84it/s]
+Loading weights:  95%|█████████▌| 296/311 [00:05<00:00, 50.18it/s]
+Loading weights:  97%|█████████▋| 303/311 [00:06<00:00, 54.18it/s]
+Loading weights: 100%|██████████| 311/311 [00:06<00:00, 50.89it/s]
+[07:50:21] 43 incidents, conditions ['team4_rule'], model qwen3-1.7b
+[07:50:56] reports 1/43 RE3-OB/adservice_f3/1 valid 10/12 (35s)
+[07:51:29] reports 2/43 RE3-OB/adservice_f3/2 valid 10/12 (68s)
+[07:52:03] reports 3/43 RE3-OB/adservice_f3/3 valid 9/12 (102s)
+[07:52:38] reports 4/43 RE3-OB/adservice_f5/1 valid 8/12 (138s)
+[07:53:12] reports 5/43 RE3-OB/adservice_f5/2 valid 9/12 (172s)
+[07:53:47] reports 6/43 RE3-OB/adservice_f5/3 valid 10/12 (206s)
+[07:54:20] reports 7/43 RE3-OB/currencyservice_f1/1 valid 9/12 (240s)
+[07:54:55] reports 8/43 RE3-OB/currencyservice_f1/2 valid 9/12 (274s)
