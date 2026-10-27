@@ -1,0 +1,21 @@
+{
+  "id": "r10s4-q3-0",
+  "commit": "34a24be26c25024e5dc109c82b2a513fbba9ab2d",
+  "args": [
+    "scripts/r10_step4.py",
+    "run",
+    "--model",
+    "hf:Qwen/Qwen3-1.7B",
+    "--shard",
+    "0/2",
+    "--conditions",
+    "team4_rule"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 2,
+  "priority": 4,
+  "timeout_min": 200.0,
+  "env": {
+    "HF_HOME": "D:\\hf_cache"
+  }
+}
