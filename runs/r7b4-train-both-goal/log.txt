@@ -1,1 +1,12 @@
 [start] 8 training runs on 8 workers; cache D:\Projects\genetic-coil-arena-gpu-results\runs\r7b4-train-both-goal\artifacts; GoalTrainSettings(radius=3, generations=10000, population=64, reps=1, sigma=0.05, lr=0.03, weight_decay=0.005, spec_hidden=24, centre_hidden=24, eval_every=50, val_reps=2, max_steps=300, time_limit_s=inf, progress_s=600.0)
+[progress] both-goal run 9: gen 250/10000, val mission -4.07, best gen 50, elapsed 619 s
+[progress] both-goal run 15: gen 300/10000, val mission -3.80, best gen 300, elapsed 619 s
+[progress] both-goal run 10: gen 250/10000, val mission -3.90, best gen 200, elapsed 639 s
+[progress] both-goal run 11: gen 250/10000, val mission -3.83, best gen 150, elapsed 692 s
+[progress] both-goal run 8: gen 250/10000, val mission -3.27, best gen 250, elapsed 701 s
+[progress] both-goal run 14: gen 250/10000, val mission -3.50, best gen 200, elapsed 706 s
+[progress] both-goal run 13: gen 300/10000, val mission -3.57, best gen 250, elapsed 708 s
+[progress] both-goal run 12: gen 250/10000, val mission -3.00, best gen 250, elapsed 756 s
+[progress] both-goal run 9: gen 450/10000, val mission -3.07, best gen 450, elapsed 1250 s
+[progress] both-goal run 10: gen 400/10000, val mission -0.23, best gen 400, elapsed 1252 s
+[progress] both-goal run 15: gen 550/10000, val mission -3.53, best gen 350, elapsed 1280 s
