@@ -64,3 +64,13 @@ Loading weights: 100%|██████████| 311/311 [00:06<00:00, 48.2
 [21:34:08] [r10s3ob] step 100/180 loss 0.9355 (212s)
 [21:34:28] [r10s3ob] step 110/180 loss 0.9256 (232s)
 [21:34:50] [r10s3ob] step 120/180 loss 0.9074 (254s)
+[21:35:09] [r10s3ob] step 130/180 loss 0.9074 (273s)
+[21:35:31] [r10s3ob] step 140/180 loss 0.8625 (295s)
+[21:35:51] [r10s3ob] step 150/180 loss 0.9346 (315s)
+[21:36:10] [r10s3ob] step 160/180 loss 0.9294 (334s)
+[21:36:31] [r10s3ob] step 170/180 loss 0.8885 (355s)
+[21:36:49] [r10s3ob] step 180/180 loss 0.9118 (373s)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[21:36:49] trained 180 steps in 375s, loss 0.9002; saved D:\hf_cache\r10s3_store\r10s3ob.pt
+[21:37:09] held-out OB: fault accuracy 0.167 on 30 root-service views
+[21:37:09] done; peak VRAM 5603 MiB; wall 404s
