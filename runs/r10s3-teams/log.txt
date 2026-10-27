@@ -1,0 +1,14 @@
+[00:47:43] fusion rule geo_w50 (n=150): {'OB': 0.7333333333333333, 'SS': 0.7, 'TT': 0.5777777777777777, 'mean': 0.6703703703703704}
+[00:47:43] messages: 20/120
+[00:47:44] messages: 40/120
+[00:47:44] messages: 60/120
+[00:47:44] messages: 80/120
+[00:47:44] messages: 100/120
+[00:47:44] messages: 120/120
+[00:47:45] teams: 20/120
+[00:47:45] teams: 40/120
+[00:47:45] teams: 60/120
+[00:47:45] teams: 80/120
+[00:47:45] teams: 100/120
+[00:47:45] teams: 120/120
+[00:47:46] records in D:\Projects\genetic-coil-arena-gpu-results\runs\r10s3-teams\artifacts\artifacts\results.jsonl

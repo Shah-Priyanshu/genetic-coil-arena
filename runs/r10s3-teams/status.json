@@ -9,12 +9,14 @@
     "--lora-from",
     "runs:r10s3-lora-*"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-27T04:47:42+00:00",
-  "updated_at": "2026-10-27T04:47:42+00:00",
-  "elapsed_min": 0.0,
+  "updated_at": "2026-10-27T04:47:46+00:00",
+  "elapsed_min": 0.1,
   "gpu": "NVIDIA GeForce RTX 4070 SUPER, 95 %, 10045 MiB, 12282 MiB, 78",
   "host": "PC",
   "lane": "cpu",
-  "cpu_workers": 2
+  "cpu_workers": 2,
+  "returncode": 0,
+  "finished_at": "2026-10-27T04:47:46+00:00"
 }
