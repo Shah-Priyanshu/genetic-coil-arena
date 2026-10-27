@@ -73,3 +73,5 @@ Loading weights: 100%|██████████| 311/311 [00:06<00:00, 50.8
 [08:07:25] reports 27/43 RE3-SS/orders_f4/1 valid 5/15 (1025s)
 [08:08:10] reports 28/43 RE3-SS/orders_f4/2 valid 3/15 (1069s)
 [08:08:55] reports 29/43 RE3-SS/orders_f4/3 valid 5/15 (1114s)
+[08:12:06] reports 30/43 RE3-TT/ts-auth-service_f1/4 valid 8/68 (1306s)
+[08:15:14] reports 31/43 RE3-TT/ts-auth-service_f2/1 valid 6/68 (1494s)
