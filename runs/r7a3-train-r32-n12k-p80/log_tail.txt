@@ -143,3 +143,6 @@ Loading weights: 100%|██████████| 311/311 [00:06<00:00, 45.8
 [02:45:09] r32-n12k-p80 dev: 200/304 (squad-heldout-15)
 [02:47:07] r32-n12k-p80 dev: 240/304 (plant-indist-15)
 [02:49:11] r32-n12k-p80 dev: 280/304 (plant-heldout-15)
+[02:50:27] r32-n12k-p80 dev: 304/304 (plant-heldout-x3)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[02:50:28] r32-n12k-p80: dev+step-1 exact 95.8% on 288 valid items; adapter 133 MiB at D:\hf_cache\r7a3_store\r32-n12k-p80.pt
