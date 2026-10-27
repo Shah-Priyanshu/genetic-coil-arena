@@ -247,6 +247,25 @@ decision (6 shown):
 - `r11b-sealed-137` category=refuse; style=terse; text=Restart the frontend on the online boutique.; pred={'top_k': 3, 'want_fault_type': True, 'exclude_services': [], 'system': 'online-boutique'}; status=clarify; reason=Which incident? Give a ticket (INC-nnnn) or a date and time.; routed=incident
 - `r11b-sealed-139` category=refuse; style=plain; text=Investigate the boutique incident tomorrow at 10:00.; pred={'top_k': 3, 'want_fault_type': True, 'exclude_services': [], 'system': 'online-boutique'}; status=clarify; reason=Which incident? Give a ticket (INC-nnnn) or a date and time.; routed=incident
 
+## Supplementary: qwen3-coder:30b as translator (outside the verdict)
+
+Queued after the verdict above (job `r11b-q30-sealed`, pinned 6a151ea3, same code and prompts) to ask whether a larger model stops the 14B's guessed months and years. It ran once on the sealed set. It is not part of G8b, which names the 14B.
+
+| Translator | Exact match | `at` field | Routing | NL - gold task score | Decisions (142) | Round trip | Fidelity | Warm p95 | Peak VRAM |
+|---|---|---|---|---|---|---|---|---|---|
+| qwen3-coder:30b | 97.5% (117/120) [92.9, 99.1] | 100.0% | 100.0% (283/283) | -0.8 [-2.5, +0.0] | 98.6% (140/142) | 98.3% (116/118) | 100.0% | 14.87 s | 10.8 GB GPU (rest offloaded to system RAM) |
+
+- **Every date is exact.** The 30B made none of the 14B's date errors: no added year or month, and no relative date left as a bare day.
+- **Every refusal item is refused (14/14).** That includes "top 8 suspects", which the 14B clamped to 5.
+- **No request named a wrong incident.**
+- **It misses three items:**
+  - sealed-001, "inc 1066 shop": asked which system.
+  - sealed-010, "Please open INC-1006 ...": refused as a request to open a ticket.
+  - sealed-116: the same fault-type misreading as the 14B.
+- **It fails only the latency target.** The model does not fit in 12 GB, so part of it runs from system RAM: p50 is 12.6 s and p95 14.9 s, against 4.8 s for the 14B.
+
+On this desk, scale buys accuracy on literal transcription; the price is latency on this card.
+
 ## Analysis
 
 <!-- analysis:start -->
