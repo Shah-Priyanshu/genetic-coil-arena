@@ -1997,3 +1997,17 @@
 {"base_id": "tpl-plant-ref0107", "style": "jargon", "text": "CMD REJECTED. RANGE 256B NODES ONLY", "verified": true, "verifier_status": "refused"}
 {"base_id": "tpl-plant-ref0107", "style": "jargon", "text": "EXCEEDS CAPACITY. FLAVOR IS 256B BOUNDARY", "verified": false, "verifier_status": "clarify"}
 {"base_id": "tpl-plant-ref0107", "style": "jargon", "text": "OUT OF RANGE. NODES LIMIT 256B PAYLOADS", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-ref0107", "style": "jargon", "text": "INVALID REQUEST. SAME AS 256B NODE RESTRICTION", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0177", "style": "casual_chat", "text": "hey can you do this request but like its outside the system range so nope sorry", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0177", "style": "casual_chat", "text": "nah this one's impossible because it's beyond the operational limits and i can't make that happen", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0177", "style": "casual_chat", "text": "sorry but this request is outta bounds man, won't work due to range constraints", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0177", "style": "casual_chat", "text": "u know what, this thing ain't gonna fly because it's outside the allowable range", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-ref0177", "style": "casual_chat", "text": "nope cant do it, this exceeds the system capabilities and range parameters", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0177", "style": "casual_chat", "text": "hey wait a minute, this request is just not gonna work cause of range limitations", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0177", "style": "casual_chat", "text": "sorry but this one's a no-go due to range restrictions, can't make it happen", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0177", "style": "casual_chat", "text": "whoa hold up, this request is out of range so i got nothing to offer here", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-00136", "style": "jargon", "text": "Sqd snks red grn blu. Forage: rd blu. Caut: norm. Step lim: 160. Food tgt: 22.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00136", "style": "jargon", "text": "Red grn blu snake squad. Foraging rd blu only. Caution normal. Steps 160. Target food 22.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00136", "style": "jargon", "text": "Squad snks: red green blue. Forage red blue. Caut norm. Step limit 160. Food target 22.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00136", "style": "jargon", "text": "Red green blue snakes. Foraging red blue. Normal caution. Step limit 160. Food target 22.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00136", "style": "jargon", "text": "Snakes: red grn blu. Forage rd blu. Caution normal. Step limit 160. Food tgt 22.", "verified": true, "verifier_status": "ok"}
