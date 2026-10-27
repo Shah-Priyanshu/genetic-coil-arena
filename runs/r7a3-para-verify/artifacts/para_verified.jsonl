@@ -4672,3 +4672,30 @@
 {"base_id": "tpl-squad-01150", "style": "polite_question", "text": "Would it be possible to initialize a control setup with red, green, and blue snakes, foraging snake red, low caution, step limit 50, and food target at 5?", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-01277", "style": "mixed_notation", "text": "Snakes squad: red, green, blue. Foraging: green. Caution: normal. Step limit: 300. Food target: 28.", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-01277", "style": "mixed_notation", "text": "Red, green, blue snake team. Green foraging. Normal caution. 300 steps max. Target food: 28.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01277", "style": "mixed_notation", "text": "Squad snakes: red, green, blue. Foraging green. Caution normal. Step limit 300. Food target 28.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01277", "style": "mixed_notation", "text": "Snakes: red, green, blue. Foraging: green. Caution: normal. Steps: 300. Food goal: 28.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01277", "style": "mixed_notation", "text": "Red, green, blue snake group. Green foraging. Normal caution. Step limit: 300. Food target: 28.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01277", "style": "mixed_notation", "text": "Squad of snakes: red, green, blue. Foraging snake: green. Caution: normal. Steps: 300. Food target: 28.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01277", "style": "mixed_notation", "text": "Red, green, blue snakes. Green foraging. Normal caution. Step limit 300. Food target 28.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01277", "style": "mixed_notation", "text": "Snake squad: red, green, blue. Foraging green. Caution normal. Steps 300. Food target 28.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00285", "style": "multi_sentence", "text": "Red and green snakes are foraging. Caution level normal. Step limit seventy five.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00285", "style": "multi_sentence", "text": "Squad includes red, green, blue snakes. Foraging: red and green only. Step limit 75.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00285", "style": "multi_sentence", "text": "Snakes: red, green, blue. Foraging team: red and green. Normal caution. 75 steps.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00285", "style": "multi_sentence", "text": "Red and green snakes foraging. Caution normal. Step limit seventy five. No food target.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00285", "style": "multi_sentence", "text": "Squad composition: red, green, blue snakes. Red and green foraging. Step limit 75.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00285", "style": "multi_sentence", "text": "Foraging snakes: red and green. Caution level normal. Step limit 75. Food target none.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00285", "style": "multi_sentence", "text": "Red, green, blue snake squad. Red and green foraging. Normal caution. 75 step limit.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00285", "style": "multi_sentence", "text": "Snakes: red, green, blue. Foraging: red and green. Caution normal. Step limit 75.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01320", "style": "typos", "text": "red green blue snak squad foragin 2 red n greem caution norml step limt 60 food tget none", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01320", "style": "typos", "text": "snakes red grn blu formg red grn cauti normal step 60 no food target", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01320", "style": "typos", "text": "red grn blu snake team forag red grn caution norml step limit 60 food none", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01320", "style": "typos", "text": "squad red grn blue snakz forag red grn caution normal step 60 no food target", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01320", "style": "typos", "text": "red grn blu snakes formg red grn cauti norml step limt 60 food target none", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01320", "style": "typos", "text": "snak squad red grn blue forag red grn caution normal step 60 no food", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01320", "style": "typos", "text": "red grn blu snake group forag red grn caution norml step limit 60 food none", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01320", "style": "typos", "text": "snakes red grn blue forag red grn cauti normal step limt 60 no food target", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-01178", "style": "typos", "text": "plz init fault diag systm w/sensor nodes reactor sep stripper comprtr_utilits msg size 8 bytes false alarm rate 0.01 activ nodes reactor sep stripper comprtr_utilits", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-01178", "style": "typos", "text": "need fault diagnos system activat reactor sep stripper comprtr_utilits msg len 8 bytes fals alarm prob 0.01 sensor nodes listd", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-01178", "style": "typos", "text": "activat plant fault diag system reactor sep stripper comprtr_utilits 8 byte msgs fals alarm 1 percent sensor node list", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-01178", "style": "typos", "text": "init fault detect systm reactor sep stripper comprtr_utilits msg size 8 bytes false alarm rate 0.01 active nodes shown", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-01178", "style": "typos", "text": "fault diag system start reactor sep stripper comprtr_utilits 8 byte messages fals alarm 0.01 activ nodes reactor sep stripper", "verified": false, "verifier_status": "ok"}
