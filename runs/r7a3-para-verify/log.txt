@@ -215,3 +215,20 @@
 [00:49:46] para-verify 10650/11520
 [00:50:39] para-verify 10700/11520
 [00:51:26] para-verify 10750/11520
+[00:52:25] para-verify 10800/11520
+[00:53:21] para-verify 10850/11520
+[00:54:19] para-verify 10900/11520
+[00:55:07] para-verify 10950/11520
+[00:56:05] para-verify 11000/11520
+[00:57:01] para-verify 11050/11520
+[00:58:00] para-verify 11100/11520
+[00:58:59] para-verify 11150/11520
+[00:59:52] para-verify 11200/11520
+[01:00:48] para-verify 11250/11520
+[01:01:35] para-verify 11300/11520
+[01:02:33] para-verify 11350/11520
+[01:03:24] para-verify 11400/11520
+[01:04:15] para-verify 11450/11520
+[01:05:06] para-verify 11500/11520
+[01:05:22] para-verify 11520/11520
+[01:05:25] pool: 23556 records ({'template': 14905, 'paraphrase': 8086, 'retry': 565}), overlap drops {'templates': 480, 'paraphrases': 128}
