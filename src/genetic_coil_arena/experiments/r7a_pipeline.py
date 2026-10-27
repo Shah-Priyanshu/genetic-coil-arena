@@ -66,6 +66,8 @@ def execute(
 ) -> Execution:
     """Submit ``spec`` to a fresh command centre with the domain's specialist."""
     trace = TraceLog()
+    # a domain added later (R11's incident desk) brings its own specialist name
+    KEYS.setdefault(domain.specialist, f"r7a-{domain.specialist}-key".encode())
     centre = CommandCentre(
         registry, trace=trace, name=CENTRE, signing_key=KEYS[CENTRE], verify_keys=KEYS
     )
@@ -88,7 +90,12 @@ def execute(
     if status.state != "completed":
         return Execution(status.state, None, status.error, None, len(trace))
     envelopes = trace.envelopes(status.trace_id)
-    view = trace_view(spec, envelopes, outcome_of(domain.name, status.result))
+    outcome = (
+        domain.outcome(status.result)
+        if domain.outcome is not None
+        else outcome_of(domain.name, status.result)
+    )
+    view = trace_view(spec, envelopes, outcome)
     return Execution(status.state, status.result, None, view, len(trace))
 
 

@@ -826,6 +826,9 @@ class Domain:
         facts: Facts a summary of a finished task must state
         keyword: The regex baseline parser
         specialist: Bus name of the specialist that executes the domain's goals
+        defaults: Documented defaults of optional params
+        outcome: Optional ``result -> outcome`` summariser for the trace view; domains
+            without one (squad, plant) use :func:`outcome_of` by name
     """
 
     name: str
@@ -838,12 +841,24 @@ class Domain:
     keyword: Callable[[str], Optional[dict[str, Any]]]
     specialist: str
     defaults: Mapping[str, Any] = field(default_factory=dict)
+    outcome: Optional[Callable[[Mapping[str, Any]], dict[str, Any]]] = None
 
 
 def build_domains(
-    plant_data: TepData, squad_seeds: int = 8, plant_seeds: int = 5
+    plant_data: Optional[TepData],
+    squad_seeds: int = 8,
+    plant_seeds: int = 5,
+    extra: Optional[Mapping[str, Domain]] = None,
 ) -> dict[str, Domain]:
-    """The two R7a domains, keyed by name."""
+    """The two R7a domains, keyed by name, followed by any ``extra`` domains (R11's incident)."""
+    domains = _r7a_domains(plant_data, squad_seeds, plant_seeds)
+    domains.update(extra or {})
+    return domains
+
+
+def _r7a_domains(
+    plant_data: Optional[TepData], squad_seeds: int, plant_seeds: int
+) -> dict[str, Domain]:
     return {
         "squad": Domain(
             "squad",
