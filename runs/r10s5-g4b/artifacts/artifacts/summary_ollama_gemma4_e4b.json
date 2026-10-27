@@ -1,0 +1,22 @@
+{
+  "model": "ollama:gemma4:e4b",
+  "model_name": "ollama:gemma4:e4b",
+  "conditions": [
+    "rerank3",
+    "rerank3:shuffle",
+    "rerank3:shuffle_blind"
+  ],
+  "split": "all",
+  "fusion": "fuse(baro_metrics=0.5,new_ext=0.5)",
+  "n_dev": 28,
+  "n_test": 62,
+  "settings": {
+    "evidence_tokens": 1500,
+    "ctx_tokens": 4096,
+    "new_tokens": 40
+  },
+  "wall_s": 249.9,
+  "python": "3.13.7",
+  "commit": "95594d2540aece450fc5749adadfeceaa2510ead",
+  "finished": "2026-10-27T18:05:47"
+}
