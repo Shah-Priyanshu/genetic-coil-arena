@@ -6811,3 +6811,12 @@
 {"base_id": "tpl-squad-cla0099", "style": "terse_note", "text": "move limit 75 | careful only | food goal 22", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-cla0099", "style": "terse_note", "text": "75 moves | careful play | food target 22", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-cla0099", "style": "terse_note", "text": "play cautious | 75 moves | food 22 target", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-cla0099", "style": "terse_note", "text": "careful mode | 75 moves | food goal 22", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-cla0099", "style": "terse_note", "text": "limited moves 75 | careful play | food target 22", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-cla0099", "style": "terse_note", "text": "75 move limit | careful only | food 22 target", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00400", "style": "numbers_in_words", "text": "Red snake and green snake and blue snake squad foraging with red and green snakes only caution set to low risk reckless behavior step limit three hundred food target nine", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00400", "style": "numbers_in_words", "text": "Squad consists of red green and blue snakes foraging includes red and green only caution level low reckless risk taking step count three hundred food goal nine", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00400", "style": "numbers_in_words", "text": "Three snake team red green and blue foraging red and green snakes caution low reckless risk step maximum three hundred food objective nine", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00400", "style": "numbers_in_words", "text": "Red green and blue snake group foraging red and green snakes caution setting low reckless behavior step cap three hundred food target nine", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00400", "style": "numbers_in_words", "text": "Snake squad red green and blue foraging red green snakes caution level low reckless risk taking step limit three hundred food requirement nine", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00400", "style": "numbers_in_words", "text": "Group of red green and blue snakes foraging red green only caution low reckless behavior step maximum three hundred food goal nine", "verified": true, "verifier_status": "ok"}
