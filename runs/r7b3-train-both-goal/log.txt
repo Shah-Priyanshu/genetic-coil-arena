@@ -510,3 +510,32 @@
 [progress] both-goal run 3: gen 9750/10000, val mission 24.20, best gen 9750, elapsed 51310 s
 [progress] both-goal run 2: gen 9650/10000, val mission 20.23, best gen 9350, elapsed 51365 s
 [progress] both-goal run 0: gen 9750/10000, val mission 20.00, best gen 4650, elapsed 51366 s
+[progress] both-goal run 5: gen 10000/10000, val mission 17.10, best gen 8200, elapsed 51574 s
+[done] r7b_both-goal_run5: 859.6 min, best gen 8200, best val mission 19.63
+[progress] both-goal run 1: gen 9800/10000, val mission 19.20, best gen 7850, elapsed 51599 s
+[progress] both-goal run 4: gen 9750/10000, val mission 17.67, best gen 4650, elapsed 51717 s
+[progress] both-goal run 7: gen 9750/10000, val mission 19.43, best gen 9350, elapsed 51791 s
+[progress] both-goal run 6: gen 9800/10000, val mission 17.87, best gen 8250, elapsed 51903 s
+[progress] both-goal run 3: gen 9900/10000, val mission 22.00, best gen 9750, elapsed 52162 s
+[progress] both-goal run 2: gen 9800/10000, val mission 20.03, best gen 9700, elapsed 52213 s
+[progress] both-goal run 0: gen 9900/10000, val mission 18.40, best gen 4650, elapsed 52214 s
+[progress] both-goal run 1: gen 9950/10000, val mission 18.23, best gen 7850, elapsed 52433 s
+[progress] both-goal run 4: gen 9900/10000, val mission 17.80, best gen 4650, elapsed 52552 s
+[progress] both-goal run 7: gen 9900/10000, val mission 20.80, best gen 9350, elapsed 52634 s
+[progress] both-goal run 1: gen 10000/10000, val mission 18.53, best gen 7850, elapsed 52712 s
+[done] r7b_both-goal_run1: 878.5 min, best gen 7850, best val mission 20.07
+[progress] both-goal run 3: gen 10000/10000, val mission 20.50, best gen 9750, elapsed 52723 s
+[done] r7b_both-goal_run3: 878.7 min, best gen 9750, best val mission 24.20
+[progress] both-goal run 6: gen 9950/10000, val mission 18.40, best gen 8250, elapsed 52734 s
+[progress] both-goal run 0: gen 10000/10000, val mission 17.63, best gen 4650, elapsed 52770 s
+[done] r7b_both-goal_run0: 879.5 min, best gen 4650, best val mission 21.73
+[progress] both-goal run 6: gen 10000/10000, val mission 17.80, best gen 8250, elapsed 52979 s
+[done] r7b_both-goal_run6: 883.0 min, best gen 8250, best val mission 19.83
+[progress] both-goal run 2: gen 9950/10000, val mission 19.70, best gen 9700, elapsed 53014 s
+[progress] both-goal run 4: gen 10000/10000, val mission 16.70, best gen 4650, elapsed 53060 s
+[done] r7b_both-goal_run4: 884.3 min, best gen 4650, best val mission 20.20
+[progress] both-goal run 7: gen 10000/10000, val mission 22.13, best gen 10000, elapsed 53128 s
+[done] r7b_both-goal_run7: 885.5 min, best gen 10000, best val mission 22.13
+[progress] both-goal run 2: gen 10000/10000, val mission 18.93, best gen 9700, elapsed 53233 s
+[done] r7b_both-goal_run2: 887.2 min, best gen 9700, best val mission 21.70
+[train] done in 887.3 min
