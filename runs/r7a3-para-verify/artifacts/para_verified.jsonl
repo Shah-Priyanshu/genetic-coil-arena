@@ -11376,3 +11376,6 @@
 {"base_id": "tpl-squad-00724", "style": "mixed_notation", "text": "Three snakes (red, green, blue); blue foraging; risk 4‰; target 4", "verified": false, "verifier_status": "clarify"}
 {"base_id": "tpl-squad-00098", "style": "multi_sentence", "text": "Red green blue snake squad. Foraging red and blue only. Caution high step limit 240.", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00098", "style": "multi_sentence", "text": "Squad includes red green and blue snakes. Red and blue foraging. High caution 240 steps.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00098", "style": "multi_sentence", "text": "Red green blue snakes in squad. Foraging red and blue. Caution level high 240 step limit.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00098", "style": "multi_sentence", "text": "Snake squad red green blue. Red and blue foraging. High caution 240 steps maximum.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00098", "style": "multi_sentence", "text": "Squad of red green blue snakes. Foraging red and blue. Caution high with 240 step limit.", "verified": true, "verifier_status": "ok"}
