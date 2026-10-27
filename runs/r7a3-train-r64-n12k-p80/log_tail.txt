@@ -139,3 +139,6 @@ Loading weights: 100%|██████████| 311/311 [00:06<00:00, 44.9
 [04:26:36] [r64-n12k-p80] step 2225/2250 loss 0.0002 (2006s)
 [04:26:58] [r64-n12k-p80] step 2250/2250 loss 0.0001 (2028s)
 [04:26:58] r64-n12k-p80: trained 2250 steps in 2029s, loss 0.0001, peak 5120 MiB
+[04:29:14] r64-n12k-p80 dev: 40/304 (squad-dev-ho-03)
+[04:31:24] r64-n12k-p80 dev: 80/304 (plant-dev-in-07)
+[04:33:16] r64-n12k-p80 dev: 120/304 (plant-dev-ho-11)
