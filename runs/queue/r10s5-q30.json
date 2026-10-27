@@ -1,0 +1,19 @@
+{
+  "id": "r10s5-q30",
+  "commit": "95594d2540aece450fc5749adadfeceaa2510ead",
+  "args": [
+    "scripts/r10_step5.py",
+    "run",
+    "--model",
+    "ollama:qwen3-coder:30b",
+    "--split",
+    "all"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 4,
+  "priority": 3,
+  "timeout_min": 400.0,
+  "env": {
+    "HF_HOME": "D:\\hf_cache"
+  }
+}
