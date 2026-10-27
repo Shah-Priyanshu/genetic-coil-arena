@@ -4114,3 +4114,13 @@
 {"base_id": "tpl-plant-cla0079", "style": "casual_chat", "text": "switch a few nodes to off state", "verified": true, "verifier_status": "clarify"}
 {"base_id": "tpl-plant-cla0079", "style": "casual_chat", "text": "grab a couple nodes and turn them off", "verified": true, "verifier_status": "clarify"}
 {"base_id": "tpl-plant-cla0079", "style": "casual_chat", "text": "toggle some nodes to off mode", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0079", "style": "casual_chat", "text": "shut down a bunch of nodes", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0079", "style": "casual_chat", "text": "flip a few nodes to off position", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0079", "style": "casual_chat", "text": "turn off a handful of nodes", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0079", "style": "casual_chat", "text": "switch some nodes to off please", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-00779", "style": "casual_chat", "text": "hey can u set up the fault diag system with reactor sep stripper and comp util nodes? msg size 8 bytes false alarm .01 active ones are those four", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00779", "style": "casual_chat", "text": "what if i told you i want this fault detection thing with those four reactors and stuff but keep msg len at 8 bytes and false alarm rate at 1 percent", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00779", "style": "casual_chat", "text": "yo check this out, fault system needs reactor separator stripper compressor_util nodes with 8 byte messages and 1% false alarm chance", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00779", "style": "casual_chat", "text": "so like, fault diagnosis with those specific nodes plus 8 byte message limit and .01 false alarm threshold, all active right now", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00779", "style": "casual_chat", "text": "can you configure the plant fault detection to include reactor separator stripper compressor_utilities with msg size 8 and .01 false alarm rate", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00779", "style": "casual_chat", "text": "hey system, activate fault diag with reactor sep stripper comp_util nodes, keep it at 8 bytes per message with 1% false alarm probability", "verified": true, "verifier_status": "ok"}
