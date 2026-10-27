@@ -1,2 +1,9 @@
 [start] 8 training runs on 8 workers; cache D:\Projects\genetic-coil-arena-gpu-results\runs\r7b4-train-hand-goal\artifacts; GoalTrainSettings(radius=3, generations=10000, population=64, reps=1, sigma=0.05, lr=0.03, weight_decay=0.005, spec_hidden=24, centre_hidden=24, eval_every=50, val_reps=2, max_steps=300, time_limit_s=inf, progress_s=600.0)
 [progress] hand-goal run 11: gen 200/10000, val mission 3.60, best gen 200, elapsed 601 s
+[progress] hand-goal run 14: gen 200/10000, val mission 2.20, best gen 200, elapsed 616 s
+[progress] hand-goal run 12: gen 300/10000, val mission -0.93, best gen 300, elapsed 622 s
+[progress] hand-goal run 15: gen 200/10000, val mission 4.43, best gen 200, elapsed 661 s
+[progress] hand-goal run 9: gen 200/10000, val mission 6.07, best gen 200, elapsed 676 s
+[progress] hand-goal run 8: gen 200/10000, val mission 3.07, best gen 200, elapsed 678 s
+[progress] hand-goal run 13: gen 250/10000, val mission 7.03, best gen 250, elapsed 731 s
+[progress] hand-goal run 10: gen 250/10000, val mission 3.90, best gen 250, elapsed 817 s
