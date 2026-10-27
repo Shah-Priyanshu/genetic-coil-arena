@@ -1,0 +1,5 @@
+[11:12:46] 25 incidents, conditions ['team4_rule', 'team4_llm', 'single_all', 'single_logs'], model ollama:qwen3-coder:30b
+[11:14:18] reports 1/25 RE3-OB/adservice_f3/1 valid 12/12 (92s)
+[11:15:26] reports 2/25 RE3-OB/adservice_f4/3 valid 11/12 (159s)
+[11:16:30] reports 3/25 RE3-OB/adservice_f5/3 valid 12/12 (224s)
+[11:17:33] reports 4/25 RE3-OB/cartservice_f1/3 valid 11/12 (287s)
