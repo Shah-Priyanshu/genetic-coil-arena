@@ -1,0 +1,49 @@
+W1027 05:10:28.739000 23128 Lib\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]
+Loading weights:   4%|▎         | 11/311 [00:00<00:04, 68.62it/s]
+Loading weights:   6%|▋         | 20/311 [00:00<00:04, 66.77it/s]
+Loading weights:  10%|▉         | 30/311 [00:00<00:03, 75.66it/s]
+Loading weights:  12%|█▏        | 38/311 [00:00<00:04, 64.50it/s]
+Loading weights:  14%|█▍        | 45/311 [00:00<00:05, 52.11it/s]
+Loading weights:  18%|█▊        | 56/311 [00:00<00:04, 60.84it/s]
+Loading weights:  20%|██        | 63/311 [00:01<00:04, 59.39it/s]
+Loading weights:  23%|██▎       | 70/311 [00:01<00:04, 57.73it/s]
+Loading weights:  24%|██▍       | 76/311 [00:01<00:04, 56.42it/s]
+Loading weights:  27%|██▋       | 83/311 [00:01<00:03, 57.80it/s]
+Loading weights:  29%|██▊       | 89/311 [00:01<00:04, 51.48it/s]
+Loading weights:  32%|███▏      | 98/311 [00:01<00:04, 52.02it/s]
+Loading weights:  36%|███▌      | 111/311 [00:01<00:03, 58.69it/s]
+Loading weights:  38%|███▊      | 119/311 [00:02<00:03, 59.99it/s]
+Loading weights:  40%|████      | 125/311 [00:02<00:03, 58.02it/s]
+Loading weights:  43%|████▎     | 133/311 [00:02<00:03, 58.11it/s]
+Loading weights:  46%|████▋     | 144/311 [00:02<00:02, 59.96it/s]
+Loading weights:  49%|████▉     | 152/311 [00:02<00:02, 63.15it/s]
+Loading weights:  51%|█████     | 159/311 [00:02<00:02, 60.12it/s]
+Loading weights:  53%|█████▎    | 166/311 [00:02<00:02, 58.62it/s]
+Loading weights:  57%|█████▋    | 176/311 [00:02<00:02, 58.86it/s]
+Loading weights:  59%|█████▊    | 182/311 [00:03<00:02, 58.88it/s]
+Loading weights:  60%|██████    | 188/311 [00:03<00:02, 51.92it/s]
+Loading weights:  63%|██████▎   | 197/311 [00:03<00:02, 56.42it/s]
+Loading weights:  66%|██████▌   | 204/311 [00:03<00:01, 58.01it/s]
+Loading weights:  68%|██████▊   | 210/311 [00:03<00:01, 55.63it/s]
+Loading weights:  70%|███████   | 219/311 [00:03<00:01, 51.95it/s]
+Loading weights:  74%|███████▍  | 230/311 [00:03<00:01, 54.22it/s]
+Loading weights:  77%|███████▋  | 241/311 [00:04<00:01, 64.22it/s]
+Loading weights:  80%|███████▉  | 248/311 [00:04<00:00, 64.39it/s]
+Loading weights:  82%|████████▏ | 255/311 [00:04<00:00, 59.26it/s]
+Loading weights:  85%|████████▍ | 263/311 [00:04<00:00, 59.87it/s]
+Loading weights:  88%|████████▊ | 273/311 [00:04<00:00, 66.05it/s]
+Loading weights:  90%|█████████ | 280/311 [00:04<00:00, 63.48it/s]
+Loading weights:  92%|█████████▏| 287/311 [00:04<00:00, 56.35it/s]
+Loading weights:  95%|█████████▌| 296/311 [00:05<00:00, 61.41it/s]
+Loading weights:  97%|█████████▋| 303/311 [00:05<00:00, 55.91it/s]
+Loading weights: 100%|██████████| 311/311 [00:05<00:00, 60.04it/s]
+[05:11:40] round trip lora: 20/129 (sealed-squad-021)
+[05:12:46] round trip lora: 40/129 (sealed-squad-044)
+[05:13:52] round trip lora: 60/129 (sealed-squad-070)
+[05:14:48] round trip lora: 80/129 (sealed-plant-019)
+[05:15:46] round trip lora: 100/129 (sealed-plant-040)
+[05:16:48] round trip lora: 120/129 (sealed-plant-062)
+[05:17:11] round trip lora: 129/129 (sealed-plant-071)
+[05:17:11] lora round trip 90.7% (n=129)

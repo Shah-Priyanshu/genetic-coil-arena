@@ -41,3 +41,9 @@ Loading weights:  97%|█████████▋| 303/311 [00:05<00:00, 55.9
 Loading weights: 100%|██████████| 311/311 [00:05<00:00, 60.04it/s]
 [05:11:40] round trip lora: 20/129 (sealed-squad-021)
 [05:12:46] round trip lora: 40/129 (sealed-squad-044)
+[05:13:52] round trip lora: 60/129 (sealed-squad-070)
+[05:14:48] round trip lora: 80/129 (sealed-plant-019)
+[05:15:46] round trip lora: 100/129 (sealed-plant-040)
+[05:16:48] round trip lora: 120/129 (sealed-plant-062)
+[05:17:11] round trip lora: 129/129 (sealed-plant-071)
+[05:17:11] lora round trip 90.7% (n=129)
