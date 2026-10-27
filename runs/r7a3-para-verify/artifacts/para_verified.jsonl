@@ -2968,3 +2968,4 @@
 {"base_id": "tpl-squad-00617", "style": "jargon", "text": "Snakes R,G,B forage. R,G,B foraging. Normal caution. Steps 300. Food target 12.", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-plant-00707", "style": "jargon", "text": "diag reactor sep stripper sens 8b msg 1pct fa 100pc active", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-plant-00707", "style": "jargon", "text": "fault check rct sepr strpr sens 8byte msg 1pct false 100pc run", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00707", "style": "jargon", "text": "sys diag rct sep strpr sensors 8b msg 1pct err 100pc op", "verified": false, "verifier_status": "ok"}
