@@ -11379,3 +11379,16 @@
 {"base_id": "tpl-squad-00098", "style": "multi_sentence", "text": "Red green blue snakes in squad. Foraging red and blue. Caution level high 240 step limit.", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00098", "style": "multi_sentence", "text": "Snake squad red green blue. Red and blue foraging. High caution 240 steps maximum.", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00098", "style": "multi_sentence", "text": "Squad of red green blue snakes. Foraging red and blue. Caution high with 240 step limit.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00098", "style": "multi_sentence", "text": "Red green blue snake team. Red and blue foraging. High caution 240 step allowance.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00098", "style": "multi_sentence", "text": "Squad consists of red green and blue snakes. Red and blue foraging. Caution high 240 steps.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00098", "style": "multi_sentence", "text": "Red green blue snakes squad. Foraging red and blue. High caution 240 step maximum.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-ref0136", "style": "negation", "text": "Everyone except the orange snake should forage for 60 steps", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0136", "style": "negation", "text": "All but the orange snake send to forage for 60 steps", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0136", "style": "negation", "text": "Leave the orange snake out of foraging for 60 steps", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0136", "style": "negation", "text": "No orange snake should forage for 60 steps", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0136", "style": "negation", "text": "Everyone else forage for 60 steps except the orange snake", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0136", "style": "negation", "text": "The orange snake is excluded from foraging for 60 steps", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0136", "style": "negation", "text": "All snakes except the orange one forage for 60 steps", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0136", "style": "negation", "text": "Do not have the orange snake forage for 60 steps", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0113", "style": "multi_sentence", "text": "Request denied due to range limitations. System cannot process values outside specified parameters. Default range applies.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0113", "style": "multi_sentence", "text": "Cannot fulfill request because of range constraints. Values exceed allowable limits. Standard range restrictions in effect.", "verified": true, "verifier_status": "refused"}
