@@ -84,3 +84,5 @@ Loading weights: 100%|██████████| 311/311 [00:06<00:00, 50.8
 [08:37:19] reports 38/43 RE3-TT/ts-route-service_f1/1 valid 6/68 (2818s)
 [08:40:27] reports 39/43 RE3-TT/ts-route-service_f1/2 valid 4/68 (3006s)
 [08:43:36] reports 40/43 RE3-TT/ts-route-service_f1/3 valid 5/68 (3195s)
+[08:46:44] reports 41/43 RE3-TT/ts-route-service_f3/1 valid 7/68 (3384s)
+[08:49:52] reports 42/43 RE3-TT/ts-route-service_f3/2 valid 5/68 (3571s)
