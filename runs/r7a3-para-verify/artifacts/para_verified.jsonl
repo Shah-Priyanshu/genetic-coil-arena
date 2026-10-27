@@ -6544,3 +6544,6 @@
 {"base_id": "tpl-plant-01065", "style": "numbers_in_words", "text": "Automated plant supervision calling for reactor separator stripper compressor utilities sensing elements message capacity fifty one bytes erroneous signal probability five percent stripper functionality current", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-01251", "style": "typos", "text": "red green blue snak squad foragin red green caution norml step 300", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-01251", "style": "typos", "text": "snakes red green blue team red green foragin caution normal step limt 300", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01251", "style": "typos", "text": "red green blue snake group red green foraging caution normal step 300 food none", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01251", "style": "typos", "text": "squad red green blue snakz red green foragin norml caution step limit 300", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01251", "style": "typos", "text": "red green blue snakes red green foragin caution normal step 300 no food target", "verified": false, "verifier_status": "ok"}
