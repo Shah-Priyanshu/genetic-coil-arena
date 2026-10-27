@@ -144,3 +144,8 @@ Loading weights: 100%|██████████| 311/311 [00:06<00:00, 44.9
 [04:33:16] r64-n12k-p80 dev: 120/304 (plant-dev-ho-11)
 [04:35:22] r64-n12k-p80 dev: 160/304 (squad-indist-15)
 [04:37:30] r64-n12k-p80 dev: 200/304 (squad-heldout-15)
+[04:39:36] r64-n12k-p80 dev: 240/304 (plant-indist-15)
+[04:41:33] r64-n12k-p80 dev: 280/304 (plant-heldout-15)
+[04:42:44] r64-n12k-p80 dev: 304/304 (plant-heldout-x3)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[04:42:45] r64-n12k-p80: dev+step-1 exact 92.0% on 288 valid items; adapter 266 MiB at D:\hf_cache\r7a3_store\r64-n12k-p80.pt
