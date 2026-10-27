@@ -1,0 +1,134 @@
+{
+ "kind": "gate",
+ "data": {
+  "RE3-OB": {
+   "n": 30,
+   "root_services": [
+    "adservice",
+    "cartservice",
+    "currencyservice",
+    "emailservice"
+   ],
+   "n_candidate_services": 12,
+   "faults": {
+    "f1": 9,
+    "f2": 3,
+    "f3": 6,
+    "f4": 6,
+    "f5": 6
+   },
+   "reps": {
+    "1": 10,
+    "2": 10,
+    "3": 10
+   },
+   "cases": 10,
+   "median_lines": 70193,
+   "median_templates": 5354
+  },
+  "RE3-SS": {
+   "n": 30,
+   "root_services": [
+    "carts",
+    "front-end",
+    "orders"
+   ],
+   "n_candidate_services": 15,
+   "faults": {
+    "f1": 10,
+    "f2": 3,
+    "f3": 10,
+    "f4": 7
+   },
+   "reps": {
+    "1": 9,
+    "2": 9,
+    "3": 9,
+    "4": 3
+   },
+   "cases": 9,
+   "median_lines": 84302,
+   "median_templates": 3244
+  },
+  "RE3-TT": {
+   "n": 30,
+   "root_services": [
+    "ts-auth-service",
+    "ts-route-service"
+   ],
+   "n_candidate_services": 68,
+   "faults": {
+    "f1": 7,
+    "f2": 7,
+    "f3": 7,
+    "f3_1": 3,
+    "f4": 6
+   },
+   "reps": {
+    "1": 9,
+    "2": 9,
+    "3": 9,
+    "4": 3
+   },
+   "cases": 9,
+   "median_lines": 56728,
+   "median_templates": 365
+  }
+ },
+ "gate": {
+  "RE3-OB": {
+   "n": 30,
+   "root_has_new_err": 0.6,
+   "root_new_err_mean": 22.2,
+   "others_new_err_mean": 6.2696969696969695,
+   "root_ranked_first": 0.43333333333333335
+  },
+  "RE3-SS": {
+   "n": 30,
+   "root_has_new_err": 1.0,
+   "root_new_err_mean": 5.733333333333333,
+   "others_new_err_mean": 0.12142857142857143,
+   "root_ranked_first": 1.0
+  },
+  "RE3-TT": {
+   "n": 30,
+   "root_has_new_err": 1.0,
+   "root_new_err_mean": 3.7,
+   "others_new_err_mean": 0.13283582089552237,
+   "root_ranked_first": 0.7666666666666667
+  }
+ },
+ "gate_test": {
+  "RE3-OB": {
+   "n": 20,
+   "root_has_new_err": 0.6,
+   "root_new_err_mean": 21.35,
+   "others_new_err_mean": 6.181818181818182,
+   "root_ranked_first": 0.4
+  },
+  "RE3-SS": {
+   "n": 21,
+   "root_has_new_err": 1.0,
+   "root_new_err_mean": 5.714285714285714,
+   "others_new_err_mean": 0.14285714285714285,
+   "root_ranked_first": 1.0
+  },
+  "RE3-TT": {
+   "n": 21,
+   "root_has_new_err": 1.0,
+   "root_new_err_mean": 3.6666666666666665,
+   "others_new_err_mean": 0.13717128642501775,
+   "root_ranked_first": 0.7619047619047619
+  }
+ },
+ "fusion": {
+  "baro_metrics": 0.5,
+  "new_ext": 0.5,
+  "new_any_mass": 0.0,
+  "baro_logs": 0.0
+ },
+ "fusion_label": "fuse(baro_metrics=0.5,new_ext=0.5)",
+ "n_dev": 28,
+ "n_test": 62,
+ "seconds": 15.1
+}

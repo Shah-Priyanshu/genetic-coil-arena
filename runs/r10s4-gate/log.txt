@@ -1,0 +1,19 @@
+## Data (RCAEval RE3)
+
+| system | incidents | cases | root services | candidate services | faults | median log lines |
+|---|---|---|---|---|---|---|
+| RE3-OB | 30 | 10 | adservice, cartservice, currencyservice, emailservice | 12 | f1:9, f2:3, f3:6, f4:6, f5:6 | 70,193 |
+| RE3-SS | 30 | 9 | carts, front-end, orders | 15 | f1:10, f2:3, f3:10, f4:7 | 84,302 |
+| RE3-TT | 30 | 9 | ts-auth-service, ts-route-service | 68 | f1:7, f2:7, f3:7, f3_1:3, f4:6 | 56,728 |
+
+## Gate: do the logs carry root-cause signal?
+
+| system | split | root has a new warning/error template | mean such templates, root | mean, other services | root strictly first by that count |
+|---|---|---|---|---|---|
+| RE3-OB | all | 60% | 22.2 | 6.27 | 43% |
+| RE3-SS | all | 100% | 5.7 | 0.12 | 100% |
+| RE3-TT | all | 100% | 3.7 | 0.13 | 77% |
+| RE3-OB | test | 60% | 21.4 | 6.18 | 40% |
+| RE3-SS | test | 100% | 5.7 | 0.14 | 100% |
+| RE3-TT | test | 100% | 3.7 | 0.14 | 76% |
+[06:12:52] fusion fuse(baro_metrics=0.5,new_ext=0.5); wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r10s4-gate\artifacts\artifacts
