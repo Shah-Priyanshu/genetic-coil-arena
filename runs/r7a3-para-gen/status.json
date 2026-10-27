@@ -11,12 +11,14 @@
     "--seed",
     "1"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-26T20:21:02+00:00",
-  "updated_at": "2026-10-27T01:12:33+00:00",
-  "elapsed_min": 291.5,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 45 %, 11022 MiB, 12282 MiB, 48",
+  "updated_at": "2026-10-27T01:15:23+00:00",
+  "elapsed_min": 294.3,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 797 MiB, 12282 MiB, 47",
   "host": "PC",
   "lane": "gpu",
-  "cpu_workers": 4
+  "cpu_workers": 4,
+  "returncode": 0,
+  "finished_at": "2026-10-27T01:15:23+00:00"
 }
