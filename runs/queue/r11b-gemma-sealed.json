@@ -1,0 +1,20 @@
+{
+  "id": "r11b-gemma-sealed",
+  "commit": "b521676b817bd68d88d50f18fa81abb8f41c7ad7",
+  "args": [
+    "scripts/r11_ecosystem.py",
+    "run",
+    "--spec-version",
+    "2",
+    "--translator",
+    "ollama:gemma4:e4b",
+    "--split",
+    "sealed",
+    "--team-from",
+    "runs:r11-team"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 2,
+  "priority": 5,
+  "timeout_min": 40.0
+}
