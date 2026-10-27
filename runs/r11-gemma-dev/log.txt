@@ -1,1 +1,7 @@
 [16:28:28] Ollama already running at http://localhost:11434
+[16:29:32] gemma4_e4b dev: 11/50 (63s)
+[16:30:33] gemma4_e4b dev: 28/50 (125s)
+[16:31:15] gemma4_e4b dev: 50/50 (167s)
+[16:31:48] gemma4_e4b routing (R7a items): 144/144 (200s)
+[16:31:49] gemma4_e4b: wrote summary; exact 0.8974358974358975 (n=39), routing 1.0
+[16:31:49] gemma4_e4b: wrote summary; exact 0.8974358974358975 (n=39), routing 1.0
