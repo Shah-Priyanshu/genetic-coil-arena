@@ -1,0 +1,19 @@
+{
+  "id": "r10s5-g4b",
+  "commit": "95594d2540aece450fc5749adadfeceaa2510ead",
+  "args": [
+    "scripts/r10_step5.py",
+    "run",
+    "--model",
+    "ollama:gemma4:e4b",
+    "--split",
+    "all"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 2,
+  "priority": 4,
+  "timeout_min": 90.0,
+  "env": {
+    "HF_HOME": "D:\\hf_cache"
+  }
+}
