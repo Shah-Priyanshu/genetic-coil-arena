@@ -3,3 +3,7 @@
 [11:15:26] reports 2/25 RE3-OB/adservice_f4/3 valid 11/12 (159s)
 [11:16:30] reports 3/25 RE3-OB/adservice_f5/3 valid 12/12 (224s)
 [11:17:33] reports 4/25 RE3-OB/cartservice_f1/3 valid 11/12 (287s)
+[11:18:43] reports 5/25 RE3-OB/currencyservice_f1/3 valid 12/12 (356s)
+[11:19:48] reports 6/25 RE3-OB/emailservice_f1/1 valid 11/12 (422s)
+[11:20:53] reports 7/25 RE3-OB/emailservice_f1/2 valid 12/12 (486s)
+[11:21:59] reports 8/25 RE3-OB/emailservice_f4/2 valid 11/12 (552s)
