@@ -2832,3 +2832,25 @@
 {"base_id": "tpl-squad-cla0037", "style": "terse_note", "text": "safe moves 75 | target 4 | ?", "verified": true, "verifier_status": "clarify"}
 {"base_id": "tpl-squad-00439", "style": "numbers_in_words", "text": "Red green and blue snake squad foraging red and blue caution normal step limit three hundred food target thirty", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00439", "style": "numbers_in_words", "text": "Three squad snakes colored red green and blue with red and blue foraging creatures under normal caution three hundred step limit and food goal thirty", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00439", "style": "numbers_in_words", "text": "Snake group with red green and blue members foraging red and blue only normal safety level three hundred steps maximum food objective thirty", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00439", "style": "numbers_in_words", "text": "Red green and blue snake team foraging red and blue caution ordinary step count three hundred target food thirty", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00439", "style": "numbers_in_words", "text": "Squad consisting of red green and blue snakes foraging red and blue caution standard step allowance three hundred food goal thirty", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00439", "style": "numbers_in_words", "text": "Three colored snake unit red green and blue foraging red and blue normal care step maximum three hundred food target thirty", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00439", "style": "numbers_in_words", "text": "Red green and blue snake formation foraging red and blue ordinary caution three hundred steps food goal thirty", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00439", "style": "numbers_in_words", "text": "Snake collective with red green and blue hues foraging red and blue regular safety step limit three hundred food objective thirty", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00980", "style": "casual_chat", "text": "hey can u make me a snake squad with red green and blue snakes gonna forage and yeah just keep it safe high caution mode 300 step limit", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00980", "style": "casual_chat", "text": "wat if i wanted a red green and blue snake team foraging around with high safety settings and 300 max steps no food target", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00980", "style": "casual_chat", "text": "so like uh i need red green and blue snakes doing foraging stuff with high alert level and default 300 steps no food needed", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00980", "style": "casual_chat", "text": "can u set up a snake group with red green blue colors for searching around safe mode high caution 300 step limit", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00980", "style": "casual_chat", "text": "red green blue snakes for foraging safe mode high alert 300 step limit default food target none", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00980", "style": "casual_chat", "text": "yo make me a red green blue snake team with high caution and 300 steps no food target just foraging", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00980", "style": "casual_chat", "text": "need red green blue snakes for searching with high safety and 300 max steps default food target nothing", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00980", "style": "casual_chat", "text": "hey can u make a snake squad of red green and blue ones foraging with high care mode 300 step limit none for food", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-ref0146", "style": "typos", "text": "cant do it range limit sorry", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0146", "style": "typos", "text": "out of range cant fufill request", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0146", "style": "typos", "text": "range exceeded cant complete", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0146", "style": "typos", "text": "too far cant make this happen", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0146", "style": "typos", "text": "out of reach cant oblige", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0146", "style": "typos", "text": "range boundry reached sorry", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0146", "style": "typos", "text": "cannot fulfill due to range", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0146", "style": "typos", "text": "move limit exceeded no can do", "verified": true, "verifier_status": "refused"}
