@@ -1,0 +1,66 @@
+[21:30:02] fold ob: 120 fit incidents, 30 held-out, 120 test incidents to score (final only)
+W1026 21:30:14.007000 8320 Lib\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]
+Loading weights:   3%|▎         | 10/311 [00:00<00:07, 39.48it/s]
+Loading weights:   6%|▋         | 20/311 [00:00<00:05, 58.07it/s]
+Loading weights:   9%|▊         | 27/311 [00:00<00:05, 54.48it/s]
+Loading weights:  11%|█         | 34/311 [00:00<00:05, 51.38it/s]
+Loading weights:  13%|█▎        | 40/311 [00:00<00:05, 53.51it/s]
+Loading weights:  15%|█▍        | 46/311 [00:00<00:05, 45.20it/s]
+Loading weights:  17%|█▋        | 54/311 [00:01<00:05, 45.06it/s]
+Loading weights:  19%|█▉        | 59/311 [00:01<00:05, 46.00it/s]
+Loading weights:  21%|██        | 66/311 [00:01<00:05, 43.02it/s]
+Loading weights:  24%|██▍       | 76/311 [00:01<00:04, 47.22it/s]
+Loading weights:  27%|██▋       | 83/311 [00:01<00:04, 51.31it/s]
+Loading weights:  29%|██▊       | 89/311 [00:01<00:04, 47.05it/s]
+Loading weights:  32%|███▏      | 98/311 [00:02<00:04, 46.74it/s]
+Loading weights:  35%|███▌      | 109/311 [00:02<00:03, 55.05it/s]
+Loading weights:  37%|███▋      | 115/311 [00:02<00:03, 49.47it/s]
+Loading weights:  39%|███▉      | 122/311 [00:02<00:03, 50.52it/s]
+Loading weights:  41%|████      | 128/311 [00:02<00:03, 50.26it/s]
+Loading weights:  43%|████▎     | 134/311 [00:02<00:04, 44.01it/s]
+Loading weights:  46%|████▌     | 143/311 [00:02<00:03, 50.69it/s]
+Loading weights:  48%|████▊     | 149/311 [00:03<00:03, 45.79it/s]
+Loading weights:  50%|████▉     | 154/311 [00:03<00:03, 44.30it/s]
+Loading weights:  51%|█████▏    | 160/311 [00:03<00:03, 47.23it/s]
+Loading weights:  53%|█████▎    | 165/311 [00:03<00:03, 41.22it/s]
+Loading weights:  56%|█████▋    | 175/311 [00:03<00:02, 45.36it/s]
+Loading weights:  59%|█████▊    | 182/311 [00:03<00:02, 49.70it/s]
+Loading weights:  60%|██████    | 188/311 [00:03<00:02, 43.96it/s]
+Loading weights:  64%|██████▎   | 198/311 [00:04<00:02, 51.50it/s]
+Loading weights:  66%|██████▌   | 204/311 [00:04<00:02, 47.87it/s]
+Loading weights:  67%|██████▋   | 209/311 [00:04<00:02, 46.52it/s]
+Loading weights:  69%|██████▉   | 215/311 [00:04<00:02, 47.74it/s]
+Loading weights:  71%|███████   | 221/311 [00:04<00:02, 40.44it/s]
+Loading weights:  74%|███████▍  | 230/311 [00:04<00:01, 48.16it/s]
+Loading weights:  76%|███████▌  | 236/311 [00:04<00:01, 47.83it/s]
+Loading weights:  77%|███████▋  | 241/311 [00:05<00:01, 47.14it/s]
+Loading weights:  79%|███████▉  | 246/311 [00:05<00:01, 46.91it/s]
+Loading weights:  81%|████████▏ | 253/311 [00:05<00:01, 41.03it/s]
+Loading weights:  85%|████████▍ | 263/311 [00:05<00:01, 44.46it/s]
+Loading weights:  87%|████████▋ | 270/311 [00:05<00:00, 48.49it/s]
+Loading weights:  89%|████████▊ | 276/311 [00:05<00:00, 45.94it/s]
+Loading weights:  92%|█████████▏| 285/311 [00:06<00:00, 49.58it/s]
+Loading weights:  94%|█████████▎| 291/311 [00:06<00:00, 45.79it/s]
+Loading weights:  95%|█████████▌| 296/311 [00:06<00:00, 42.65it/s]
+Loading weights:  97%|█████████▋| 303/311 [00:06<00:00, 46.41it/s]
+Loading weights: 100%|██████████| 311/311 [00:06<00:00, 48.27it/s]
+[21:30:26] examples: 20/120 incidents (1s)
+[21:30:27] examples: 40/120 incidents (2s)
+[21:30:28] examples: 60/120 incidents (3s)
+[21:30:29] examples: 80/120 incidents (4s)
+[21:30:31] examples: 100/120 incidents (6s)
+[21:30:34] examples: 120/120 incidents (9s)
+[21:30:59] [r10s3ob] step 10/180 loss 2.8055 (23s)
+[21:31:22] [r10s3ob] step 20/180 loss 1.1095 (46s)
+[21:31:40] [r10s3ob] step 30/180 loss 0.9375 (64s)
+[21:32:00] [r10s3ob] step 40/180 loss 0.9369 (84s)
+[21:32:19] [r10s3ob] step 50/180 loss 0.9641 (103s)
+[21:32:42] [r10s3ob] step 60/180 loss 0.9224 (126s)
+[21:33:05] [r10s3ob] step 70/180 loss 0.9570 (149s)
+[21:33:27] [r10s3ob] step 80/180 loss 0.8951 (171s)
+[21:33:49] [r10s3ob] step 90/180 loss 0.9463 (193s)
+[21:34:08] [r10s3ob] step 100/180 loss 0.9355 (212s)
+[21:34:28] [r10s3ob] step 110/180 loss 0.9256 (232s)
+[21:34:50] [r10s3ob] step 120/180 loss 0.9074 (254s)
