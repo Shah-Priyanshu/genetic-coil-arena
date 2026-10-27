@@ -6477,3 +6477,10 @@
 {"base_id": "tpl-plant-cla0018", "style": "indirect_hint", "text": "I was thinking about how the system might benefit from having a more selective approach to sending out warnings", "verified": true, "verifier_status": "clarify"}
 {"base_id": "tpl-plant-cla0018", "style": "indirect_hint", "text": "Perhaps there's a method where only the most significant events trigger alerts rather than everything being flagged", "verified": true, "verifier_status": "clarify"}
 {"base_id": "tpl-plant-cla0018", "style": "indirect_hint", "text": "It would be useful if the control mechanism could somehow determine which notifications truly require immediate attention", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-cla0018", "style": "indirect_hint", "text": "I was hoping that the system might include a feature for adjusting alert sensitivity based on event importance", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-squad-00127", "style": "jargon", "text": "Squad: R-G-B. Forage: R-G-B. Warn: low. Step: 300. Food: none", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00127", "style": "jargon", "text": "Red, green, blue snakes. Foraging. Caution low. Steps 300. No food target", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00127", "style": "jargon", "text": "Squad snakes R-G-B. Forage R-G-B. Warning low. Steps 300. Food none", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00127", "style": "jargon", "text": "R-G-B squad. Foraging snakes. Low caution. Step limit 300. Food target: none", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00127", "style": "jargon", "text": "Snakes: red, green, blue. Forage: all. Warn: low risk. Steps: 300. No food", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00127", "style": "jargon", "text": "Red, green, blue snake squad. Foraging. Warning level low. Step count 300. Food none", "verified": true, "verifier_status": "ok"}
