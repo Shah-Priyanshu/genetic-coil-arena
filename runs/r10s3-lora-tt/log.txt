@@ -47,3 +47,16 @@ Loading weights: 100%|██████████| 311/311 [00:06<00:00, 49.5
 [21:45:32] examples: 20/60 incidents (3s)
 [21:45:38] examples: 40/60 incidents (9s)
 [21:46:00] examples: 60/60 incidents (32s)
+[21:46:27] [r10s3tt] step 10/90 loss 3.1296 (25s)
+[21:46:51] [r10s3tt] step 20/90 loss 1.5596 (49s)
+[21:47:12] [r10s3tt] step 30/90 loss 1.0138 (70s)
+[21:47:32] [r10s3tt] step 40/90 loss 0.9292 (90s)
+[21:47:51] [r10s3tt] step 50/90 loss 0.9192 (108s)
+[21:48:14] [r10s3tt] step 60/90 loss 0.9016 (132s)
+[21:48:32] [r10s3tt] step 70/90 loss 0.9568 (150s)
+[21:48:52] [r10s3tt] step 80/90 loss 0.9296 (170s)
+[21:49:14] [r10s3tt] step 90/90 loss 0.8920 (192s)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[21:49:15] trained 90 steps in 194s, loss 0.9108; saved D:\hf_cache\r10s3_store\r10s3tt.pt
+[21:49:26] held-out TT: fault accuracy 0.144 on 90 root-service views
+[21:49:26] done; peak VRAM 5600 MiB; wall 238s
