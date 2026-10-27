@@ -7105,3 +7105,13 @@
 {"base_id": "tpl-plant-cla0025", "style": "typos", "text": "plz let me set max 10 fals alarms or somethin idk", "verified": true, "verifier_status": "clarify"}
 {"base_id": "tpl-plant-cla0025", "style": "typos", "text": "need system to allow few false alerts but not too many", "verified": true, "verifier_status": "clarify"}
 {"base_id": "tpl-plant-cla0025", "style": "typos", "text": "make it so only handful of bad signals trigger response", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0025", "style": "typos", "text": "want maybe 5-7 false notifications max please", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0025", "style": "typos", "text": "set limit on bad calls but leave room for error", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0025", "style": "typos", "text": "few bad alerts ok just not loads of em", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0025", "style": "typos", "text": "need some false alarms allowed but keep it under control", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0025", "style": "typos", "text": "set threshold for bad signals to maybe 3-4 max", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-00266", "style": "polite_question", "text": "Could you please configure the fault-diagnosis system with sensor nodes for reactor, separator, stripper, and compressor_utilities? Each message should be 16 bytes with a 0.01 false-alarm rate.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00266", "style": "polite_question", "text": "Would it be possible to set up the plant fault-diagnosis system including reactor, stripper, and compressor_utilities sensor nodes? Messages must be 16 bytes with 1% false-alarm rate.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00266", "style": "polite_question", "text": "Could you establish a fault-diagnosis system for reactor, separator, stripper, and compressor_utilities with 16-byte messages and 0.01 false-alarm rate?", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00266", "style": "polite_question", "text": "Would you mind configuring the sensor nodes for reactor, stripper, and compressor_utilities in the fault-diagnosis system? Messages should be 16 bytes with 1% false-alarm rate.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00266", "style": "polite_question", "text": "Could you set up the plant fault-diagnosis system with reactor, separator, stripper, and compressor_utilities active nodes? Each message is 16 bytes with 0.01 false-alarm rate.", "verified": false, "verifier_status": "ok"}
