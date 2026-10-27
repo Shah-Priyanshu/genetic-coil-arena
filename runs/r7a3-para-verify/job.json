@@ -1,0 +1,27 @@
+{
+  "id": "r7a3-para-verify",
+  "commit": "9aec3047aa7506cfbcf75c24093305c35cb955f6",
+  "args": [
+    "scripts/r7a_step2.py",
+    "para-verify",
+    "--raw",
+    "runs:r7a3-para-gen",
+    "--templates",
+    "6000",
+    "--retries",
+    "600",
+    "--seed",
+    "1"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 4,
+  "priority": 3,
+  "after": [
+    "r7a3-para-gen"
+  ],
+  "timeout_min": 720.0,
+  "env": {
+    "HF_HOME": "D:\\hf_cache",
+    "R7A2_STORE": "D:\\hf_cache\\r7a3_store"
+  }
+}
