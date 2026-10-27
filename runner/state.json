@@ -24,15 +24,14 @@
       "started_at": "2026-10-27T16:40:38+00:00"
     },
     {
-      "id": "r11-gemma-sealed",
+      "id": "r11-o14-sealed",
       "lane": "gpu",
       "cpu_workers": 2,
-      "started_at": "2026-10-27T18:02:27+00:00"
+      "started_at": "2026-10-27T18:11:15+00:00"
     }
   ],
   "backlog": {
     "ready": [
-      "r11-o14-sealed",
       "r10s4y-q30-2"
     ],
     "blocked": [
@@ -52,11 +51,11 @@
   },
   "idle_since": {
     "cpu": null,
-    "gpu": null
+    "gpu": "2026-10-27T18:11:06+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-27T18:11:03+00:00",
-  "cpu_percent": 96.9,
+  "updated_at": "2026-10-27T18:11:15+00:00",
+  "cpu_percent": 93.7,
   "gpu": {
     "util": 0.0,
     "mem_used_mb": 812.0,
