@@ -8,3 +8,11 @@
 [17:53:52] qwen2.5-coder_14b sealed: 63/142 (436s)
 [17:54:56] qwen2.5-coder_14b sealed: 73/142 (500s)
 [17:55:57] qwen2.5-coder_14b sealed: 82/142 (560s)
+[17:57:03] qwen2.5-coder_14b sealed: 92/142 (627s)
+[17:58:06] qwen2.5-coder_14b sealed: 101/142 (690s)
+[17:59:13] qwen2.5-coder_14b sealed: 111/142 (756s)
+[18:00:14] qwen2.5-coder_14b sealed: 121/142 (818s)
+[18:00:46] qwen2.5-coder_14b sealed: 142/142 (850s)
+[18:01:18] qwen2.5-coder_14b routing (R7a items): 155/155 (882s)
+[18:01:19] qwen2.5-coder_14b: wrote summary; exact 0.925 (n=120), routing 1.0
+[18:01:19] qwen2.5-coder_14b: wrote summary; exact 0.925 (n=120), routing 1.0
