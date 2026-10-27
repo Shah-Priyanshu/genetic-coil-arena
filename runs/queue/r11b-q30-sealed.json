@@ -1,0 +1,20 @@
+{
+  "id": "r11b-q30-sealed",
+  "commit": "6a151ea3d7b4baba3d9c595c8515f3c41ddc44ca",
+  "args": [
+    "scripts/r11_ecosystem.py",
+    "run",
+    "--spec-version",
+    "2",
+    "--translator",
+    "ollama:qwen3-coder:30b",
+    "--split",
+    "sealed",
+    "--team-from",
+    "runs:r11-team"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 4,
+  "priority": 3,
+  "timeout_min": 360.0
+}
