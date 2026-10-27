@@ -1,0 +1,64 @@
+[21:37:26] fold ss: 120 fit incidents, 30 held-out, 120 test incidents to score (final only)
+W1026 21:37:38.943000 7368 Lib\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+
+Loading weights:   0%|          | 0/311 [00:00<?, ?it/s]
+Loading weights:   3%|▎         | 10/311 [00:00<00:05, 55.60it/s]
+Loading weights:   5%|▌         | 16/311 [00:00<00:05, 56.60it/s]
+Loading weights:   7%|▋         | 23/311 [00:00<00:05, 52.04it/s]
+Loading weights:  10%|█         | 32/311 [00:00<00:04, 58.95it/s]
+Loading weights:  12%|█▏        | 38/311 [00:00<00:04, 54.72it/s]
+Loading weights:  14%|█▍        | 44/311 [00:00<00:05, 48.99it/s]
+Loading weights:  16%|█▌        | 49/311 [00:00<00:05, 47.99it/s]
+Loading weights:  17%|█▋        | 54/311 [00:01<00:05, 45.12it/s]
+Loading weights:  19%|█▉        | 59/311 [00:01<00:05, 46.36it/s]
+Loading weights:  22%|██▏       | 67/311 [00:01<00:05, 47.12it/s]
+Loading weights:  24%|██▍       | 75/311 [00:01<00:05, 43.48it/s]
+Loading weights:  27%|██▋       | 83/311 [00:01<00:04, 47.12it/s]
+Loading weights:  29%|██▊       | 89/311 [00:01<00:05, 43.05it/s]
+Loading weights:  31%|███       | 97/311 [00:02<00:04, 46.65it/s]
+Loading weights:  33%|███▎      | 102/311 [00:02<00:04, 46.76it/s]
+Loading weights:  35%|███▌      | 109/311 [00:02<00:04, 49.69it/s]
+Loading weights:  37%|███▋      | 115/311 [00:02<00:04, 41.46it/s]
+Loading weights:  39%|███▉      | 121/311 [00:02<00:04, 43.95it/s]
+Loading weights:  41%|████      | 127/311 [00:02<00:03, 46.37it/s]
+Loading weights:  42%|████▏     | 132/311 [00:02<00:04, 37.84it/s]
+Loading weights:  46%|████▌     | 142/311 [00:03<00:03, 43.03it/s]
+Loading weights:  47%|████▋     | 147/311 [00:03<00:03, 43.49it/s]
+Loading weights:  50%|████▉     | 155/311 [00:03<00:03, 43.86it/s]
+Loading weights:  53%|█████▎    | 165/311 [00:03<00:03, 42.70it/s]
+Loading weights:  56%|█████▋    | 175/311 [00:03<00:03, 44.86it/s]
+Loading weights:  58%|█████▊    | 181/311 [00:03<00:02, 45.47it/s]
+Loading weights:  60%|██████    | 188/311 [00:04<00:02, 41.93it/s]
+Loading weights:  63%|██████▎   | 196/311 [00:04<00:02, 46.22it/s]
+Loading weights:  65%|██████▍   | 201/311 [00:04<00:02, 44.87it/s]
+Loading weights:  67%|██████▋   | 209/311 [00:04<00:02, 49.87it/s]
+Loading weights:  69%|██████▉   | 215/311 [00:04<00:02, 45.64it/s]
+Loading weights:  71%|███████   | 221/311 [00:04<00:02, 42.64it/s]
+Loading weights:  74%|███████▍  | 231/311 [00:05<00:01, 42.87it/s]
+Loading weights:  77%|███████▋  | 240/311 [00:05<00:01, 48.90it/s]
+Loading weights:  79%|███████▉  | 246/311 [00:05<00:01, 51.03it/s]
+Loading weights:  81%|████████▏ | 253/311 [00:05<00:01, 44.78it/s]
+Loading weights:  85%|████████▍ | 263/311 [00:05<00:01, 43.25it/s]
+Loading weights:  88%|████████▊ | 275/311 [00:05<00:00, 54.45it/s]
+Loading weights:  90%|█████████ | 281/311 [00:06<00:00, 48.89it/s]
+Loading weights:  92%|█████████▏| 287/311 [00:06<00:00, 46.93it/s]
+Loading weights:  95%|█████████▌| 296/311 [00:06<00:00, 48.23it/s]
+Loading weights:  97%|█████████▋| 301/311 [00:06<00:00, 47.42it/s]
+Loading weights: 100%|██████████| 311/311 [00:06<00:00, 47.64it/s]
+[21:37:51] examples: 20/120 incidents (1s)
+[21:37:52] examples: 40/120 incidents (2s)
+[21:37:53] examples: 60/120 incidents (3s)
+[21:37:54] examples: 80/120 incidents (4s)
+[21:37:58] examples: 100/120 incidents (8s)
+[21:38:22] examples: 120/120 incidents (32s)
+[21:38:47] [r10s3ss] step 10/180 loss 2.5915 (23s)
+[21:39:12] [r10s3ss] step 20/180 loss 1.1781 (48s)
+[21:39:29] [r10s3ss] step 30/180 loss 0.9554 (66s)
+[21:39:49] [r10s3ss] step 40/180 loss 0.9593 (86s)
+[21:40:09] [r10s3ss] step 50/180 loss 0.9715 (106s)
+[21:40:32] [r10s3ss] step 60/180 loss 0.9288 (128s)
+[21:40:53] [r10s3ss] step 70/180 loss 0.9411 (149s)
+[21:41:14] [r10s3ss] step 80/180 loss 0.9064 (170s)
+[21:41:35] [r10s3ss] step 90/180 loss 0.9432 (191s)
+[21:41:55] [r10s3ss] step 100/180 loss 0.9160 (212s)
+[21:42:12] [r10s3ss] step 110/180 loss 0.9324 (229s)
