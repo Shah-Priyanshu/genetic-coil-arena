@@ -7735,3 +7735,17 @@
 {"base_id": "tpl-plant-01219", "style": "negation", "text": "Everyone operates except compressor_utilities with 16-byte message capacity and 0.005 false-alarm rate", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-plant-01219", "style": "negation", "text": "Leave reactor out of the sensor network with 16-byte messages and 0.005 false-alarm probability", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-plant-ref0163", "style": "terse_note", "text": "Request denied | Out of domain | No valid response possible", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0163", "style": "terse_note", "text": "Cannot process | Invalid input | System error | =", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0163", "style": "terse_note", "text": "Ood error | Request invalid | No solution | /", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0163", "style": "terse_note", "text": "Not possible | Wrong format | No answer | +", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0163", "style": "terse_note", "text": "Out of scope | Impossible request | Null result | |", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0163", "style": "terse_note", "text": "Invalid command | Cannot fulfill | Zero response | .", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-ref0163", "style": "terse_note", "text": "System overload | Request failure | No output | #", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0163", "style": "terse_note", "text": "Incompatible | Request void | Empty reply | ?", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00893", "style": "mixed_notation", "text": "Squad snakes red green blue; foraging green; caution high (250 step limit); food target 1 per thousand", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00893", "style": "mixed_notation", "text": "Snakes: red, green, blue squad; green foraging; caution level 250; step limit 1:250 ratio; food 1/1000", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-00893", "style": "mixed_notation", "text": "Red green blue snake team; green foragers; careful 250 steps; hex 0xF4 limit; food target 1E-3", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00893", "style": "mixed_notation", "text": "Squad of serpents red green blue; green hunting; safety high 250; dozen step cap; food 1/12", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00893", "style": "mixed_notation", "text": "Snake group: red, green, blue; foraging green; danger level 250; step 250 limit; target 1/1000", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00893", "style": "mixed_notation", "text": "Serpent squad red green blue; green foragers; risk 250 steps; hex 0xF4 max; food 1E-3", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00893", "style": "mixed_notation", "text": "Red green blue snake formation; green searching; careful 250 steps; 250 step threshold; food 1/1000", "verified": true, "verifier_status": "ok"}
