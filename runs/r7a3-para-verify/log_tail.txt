@@ -1,0 +1,7 @@
+[21:49:55] 11520 raw paraphrases, 0 verified before, 11520 to verify
+[21:49:55] Ollama already running at http://localhost:11434
+[21:50:59] para-verify 50/11520
+[21:51:53] para-verify 100/11520
+[21:52:43] para-verify 150/11520
+[21:53:30] para-verify 200/11520
+[21:54:20] para-verify 250/11520
