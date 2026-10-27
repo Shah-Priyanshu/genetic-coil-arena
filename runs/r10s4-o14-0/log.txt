@@ -1,0 +1,8 @@
+[06:12:44] 25 incidents, conditions ['team4_rule', 'team4_llm', 'single_all', 'single_logs'], model ollama:qwen2.5-coder:14b
+[06:13:10] reports 1/25 RE3-OB/adservice_f3/1 valid 12/12 (25s)
+[06:13:31] reports 2/25 RE3-OB/adservice_f4/3 valid 12/12 (47s)
+[06:13:53] reports 3/25 RE3-OB/adservice_f5/3 valid 11/12 (69s)
+[06:14:14] reports 4/25 RE3-OB/cartservice_f1/3 valid 11/12 (90s)
+[06:14:34] reports 5/25 RE3-OB/currencyservice_f1/3 valid 12/12 (109s)
+[06:14:55] reports 6/25 RE3-OB/emailservice_f1/1 valid 12/12 (130s)
+[06:15:32] reports 7/25 RE3-OB/emailservice_f1/2 valid 12/12 (167s)
