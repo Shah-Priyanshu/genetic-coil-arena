@@ -2333,3 +2333,16 @@
 {"base_id": "tpl-squad-00505", "style": "negation", "text": "Blue and green snakes forage, red snakes don't, normal caution, 150 steps, no food target stated", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00505", "style": "negation", "text": "Everyone except red snakes forages, green, blue squads, normal caution, 150 step limit, no food target", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00505", "style": "negation", "text": "Snakes in blue and green squads forage, red snakes stay put, normal caution, 150 steps, no food target", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00505", "style": "negation", "text": "Green and blue snakes forage, red snakes don't, normal caution, 150 step limit, no food target specified", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-ref0148", "style": "mixed_notation", "text": "Request exceeds operational boundaries at 1/8th of maximum capacity", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-ref0148", "style": "mixed_notation", "text": "Target impossible to achieve per thousand basis, ratio 1:1000", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-ref0148", "style": "mixed_notation", "text": "System cannot process at hexadecimal F00F level of precision", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0148", "style": "mixed_notation", "text": "False alarm rate of 25% exceeds allowable threshold of 1 in 4", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-ref0148", "style": "mixed_notation", "text": "Operation requires 1.23E-6 units beyond range capability", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0148", "style": "mixed_notation", "text": "Demand surpasses limits by a dozen standard deviations", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0148", "style": "mixed_notation", "text": "Ratio 7:8 of required output exceeds available capacity", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0148", "style": "mixed_notation", "text": "Target unattainable at half a hundred percent of maximum", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-01068", "style": "negation", "text": "Red, green, and blue snakes form the squad. All foraging except normal caution applies. Step limit set to 110 with food target of 18.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01068", "style": "negation", "text": "Squad includes red, green, and blue snakes. Foraging covers all three colors. Normal caution maintained. Step limit 110 and food target 18.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01068", "style": "negation", "text": "Everyone except yellow snakes comprises the squad. Red, green, blue foraging applies. Ordinary care. Step limit 110 with food target 18.", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-squad-01068", "style": "negation", "text": "All snakes except white form the squad. Red, green, blue foraging active. Standard caution. Step limit 110 and food target 18.", "verified": false, "verifier_status": "refused"}
