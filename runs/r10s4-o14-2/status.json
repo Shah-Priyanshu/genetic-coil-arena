@@ -1,0 +1,22 @@
+{
+  "id": "r10s4-o14-2",
+  "commit": "34a24be26c25024e5dc109c82b2a513fbba9ab2d",
+  "queued_args": [
+    "scripts/r10_step4.py",
+    "run",
+    "--model",
+    "ollama:qwen2.5-coder:14b",
+    "--shard",
+    "2/3",
+    "--conditions",
+    "team4_rule,team4_llm,single_all,single_logs"
+  ],
+  "state": "running",
+  "started_at": "2026-10-27T11:13:00+00:00",
+  "updated_at": "2026-10-27T11:13:00+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 812 MiB, 12282 MiB, 53",
+  "host": "PC",
+  "lane": "gpu",
+  "cpu_workers": 2
+}
