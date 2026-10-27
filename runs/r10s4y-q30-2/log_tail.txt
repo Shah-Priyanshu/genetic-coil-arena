@@ -31,3 +31,6 @@
 [15:37:46] reports 30/33 RE3-TT/ts-route-service_f2/2 valid 66/68 (4366s)
 [15:43:07] reports 31/33 RE3-TT/ts-route-service_f3/2 valid 66/68 (4686s)
 [15:48:23] reports 32/33 RE3-TT/ts-route-service_f3_1/1 valid 66/68 (5002s)
+[15:53:36] reports 33/33 RE3-TT/ts-route-service_f4/3 valid 68/68 (5315s)
+[15:54:44] conditions 1/33 RE3-OB/adservice_f3/3 (5384s)
+[15:55:14] conditions 2/33 RE3-OB/adservice_f4/2 (5414s)
