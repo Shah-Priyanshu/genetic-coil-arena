@@ -1,0 +1,27 @@
+{
+  "model": "ollama:gemma4:e4b",
+  "model_name": "ollama:gemma4:e4b",
+  "conditions": [
+    "team4_rule",
+    "team4_llm",
+    "single_all",
+    "single_logs"
+  ],
+  "systems": "RE3-SS,RE3-OB,RE3-TT",
+  "shard": "2/3",
+  "n_incidents": 33,
+  "settings": {
+    "log_view_tokens": 1500,
+    "log_new_tokens": 120,
+    "log_batch": 4,
+    "before_s": 120.0,
+    "after_s": 600.0,
+    "ctx_tokens": 6144,
+    "margin": 48,
+    "centre_new_tokens": 60
+  },
+  "wall_s": 1153.3,
+  "python": "3.13.7",
+  "commit": "91d5a8d12f14bc51051f22a860e289fba0637fdf",
+  "finished": "2026-10-27T10:56:59"
+}
