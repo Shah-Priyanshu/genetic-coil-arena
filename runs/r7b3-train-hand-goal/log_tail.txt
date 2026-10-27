@@ -1,11 +1,3 @@
-[progress] hand-goal run 0: gen 450/10000, val mission 6.03, best gen 450, elapsed 1268 s
-[progress] hand-goal run 5: gen 350/10000, val mission 9.80, best gen 300, elapsed 1284 s
-[progress] hand-goal run 2: gen 400/10000, val mission 9.37, best gen 400, elapsed 1296 s
-[progress] hand-goal run 3: gen 500/10000, val mission -0.13, best gen 500, elapsed 1368 s
-[progress] hand-goal run 1: gen 400/10000, val mission 10.10, best gen 400, elapsed 1374 s
-[progress] hand-goal run 6: gen 400/10000, val mission 9.10, best gen 350, elapsed 1417 s
-[progress] hand-goal run 4: gen 450/10000, val mission 7.03, best gen 450, elapsed 1419 s
-[progress] hand-goal run 7: gen 400/10000, val mission 7.57, best gen 400, elapsed 1435 s
 [progress] hand-goal run 0: gen 600/10000, val mission 7.33, best gen 600, elapsed 1897 s
 [progress] hand-goal run 5: gen 500/10000, val mission 13.90, best gen 500, elapsed 1934 s
 [progress] hand-goal run 2: gen 550/10000, val mission 10.63, best gen 500, elapsed 1946 s
@@ -198,3 +190,11 @@
 [progress] hand-goal run 6: gen 4100/10000, val mission 19.27, best gen 3850, elapsed 17001 s
 [progress] hand-goal run 4: gen 4150/10000, val mission 19.67, best gen 3900, elapsed 17033 s
 [progress] hand-goal run 1: gen 4100/10000, val mission 20.40, best gen 2850, elapsed 17049 s
+[progress] hand-goal run 0: gen 4350/10000, val mission 17.93, best gen 3150, elapsed 17439 s
+[progress] hand-goal run 3: gen 4450/10000, val mission 13.83, best gen 3350, elapsed 17512 s
+[progress] hand-goal run 7: gen 4300/10000, val mission 14.60, best gen 3700, elapsed 17537 s
+[progress] hand-goal run 2: gen 4300/10000, val mission 16.10, best gen 4250, elapsed 17579 s
+[progress] hand-goal run 5: gen 4250/10000, val mission 20.90, best gen 4000, elapsed 17584 s
+[progress] hand-goal run 6: gen 4300/10000, val mission 18.13, best gen 3850, elapsed 17650 s
+[progress] hand-goal run 4: gen 4350/10000, val mission 20.20, best gen 4250, elapsed 17680 s
+[progress] hand-goal run 1: gen 4300/10000, val mission 21.50, best gen 4300, elapsed 17696 s
