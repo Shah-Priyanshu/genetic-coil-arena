@@ -2617,3 +2617,12 @@
 {"base_id": "tpl-plant-ref0019", "style": "formal_memo", "text": "Request denied due to ood constraint. No available resources for requested operation.", "verified": true, "verifier_status": "refused"}
 {"base_id": "tpl-plant-ref0019", "style": "formal_memo", "text": "Control system unable to process request. Out of domain limitations prevent execution.", "verified": true, "verifier_status": "refused"}
 {"base_id": "tpl-plant-ref0019", "style": "formal_memo", "text": "Operation cannot be completed. Ood parameter exceeds system capabilities.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0019", "style": "formal_memo", "text": "System rejection occurred. Ood condition prevents fulfillment of this request.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0019", "style": "formal_memo", "text": "Request processing failed. Ood restriction makes this operation impossible.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0019", "style": "formal_memo", "text": "Control command invalid. Ood limitation prohibits requested action implementation.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0019", "style": "formal_memo", "text": "Task cannot be executed. Ood boundary constraints prevent system response.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0019", "style": "formal_memo", "text": "Command denied. Ood parameters exceed operational capacity limits.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-00313", "style": "casual_chat", "text": "hey so like uh red green and blue snakes okay but only red and green are foraging yeah normal caution whatever 120 step limit 7 food target", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00313", "style": "casual_chat", "text": "yo control system listen up red green blue squad right but red and green hunting only normal care no worries 120 steps max 7 food goal", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00313", "style": "casual_chat", "text": "ok so we got red green and blue snakes cool but just red and green are foraging yep normal caution cool 120 moves 7 food target", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00313", "style": "casual_chat", "text": "hey man red green blue snakes yeah but only red green ones foraging normal care standard 120 steps 7 food required", "verified": true, "verifier_status": "ok"}
