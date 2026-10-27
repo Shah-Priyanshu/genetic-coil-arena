@@ -1164,3 +1164,24 @@
 {"base_id": "tpl-squad-00809", "style": "mixed_notation", "text": "Snakes 0x01 0x01 0x01 hexadecimal red green blue foraging red caution high 50 step limit 8 food target", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00809", "style": "mixed_notation", "text": "Red snake squad 1e0 green 1e0 blue 1e0 foraging red caution high 50 step limit 8 food target", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00809", "style": "mixed_notation", "text": "Red snake squad a dozen green a dozen blue a dozen foraging red caution high 50 step limit 8 food target", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-00809", "style": "mixed_notation", "text": "Red snake squad 50 step limit half a hundred foraging red caution high 50 step limit 8 food target", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00809", "style": "mixed_notation", "text": "Red snake squad 1/2 1/2 1/2 ratio green blue foraging red caution high 50 step limit 8 food target", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0072", "style": "negation", "text": "Turn off all nodes except the main control hub and backup systems", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-cla0072", "style": "negation", "text": "Deactivate every component apart from the primary processor and safety monitors", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-cla0072", "style": "negation", "text": "Switch out all devices excluding the emergency override and status indicators", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-cla0072", "style": "negation", "text": "Power down everyone but the critical infrastructure and monitoring stations", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0072", "style": "negation", "text": "Disable all elements leaving only the core operational units active", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0072", "style": "negation", "text": "Turn off no nodes except those designated for maintenance and testing", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0072", "style": "negation", "text": "Cut power to all systems except the essential backup and diagnostic tools", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-cla0072", "style": "negation", "text": "Shut down every device apart from the default configuration and manual controls", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-squad-00486", "style": "typos", "text": "red green blue snak squad foragin 2 red n green caution norml step limt 300 food target 5", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00486", "style": "typos", "text": "snakes red grn blu squad foragin red grn caution normal step limit 300 food tgt 5", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00486", "style": "typos", "text": "red grn blue snak team foragin red grn caution norml step 300 food target 5", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00486", "style": "typos", "text": "snak squad red green blue foragin red green caution normal step limt 300 food tgt 5", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00486", "style": "typos", "text": "red grn blu snakes foragin red grn caution norml step limit 300 food target 5", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00486", "style": "typos", "text": "snak team red green blue foragin red grn caution normal step 300 food tgt 5", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00486", "style": "typos", "text": "red green blue snake squad foragin red grn caution norml step limt 300 food target 5", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00486", "style": "typos", "text": "snakes red grn blu foragin red grn caution normal step limit 300 food tgt 5", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00822", "style": "jargon", "text": "diag reactor sep stripper comp_util 51b msg 0.01 fa 4 nodes active", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00822", "style": "jargon", "text": "fault check rct srp strp cmp_utl 51 bytes 1% false 4 actv", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00822", "style": "jargon", "text": "rct sep strp cmp utl fault sys 51 msg size 0.01 alarm rate", "verified": true, "verifier_status": "ok"}
