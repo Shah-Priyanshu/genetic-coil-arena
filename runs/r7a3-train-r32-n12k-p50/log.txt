@@ -141,3 +141,11 @@ Loading weights: 100%|██████████| 311/311 [00:07<00:00, 43.1
 [01:41:43] r32-n12k-p50: trained 2250 steps in 2120s, loss 0.0002, peak 4716 MiB
 [01:44:11] r32-n12k-p50 dev: 40/304 (squad-dev-ho-03)
 [01:46:44] r32-n12k-p50 dev: 80/304 (plant-dev-in-07)
+[01:48:44] r32-n12k-p50 dev: 120/304 (plant-dev-ho-11)
+[01:51:00] r32-n12k-p50 dev: 160/304 (squad-indist-15)
+[01:53:23] r32-n12k-p50 dev: 200/304 (squad-heldout-15)
+[01:55:40] r32-n12k-p50 dev: 240/304 (plant-indist-15)
+[01:57:41] r32-n12k-p50 dev: 280/304 (plant-heldout-15)
+[01:58:50] r32-n12k-p50 dev: 304/304 (plant-heldout-x3)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[01:58:51] r32-n12k-p50: dev+step-1 exact 94.8% on 288 valid items; adapter 133 MiB at D:\hf_cache\r7a3_store\r32-n12k-p50.pt
