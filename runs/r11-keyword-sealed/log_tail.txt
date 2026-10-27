@@ -1,0 +1,3 @@
+[12:34:19] keyword sealed: 130/130 (4s)
+[12:34:19] keyword routing (R7a items): 155/155 (4s)
+[12:34:20] keyword: wrote summary; exact 0.6454545454545455 (n=110), routing 0.9816849816849816
