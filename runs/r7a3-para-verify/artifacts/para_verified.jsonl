@@ -4699,3 +4699,21 @@
 {"base_id": "tpl-plant-01178", "style": "typos", "text": "activat plant fault diag system reactor sep stripper comprtr_utilits 8 byte msgs fals alarm 1 percent sensor node list", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-plant-01178", "style": "typos", "text": "init fault detect systm reactor sep stripper comprtr_utilits msg size 8 bytes false alarm rate 0.01 active nodes shown", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-plant-01178", "style": "typos", "text": "fault diag system start reactor sep stripper comprtr_utilits 8 byte messages fals alarm 0.01 activ nodes reactor sep stripper", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-01178", "style": "typos", "text": "plant fault diagnos system on reactor sep stripper comprtr_utilits msg 8 bytes fals alarm 1 percent node list complete", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-01178", "style": "typos", "text": "start fault detection systm reactor sep stripper comprtr_utilits 8 byte packets false alarm rate 0.01 active node list", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-01178", "style": "typos", "text": "engag fault diag system reactor sep stripper comprtr_utilits msg size 8 bytes fals alarm 0.01 activ nodes reactor sep stripper", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00867", "style": "mixed_notation", "text": "Squad snakes red green blue; foraging red green; caution low reckless risk-taking; step limit 250; food target 18", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00867", "style": "mixed_notation", "text": "Red green blue snake squad; foraging red green; caution level 0.125 risky; step allowance 0x00FA; food goal 18", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00867", "style": "mixed_notation", "text": "Snakes: red green blue; foraging: red green; caution: 125‰ reckless; steps: 2.5e2; food: 18", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00867", "style": "mixed_notation", "text": "Snake team red/green/blue; foraging red/green; caution low risky; step limit 100H; food target 18", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00867", "style": "mixed_notation", "text": "Squad of snakes red green blue; foraging red green; caution low risky; steps 250; food 18", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00867", "style": "mixed_notation", "text": "Red green blue snake group; foraging red green; caution 1/8 reckless; steps 250; food target 18", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00867", "style": "mixed_notation", "text": "Snake unit red green blue; foraging red green; caution 12.5% risk-taking; steps 250; food 18", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00867", "style": "mixed_notation", "text": "Squad snakes red green blue; foraging red green; caution low risky; steps 2.5e2; food target 18", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00880", "style": "jargon", "text": "diag reactor sensor fault system msg 16 bytes fa rate 0.005 active reactor", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00880", "style": "jargon", "text": "fault check reactor sep stripper comp util sensors 16 byte msgs 0.005 false alarm", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00880", "style": "jargon", "text": "reactor diagnostics sensor network 16 bytes per msg fault rate 0.005 active node reactor", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00880", "style": "jargon", "text": "sensor fault detection system reactor sep stripper compressor utilities 16 byte messages", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00880", "style": "jargon", "text": "plant fault analysis reactor node only 16 byte packets false alarm 0.005", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00880", "style": "jargon", "text": "reactor sensor monitoring system 16 byte frames 0.005 false alarm rate active reactor", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00880", "style": "jargon", "text": "diagnostic system reactor separator stripper compressor utilities 16 bytes msg 0.005 fa", "verified": false, "verifier_status": "ok"}
