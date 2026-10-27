@@ -6253,3 +6253,32 @@
 {"base_id": "tpl-squad-01243", "style": "negation", "text": "No red snakes foraging, green and blue snakes forage, normal caution applied, step limit 300, no food target indicated", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-01243", "style": "negation", "text": "Everyone except red snakes forages, green and blue snakes in foraging squad, ordinary caution level, 300 steps maximum, no food target defined", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-01243", "style": "negation", "text": "Red snakes not foraging, green and blue snakes forage, normal care protocol, step limit 300 default, no food target specified", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01243", "style": "negation", "text": "Exclude red snakes from foraging, green and blue snakes forage, standard caution maintained, 300 step limit applied, no food target stated", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00287", "style": "formal_memo", "text": "Initiate fault diagnosis protocol for reactor separator stripper compressor utilities with 8 byte message format and 0.05 false alarm rate", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00287", "style": "formal_memo", "text": "Activate diagnostic system monitoring reactor stripper nodes only with 8 byte packets and 5% false alarm threshold", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00287", "style": "formal_memo", "text": "Execute plant fault detection routine including reactor separator stripper compressor utilities at 8 bytes per message with 0.05 false alarm probability", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00287", "style": "formal_memo", "text": "Request sensor node fault analysis for reactor stripper components using 8 byte communication protocol and 0.05 false alarm rate", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00287", "style": "formal_memo", "text": "Begin operational fault monitoring on reactor separator stripper compressor utilities with 8 byte message structure and 5% false alarm limit", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00287", "style": "formal_memo", "text": "Implement diagnostic procedures for reactor stripper nodes utilizing 8 byte transmission format and 0.05 false alarm criteria", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00287", "style": "formal_memo", "text": "Start plant fault identification system with reactor separator stripper compressor utilities using 8 byte messages at 0.05 false alarm rate", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-00287", "style": "formal_memo", "text": "Launch sensor node monitoring protocol for reactor stripper active components with 8 byte packet size and 5% false alarm tolerance", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-cla0101", "style": "typos", "text": "plz make all faulse alarms rare dont want too many false alerts", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0101", "style": "typos", "text": "need to set alarm threshhold but im not sure how many is right", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0101", "style": "typos", "text": "quick setup for system alerts just make sure its not too frequent", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0101", "style": "typos", "text": "alarm settings need adjustment but i cant decide on exact number", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0101", "style": "typos", "text": "want system to be less chatty but dont know optimal alert level", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0101", "style": "typos", "text": "make notifications less spammy but no clue what quantity is good", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0101", "style": "typos", "text": "system should reduce false alerts but im unsure of target amount", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0101", "style": "typos", "text": "need to tune response frequency but no idea how often is right", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-00215", "style": "typos", "text": "red grn blu snk sqd forag blu cnst hgh stp 50 fd tgrt non", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00215", "style": "typos", "text": "snk sqd red grn blu forag blu ctn hgh stp limt 50 no food tgt", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00215", "style": "typos", "text": "rqst snk squad red grn blue forag blue cnst high step 50 no food", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00215", "style": "typos", "text": "snakes red green blue squad foraging blue caution high steps 50 none", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00215", "style": "typos", "text": "red grn blu snk sqd forag blu ctn hgh stp limt 50 no food tgt", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00215", "style": "typos", "text": "sqd snks red grn blu forag blu cnst hgh step limit 50 no food", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00215", "style": "typos", "text": "snk squad red grn blue forag blue caution hgh step 50 no food target", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00215", "style": "typos", "text": "red grn blu snake sqd forag blue cnst high stp 50 fd tgt none", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00419", "style": "terse_note", "text": "Squad: red green blue | Foraging: red blue | Caution: low | Food: 15", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00419", "style": "terse_note", "text": "Snakes red green blue | Forage red blue | Risk low | Target 15", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00419", "style": "terse_note", "text": "RED GREEN BLUE squad | RED BLUE foraging | CAUTION LOW | FOOD 15", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00419", "style": "terse_note", "text": "Squad snakes: red green blue | Foraging: red blue | Risk: low | Food target: 15", "verified": true, "verifier_status": "ok"}
