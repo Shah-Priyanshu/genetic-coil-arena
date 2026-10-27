@@ -1,0 +1,20 @@
+{
+  "id": "r11-o14-sealed",
+  "commit": "bfcbf100f49de1c4413bc4a4d980d3a624138f9a",
+  "args": [
+    "scripts/r11_ecosystem.py",
+    "run",
+    "--translator",
+    "ollama:qwen2.5-coder:14b",
+    "--split",
+    "sealed",
+    "--team-from",
+    "runs:r11-team"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 2,
+  "after": [
+    "r11-team"
+  ],
+  "timeout_min": 100.0
+}

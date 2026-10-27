@@ -1,0 +1,25 @@
+{
+  "id": "r11-zz-aggregate",
+  "commit": "bfcbf100f49de1c4413bc4a4d980d3a624138f9a",
+  "args": [
+    "scripts/r11_ecosystem.py",
+    "report",
+    "--from",
+    "runs:r11-*",
+    "--out",
+    "docs/results/r11_ecosystem.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 1,
+  "after": [
+    "r11-team",
+    "r11-o14-sealed",
+    "r11-gemma-sealed",
+    "r11-keyword-sealed"
+  ],
+  "timeout_min": 20.0,
+  "outputs": [
+    "docs/results/r11_ecosystem.md",
+    "docs/results/r11_ecosystem.json"
+  ]
+}
