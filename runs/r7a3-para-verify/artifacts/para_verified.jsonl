@@ -3817,3 +3817,25 @@
 {"base_id": "tpl-squad-00744", "style": "typos", "text": "red green blue snak squad foragin greeen blue caution low step 300", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00744", "style": "typos", "text": "snakes red greem blue formg greeen blue cautiun low step limit 300", "verified": false, "verifier_status": "clarify"}
 {"base_id": "tpl-squad-00744", "style": "typos", "text": "squad red green blue foragin snaks green blue caution low steps 300", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00744", "style": "typos", "text": "red greem blue snake team foragin green blue cautin low step max 300", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00744", "style": "typos", "text": "snak group red green blue foragin greeen blue caution low step cap 300", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00744", "style": "typos", "text": "red green blue snake force foragin green blue caution low steps 300", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00744", "style": "typos", "text": "squad red greem blue foragin snaks green blue cautiun low step limit", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-00744", "style": "typos", "text": "red green blue snake team foragin greeen blue caution low step max 300", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00492", "style": "formal_memo", "text": "Initiate red, green, and blue snake squad for foraging operations. Normal caution protocol. Maximum 130 steps permitted. Target food intake set to ten units.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00492", "style": "formal_memo", "text": "Snake squad deployment: red, green, blue personnel. Foraging mission required. Standard caution level maintained. Step restriction of 130 applied. Food objective equals ten.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00492", "style": "formal_memo", "text": "Red, green, blue snake teams activated for foraging duty. Ordinary caution standards. 130 step allowance. Food target quantity 10 units specified.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00492", "style": "formal_memo", "text": "Deploy snake squad comprising red, green, and blue members. Foraging activities required. Normal operational caution. Step limit set to 130. Food goal: ten units.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00492", "style": "formal_memo", "text": "Snake squad configuration: red, green, blue units. Foraging operations authorized. Standard care protocol. Maximum 130 steps allowed. Food target value 10 established.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00492", "style": "formal_memo", "text": "Red, green, blue snake squad mobilization for foraging tasks. Regular caution procedures. Step threshold 130. Target food amount 10 units required.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00492", "style": "formal_memo", "text": "Activate red, green, blue snake formations for foraging missions. Routine caution maintained. 130 step maximum permitted. Food target of ten units specified.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00492", "style": "formal_memo", "text": "Snake squad assignment: red, green, blue personnel. Foraging operations initiated. Standard caution protocol. Step allowance 130. Food objective set to ten units.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-cla0088", "style": "jargon", "text": "Turn off some nodes please", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0088", "style": "jargon", "text": "Shut down few units", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0088", "style": "jargon", "text": "Power down several components", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-cla0088", "style": "jargon", "text": "Disable handful of systems", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0088", "style": "jargon", "text": "Switch off certain nodes", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0088", "style": "jargon", "text": "Turn off select units", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0088", "style": "jargon", "text": "Power down some devices", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-plant-cla0088", "style": "jargon", "text": "Shutdown couple nodes", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-00738", "style": "mixed_notation", "text": "Fault diag system reactor sep stripper comp_util 8b msg 0.01 false alarm rate 1% active compressor_utilities", "verified": true, "verifier_status": "ok"}
