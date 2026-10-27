@@ -1,0 +1,32 @@
+{
+  "id": "r10s3-zz-aggregate",
+  "commit": "bb91b029c6830478b7166b5f8fabac389e2f3876",
+  "args": [
+    "scripts/r10_step3.py",
+    "report",
+    "--from",
+    "runs:r10s3-data",
+    "runs:r10s3-metric",
+    "runs:r10s3-lora-*",
+    "runs:r10s3-teams",
+    "--out",
+    "docs/results/r10_step3.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 1,
+  "priority": 6,
+  "after": [
+    "r10s3-data",
+    "r10s3-metric",
+    "r10s3-lora-tt",
+    "r10s3-lora-ss",
+    "r10s3-lora-ob",
+    "r10s3-lora-final",
+    "r10s3-teams"
+  ],
+  "timeout_min": 20.0,
+  "outputs": [
+    "docs/results/r10_step3.md",
+    "docs/results/r10_step3.json"
+  ]
+}
