@@ -1,0 +1,18 @@
+{
+  "id": "r11-o14-dev",
+  "commit": "7c54345d1a56661ef27f3987f0cea875ee450d3f",
+  "args": [
+    "scripts/r11_ecosystem.py",
+    "run",
+    "--translator",
+    "ollama:qwen2.5-coder:14b",
+    "--split",
+    "dev",
+    "--team-from",
+    "runs:r11-team"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 2,
+  "priority": 5,
+  "timeout_min": 60.0
+}
