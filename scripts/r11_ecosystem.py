@@ -19,6 +19,13 @@ Sub-commands (each is a runner job):
     python scripts/r11_ecosystem.py run --translator keyword --team-from runs:r11-team
     python scripts/r11_ecosystem.py report --from "runs:r11-*"
 
+R11 v2 (goal G8b, `docs/results/r11b_ecosystem.md`): add `--spec-version 2` to `run` and `report`.
+It uses `rca.investigate` v2 (partial dates), the v2 prompts and the fresh sealed set
+`r11b_sealed_test.jsonl`; v1 stays reproducible without the flag.
+
+    python scripts/r11_ecosystem.py run --spec-version 2 --translator ollama:qwen2.5-coder:14b --team-from runs:r11-team
+    python scripts/r11_ecosystem.py report --spec-version 2 --from runs:r11b-o14-sealed runs:r11b-gemma-sealed runs:r11b-keyword-sealed
+
 Real models run only in the queued jobs. The Ollama model is unloaded (keep_alive 0) when the
 job ends. ``--smoke`` and ``--translator stub`` run a handful of items without any model
 (smoke results are never a verdict).
@@ -51,6 +58,8 @@ from genetic_coil_arena.experiments import r11_pipeline as pipe  # noqa: E402
 from genetic_coil_arena.experiments import r11_report as rep  # noqa: E402
 from genetic_coil_arena.experiments import r11_sealed as sealed  # noqa: E402
 from genetic_coil_arena.experiments import r11_team as team  # noqa: E402
+from genetic_coil_arena.experiments import r11b_incident as incb  # noqa: E402
+from genetic_coil_arena.experiments import r11b_sealed as sealedb  # noqa: E402
 from genetic_coil_arena.experiments.log_triage_report import (  # noqa: E402
     carried_analysis,
 )
@@ -103,6 +112,11 @@ def commit() -> str:
     return subprocess.run(
         ["git", "-C", str(REPO), "rev-parse", "HEAD"], capture_output=True, text=True
     ).stdout.strip()
+
+
+def sealed_module(version: int) -> Any:
+    """The sealed/dev loader module of a spec version (1: R11 v1, 2: R11 v2)."""
+    return sealedb if version == 2 else sealed
 
 
 def tag_of(translator: str) -> str:
@@ -159,7 +173,9 @@ def cmd_run(args: argparse.Namespace) -> int:
     kind = args.translator.split(":", 1)[0]
     tag = tag_of(args.translator).replace(":", "_").replace("/", "_")
     smoke = bool(args.smoke or args.limit or kind == "stub")
-    items = sealed.load_sealed() if args.split == "sealed" else sealed.load_dev()
+    version = int(args.spec_version)
+    mod = sealed_module(version)
+    items = mod.load_sealed() if args.split == "sealed" else mod.load_dev()
     r7a_items = (
         r7a_sealed.load_sealed() if args.split == "sealed" else r7a_sealed.load_dev()
     )
@@ -174,9 +190,13 @@ def cmd_run(args: argparse.Namespace) -> int:
     specialist = team.load_specialist(state)
     services = set(inc.SOCK_SHOP_SERVICES) | set(inc.ONLINE_BOUTIQUE_SERVICES)
     executor = team.IncidentExecutor(catalogue, team.IncidentTeam(specialist, services))
-    registry = inc.build_registry_r11()
+    registry = incb.build_registry_r11b() if version == 2 else inc.build_registry_r11()
     domains = with_policy_packs(build_domains(None, 8, 5))
-    domains["incident"] = inc.incident_domain(executor)
+    domains["incident"] = (
+        incb.incident_domain_v2(executor)
+        if version == 2
+        else inc.incident_domain(executor)
+    )
 
     items_path = out / f"items_{tag}.jsonl"
     routes_path = out / f"routes_{tag}.jsonl"
@@ -225,7 +245,8 @@ def cmd_run(args: argparse.Namespace) -> int:
         finish(pipe.KeywordDesk(registry, domains, catalogue), None, vram)
         return 0
     if kind == "stub":
-        desk = pipe.Desk(pipe.KeywordBackend(), registry, domains, catalogue)
+        parser = incb.keyword_incident_v2 if version == 2 else None
+        desk = pipe.Desk(pipe.KeywordBackend(parser), registry, domains, catalogue)
         finish(desk, ReverseTranslator(desk.translator), vram)
         return 0
     if kind != "ollama":
@@ -290,7 +311,14 @@ def write_summary(
         "metrics": rep.system_metrics(records, routes),
         "vram": vram,
         "vram_gb": None if mib is None else mib / 1024.0,
-        "sealed_sha256": sealed.file_sha256() if args.split == "sealed" else None,
+        "spec_version": int(args.spec_version),
+        "sealed_sha256": (
+            sealed_module(int(args.spec_version)).file_sha256(
+                sealed_module(int(args.spec_version)).SEALED_PATH
+            )
+            if args.split == "sealed"
+            else None
+        ),
         "r7a_sealed_sha256": r7a_sealed.sealed_sha256(),
         "catalogue": {"n": len(catalogue), "fingerprint": catalogue.fingerprint()},
         "team": {
@@ -319,9 +347,20 @@ def cmd_report(args: argparse.Namespace) -> int:
     for src in resolve_runs(args.sources):
         paths += sorted(src.rglob("summary_*.json")) if src.is_dir() else [src]
     summaries = [json.loads(p.read_text(encoding="utf-8")) for p in paths]
+    version = int(args.spec_version)
     summaries = [
-        s for s in summaries if s.get("split") == "sealed" and not s.get("smoke")
+        s
+        for s in summaries
+        if s.get("split") == "sealed"
+        and not s.get("smoke")
+        and int(s.get("spec_version", 1)) == version
     ]
+    pinned = sealed_module(version).SEALED_SHA256
+    for s in summaries:
+        if s["sealed_sha256"] != pinned:
+            raise SystemExit(
+                f"{s['tag']}: ran on a sealed file that is not the pinned one"
+            )
     if not summaries:
         raise SystemExit("no full sealed-set summaries found")
     order = {PRIMARY: 0, SMALL: 1, "keyword": 2}
@@ -358,7 +397,7 @@ def cmd_report(args: argparse.Namespace) -> int:
             f"{ce['joint']:.1%} on all {ce['n']} catalogued incidents (R10 step 3 reported 68.3 joint)"
         )
     team_text += "."
-    report = {
+    report: dict[str, Any] = {
         "generated": datetime.datetime.now().strftime("%Y-%m-%d %H:%M"),
         "n_sealed": len(first["records"]),
         "sealed_sha256": first["sealed_sha256"],
@@ -368,7 +407,20 @@ def cmd_report(args: argparse.Namespace) -> int:
         "systems": systems,
         "commit": first["commit"],
     }
-    out = Path(args.out)
+    if version == 2:
+        report.update(
+            goal="G8b",
+            title="R11 v2: the ecosystem on real incidents, partial dates resolved by the desk",
+            sealed_file="r11b_sealed_test.jsonl",
+            command="python scripts/r11_ecosystem.py report --spec-version 2",
+        )
+    out = Path(
+        args.out
+        or REPO
+        / "docs"
+        / "results"
+        / ("r11b_ecosystem.md" if version == 2 else "r11_ecosystem.md")
+    )
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(rep.render(report, carried_analysis(out)), encoding="utf-8")
     payload = json.loads(json.dumps(clean(report), allow_nan=False))
@@ -395,6 +447,7 @@ def main(argv: Optional[list[str]] = None) -> int:
     common(r)
     r.add_argument("--translator", required=True, help="ollama:<tag>, keyword or stub")
     r.add_argument("--split", choices=["sealed", "dev"], default="sealed")
+    r.add_argument("--spec-version", type=int, choices=[1, 2], default=1)
     r.add_argument("--team-from", nargs="*", default=[])
     r.add_argument("--host", default=DEFAULT_HOST)
     r.add_argument("--limit", type=int, default=None)
@@ -403,7 +456,10 @@ def main(argv: Optional[list[str]] = None) -> int:
     )
     p = sub.add_parser("report")
     p.add_argument("--from", dest="sources", nargs="+", required=True)
-    p.add_argument("--out", default=str(REPO / "docs" / "results" / "r11_ecosystem.md"))
+    p.add_argument(
+        "--out", default=None, help="default: docs/results/r11[b]_ecosystem.md"
+    )
+    p.add_argument("--spec-version", type=int, choices=[1, 2], default=1)
     args = parser.parse_args(argv)
     return {"team": cmd_team, "run": cmd_run, "report": cmd_report}[args.cmd](args)
 

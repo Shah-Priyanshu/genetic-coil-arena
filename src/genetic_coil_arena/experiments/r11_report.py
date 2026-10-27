@@ -400,20 +400,24 @@ def _short(value: Any, n: int = 220) -> str:
 
 def render(report: Mapping[str, Any], analysis: Optional[str] = None) -> str:
     """The markdown of ``docs/results/r11_ecosystem.md`` (``analysis`` is carried over)."""
+    goal = report.get("goal", "G8")
+    title = report.get("title", "R11: the ecosystem on real incidents")
+    sealed_file = report.get("sealed_file", "r11_sealed_test.jsonl")
+    script = report.get("command", "python scripts/r11_ecosystem.py report")
     lines = [
-        "# R11: the ecosystem on real incidents (goal G8)",
+        f"# {title} (goal {goal})",
         "",
-        f"Generated {report['generated']}. Command: `python scripts/r11_ecosystem.py report`.",
+        f"Generated {report['generated']}. Command: `{script}`.",
         "",
         "One shared translator picks the domain (squad, plant or incident), extracts the GoalSpec, the command centre runs `rca.investigate` through the G4c trained team on a real RCAEval RE2 incident, the reverse translator summarises the trace, and the summary is routed and translated again.",
         "",
-        f"- **Sealed set:** {report['n_sealed']} hand-written incident requests (`experiments/data/r11_sealed_test.jsonl`, SHA-256 `{report['sealed_sha256']}`), plus the R7a sealed spec and clarify items for the routing check (SHA-256 `{report['r7a_sealed_sha256']}`). Each translator ran once.",
+        f"- **Sealed set:** {report['n_sealed']} hand-written incident requests (`experiments/data/{sealed_file}`, SHA-256 `{report['sealed_sha256']}`), plus the R7a sealed spec and clarify items for the routing check (SHA-256 `{report['r7a_sealed_sha256']}`). Each translator ran once.",
         f"- **Catalogue:** {report['catalogue']['n']} test incidents (SS/OB repetitions 2 and 3), fingerprint `{report['catalogue']['fingerprint']}`.",
         f"- **Team:** {report['team']}",
         "",
         "## Verdict",
         "",
-        "| Translator | G8 verdict | Exact match | Routing | NL - gold task score | Round trip | Fidelity | Warm p95 |",
+        f"| Translator | {goal} verdict | Exact match | Routing | NL - gold task score | Round trip | Fidelity | Warm p95 |",
         "|---|---|---|---|---|---|---|---|",
     ]
     for s in report["systems"].values():

@@ -15,6 +15,16 @@ into that vocabulary, deterministically and without reading any label.
   satisfied). A date-only ``at`` (``2024-01-20``) names the system's only incident that UTC day;
   a date and time (``2024-01-20T14:30``) names the system's only incident whose alert is within
   :data:`TOLERANCE_S` seconds of it.
+* **Partial dates (``rca.investigate`` v2).** The translator transcribes what the user said and the
+  desk resolves it, so ``at`` may also be ``--MM-DD`` (month and day, no year) or ``---DD`` (day of
+  the month only), each with an optional ``THH:MM`` (ISO-8601 truncated forms). The policy: the
+  candidate dates are the calendar dates at or before the desk clock (:data:`DESK_NOW`,
+  Thursday 2024-02-22 09:00 UTC) that match the partial date and have an incident of that system
+  matching the time rule (within :data:`TOLERANCE_S` of the time, or on that UTC day without one;
+  incidents after the desk clock do not exist yet). Exactly one candidate date with exactly one
+  incident resolves; several candidate dates (the 20th is in January and in February) or several
+  incidents on the one date make the desk ask (``clarify``); none refuses. A ticket given with a
+  partial date must be an incident whose date matches it. Full dates keep the v1 behaviour.
 
 Only file metadata (ids, systems, services, timestamps) is read; labels never enter the
 catalogue, so a request cannot leak them.
@@ -37,10 +47,15 @@ TICKET_PREFIX = "INC-"
 TICKET_BASE = 1001
 TICKET_PATTERN = r"^INC-\d{4}$"
 AT_PATTERN = r"^\d{4}-\d{2}-\d{2}(T\d{2}:\d{2})?$"
+AT_PATTERN_V2 = r"^(\d{4}-\d{2}-\d{2}|--\d{2}-\d{2}|---\d{2})(T\d{2}:\d{2})?$"
 TOLERANCE_S = 600.0  # a time names the incident whose alert is within this many seconds
 
 _AT = re.compile(r"^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}):(\d{2}))?$")
+_AT2 = re.compile(
+    r"^(?:(\d{4})-(\d{2})-(\d{2})|--(\d{2})-(\d{2})|---(\d{2}))(?:T(\d{2}):(\d{2}))?$"
+)
 UTC = dt.timezone.utc
+DESK_NOW = dt.datetime(2024, 2, 22, 9, 0, tzinfo=UTC)  # Thursday; the desk clock of R11
 
 
 class ResolveError(ValueError):
@@ -79,6 +94,51 @@ def parse_at(text: str) -> tuple[Optional[float], str]:
         day.replace(hour=int(hh), minute=int(mm)).timestamp(),
         date,
     )
+
+
+@dataclass(frozen=True)
+class TimeRef:
+    """A parsed ``at`` of ``rca.investigate`` v2.
+
+    Attributes:
+        year: Year, or None when the user gave none
+        month: Month, or None when the user gave only a day of the month
+        day: Day of the month
+        hhmm: ``(hour, minute)`` or None for a date-only reference
+    """
+
+    year: Optional[int]
+    month: Optional[int]
+    day: int
+    hhmm: Optional[tuple[int, int]] = None
+
+    @property
+    def partial(self) -> bool:
+        return self.year is None
+
+
+def parse_ref(text: str) -> TimeRef:
+    """Parse ``YYYY-MM-DD``, ``--MM-DD`` or ``---DD`` with an optional ``THH:MM``.
+
+    Raises:
+        ValueError: Not one of those forms, or an impossible month, day or time
+    """
+    m = _AT2.match(text)
+    if not m:
+        raise ValueError(
+            f"{text!r} is not YYYY-MM-DD, --MM-DD or ---DD (each with an optional THH:MM)"
+        )
+    y, mo, d, mo2, d2, d3, hh, mm = m.groups()
+    month = int(mo or mo2) if (mo or mo2) else None
+    day = int(d or d2 or d3)
+    hhmm = None if hh is None else (int(hh), int(mm))
+    if (month is not None and not 1 <= month <= 12) or not 1 <= day <= 31:
+        raise ValueError(f"{text!r} is not a possible date")
+    if hhmm is not None and not (hhmm[0] < 24 and hhmm[1] < 60):
+        raise ValueError(f"{text!r} is not a possible time")
+    if y is not None:
+        dt.datetime(int(y), month or 1, day, tzinfo=UTC)  # raises on an impossible date
+    return TimeRef(None if y is None else int(y), month, day, hhmm)
 
 
 @dataclass(frozen=True)
@@ -139,13 +199,16 @@ class IncidentCatalogue:
     Args:
         entries: Catalogue entries (their tickets must be unique)
         files: Optional ``ticket -> converted incident file`` (to load an incident later)
+        now: The desk clock (partial dates resolve at or before it; default :data:`DESK_NOW`)
     """
 
     def __init__(
         self,
         entries: Iterable[CatalogueEntry],
         files: Optional[Mapping[str, Path]] = None,
+        now: dt.datetime = DESK_NOW,
     ):
+        self.now = now
         self.entries = sorted(entries, key=lambda e: e.ticket)
         self.by_ticket = {e.ticket: e for e in self.entries}
         if len(self.by_ticket) != len(self.entries):
@@ -222,7 +285,21 @@ class IncidentCatalogue:
                 raise ResolveError(
                     "refuse", f"{ticket} is a {entry.system} incident, not {system}"
                 )
-        if at is not None:
+        if at is not None and str(at).startswith(
+            "--"
+        ):  # v2: month and day, or day only
+            try:
+                ref = parse_ref(str(at))
+            except ValueError as exc:
+                raise ResolveError("refuse", str(exc)) from exc
+            if entry is not None:
+                if not self._matches(ref, dt.date.fromisoformat(entry.date_utc)):
+                    raise ResolveError(
+                        "refuse", f"{ticket} happened on {entry.date_utc}, not {at}"
+                    )
+            else:
+                entry = self._by_partial(system, ref, str(at))
+        elif at is not None:
             try:
                 when, date = parse_at(str(at))
             except ValueError as exc:
@@ -258,6 +335,62 @@ class IncidentCatalogue:
             label = f"within {int(TOLERANCE_S // 60)} minutes of {utc_text(when)}"
         if not hits:
             raise ResolveError("refuse", f"no {system} incident {label}")
+        if len(hits) > 1:
+            names = ", ".join(f"{e.ticket} ({e.alert_utc})" for e in hits[:4])
+            more = "" if len(hits) <= 4 else f" and {len(hits) - 4} more"
+            raise ResolveError(
+                "clarify",
+                f"{len(hits)} {system} incidents {label}: {names}{more}. Which one?",
+            )
+        return hits[0]
+
+    @staticmethod
+    def _matches(ref: TimeRef, day: dt.date) -> bool:
+        """Whether a calendar day is one the (partial) reference can mean."""
+        return (
+            day.day == ref.day
+            and (ref.month is None or day.month == ref.month)
+            and (ref.year is None or day.year == ref.year)
+        )
+
+    def _by_partial(self, system: str, ref: TimeRef, text: str) -> CatalogueEntry:
+        """Resolve a partial date by the policy in the module docstring."""
+        pool = [
+            e for e in self.of_system(system) if e.inject_time <= self.now.timestamp()
+        ]
+        if pool:
+            first = min(
+                dt.datetime.fromtimestamp(e.inject_time, UTC).date() for e in pool
+            )
+            last = self.now.date()
+            days = [
+                first - dt.timedelta(days=1) + dt.timedelta(days=k)
+                for k in range((last - first).days + 2)
+            ]
+        else:
+            days = []
+        found: dict[dt.date, list[CatalogueEntry]] = {}
+        for day in days:
+            if day > self.now.date() or not self._matches(ref, day):
+                continue
+            if ref.hhmm is None:
+                hits = [e for e in pool if e.date_utc == day.isoformat()]
+            else:
+                when = dt.datetime.combine(day, dt.time(*ref.hhmm), UTC).timestamp()
+                hits = [e for e in pool if abs(e.inject_time - when) <= TOLERANCE_S]
+            if hits:
+                found[day] = hits
+        label = f"matching {text} at or before {utc_text(self.now.timestamp())}"
+        if not found:
+            raise ResolveError("refuse", f"no {system} incident {label}")
+        if len(found) > 1:
+            dates = ", ".join(d.isoformat() for d in sorted(found))
+            raise ResolveError(
+                "clarify",
+                f"{text} matches {system} incidents on {len(found)} dates ({dates}). "
+                "Which date do you mean?",
+            )
+        hits = next(iter(found.values()))
         if len(hits) > 1:
             names = ", ".join(f"{e.ticket} ({e.alert_utc})" for e in hits[:4])
             more = "" if len(hits) <= 4 else f" and {len(hits) - 4} more"
