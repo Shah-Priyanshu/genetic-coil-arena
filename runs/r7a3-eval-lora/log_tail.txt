@@ -51,3 +51,7 @@ Loading weights: 100%|██████████| 311/311 [00:06<00:00, 48.5
 [04:48:58] lora sealed: 80/174 (sealed-squad-079)
 [04:51:38] lora sealed: 100/174 (sealed-plant-010)
 [04:55:19] lora sealed: 120/174 (sealed-plant-030)
+[04:58:29] lora sealed: 140/174 (sealed-plant-050)
+[05:01:36] lora sealed: 160/174 (sealed-plant-070)
+[05:02:28] lora sealed: 174/174 (sealed-plant-084)
+[05:02:28] lora: sealed exact 82.8% (n=145), p95 5.38s, peak allocated 3446 MiB
