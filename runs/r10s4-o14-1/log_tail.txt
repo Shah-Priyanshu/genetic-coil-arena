@@ -19,3 +19,6 @@
 [06:47:10] reports 18/32 RE3-SS/orders_f1/1 valid 14/15 (469s)
 [06:47:42] reports 19/32 RE3-SS/orders_f1/2 valid 14/15 (501s)
 [06:48:12] reports 20/32 RE3-SS/orders_f1/3 valid 14/15 (531s)
+[06:48:43] reports 21/32 RE3-SS/orders_f3/2 valid 14/15 (562s)
+[06:50:20] reports 22/32 RE3-TT/ts-auth-service_f1/1 valid 67/68 (659s)
+[06:52:03] reports 23/32 RE3-TT/ts-auth-service_f1/2 valid 65/68 (762s)
