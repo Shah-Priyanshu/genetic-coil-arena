@@ -11,12 +11,14 @@
     "--conditions",
     "team4_rule"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-27T12:53:16+00:00",
-  "updated_at": "2026-10-27T14:04:45+00:00",
-  "elapsed_min": 71.5,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 26 %, 5649 MiB, 12282 MiB, 53",
+  "updated_at": "2026-10-27T14:05:05+00:00",
+  "elapsed_min": 71.8,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 2 %, 812 MiB, 12282 MiB, 49",
   "host": "PC",
   "lane": "gpu",
-  "cpu_workers": 2
+  "cpu_workers": 2,
+  "returncode": 0,
+  "finished_at": "2026-10-27T14:05:05+00:00"
 }
