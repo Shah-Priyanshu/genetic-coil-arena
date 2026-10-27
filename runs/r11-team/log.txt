@@ -1,0 +1,13 @@
+[12:33:44] train: loaded 50/150
+[12:33:45] train: loaded 100/150
+[12:33:46] train: loaded 150/150
+[12:33:46] 150 training rows, 59 features
+[12:33:46] metric cv 1/7 {'hidden': 0, 'l2': 0.01, 'epochs': 400}: mean 0.600 {'OB': 0.7, 'SS': 0.6666666666666666, 'TT': 0.43333333333333335}
+[12:33:46] metric cv 2/7 {'hidden': 0, 'l2': 0.1, 'epochs': 400}: mean 0.622 {'OB': 0.7, 'SS': 0.7, 'TT': 0.4666666666666667}
+[12:33:46] metric cv 3/7 {'hidden': 0, 'l2': 1.0, 'epochs': 400}: mean 0.644 {'OB': 0.7, 'SS': 0.6666666666666666, 'TT': 0.5666666666666667}
+[12:33:47] metric cv 4/7 {'hidden': 16, 'l2': 0.01, 'epochs': 300, 'n_models': 5}: mean 0.622 {'OB': 0.7333333333333333, 'SS': 0.7, 'TT': 0.43333333333333335}
+[12:33:48] metric cv 5/7 {'hidden': 16, 'l2': 0.1, 'epochs': 300, 'n_models': 5}: mean 0.644 {'OB': 0.7666666666666667, 'SS': 0.6666666666666666, 'TT': 0.5}
+[12:33:49] metric cv 6/7 {'hidden': 32, 'l2': 0.1, 'epochs': 300, 'n_models': 5}: mean 0.633 {'OB': 0.7333333333333333, 'SS': 0.6666666666666666, 'TT': 0.5}
+[12:33:50] metric cv 7/7 {'hidden': 32, 'l2': 1.0, 'epochs': 300, 'n_models': 5}: mean 0.326 {'OB': 0.3, 'SS': 0.3333333333333333, 'TT': 0.34444444444444444}
+[12:33:51] evaluating the team on the 120 catalogued incidents (report only)
+[12:33:56] chosen {'hidden': 0, 'l2': 1.0, 'epochs': 400}; leave-one-system-out {'OB': 0.7, 'SS': 0.6666666666666666, 'TT': 0.5666666666666667}; catalogue top-1 0.883, joint 0.683
