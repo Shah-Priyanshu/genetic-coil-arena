@@ -11241,3 +11241,6 @@
 {"base_id": "tpl-squad-01017", "style": "multi_sentence", "text": "Red green blue snake squad. Foraging red and blue snakes. High caution level.", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-01017", "style": "multi_sentence", "text": "Squad includes red green and blue snakes. Red and blue forage. Caution high.", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-01017", "style": "multi_sentence", "text": "Three colored snakes: red green blue. Red and blue foraging. High safety alert.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01017", "style": "multi_sentence", "text": "Red green blue snake team. Red blue foraging. Careful mode activated.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01017", "style": "multi_sentence", "text": "Snake squad red green blue. Foraging red and blue. High risk warning.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01017", "style": "multi_sentence", "text": "Color coded snakes red green blue. Red blue searching. Safety level high.", "verified": false, "verifier_status": "ok"}
