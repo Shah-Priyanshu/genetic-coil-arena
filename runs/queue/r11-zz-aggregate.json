@@ -5,7 +5,10 @@
     "scripts/r11_ecosystem.py",
     "report",
     "--from",
-    "runs:r11-*",
+    "runs:r11-team",
+    "runs:r11-o14-sealed",
+    "runs:r11-gemma-sealed",
+    "runs:r11-keyword-sealed",
     "--out",
     "docs/results/r11_ecosystem.md"
   ],
