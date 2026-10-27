@@ -510,3 +510,6 @@
 {"base_id": "tpl-plant-cla0013", "style": "terse_note", "text": "Begin sequence | Cease portions | Determine figure", "verified": false, "verifier_status": "refused"}
 {"base_id": "tpl-plant-cla0013", "style": "terse_note", "text": "Launch system | Terminate units | Specify number", "verified": false, "verifier_status": "refused"}
 {"base_id": "tpl-plant-cla0013", "style": "terse_note", "text": "Commence process | Interrupt components | Set quantity", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-squad-00934", "style": "polite_question", "text": "Could you please set up a squad with red, green, and blue snakes, where the blue snake is foraging, with normal caution and a food target of 28?", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00934", "style": "polite_question", "text": "Would it be possible to configure a snake squad consisting of red, green, and blue members, with blue foraging and normal caution level, targeting 28 food units?", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00934", "style": "polite_question", "text": "Could you establish a three-snake squad with red, green, and blue colors, having the blue one forage while maintaining ordinary caution and aiming for 28 food?", "verified": true, "verifier_status": "ok"}
