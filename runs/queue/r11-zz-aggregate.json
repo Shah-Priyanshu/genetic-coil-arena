@@ -21,5 +21,6 @@
   "outputs": [
     "docs/results/r11_ecosystem.md",
     "docs/results/r11_ecosystem.json"
-  ]
+  ],
+  "priority": 6
 }

@@ -16,5 +16,6 @@
   "after": [
     "r11-team"
   ],
-  "timeout_min": 60.0
+  "timeout_min": 60.0,
+  "priority": 5
 }
