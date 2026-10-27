@@ -8632,3 +8632,5 @@
 {"base_id": "tpl-plant-cla0054", "style": "jargon", "text": "channel width 20mhz", "verified": false, "verifier_status": "refused"}
 {"base_id": "tpl-squad-00779", "style": "self_correction", "text": "Wait, squad of snakes red green blue foraging red green blue caution low reckless risk taking step limit twenty seven five food target thirty", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00779", "style": "self_correction", "text": "No, make that snakes squad red green blue foraging snakes red green blue caution low reckless risk taking step limit two seventy five food target thirty", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00779", "style": "self_correction", "text": "Actually, squad snakes red green blue foraging red green blue caution low reckless risk taking step limit two hundred seventy five food target thirty", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00779", "style": "self_correction", "text": "Wait, snakes squad red green blue foraging red green blue caution low reckless risk taking step limit two seventy five food target thirty", "verified": true, "verifier_status": "ok"}
