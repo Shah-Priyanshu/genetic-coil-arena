@@ -2474,3 +2474,77 @@
 {"base_id": "tpl-squad-00849", "style": "numbers_in_words", "text": "Squad consists of red green and blue snakes red ones foraging caution normal step limit one hundred forty food target twenty four", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00849", "style": "numbers_in_words", "text": "Red green and blue snake team foraging normal caution one hundred forty steps maximum food target twenty four", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00849", "style": "numbers_in_words", "text": "Snake squad red green blue foraging red snakes caution ordinary step limit one hundred forty food target twenty four", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00849", "style": "numbers_in_words", "text": "Red snake unit foraging normal care one hundred forty steps food target twenty four", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00849", "style": "numbers_in_words", "text": "Squad of snakes red green and blue with red ones foraging caution normal step limit one hundred forty food target twenty four", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00849", "style": "numbers_in_words", "text": "Red green and blue snakes squad foraging red snakes caution ordinary one hundred forty steps food target twenty four", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00849", "style": "numbers_in_words", "text": "Snake team red green blue foraging red snake caution normal step limit one hundred forty food target twenty four", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00726", "style": "multi_sentence", "text": "Red green and blue snakes requested. Green foraging snakes. Normal caution level.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00726", "style": "multi_sentence", "text": "Squad includes red green and blue snakes. Green ones foraging. Ordinary care needed.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00726", "style": "multi_sentence", "text": "Three colored snakes required. Green snake foraging. Standard caution applied.", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-00726", "style": "multi_sentence", "text": "Red green and blue snake team. Green foraging mode. Regular care protocol.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00726", "style": "multi_sentence", "text": "Squad with red green and blue snakes. Green ones searching for food. Normal safety level.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00726", "style": "multi_sentence", "text": "Color coded snakes requested. Green foraging type. Standard operating procedure.", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-00726", "style": "multi_sentence", "text": "Red green and blue snake group. Green foraging behavior. Ordinary maintenance needed.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00726", "style": "multi_sentence", "text": "Three snake squad: red green blue. Green foraging units. Normal care required.", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-00223", "style": "mixed_notation", "text": "Squad snakes: red green blue. Foraging: blue. Caution: normal. Step limit: 220. Food target: 30.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00223", "style": "mixed_notation", "text": "Snakes: 3 colors. Blue foraging. Normal caution. 220 steps. Target food: 30.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00223", "style": "mixed_notation", "text": "Red, green, blue snakes. Blue foraging. Ordinary care. 220 steps. 30 food target.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00223", "style": "mixed_notation", "text": "Squad: 3 snakes. Foraging snake: blue. Caution: normal. Steps: 220. Food: 30.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00223", "style": "mixed_notation", "text": "Snakes: red-green-blue. Foraging: blue. Normal caution. Step limit: 220. Target: 30 food.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00223", "style": "mixed_notation", "text": "3 snakes. Blue foraging. Care: normal. 220 steps. Food target: 30.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00223", "style": "mixed_notation", "text": "Red, green, blue snakes. Foraging blue. Caution normal. 220 steps. 30 food target.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00223", "style": "mixed_notation", "text": "Squad of snakes: red green blue. Foraging: blue. Caution: normal. Steps: 220. Food: 30.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00040", "style": "negation", "text": "Red, green, and blue snakes form the squad. Foraging group excludes blue snake. Caution level normal. Step limit 180. Food target 16.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00040", "style": "negation", "text": "All snakes included except blue for foraging. Red and green snakes active. Caution ordinary. Step limit 180. Food target 16.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00040", "style": "negation", "text": "Squad consists of red, green, and blue snakes. Leave blue out of foraging. Caution normal. Step limit 180. Food target 16.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00040", "style": "negation", "text": "Blue snake excluded from foraging. Red and green snakes forage. All other snakes remain. Caution ordinary. Step limit 180. Food target 16.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00040", "style": "negation", "text": "Red, green, and blue snakes in squad. No blue snake for foraging. Caution normal. Step limit 180. Food target 16.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00040", "style": "negation", "text": "All snakes participate except blue snake in foraging. Red and green snakes active. Caution ordinary. Step limit 180. Food target 16.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00040", "style": "negation", "text": "Squad includes red, green, and blue snakes. Blue snake not foraging. Caution normal. Step limit 180. Food target 16.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00040", "style": "negation", "text": "Everyone except blue snake forages. Red and green snakes active. Caution ordinary. Step limit 180. Food target 16.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-ref0075", "style": "typos", "text": "cant do it range issue dont have enough power to make that happen", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0075", "style": "typos", "text": "out of range cant fulfill this request need more capacity for that", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0075", "style": "typos", "text": "range problem cant make this work need better reach for it", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-ref0075", "style": "typos", "text": "nope cant do that range limitation cant make it happen", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0075", "style": "typos", "text": "range exceeded cant process this request need more power", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0075", "style": "typos", "text": "out of bounds cant make this work range issue prevent this", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0075", "style": "typos", "text": "cant fulfill due to range limitations need more capability", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0075", "style": "typos", "text": "range problem cant make that happen need better reach for it", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-00314", "style": "typos", "text": "red green blue snake squad foragin blue warn high 110 step limit food 35", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00314", "style": "typos", "text": "snakes red green blue squad blue foragin caution high step 110 food target 35", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00314", "style": "typos", "text": "squad snakes red green blue foraging blue alert high 110 steps food 35", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00314", "style": "typos", "text": "red green blue snake team blue foraging warn high step limit 110 food 35", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00314", "style": "typos", "text": "snakes red green blue squad foragin blue caution high 110 step limit target 35", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00314", "style": "typos", "text": "squad of snakes red green blue blue foragin alert high 110 steps food 35", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00314", "style": "typos", "text": "red green blue snake group blue foraging caution high step 110 food target 35", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00314", "style": "typos", "text": "snakes red green blue squad foragin blue warn high 110 step limit food 35", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00433", "style": "jargon", "text": "SQD SNK RGN GRN BLU FOR GRN BLU CAUT NORM STEP 130 FOOD NONE", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00433", "style": "jargon", "text": "SNAKE SQD R G B FOR GRN BLU CAUTION NORMAL STEP LIM 130 NO FOOD", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00433", "style": "jargon", "text": "SNK SQD RED GRN BLU FORAGING GRN BLU CAUT NORMAL STEP 130 NO FOOD TARGET", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00433", "style": "jargon", "text": "SQUAD SNK R G B FOR GRN BLU CAUTION ORDINARY STEP LIMIT 130 FOOD NIL", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00433", "style": "jargon", "text": "SNK GROUP RED GRN BLU FOR GRN BLU CAUTION STANDARD STEP 130 NO TARGET", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00433", "style": "jargon", "text": "SQUAD SNK R G B FOR GRN BLU CAUT NORMAL STEP MAX 130 FOOD ABSENT", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00433", "style": "jargon", "text": "SNK SQD RED GRN BLU FOR GRN BLU CAUTION REGULAR STEP LIM 130 NO FOOD", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00433", "style": "jargon", "text": "SQUAD SNK R G B FOR GRN BLU CAUTION ORDINARY STEP 130 NO FOOD TARGET", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00263", "style": "self_correction", "text": "Wait, squad snakes red green blue foraging blue caution low reckless step 120 food none", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00263", "style": "self_correction", "text": "No, make that red green blue squad with blue foraging caution low reckless step limit 120 no food target", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00263", "style": "self_correction", "text": "Actually red green blue snakes squad foraging blue caution low reckless step 120 food target none", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00263", "style": "self_correction", "text": "Wait, blue foraging snakes red green blue caution low reckless step 120 food target none", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00263", "style": "self_correction", "text": "No, make that squad red green blue foraging blue caution low reckless step limit 120 food none", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00263", "style": "self_correction", "text": "Actually snakes squad red green blue foraging blue caution low reckless step 120 food target none", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00263", "style": "self_correction", "text": "Wait, red green blue squad with foraging blue caution low reckless step 120 food target none", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00263", "style": "self_correction", "text": "No, make that blue foraging snakes red green blue caution low reckless step limit 120 food none", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-ref0084", "style": "multi_sentence", "text": "Request exceeds operational range. Cannot process. Outside valid parameters.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0084", "style": "multi_sentence", "text": "System unable to comply. Range limitation prevents execution. Invalid scope.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0084", "style": "multi_sentence", "text": "Command rejected. Exceeds maximum range. Not within acceptable limits.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0084", "style": "multi_sentence", "text": "Processing failure. Range constraint violated. Impossible to execute.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0084", "style": "multi_sentence", "text": "Operation denied. Beyond allowable range. Cannot fulfill request.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0084", "style": "multi_sentence", "text": "System error. Range exceeded. Request invalid due to scope limitations.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0084", "style": "multi_sentence", "text": "Cannot complete. Range restriction applies. Outside operational bounds.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0084", "style": "multi_sentence", "text": "Invalid command. Range constraint prevents fulfillment. Scope exceeded.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-00269", "style": "indirect_hint", "text": "It would be wonderful if the red, green, and blue snake squad could forage while maintaining high caution levels, with a step limit of 240 and food target of 32.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00269", "style": "indirect_hint", "text": "I was thinking it might work well if the blue foraging snake squad operated under high caution, with 240 steps allowed and targeting 32 food items.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00269", "style": "indirect_hint", "text": "Would it be possible for the trio of colored snakes to forage safely with maximum care, keeping step count at 240 while aiming for 32 food units?", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00269", "style": "indirect_hint", "text": "I was hoping the blue snake could forage with extreme caution, following a 240-step limit while seeking 32 food targets.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00269", "style": "indirect_hint", "text": "It would be ideal if the snake squad could forage carefully with high safety measures, maintaining 240 steps and targeting 32 food sources.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00269", "style": "indirect_hint", "text": "I was thinking perhaps the blue foraging snake could proceed with maximum caution, following a 240 step allowance while targeting 32 food items.", "verified": true, "verifier_status": "ok"}
