@@ -507,3 +507,8 @@
 [done] r7b_centre-goal_run2: 774.3 min, best gen 8500, best val mission 20.37
 [progress] centre-goal run 7: gen 9850/10000, val mission 17.70, best gen 9300, elapsed 46960 s
 [progress] centre-goal run 5: gen 9900/10000, val mission 20.50, best gen 8950, elapsed 47005 s
+[progress] centre-goal run 5: gen 10000/10000, val mission 16.97, best gen 8950, elapsed 47388 s
+[done] r7b_centre-goal_run5: 789.8 min, best gen 8950, best val mission 21.77
+[progress] centre-goal run 7: gen 10000/10000, val mission 17.27, best gen 9300, elapsed 47527 s
+[done] r7b_centre-goal_run7: 792.1 min, best gen 9300, best val mission 21.67
+[train] done in 792.2 min
