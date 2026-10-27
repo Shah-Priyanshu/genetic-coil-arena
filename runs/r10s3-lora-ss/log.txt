@@ -50,3 +50,26 @@ Loading weights: 100%|██████████| 311/311 [00:06<00:00, 47.6
 [21:37:53] examples: 60/120 incidents (3s)
 [21:37:54] examples: 80/120 incidents (4s)
 [21:37:58] examples: 100/120 incidents (8s)
+[21:38:22] examples: 120/120 incidents (32s)
+[21:38:47] [r10s3ss] step 10/180 loss 2.5915 (23s)
+[21:39:12] [r10s3ss] step 20/180 loss 1.1781 (48s)
+[21:39:29] [r10s3ss] step 30/180 loss 0.9554 (66s)
+[21:39:49] [r10s3ss] step 40/180 loss 0.9593 (86s)
+[21:40:09] [r10s3ss] step 50/180 loss 0.9715 (106s)
+[21:40:32] [r10s3ss] step 60/180 loss 0.9288 (128s)
+[21:40:53] [r10s3ss] step 70/180 loss 0.9411 (149s)
+[21:41:14] [r10s3ss] step 80/180 loss 0.9064 (170s)
+[21:41:35] [r10s3ss] step 90/180 loss 0.9432 (191s)
+[21:41:55] [r10s3ss] step 100/180 loss 0.9160 (212s)
+[21:42:12] [r10s3ss] step 110/180 loss 0.9324 (229s)
+[21:42:38] [r10s3ss] step 120/180 loss 0.9076 (255s)
+[21:42:57] [r10s3ss] step 130/180 loss 0.9059 (273s)
+[21:43:20] [r10s3ss] step 140/180 loss 0.8693 (296s)
+[21:43:42] [r10s3ss] step 150/180 loss 0.9269 (319s)
+[21:44:01] [r10s3ss] step 160/180 loss 0.9401 (337s)
+[21:44:23] [r10s3ss] step 170/180 loss 0.8944 (360s)
+[21:44:41] [r10s3ss] step 180/180 loss 0.9141 (377s)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[21:44:41] trained 180 steps in 379s, loss 0.9042; saved D:\hf_cache\r10s3_store\r10s3ss.pt
+[21:44:49] held-out SS: fault accuracy 0.067 on 30 root-service views
+[21:44:49] done; peak VRAM 5604 MiB; wall 419s
