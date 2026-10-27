@@ -52,3 +52,4 @@ Loading weights: 100%|██████████| 311/311 [00:06<00:00, 48.2
 [21:30:29] examples: 80/120 incidents (4s)
 [21:30:31] examples: 100/120 incidents (6s)
 [21:30:34] examples: 120/120 incidents (9s)
+[21:30:59] [r10s3ob] step 10/180 loss 2.8055 (23s)
