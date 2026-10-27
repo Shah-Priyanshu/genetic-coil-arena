@@ -167,13 +167,15 @@ def log_view(
     counter: TokenCounter,
     before_s: float = 120.0,
     after_s: float = 300.0,
+    onset_note: Optional[str] = None,
 ) -> str:
     """The service's own log templates in a window around ``onset`` against its baseline.
 
     The window is ``[onset - before_s, onset + after_s]`` (seconds relative to the alert;
     onset defaults to 0); the baseline is everything earlier than the window and the
     alert. Templates are ranked by a rate log-ratio weighted by volume and severity, and
-    packed into ``budget`` tokens.
+    packed into ``budget`` tokens. ``onset_note`` replaces the sentence that says where the
+    window comes from (default: the metrics left their normal range at ``onset``).
     """
     name = inc.services[service]
     on = 0.0 if onset is None else float(onset)
@@ -196,9 +198,14 @@ def log_view(
     score = np.where(lift > 0, lift, -0.5 * lift) * mass * (1.0 + sev)
     seen = np.flatnonzero((win > 0) | (base > 0))
     order = seen[np.argsort(-score[seen], kind="stable")]
+    note = (
+        onset_note
+        if onset_note is not None
+        else f"metrics left their normal range at about {on:+.0f}s"
+    )
     head = (
         f"Logs of service {name}. Window {w_lo:+.0f}s to {w_hi:+.0f}s (alert at 0s, "
-        f"metrics left their normal range at about {on:+.0f}s); baseline = "
+        f"{note}); baseline = "
         f"{lo:+.0f}s to {b_hi:+.0f}s. {int(in_win.sum())} lines in the window, "
         f"{int(in_base.sum())} in the baseline. Templates, most changed first "
         "(count in window / count in baseline):"
