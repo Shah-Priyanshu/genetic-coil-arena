@@ -8043,3 +8043,23 @@
 {"base_id": "tpl-squad-00563", "style": "negation", "text": "Leave red snakes out of foraging group. All but red have low caution. Step limit 90, food target 30.", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00563", "style": "negation", "text": "No red snakes foraging. Everyone else has low caution. Step limit 90, food target 30.", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00563", "style": "negation", "text": "Red snakes are the only foragers. All others have low caution. Step limit 90, food target 30.", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-00563", "style": "negation", "text": "Everyone except red snakes forages. Red snakes have low caution. Step limit 90, food target 30.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00563", "style": "negation", "text": "All snakes but red ones are foraging. Red snakes have low caution. Step limit 90, food target 30.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00563", "style": "negation", "text": "Red snakes don't forage. All other snakes do. Low caution for all but red. Step limit 90, food target 30.", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00190", "style": "indirect_hint", "text": "It would be wonderful if we could have a red, green, and blue snake squad for foraging with ordinary care and a food target of 24", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00190", "style": "indirect_hint", "text": "I was hoping for a trio of snakes in red, green, and blue colors to forage with standard caution and food goal of 24", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00190", "style": "indirect_hint", "text": "Would it be possible to set up red, green, and blue snakes for foraging under normal conditions with target food amount 24", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00190", "style": "indirect_hint", "text": "I'm thinking it would be nice to have a snake squad with red, green, and blue members for foraging using typical care and food target 24", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00190", "style": "indirect_hint", "text": "It would be great if we could arrange for red, green, and blue snakes to forage with ordinary attention and reach food target 24", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00190", "style": "indirect_hint", "text": "I was wondering if having red, green, and blue snake squads for foraging with standard care and food goal of 24 would work", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00190", "style": "indirect_hint", "text": "It would be ideal to have red, green, and blue snakes for foraging under normal procedures with food target set to 24", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00190", "style": "indirect_hint", "text": "I was considering that it might be helpful to use red, green, and blue snakes for foraging with typical care and food target of 24", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-cla0004", "style": "typos", "text": "make it less sensetive plz dont want too many false alarms", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0004", "style": "typos", "text": "reduce trigger rate a bit more please keep it under control", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0004", "style": "typos", "text": "cut down on alerts some what need less noise", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0004", "style": "typos", "text": "tweak settings lower threshold a little please", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0004", "style": "typos", "text": "need fewer notifications reduce sensitivity", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0004", "style": "typos", "text": "adjust parameters make it less reactive", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0004", "style": "typos", "text": "change values reduce false positive rate", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-cla0004", "style": "typos", "text": "modify system response less chatty please", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-ref0121", "style": "mixed_notation", "text": "Request denied due to range limitations. Each node requires 1/32nd of total capacity, equivalent to 0.03125 or 3.125 per thousand.", "verified": true, "verifier_status": "refused"}
