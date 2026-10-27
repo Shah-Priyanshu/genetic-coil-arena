@@ -23,3 +23,6 @@
 [07:24:31] reports 22/33 RE3-TT/ts-auth-service_f2/1 valid 65/68 (672s)
 [07:26:11] reports 23/33 RE3-TT/ts-auth-service_f2/2 valid 67/68 (773s)
 [07:27:38] reports 24/33 RE3-TT/ts-auth-service_f2/4 valid 67/68 (859s)
+[07:29:22] reports 25/33 RE3-TT/ts-auth-service_f3/3 valid 67/68 (963s)
+[07:30:56] reports 26/33 RE3-TT/ts-auth-service_f3/4 valid 68/68 (1057s)
+[07:32:26] reports 27/33 RE3-TT/ts-auth-service_f4/3 valid 67/68 (1147s)
