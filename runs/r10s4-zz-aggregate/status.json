@@ -1,0 +1,20 @@
+{
+  "id": "r10s4-zz-aggregate",
+  "commit": "34a24be26c25024e5dc109c82b2a513fbba9ab2d",
+  "queued_args": [
+    "scripts/r10_step4.py",
+    "report",
+    "--from",
+    "runs:r10s4-*",
+    "--out",
+    "docs/results/r10_step4.md"
+  ],
+  "state": "running",
+  "started_at": "2026-10-27T16:33:35+00:00",
+  "updated_at": "2026-10-27T16:33:35+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 98 %, 11003 MiB, 12282 MiB, 56",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 1
+}

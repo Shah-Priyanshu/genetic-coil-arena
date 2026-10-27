@@ -1,0 +1,12 @@
+{
+  "id": "r11-team",
+  "commit": "bfcbf100f49de1c4413bc4a4d980d3a624138f9a",
+  "args": [
+    "scripts/r11_ecosystem.py",
+    "team"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 2,
+  "timeout_min": 60.0,
+  "priority": 6
+}

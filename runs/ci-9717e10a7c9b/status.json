@@ -1,0 +1,20 @@
+{
+  "id": "ci-9717e10a7c9b",
+  "commit": "9717e10a7c9bbf760640ffb3edd57eab268d8349",
+  "queued_args": [
+    "-m",
+    "pytest",
+    "tests/",
+    "--ignore=tests/test_viewer.py",
+    "-p",
+    "no:cacheprovider"
+  ],
+  "state": "running",
+  "started_at": "2026-10-27T16:33:35+00:00",
+  "updated_at": "2026-10-27T16:33:35+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 94 %, 11003 MiB, 12282 MiB, 56",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 2
+}
