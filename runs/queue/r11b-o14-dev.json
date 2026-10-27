@@ -1,15 +1,15 @@
 {
-  "id": "r11b-gemma-sealed",
-  "commit": "b521676b817bd68d88d50f18fa81abb8f41c7ad7",
+  "id": "r11b-o14-dev",
+  "commit": "cfbcdbd0f94a2ad36886f18bbcb960266997eca2",
   "args": [
     "scripts/r11_ecosystem.py",
     "run",
     "--spec-version",
     "2",
     "--translator",
-    "ollama:gemma4:e4b",
+    "ollama:qwen2.5-coder:14b",
     "--split",
-    "sealed",
+    "dev",
     "--team-from",
     "runs:r11-team"
   ],
