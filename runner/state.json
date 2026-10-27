@@ -18,21 +18,20 @@
       "started_at": "2026-10-26T20:27:12+00:00"
     },
     {
-      "id": "r7a3-para-verify",
-      "lane": "gpu",
-      "cpu_workers": 4,
-      "started_at": "2026-10-27T01:49:40+00:00"
-    },
-    {
       "id": "r7b3-train-hand-goal",
       "lane": "cpu",
       "cpu_workers": 8,
       "started_at": "2026-10-27T04:48:08+00:00"
+    },
+    {
+      "id": "r7a3-train-r32-n12k-p50",
+      "lane": "gpu",
+      "cpu_workers": 4,
+      "started_at": "2026-10-27T05:05:49+00:00"
     }
   ],
   "backlog": {
     "ready": [
-      "r7a3-train-r32-n12k-p50",
       "r7a3-train-r32-n12k-p80",
       "r7a3-train-r32-n24k-p80",
       "r7a3-train-r64-n12k-p80"
@@ -71,11 +70,11 @@
   },
   "idle_since": {
     "cpu": null,
-    "gpu": null
+    "gpu": "2026-10-27T05:05:41+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-27T05:05:38+00:00",
-  "cpu_percent": 98.1,
+  "updated_at": "2026-10-27T05:05:49+00:00",
+  "cpu_percent": 96.6,
   "gpu": {
     "util": 0.0,
     "mem_used_mb": 812.0,
