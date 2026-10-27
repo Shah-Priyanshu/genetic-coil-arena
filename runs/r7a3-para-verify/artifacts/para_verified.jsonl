@@ -3448,3 +3448,13 @@
 {"base_id": "tpl-plant-00141", "style": "formal_memo", "text": "Implement sensor diagnostic routine for reactor separator stripper compressor_utilities hardware maintaining 0.005 false alarm rate and 8 byte frame size", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-cla0004", "style": "mixed_notation", "text": "Play cautiously with 160 moves, target 12 food, use 0.5% of resources", "verified": true, "verifier_status": "clarify"}
 {"base_id": "tpl-squad-cla0004", "style": "mixed_notation", "text": "Careful operation for 160 turns, aim for 12 units, allocate 1/8th of total", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-cla0004", "style": "mixed_notation", "text": "Moderate approach over 160 cycles, reach 12 sustenance, consume 125‰ of capacity", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-cla0004", "style": "mixed_notation", "text": "Gentle execution for 160 actions, achieve 12 nourishment, spend 0x10 parts", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-cla0004", "style": "mixed_notation", "text": "Soft handling across 160 stages, hit 12 rations, utilize 1.2e1 units", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-cla0004", "style": "mixed_notation", "text": "Tactful maneuvering 160 moves, score 12 provisions, use 1200/100 of resources", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-cla0004", "style": "mixed_notation", "text": "Considerate strategy 160 steps, obtain 12 edibles, apply 1 dozen parts", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-cla0004", "style": "mixed_notation", "text": "Delicate procedure for 160 intervals, gain 12 victuals, employ 50% of inventory", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-00995", "style": "mixed_notation", "text": "Squad snakes red green blue. Forage red blue. Caution normal. Step limit 75. Food target 3.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00995", "style": "mixed_notation", "text": "Red green blue snake squad. Red blue foraging. Normal caution. 75 steps. Target 3 food.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00995", "style": "mixed_notation", "text": "Snakes: red, green, blue. Foraging: red, blue. Caution: normal. Steps: 75. Food: 3.", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00995", "style": "mixed_notation", "text": "Squad of snakes red green blue. Red blue foraging. Normal caution. 75 step limit. Food target 3.", "verified": true, "verifier_status": "ok"}
