@@ -2586,3 +2586,34 @@
 {"base_id": "tpl-squad-cla0015", "style": "casual_chat", "text": "red ones please maybe a bunch", "verified": true, "verifier_status": "clarify"}
 {"base_id": "tpl-squad-cla0015", "style": "casual_chat", "text": "do red things or whatever just do some", "verified": true, "verifier_status": "clarify"}
 {"base_id": "tpl-squad-cla0015", "style": "casual_chat", "text": "want red stuff but not sure how many", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-cla0015", "style": "casual_chat", "text": "red stuff would be good i think", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-cla0015", "style": "casual_chat", "text": "some red things idk exactly how many", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-cla0015", "style": "casual_chat", "text": "red ones plz probably like a few", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-cla0015", "style": "casual_chat", "text": "make red stuff not sure how much", "verified": true, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-ref0124", "style": "formal_memo", "text": "Request denied due to ood constraint. Cannot process command requiring impossible conditions.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0124", "style": "formal_memo", "text": "System unable to comply with requested parameters. Ood limitation prevents execution.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0124", "style": "formal_memo", "text": "Operation invalid. Ood parameter conflicts with system capabilities.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0124", "style": "formal_memo", "text": "Command rejected. Ood condition makes fulfillment impossible.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0124", "style": "formal_memo", "text": "Processing halted. Ood restriction precludes successful completion.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0124", "style": "formal_memo", "text": "Request invalid. Ood factor renders implementation unachievable.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0124", "style": "formal_memo", "text": "System error. Ood parameters exceed acceptable thresholds.", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-squad-ref0124", "style": "formal_memo", "text": "Function failed. Ood limitation prevents proper execution.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-01321", "style": "mixed_notation", "text": "Fault diag system reactor sep stripper comp_util 8b msg 0.01 FA rate sep stripper active", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-01321", "style": "mixed_notation", "text": "Reactor sep stripper comp_util fault diag 8 byte message 1 per thousand false alarm sep stripper nodes", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-plant-01321", "style": "mixed_notation", "text": "Plant diagnostic with sensor nodes reactor separator stripper compressor utilities 8 bytes per message 1% false alarm rate separator stripper active", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-01321", "style": "mixed_notation", "text": "System fault diagnosis reactor separator stripper compressor utilities 8 byte messages 0.01 false alarm rate separator stripper activated", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-01321", "style": "mixed_notation", "text": "Control system fault detection reactor separator stripper compressor utilities 8 byte message size 10E-3 false alarm rate separator stripper operational", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-01321", "style": "mixed_notation", "text": "Process fault monitoring reactor separator stripper compressor utilities 8 byte packets 1 in 100 false alarm ratio separator stripper running", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-01321", "style": "mixed_notation", "text": "Automated plant diagnostics reactor separator stripper compressor utilities 8 byte transmission 0.01 failure rate separator stripper engaged", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-01321", "style": "mixed_notation", "text": "Industrial fault detection reactor separator stripper compressor utilities 8 byte frames 1 per hundred false alarm sep stripper functioning", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-ref0058", "style": "multi_sentence", "text": "Request exceeds operational range. System cannot process. Range limitation applies.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0058", "style": "multi_sentence", "text": "Cannot fulfill request due to range constraints. Exceeds system limits. Range boundary reached.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0058", "style": "multi_sentence", "text": "System range violation. Request out of bounds. Cannot execute beyond limits.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0058", "style": "multi_sentence", "text": "Out of range command. Processing impossible. Range restriction active.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0058", "style": "multi_sentence", "text": "Request exceeds allowable range. System refusal. Range cutoff engaged.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0058", "style": "multi_sentence", "text": "Beyond operational parameters. Cannot comply. Range constraint error.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0058", "style": "multi_sentence", "text": "System range exceeded. Command invalid. Range boundary error.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0058", "style": "multi_sentence", "text": "Out of range request. Processing denied. Range limitation enforced.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0019", "style": "formal_memo", "text": "Request denied due to ood constraint. No available resources for requested operation.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0019", "style": "formal_memo", "text": "Control system unable to process request. Out of domain limitations prevent execution.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0019", "style": "formal_memo", "text": "Operation cannot be completed. Ood parameter exceeds system capabilities.", "verified": true, "verifier_status": "refused"}
