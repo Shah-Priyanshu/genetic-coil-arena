@@ -4471,3 +4471,11 @@
 {"base_id": "tpl-plant-00653", "style": "polite_question", "text": "Could you set up the plant fault-diagnosis system with those specified sensor nodes and 0.01 false-alarm rate?", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-plant-00653", "style": "polite_question", "text": "Would you be able to configure the system with reactor, separator, stripper, compressor_utilities sensor nodes?", "verified": false, "verifier_status": "ok"}
 {"base_id": "tpl-squad-01241", "style": "typos", "text": "red green blue snake squad foragin blu snak cauti normal step 130 food none", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01241", "style": "typos", "text": "snakes red grn blu squad foragin blu caution norml step limit 130 no food target", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01241", "style": "typos", "text": "squad snks red grn blu foragin blu caution normal step 130 no food stated", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01241", "style": "typos", "text": "red grn blu snake team foragin blue cauti normal step 130 food none", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01241", "style": "typos", "text": "snakes red green blue squad foragin blu caution norml step limit 130 no food", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01241", "style": "typos", "text": "squad of snks red grn blu foragin blu normal cauti step 130 no food target", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01241", "style": "typos", "text": "red grn blu snake group foragin blu caution normal step 130 no food stated", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01241", "style": "typos", "text": "snakes red green blue squad foragin blu normal caution step limit 130 no food", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-cla0011", "style": "indirect_hint", "text": "It would be nice if we could have some flexible approach with the resources, maybe around half of what's normally allocated", "verified": true, "verifier_status": "clarify"}
