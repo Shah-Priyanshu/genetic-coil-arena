@@ -1,0 +1,1 @@
+[01:59:12] r32-n12k-p80: 12000 training records (8086 paraphrases, 480 retries)
