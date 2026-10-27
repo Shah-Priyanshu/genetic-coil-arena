@@ -5261,3 +5261,24 @@
 {"base_id": "tpl-squad-01310", "style": "terse_note", "text": "SQUAD COLORS: RED GREEN BLUE | FORAGING SNACK: BLUE | RISK: LOW | STEPS: 220 | FOOD: -", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-01310", "style": "terse_note", "text": "TEAM: RED GREEN BLUE | BLUE SCOUT | WARNING: LOW | MAX: 220 | NO FOOD", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-01310", "style": "terse_note", "text": "SNAKE GROUP: RED GREEN BLUE | BLUE FORAGER | DANGER LEVEL: LOW | LIMIT: 220 | FOOD: -", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01310", "style": "terse_note", "text": "SQUAD R G B | BLUE FORAGE | CAUTION LOW | STEP MAX 220 | FOOD NONE", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-plant-ref0029", "style": "indirect_hint", "text": "It would be helpful if the system could recognize that this name doesn't work properly.", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-ref0029", "style": "indirect_hint", "text": "I was hoping the control system might acknowledge this naming issue.", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-ref0029", "style": "indirect_hint", "text": "It would be nice if we could address the problem with this particular name.", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-ref0029", "style": "indirect_hint", "text": "I was thinking perhaps the system could handle this name more gracefully.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0029", "style": "indirect_hint", "text": "It would be wonderful if the system would accept a different name for this case.", "verified": false, "verifier_status": "clarify"}
+{"base_id": "tpl-plant-ref0029", "style": "indirect_hint", "text": "I was wondering if the control system might allow for an alternative name here.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0029", "style": "indirect_hint", "text": "It would be great if we could bypass this naming restriction somehow.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-plant-ref0029", "style": "indirect_hint", "text": "I was hoping the system might provide guidance on resolving this name conflict.", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-01248", "style": "casual_chat", "text": "hey so like uh i need a red green and blue snake squad yeah the blue one's foraging okay cool just wanted to say caution high and step limit 70 food target 1", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01248", "style": "casual_chat", "text": "yo control system can you make me a red green blue snake team where the blue snake is foraging keep it safe with high caution 70 steps max and food target 1", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01248", "style": "casual_chat", "text": "um so like i want a snake squad with red green and blue snakes the blue one's foraging but watch out high caution step limit 70 food target 1", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01248", "style": "casual_chat", "text": "hey listen i need a red green blue snake group where blue is foraging caution high 70 steps maximum food target 1", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01248", "style": "casual_chat", "text": "so like uh give me a squad with red green and blue snakes blue one foraging caution high step limit 70 food target 1", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01248", "style": "casual_chat", "text": "control system quick just make a red green blue snake team blue foraging caution high 70 step limit food target 1", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01248", "style": "casual_chat", "text": "hey can you make a snake squad red green blue blue foraging high caution 70 steps max food target 1", "verified": false, "verifier_status": "refused"}
+{"base_id": "tpl-squad-01248", "style": "casual_chat", "text": "so like i want a snake group red green blue blue one foraging caution high step limit 70 food target 1", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01382", "style": "typos", "text": "red green blue sqd foragin snk greeen cauti normal step limt 150 food trgt 28", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01382", "style": "typos", "text": "snakes red grn blu squad foragin greeen caution norml step limit 150 food target 28", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01382", "style": "typos", "text": "red green blue snk sqd foragin snk green caution normal step limit 150 food target 28", "verified": false, "verifier_status": "ok"}
+{"base_id": "tpl-squad-01382", "style": "typos", "text": "squad snk red grn blu foragin greeen caution normal step limt 150 food trgt 28", "verified": false, "verifier_status": "ok"}
