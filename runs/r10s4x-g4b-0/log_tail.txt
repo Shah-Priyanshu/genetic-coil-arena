@@ -1,0 +1,26 @@
+D:\venvs\gca\Lib\site-packages\huggingface_hub\file_download.py:149: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in C:\Users\priya\.cache\huggingface\hub\models--Qwen--Qwen3-1.7B. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+  warnings.warn(message)
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+D:\venvs\gca\Lib\site-packages\huggingface_hub\file_download.py:149: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in C:\Users\priya\.cache\huggingface\hub. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
+To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+  warnings.warn(message)
+[10:05:37] 25 incidents, conditions ['team4_rule', 'team4_llm', 'single_all', 'single_logs'], model ollama:gemma4:e4b
+[10:06:10] reports 1/25 RE3-OB/adservice_f3/1 valid 12/12 (33s)
+[10:06:21] reports 2/25 RE3-OB/adservice_f4/3 valid 12/12 (43s)
+[10:06:32] reports 3/25 RE3-OB/adservice_f5/3 valid 11/12 (55s)
+[10:06:43] reports 4/25 RE3-OB/cartservice_f1/3 valid 12/12 (66s)
+[10:06:52] reports 5/25 RE3-OB/currencyservice_f1/3 valid 12/12 (75s)
+[10:07:03] reports 6/25 RE3-OB/emailservice_f1/1 valid 12/12 (86s)
+[10:07:14] reports 7/25 RE3-OB/emailservice_f1/2 valid 11/12 (97s)
+[10:07:26] reports 8/25 RE3-OB/emailservice_f4/2 valid 12/12 (108s)
+[10:07:37] reports 9/25 RE3-OB/emailservice_f5/1 valid 12/12 (120s)
+[10:07:48] reports 10/25 RE3-OB/emailservice_f5/3 valid 12/12 (130s)
+[10:08:05] reports 11/25 RE3-SS/carts_f3/1 valid 13/15 (148s)
+[10:08:21] reports 12/25 RE3-SS/carts_f3/2 valid 14/15 (164s)
+[10:08:39] reports 13/25 RE3-SS/carts_f3/4 valid 14/15 (181s)
+[10:08:52] reports 14/25 RE3-SS/front-end_f2/2 valid 14/15 (194s)
+[10:09:05] reports 15/25 RE3-SS/front-end_f3/3 valid 15/15 (207s)
+[10:09:20] reports 16/25 RE3-SS/orders_f3/1 valid 14/15 (222s)
+[10:09:35] reports 17/25 RE3-SS/orders_f3/3 valid 15/15 (237s)
+[10:09:49] reports 18/25 RE3-SS/orders_f4/3 valid 15/15 (251s)
