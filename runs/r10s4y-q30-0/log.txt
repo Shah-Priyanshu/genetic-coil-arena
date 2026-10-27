@@ -31,3 +31,5 @@
 [12:16:33] conditions 5/25 RE3-OB/currencyservice_f1/3 (3827s)
 [12:17:01] conditions 6/25 RE3-OB/emailservice_f1/1 (3854s)
 [12:17:31] conditions 7/25 RE3-OB/emailservice_f1/2 (3885s)
+[12:18:01] conditions 8/25 RE3-OB/emailservice_f4/2 (3914s)
+[12:18:27] conditions 9/25 RE3-OB/emailservice_f5/1 (3941s)
