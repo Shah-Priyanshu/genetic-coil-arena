@@ -17,3 +17,6 @@
 [12:44:24] reports 16/32 RE3-SS/front-end_f2/1 valid 13/15 (986s)
 [12:45:34] reports 17/32 RE3-SS/front-end_f3/2 valid 15/15 (1055s)
 [12:46:55] reports 18/32 RE3-SS/orders_f1/1 valid 15/15 (1136s)
+[12:48:28] reports 19/32 RE3-SS/orders_f1/2 valid 15/15 (1229s)
+[12:49:55] reports 20/32 RE3-SS/orders_f1/3 valid 15/15 (1316s)
+[12:51:18] reports 21/32 RE3-SS/orders_f3/2 valid 14/15 (1399s)
