@@ -5,6 +5,7 @@ the RCAEval cache skip when it is absent.
 """
 
 import datetime as dt
+import json
 from collections import Counter
 
 import pytest
@@ -448,3 +449,403 @@ class TestSealedR12:
             assert " ".join(frame_tokens(text)) not in frames, text
         blob = inc3.INCIDENT_POLICY_SYSTEM_V3
         assert not any(t in blob for t in refs)
+
+
+# ------------------------------------------------------------------ G9: the newcomer
+
+
+@pytest.fixture(scope="module")
+def tiny():
+    """A tiny trained specialist, a team of six synthetic services and some incidents."""
+    from genetic_coil_arena.envs.logtriage.synthetic import synthetic_incident
+    from genetic_coil_arena.experiments import log_triage3 as t3
+    from genetic_coil_arena.experiments import r11_team as team
+    from genetic_coil_arena.experiments import r12_team as jt
+    from genetic_coil_arena.learning.classifiers import MLPClassifier
+
+    train = [synthetic_incident(100 + i) for i in range(12)]
+    data = t3.metric_dataset(train)
+    model = MLPClassifier(6, epochs=40, seed=0).fit(data.x, data.y)
+    services = [f"svc{i}" for i in range(6)]
+    base = team.IncidentTeam(t3.MetricFaultSpecialist(model), services)
+    joined = jt.JoinedTeam(base, services)
+    incs = [synthetic_incident(i, rep=2) for i in range(6)]
+    return base, joined, incs, jt
+
+
+class TestNewcomer:
+    def test_message_matches_the_new_ext_signal_and_the_schema(self):
+        from genetic_coil_arena.envs.logtriage import logsignal as lg
+        from genetic_coil_arena.envs.logtriage import novelty as nv
+        from genetic_coil_arena.envs.logtriage.synthetic import synthetic_incident
+
+        for seed in range(5):
+            incident = synthetic_incident(seed, rep=2)
+            want = lg.new_template_scores(incident, "new_ext")
+            for s in range(incident.n_services):
+                msg = nv.novelty_message(incident, s)
+                assert nv.novelty_errors(msg) == []
+                assert msg["service"] == incident.services[s]
+                assert msg["new_ext"] == want[s]
+                assert len(msg["top"]) <= nv.MAX_TOP == 3
+                assert all(len(t) <= nv.MAX_CHARS == 80 for t in msg["top"])
+
+    def test_reads_only_its_own_service_and_survives_dropping_the_lines(self):
+        from genetic_coil_arena.envs.logtriage import novelty as nv
+        from genetic_coil_arena.envs.logtriage.synthetic import synthetic_incident
+        from genetic_coil_arena.experiments import r12_team as jt
+
+        incident = synthetic_incident(3, rep=2)
+        before = [nv.novelty_message(incident, s) for s in range(incident.n_services)]
+        assert max(m["new_ext"] for m in before) > 0
+        jt.prepare(incident)  # primes the caches, then drops the line arrays
+        assert incident.t.size == 0
+        assert before == [
+            nv.novelty_message(incident, s) for s in range(incident.n_services)
+        ]
+
+    def test_schema_rejects_extra_fields_and_long_reports(self):
+        from genetic_coil_arena.envs.logtriage import novelty as nv
+
+        ok = {"service": "a", "new_ext": 2, "top": ["x", "y"]}
+        assert nv.novelty_errors(ok) == []
+        assert nv.novelty_errors({**ok, "extra": 1})
+        assert nv.novelty_errors({**ok, "top": ["a", "b", "c", "d"]})
+        assert nv.novelty_errors({**ok, "top": ["z" * 81]})
+        assert nv.novelty_errors({**ok, "new_ext": -1})
+        assert nv.novelty_errors({"service": "a", "top": []})
+
+
+class TestJoinedCentre:
+    def msgs(self, z, n):
+        met = [{"service": f"s{i}", "score": float(v)} for i, v in enumerate(z)]
+        nov = [
+            {"service": f"s{i}", "new_ext": int(v), "top": []} for i, v in enumerate(n)
+        ]
+        return met, nov
+
+    def test_candidates_are_the_nine_listed_plus_the_old_rule(self):
+        from genetic_coil_arena.envs.logtriage import novelty as nv
+
+        assert list(nv.RULES) == [
+            "rr_w0.5", "rr_w1", "rr_w2", "gate40", "gate45", "cap20", "cap50",
+            "gate45_cap50", "gate40_cap50",
+        ]  # fmt: skip
+        assert len(nv.ALL_RULES) <= 10
+        assert nv.OLD_RULE not in nv.RULES
+
+    def test_the_old_rule_is_the_stable_metric_ranking(self):
+        from genetic_coil_arena.envs.logtriage import novelty as nv
+        from genetic_coil_arena.envs.logtriage.team import rule_ranking
+
+        met, nov = self.msgs([5, 9, 9, 1], [7, 0, 0, 3])
+        assert nv.joined_ranking("metric", met, nov)[0] == rule_ranking(met)
+
+    def test_log_part_lifts_a_service_the_metrics_miss(self):
+        from genetic_coil_arena.envs.logtriage import novelty as nv
+
+        met, nov = self.msgs([12, 10, 8, 3], [0, 0, 5, 0])
+        assert nv.joined_ranking("metric", met, nov)[0][0] == 0
+        order, used = nv.joined_ranking("rr_w1", met, nov)
+        assert order[0] == 2 and used  # 1/3 + 1 beats 1 + 0
+
+    def test_gate_drops_the_log_part_when_a_metric_is_decisive(self):
+        from genetic_coil_arena.envs.logtriage import novelty as nv
+
+        met, nov = self.msgs([49, 10, 8, 3], [0, 0, 5, 0])
+        for rule in ("gate40", "gate45", "gate45_cap50", "gate40_cap50"):
+            order, used = nv.joined_ranking(rule, met, nov)
+            assert order[0] == 0 and not used, rule
+        order, used = nv.joined_ranking("rr_w1", met, nov)
+        assert order[0] == 2 and used  # without a gate the log part still takes over
+
+    def test_cap_treats_a_storm_as_silence(self):
+        from genetic_coil_arena.envs.logtriage import novelty as nv
+
+        met, nov = self.msgs([12, 10, 8, 3], [0, 0, 300, 0])
+        assert nv.joined_ranking("cap50", met, nov) == ([0, 1, 2, 3], False)
+        assert nv.joined_ranking("rr_w1", met, nov)[0][0] == 2
+
+    def test_ties_go_to_the_higher_metric_score_then_the_index(self):
+        from genetic_coil_arena.envs.logtriage import novelty as nv
+
+        met, nov = self.msgs([5, 9, 9, 2], [1, 1, 1, 1])
+        assert nv.joined_ranking("rr_w2", met, nov)[0] == [1, 2, 0, 3]
+
+    def test_the_centre_sees_only_reports_never_the_dataset(self):
+        import inspect
+
+        from genetic_coil_arena.envs.logtriage import novelty as nv
+
+        names = set(inspect.signature(nv.rule_decide_joined).parameters)
+        assert names == {"services", "metric_msgs", "novelty_msgs", "rule"}
+
+
+class TestJoinedTeam:
+    def test_old_rule_through_the_joined_centre_equals_the_old_team(self, tiny):
+        base, joined, incs, jt = tiny
+        for incident in incs:
+            old = base.triage(incident, trace_id=f"{incident.id}-o")
+            new = joined.triage_rules(incident, ["metric"], trace_id=f"{incident.id}-n")
+            assert new["metric"]["ranking"] == old["ranking"]
+            assert new["metric"]["fault_type"] == old["fault_type"]
+
+    def test_state_hash_is_frozen_by_joining_and_running(self, tiny):
+        base, joined, incs, jt = tiny
+        before = joined.frozen
+        for incident in incs[:2]:
+            joined.triage_rules(incident, ["rr_w1", "gate45_cap50"])
+            base.triage(incident)
+        assert jt.old_state_hash(base) == before
+        joined.assert_frozen()
+
+    def test_state_hash_catches_a_change_to_the_old_team(self, tiny):
+        base, joined, incs, jt = tiny
+        before = jt.old_state_hash(base)
+        clf = base.model.model
+        saved = clf.mean
+        clf.mean = saved + 1.0
+        try:
+            assert jt.old_state_hash(base) != before
+            with pytest.raises(RuntimeError, match="old team changed"):
+                joined.assert_frozen()
+        finally:
+            clf.mean = saved
+        assert jt.old_state_hash(base) == before
+
+    def test_newcomers_join_through_the_command_centre(self, tiny):
+        base, joined, incs, jt = tiny
+        names = base.cc.registry.names()
+        assert sum(n.startswith("novelty:") for n in names) == 6
+        assert "rca-centre-joined" in names and "rca-centre" in names
+        assert {"rca.log_novelty", "rca.decide_joined"} <= set(base.specs.names())
+        assert {"rca.metric_fault_report", "rca.decide_trained"} <= set(
+            base.specs.names()
+        )
+        tid = "trace-check"
+        joined.triage_rules(incs[0], ["rr_w1"], trace_id=tid)
+        # 6 metric + 6 novelty + 1 decision goals, each a goal and a result envelope
+        assert len(base.trace.envelopes(tid)) >= 2 * 13
+
+    def test_run_incident_record_has_the_label_only_in_scores(self, tiny):
+        base, joined, incs, jt = tiny
+        rec = jt.run_incident(base, joined, incs[0], ["metric", "gate45_cap50"])
+        assert rec["dataset"] == "re2" and rec["split"] == "test"
+        assert set(rec["rules"]) == {"metric", "gate45_cap50"}
+        assert rec["rules"]["metric"]["top3"] == rec["old"]["top3"]
+        assert set(rec["baselines"]) == {"baro", "new_ext", "re3_fusion"}
+        assert rec["old"]["joint"] in (True, False)
+        json.dumps(rec)
+
+    def test_select_rule_takes_the_best_pooled_top1_and_the_earlier_on_ties(self, tiny):
+        from genetic_coil_arena.envs.logtriage import novelty as nv
+
+        _, _, _, jt = tiny
+
+        def rec(dataset, hits):
+            return {
+                "dataset": dataset,
+                "old": {"top1": False, "joint": False},
+                "rules": {
+                    r: {"top1": hits.get(r, False), "used_logs": True, "joint": False}
+                    for r in nv.RULES
+                },
+            }
+
+        recs = [rec("re2", {"cap50": True}), rec("re3", {"cap50": True, "rr_w1": True})]
+        assert jt.select_rule(recs)["chosen"] == "cap50"  # 2 of 2 beats 1 of 2
+        recs = [rec("re2", {"cap50": True, "gate40": True})]
+        assert jt.select_rule(recs)["chosen"] == "gate40"  # the earlier of the tied
+        assert jt.CHOSEN_RULE in nv.RULES
+
+
+# ------------------------------------------------------------------ G10: the executor
+
+
+class TestJoinedExecutor:
+    def catalogue(self, services):
+        entries = [
+            CatalogueEntry("INC-1001", "synthetic/a/2", "SS", ts("2024-01-20T14:21"), tuple(services)),
+            CatalogueEntry("INC-2001", "synthetic/b/2", "RE3-SS", ts("2024-11-22T05:42"), tuple(services)),
+        ]  # fmt: skip
+        return IncidentCatalogue(entries, now=DESK_NOW_R12)
+
+    def test_score_is_joint_for_re2_and_root_top1_for_re3(self, tiny):
+        from genetic_coil_arena.envs.logtriage.synthetic import synthetic_incident
+        from genetic_coil_arena.experiments import r12_team as jt
+
+        _, joined, _, _ = tiny
+        a, b = synthetic_incident(40, rep=2), synthetic_incident(41, rep=2)
+        loaded = {"INC-1001": jt.prepare(a), "INC-2001": jt.prepare(b)}
+        ex = jt.JoinedExecutor(
+            self.catalogue(a.services), joined, loader=lambda e: loaded[e.ticket]
+        )
+        for ticket in ("INC-1001", "INC-2001"):
+            res = ex(params(system="sock-shop", ticket=ticket))
+            incident = loaded[ticket]
+            top1 = float(res["public"]["suspects"][0] == incident.root_service)
+            assert res["top1"] == top1
+            if ticket == "INC-2001":
+                assert res["score"] == top1  # no joint accuracy for RE3
+            else:
+                joint = top1 and res["public"]["fault_type"] == incident.fault_type
+                assert res["score"] == float(joint)
+            # the public part never carries the label
+            assert set(res["public"]) <= {
+                "ticket", "system", "suspects", "onset_utc", "excluded_services",
+                "fault_type", "fault_probability",
+            }  # fmt: skip
+
+    def test_exclusion_removes_a_candidate(self, tiny):
+        from genetic_coil_arena.envs.logtriage.synthetic import synthetic_incident
+        from genetic_coil_arena.experiments import r12_team as jt
+
+        _, joined, _, _ = tiny
+        a = jt.prepare(synthetic_incident(42, rep=2))
+        ex = jt.JoinedExecutor(self.catalogue(a.services), joined, loader=lambda e: a)
+        top = ex(params(ticket="INC-1001"))["public"]["suspects"][0]
+        again = ex(params(ticket="INC-1001", exclude_services=[top]))
+        assert top not in again["public"]["suspects"]
+
+
+# ------------------------------------------------------------------ reports
+
+
+def g9_records(n2=40, n3=40, old2=0.8, new2=0.8, old3=0.4, new3=0.7):
+    """Paired test records with the given top-1 rates (deterministic interleaving)."""
+    rows = []
+    for ds, n, po, pn in (("re2", n2, old2, new2), ("re3", n3, old3, new3)):
+        o = [(k + 0.5) / n < po for k in range(n)]
+        w = [(k + 0.5) / n < pn for k in range(n)]
+        for k in range(n):
+            rows.append(
+                {
+                    "id": f"{ds}{k}", "system": "SS" if ds == "re2" else "RE3-SS",
+                    "dataset": ds, "split": "test", "rep": 2, "root": "a", "fault": "cpu",
+                    "old": {"top3": ["a"], "top1": o[k], "in_top3": True, "joint": o[k] if ds == "re2" else None},
+                    "rules": {"gate45_cap50": {"top3": ["a"], "top1": w[k], "in_top3": True, "joint": w[k] if ds == "re2" else None, "used_logs": k % 2 == 0, "changed_top1": o[k] != w[k]}},
+                    "baselines": {b: {"top3": ["a"], "top1": k % 3 == 0, "in_top3": True} for b in ("baro", "new_ext", "re3_fusion")},
+                }
+            )  # fmt: skip
+    return rows
+
+
+class TestReportR12:
+    def test_pass_when_re3_gains_and_re2_holds(self):
+        from genetic_coil_arena.experiments import r12_report as r12
+
+        g9 = r12.g9_summary(g9_records(), "gate45_cap50")
+        assert g9["re3"]["diff_top1"]["mean"] == pytest.approx(0.30)
+        assert g9["verdict"]["verdict"] == "PASS"
+
+    def test_re3_gain_must_have_a_ci_above_zero(self):
+        from genetic_coil_arena.experiments import r12_report as r12
+
+        small = r12.g9_summary(g9_records(old3=0.40, new3=0.45), "gate45_cap50")
+        assert small["verdict"]["verdict"] == "KILL"  # the CI includes 0
+        assert any("RE3" in k for k in small["verdict"]["kill_reasons"])
+
+    def test_a_clear_re2_loss_kills(self):
+        from genetic_coil_arena.experiments import r12_report as r12
+
+        bad = r12.g9_summary(g9_records(n2=200, old2=0.9, new2=0.6), "gate45_cap50")
+        assert bad["verdict"]["verdict"] == "KILL"
+        assert any("RE2 top-1" in k for k in bad["verdict"]["kill_reasons"])
+        rows = {r["criterion"]: r["result"] for r in bad["verdict"]["criteria"]}
+        assert rows["RE3 top-1, joined - old"] == "PASS"
+
+    def test_gate_rates_and_fixed_broken_counts(self):
+        from genetic_coil_arena.experiments import r12_report as r12
+
+        d = r12.g9_summary(g9_records(), "gate45_cap50")["re3"]
+        assert d["logs_used"] == pytest.approx(0.5)
+        assert d["fixed"] == 12 and d["broke"] == 0
+        assert set(d["baselines"]) == {"baro", "new_ext", "re3_fusion"}
+
+    def test_g9_render_names_the_dev_table_and_the_hash(self):
+        from genetic_coil_arena.envs.logtriage import novelty as nv
+        from genetic_coil_arena.experiments import r12_report as r12
+
+        row = {"top1": 0.8, "re2_top1": 0.8, "re3_top1": 0.8, "re2_joint": 0.5}
+        dev = {
+            "chosen": "gate45_cap50",
+            "reference": {"rule": "metric", **row},
+            "table": [{"rule": r, **row, "used_logs": 0.4} for r in nv.RULES],
+        }
+        g9 = {
+            "rule": "gate45_cap50", "hash_before": "h", "hash_after": "h", "dev": dev,
+            "test": r12.g9_summary(g9_records(), "gate45_cap50"),
+        }  # fmt: skip
+        md = r12.render({"generated": "now", "g9": g9})
+        assert "gate45_cap50` (chosen)" in md and "identical" in md
+        assert "<!-- analysis:start -->" in md and "Analysis pending" in md
+
+    def test_g10_groups_verdict_and_render(self):
+        from genetic_coil_arena.experiments import r11_report as rep
+        from genetic_coil_arena.experiments import r12_report as r12
+
+        from .test_r11 import TestReport
+
+        t = TestReport()
+        recs = t.records()
+        resolves = {
+            r["id"]: ("INC-2001" if k < 6 else "INC-1001") for k, r in enumerate(recs)
+        }
+        resolves["c"] = None
+        m = r12.g10_metrics(recs, t.routes(), resolves)
+        assert m["group"]["re3"]["exact"]["n"] == 6
+        assert m["group"]["re2"]["exact"]["n"] == 4
+        assert m["all"]["routing"]["n"] == 13
+        v = r12.g10_verdict(m, 9.0)
+        assert v["verdict"] in ("PASS", "NOT PASSED", "KILL")
+        names = [r["criterion"] for r in v["criteria"]]
+        assert any("RE3" in n for n in names) and any("RE2" in n for n in names)
+        report = {
+            "generated": "now",
+            "g10": {
+                "n_sealed": 11, "sealed_sha256": "x", "r7a_sealed_sha256": "y",
+                "catalogue": {"n": 182, "fingerprint": "f"}, "prompt_audit": "a", "team": "t",
+                "systems": {"s": {"label": "stub", "metrics": m, "verdict": v, "failures": rep.failures(recs)}},
+            },
+        }  # fmt: skip
+        md = r12.render(report)
+        assert "## G10" in md and "Exact RE3" in md and "failure examples" in md
+        json.dumps(m)  # JSON-safe
+
+
+# ------------------------------------------------------------------ real data (skipped without it)
+
+
+class TestRealData:
+    def test_joined_team_through_the_grown_desk(self, real_catalogue):
+        from genetic_coil_arena.experiments import r11_team as team
+        from genetic_coil_arena.experiments import r12_team as jt
+
+        state = team.train_metric_specialist(limit_train=40)
+        services = (
+            set(inc.SOCK_SHOP_SERVICES)
+            | set(inc.ONLINE_BOUTIQUE_SERVICES)
+            | set(inc3.TRAIN_TICKET_SERVICES)
+        )
+        base = team.IncidentTeam(team.load_specialist(state), services)
+        joined = jt.JoinedTeam(base, services, jt.CHOSEN_RULE)
+        executor = jt.JoinedExecutor(real_catalogue, joined)
+        registry = inc3.build_registry_r12()
+        domains = build_domains(None)
+        domains["incident"] = inc3.incident_domain_v3(executor)
+        desk = pipe.Desk(
+            pipe.KeywordBackend(inc3.keyword_incident_v3),
+            registry,
+            domains,
+            real_catalogue,
+        )
+        seen = set()
+        for item in sealed.load_dev():
+            if item.kind != "spec" or item.gold["system"] in seen:
+                continue
+            seen.add(item.gold["system"])
+            rec = pipe.process_incident_item(desk, item).record
+            assert rec["status"] == "ok" and rec["nl_state"] == "completed", item.text
+            assert rec["gold_state"] == "completed"
+        assert seen == set(inc3.SYSTEMS_V3)
+        joined.assert_frozen()
