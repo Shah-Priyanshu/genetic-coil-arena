@@ -38,3 +38,8 @@
 [19:31:44] qwen3-coder_30b sealed: 125/142 (2624s)
 [19:32:45] qwen3-coder_30b sealed: 135/142 (2686s)
 [19:33:13] qwen3-coder_30b sealed: 142/142 (2713s)
+[19:34:13] qwen3-coder_30b routing (R7a items): 67/155 (2773s)
+[19:35:13] qwen3-coder_30b routing (R7a items): 144/155 (2834s)
+[19:35:25] qwen3-coder_30b routing (R7a items): 155/155 (2846s)
+[19:35:25] qwen3-coder_30b: wrote summary; exact 0.975 (n=120), routing 1.0
+[19:35:26] qwen3-coder_30b: wrote summary; exact 0.975 (n=120), routing 1.0
