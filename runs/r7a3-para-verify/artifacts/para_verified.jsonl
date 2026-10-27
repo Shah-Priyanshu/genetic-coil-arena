@@ -6484,3 +6484,19 @@
 {"base_id": "tpl-squad-00127", "style": "jargon", "text": "R-G-B squad. Foraging snakes. Low caution. Step limit 300. Food target: none", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00127", "style": "jargon", "text": "Snakes: red, green, blue. Forage: all. Warn: low risk. Steps: 300. No food", "verified": true, "verifier_status": "ok"}
 {"base_id": "tpl-squad-00127", "style": "jargon", "text": "Red, green, blue snake squad. Foraging. Warning level low. Step count 300. Food none", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00127", "style": "jargon", "text": "Squad R-G-B. Forage all. Caution low. Steps 300. Food target not specified", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00127", "style": "jargon", "text": "Snakes R-G-B. Foraging. Low risk warning. Default steps 300. No food target", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-ref0006", "style": "jargon", "text": "REQ-CONTRADICT: BLUE CANNOT BE CAREFUL+RECKLESS 220STEPS", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0006", "style": "jargon", "text": "SYS-FAIL: CONTRADICTORY REQUEST BLUE+CAUTIOUS+RASH 220STEPS", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0006", "style": "jargon", "text": "CMD-INVALID: BLUE PARADOXICAL BEHAVIOR 220STEPS REQ", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0006", "style": "jargon", "text": "ERROR-LOGIC: BLUE CANNOT BE BOTH CAREFUL+RECKLESS 220", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0006", "style": "jargon", "text": "ALERT-CONTRADICT: BLUE SAFETY+DANGER PARADOX 220STEP", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0006", "style": "jargon", "text": "FWD-FAIL: BLUE INCOMPATIBLE STATES 220STEPS REQUEST", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0006", "style": "jargon", "text": "NOTIFY-IMPOSSIBLE: BLUE CONTRADICTORY MODE 220STEPS", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-ref0006", "style": "jargon", "text": "REPORT-CONTRADICTION: BLUE SAFETY+RISK SIMULTANEOUS 220", "verified": true, "verifier_status": "refused"}
+{"base_id": "tpl-squad-00259", "style": "self_correction", "text": "Wait, squad of snakes red green blue, foraging green blue, caution normal, step limit 300, food target 24", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00259", "style": "self_correction", "text": "No, make that red green blue snakes, foraging green blue, caution normal, 300 steps, 24 food target", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00259", "style": "self_correction", "text": "Actually, squad snakes red green blue, foraging green blue, caution normal, step limit 300, food 24 target", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00259", "style": "self_correction", "text": "Wait, snakes red green blue, foraging green blue, caution normal, 300 steps, food target 24", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00259", "style": "self_correction", "text": "No, make that red green blue squad, foraging green blue, caution normal, step limit 300, 24 food target", "verified": true, "verifier_status": "ok"}
+{"base_id": "tpl-squad-00259", "style": "self_correction", "text": "Actually, snakes red green blue, foraging green blue, normal caution, 300 steps, food target 24", "verified": true, "verifier_status": "ok"}
