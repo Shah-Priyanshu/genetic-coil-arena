@@ -167,3 +167,6 @@ Loading weights: 100%|██████████| 311/311 [00:06<00:00, 47.0
 [03:40:42] r32-n24k-p80 dev: 80/304 (plant-dev-in-07)
 [03:42:33] r32-n24k-p80 dev: 120/304 (plant-dev-ho-11)
 [03:44:40] r32-n24k-p80 dev: 160/304 (squad-indist-15)
+[03:46:57] r32-n24k-p80 dev: 200/304 (squad-heldout-15)
+[03:49:11] r32-n24k-p80 dev: 240/304 (plant-indist-15)
+[03:51:10] r32-n24k-p80 dev: 280/304 (plant-heldout-15)
