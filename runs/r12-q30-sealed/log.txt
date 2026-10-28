@@ -11,3 +11,11 @@
 [23:06:49] qwen3-coder_30b sealed: 61/107 (633s)
 [23:07:54] qwen3-coder_30b sealed: 67/107 (699s)
 [23:08:58] qwen3-coder_30b sealed: 70/107 (763s)
+[23:10:03] qwen3-coder_30b sealed: 73/107 (827s)
+[23:11:07] qwen3-coder_30b sealed: 79/107 (892s)
+[23:12:09] qwen3-coder_30b sealed: 85/107 (954s)
+[23:13:14] qwen3-coder_30b sealed: 88/107 (1018s)
+[23:14:13] qwen3-coder_30b sealed: 107/107 (1078s)
+[23:15:11] qwen3-coder_30b routing (R7a items): 155/155 (1136s)
+[23:15:11] qwen3-coder_30b: wrote summary; exact 0.9340659340659341 (n=91), routing 1.0
+[23:15:11] qwen3-coder_30b: wrote summary; exact 0.9340659340659341 (n=91), routing 1.0
