@@ -1,0 +1,22 @@
+{
+  "id": "r12c-o14-dev",
+  "commit": "747058f4032a3299084d4a3570ec1509b709c4ea",
+  "queued_args": [
+    "scripts/r12c_desk.py",
+    "run",
+    "--translator",
+    "ollama:qwen2.5-coder:14b",
+    "--split",
+    "dev",
+    "--team-from",
+    "runs:r12-team"
+  ],
+  "state": "running",
+  "started_at": "2026-10-28T03:48:20+00:00",
+  "updated_at": "2026-10-28T03:48:20+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 829 MiB, 12282 MiB, 41",
+  "host": "PC",
+  "lane": "gpu",
+  "cpu_workers": 2
+}
