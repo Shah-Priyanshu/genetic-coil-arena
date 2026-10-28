@@ -1,1 +1,21 @@
 [start] 10 training runs on 10 workers; cache D:\Projects\genetic-coil-arena-gpu-results\runs\r7c-train-b\artifacts; GoalTrainSettings(radius=3, generations=10000, population=64, reps=1, sigma=0.05, lr=0.03, weight_decay=0.005, spec_hidden=24, centre_hidden=24, eval_every=50, val_reps=2, max_steps=300, time_limit_s=inf, progress_s=600.0)
+[progress] centre-goal run 34: gen 300/10000, val mission -3.53, best gen 300, elapsed 601 s
+[progress] centre-goal run 33: gen 300/10000, val mission -3.17, best gen 300, elapsed 616 s
+[progress] centre-goal run 27: gen 300/10000, val mission -3.50, best gen 300, elapsed 630 s
+[progress] centre-goal run 35: gen 350/10000, val mission -3.93, best gen 50, elapsed 632 s
+[progress] centre-goal run 31: gen 350/10000, val mission -1.73, best gen 350, elapsed 641 s
+[progress] centre-goal run 30: gen 300/10000, val mission -3.70, best gen 300, elapsed 652 s
+[progress] centre-goal run 29: gen 350/10000, val mission -3.77, best gen 200, elapsed 658 s
+[progress] centre-goal run 32: gen 350/10000, val mission -4.20, best gen 200, elapsed 675 s
+[progress] centre-goal run 28: gen 350/10000, val mission -3.73, best gen 350, elapsed 676 s
+[progress] centre-goal run 26: gen 350/10000, val mission -1.17, best gen 350, elapsed 695 s
+[progress] centre-goal run 34: gen 500/10000, val mission -3.00, best gen 500, elapsed 1203 s
+[progress] centre-goal run 27: gen 500/10000, val mission -3.07, best gen 450, elapsed 1266 s
+[progress] centre-goal run 30: gen 500/10000, val mission -2.67, best gen 500, elapsed 1298 s
+[progress] centre-goal run 31: gen 600/10000, val mission 1.93, best gen 600, elapsed 1314 s
+[progress] centre-goal run 33: gen 500/10000, val mission -0.67, best gen 500, elapsed 1323 s
+[progress] centre-goal run 32: gen 600/10000, val mission -3.33, best gen 600, elapsed 1385 s
+[progress] centre-goal run 35: gen 650/10000, val mission -0.93, best gen 650, elapsed 1391 s
+[progress] centre-goal run 26: gen 600/10000, val mission -0.23, best gen 600, elapsed 1396 s
+[progress] centre-goal run 28: gen 550/10000, val mission 2.57, best gen 550, elapsed 1399 s
+[progress] centre-goal run 29: gen 600/10000, val mission -1.00, best gen 600, elapsed 1403 s
