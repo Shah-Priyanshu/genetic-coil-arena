@@ -1,0 +1,22 @@
+{
+  "id": "r12c-gemma-sealed",
+  "commit": "bd54002bdc8274f59821e712bf04ea520988848a",
+  "queued_args": [
+    "scripts/r12c_desk.py",
+    "run",
+    "--translator",
+    "ollama:gemma4:e4b",
+    "--split",
+    "sealed",
+    "--team-from",
+    "runs:r12-team"
+  ],
+  "state": "running",
+  "started_at": "2026-10-28T04:13:00+00:00",
+  "updated_at": "2026-10-28T04:13:00+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 830 MiB, 12282 MiB, 41",
+  "host": "PC",
+  "lane": "gpu",
+  "cpu_workers": 2
+}
