@@ -4,7 +4,7 @@
 > - **(b) closes the gap.** With the goal only in the 3-bit messages, (b) now reaches 91% of the hand-coded centre (d) on held-out goals, 21.37 against 23.49. The difference is no longer significant: −2.12 ± 2.44, p = 0.15. At 5k it was 85% and significantly below (p = 0.035).
 > - **(c) is unchanged:** 92% of (d) (−1.91 ± 2.68).
 > - **Training still had not plateaued for (b):** 5 of its 8 runs found their best checkpoint in the last 1,000 generations. For (c) it was 3 of 8, for (d) 2 of 8.
-> - Seeds 8–15 at 10k (jobs `r7b4-train-*`) are running and will tighten these CIs.
+> - Seeds 8–15 at 10k are in [r7b_goal_conditioned_16runs.md](r7b_goal_conditioned_16runs.md): (c) holds at 92% of (d); (b) falls to 85% because 2 of its 8 new runs failed to train.
 
 **G7 verdict: PASS.** a goal-conditioned centre beats (a) and reaches 90% of (d) on held-out goals.
 
