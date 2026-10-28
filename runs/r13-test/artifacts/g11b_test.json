@@ -1,0 +1,1614 @@
+{
+ "top1": {
+  "pooled": {
+   "n": 210,
+   "a": 0.8666666666666667,
+   "b": 0.8428571428571429,
+   "diff": 0.023809523809523808,
+   "lo": -0.009523809523809525,
+   "hi": 0.05714285714285714
+  },
+  "SS": {
+   "n": 60,
+   "a": 0.9833333333333333,
+   "b": 0.9333333333333333,
+   "diff": 0.05,
+   "lo": 0.0,
+   "hi": 0.11666666666666667
+  },
+  "OB": {
+   "n": 60,
+   "a": 0.9166666666666666,
+   "b": 0.8333333333333334,
+   "diff": 0.08333333333333333,
+   "lo": 0.016666666666666666,
+   "hi": 0.15
+  },
+  "TT": {
+   "n": 90,
+   "a": 0.7555555555555555,
+   "b": 0.7888888888888889,
+   "diff": -0.03333333333333333,
+   "lo": -0.08888888888888889,
+   "hi": 0.011111111111111112
+  }
+ },
+ "joint": {
+  "pooled": {
+   "n": 210,
+   "a": 0.719047619047619,
+   "b": 0.7095238095238096,
+   "diff": 0.009523809523809525,
+   "lo": -0.01904761904761905,
+   "hi": 0.0380952380952381
+  }
+ },
+ "verdict": {
+  "verdict": "kill",
+  "pooled_ok": false,
+  "non_inferior": {
+   "SS": true,
+   "OB": true,
+   "TT": false
+  }
+ },
+ "n": 210,
+ "smoke": false,
+ "counts": {
+  "SS": 60,
+  "OB": 60,
+  "TT": 90
+ },
+ "ranker_sha256": "3da0eeb92c5a83aba8f5b2ce692a5887576087716b41a88b49ed9c4a4334b8ed",
+ "chosen_config": {
+  "features": "all",
+  "l2": 0.1
+ },
+ "coverage_re2": {
+  "SS": {
+   "n_incidents": 60,
+   "mean_services": 15.0,
+   "root_has_kind": {
+    "cpu": 1.0,
+    "mem": 1.0,
+    "socket": 1.0,
+    "diskio": 1.0,
+    "workload": 1.0,
+    "latency-50": 1.0,
+    "latency-90": 1.0,
+    "error": 0.2
+   },
+   "service_has_kind": {
+    "cpu": 1.0,
+    "mem": 1.0,
+    "socket": 1.0,
+    "diskio": 0.5488888888888889,
+    "workload": 0.4666666666666667,
+    "latency-50": 0.4666666666666667,
+    "latency-90": 0.4666666666666667,
+    "error": 0.07
+   }
+  },
+  "OB": {
+   "n_incidents": 60,
+   "mean_services": 11.966666666666667,
+   "root_has_kind": {
+    "cpu": 1.0,
+    "mem": 1.0,
+    "socket": 1.0,
+    "diskio": 0.7166666666666667,
+    "workload": 1.0,
+    "latency-50": 1.0,
+    "latency-90": 1.0,
+    "error": 0.0
+   },
+   "service_has_kind": {
+    "cpu": 0.9192200557103064,
+    "mem": 0.9192200557103064,
+    "socket": 0.9192200557103064,
+    "diskio": 0.6002785515320335,
+    "workload": 0.9164345403899722,
+    "latency-50": 0.8356545961002786,
+    "latency-90": 0.8356545961002786,
+    "error": 0.1935933147632312
+   }
+  },
+  "TT": {
+   "n_incidents": 90,
+   "mean_services": 68.0,
+   "root_has_kind": {
+    "cpu": 1.0,
+    "mem": 1.0,
+    "socket": 1.0,
+    "diskio": 1.0,
+    "workload": 1.0,
+    "latency-50": 1.0,
+    "latency-90": 1.0,
+    "error": 0.32222222222222224
+   },
+   "service_has_kind": {
+    "cpu": 1.0,
+    "mem": 1.0,
+    "socket": 1.0,
+    "diskio": 0.9852941176470589,
+    "workload": 0.40294117647058825,
+    "latency-50": 0.3980392156862745,
+    "latency-90": 0.3980392156862745,
+    "error": 0.119281045751634
+   }
+  }
+ },
+ "specialist_saw_tt": true,
+ "records": [
+  {
+   "id": "SS/carts_cpu/2",
+   "system": "SS",
+   "root": "carts",
+   "learned_top": "carts",
+   "rule_top": "carts"
+  },
+  {
+   "id": "SS/carts_cpu/3",
+   "system": "SS",
+   "root": "carts",
+   "learned_top": "carts",
+   "rule_top": "carts"
+  },
+  {
+   "id": "SS/carts_delay/2",
+   "system": "SS",
+   "root": "carts",
+   "learned_top": "carts",
+   "rule_top": "carts"
+  },
+  {
+   "id": "SS/carts_delay/3",
+   "system": "SS",
+   "root": "carts",
+   "learned_top": "carts",
+   "rule_top": "carts"
+  },
+  {
+   "id": "SS/carts_disk/2",
+   "system": "SS",
+   "root": "carts",
+   "learned_top": "carts",
+   "rule_top": "carts"
+  },
+  {
+   "id": "SS/carts_disk/3",
+   "system": "SS",
+   "root": "carts",
+   "learned_top": "carts",
+   "rule_top": "carts"
+  },
+  {
+   "id": "SS/carts_loss/2",
+   "system": "SS",
+   "root": "carts",
+   "learned_top": "carts",
+   "rule_top": "carts"
+  },
+  {
+   "id": "SS/carts_loss/3",
+   "system": "SS",
+   "root": "carts",
+   "learned_top": "orders",
+   "rule_top": "front-end"
+  },
+  {
+   "id": "SS/carts_mem/2",
+   "system": "SS",
+   "root": "carts",
+   "learned_top": "carts",
+   "rule_top": "carts"
+  },
+  {
+   "id": "SS/carts_mem/3",
+   "system": "SS",
+   "root": "carts",
+   "learned_top": "carts",
+   "rule_top": "carts"
+  },
+  {
+   "id": "SS/carts_socket/2",
+   "system": "SS",
+   "root": "carts",
+   "learned_top": "carts",
+   "rule_top": "carts"
+  },
+  {
+   "id": "SS/carts_socket/3",
+   "system": "SS",
+   "root": "carts",
+   "learned_top": "carts",
+   "rule_top": "carts"
+  },
+  {
+   "id": "SS/catalogue_cpu/2",
+   "system": "SS",
+   "root": "catalogue",
+   "learned_top": "catalogue",
+   "rule_top": "catalogue"
+  },
+  {
+   "id": "SS/catalogue_cpu/3",
+   "system": "SS",
+   "root": "catalogue",
+   "learned_top": "catalogue",
+   "rule_top": "catalogue"
+  },
+  {
+   "id": "SS/catalogue_delay/2",
+   "system": "SS",
+   "root": "catalogue",
+   "learned_top": "catalogue",
+   "rule_top": "front-end"
+  },
+  {
+   "id": "SS/catalogue_delay/3",
+   "system": "SS",
+   "root": "catalogue",
+   "learned_top": "catalogue",
+   "rule_top": "catalogue"
+  },
+  {
+   "id": "SS/catalogue_disk/2",
+   "system": "SS",
+   "root": "catalogue",
+   "learned_top": "catalogue",
+   "rule_top": "catalogue"
+  },
+  {
+   "id": "SS/catalogue_disk/3",
+   "system": "SS",
+   "root": "catalogue",
+   "learned_top": "catalogue",
+   "rule_top": "catalogue"
+  },
+  {
+   "id": "SS/catalogue_loss/2",
+   "system": "SS",
+   "root": "catalogue",
+   "learned_top": "catalogue",
+   "rule_top": "catalogue"
+  },
+  {
+   "id": "SS/catalogue_loss/3",
+   "system": "SS",
+   "root": "catalogue",
+   "learned_top": "catalogue",
+   "rule_top": "catalogue"
+  },
+  {
+   "id": "SS/catalogue_mem/2",
+   "system": "SS",
+   "root": "catalogue",
+   "learned_top": "catalogue",
+   "rule_top": "catalogue"
+  },
+  {
+   "id": "SS/catalogue_mem/3",
+   "system": "SS",
+   "root": "catalogue",
+   "learned_top": "catalogue",
+   "rule_top": "catalogue"
+  },
+  {
+   "id": "SS/catalogue_socket/2",
+   "system": "SS",
+   "root": "catalogue",
+   "learned_top": "catalogue",
+   "rule_top": "catalogue"
+  },
+  {
+   "id": "SS/catalogue_socket/3",
+   "system": "SS",
+   "root": "catalogue",
+   "learned_top": "catalogue",
+   "rule_top": "catalogue"
+  },
+  {
+   "id": "SS/orders_cpu/2",
+   "system": "SS",
+   "root": "orders",
+   "learned_top": "orders",
+   "rule_top": "orders"
+  },
+  {
+   "id": "SS/orders_cpu/3",
+   "system": "SS",
+   "root": "orders",
+   "learned_top": "orders",
+   "rule_top": "orders"
+  },
+  {
+   "id": "SS/orders_delay/2",
+   "system": "SS",
+   "root": "orders",
+   "learned_top": "orders",
+   "rule_top": "orders"
+  },
+  {
+   "id": "SS/orders_delay/3",
+   "system": "SS",
+   "root": "orders",
+   "learned_top": "orders",
+   "rule_top": "orders"
+  },
+  {
+   "id": "SS/orders_disk/2",
+   "system": "SS",
+   "root": "orders",
+   "learned_top": "orders",
+   "rule_top": "orders"
+  },
+  {
+   "id": "SS/orders_disk/3",
+   "system": "SS",
+   "root": "orders",
+   "learned_top": "orders",
+   "rule_top": "orders"
+  },
+  {
+   "id": "SS/orders_loss/2",
+   "system": "SS",
+   "root": "orders",
+   "learned_top": "orders",
+   "rule_top": "orders"
+  },
+  {
+   "id": "SS/orders_loss/3",
+   "system": "SS",
+   "root": "orders",
+   "learned_top": "orders",
+   "rule_top": "orders"
+  },
+  {
+   "id": "SS/orders_mem/2",
+   "system": "SS",
+   "root": "orders",
+   "learned_top": "orders",
+   "rule_top": "orders"
+  },
+  {
+   "id": "SS/orders_mem/3",
+   "system": "SS",
+   "root": "orders",
+   "learned_top": "orders",
+   "rule_top": "orders"
+  },
+  {
+   "id": "SS/orders_socket/2",
+   "system": "SS",
+   "root": "orders",
+   "learned_top": "orders",
+   "rule_top": "orders"
+  },
+  {
+   "id": "SS/orders_socket/3",
+   "system": "SS",
+   "root": "orders",
+   "learned_top": "orders",
+   "rule_top": "orders"
+  },
+  {
+   "id": "SS/payment_cpu/2",
+   "system": "SS",
+   "root": "payment",
+   "learned_top": "payment",
+   "rule_top": "payment"
+  },
+  {
+   "id": "SS/payment_cpu/3",
+   "system": "SS",
+   "root": "payment",
+   "learned_top": "payment",
+   "rule_top": "payment"
+  },
+  {
+   "id": "SS/payment_delay/2",
+   "system": "SS",
+   "root": "payment",
+   "learned_top": "payment",
+   "rule_top": "payment"
+  },
+  {
+   "id": "SS/payment_delay/3",
+   "system": "SS",
+   "root": "payment",
+   "learned_top": "payment",
+   "rule_top": "payment"
+  },
+  {
+   "id": "SS/payment_disk/2",
+   "system": "SS",
+   "root": "payment",
+   "learned_top": "payment",
+   "rule_top": "payment"
+  },
+  {
+   "id": "SS/payment_disk/3",
+   "system": "SS",
+   "root": "payment",
+   "learned_top": "payment",
+   "rule_top": "payment"
+  },
+  {
+   "id": "SS/payment_loss/2",
+   "system": "SS",
+   "root": "payment",
+   "learned_top": "payment",
+   "rule_top": "payment"
+  },
+  {
+   "id": "SS/payment_loss/3",
+   "system": "SS",
+   "root": "payment",
+   "learned_top": "payment",
+   "rule_top": "orders"
+  },
+  {
+   "id": "SS/payment_mem/2",
+   "system": "SS",
+   "root": "payment",
+   "learned_top": "payment",
+   "rule_top": "payment"
+  },
+  {
+   "id": "SS/payment_mem/3",
+   "system": "SS",
+   "root": "payment",
+   "learned_top": "payment",
+   "rule_top": "payment"
+  },
+  {
+   "id": "SS/payment_socket/2",
+   "system": "SS",
+   "root": "payment",
+   "learned_top": "payment",
+   "rule_top": "payment"
+  },
+  {
+   "id": "SS/payment_socket/3",
+   "system": "SS",
+   "root": "payment",
+   "learned_top": "payment",
+   "rule_top": "payment"
+  },
+  {
+   "id": "SS/user_cpu/2",
+   "system": "SS",
+   "root": "user",
+   "learned_top": "user",
+   "rule_top": "user"
+  },
+  {
+   "id": "SS/user_cpu/3",
+   "system": "SS",
+   "root": "user",
+   "learned_top": "user",
+   "rule_top": "user"
+  },
+  {
+   "id": "SS/user_delay/2",
+   "system": "SS",
+   "root": "user",
+   "learned_top": "user",
+   "rule_top": "user"
+  },
+  {
+   "id": "SS/user_delay/3",
+   "system": "SS",
+   "root": "user",
+   "learned_top": "user",
+   "rule_top": "user"
+  },
+  {
+   "id": "SS/user_disk/2",
+   "system": "SS",
+   "root": "user",
+   "learned_top": "user",
+   "rule_top": "user"
+  },
+  {
+   "id": "SS/user_disk/3",
+   "system": "SS",
+   "root": "user",
+   "learned_top": "user",
+   "rule_top": "user"
+  },
+  {
+   "id": "SS/user_loss/2",
+   "system": "SS",
+   "root": "user",
+   "learned_top": "user",
+   "rule_top": "user"
+  },
+  {
+   "id": "SS/user_loss/3",
+   "system": "SS",
+   "root": "user",
+   "learned_top": "user",
+   "rule_top": "front-end"
+  },
+  {
+   "id": "SS/user_mem/2",
+   "system": "SS",
+   "root": "user",
+   "learned_top": "user",
+   "rule_top": "user"
+  },
+  {
+   "id": "SS/user_mem/3",
+   "system": "SS",
+   "root": "user",
+   "learned_top": "user",
+   "rule_top": "user"
+  },
+  {
+   "id": "SS/user_socket/2",
+   "system": "SS",
+   "root": "user",
+   "learned_top": "user",
+   "rule_top": "user"
+  },
+  {
+   "id": "SS/user_socket/3",
+   "system": "SS",
+   "root": "user",
+   "learned_top": "user",
+   "rule_top": "user"
+  },
+  {
+   "id": "OB/checkoutservice_cpu/2",
+   "system": "OB",
+   "root": "checkoutservice",
+   "learned_top": "checkoutservice",
+   "rule_top": "checkoutservice"
+  },
+  {
+   "id": "OB/checkoutservice_cpu/3",
+   "system": "OB",
+   "root": "checkoutservice",
+   "learned_top": "checkoutservice",
+   "rule_top": "checkoutservice"
+  },
+  {
+   "id": "OB/checkoutservice_delay/2",
+   "system": "OB",
+   "root": "checkoutservice",
+   "learned_top": "emailservice",
+   "rule_top": "emailservice"
+  },
+  {
+   "id": "OB/checkoutservice_delay/3",
+   "system": "OB",
+   "root": "checkoutservice",
+   "learned_top": "checkoutservice",
+   "rule_top": "emailservice"
+  },
+  {
+   "id": "OB/checkoutservice_disk/2",
+   "system": "OB",
+   "root": "checkoutservice",
+   "learned_top": "checkoutservice",
+   "rule_top": "checkoutservice"
+  },
+  {
+   "id": "OB/checkoutservice_disk/3",
+   "system": "OB",
+   "root": "checkoutservice",
+   "learned_top": "checkoutservice",
+   "rule_top": "checkoutservice"
+  },
+  {
+   "id": "OB/checkoutservice_loss/2",
+   "system": "OB",
+   "root": "checkoutservice",
+   "learned_top": "checkoutservice",
+   "rule_top": "checkoutservice"
+  },
+  {
+   "id": "OB/checkoutservice_loss/3",
+   "system": "OB",
+   "root": "checkoutservice",
+   "learned_top": "checkoutservice",
+   "rule_top": "checkoutservice"
+  },
+  {
+   "id": "OB/checkoutservice_mem/2",
+   "system": "OB",
+   "root": "checkoutservice",
+   "learned_top": "checkoutservice",
+   "rule_top": "checkoutservice"
+  },
+  {
+   "id": "OB/checkoutservice_mem/3",
+   "system": "OB",
+   "root": "checkoutservice",
+   "learned_top": "checkoutservice",
+   "rule_top": "checkoutservice"
+  },
+  {
+   "id": "OB/checkoutservice_socket/2",
+   "system": "OB",
+   "root": "checkoutservice",
+   "learned_top": "checkoutservice",
+   "rule_top": "checkoutservice"
+  },
+  {
+   "id": "OB/checkoutservice_socket/3",
+   "system": "OB",
+   "root": "checkoutservice",
+   "learned_top": "checkoutservice",
+   "rule_top": "checkoutservice"
+  },
+  {
+   "id": "OB/currencyservice_cpu/2",
+   "system": "OB",
+   "root": "currencyservice",
+   "learned_top": "currencyservice",
+   "rule_top": "currencyservice"
+  },
+  {
+   "id": "OB/currencyservice_cpu/3",
+   "system": "OB",
+   "root": "currencyservice",
+   "learned_top": "currencyservice",
+   "rule_top": "currencyservice"
+  },
+  {
+   "id": "OB/currencyservice_delay/2",
+   "system": "OB",
+   "root": "currencyservice",
+   "learned_top": "currencyservice",
+   "rule_top": "currencyservice"
+  },
+  {
+   "id": "OB/currencyservice_delay/3",
+   "system": "OB",
+   "root": "currencyservice",
+   "learned_top": "currencyservice",
+   "rule_top": "currencyservice"
+  },
+  {
+   "id": "OB/currencyservice_disk/2",
+   "system": "OB",
+   "root": "currencyservice",
+   "learned_top": "currencyservice",
+   "rule_top": "currencyservice"
+  },
+  {
+   "id": "OB/currencyservice_disk/3",
+   "system": "OB",
+   "root": "currencyservice",
+   "learned_top": "currencyservice",
+   "rule_top": "currencyservice"
+  },
+  {
+   "id": "OB/currencyservice_loss/2",
+   "system": "OB",
+   "root": "currencyservice",
+   "learned_top": "currencyservice",
+   "rule_top": "checkoutservice"
+  },
+  {
+   "id": "OB/currencyservice_loss/3",
+   "system": "OB",
+   "root": "currencyservice",
+   "learned_top": "frontend",
+   "rule_top": "frontend"
+  },
+  {
+   "id": "OB/currencyservice_mem/2",
+   "system": "OB",
+   "root": "currencyservice",
+   "learned_top": "currencyservice",
+   "rule_top": "currencyservice"
+  },
+  {
+   "id": "OB/currencyservice_mem/3",
+   "system": "OB",
+   "root": "currencyservice",
+   "learned_top": "currencyservice",
+   "rule_top": "currencyservice"
+  },
+  {
+   "id": "OB/currencyservice_socket/2",
+   "system": "OB",
+   "root": "currencyservice",
+   "learned_top": "currencyservice",
+   "rule_top": "currencyservice"
+  },
+  {
+   "id": "OB/currencyservice_socket/3",
+   "system": "OB",
+   "root": "currencyservice",
+   "learned_top": "currencyservice",
+   "rule_top": "currencyservice"
+  },
+  {
+   "id": "OB/emailservice_cpu/2",
+   "system": "OB",
+   "root": "emailservice",
+   "learned_top": "emailservice",
+   "rule_top": "emailservice"
+  },
+  {
+   "id": "OB/emailservice_cpu/3",
+   "system": "OB",
+   "root": "emailservice",
+   "learned_top": "emailservice",
+   "rule_top": "emailservice"
+  },
+  {
+   "id": "OB/emailservice_delay/2",
+   "system": "OB",
+   "root": "emailservice",
+   "learned_top": "emailservice",
+   "rule_top": "emailservice"
+  },
+  {
+   "id": "OB/emailservice_delay/3",
+   "system": "OB",
+   "root": "emailservice",
+   "learned_top": "emailservice",
+   "rule_top": "emailservice"
+  },
+  {
+   "id": "OB/emailservice_disk/2",
+   "system": "OB",
+   "root": "emailservice",
+   "learned_top": "emailservice",
+   "rule_top": "emailservice"
+  },
+  {
+   "id": "OB/emailservice_disk/3",
+   "system": "OB",
+   "root": "emailservice",
+   "learned_top": "emailservice",
+   "rule_top": "emailservice"
+  },
+  {
+   "id": "OB/emailservice_loss/2",
+   "system": "OB",
+   "root": "emailservice",
+   "learned_top": "emailservice",
+   "rule_top": "emailservice"
+  },
+  {
+   "id": "OB/emailservice_loss/3",
+   "system": "OB",
+   "root": "emailservice",
+   "learned_top": "emailservice",
+   "rule_top": "emailservice"
+  },
+  {
+   "id": "OB/emailservice_mem/2",
+   "system": "OB",
+   "root": "emailservice",
+   "learned_top": "emailservice",
+   "rule_top": "emailservice"
+  },
+  {
+   "id": "OB/emailservice_mem/3",
+   "system": "OB",
+   "root": "emailservice",
+   "learned_top": "emailservice",
+   "rule_top": "emailservice"
+  },
+  {
+   "id": "OB/emailservice_socket/2",
+   "system": "OB",
+   "root": "emailservice",
+   "learned_top": "emailservice",
+   "rule_top": "emailservice"
+  },
+  {
+   "id": "OB/emailservice_socket/3",
+   "system": "OB",
+   "root": "emailservice",
+   "learned_top": "emailservice",
+   "rule_top": "emailservice"
+  },
+  {
+   "id": "OB/productcatalogservice_cpu/2",
+   "system": "OB",
+   "root": "productcatalogservice",
+   "learned_top": "productcatalogservice",
+   "rule_top": "productcatalogservice"
+  },
+  {
+   "id": "OB/productcatalogservice_cpu/3",
+   "system": "OB",
+   "root": "productcatalogservice",
+   "learned_top": "productcatalogservice",
+   "rule_top": "recommendationservice"
+  },
+  {
+   "id": "OB/productcatalogservice_delay/2",
+   "system": "OB",
+   "root": "productcatalogservice",
+   "learned_top": "productcatalogservice",
+   "rule_top": "productcatalogservice"
+  },
+  {
+   "id": "OB/productcatalogservice_delay/3",
+   "system": "OB",
+   "root": "productcatalogservice",
+   "learned_top": "productcatalogservice",
+   "rule_top": "productcatalogservice"
+  },
+  {
+   "id": "OB/productcatalogservice_disk/2",
+   "system": "OB",
+   "root": "productcatalogservice",
+   "learned_top": "productcatalogservice",
+   "rule_top": "productcatalogservice"
+  },
+  {
+   "id": "OB/productcatalogservice_disk/3",
+   "system": "OB",
+   "root": "productcatalogservice",
+   "learned_top": "productcatalogservice",
+   "rule_top": "recommendationservice"
+  },
+  {
+   "id": "OB/productcatalogservice_loss/2",
+   "system": "OB",
+   "root": "productcatalogservice",
+   "learned_top": "recommendationservice",
+   "rule_top": "recommendationservice"
+  },
+  {
+   "id": "OB/productcatalogservice_loss/3",
+   "system": "OB",
+   "root": "productcatalogservice",
+   "learned_top": "frontend",
+   "rule_top": "frontend"
+  },
+  {
+   "id": "OB/productcatalogservice_mem/2",
+   "system": "OB",
+   "root": "productcatalogservice",
+   "learned_top": "productcatalogservice",
+   "rule_top": "productcatalogservice"
+  },
+  {
+   "id": "OB/productcatalogservice_mem/3",
+   "system": "OB",
+   "root": "productcatalogservice",
+   "learned_top": "productcatalogservice",
+   "rule_top": "productcatalogservice"
+  },
+  {
+   "id": "OB/productcatalogservice_socket/2",
+   "system": "OB",
+   "root": "productcatalogservice",
+   "learned_top": "productcatalogservice",
+   "rule_top": "recommendationservice"
+  },
+  {
+   "id": "OB/productcatalogservice_socket/3",
+   "system": "OB",
+   "root": "productcatalogservice",
+   "learned_top": "productcatalogservice",
+   "rule_top": "productcatalogservice"
+  },
+  {
+   "id": "OB/recommendationservice_cpu/2",
+   "system": "OB",
+   "root": "recommendationservice",
+   "learned_top": "recommendationservice",
+   "rule_top": "recommendationservice"
+  },
+  {
+   "id": "OB/recommendationservice_cpu/3",
+   "system": "OB",
+   "root": "recommendationservice",
+   "learned_top": "recommendationservice",
+   "rule_top": "recommendationservice"
+  },
+  {
+   "id": "OB/recommendationservice_delay/2",
+   "system": "OB",
+   "root": "recommendationservice",
+   "learned_top": "recommendationservice",
+   "rule_top": "recommendationservice"
+  },
+  {
+   "id": "OB/recommendationservice_delay/3",
+   "system": "OB",
+   "root": "recommendationservice",
+   "learned_top": "recommendationservice",
+   "rule_top": "recommendationservice"
+  },
+  {
+   "id": "OB/recommendationservice_disk/2",
+   "system": "OB",
+   "root": "recommendationservice",
+   "learned_top": "recommendationservice",
+   "rule_top": "recommendationservice"
+  },
+  {
+   "id": "OB/recommendationservice_disk/3",
+   "system": "OB",
+   "root": "recommendationservice",
+   "learned_top": "recommendationservice",
+   "rule_top": "recommendationservice"
+  },
+  {
+   "id": "OB/recommendationservice_loss/2",
+   "system": "OB",
+   "root": "recommendationservice",
+   "learned_top": "recommendationservice",
+   "rule_top": "recommendationservice"
+  },
+  {
+   "id": "OB/recommendationservice_loss/3",
+   "system": "OB",
+   "root": "recommendationservice",
+   "learned_top": "frontend",
+   "rule_top": "frontend"
+  },
+  {
+   "id": "OB/recommendationservice_mem/2",
+   "system": "OB",
+   "root": "recommendationservice",
+   "learned_top": "recommendationservice",
+   "rule_top": "recommendationservice"
+  },
+  {
+   "id": "OB/recommendationservice_mem/3",
+   "system": "OB",
+   "root": "recommendationservice",
+   "learned_top": "recommendationservice",
+   "rule_top": "recommendationservice"
+  },
+  {
+   "id": "OB/recommendationservice_socket/2",
+   "system": "OB",
+   "root": "recommendationservice",
+   "learned_top": "recommendationservice",
+   "rule_top": "recommendationservice"
+  },
+  {
+   "id": "OB/recommendationservice_socket/3",
+   "system": "OB",
+   "root": "recommendationservice",
+   "learned_top": "recommendationservice",
+   "rule_top": "recommendationservice"
+  },
+  {
+   "id": "TT/ts-auth-service_cpu/1",
+   "system": "TT",
+   "root": "ts-auth-service",
+   "learned_top": "ts-auth-service",
+   "rule_top": "ts-auth-service"
+  },
+  {
+   "id": "TT/ts-auth-service_cpu/2",
+   "system": "TT",
+   "root": "ts-auth-service",
+   "learned_top": "ts-auth-service",
+   "rule_top": "ts-auth-service"
+  },
+  {
+   "id": "TT/ts-auth-service_cpu/3",
+   "system": "TT",
+   "root": "ts-auth-service",
+   "learned_top": "ts-auth-service",
+   "rule_top": "ts-auth-service"
+  },
+  {
+   "id": "TT/ts-auth-service_delay/1",
+   "system": "TT",
+   "root": "ts-auth-service",
+   "learned_top": "ts-auth-service",
+   "rule_top": "ts-auth-service"
+  },
+  {
+   "id": "TT/ts-auth-service_delay/2",
+   "system": "TT",
+   "root": "ts-auth-service",
+   "learned_top": "ts-auth-service",
+   "rule_top": "ts-auth-service"
+  },
+  {
+   "id": "TT/ts-auth-service_delay/3",
+   "system": "TT",
+   "root": "ts-auth-service",
+   "learned_top": "ts-auth-service",
+   "rule_top": "ts-auth-service"
+  },
+  {
+   "id": "TT/ts-auth-service_disk/1",
+   "system": "TT",
+   "root": "ts-auth-service",
+   "learned_top": "ts-auth-service",
+   "rule_top": "ts-auth-service"
+  },
+  {
+   "id": "TT/ts-auth-service_disk/2",
+   "system": "TT",
+   "root": "ts-auth-service",
+   "learned_top": "ts-auth-service",
+   "rule_top": "ts-auth-service"
+  },
+  {
+   "id": "TT/ts-auth-service_disk/3",
+   "system": "TT",
+   "root": "ts-auth-service",
+   "learned_top": "ts-auth-service",
+   "rule_top": "ts-auth-service"
+  },
+  {
+   "id": "TT/ts-auth-service_loss/1",
+   "system": "TT",
+   "root": "ts-auth-service",
+   "learned_top": "ts-price-service",
+   "rule_top": "ts-price-service"
+  },
+  {
+   "id": "TT/ts-auth-service_loss/2",
+   "system": "TT",
+   "root": "ts-auth-service",
+   "learned_top": "ts-consign-service",
+   "rule_top": "ts-consign-service"
+  },
+  {
+   "id": "TT/ts-auth-service_loss/3",
+   "system": "TT",
+   "root": "ts-auth-service",
+   "learned_top": "ts-preserve-other-service",
+   "rule_top": "ts-preserve-other-service"
+  },
+  {
+   "id": "TT/ts-auth-service_mem/1",
+   "system": "TT",
+   "root": "ts-auth-service",
+   "learned_top": "ts-auth-service",
+   "rule_top": "ts-auth-service"
+  },
+  {
+   "id": "TT/ts-auth-service_mem/2",
+   "system": "TT",
+   "root": "ts-auth-service",
+   "learned_top": "ts-auth-service",
+   "rule_top": "ts-auth-service"
+  },
+  {
+   "id": "TT/ts-auth-service_mem/3",
+   "system": "TT",
+   "root": "ts-auth-service",
+   "learned_top": "ts-auth-service",
+   "rule_top": "ts-auth-service"
+  },
+  {
+   "id": "TT/ts-auth-service_socket/1",
+   "system": "TT",
+   "root": "ts-auth-service",
+   "learned_top": "ts-auth-service",
+   "rule_top": "ts-auth-service"
+  },
+  {
+   "id": "TT/ts-auth-service_socket/2",
+   "system": "TT",
+   "root": "ts-auth-service",
+   "learned_top": "ts-auth-service",
+   "rule_top": "ts-auth-service"
+  },
+  {
+   "id": "TT/ts-auth-service_socket/3",
+   "system": "TT",
+   "root": "ts-auth-service",
+   "learned_top": "ts-auth-service",
+   "rule_top": "ts-auth-service"
+  },
+  {
+   "id": "TT/ts-order-service_cpu/1",
+   "system": "TT",
+   "root": "ts-order-service",
+   "learned_top": "ts-order-service",
+   "rule_top": "ts-order-service"
+  },
+  {
+   "id": "TT/ts-order-service_cpu/2",
+   "system": "TT",
+   "root": "ts-order-service",
+   "learned_top": "ts-order-service",
+   "rule_top": "ts-order-service"
+  },
+  {
+   "id": "TT/ts-order-service_cpu/3",
+   "system": "TT",
+   "root": "ts-order-service",
+   "learned_top": "ts-order-service",
+   "rule_top": "ts-order-service"
+  },
+  {
+   "id": "TT/ts-order-service_delay/1",
+   "system": "TT",
+   "root": "ts-order-service",
+   "learned_top": "ts-preserve-service",
+   "rule_top": "ts-preserve-service"
+  },
+  {
+   "id": "TT/ts-order-service_delay/2",
+   "system": "TT",
+   "root": "ts-order-service",
+   "learned_top": "ts-order-service",
+   "rule_top": "ts-order-service"
+  },
+  {
+   "id": "TT/ts-order-service_delay/3",
+   "system": "TT",
+   "root": "ts-order-service",
+   "learned_top": "ts-inside-payment-service",
+   "rule_top": "ts-inside-payment-service"
+  },
+  {
+   "id": "TT/ts-order-service_disk/1",
+   "system": "TT",
+   "root": "ts-order-service",
+   "learned_top": "ts-order-service",
+   "rule_top": "ts-order-service"
+  },
+  {
+   "id": "TT/ts-order-service_disk/2",
+   "system": "TT",
+   "root": "ts-order-service",
+   "learned_top": "ts-order-service",
+   "rule_top": "ts-order-service"
+  },
+  {
+   "id": "TT/ts-order-service_disk/3",
+   "system": "TT",
+   "root": "ts-order-service",
+   "learned_top": "ts-order-service",
+   "rule_top": "ts-order-service"
+  },
+  {
+   "id": "TT/ts-order-service_loss/1",
+   "system": "TT",
+   "root": "ts-order-service",
+   "learned_top": "ts-inside-payment-service",
+   "rule_top": "ts-inside-payment-service"
+  },
+  {
+   "id": "TT/ts-order-service_loss/2",
+   "system": "TT",
+   "root": "ts-order-service",
+   "learned_top": "ts-inside-payment-service",
+   "rule_top": "ts-inside-payment-service"
+  },
+  {
+   "id": "TT/ts-order-service_loss/3",
+   "system": "TT",
+   "root": "ts-order-service",
+   "learned_top": "ts-inside-payment-service",
+   "rule_top": "ts-inside-payment-service"
+  },
+  {
+   "id": "TT/ts-order-service_mem/1",
+   "system": "TT",
+   "root": "ts-order-service",
+   "learned_top": "ts-order-service",
+   "rule_top": "ts-order-service"
+  },
+  {
+   "id": "TT/ts-order-service_mem/2",
+   "system": "TT",
+   "root": "ts-order-service",
+   "learned_top": "ts-order-service",
+   "rule_top": "ts-order-service"
+  },
+  {
+   "id": "TT/ts-order-service_mem/3",
+   "system": "TT",
+   "root": "ts-order-service",
+   "learned_top": "ts-order-service",
+   "rule_top": "ts-order-service"
+  },
+  {
+   "id": "TT/ts-order-service_socket/1",
+   "system": "TT",
+   "root": "ts-order-service",
+   "learned_top": "ts-order-service",
+   "rule_top": "ts-security-service"
+  },
+  {
+   "id": "TT/ts-order-service_socket/2",
+   "system": "TT",
+   "root": "ts-order-service",
+   "learned_top": "ts-order-service",
+   "rule_top": "ts-order-service"
+  },
+  {
+   "id": "TT/ts-order-service_socket/3",
+   "system": "TT",
+   "root": "ts-order-service",
+   "learned_top": "ts-order-service",
+   "rule_top": "ts-order-service"
+  },
+  {
+   "id": "TT/ts-route-service_cpu/1",
+   "system": "TT",
+   "root": "ts-route-service",
+   "learned_top": "ts-route-service",
+   "rule_top": "ts-route-service"
+  },
+  {
+   "id": "TT/ts-route-service_cpu/2",
+   "system": "TT",
+   "root": "ts-route-service",
+   "learned_top": "ts-route-service",
+   "rule_top": "ts-route-service"
+  },
+  {
+   "id": "TT/ts-route-service_cpu/3",
+   "system": "TT",
+   "root": "ts-route-service",
+   "learned_top": "ts-route-service",
+   "rule_top": "ts-route-service"
+  },
+  {
+   "id": "TT/ts-route-service_delay/1",
+   "system": "TT",
+   "root": "ts-route-service",
+   "learned_top": "ts-route-service",
+   "rule_top": "ts-route-service"
+  },
+  {
+   "id": "TT/ts-route-service_delay/2",
+   "system": "TT",
+   "root": "ts-route-service",
+   "learned_top": "ts-route-service",
+   "rule_top": "ts-route-service"
+  },
+  {
+   "id": "TT/ts-route-service_delay/3",
+   "system": "TT",
+   "root": "ts-route-service",
+   "learned_top": "ts-admin-travel-service",
+   "rule_top": "ts-admin-travel-service"
+  },
+  {
+   "id": "TT/ts-route-service_disk/1",
+   "system": "TT",
+   "root": "ts-route-service",
+   "learned_top": "ts-route-service",
+   "rule_top": "ts-route-service"
+  },
+  {
+   "id": "TT/ts-route-service_disk/2",
+   "system": "TT",
+   "root": "ts-route-service",
+   "learned_top": "ts-route-service",
+   "rule_top": "ts-route-service"
+  },
+  {
+   "id": "TT/ts-route-service_disk/3",
+   "system": "TT",
+   "root": "ts-route-service",
+   "learned_top": "ts-route-service",
+   "rule_top": "ts-route-service"
+  },
+  {
+   "id": "TT/ts-route-service_loss/1",
+   "system": "TT",
+   "root": "ts-route-service",
+   "learned_top": "ts-admin-travel-service",
+   "rule_top": "ts-route-service"
+  },
+  {
+   "id": "TT/ts-route-service_loss/2",
+   "system": "TT",
+   "root": "ts-route-service",
+   "learned_top": "ts-admin-travel-service",
+   "rule_top": "ts-route-service"
+  },
+  {
+   "id": "TT/ts-route-service_loss/3",
+   "system": "TT",
+   "root": "ts-route-service",
+   "learned_top": "ts-route-service",
+   "rule_top": "ts-route-service"
+  },
+  {
+   "id": "TT/ts-route-service_mem/1",
+   "system": "TT",
+   "root": "ts-route-service",
+   "learned_top": "ts-route-service",
+   "rule_top": "ts-route-service"
+  },
+  {
+   "id": "TT/ts-route-service_mem/2",
+   "system": "TT",
+   "root": "ts-route-service",
+   "learned_top": "ts-route-service",
+   "rule_top": "ts-route-service"
+  },
+  {
+   "id": "TT/ts-route-service_mem/3",
+   "system": "TT",
+   "root": "ts-route-service",
+   "learned_top": "ts-route-service",
+   "rule_top": "ts-route-service"
+  },
+  {
+   "id": "TT/ts-route-service_socket/1",
+   "system": "TT",
+   "root": "ts-route-service",
+   "learned_top": "ts-route-service",
+   "rule_top": "ts-route-service"
+  },
+  {
+   "id": "TT/ts-route-service_socket/2",
+   "system": "TT",
+   "root": "ts-route-service",
+   "learned_top": "ts-route-service",
+   "rule_top": "ts-route-service"
+  },
+  {
+   "id": "TT/ts-route-service_socket/3",
+   "system": "TT",
+   "root": "ts-route-service",
+   "learned_top": "ts-route-service",
+   "rule_top": "ts-route-service"
+  },
+  {
+   "id": "TT/ts-train-service_cpu/1",
+   "system": "TT",
+   "root": "ts-train-service",
+   "learned_top": "ts-train-service",
+   "rule_top": "ts-train-service"
+  },
+  {
+   "id": "TT/ts-train-service_cpu/2",
+   "system": "TT",
+   "root": "ts-train-service",
+   "learned_top": "ts-train-service",
+   "rule_top": "ts-train-service"
+  },
+  {
+   "id": "TT/ts-train-service_cpu/3",
+   "system": "TT",
+   "root": "ts-train-service",
+   "learned_top": "ts-train-service",
+   "rule_top": "ts-train-service"
+  },
+  {
+   "id": "TT/ts-train-service_delay/1",
+   "system": "TT",
+   "root": "ts-train-service",
+   "learned_top": "ts-admin-travel-service",
+   "rule_top": "ts-admin-travel-service"
+  },
+  {
+   "id": "TT/ts-train-service_delay/2",
+   "system": "TT",
+   "root": "ts-train-service",
+   "learned_top": "ts-admin-travel-service",
+   "rule_top": "ts-admin-travel-service"
+  },
+  {
+   "id": "TT/ts-train-service_delay/3",
+   "system": "TT",
+   "root": "ts-train-service",
+   "learned_top": "ts-admin-travel-service",
+   "rule_top": "ts-admin-travel-service"
+  },
+  {
+   "id": "TT/ts-train-service_disk/1",
+   "system": "TT",
+   "root": "ts-train-service",
+   "learned_top": "ts-train-service",
+   "rule_top": "ts-train-service"
+  },
+  {
+   "id": "TT/ts-train-service_disk/2",
+   "system": "TT",
+   "root": "ts-train-service",
+   "learned_top": "ts-train-service",
+   "rule_top": "ts-train-service"
+  },
+  {
+   "id": "TT/ts-train-service_disk/3",
+   "system": "TT",
+   "root": "ts-train-service",
+   "learned_top": "ts-train-service",
+   "rule_top": "ts-train-service"
+  },
+  {
+   "id": "TT/ts-train-service_loss/1",
+   "system": "TT",
+   "root": "ts-train-service",
+   "learned_top": "ts-train-service",
+   "rule_top": "ts-train-service"
+  },
+  {
+   "id": "TT/ts-train-service_loss/2",
+   "system": "TT",
+   "root": "ts-train-service",
+   "learned_top": "ts-admin-travel-service",
+   "rule_top": "ts-train-service"
+  },
+  {
+   "id": "TT/ts-train-service_loss/3",
+   "system": "TT",
+   "root": "ts-train-service",
+   "learned_top": "ts-admin-travel-service",
+   "rule_top": "ts-train-service"
+  },
+  {
+   "id": "TT/ts-train-service_mem/1",
+   "system": "TT",
+   "root": "ts-train-service",
+   "learned_top": "ts-train-service",
+   "rule_top": "ts-train-service"
+  },
+  {
+   "id": "TT/ts-train-service_mem/2",
+   "system": "TT",
+   "root": "ts-train-service",
+   "learned_top": "ts-train-service",
+   "rule_top": "ts-train-service"
+  },
+  {
+   "id": "TT/ts-train-service_mem/3",
+   "system": "TT",
+   "root": "ts-train-service",
+   "learned_top": "ts-train-service",
+   "rule_top": "ts-train-service"
+  },
+  {
+   "id": "TT/ts-train-service_socket/1",
+   "system": "TT",
+   "root": "ts-train-service",
+   "learned_top": "ts-train-service",
+   "rule_top": "ts-train-service"
+  },
+  {
+   "id": "TT/ts-train-service_socket/2",
+   "system": "TT",
+   "root": "ts-train-service",
+   "learned_top": "ts-train-service",
+   "rule_top": "ts-train-service"
+  },
+  {
+   "id": "TT/ts-train-service_socket/3",
+   "system": "TT",
+   "root": "ts-train-service",
+   "learned_top": "ts-train-service",
+   "rule_top": "ts-train-service"
+  },
+  {
+   "id": "TT/ts-travel-service_cpu/1",
+   "system": "TT",
+   "root": "ts-travel-service",
+   "learned_top": "ts-travel-service",
+   "rule_top": "ts-travel-service"
+  },
+  {
+   "id": "TT/ts-travel-service_cpu/2",
+   "system": "TT",
+   "root": "ts-travel-service",
+   "learned_top": "ts-travel-service",
+   "rule_top": "ts-travel-service"
+  },
+  {
+   "id": "TT/ts-travel-service_cpu/3",
+   "system": "TT",
+   "root": "ts-travel-service",
+   "learned_top": "ts-travel-service",
+   "rule_top": "ts-travel-service"
+  },
+  {
+   "id": "TT/ts-travel-service_delay/1",
+   "system": "TT",
+   "root": "ts-travel-service",
+   "learned_top": "ts-admin-travel-service",
+   "rule_top": "ts-admin-travel-service"
+  },
+  {
+   "id": "TT/ts-travel-service_delay/2",
+   "system": "TT",
+   "root": "ts-travel-service",
+   "learned_top": "ts-admin-travel-service",
+   "rule_top": "ts-admin-travel-service"
+  },
+  {
+   "id": "TT/ts-travel-service_delay/3",
+   "system": "TT",
+   "root": "ts-travel-service",
+   "learned_top": "ts-admin-travel-service",
+   "rule_top": "ts-admin-travel-service"
+  },
+  {
+   "id": "TT/ts-travel-service_disk/1",
+   "system": "TT",
+   "root": "ts-travel-service",
+   "learned_top": "ts-travel-service",
+   "rule_top": "ts-travel-service"
+  },
+  {
+   "id": "TT/ts-travel-service_disk/2",
+   "system": "TT",
+   "root": "ts-travel-service",
+   "learned_top": "ts-travel-service",
+   "rule_top": "ts-travel-service"
+  },
+  {
+   "id": "TT/ts-travel-service_disk/3",
+   "system": "TT",
+   "root": "ts-travel-service",
+   "learned_top": "ts-travel-service",
+   "rule_top": "ts-travel-service"
+  },
+  {
+   "id": "TT/ts-travel-service_loss/1",
+   "system": "TT",
+   "root": "ts-travel-service",
+   "learned_top": "ts-food-service",
+   "rule_top": "ts-food-service"
+  },
+  {
+   "id": "TT/ts-travel-service_loss/2",
+   "system": "TT",
+   "root": "ts-travel-service",
+   "learned_top": "ts-seat-service",
+   "rule_top": "ts-seat-service"
+  },
+  {
+   "id": "TT/ts-travel-service_loss/3",
+   "system": "TT",
+   "root": "ts-travel-service",
+   "learned_top": "ts-seat-service",
+   "rule_top": "ts-seat-service"
+  },
+  {
+   "id": "TT/ts-travel-service_mem/1",
+   "system": "TT",
+   "root": "ts-travel-service",
+   "learned_top": "ts-travel-service",
+   "rule_top": "ts-travel-service"
+  },
+  {
+   "id": "TT/ts-travel-service_mem/2",
+   "system": "TT",
+   "root": "ts-travel-service",
+   "learned_top": "ts-travel-service",
+   "rule_top": "ts-travel-service"
+  },
+  {
+   "id": "TT/ts-travel-service_mem/3",
+   "system": "TT",
+   "root": "ts-travel-service",
+   "learned_top": "ts-travel-service",
+   "rule_top": "ts-travel-service"
+  },
+  {
+   "id": "TT/ts-travel-service_socket/1",
+   "system": "TT",
+   "root": "ts-travel-service",
+   "learned_top": "ts-travel-service",
+   "rule_top": "ts-travel-service"
+  },
+  {
+   "id": "TT/ts-travel-service_socket/2",
+   "system": "TT",
+   "root": "ts-travel-service",
+   "learned_top": "ts-travel-service",
+   "rule_top": "ts-travel-service"
+  },
+  {
+   "id": "TT/ts-travel-service_socket/3",
+   "system": "TT",
+   "root": "ts-travel-service",
+   "learned_top": "ts-travel-service",
+   "rule_top": "ts-travel-service"
+  }
+ ]
+}
