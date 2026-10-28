@@ -1,0 +1,4 @@
+[21:03:14] wrote docs\results\r11_ecosystem.md and docs\results\r11_ecosystem.json from 3 summar(ies)
+[21:03:14] qwen2.5-coder_14b: KILL
+[21:03:14] gemma4_e4b: KILL
+[21:03:14] keyword: KILL
