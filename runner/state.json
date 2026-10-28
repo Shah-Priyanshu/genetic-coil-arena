@@ -3,7 +3,7 @@
   "host": "PC",
   "draining_for_update": false,
   "cpu_budget": 24,
-  "cpu_workers_in_use": 20,
+  "cpu_workers_in_use": 22,
   "running": [
     {
       "id": "r7c-train-a",
@@ -16,6 +16,12 @@
       "lane": "cpu",
       "cpu_workers": 10,
       "started_at": "2026-10-28T06:29:22+00:00"
+    },
+    {
+      "id": "r12c-q30-sealed",
+      "lane": "gpu",
+      "cpu_workers": 2,
+      "started_at": "2026-10-28T06:30:32+00:00"
     }
   ],
   "backlog": {
@@ -31,15 +37,15 @@
     ]
   },
   "idle_since": {
-    "cpu": "2026-10-28T06:26:03+00:00",
+    "cpu": null,
     "gpu": "2026-10-28T04:37:19+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-28T06:29:22+00:00",
-  "cpu_percent": 3.7,
+  "updated_at": "2026-10-28T06:30:32+00:00",
+  "cpu_percent": 70.1,
   "gpu": {
     "util": 0.0,
-    "mem_used_mb": 831.0,
+    "mem_used_mb": 827.0,
     "mem_total_mb": 12282.0
   }
 }
