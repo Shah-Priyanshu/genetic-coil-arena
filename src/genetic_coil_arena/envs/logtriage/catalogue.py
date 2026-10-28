@@ -43,6 +43,16 @@ import numpy as np
 
 SYSTEM_NAMES = {"SS": "sock-shop", "OB": "online-boutique"}
 SYSTEM_CODES = {v: k for k, v in SYSTEM_NAMES.items()}
+# every converted-file system code the catalogue can hold (R12 adds RE3 and Train Ticket); the
+# RE3 code-level-fault incidents belong to the same three systems as RE2
+CODE_SYSTEM = {
+    **SYSTEM_NAMES,
+    "TT": "train-ticket",
+    "RE3-SS": "sock-shop",
+    "RE3-OB": "online-boutique",
+    "RE3-TT": "train-ticket",
+}
+KNOWN_SYSTEMS = frozenset(CODE_SYSTEM.values())
 TICKET_PREFIX = "INC-"
 TICKET_BASE = 1001
 TICKET_PATTERN = r"^INC-\d{4}$"
@@ -56,6 +66,10 @@ _AT2 = re.compile(
 )
 UTC = dt.timezone.utc
 DESK_NOW = dt.datetime(2024, 2, 22, 9, 0, tzinfo=UTC)  # Thursday; the desk clock of R11
+# R12 (G10): RCAEval RE3 was recorded in November and December 2024, after the R11 clock, so the
+# R12 desk reads the clock on Wednesday 2024-12-11, the day after the last RE3 test incident.
+DESK_NOW_R12 = dt.datetime(2024, 12, 11, 9, 0, tzinfo=UTC)
+R12_TICKET_BASE = 2001
 
 
 class ResolveError(ValueError):
@@ -148,7 +162,7 @@ class CatalogueEntry:
     Attributes:
         ticket: ``INC-1001`` style id
         incident_id: The RCAEval incident id, e.g. ``SS/carts_cpu/2``
-        code: System code (``SS`` or ``OB``)
+        code: System code (``SS`` or ``OB``; ``RE3-SS``, ``RE3-OB``, ``RE3-TT`` in R12)
         inject_time: Alert time, Unix seconds
         services: The system's services (candidates of the root cause)
         window: Log window, seconds relative to the alert
@@ -163,7 +177,7 @@ class CatalogueEntry:
 
     @property
     def system(self) -> str:
-        return SYSTEM_NAMES[self.code]
+        return CODE_SYSTEM[self.code]
 
     @property
     def alert_utc(self) -> str:
@@ -220,19 +234,24 @@ class IncidentCatalogue:
         return len(self.entries)
 
     @classmethod
-    def from_files(cls, paths: Sequence[Path]) -> "IncidentCatalogue":
+    def from_files(
+        cls,
+        paths: Sequence[Path],
+        ticket_base: int = TICKET_BASE,
+        now: dt.datetime = DESK_NOW,
+    ) -> "IncidentCatalogue":
         """Number the incidents of ``paths`` by (alert time, id) and keep their file paths."""
         rows = []
         for path in paths:
             meta = read_meta(Path(path))
             code = meta["system"]
-            if code not in SYSTEM_NAMES:
+            if code not in CODE_SYSTEM:
                 raise ValueError(f"{meta['id']}: system {code!r} is not catalogued")
             rows.append((float(meta["meta"]["inject_time"]), meta["id"], meta, path))
         rows.sort(key=lambda r: (r[0], r[1]))
         entries, files = [], {}
         for k, (when, iid, meta, path) in enumerate(rows):
-            ticket = f"{TICKET_PREFIX}{TICKET_BASE + k:04d}"
+            ticket = f"{TICKET_PREFIX}{ticket_base + k:04d}"
             entries.append(
                 CatalogueEntry(
                     ticket,
@@ -244,7 +263,16 @@ class IncidentCatalogue:
                 )
             )
             files[ticket] = Path(path)
-        return cls(entries, files)
+        return cls(entries, files, now)
+
+    @classmethod
+    def merged(
+        cls, parts: Sequence["IncidentCatalogue"], now: dt.datetime
+    ) -> "IncidentCatalogue":
+        """One catalogue over several (tickets must not collide), read at the clock ``now``."""
+        entries = [e for part in parts for e in part.entries]
+        files = {t: p for part in parts for t, p in part.files.items()}
+        return cls(entries, files, now)
 
     def fingerprint(self) -> str:
         """SHA-256 over ticket, incident id and alert time of every entry."""
@@ -271,7 +299,7 @@ class IncidentCatalogue:
                 service that the system does not have.
         """
         system = params.get("system")
-        if system not in SYSTEM_CODES:
+        if system not in KNOWN_SYSTEMS:
             raise ResolveError(
                 "clarify", "Which system is this about, sock-shop or online-boutique?"
             )
