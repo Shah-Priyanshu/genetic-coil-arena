@@ -1,0 +1,18 @@
+{
+  "id": "r12b-team",
+  "commit": "862865c6a0edd273d4980a1f8f072ec898b48586",
+  "queued_args": [
+    "scripts/r12b_growth.py",
+    "team",
+    "--team-from",
+    "runs:r11-team"
+  ],
+  "state": "running",
+  "started_at": "2026-10-28T03:14:23+00:00",
+  "updated_at": "2026-10-28T03:14:23+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 24 %, 11058 MiB, 12282 MiB, 52",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 2
+}
