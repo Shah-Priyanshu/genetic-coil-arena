@@ -21,3 +21,14 @@
 [02:53:02] qwen3-coder_30b sealed: 60/106 (1343s)
 [02:54:03] qwen3-coder_30b sealed: 63/106 (1404s)
 [02:55:13] qwen3-coder_30b sealed: 66/106 (1474s)
+[02:56:17] qwen3-coder_30b sealed: 69/106 (1538s)
+[02:57:26] qwen3-coder_30b sealed: 72/106 (1608s)
+[02:58:36] qwen3-coder_30b sealed: 75/106 (1677s)
+[03:00:10] qwen3-coder_30b sealed: 77/106 (1772s)
+[03:01:20] qwen3-coder_30b sealed: 80/106 (1841s)
+[03:02:32] qwen3-coder_30b sealed: 83/106 (1913s)
+[03:03:38] qwen3-coder_30b sealed: 93/106 (1979s)
+[03:04:43] qwen3-coder_30b sealed: 105/106 (2044s)
+[03:04:48] qwen3-coder_30b sealed: 106/106 (2049s)
+[03:04:48] qwen3-coder_30b: exact off 0.8928571428571429 on 0.9285714285714286 (n=84), fixed 3 broke 0, silent wrong off 0 on 0
+[03:04:48] qwen3-coder_30b: exact off 0.8928571428571429 on 0.9285714285714286 (n=84), fixed 3 broke 0, silent wrong off 0 on 0
