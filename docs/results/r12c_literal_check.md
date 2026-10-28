@@ -218,4 +218,33 @@ The translator sets no token cap, so this is most likely a runaway structured ge
 On this fresh set, 14B plus the check reaches 97.6% exact with no silent wrong answers. The 30B reached 97.5% on G8b and 93.9% on the G10 set.
 
 One error class remains, and it is a parsing failure, not a guess: a request that excludes services *and* declines the fault type. It is cheap to target, with a token cap against the hangs and a rule moving a spec field named in the exclusion list back to its field. But both would be another rule chosen from sealed failures, so they would need yet another fresh set to be judged.
+### Supplementary: qwen3-coder:30b (2026-10-28, job `r12c-q30-sealed`, outside the G10b verdict)
+
+The 30B had not run on this set, so this is its one sealed evaluation, with the same prompts, spec v3 and check.
+
+| | qwen2.5-coder:14b | qwen3-coder:30b |
+|---|---|---|
+| Exact match, check off | 84.5% (71/84) | 89.3% (75/84) |
+| Exact match, check on | 97.6% (82/84) [91.7, 99.3] | 92.9% (78/84) [85.3, 96.7] |
+| Fixed / broken by the check | 11 / 0 | 3 / 0 |
+| Silent wrong answers, off / on | 5 / 0 | 0 / 0 |
+| NL − gold task score, check on | −2.4 [−6.0, +0.0] | −1.2 [−3.6, +0.0] |
+| Decisions right, check on | 104/106 | 105/106 |
+| Translation time, median / p95 | 1.8 / 2.3 s | 6.6 / 8.0 s |
+
+- **The 30B's date error is the opposite one.**
+  - It added an unstated year only once: a 2023 on sealed-080, which the year rule repaired.
+  - Instead it dropped a stated month twice. "Dec 10 at twelve thirty-eight" became `---10T12:38`, and "22nd November, 6:34 am" became `---22T06:34`. Both still named the right incident.
+  - The check only removes or replaces values, so it cannot restore a dropped month.
+- **Neither model handles "no fault type" alongside other constraints.**
+  - The 30B ignored the request three times (sealed-075, -078, -081) and answered with the fault type anyway. That costs exact match but not the task score.
+  - The 14B instead put the flag into the exclusion list (sealed-078, refused) or hung (sealed-081).
+  - The 30B answered sealed-081 in normal time, so that hang belongs to the 14B.
+- **It asked a question on one plain ticket request** (sealed-002, "the shop folks pinged me about INC-1096").
+- **The relative rule fixed two "3 days ago" requests** where the 30B wrote only the day.
+
+**Reading.**
+- On this set, the 14B with the check is the better desk: more exact and 3.5× faster.
+- The 30B refuses less often and drops details more often, which is why its task score is closer to gold.
+- "No fault type" is the one field both models miss in combination, and the check cannot add it by design.
 <!-- analysis:end -->
