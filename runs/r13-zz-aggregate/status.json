@@ -11,12 +11,14 @@
     "--out",
     "docs/results/r13_real_centre.md"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-28T05:05:45+00:00",
-  "updated_at": "2026-10-28T05:05:45+00:00",
-  "elapsed_min": 0.0,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 827 MiB, 12282 MiB, 41",
+  "updated_at": "2026-10-28T05:05:48+00:00",
+  "elapsed_min": 0.1,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 828 MiB, 12282 MiB, 41",
   "host": "PC",
   "lane": "cpu",
-  "cpu_workers": 1
+  "cpu_workers": 1,
+  "returncode": 0,
+  "finished_at": "2026-10-28T05:05:48+00:00"
 }
