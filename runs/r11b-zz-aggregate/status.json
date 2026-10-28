@@ -1,0 +1,24 @@
+{
+  "id": "r11b-zz-aggregate",
+  "commit": "b521676b817bd68d88d50f18fa81abb8f41c7ad7",
+  "queued_args": [
+    "scripts/r11_ecosystem.py",
+    "report",
+    "--spec-version",
+    "2",
+    "--from",
+    "runs:r11b-o14-sealed",
+    "runs:r11b-gemma-sealed",
+    "runs:r11b-keyword-sealed",
+    "--out",
+    "docs/results/r11b_ecosystem.md"
+  ],
+  "state": "running",
+  "started_at": "2026-10-28T01:03:30+00:00",
+  "updated_at": "2026-10-28T01:03:30+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 785 MiB, 12282 MiB, 40",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 1
+}
