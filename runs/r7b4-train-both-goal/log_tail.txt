@@ -1,12 +1,3 @@
-[progress] both-goal run 13: gen 6450/10000, val mission 19.67, best gen 4500, elapsed 35437 s
-[progress] both-goal run 14: gen 6400/10000, val mission 13.83, best gen 3800, elapsed 35546 s
-[progress] both-goal run 12: gen 6400/10000, val mission 16.87, best gen 3250, elapsed 35752 s
-[progress] both-goal run 10: gen 6500/10000, val mission 17.80, best gen 5700, elapsed 36042 s
-[progress] both-goal run 15: gen 6850/10000, val mission 16.53, best gen 6250, elapsed 36071 s
-[progress] both-goal run 8: gen 6500/10000, val mission 15.47, best gen 6050, elapsed 36075 s
-[progress] both-goal run 11: gen 6550/10000, val mission 16.83, best gen 6000, elapsed 36107 s
-[progress] both-goal run 9: gen 6600/10000, val mission 20.43, best gen 5300, elapsed 36158 s
-[progress] both-goal run 13: gen 6600/10000, val mission 19.50, best gen 4500, elapsed 36293 s
 [progress] both-goal run 14: gen 6550/10000, val mission 16.20, best gen 3800, elapsed 36393 s
 [progress] both-goal run 12: gen 6550/10000, val mission 17.37, best gen 3250, elapsed 36587 s
 [progress] both-goal run 10: gen 6650/10000, val mission 16.53, best gen 5700, elapsed 36882 s
@@ -198,3 +189,12 @@
 [done] r7b_both-goal_run11: 908.0 min, best gen 8400, best val mission 18.47
 [progress] both-goal run 13: gen 10000/10000, val mission 21.23, best gen 9200, elapsed 54497 s
 [done] r7b_both-goal_run13: 908.3 min, best gen 9200, best val mission 21.73
+[progress] both-goal run 10: gen 10000/10000, val mission 19.80, best gen 5700, elapsed 54602 s
+[done] r7b_both-goal_run10: 910.0 min, best gen 5700, best val mission 19.93
+[progress] both-goal run 8: gen 10000/10000, val mission 16.50, best gen 8900, elapsed 54638 s
+[done] r7b_both-goal_run8: 910.6 min, best gen 8900, best val mission 19.17
+[progress] both-goal run 14: gen 10000/10000, val mission 19.10, best gen 9000, elapsed 54708 s
+[done] r7b_both-goal_run14: 911.8 min, best gen 9000, best val mission 20.37
+[progress] both-goal run 12: gen 10000/10000, val mission 17.47, best gen 8250, elapsed 54798 s
+[done] r7b_both-goal_run12: 913.3 min, best gen 8250, best val mission 21.90
+[train] done in 913.4 min
