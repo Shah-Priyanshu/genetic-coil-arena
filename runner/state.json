@@ -3,14 +3,8 @@
   "host": "PC",
   "draining_for_update": false,
   "cpu_budget": 24,
-  "cpu_workers_in_use": 16,
+  "cpu_workers_in_use": 8,
   "running": [
-    {
-      "id": "r7b4-train-both-goal",
-      "lane": "cpu",
-      "cpu_workers": 8,
-      "started_at": "2026-10-27T10:16:52+00:00"
-    },
     {
       "id": "r7b4-train-hand-goal",
       "lane": "cpu",
@@ -27,8 +21,8 @@
     "gpu": "2026-10-27T23:35:38+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-28T01:29:28+00:00",
-  "cpu_percent": 37.9,
+  "updated_at": "2026-10-28T01:30:28+00:00",
+  "cpu_percent": 36.4,
   "gpu": {
     "util": 0.0,
     "mem_used_mb": 788.0,
