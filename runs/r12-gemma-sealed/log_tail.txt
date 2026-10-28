@@ -3,3 +3,8 @@
 [22:28:23] gemma4_e4b sealed: 37/107 (124s)
 [22:29:26] gemma4_e4b sealed: 57/107 (187s)
 [22:30:28] gemma4_e4b sealed: 75/107 (249s)
+[22:31:28] gemma4_e4b sealed: 100/107 (309s)
+[22:31:32] gemma4_e4b sealed: 107/107 (314s)
+[22:31:59] gemma4_e4b routing (R7a items): 155/155 (340s)
+[22:31:59] gemma4_e4b: wrote summary; exact 0.8461538461538461 (n=91), routing 0.996031746031746
+[22:31:59] gemma4_e4b: wrote summary; exact 0.8461538461538461 (n=91), routing 0.996031746031746
