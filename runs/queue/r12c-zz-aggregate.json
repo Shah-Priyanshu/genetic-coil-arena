@@ -1,0 +1,30 @@
+{
+  "id": "r12c-zz-aggregate",
+  "commit": "bd54002bdc8274f59821e712bf04ea520988848a",
+  "args": [
+    "scripts/r12c_desk.py",
+    "report",
+    "--from",
+    "runs:r12c-o14-sealed",
+    "runs:r12c-gemma-sealed",
+    "runs:r12c-keyword-sealed",
+    "--posthoc",
+    "runs:r12-o14-sealed",
+    "runs:r11b-o14-sealed",
+    "--out",
+    "docs/results/r12c_literal_check.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 1,
+  "priority": 6,
+  "after": [
+    "r12c-o14-sealed",
+    "r12c-gemma-sealed",
+    "r12c-keyword-sealed"
+  ],
+  "timeout_min": 20.0,
+  "outputs": [
+    "docs/results/r12c_literal_check.md",
+    "docs/results/r12c_literal_check.json"
+  ]
+}

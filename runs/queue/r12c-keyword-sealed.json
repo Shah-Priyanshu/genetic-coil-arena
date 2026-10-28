@@ -1,0 +1,18 @@
+{
+  "id": "r12c-keyword-sealed",
+  "commit": "bd54002bdc8274f59821e712bf04ea520988848a",
+  "args": [
+    "scripts/r12c_desk.py",
+    "run",
+    "--translator",
+    "keyword",
+    "--split",
+    "sealed",
+    "--team-from",
+    "runs:r12-team"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 1,
+  "priority": 5,
+  "timeout_min": 20.0
+}
