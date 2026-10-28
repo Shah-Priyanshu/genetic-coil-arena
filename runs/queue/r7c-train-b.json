@@ -1,0 +1,24 @@
+{
+  "id": "r7c-train-b",
+  "commit": "b5d733eef02bbd38e2b77946328b1fc450dd0868",
+  "args": [
+    "scripts/r7b_goal_conditioned.py",
+    "--train-only",
+    "--modes",
+    "centre-goal",
+    "--runs",
+    "26:36",
+    "--generations",
+    "10000",
+    "--population",
+    "64",
+    "--eval-every",
+    "50",
+    "--workers",
+    "10",
+    "--progress",
+    "600"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 10
+}
