@@ -1,0 +1,2 @@
+[00:13:18] keyword sealed: 106/106 (15s)
+[00:13:18] keyword: exact off 0.9047619047619048 on 0.9285714285714286 (n=84), fixed 2 broke 0, silent wrong off 4 on 1
