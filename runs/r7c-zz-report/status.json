@@ -1,0 +1,13 @@
+{
+  "id": "r7c-zz-report",
+  "commit": "b5d733eef02bbd38e2b77946328b1fc450dd0868",
+  "queued_args": [
+    "scripts/r7c_reliability.py",
+    "--from-json",
+    "runs:r7c-train-*",
+    "--out",
+    "docs/results/r7c_reliability.md"
+  ],
+  "state": "rejected",
+  "reason": "dependency r7c-train-a ended timeout"
+}
