@@ -1,0 +1,4 @@
+[00:37:26] wrote docs\results\r12c_literal_check.md and docs\results\r12c_literal_check.json
+[00:37:26] qwen2.5-coder_14b: NOT PASSED
+[00:37:26] gemma4_e4b: NOT PASSED
+[00:37:26] keyword: NOT PASSED
