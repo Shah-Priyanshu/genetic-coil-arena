@@ -1,0 +1,605 @@
+{
+ "results": {
+  "3": {
+   "task": {
+    "name": "squad-learned-protocol-r3",
+    "description": "Cooperative squad (21x21 walls, 3 snakes); score = team food per episode on held-out seeds; window radius 3; seed = training run",
+    "metric": "team_food",
+    "higher_is_better": true,
+    "n_seeds": 1,
+    "seed_offset": 0,
+    "params": {
+     "obs_radius": 3,
+     "n_episodes": 2,
+     "test_seed_base": 3500000000,
+     "seed_stride": 10000,
+     "message_capacity_bits": 3.0,
+     "message_interval": 1
+    },
+    "message": {
+     "kind": "discrete",
+     "length": 1,
+     "vocab_size": 8,
+     "dim": 0,
+     "interval": 1,
+     "n_receivers": 3
+    }
+   },
+   "seeds": [
+    0
+   ],
+   "conditions": [
+    {
+     "name": "silent+learned-spec",
+     "role": "system",
+     "seeds": [
+      0
+     ],
+     "per_seed": [
+      0.0
+     ],
+     "mean": 0.0,
+     "ci": null,
+     "iqm": 0.0,
+     "iqm_low": null,
+     "iqm_high": null,
+     "n_episodes": 2
+    },
+    {
+     "name": "greedy+hand-coded",
+     "role": "system",
+     "seeds": [
+      0
+     ],
+     "per_seed": [
+      19.0
+     ],
+     "mean": 19.0,
+     "ci": null,
+     "iqm": 19.0,
+     "iqm_low": null,
+     "iqm_high": null,
+     "n_episodes": 2
+    },
+    {
+     "name": "random-actions",
+     "role": "baseline",
+     "seeds": [
+      0
+     ],
+     "per_seed": [
+      0.0
+     ],
+     "mean": 0.0,
+     "ci": null,
+     "iqm": 0.0,
+     "iqm_low": null,
+     "iqm_high": null,
+     "n_episodes": 2
+    },
+    {
+     "name": "greedy+silent-centre",
+     "role": "baseline",
+     "seeds": [
+      0
+     ],
+     "per_seed": [
+      12.0
+     ],
+     "mean": 12.0,
+     "ci": null,
+     "iqm": 12.0,
+     "iqm_low": null,
+     "iqm_high": null,
+     "n_episodes": 2
+    },
+    {
+     "name": "greedy+random-centre",
+     "role": "baseline",
+     "seeds": [
+      0
+     ],
+     "per_seed": [
+      4.0
+     ],
+     "mean": 4.0,
+     "ci": null,
+     "iqm": 4.0,
+     "iqm_low": null,
+     "iqm_high": null,
+     "n_episodes": 2
+    },
+    {
+     "name": "no-comm",
+     "role": "baseline",
+     "seeds": [
+      0
+     ],
+     "per_seed": [
+      12.5
+     ],
+     "mean": 12.5,
+     "ci": null,
+     "iqm": 12.5,
+     "iqm_low": null,
+     "iqm_high": null,
+     "n_episodes": 2
+    },
+    {
+     "name": "oracle",
+     "role": "baseline",
+     "seeds": [
+      0
+     ],
+     "per_seed": [
+      47.5
+     ],
+     "mean": 47.5,
+     "ci": null,
+     "iqm": 47.5,
+     "iqm_low": null,
+     "iqm_high": null,
+     "n_episodes": 2
+    }
+   ],
+   "required_baselines": [
+    "random-actions",
+    "greedy+silent-centre",
+    "greedy+random-centre",
+    "no-comm",
+    "oracle"
+   ],
+   "comparisons": [
+    {
+     "a": "silent+learned-spec",
+     "b": "random-actions",
+     "u": 0.5,
+     "p": 1.0,
+     "a12": 0.5,
+     "mean_diff": 0.0,
+     "n_a": 1,
+     "n_b": 1,
+     "p_holm": 1.0
+    },
+    {
+     "a": "silent+learned-spec",
+     "b": "greedy+silent-centre",
+     "u": 0.0,
+     "p": 1.0,
+     "a12": 0.0,
+     "mean_diff": -12.0,
+     "n_a": 1,
+     "n_b": 1,
+     "p_holm": 1.0
+    },
+    {
+     "a": "silent+learned-spec",
+     "b": "greedy+random-centre",
+     "u": 0.0,
+     "p": 1.0,
+     "a12": 0.0,
+     "mean_diff": -4.0,
+     "n_a": 1,
+     "n_b": 1,
+     "p_holm": 1.0
+    },
+    {
+     "a": "silent+learned-spec",
+     "b": "no-comm",
+     "u": 0.0,
+     "p": 1.0,
+     "a12": 0.0,
+     "mean_diff": -12.5,
+     "n_a": 1,
+     "n_b": 1,
+     "p_holm": 1.0
+    },
+    {
+     "a": "silent+learned-spec",
+     "b": "oracle",
+     "u": 0.0,
+     "p": 1.0,
+     "a12": 0.0,
+     "mean_diff": -47.5,
+     "n_a": 1,
+     "n_b": 1,
+     "p_holm": 1.0
+    },
+    {
+     "a": "greedy+hand-coded",
+     "b": "random-actions",
+     "u": 1.0,
+     "p": 1.0,
+     "a12": 1.0,
+     "mean_diff": 19.0,
+     "n_a": 1,
+     "n_b": 1,
+     "p_holm": 1.0
+    },
+    {
+     "a": "greedy+hand-coded",
+     "b": "greedy+silent-centre",
+     "u": 1.0,
+     "p": 1.0,
+     "a12": 1.0,
+     "mean_diff": 7.0,
+     "n_a": 1,
+     "n_b": 1,
+     "p_holm": 1.0
+    },
+    {
+     "a": "greedy+hand-coded",
+     "b": "greedy+random-centre",
+     "u": 1.0,
+     "p": 1.0,
+     "a12": 1.0,
+     "mean_diff": 15.0,
+     "n_a": 1,
+     "n_b": 1,
+     "p_holm": 1.0
+    },
+    {
+     "a": "greedy+hand-coded",
+     "b": "no-comm",
+     "u": 1.0,
+     "p": 1.0,
+     "a12": 1.0,
+     "mean_diff": 6.5,
+     "n_a": 1,
+     "n_b": 1,
+     "p_holm": 1.0
+    },
+    {
+     "a": "greedy+hand-coded",
+     "b": "oracle",
+     "u": 0.0,
+     "p": 1.0,
+     "a12": 0.0,
+     "mean_diff": -28.5,
+     "n_a": 1,
+     "n_b": 1,
+     "p_holm": 1.0
+    }
+   ],
+   "ablations": [
+    {
+     "system": "silent+learned-spec",
+     "intervention": "zero",
+     "intact_mean": 0.0,
+     "ablated": {
+      "name": "silent+learned-spec|zero",
+      "role": "ablation",
+      "seeds": [
+       0
+      ],
+      "per_seed": [
+       0.0
+      ],
+      "mean": 0.0,
+      "ci": null,
+      "iqm": 0.0,
+      "iqm_low": null,
+      "iqm_high": null,
+      "n_episodes": 2
+     },
+     "delta_mean": 0.0,
+     "delta_ci": null,
+     "p": 1.0,
+     "p_holm": 1.0,
+     "a12": 0.5,
+     "listening": false,
+     "test": "wilcoxon"
+    },
+    {
+     "system": "silent+learned-spec",
+     "intervention": "shuffle_batch",
+     "intact_mean": 0.0,
+     "ablated": {
+      "name": "silent+learned-spec|shuffle_batch",
+      "role": "ablation",
+      "seeds": [
+       0
+      ],
+      "per_seed": [
+       0.0
+      ],
+      "mean": 0.0,
+      "ci": null,
+      "iqm": 0.0,
+      "iqm_low": null,
+      "iqm_high": null,
+      "n_episodes": 2
+     },
+     "delta_mean": 0.0,
+     "delta_ci": null,
+     "p": 1.0,
+     "p_holm": 1.0,
+     "a12": 0.5,
+     "listening": false,
+     "test": "wilcoxon"
+    },
+    {
+     "system": "silent+learned-spec",
+     "intervention": "swap_receivers",
+     "intact_mean": 0.0,
+     "ablated": {
+      "name": "silent+learned-spec|swap_receivers",
+      "role": "ablation",
+      "seeds": [
+       0
+      ],
+      "per_seed": [
+       0.0
+      ],
+      "mean": 0.0,
+      "ci": null,
+      "iqm": 0.0,
+      "iqm_low": null,
+      "iqm_high": null,
+      "n_episodes": 2
+     },
+     "delta_mean": 0.0,
+     "delta_ci": null,
+     "p": 1.0,
+     "p_holm": 1.0,
+     "a12": 0.5,
+     "listening": false,
+     "test": "wilcoxon"
+    },
+    {
+     "system": "silent+learned-spec",
+     "intervention": "random_matched",
+     "intact_mean": 0.0,
+     "ablated": {
+      "name": "silent+learned-spec|random_matched",
+      "role": "ablation",
+      "seeds": [
+       0
+      ],
+      "per_seed": [
+       0.0
+      ],
+      "mean": 0.0,
+      "ci": null,
+      "iqm": 0.0,
+      "iqm_low": null,
+      "iqm_high": null,
+      "n_episodes": 2
+     },
+     "delta_mean": 0.0,
+     "delta_ci": null,
+     "p": 1.0,
+     "p_holm": 1.0,
+     "a12": 0.5,
+     "listening": false,
+     "test": "wilcoxon"
+    }
+   ],
+   "communication": {
+    "silent+learned-spec": {
+     "message_entropy_bits": 0.0,
+     "message_entropy_bits_ci": null,
+     "utilization": 0.0,
+     "utilization_ci": null,
+     "mi_bits": 0.0,
+     "mi_bits_ci": null,
+     "mi_null_q95_bits": 0.0,
+     "mi_null_q95_bits_ci": null,
+     "mi_p_value": 1.0,
+     "mi_p_value_ci": null,
+     "target_entropy_bits": 2.6416852738388443,
+     "target_entropy_bits_ci": null,
+     "mi_direction_bits": 0.0,
+     "mi_direction_bits_ci": null,
+     "mi_far_bits": 0.0,
+     "mi_far_bits_ci": null,
+     "distinct_codes": 1.0,
+     "distinct_codes_ci": null,
+     "topsim": null,
+     "topsim_ci": null
+    },
+    "greedy+hand-coded": {
+     "message_entropy_bits": 2.4907363886816967,
+     "message_entropy_bits_ci": null,
+     "utilization": 0.8302454628938989,
+     "utilization_ci": null,
+     "mi_bits": 2.5040946760973353,
+     "mi_bits_ci": null,
+     "mi_null_q95_bits": 0.05191871755550492,
+     "mi_null_q95_bits_ci": null,
+     "mi_p_value": 0.009900990099009901,
+     "mi_p_value_ci": null,
+     "target_entropy_bits": 2.4907363886816967,
+     "target_entropy_bits_ci": null,
+     "mi_direction_bits": 1.8433401628551578,
+     "mi_direction_bits_ci": null,
+     "mi_far_bits": 0.7253873274610982,
+     "mi_far_bits_ci": null,
+     "distinct_codes": 7.0,
+     "distinct_codes_ci": null,
+     "topsim": 0.7767365493266297,
+     "topsim_ci": null,
+     "cic_bits": 0.7553933317991388,
+     "cic_bits_ci": null,
+     "js_shuffle_batch_bits": 0.28852130207431886,
+     "js_shuffle_batch_bits_ci": null,
+     "changed_shuffle_batch": 0.3,
+     "changed_shuffle_batch_ci": null,
+     "js_random_matched_bits": 0.3327819531114783,
+     "js_random_matched_bits_ci": null,
+     "changed_random_matched": 0.325,
+     "changed_random_matched_ci": null
+    }
+   },
+   "metadata": {
+    "radius": 3,
+    "train_settings": {
+     "radius": 3,
+     "generations": 1,
+     "population": 2,
+     "episodes_per_member": 1,
+     "sigma": 0.05,
+     "lr": 0.03,
+     "weight_decay": 0.005,
+     "spec_hidden": 16,
+     "centre_hidden": 16,
+     "eval_every": 1,
+     "val_episodes": 32,
+     "max_steps": 300,
+     "time_limit_s": null,
+     "progress_s": 120.0,
+     "entropy_bonus": 0.0,
+     "entropy_anneal": 0.5,
+     "centre_temperature": 0.0,
+     "temperature_anneal": 0.5
+    },
+    "eval_settings": {
+     "n_episodes": 2,
+     "interventions": [
+      "zero",
+      "shuffle_batch",
+      "swap_receivers",
+      "random_matched"
+     ],
+     "record_every": 3,
+     "snapshot_every": 25,
+     "n_shuffles": 100,
+     "n_boot": 2000
+    },
+    "per_run_communication": {
+     "silent+learned-spec": {
+      "message_entropy_bits": [
+       0.0
+      ],
+      "utilization": [
+       0.0
+      ],
+      "mi_bits": [
+       0.0
+      ],
+      "mi_null_q95_bits": [
+       0.0
+      ],
+      "mi_p_value": [
+       1.0
+      ],
+      "target_entropy_bits": [
+       2.6416852738388443
+      ],
+      "mi_direction_bits": [
+       0.0
+      ],
+      "mi_far_bits": [
+       0.0
+      ],
+      "distinct_codes": [
+       1.0
+      ],
+      "topsim": [
+       null
+      ]
+     },
+     "greedy+hand-coded": {
+      "message_entropy_bits": [
+       2.4907363886816967
+      ],
+      "utilization": [
+       0.8302454628938989
+      ],
+      "mi_bits": [
+       2.5040946760973353
+      ],
+      "mi_null_q95_bits": [
+       0.05191871755550492
+      ],
+      "mi_p_value": [
+       0.009900990099009901
+      ],
+      "target_entropy_bits": [
+       2.4907363886816967
+      ],
+      "mi_direction_bits": [
+       1.8433401628551578
+      ],
+      "mi_far_bits": [
+       0.7253873274610982
+      ],
+      "distinct_codes": [
+       7.0
+      ],
+      "topsim": [
+       0.7767365493266297
+      ],
+      "cic_bits": [
+       0.7553933317991388
+      ],
+      "js_shuffle_batch_bits": [
+       0.28852130207431886
+      ],
+      "changed_shuffle_batch": [
+       0.3
+      ],
+      "js_random_matched_bits": [
+       0.3327819531114783
+      ],
+      "changed_random_matched": [
+       0.325
+      ]
+     }
+    },
+    "headline": []
+   },
+   "complete": true,
+   "missing_baselines": []
+  }
+ },
+ "training": [
+  {
+   "mode": "silent",
+   "run": 0,
+   "radius": 3,
+   "best_generation": 1,
+   "generations_done": 1,
+   "seconds": 0.2143499999656342,
+   "n_params": 3347,
+   "cached": true
+  }
+ ],
+ "scale": "smoke",
+ "train_settings": {
+  "radius": 3,
+  "generations": 1,
+  "population": 2,
+  "episodes_per_member": 1,
+  "sigma": 0.05,
+  "lr": 0.03,
+  "weight_decay": 0.005,
+  "spec_hidden": 16,
+  "centre_hidden": 16,
+  "eval_every": 1,
+  "val_episodes": 32,
+  "max_steps": 300,
+  "time_limit_s": null,
+  "progress_s": 120.0,
+  "entropy_bonus": 0.0,
+  "entropy_anneal": 0.5,
+  "centre_temperature": 0.0,
+  "temperature_anneal": 0.5
+ },
+ "eval_settings": {
+  "n_episodes": 2,
+  "interventions": [
+   "zero",
+   "shuffle_batch",
+   "swap_receivers",
+   "random_matched"
+  ],
+  "record_every": 3,
+  "snapshot_every": 25,
+  "n_shuffles": 100,
+  "n_boot": 2000
+ },
+ "train_seconds": 1.5881398999481462,
+ "eval_seconds": 1.802051400009077,
+ "workers": 1
+}
