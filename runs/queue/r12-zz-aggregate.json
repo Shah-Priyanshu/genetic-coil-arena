@@ -1,0 +1,28 @@
+{
+  "id": "r12-zz-aggregate",
+  "commit": "fc1832a9f13322fe22c3e9baa1f9160d7ffb91d8",
+  "args": [
+    "scripts/r12_growth.py",
+    "report",
+    "--from",
+    "runs:r12-team",
+    "runs:r12-o14-sealed",
+    "runs:r12-gemma-sealed",
+    "runs:r12-keyword-sealed",
+    "--out",
+    "docs/results/r12_growth.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 1,
+  "priority": 6,
+  "after": [
+    "r12-o14-sealed",
+    "r12-gemma-sealed",
+    "r12-keyword-sealed"
+  ],
+  "timeout_min": 20.0,
+  "outputs": [
+    "docs/results/r12_growth.md",
+    "docs/results/r12_growth.json"
+  ]
+}

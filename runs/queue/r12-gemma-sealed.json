@@ -1,0 +1,18 @@
+{
+  "id": "r12-gemma-sealed",
+  "commit": "fc1832a9f13322fe22c3e9baa1f9160d7ffb91d8",
+  "args": [
+    "scripts/r12_growth.py",
+    "run",
+    "--translator",
+    "ollama:gemma4:e4b",
+    "--split",
+    "sealed",
+    "--team-from",
+    "runs:r12-team"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 2,
+  "priority": 5,
+  "timeout_min": 60.0
+}
