@@ -1,0 +1,2347 @@
+{
+ "model": {
+  "n_classes": 6,
+  "hidden": 0,
+  "l2": 1.0,
+  "epochs": 400,
+  "lr": 0.02,
+  "n_models": 1,
+  "seed": 0,
+  "balanced": true,
+  "mean": [
+   1.0,
+   2.483615966837501,
+   2.04528994468522,
+   1.6072099707006704,
+   0.5296817457422865,
+   1.0,
+   1.4431725628312846,
+   1.3890429630945178,
+   0.6293390185421428,
+   0.2939390089896413,
+   1.0,
+   1.4916486717601338,
+   1.4623523440623174,
+   0.3755318826999694,
+   0.32926822150637475,
+   0.8066666666666666,
+   0.973095026402326,
+   0.7546998670975142,
+   0.972957320434903,
+   0.2237986467968634,
+   1.0,
+   0.7509668220135137,
+   -0.2907692742430698,
+   -0.0632311295124926,
+   0.054174620461460696,
+   1.0,
+   2.7128807097384553,
+   2.7017151008089035,
+   1.5699779114558883,
+   0.3852732532691149,
+   1.0,
+   2.8503303992408515,
+   2.8503303992408515,
+   2.2703588229824785,
+   0.4937960137263607,
+   0.3466666666666667,
+   0.03353659702697583,
+   0.03353659702697583,
+   0.030767470112275066,
+   0.01352463036342695,
+   3.613955284592906,
+   0.6768386614134191,
+   0.38242095645835966,
+   0.42371612716237256,
+   0.2636674494381804,
+   0.22148112556720045,
+   0.7540264565016002,
+   0.7835407189276672,
+   0.009755258169838098,
+   0.24,
+   0.09333333333333334,
+   0.02666666666666667,
+   0.16666666666666666,
+   0.0,
+   0.20666666666666667,
+   0.26,
+   0.006666666666666667,
+   3.14,
+   2.013333333333333
+  ],
+  "std": [
+   1e-06,
+   1.3323178434784706,
+   1.9391259274650001,
+   1.5562411378149212,
+   0.2752747739903505,
+   1e-06,
+   1.4872770059268146,
+   1.537953083321271,
+   0.9961582751731894,
+   0.36919434222516295,
+   1e-06,
+   0.8455682741641402,
+   0.8952805077050469,
+   0.3940435902443549,
+   0.3219995656328053,
+   0.3949130858565302,
+   1.5244653512378268,
+   1.643574423734675,
+   1.8971930518384386,
+   0.33699890465352506,
+   1e-06,
+   0.36834504662480255,
+   0.7842724667799464,
+   0.15241137732843607,
+   0.1481172957232368,
+   1e-06,
+   1.1364123613005614,
+   1.1627082036523888,
+   1.3292317847216233,
+   0.15218992330133702,
+   1e-06,
+   1.1277489696842928,
+   1.1277489696842928,
+   1.3041534777451973,
+   0.20062072333272765,
+   0.4759094879353263,
+   0.302846785143889,
+   0.302846785143889,
+   0.37556583508090946,
+   0.07771088088498965,
+   0.6283922551807027,
+   0.32742034478378446,
+   0.3855582382846519,
+   0.23756434807069185,
+   0.3920223923374394,
+   0.13208653935785275,
+   0.28380891270392933,
+   0.26540813000277375,
+   0.08945719724605955,
+   0.4270841300812529,
+   0.290899989723619,
+   0.16110827964792768,
+   0.3726789962499656,
+   1e-06,
+   0.40491525704160486,
+   0.4386352439892256,
+   0.08137803743822461,
+   1.4652882300906285,
+   1.2109877418303507
+  ],
+  "nets": [
+   [
+    [
+     [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.08095916142131576,
+      0.015479838890596105,
+      0.024346180820257145,
+      -0.09910521926589261,
+      -0.06513840070781131,
+      0.043458438856175535
+     ],
+     [
+      0.07430871745970118,
+      0.02460487288189975,
+      0.02836621622758013,
+      -0.09678588588501585,
+      -0.08339483396886206,
+      0.05290091332109733
+     ],
+     [
+      0.06420636140413208,
+      0.02978201987639656,
+      0.02654281659645364,
+      -0.08155675642061436,
+      -0.07715112914693717,
+      0.03817668767587099
+     ],
+     [
+      0.0557164152913752,
+      0.03363259649848638,
+      -0.010801397533747415,
+      -0.057000767512165686,
+      -0.05732115291275052,
+      0.03577430620391565
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      -0.05124500720191811,
+      0.10444424712706775,
+      0.059158192871509405,
+      -0.05814319684552889,
+      -0.017137158635999142,
+      -0.03707707741168118
+     ],
+     [
+      -0.04646098789517655,
+      0.10266497914014143,
+      0.0512206164530554,
+      -0.053557856336790985,
+      -0.019879347366436692,
+      -0.03398740402289186
+     ],
+     [
+      -0.055076209341951406,
+      0.08790677651554363,
+      0.07361360889384432,
+      -0.03446909514564552,
+      -0.0269662966609489,
+      -0.045008784316063935
+     ],
+     [
+      -0.02981803387156098,
+      0.09435433836755865,
+      0.04464662499080255,
+      -0.047431510907398555,
+      -0.027133260589115034,
+      -0.03461815808590449
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      -0.0389216897678124,
+      0.004607191510084496,
+      -0.03966136284177929,
+      -0.028601529531571166,
+      -0.005728712331743454,
+      0.10830610298429955
+     ],
+     [
+      -0.0334597450060684,
+      0.005584457044105314,
+      -0.03561035538153053,
+      -0.03382123433806009,
+      -0.0065285718210357615,
+      0.10383544950643826
+     ],
+     [
+      -0.0521572303807962,
+      -0.01853808654441267,
+      -0.014016775624911156,
+      -0.013000129529146875,
+      -0.02594190303109289,
+      0.12365412507355582
+     ],
+     [
+      -0.033694762453129315,
+      0.028936594311131738,
+      -0.04754424864192804,
+      -0.017871264225693902,
+      -0.04943732282048046,
+      0.1196110037997455
+     ],
+     [
+      -0.02590687173310852,
+      0.027100722110802458,
+      -0.02381235151730818,
+      0.014391842439389848,
+      0.01063220558851701,
+      -0.0024055467703665684
+     ],
+     [
+      -0.038951043278323015,
+      0.05645409849173268,
+      0.0742164698600659,
+      -0.02492404532243942,
+      -0.02327861575519562,
+      -0.043516863924891756
+     ],
+     [
+      -0.05470436006156195,
+      0.06137975297716602,
+      0.07871567109500933,
+      -0.02819765612432225,
+      -0.027305560454175686,
+      -0.02988784738797902
+     ],
+     [
+      -0.04674949602036583,
+      0.061166428263988604,
+      0.0780051696620811,
+      -0.026046565636219106,
+      -0.029381377191129057,
+      -0.03699415903858497
+     ],
+     [
+      -0.04953706645936592,
+      0.03168255452619749,
+      0.044531057429811796,
+      -0.03591768101985954,
+      -0.014354280063928457,
+      0.023595415365463224
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      -0.025316530438482043,
+      0.0025983741499104223,
+      -0.018132392626247978,
+      0.0006378332985337537,
+      0.07316419752789506,
+      -0.03295148194431899
+     ],
+     [
+      0.03191362319546775,
+      0.0023620022202286315,
+      0.017469303574045136,
+      -0.012836961712095208,
+      -0.06081043533687504,
+      0.021902467907315995
+     ],
+     [
+      0.04079377078463307,
+      0.012007372367365052,
+      0.01398237904081277,
+      -0.007143129061480737,
+      -0.08854442966781012,
+      0.028904036647394372
+     ],
+     [
+      -0.010408817588070425,
+      -0.00991348305414772,
+      0.0063341713516700355,
+      -0.0022226320767944445,
+      0.05097273438717756,
+      -0.03476197298459006
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.004236956378631876,
+      0.03840435927117018,
+      -0.05798701304413392,
+      0.06975733130228982,
+      -0.08114473551186187,
+      0.026733101620093777
+     ],
+     [
+      0.004981039644009443,
+      0.038653045569584044,
+      -0.05837821688889814,
+      0.06922873510738185,
+      -0.08111864343307144,
+      0.026634040030521083
+     ],
+     [
+      -0.031983560278032584,
+      0.011855185616172239,
+      -0.052002832600762466,
+      0.10427356499561645,
+      -0.03767075377132332,
+      0.005528396091799815
+     ],
+     [
+      0.02108885344062465,
+      0.0329266270879699,
+      -0.02437873990866314,
+      0.039103769960728355,
+      -0.0864857558298306,
+      0.017745245246142714
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      -0.0012663561036284582,
+      -0.002260032657201531,
+      -0.012478023081429871,
+      0.03818410492305155,
+      -0.0077313430272842,
+      -0.014448350085790467
+     ],
+     [
+      -0.0012663561036284582,
+      -0.002260032657201531,
+      -0.012478023081429871,
+      0.03818410492305155,
+      -0.0077313430272842,
+      -0.014448350085790467
+     ],
+     [
+      -0.051020253781217384,
+      0.03180633139432352,
+      -0.04938495323756254,
+      0.06387506225907683,
+      0.04262197972653967,
+      -0.03789816652765663
+     ],
+     [
+      -0.0006251157609176419,
+      0.0012551595107266797,
+      -0.038003878931691215,
+      0.032564431456304554,
+      -0.01716734991314086,
+      0.021976753425507062
+     ],
+     [
+      -0.039845833961664724,
+      -0.05058554309412511,
+      0.0475203275210566,
+      0.02027175222404273,
+      -0.0033184467063046225,
+      0.02595774393519003
+     ],
+     [
+      -0.010202351986617383,
+      -0.004753485150261844,
+      0.022850341877806223,
+      -0.012984371955058952,
+      0.011916319509017562,
+      -0.006826452338024864
+     ],
+     [
+      -0.010202351986617383,
+      -0.004753485150261844,
+      0.022850341877806223,
+      -0.012984371955058952,
+      0.011916319509017562,
+      -0.006826452338024864
+     ],
+     [
+      -0.007358308685600958,
+      -0.0031370526809029412,
+      0.028971615609661747,
+      -0.0019070796823965257,
+      -0.012733047345256088,
+      -0.0038361271090227565
+     ],
+     [
+      -0.011606214735424706,
+      -0.001329593069113242,
+      0.009144857104014832,
+      -0.008160676826647097,
+      0.027279345027793087,
+      -0.01532771749937791
+     ],
+     [
+      0.031227683996888685,
+      0.021983195338450907,
+      0.03490748159315035,
+      0.012719041260853067,
+      -0.09676247812755563,
+      -0.004074923999941937
+     ],
+     [
+      0.07902130526039423,
+      0.009485511895886627,
+      0.015844211500767362,
+      -0.11091366681100691,
+      -0.04423959599171531,
+      0.05080223425866231
+     ],
+     [
+      -0.05268913448274483,
+      0.1013229881792373,
+      0.05660146827221014,
+      -0.06007058901041115,
+      -0.008720977778140872,
+      -0.03644375523731084
+     ],
+     [
+      -0.048743417468442664,
+      -0.004573110798013505,
+      -0.049041258298731925,
+      -0.035882648977118424,
+      0.036009068472819365,
+      0.10223136700375066
+     ],
+     [
+      -0.041990041032628656,
+      0.05604259005248721,
+      0.07117805795631811,
+      -0.029370733609553175,
+      -0.009763584311826222,
+      -0.04609628898320519
+     ],
+     [
+      -0.03728404843792531,
+      -0.008763801689704894,
+      -0.02855348461652679,
+      -0.012634550646975584,
+      0.11802925171278703,
+      -0.03079336614128423
+     ],
+     [
+      -0.0069738822733707,
+      0.029538030189545282,
+      -0.07560010970705505,
+      0.07000886440940046,
+      -0.03894529461795154,
+      0.021972392044300938
+     ],
+     [
+      -0.016703035656781166,
+      -0.012243502024710045,
+      -0.02867048940746074,
+      0.02960895434960512,
+      0.04773172075485308,
+      -0.019723647977154507
+     ],
+     [
+      -0.010028502278295368,
+      -0.004644326196050546,
+      0.023668292402545362,
+      -0.012042292741667395,
+      0.00965185895925566,
+      -0.006605030177321473
+     ],
+     [
+      0.07656019588705762,
+      0.007393752902972643,
+      -0.04724092979967749,
+      -0.04099562644788825,
+      -0.03291938659006191,
+      0.03720199395456629
+     ],
+     [
+      -0.040370547730162555,
+      0.0662568740416125,
+      0.04984808229271203,
+      -0.01934177274637941,
+      -0.019831435607045034,
+      -0.03656120007937947
+     ],
+     [
+      -0.008732030741125399,
+      -0.013026500726256999,
+      -0.013538489719760682,
+      -0.01009208760419167,
+      0.036105845746652473,
+      0.009283262982089814
+     ],
+     [
+      -0.036588381632710575,
+      0.03543111790606186,
+      0.08418904284276049,
+      -0.023407120793293292,
+      -0.02885236577029257,
+      -0.030772292474299495
+     ],
+     [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.008541105297477692,
+      -0.03730314581534002,
+      -0.03412477955312893,
+      0.04557322296032884,
+      -0.002711079938128439,
+      0.02002467690234808
+     ],
+     [
+      -0.01999600802469792,
+      -0.04144157912099858,
+      -0.027492699703310308,
+      0.034621622252162754,
+      0.06132195359939133,
+      -0.007013289000436289
+     ],
+     [
+      -0.007358237856696817,
+      -0.003137022484560927,
+      0.028971336737461443,
+      -0.0019070613254114255,
+      -0.0127329247807031,
+      -0.0038360901835958966
+     ],
+     [
+      -0.014953545774189482,
+      0.06385166533297573,
+      0.01664485290225307,
+      -0.03981944680250694,
+      -0.05621559299085912,
+      0.030492067161665984
+     ],
+     [
+      -0.02212842104553751,
+      0.05396154632778005,
+      0.033176393710241114,
+      -0.00460861948752264,
+      -0.0626380905559185,
+      0.0022371910250493037
+     ]
+    ],
+    [
+     0.09636127548509578,
+     -0.050776311795604066,
+     -0.04575879556803971,
+     -0.09967776601347357,
+     -0.1056267406450952,
+     0.039786750932736314
+    ]
+   ]
+  ]
+ },
+ "chosen": {
+  "hidden": 0,
+  "l2": 1.0,
+  "epochs": 400
+ },
+ "oof_per_system": {
+  "OB": 0.7,
+  "SS": 0.6666666666666666,
+  "TT": 0.5666666666666667
+ },
+ "grid": [
+  {
+   "config": {
+    "hidden": 0,
+    "l2": 0.01,
+    "epochs": 400
+   },
+   "per_system": {
+    "OB": 0.7,
+    "SS": 0.6666666666666666,
+    "TT": 0.43333333333333335
+   },
+   "mean": 0.6
+  },
+  {
+   "config": {
+    "hidden": 0,
+    "l2": 0.1,
+    "epochs": 400
+   },
+   "per_system": {
+    "OB": 0.7,
+    "SS": 0.7,
+    "TT": 0.4666666666666667
+   },
+   "mean": 0.6222222222222222
+  },
+  {
+   "config": {
+    "hidden": 0,
+    "l2": 1.0,
+    "epochs": 400
+   },
+   "per_system": {
+    "OB": 0.7,
+    "SS": 0.6666666666666666,
+    "TT": 0.5666666666666667
+   },
+   "mean": 0.6444444444444445
+  },
+  {
+   "config": {
+    "hidden": 16,
+    "l2": 0.01,
+    "epochs": 300,
+    "n_models": 5
+   },
+   "per_system": {
+    "OB": 0.7333333333333333,
+    "SS": 0.7,
+    "TT": 0.43333333333333335
+   },
+   "mean": 0.6222222222222221
+  },
+  {
+   "config": {
+    "hidden": 16,
+    "l2": 0.1,
+    "epochs": 300,
+    "n_models": 5
+   },
+   "per_system": {
+    "OB": 0.7666666666666667,
+    "SS": 0.6666666666666666,
+    "TT": 0.5
+   },
+   "mean": 0.6444444444444445
+  },
+  {
+   "config": {
+    "hidden": 32,
+    "l2": 0.1,
+    "epochs": 300,
+    "n_models": 5
+   },
+   "per_system": {
+    "OB": 0.7333333333333333,
+    "SS": 0.6666666666666666,
+    "TT": 0.5
+   },
+   "mean": 0.6333333333333333
+  },
+  {
+   "config": {
+    "hidden": 32,
+    "l2": 1.0,
+    "epochs": 300,
+    "n_models": 5
+   },
+   "per_system": {
+    "OB": 0.3,
+    "SS": 0.3333333333333333,
+    "TT": 0.34444444444444444
+   },
+   "mean": 0.3259259259259259
+  }
+ ],
+ "n_train": 150,
+ "train_ids": [
+  "OB/checkoutservice_cpu/1",
+  "OB/checkoutservice_delay/1",
+  "OB/checkoutservice_disk/1",
+  "OB/checkoutservice_loss/1",
+  "OB/checkoutservice_mem/1",
+  "OB/checkoutservice_socket/1",
+  "OB/currencyservice_cpu/1",
+  "OB/currencyservice_delay/1",
+  "OB/currencyservice_disk/1",
+  "OB/currencyservice_loss/1",
+  "OB/currencyservice_mem/1",
+  "OB/currencyservice_socket/1",
+  "OB/emailservice_cpu/1",
+  "OB/emailservice_delay/1",
+  "OB/emailservice_disk/1",
+  "OB/emailservice_loss/1",
+  "OB/emailservice_mem/1",
+  "OB/emailservice_socket/1",
+  "OB/productcatalogservice_cpu/1",
+  "OB/productcatalogservice_delay/1",
+  "OB/productcatalogservice_disk/1",
+  "OB/productcatalogservice_loss/1",
+  "OB/productcatalogservice_mem/1",
+  "OB/productcatalogservice_socket/1",
+  "OB/recommendationservice_cpu/1",
+  "OB/recommendationservice_delay/1",
+  "OB/recommendationservice_disk/1",
+  "OB/recommendationservice_loss/1",
+  "OB/recommendationservice_mem/1",
+  "OB/recommendationservice_socket/1",
+  "SS/carts_cpu/1",
+  "SS/carts_delay/1",
+  "SS/carts_disk/1",
+  "SS/carts_loss/1",
+  "SS/carts_mem/1",
+  "SS/carts_socket/1",
+  "SS/catalogue_cpu/1",
+  "SS/catalogue_delay/1",
+  "SS/catalogue_disk/1",
+  "SS/catalogue_loss/1",
+  "SS/catalogue_mem/1",
+  "SS/catalogue_socket/1",
+  "SS/orders_cpu/1",
+  "SS/orders_delay/1",
+  "SS/orders_disk/1",
+  "SS/orders_loss/1",
+  "SS/orders_mem/1",
+  "SS/orders_socket/1",
+  "SS/payment_cpu/1",
+  "SS/payment_delay/1",
+  "SS/payment_disk/1",
+  "SS/payment_loss/1",
+  "SS/payment_mem/1",
+  "SS/payment_socket/1",
+  "SS/user_cpu/1",
+  "SS/user_delay/1",
+  "SS/user_disk/1",
+  "SS/user_loss/1",
+  "SS/user_mem/1",
+  "SS/user_socket/1",
+  "TT/ts-auth-service_cpu/1",
+  "TT/ts-auth-service_cpu/2",
+  "TT/ts-auth-service_cpu/3",
+  "TT/ts-auth-service_delay/1",
+  "TT/ts-auth-service_delay/2",
+  "TT/ts-auth-service_delay/3",
+  "TT/ts-auth-service_disk/1",
+  "TT/ts-auth-service_disk/2",
+  "TT/ts-auth-service_disk/3",
+  "TT/ts-auth-service_loss/1",
+  "TT/ts-auth-service_loss/2",
+  "TT/ts-auth-service_loss/3",
+  "TT/ts-auth-service_mem/1",
+  "TT/ts-auth-service_mem/2",
+  "TT/ts-auth-service_mem/3",
+  "TT/ts-auth-service_socket/1",
+  "TT/ts-auth-service_socket/2",
+  "TT/ts-auth-service_socket/3",
+  "TT/ts-order-service_cpu/1",
+  "TT/ts-order-service_cpu/2",
+  "TT/ts-order-service_cpu/3",
+  "TT/ts-order-service_delay/1",
+  "TT/ts-order-service_delay/2",
+  "TT/ts-order-service_delay/3",
+  "TT/ts-order-service_disk/1",
+  "TT/ts-order-service_disk/2",
+  "TT/ts-order-service_disk/3",
+  "TT/ts-order-service_loss/1",
+  "TT/ts-order-service_loss/2",
+  "TT/ts-order-service_loss/3",
+  "TT/ts-order-service_mem/1",
+  "TT/ts-order-service_mem/2",
+  "TT/ts-order-service_mem/3",
+  "TT/ts-order-service_socket/1",
+  "TT/ts-order-service_socket/2",
+  "TT/ts-order-service_socket/3",
+  "TT/ts-route-service_cpu/1",
+  "TT/ts-route-service_cpu/2",
+  "TT/ts-route-service_cpu/3",
+  "TT/ts-route-service_delay/1",
+  "TT/ts-route-service_delay/2",
+  "TT/ts-route-service_delay/3",
+  "TT/ts-route-service_disk/1",
+  "TT/ts-route-service_disk/2",
+  "TT/ts-route-service_disk/3",
+  "TT/ts-route-service_loss/1",
+  "TT/ts-route-service_loss/2",
+  "TT/ts-route-service_loss/3",
+  "TT/ts-route-service_mem/1",
+  "TT/ts-route-service_mem/2",
+  "TT/ts-route-service_mem/3",
+  "TT/ts-route-service_socket/1",
+  "TT/ts-route-service_socket/2",
+  "TT/ts-route-service_socket/3",
+  "TT/ts-train-service_cpu/1",
+  "TT/ts-train-service_cpu/2",
+  "TT/ts-train-service_cpu/3",
+  "TT/ts-train-service_delay/1",
+  "TT/ts-train-service_delay/2",
+  "TT/ts-train-service_delay/3",
+  "TT/ts-train-service_disk/1",
+  "TT/ts-train-service_disk/2",
+  "TT/ts-train-service_disk/3",
+  "TT/ts-train-service_loss/1",
+  "TT/ts-train-service_loss/2",
+  "TT/ts-train-service_loss/3",
+  "TT/ts-train-service_mem/1",
+  "TT/ts-train-service_mem/2",
+  "TT/ts-train-service_mem/3",
+  "TT/ts-train-service_socket/1",
+  "TT/ts-train-service_socket/2",
+  "TT/ts-train-service_socket/3",
+  "TT/ts-travel-service_cpu/1",
+  "TT/ts-travel-service_cpu/2",
+  "TT/ts-travel-service_cpu/3",
+  "TT/ts-travel-service_delay/1",
+  "TT/ts-travel-service_delay/2",
+  "TT/ts-travel-service_delay/3",
+  "TT/ts-travel-service_disk/1",
+  "TT/ts-travel-service_disk/2",
+  "TT/ts-travel-service_disk/3",
+  "TT/ts-travel-service_loss/1",
+  "TT/ts-travel-service_loss/2",
+  "TT/ts-travel-service_loss/3",
+  "TT/ts-travel-service_mem/1",
+  "TT/ts-travel-service_mem/2",
+  "TT/ts-travel-service_mem/3",
+  "TT/ts-travel-service_socket/1",
+  "TT/ts-travel-service_socket/2",
+  "TT/ts-travel-service_socket/3"
+ ],
+ "test_ids": [
+  "OB/checkoutservice_cpu/2",
+  "OB/checkoutservice_cpu/3",
+  "OB/checkoutservice_delay/2",
+  "OB/checkoutservice_delay/3",
+  "OB/checkoutservice_disk/2",
+  "OB/checkoutservice_disk/3",
+  "OB/checkoutservice_loss/2",
+  "OB/checkoutservice_loss/3",
+  "OB/checkoutservice_mem/2",
+  "OB/checkoutservice_mem/3",
+  "OB/checkoutservice_socket/2",
+  "OB/checkoutservice_socket/3",
+  "OB/currencyservice_cpu/2",
+  "OB/currencyservice_cpu/3",
+  "OB/currencyservice_delay/2",
+  "OB/currencyservice_delay/3",
+  "OB/currencyservice_disk/2",
+  "OB/currencyservice_disk/3",
+  "OB/currencyservice_loss/2",
+  "OB/currencyservice_loss/3",
+  "OB/currencyservice_mem/2",
+  "OB/currencyservice_mem/3",
+  "OB/currencyservice_socket/2",
+  "OB/currencyservice_socket/3",
+  "OB/emailservice_cpu/2",
+  "OB/emailservice_cpu/3",
+  "OB/emailservice_delay/2",
+  "OB/emailservice_delay/3",
+  "OB/emailservice_disk/2",
+  "OB/emailservice_disk/3",
+  "OB/emailservice_loss/2",
+  "OB/emailservice_loss/3",
+  "OB/emailservice_mem/2",
+  "OB/emailservice_mem/3",
+  "OB/emailservice_socket/2",
+  "OB/emailservice_socket/3",
+  "OB/productcatalogservice_cpu/2",
+  "OB/productcatalogservice_cpu/3",
+  "OB/productcatalogservice_delay/2",
+  "OB/productcatalogservice_delay/3",
+  "OB/productcatalogservice_disk/2",
+  "OB/productcatalogservice_disk/3",
+  "OB/productcatalogservice_loss/2",
+  "OB/productcatalogservice_loss/3",
+  "OB/productcatalogservice_mem/2",
+  "OB/productcatalogservice_mem/3",
+  "OB/productcatalogservice_socket/2",
+  "OB/productcatalogservice_socket/3",
+  "OB/recommendationservice_cpu/2",
+  "OB/recommendationservice_cpu/3",
+  "OB/recommendationservice_delay/2",
+  "OB/recommendationservice_delay/3",
+  "OB/recommendationservice_disk/2",
+  "OB/recommendationservice_disk/3",
+  "OB/recommendationservice_loss/2",
+  "OB/recommendationservice_loss/3",
+  "OB/recommendationservice_mem/2",
+  "OB/recommendationservice_mem/3",
+  "OB/recommendationservice_socket/2",
+  "OB/recommendationservice_socket/3",
+  "SS/carts_cpu/2",
+  "SS/carts_cpu/3",
+  "SS/carts_delay/2",
+  "SS/carts_delay/3",
+  "SS/carts_disk/2",
+  "SS/carts_disk/3",
+  "SS/carts_loss/2",
+  "SS/carts_loss/3",
+  "SS/carts_mem/2",
+  "SS/carts_mem/3",
+  "SS/carts_socket/2",
+  "SS/carts_socket/3",
+  "SS/catalogue_cpu/2",
+  "SS/catalogue_cpu/3",
+  "SS/catalogue_delay/2",
+  "SS/catalogue_delay/3",
+  "SS/catalogue_disk/2",
+  "SS/catalogue_disk/3",
+  "SS/catalogue_loss/2",
+  "SS/catalogue_loss/3",
+  "SS/catalogue_mem/2",
+  "SS/catalogue_mem/3",
+  "SS/catalogue_socket/2",
+  "SS/catalogue_socket/3",
+  "SS/orders_cpu/2",
+  "SS/orders_cpu/3",
+  "SS/orders_delay/2",
+  "SS/orders_delay/3",
+  "SS/orders_disk/2",
+  "SS/orders_disk/3",
+  "SS/orders_loss/2",
+  "SS/orders_loss/3",
+  "SS/orders_mem/2",
+  "SS/orders_mem/3",
+  "SS/orders_socket/2",
+  "SS/orders_socket/3",
+  "SS/payment_cpu/2",
+  "SS/payment_cpu/3",
+  "SS/payment_delay/2",
+  "SS/payment_delay/3",
+  "SS/payment_disk/2",
+  "SS/payment_disk/3",
+  "SS/payment_loss/2",
+  "SS/payment_loss/3",
+  "SS/payment_mem/2",
+  "SS/payment_mem/3",
+  "SS/payment_socket/2",
+  "SS/payment_socket/3",
+  "SS/user_cpu/2",
+  "SS/user_cpu/3",
+  "SS/user_delay/2",
+  "SS/user_delay/3",
+  "SS/user_disk/2",
+  "SS/user_disk/3",
+  "SS/user_loss/2",
+  "SS/user_loss/3",
+  "SS/user_mem/2",
+  "SS/user_mem/3",
+  "SS/user_socket/2",
+  "SS/user_socket/3"
+ ],
+ "seed": 0,
+ "recipe": "G4c: TT + SS/OB repetition 1; leave-one-system-out selection",
+ "catalogue_eval": {
+  "n": 120,
+  "top1": 0.8833333333333333,
+  "joint": 0.6833333333333333
+ },
+ "catalogue": {
+  "n": 120,
+  "fingerprint": "409929e01f894a7e24e60398f7825551a502f3e7a6dde1a1f121df1236c60edf",
+  "entries": [
+   {
+    "ticket": "INC-1001",
+    "incident": "OB/productcatalogservice_cpu/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-17T10:20",
+    "window_utc": [
+     "2024-01-17T10:08",
+     "2024-01-17T10:32"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1002",
+    "incident": "OB/productcatalogservice_cpu/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-17T11:00",
+    "window_utc": [
+     "2024-01-17T10:48",
+     "2024-01-17T11:12"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1003",
+    "incident": "OB/productcatalogservice_mem/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-17T11:40",
+    "window_utc": [
+     "2024-01-17T11:28",
+     "2024-01-17T11:52"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1004",
+    "incident": "OB/productcatalogservice_mem/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-17T12:18",
+    "window_utc": [
+     "2024-01-17T12:06",
+     "2024-01-17T12:30"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1005",
+    "incident": "OB/productcatalogservice_disk/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-17T12:55",
+    "window_utc": [
+     "2024-01-17T12:43",
+     "2024-01-17T13:07"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1006",
+    "incident": "OB/productcatalogservice_socket/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-17T16:41",
+    "window_utc": [
+     "2024-01-17T16:29",
+     "2024-01-17T16:53"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1007",
+    "incident": "OB/productcatalogservice_socket/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-17T17:21",
+    "window_utc": [
+     "2024-01-17T17:09",
+     "2024-01-17T17:33"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1008",
+    "incident": "OB/productcatalogservice_delay/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-17T18:01",
+    "window_utc": [
+     "2024-01-17T17:49",
+     "2024-01-17T18:13"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1009",
+    "incident": "OB/productcatalogservice_delay/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-17T18:40",
+    "window_utc": [
+     "2024-01-17T18:28",
+     "2024-01-17T18:52"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1010",
+    "incident": "OB/productcatalogservice_loss/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-17T19:18",
+    "window_utc": [
+     "2024-01-17T19:06",
+     "2024-01-17T19:30"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1011",
+    "incident": "OB/recommendationservice_cpu/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-17T21:10",
+    "window_utc": [
+     "2024-01-17T20:58",
+     "2024-01-17T21:22"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1012",
+    "incident": "OB/recommendationservice_cpu/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-17T21:50",
+    "window_utc": [
+     "2024-01-17T21:38",
+     "2024-01-17T22:02"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1013",
+    "incident": "OB/recommendationservice_mem/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-17T22:31",
+    "window_utc": [
+     "2024-01-17T22:19",
+     "2024-01-17T22:43"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1014",
+    "incident": "OB/recommendationservice_mem/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-17T23:11",
+    "window_utc": [
+     "2024-01-17T22:59",
+     "2024-01-17T23:23"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1015",
+    "incident": "OB/recommendationservice_disk/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-17T23:51",
+    "window_utc": [
+     "2024-01-17T23:39",
+     "2024-01-18T00:03"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1016",
+    "incident": "OB/recommendationservice_disk/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-18T00:32",
+    "window_utc": [
+     "2024-01-18T00:20",
+     "2024-01-18T00:44"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1017",
+    "incident": "OB/recommendationservice_socket/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-18T01:13",
+    "window_utc": [
+     "2024-01-18T01:01",
+     "2024-01-18T01:25"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1018",
+    "incident": "OB/recommendationservice_socket/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-18T01:54",
+    "window_utc": [
+     "2024-01-18T01:42",
+     "2024-01-18T02:06"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1019",
+    "incident": "OB/recommendationservice_delay/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-18T02:35",
+    "window_utc": [
+     "2024-01-18T02:23",
+     "2024-01-18T02:47"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1020",
+    "incident": "OB/recommendationservice_delay/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-18T03:16",
+    "window_utc": [
+     "2024-01-18T03:04",
+     "2024-01-18T03:28"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1021",
+    "incident": "OB/recommendationservice_loss/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-18T13:10",
+    "window_utc": [
+     "2024-01-18T12:58",
+     "2024-01-18T13:22"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1022",
+    "incident": "OB/emailservice_cpu/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-18T15:49",
+    "window_utc": [
+     "2024-01-18T15:37",
+     "2024-01-18T16:01"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1023",
+    "incident": "OB/emailservice_cpu/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-18T16:31",
+    "window_utc": [
+     "2024-01-18T16:19",
+     "2024-01-18T16:43"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1024",
+    "incident": "OB/emailservice_mem/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-18T17:13",
+    "window_utc": [
+     "2024-01-18T17:01",
+     "2024-01-18T17:25"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1025",
+    "incident": "OB/emailservice_mem/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-18T17:55",
+    "window_utc": [
+     "2024-01-18T17:43",
+     "2024-01-18T18:07"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1026",
+    "incident": "OB/emailservice_disk/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-18T18:36",
+    "window_utc": [
+     "2024-01-18T18:24",
+     "2024-01-18T18:48"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1027",
+    "incident": "OB/checkoutservice_cpu/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-19T00:18",
+    "window_utc": [
+     "2024-01-19T00:06",
+     "2024-01-19T00:30"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1028",
+    "incident": "OB/checkoutservice_mem/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-19T01:01",
+    "window_utc": [
+     "2024-01-19T00:49",
+     "2024-01-19T01:05"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1029",
+    "incident": "OB/checkoutservice_mem/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-19T01:30",
+    "window_utc": [
+     "2024-01-19T01:18",
+     "2024-01-19T01:42"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1030",
+    "incident": "OB/checkoutservice_socket/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-19T10:32",
+    "window_utc": [
+     "2024-01-19T10:20",
+     "2024-01-19T10:44"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1031",
+    "incident": "OB/checkoutservice_socket/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-19T11:34",
+    "window_utc": [
+     "2024-01-19T11:22",
+     "2024-01-19T11:46"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1032",
+    "incident": "OB/checkoutservice_delay/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-19T12:55",
+    "window_utc": [
+     "2024-01-19T12:43",
+     "2024-01-19T13:07"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1033",
+    "incident": "OB/checkoutservice_delay/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-19T13:35",
+    "window_utc": [
+     "2024-01-19T13:23",
+     "2024-01-19T13:47"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1034",
+    "incident": "OB/checkoutservice_loss/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-19T14:16",
+    "window_utc": [
+     "2024-01-19T14:04",
+     "2024-01-19T14:28"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1035",
+    "incident": "SS/carts_cpu/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-19T15:04",
+    "window_utc": [
+     "2024-01-19T14:52",
+     "2024-01-19T15:16"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1036",
+    "incident": "SS/carts_cpu/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-19T15:31",
+    "window_utc": [
+     "2024-01-19T15:19",
+     "2024-01-19T15:43"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1037",
+    "incident": "SS/carts_mem/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-19T15:57",
+    "window_utc": [
+     "2024-01-19T15:45",
+     "2024-01-19T16:09"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1038",
+    "incident": "SS/carts_mem/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-19T16:28",
+    "window_utc": [
+     "2024-01-19T16:16",
+     "2024-01-19T16:40"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1039",
+    "incident": "SS/carts_disk/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-19T16:55",
+    "window_utc": [
+     "2024-01-19T16:43",
+     "2024-01-19T17:07"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1040",
+    "incident": "OB/currencyservice_cpu/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-19T17:26",
+    "window_utc": [
+     "2024-01-19T17:14",
+     "2024-01-19T17:38"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1041",
+    "incident": "OB/currencyservice_cpu/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-19T18:06",
+    "window_utc": [
+     "2024-01-19T17:54",
+     "2024-01-19T18:18"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1042",
+    "incident": "OB/currencyservice_mem/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-19T18:47",
+    "window_utc": [
+     "2024-01-19T18:35",
+     "2024-01-19T18:59"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1043",
+    "incident": "OB/currencyservice_disk/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-19T19:27",
+    "window_utc": [
+     "2024-01-19T19:15",
+     "2024-01-19T19:39"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1044",
+    "incident": "OB/currencyservice_disk/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-19T20:07",
+    "window_utc": [
+     "2024-01-19T19:55",
+     "2024-01-19T20:19"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1045",
+    "incident": "OB/currencyservice_socket/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-19T20:47",
+    "window_utc": [
+     "2024-01-19T20:35",
+     "2024-01-19T20:59"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1046",
+    "incident": "SS/catalogue_cpu/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-19T20:57",
+    "window_utc": [
+     "2024-01-19T20:45",
+     "2024-01-19T21:09"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1047",
+    "incident": "SS/catalogue_cpu/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-19T21:22",
+    "window_utc": [
+     "2024-01-19T21:10",
+     "2024-01-19T21:34"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1048",
+    "incident": "OB/currencyservice_socket/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-19T21:26",
+    "window_utc": [
+     "2024-01-19T21:14",
+     "2024-01-19T21:38"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1049",
+    "incident": "SS/catalogue_mem/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-19T21:46",
+    "window_utc": [
+     "2024-01-19T21:34",
+     "2024-01-19T21:58"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1050",
+    "incident": "SS/catalogue_mem/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-19T22:11",
+    "window_utc": [
+     "2024-01-19T21:59",
+     "2024-01-19T22:23"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1051",
+    "incident": "SS/catalogue_disk/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-19T22:40",
+    "window_utc": [
+     "2024-01-19T22:28",
+     "2024-01-19T22:52"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1052",
+    "incident": "OB/currencyservice_delay/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-19T22:45",
+    "window_utc": [
+     "2024-01-19T22:33",
+     "2024-01-19T22:57"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1053",
+    "incident": "SS/catalogue_disk/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-19T23:04",
+    "window_utc": [
+     "2024-01-19T22:52",
+     "2024-01-19T23:16"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1054",
+    "incident": "OB/currencyservice_delay/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-19T23:23",
+    "window_utc": [
+     "2024-01-19T23:11",
+     "2024-01-19T23:35"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1055",
+    "incident": "SS/catalogue_socket/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-19T23:29",
+    "window_utc": [
+     "2024-01-19T23:17",
+     "2024-01-19T23:41"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1056",
+    "incident": "SS/catalogue_socket/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-19T23:53",
+    "window_utc": [
+     "2024-01-19T23:41",
+     "2024-01-20T00:05"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1057",
+    "incident": "OB/currencyservice_loss/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-20T00:01",
+    "window_utc": [
+     "2024-01-19T23:49",
+     "2024-01-20T00:13"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1058",
+    "incident": "SS/catalogue_delay/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T00:18",
+    "window_utc": [
+     "2024-01-20T00:06",
+     "2024-01-20T00:30"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1059",
+    "incident": "OB/currencyservice_loss/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-20T00:39",
+    "window_utc": [
+     "2024-01-20T00:27",
+     "2024-01-20T00:51"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1060",
+    "incident": "SS/catalogue_delay/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T00:47",
+    "window_utc": [
+     "2024-01-20T00:35",
+     "2024-01-20T00:59"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1061",
+    "incident": "SS/catalogue_loss/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T01:11",
+    "window_utc": [
+     "2024-01-20T00:59",
+     "2024-01-20T01:23"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1062",
+    "incident": "SS/catalogue_loss/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T01:36",
+    "window_utc": [
+     "2024-01-20T01:24",
+     "2024-01-20T01:47"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1063",
+    "incident": "OB/productcatalogservice_loss/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-20T02:18",
+    "window_utc": [
+     "2024-01-20T02:06",
+     "2024-01-20T02:30"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1064",
+    "incident": "OB/emailservice_disk/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-20T02:54",
+    "window_utc": [
+     "2024-01-20T02:42",
+     "2024-01-20T03:04"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1065",
+    "incident": "SS/carts_disk/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T03:12",
+    "window_utc": [
+     "2024-01-20T03:00",
+     "2024-01-20T03:24"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1066",
+    "incident": "SS/carts_socket/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T03:38",
+    "window_utc": [
+     "2024-01-20T03:26",
+     "2024-01-20T03:50"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1067",
+    "incident": "SS/carts_socket/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T04:05",
+    "window_utc": [
+     "2024-01-20T03:53",
+     "2024-01-20T04:17"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1068",
+    "incident": "SS/carts_delay/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T04:32",
+    "window_utc": [
+     "2024-01-20T04:20",
+     "2024-01-20T04:44"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1069",
+    "incident": "SS/carts_delay/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T04:58",
+    "window_utc": [
+     "2024-01-20T04:46",
+     "2024-01-20T05:10"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1070",
+    "incident": "OB/emailservice_socket/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-20T05:30",
+    "window_utc": [
+     "2024-01-20T05:18",
+     "2024-01-20T05:42"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1071",
+    "incident": "SS/carts_loss/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T05:31",
+    "window_utc": [
+     "2024-01-20T05:19",
+     "2024-01-20T05:43"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1072",
+    "incident": "SS/carts_loss/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T05:57",
+    "window_utc": [
+     "2024-01-20T05:45",
+     "2024-01-20T06:09"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1073",
+    "incident": "OB/emailservice_socket/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-20T06:09",
+    "window_utc": [
+     "2024-01-20T05:57",
+     "2024-01-20T06:21"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1074",
+    "incident": "SS/orders_cpu/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T06:24",
+    "window_utc": [
+     "2024-01-20T06:12",
+     "2024-01-20T06:36"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1075",
+    "incident": "SS/orders_cpu/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T06:50",
+    "window_utc": [
+     "2024-01-20T06:38",
+     "2024-01-20T07:02"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1076",
+    "incident": "SS/orders_mem/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T07:17",
+    "window_utc": [
+     "2024-01-20T07:05",
+     "2024-01-20T07:29"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1077",
+    "incident": "OB/emailservice_delay/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-20T07:28",
+    "window_utc": [
+     "2024-01-20T07:16",
+     "2024-01-20T07:40"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1078",
+    "incident": "SS/orders_mem/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T07:49",
+    "window_utc": [
+     "2024-01-20T07:37",
+     "2024-01-20T08:01"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1079",
+    "incident": "OB/emailservice_delay/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-20T08:07",
+    "window_utc": [
+     "2024-01-20T07:55",
+     "2024-01-20T08:19"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1080",
+    "incident": "SS/orders_socket/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T08:43",
+    "window_utc": [
+     "2024-01-20T08:31",
+     "2024-01-20T08:55"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1081",
+    "incident": "OB/emailservice_loss/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-20T08:46",
+    "window_utc": [
+     "2024-01-20T08:34",
+     "2024-01-20T08:58"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1082",
+    "incident": "SS/orders_socket/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T09:10",
+    "window_utc": [
+     "2024-01-20T08:58",
+     "2024-01-20T09:22"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1083",
+    "incident": "OB/emailservice_loss/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-20T09:26",
+    "window_utc": [
+     "2024-01-20T09:14",
+     "2024-01-20T09:38"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1084",
+    "incident": "SS/orders_delay/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T09:43",
+    "window_utc": [
+     "2024-01-20T09:31",
+     "2024-01-20T09:55"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1085",
+    "incident": "SS/orders_delay/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T10:09",
+    "window_utc": [
+     "2024-01-20T09:57",
+     "2024-01-20T10:21"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1086",
+    "incident": "SS/orders_loss/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T10:36",
+    "window_utc": [
+     "2024-01-20T10:24",
+     "2024-01-20T10:48"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1087",
+    "incident": "SS/orders_loss/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T11:02",
+    "window_utc": [
+     "2024-01-20T10:50",
+     "2024-01-20T11:14"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1088",
+    "incident": "OB/currencyservice_mem/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-20T11:24",
+    "window_utc": [
+     "2024-01-20T11:12",
+     "2024-01-20T11:36"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1089",
+    "incident": "SS/payment_cpu/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T12:29",
+    "window_utc": [
+     "2024-01-20T12:17",
+     "2024-01-20T12:41"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1090",
+    "incident": "SS/payment_cpu/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T12:55",
+    "window_utc": [
+     "2024-01-20T12:43",
+     "2024-01-20T13:07"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1091",
+    "incident": "SS/payment_mem/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T13:22",
+    "window_utc": [
+     "2024-01-20T13:10",
+     "2024-01-20T13:34"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1092",
+    "incident": "OB/recommendationservice_loss/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-20T13:28",
+    "window_utc": [
+     "2024-01-20T13:16",
+     "2024-01-20T13:40"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1093",
+    "incident": "SS/payment_mem/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T13:49",
+    "window_utc": [
+     "2024-01-20T13:37",
+     "2024-01-20T14:01"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1094",
+    "incident": "SS/payment_disk/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T14:21",
+    "window_utc": [
+     "2024-01-20T14:09",
+     "2024-01-20T14:33"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1095",
+    "incident": "SS/payment_disk/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T14:48",
+    "window_utc": [
+     "2024-01-20T14:36",
+     "2024-01-20T15:00"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1096",
+    "incident": "SS/payment_socket/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T15:14",
+    "window_utc": [
+     "2024-01-20T15:02",
+     "2024-01-20T15:26"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1097",
+    "incident": "SS/payment_socket/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T15:41",
+    "window_utc": [
+     "2024-01-20T15:29",
+     "2024-01-20T15:53"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1098",
+    "incident": "OB/checkoutservice_disk/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-20T15:45",
+    "window_utc": [
+     "2024-01-20T15:33",
+     "2024-01-20T15:57"
+    ],
+    "n_services": 11
+   },
+   {
+    "ticket": "INC-1099",
+    "incident": "SS/payment_delay/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T16:07",
+    "window_utc": [
+     "2024-01-20T15:55",
+     "2024-01-20T16:19"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1100",
+    "incident": "OB/checkoutservice_disk/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-01-20T16:23",
+    "window_utc": [
+     "2024-01-20T16:11",
+     "2024-01-20T16:35"
+    ],
+    "n_services": 11
+   },
+   {
+    "ticket": "INC-1101",
+    "incident": "SS/payment_delay/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T16:40",
+    "window_utc": [
+     "2024-01-20T16:28",
+     "2024-01-20T16:52"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1102",
+    "incident": "SS/payment_loss/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T17:07",
+    "window_utc": [
+     "2024-01-20T16:55",
+     "2024-01-20T17:19"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1103",
+    "incident": "SS/payment_loss/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T18:05",
+    "window_utc": [
+     "2024-01-20T17:53",
+     "2024-01-20T18:17"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1104",
+    "incident": "SS/user_cpu/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T19:23",
+    "window_utc": [
+     "2024-01-20T19:11",
+     "2024-01-20T19:35"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1105",
+    "incident": "SS/user_cpu/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T19:50",
+    "window_utc": [
+     "2024-01-20T19:38",
+     "2024-01-20T20:02"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1106",
+    "incident": "SS/user_mem/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T20:23",
+    "window_utc": [
+     "2024-01-20T20:11",
+     "2024-01-20T20:35"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1107",
+    "incident": "SS/user_mem/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T20:50",
+    "window_utc": [
+     "2024-01-20T20:38",
+     "2024-01-20T21:02"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1108",
+    "incident": "SS/user_disk/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T21:17",
+    "window_utc": [
+     "2024-01-20T21:05",
+     "2024-01-20T21:29"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1109",
+    "incident": "SS/user_disk/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T21:43",
+    "window_utc": [
+     "2024-01-20T21:31",
+     "2024-01-20T21:55"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1110",
+    "incident": "SS/user_socket/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T22:10",
+    "window_utc": [
+     "2024-01-20T21:58",
+     "2024-01-20T22:22"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1111",
+    "incident": "SS/user_socket/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T22:43",
+    "window_utc": [
+     "2024-01-20T22:31",
+     "2024-01-20T22:55"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1112",
+    "incident": "SS/user_delay/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T23:10",
+    "window_utc": [
+     "2024-01-20T22:58",
+     "2024-01-20T23:22"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1113",
+    "incident": "SS/user_delay/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-20T23:37",
+    "window_utc": [
+     "2024-01-20T23:25",
+     "2024-01-20T23:49"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1114",
+    "incident": "SS/user_loss/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-21T00:03",
+    "window_utc": [
+     "2024-01-20T23:51",
+     "2024-01-21T00:15"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1115",
+    "incident": "SS/user_loss/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-21T00:29",
+    "window_utc": [
+     "2024-01-21T00:17",
+     "2024-01-21T00:41"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1116",
+    "incident": "SS/orders_disk/2",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-21T07:51",
+    "window_utc": [
+     "2024-01-21T07:39",
+     "2024-01-21T08:03"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1117",
+    "incident": "SS/orders_disk/3",
+    "system": "sock-shop",
+    "alert_utc": "2024-01-21T14:48",
+    "window_utc": [
+     "2024-01-21T14:36",
+     "2024-01-21T15:00"
+    ],
+    "n_services": 15
+   },
+   {
+    "ticket": "INC-1118",
+    "incident": "OB/productcatalogservice_disk/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-02-20T23:49",
+    "window_utc": [
+     "2024-02-20T23:37",
+     "2024-02-21T00:01"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1119",
+    "incident": "OB/checkoutservice_cpu/2",
+    "system": "online-boutique",
+    "alert_utc": "2024-02-21T00:29",
+    "window_utc": [
+     "2024-02-21T00:17",
+     "2024-02-21T00:32"
+    ],
+    "n_services": 12
+   },
+   {
+    "ticket": "INC-1120",
+    "incident": "OB/checkoutservice_loss/3",
+    "system": "online-boutique",
+    "alert_utc": "2024-02-21T04:19",
+    "window_utc": [
+     "2024-02-21T04:07",
+     "2024-02-21T04:31"
+    ],
+    "n_services": 12
+   }
+  ]
+ },
+ "commit": "bfcbf100f49de1c4413bc4a4d980d3a624138f9a",
+ "g9": {
+  "hash_before": "65a5c5926b2b905c6e36a94756ade66702991c6fda873455afd7d9d5a6691bc6",
+  "hash_after": "65a5c5926b2b905c6e36a94756ade66702991c6fda873455afd7d9d5a6691bc6",
+  "pinned_rule": "gate45_cap50",
+  "n_dev": 88,
+  "n_test": 182,
+  "commit": "0e1a88c52f592098bf6ee87194b87befbfe36ec5",
+  "python": "3.13.7",
+  "finished": "2026-10-27T22:06:13",
+  "chosen": "gate45_cap50"
+ }
+}
