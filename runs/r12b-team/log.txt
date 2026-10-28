@@ -25,3 +25,21 @@
 [23:16:08] re2_test: 31/120 (101s)
 [23:16:14] re2_test: 41/120 (108s)
 [23:16:21] re2_test: 51/120 (114s)
+[23:16:28] re2_test: 61/120 (122s)
+[23:16:33] re2_test: 71/120 (126s)
+[23:16:37] re2_test: 81/120 (131s)
+[23:16:42] re2_test: 91/120 (135s)
+[23:16:46] re2_test: 101/120 (140s)
+[23:16:51] re2_test: 111/120 (144s)
+[23:16:54] re2_test: 120/120 (148s)
+[23:16:55] re3_test: 1/62 (148s)
+[23:17:00] re3_test: 11/62 (153s)
+[23:17:04] re3_test: 21/62 (158s)
+[23:17:09] re3_test: 31/62 (162s)
+[23:17:13] re3_test: 41/62 (166s)
+[23:17:17] re3_test: 51/62 (171s)
+[23:17:23] re3_test: 61/62 (176s)
+[23:17:23] re3_test: 62/62 (177s)
+[23:17:23] dev (pooled top-1): a_rr_w1 0.682, a_gate40 0.818, a_gate45 0.830, a_gate50 0.682, a_cap50 0.795, a_gate40_cap50 0.830, a_gate45_cap50 0.841, a_gate45_cap100 0.841; chosen a_gate45_cap50
+[23:17:23] wrote D:\Projects\genetic-coil-arena-gpu-results\runs\r12b-team\artifacts\r12b_growth.md and D:\Projects\genetic-coil-arena-gpu-results\runs\r12b-team\artifacts\r12b_growth.json
+[23:17:23] G9b: KILL
