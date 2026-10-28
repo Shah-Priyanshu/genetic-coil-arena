@@ -1,0 +1,25 @@
+{
+  "id": "r7c-train-c",
+  "commit": "24dc6320a6b3025975222892b301777b4474ef54",
+  "args": [
+    "scripts/r7b_goal_conditioned.py",
+    "--train-only",
+    "--modes",
+    "centre-goal",
+    "--runs",
+    "16:26",
+    "--generations",
+    "10000",
+    "--population",
+    "64",
+    "--eval-every",
+    "50",
+    "--workers",
+    "10",
+    "--progress",
+    "600"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 10,
+  "timeout_min": 1800.0
+}
