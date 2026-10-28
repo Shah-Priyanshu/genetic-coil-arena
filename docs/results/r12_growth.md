@@ -279,6 +279,19 @@ decision (4 shown):
 - `r12-sealed-103` category=refuse; style=plain; text=Investigate train ticket INC-2051 and exclude ts-flux-capacitor.; pred={'top_k': 3, 'want_fault_type': True, 'exclude_services': [], 'ticket': 'INC-2051', 'system': 'train-ticket'}; status=ok; routed=incident
 - `r12-sealed-104` category=refuse; style=chatty; text=Look at the sock shop and the train ticket system together for the 8th of December.; pred={'top_k': 3, 'want_fault_type': True, 'exclude_services': [], 'system': 'train-ticket', 'at': '--12-08'}; status=clarify; reason=18 train-ticket incidents matching --12-08 at or before 2024-12-11T09:00: INC-2042 (2024-12-08T06:18), INC-2043 (2024-12-08T06:53), INC-2044 (2024-12-08T07:28), INC-2045 (2024-12-08T08:04) and 14 more. Which one?; routed=incident
 
+## Supplementary: qwen3-coder:30b as translator (outside the verdict)
+
+Queued after the G10 verdict (job `r12-q30-sealed`, pinned 56e60c72, same code and prompts as the 14B run). It ran once on the sealed set and is not part of G10, which names the 14B.
+
+| Translator | Exact RE3 | Exact RE2 | Routing | NL − gold, RE3 | NL − gold, RE2 | Decisions (107) | Round trip | Fidelity | Warm p95 |
+|---|---|---|---|---|---|---|---|---|---|
+| qwen3-coder:30b | 93.9% (62/66) | 92.0% (23/25) | 100.0% (252/252) | −3.0 [−7.6, +0.0] | +0.0 [+0.0, +0.0] | 98.1% (105/107) | 95.5% (85/89) | 100.0% | 6.96 s |
+
+- **It passes both exact-match bars** that the 14B missed. Train Ticket is 93.8% (30/32), and none of the 30B's misses is an added year.
+- **Its task-score miss on RE3** comes from two terse requests, "shop inc 2033" and "shop 23rd 21:35". With a third system on the desk it asked which system "shop" meant instead of reading it as the sock shop.
+- **Results:** every refusal item was refused (10/10).
+- **The 14B's G8b gap is the same here:** a larger translator stops writing values the user did not say.
+
 ## Analysis
 
 <!-- analysis:start -->
