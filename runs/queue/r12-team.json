@@ -1,13 +1,13 @@
 {
   "id": "r12-team",
-  "commit": "c73fa83bc5fb9975e4f1c76747d66dace31fd128",
+  "commit": "0e1a88c52f592098bf6ee87194b87befbfe36ec5",
   "args": [
     "scripts/r12_growth.py",
     "team",
     "--team-from",
     "runs:r11-team"
   ],
-  "lane": "cpu",
+  "lane": "gpu",
   "cpu_workers": 2,
   "priority": 7,
   "timeout_min": 120.0
