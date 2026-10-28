@@ -44,6 +44,12 @@ from collections.abc import Mapping
 from typing import Any, Optional
 
 RULES = ("relative", "year", "month", "top_k")
+RULES_TEXT = (
+    "relative (a relative day in the text sets the date from the desk clock), "
+    "year (a year the text does not name is dropped), "
+    "month (a month the text does not name is dropped), "
+    "top_k (the one suspect count the text states replaces a different top_k)."
+)
 NUMBER_WORDS = {
     w: i
     for i, w in enumerate(
