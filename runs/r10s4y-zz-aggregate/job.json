@@ -1,0 +1,38 @@
+{
+  "id": "r10s4y-zz-aggregate",
+  "commit": "24539c000cd60f950129573e21bdf0371e4ececf",
+  "args": [
+    "scripts/r10_step4.py",
+    "report",
+    "--from",
+    "runs:r10s4-*",
+    "runs:r10s4x-*",
+    "runs:r10s4y-*",
+    "--out",
+    "docs/results/r10_step4_scale.md",
+    "--note",
+    "Exploratory scale check, not the G4d verdict: adds qwen3-coder:30b (MoE, 18 GB, partly offloaded to CPU) as log specialist and LLM centre, queued after the G4d kill to ask whether a larger model closes the gap to the template count. The Holm family spans every model."
+  ],
+  "lane": "cpu",
+  "cpu_workers": 1,
+  "priority": 3,
+  "after": [
+    "r10s4y-q30-0",
+    "r10s4y-q30-1",
+    "r10s4y-q30-2",
+    "r10s4x-g4b-0",
+    "r10s4x-g4b-1",
+    "r10s4x-g4b-2",
+    "r10s4-o14-0",
+    "r10s4-o14-1",
+    "r10s4-o14-2",
+    "r10s4-q3-0",
+    "r10s4-q3-1",
+    "r10s4-gate"
+  ],
+  "timeout_min": 20.0,
+  "outputs": [
+    "docs/results/r10_step4_scale.md",
+    "docs/results/r10_step4_scale.json"
+  ]
+}
