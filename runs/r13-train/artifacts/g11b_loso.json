@@ -1,0 +1,236 @@
+{
+ "table": [
+  {
+   "features": "compact",
+   "l2": 0.01,
+   "per_system": {
+    "SS": {
+     "top1": 0.896,
+     "baro": 0.896,
+     "n": 125
+    },
+    "OB": {
+     "top1": 0.864,
+     "baro": 0.864,
+     "n": 125
+    },
+    "TT": {
+     "top1": 0.72,
+     "baro": 0.72,
+     "n": 125
+    }
+   },
+   "mean_top1": 0.8266666666666667
+  },
+  {
+   "features": "compact",
+   "l2": 0.1,
+   "per_system": {
+    "SS": {
+     "top1": 0.896,
+     "baro": 0.896,
+     "n": 125
+    },
+    "OB": {
+     "top1": 0.864,
+     "baro": 0.864,
+     "n": 125
+    },
+    "TT": {
+     "top1": 0.72,
+     "baro": 0.72,
+     "n": 125
+    }
+   },
+   "mean_top1": 0.8266666666666667
+  },
+  {
+   "features": "compact",
+   "l2": 1.0,
+   "per_system": {
+    "SS": {
+     "top1": 0.896,
+     "baro": 0.896,
+     "n": 125
+    },
+    "OB": {
+     "top1": 0.864,
+     "baro": 0.864,
+     "n": 125
+    },
+    "TT": {
+     "top1": 0.72,
+     "baro": 0.72,
+     "n": 125
+    }
+   },
+   "mean_top1": 0.8266666666666667
+  },
+  {
+   "features": "all",
+   "l2": 0.01,
+   "per_system": {
+    "SS": {
+     "top1": 0.896,
+     "baro": 0.896,
+     "n": 125
+    },
+    "OB": {
+     "top1": 0.824,
+     "baro": 0.864,
+     "n": 125
+    },
+    "TT": {
+     "top1": 0.808,
+     "baro": 0.72,
+     "n": 125
+    }
+   },
+   "mean_top1": 0.8426666666666667
+  },
+  {
+   "features": "all",
+   "l2": 0.1,
+   "per_system": {
+    "SS": {
+     "top1": 0.896,
+     "baro": 0.896,
+     "n": 125
+    },
+    "OB": {
+     "top1": 0.864,
+     "baro": 0.864,
+     "n": 125
+    },
+    "TT": {
+     "top1": 0.776,
+     "baro": 0.72,
+     "n": 125
+    }
+   },
+   "mean_top1": 0.8453333333333334
+  },
+  {
+   "features": "all",
+   "l2": 1.0,
+   "per_system": {
+    "SS": {
+     "top1": 0.888,
+     "baro": 0.896,
+     "n": 125
+    },
+    "OB": {
+     "top1": 0.872,
+     "baro": 0.864,
+     "n": 125
+    },
+    "TT": {
+     "top1": 0.752,
+     "baro": 0.72,
+     "n": 125
+    }
+   },
+   "mean_top1": 0.8373333333333334
+  }
+ ],
+ "chosen": 4,
+ "chosen_config": {
+  "features": "all",
+  "l2": 0.1
+ },
+ "chosen_loso": {
+  "pooled": {
+   "n": 375,
+   "a": 0.8453333333333334,
+   "b": 0.8266666666666667,
+   "diff": 0.018666666666666668,
+   "lo": -0.005333333333333333,
+   "hi": 0.042666666666666665
+  },
+  "SS": {
+   "n": 125,
+   "a": 0.896,
+   "b": 0.896,
+   "diff": 0.0,
+   "lo": -0.056,
+   "hi": 0.056
+  },
+  "OB": {
+   "n": 125,
+   "a": 0.864,
+   "b": 0.864,
+   "diff": 0.0,
+   "lo": -0.024,
+   "hi": 0.024
+  },
+  "TT": {
+   "n": 125,
+   "a": 0.776,
+   "b": 0.72,
+   "diff": 0.056,
+   "lo": 0.016,
+   "hi": 0.096
+  }
+ },
+ "n": 375,
+ "smoke": false,
+ "ranker_sha256": "3da0eeb92c5a83aba8f5b2ce692a5887576087716b41a88b49ed9c4a4334b8ed",
+ "feature_names": [
+  "logscore",
+  "rel_to_max",
+  "zscore",
+  "rank_inv",
+  "is_top",
+  "p_cpu",
+  "p_mem",
+  "p_disk",
+  "p_delay",
+  "p_loss",
+  "p_socket",
+  "logz:cpu",
+  "logz:mem",
+  "logz:socket",
+  "logz:diskio",
+  "logz:workload",
+  "logz:latency-50",
+  "logz:latency-90",
+  "logz:error",
+  "logz_rel:cpu",
+  "logz_rel:mem",
+  "logz_rel:socket",
+  "logz_rel:diskio",
+  "logz_rel:workload",
+  "logz_rel:latency-50",
+  "logz_rel:latency-90",
+  "logz_rel:error"
+ ],
+ "weights": {
+  "logscore": 0.12025943802784311,
+  "rel_to_max": 0.10988508679950763,
+  "zscore": 0.22257705112253348,
+  "rank_inv": 0.23544439770298814,
+  "is_top": 0.23189266266123804,
+  "p_cpu": 0.03640388948772581,
+  "p_mem": 0.027457192125054857,
+  "p_disk": -0.05497456676190824,
+  "p_delay": 0.059954332148465864,
+  "p_loss": -0.07091926586410141,
+  "p_socket": 0.002079035656003477,
+  "logz:cpu": 0.5096289438673193,
+  "logz:mem": 0.359677311322162,
+  "logz:socket": 0.0,
+  "logz:diskio": 0.0,
+  "logz:workload": 0.18583604701728565,
+  "logz:latency-50": 0.4150356291679391,
+  "logz:latency-90": 0.2972108683480873,
+  "logz:error": -0.045720952287561345,
+  "logz_rel:cpu": 0.22046615316447055,
+  "logz_rel:mem": 0.15623098758719978,
+  "logz_rel:socket": 0.0,
+  "logz_rel:diskio": 0.0,
+  "logz_rel:workload": 0.13909772581608365,
+  "logz_rel:latency-50": 0.2783501488442827,
+  "logz_rel:latency-90": 0.21359849224341113,
+  "logz_rel:error": -0.04572095228756164
+ }
+}

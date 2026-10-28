@@ -1,0 +1,8 @@
+[01:05:22] 375 RE1 incidents, 27 features
+[01:05:24] config 0 compact l2=0.01: LOSO top-1 0.827
+[01:05:24] config 1 compact l2=0.1: LOSO top-1 0.827
+[01:05:24] config 2 compact l2=1.0: LOSO top-1 0.827
+[01:05:24] config 3 all l2=0.01: LOSO top-1 0.843
+[01:05:24] config 4 all l2=0.1: LOSO top-1 0.845  <- chosen
+[01:05:24] config 5 all l2=1.0: LOSO top-1 0.837
+[01:05:24] chosen LOSO pooled: learned 0.845 baro 0.827 diff +0.019 [-0.005, +0.043]
