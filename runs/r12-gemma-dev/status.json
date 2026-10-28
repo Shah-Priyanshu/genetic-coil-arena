@@ -1,0 +1,22 @@
+{
+  "id": "r12-gemma-dev",
+  "commit": "0e1a88c52f592098bf6ee87194b87befbfe36ec5",
+  "queued_args": [
+    "scripts/r12_growth.py",
+    "run",
+    "--translator",
+    "ollama:gemma4:e4b",
+    "--split",
+    "dev",
+    "--team-from",
+    "runs:r12-team"
+  ],
+  "state": "running",
+  "started_at": "2026-10-28T02:06:23+00:00",
+  "updated_at": "2026-10-28T02:06:23+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 785 MiB, 12282 MiB, 45",
+  "host": "PC",
+  "lane": "gpu",
+  "cpu_workers": 2
+}
