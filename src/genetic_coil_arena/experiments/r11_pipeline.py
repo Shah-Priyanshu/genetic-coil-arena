@@ -148,6 +148,7 @@ class Desk:
         domains: ``name -> Domain`` with policy packs (squad, plant, incident)
         catalogue: Incident catalogue for the resolution step
         keep_alive: Passed to the backend on every call when not None
+        route_system: The router prompt (default: the R11 one)
     """
 
     def __init__(
@@ -157,7 +158,9 @@ class Desk:
         domains: dict[str, Domain],
         catalogue: IncidentCatalogue,
         keep_alive: Any = None,
+        route_system: Optional[str] = None,
     ):
+        self.route_system = route_system or inc.ROUTE_SYSTEM
         self.backend = backend
         self.registry = registry
         self.domains = domains
@@ -168,7 +171,7 @@ class Desk:
     def route(self, text: str) -> tuple[str, float, str]:
         """``(domain, seconds, raw reply)``; an unreadable reply routes to ``none``."""
         kwargs: dict[str, Any] = {
-            "system": inc.ROUTE_SYSTEM,
+            "system": self.route_system,
             "examples": [(t, json.dumps({"domain": d})) for t, d in inc.ROUTE_EXAMPLES],
             "schema": inc.route_schema(),
         }

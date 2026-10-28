@@ -180,17 +180,60 @@ class TestSpecV3:
 
 
 class TestPromptsV3:
-    def test_the_only_system_prompt_differences_are_the_clock_and_the_generated_system_line(
+    def test_rendering_the_two_v2_systems_reproduces_the_v1_and_v2_prompts(self):
+        t2 = inc3.SYSTEM_TABLE_V2
+        for text in (inc.INCIDENT_POLICY_SYSTEM, incb.INCIDENT_POLICY_SYSTEM_V2):
+            assert inc3.render_systems_paragraph(t2) in text
+            assert inc3.render_refusal_scope(t2) in text
+            assert f"- system: {inc3.render_system_choices(t2)}." in text
+        assert inc3.render_router_incident_line(t2) in inc.ROUTE_SYSTEM
+        assert inc3.render_route_system(t2) == inc.ROUTE_SYSTEM  # byte for byte
+        assert (
+            inc3.render_description(t2) == incb.investigate_definition_v2().description
+        )
+        assert (
+            inc3.render_missing_system_question(t2) == inc.INCIDENT_QUESTIONS["system"]
+        )
+        assert inc.SOCK_SHOP_SERVICES == t2[0].services
+        assert inc.ONLINE_BOUTIQUE_SERVICES == t2[1].services
+
+    def test_the_only_system_prompt_differences_are_the_clock_and_the_rendered_systems(
         self,
     ):
         diff = inc3.prompt_diff()
         assert diff["same_line_count"]
-        assert len(diff["system_lines_changed"]) == 2
-        clock, systems = diff["system_lines_changed"]
-        assert inc3.DESK_NOW_TEXT in clock[1] and inc.DESK_NOW in clock[0]
-        assert clock[0].replace(inc.DESK_NOW, inc3.DESK_NOW_TEXT) == clock[1]
-        assert systems[0].startswith("- system:") and "train-ticket" in systems[1]
-        assert systems[1] == systems[0].replace(inc3._V2_CHOICES, inc3.system_choices())
+        # four lines: the aliases and services paragraph, the clock, the system param line
+        # and the refusal rule
+        assert len(diff["system_lines_changed"]) == 4
+        v2_text, v3_text = (
+            incb.INCIDENT_POLICY_SYSTEM_V2,
+            inc3.INCIDENT_POLICY_SYSTEM_V3,
+        )
+        t2, t3 = inc3.SYSTEM_TABLE_V2, inc3.SYSTEM_TABLE_V3
+        expected = v2_text
+        for old, new in (
+            (inc.DESK_NOW, inc3.DESK_NOW_TEXT),
+            (inc3.render_systems_paragraph(t2), inc3.render_systems_paragraph(t3)),
+            (inc3.render_refusal_scope(t2), inc3.render_refusal_scope(t3)),
+            (
+                f"- system: {inc3.render_system_choices(t2)}.",
+                f"- system: {inc3.render_system_choices(t3)}.",
+            ),
+        ):
+            expected = expected.replace(old, new)
+        assert v3_text == expected
+        assert "these three systems" in v3_text and "train-ticket" in v3_text
+        assert "the train booking system" in v3_text
+        assert all(s in v3_text for s in inc3.TRAIN_TICKET_SERVICES)
+
+    def test_router_and_description_are_rendered_and_nothing_else_changes(self):
+        diff = inc3.prompt_diff()
+        assert diff["router_other_lines_same"]
+        old, new = diff["router_line_changed"]
+        assert inc.ROUTE_SYSTEM.replace(old, new) == inc3.ROUTE_SYSTEM_V3
+        assert "the train ticket web systems" in new
+        assert "Train Ticket" in inc3.investigate_definition_v3().description
+        assert inc3.INCIDENT_QUESTIONS_V3["system"].endswith("train-ticket?")
 
     def test_one_few_shot_changes_its_date_and_nothing_else(self):
         diff = inc3.prompt_diff()
@@ -272,7 +315,11 @@ def desk_v3():
     domains = build_domains(None)
     domains["incident"] = inc3.incident_domain_v3(lambda p: {})
     return pipe.Desk(
-        pipe.KeywordBackend(inc3.keyword_incident_v3), registry, domains, cat
+        pipe.KeywordBackend(inc3.keyword_incident_v3),
+        registry,
+        domains,
+        cat,
+        route_system=inc3.ROUTE_SYSTEM_V3,
     )
 
 

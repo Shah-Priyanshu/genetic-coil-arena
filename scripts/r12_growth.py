@@ -79,8 +79,8 @@ LABELS = {
     "keyword": "keyword/regex parser",
 }
 CTX = {
-    "num_ctx": 4096
-}  # the incident prompt is long: Ollama would cut the start silently
+    "num_ctx": 8192
+}  # the v3 prompt lists 95 services: Ollama would cut the start silently
 KEEP = "30m"
 WARM_TEXTS = (
     "Please investigate INC-2010 on the online boutique.",
@@ -311,7 +311,11 @@ def cmd_run(args: argparse.Namespace) -> int:
         return 0
     if kind == "stub":
         desk = pipe.Desk(
-            pipe.KeywordBackend(inc3.keyword_incident_v3), registry, domains, catalogue
+            pipe.KeywordBackend(inc3.keyword_incident_v3),
+            registry,
+            domains,
+            catalogue,
+            route_system=inc3.ROUTE_SYSTEM_V3,
         )
         finish(desk, ReverseTranslator(desk.translator), vram)
         return 0
@@ -327,7 +331,14 @@ def cmd_run(args: argparse.Namespace) -> int:
         monitor.start()
         backend = OllamaBackend(model, host=args.host, keep_alive=KEEP, options=CTX)
         try:
-            desk = pipe.Desk(backend, registry, domains, catalogue, keep_alive=KEEP)
+            desk = pipe.Desk(
+                backend,
+                registry,
+                domains,
+                catalogue,
+                keep_alive=KEEP,
+                route_system=inc3.ROUTE_SYSTEM_V3,
+            )
             summariser = ReverseTranslator(desk.translator, keep_alive=KEEP)
             try:
                 vram = {"baseline_smi_mib": base_mib}
@@ -490,7 +501,7 @@ def cmd_report(args: argparse.Namespace) -> int:
             "r7a_sealed_sha256": first["r7a_sealed_sha256"],
             "catalogue": first["catalogue"],
             "prompt_audit": (
-                f"v3 differs from v2 in {len(audit['system_lines_changed'])} system-prompt lines (the clock line and the generated list of allowed systems) and {len(audit['examples_changed'])} few-shot date (the 'yesterday' example, of {audit['n_examples']}); the summary pack is the v2 one: {audit['summary_pack_same']}."
+                f"v3 differs from v2 in {len(audit['system_lines_changed'])} system-prompt lines (the clock line, and the aliases and services paragraph, the system list and the refusal scope rendered from the systems table) and {len(audit['examples_changed'])} few-shot date (the 'yesterday' example, of {audit['n_examples']}); the router's incident line is rendered from the table too, all else is the v2 text: {audit['summary_pack_same']}."
             ),
             "team": (
                 f"the G9 joined team (rule `{t['rule']}`) over the G4c trained metric fault specialist (config {t.get('chosen')}, {t.get('n_train')} training incidents)."

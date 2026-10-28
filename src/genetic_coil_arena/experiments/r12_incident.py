@@ -58,9 +58,114 @@ TRAIN_TICKET_SERVICES = (
     "ts-ui-dashboard", "ts-user-mongo", "ts-user-service", "ts-verification-code-service",
     "ts-voucher-mysql", "ts-voucher-service",
 )  # fmt: skip
-INCIDENT_QUESTIONS_V3 = {
-    "system": "Which system is this about, sock-shop, online-boutique or train-ticket?"
-}
+
+
+# ---------------------------------------------------------------------- systems table
+
+
+@dataclasses.dataclass(frozen=True)
+class SystemInfo:
+    """One system of the desk: the data every prompt line that mentions systems is rendered from.
+
+    Attributes:
+        name: The ``system`` value of the spec
+        display: Name in the spec description
+        spoken: Name in the router's description of the incident desk
+        aliases: What users call it, as listed in the policy prompt
+        services: Its services (candidates of the root cause)
+        kind: ``shop`` or ``system`` (picks the noun of the router line)
+    """
+
+    name: str
+    display: str
+    spoken: str
+    aliases: str
+    services: tuple[str, ...]
+    kind: str = "shop"
+
+
+SYSTEM_TABLE_V2 = (
+    SystemInfo(
+        "sock-shop",
+        "Sock Shop",
+        "the sock shop",
+        "the shop, the sock shop, the socks shop",
+        v1.SOCK_SHOP_SERVICES,
+    ),
+    SystemInfo(
+        "online-boutique",
+        "Online Boutique",
+        "the online boutique",
+        "the boutique, the online boutique",
+        v1.ONLINE_BOUTIQUE_SERVICES,
+    ),
+)
+SYSTEM_TABLE_V3 = (
+    *SYSTEM_TABLE_V2,
+    SystemInfo(
+        "train-ticket",
+        "Train Ticket",
+        "the train ticket",
+        "the train ticket system, train ticket, trainticket, the train booking system",
+        TRAIN_TICKET_SERVICES,
+        kind="system",
+    ),
+)
+_WORDS = {2: "two", 3: "three", 4: "four", 5: "five"}
+
+
+def _join(items: list[str], last: str = "or") -> str:
+    if len(items) == 1:
+        return items[0]
+    return ", ".join(items[:-1]) + f" {last} {items[-1]}"
+
+
+def render_systems_paragraph(table: tuple[SystemInfo, ...]) -> str:
+    """The aliases and services paragraph of the policy prompt."""
+    named = _join([f'"{t.name}" ({t.aliases})' for t in table], "and")
+    services = "; ".join(f"{t.name} has {', '.join(t.services)}" for t in table)
+    return f"Systems: {named}. Their services: {services}."
+
+
+def render_system_choices(table: tuple[SystemInfo, ...]) -> str:
+    """The allowed ``system`` values as the param line lists them: ``"a", "b" or "c"``."""
+    return _join([f'"{t.name}"' for t in table])
+
+
+def render_refusal_scope(table: tuple[SystemInfo, ...]) -> str:
+    """``these two systems`` (the refusal rule's scope)."""
+    return f"these {_WORDS[len(table)]} systems"
+
+
+def render_description(table: tuple[SystemInfo, ...]) -> str:
+    """The spec description."""
+    return (
+        f"Investigate one past incident of the {_join([t.display for t in table])}: "
+        "name it by ticket or by when it happened (as much of the date as the user "
+        "gave, plus an optional time); get the top suspect services and the fault type"
+    )
+
+
+def render_missing_system_question(table: tuple[SystemInfo, ...]) -> str:
+    return f"Which system is this about, {_join([t.name for t in table])}?"
+
+
+def render_router_incident_line(table: tuple[SystemInfo, ...]) -> str:
+    """The router prompt's description of the incident desk."""
+    noun = "web shops" if all(t.kind == "shop" for t in table) else "web systems"
+    return f"investigating a past incident of {_join([t.spoken for t in table])} {noun}"
+
+
+def render_route_system(table: tuple[SystemInfo, ...]) -> str:
+    """The router prompt with its incident line rendered from ``table``."""
+    old = render_router_incident_line(SYSTEM_TABLE_V2)
+    if v1.ROUTE_SYSTEM.count(old) != 1:
+        raise ValueError("router prompt changed")
+    return v1.ROUTE_SYSTEM.replace(old, render_router_incident_line(table))
+
+
+INCIDENT_QUESTIONS_V3 = {"system": render_missing_system_question(SYSTEM_TABLE_V3)}
+ROUTE_SYSTEM_V3 = render_route_system(SYSTEM_TABLE_V3)
 
 
 # ---------------------------------------------------------------------- catalogue
@@ -103,9 +208,7 @@ def investigate_definition_v3() -> SpecDefinition:
         v1.INVESTIGATE,
         SPEC_VERSION,
         params,
-        "Investigate one past incident of the Sock Shop, the Online Boutique or Train "
-        "Ticket: name it by ticket or by when it happened (as much of the date as the user "
-        "gave, plus an optional time); get the top suspect services and the fault type",
+        render_description(SYSTEM_TABLE_V3),
         result,
     )
 
@@ -120,21 +223,17 @@ def build_registry_r12(backend: str = "auto") -> SpecRegistry:
 # ---------------------------------------------------------------------- packs
 
 
-def system_choices(systems: tuple[str, ...] = SYSTEMS_V3) -> str:
-    """The allowed system values as the prompt lists them: ``"a", "b" or "c"``."""
-    quoted = [f'"{s}"' for s in systems]
-    return ", ".join(quoted[:-1]) + f" or {quoted[-1]}"
-
-
-_V2_CHOICES = system_choices(v1.SYSTEMS)
-
-
 def _policy_system_v3() -> str:
+    """The v2 policy prompt with each system-mentioning part and the clock re-rendered."""
     text = v2.INCIDENT_POLICY_SYSTEM_V2
-    for old, new in (
-        (v1.DESK_NOW, DESK_NOW_TEXT),
-        (f"- system: {_V2_CHOICES}.", f"- system: {system_choices()}."),
+    pairs = [(v1.DESK_NOW, DESK_NOW_TEXT)]
+    for render in (
+        render_systems_paragraph,
+        render_refusal_scope,
+        lambda t: f"- system: {render_system_choices(t)}.",
     ):
+        pairs.append((render(SYSTEM_TABLE_V2), render(SYSTEM_TABLE_V3)))
+    for old, new in pairs:
         if text.count(old) != 1:
             raise ValueError(f"v2 policy text changed: {old[:40]!r}")
         text = text.replace(old, new)
@@ -199,7 +298,15 @@ def prompt_diff() -> dict[str, Any]:
         "n_examples": len(INCIDENT_POLICY_EXAMPLES_V3),
         "summary_pack_same": INCIDENT_SUMMARY_PACK_V3 is v2.INCIDENT_SUMMARY_PACK_V2,
         "report_note_same": True,
-        "router_same": True,
+        "router_line_changed": (
+            render_router_incident_line(SYSTEM_TABLE_V2),
+            render_router_incident_line(SYSTEM_TABLE_V3),
+        ),
+        "router_other_lines_same": all(
+            a == b
+            for a, b in zip(v1.ROUTE_SYSTEM.splitlines(), ROUTE_SYSTEM_V3.splitlines())
+            if "incident:" not in a
+        ),
     }
 
 
