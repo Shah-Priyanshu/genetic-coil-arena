@@ -1,0 +1,22 @@
+{
+  "id": "r13-zz-aggregate",
+  "commit": "9126dd6a911c199903fa2826580c0f3dcfc2a7d5",
+  "queued_args": [
+    "scripts/r13_real_centre.py",
+    "report",
+    "--from",
+    "runs:r13-replicate",
+    "runs:r13-train",
+    "runs:r13-test",
+    "--out",
+    "docs/results/r13_real_centre.md"
+  ],
+  "state": "running",
+  "started_at": "2026-10-28T05:05:45+00:00",
+  "updated_at": "2026-10-28T05:05:45+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 827 MiB, 12282 MiB, 41",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 1
+}
