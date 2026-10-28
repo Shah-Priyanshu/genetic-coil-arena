@@ -1,4 +1,4 @@
-"""Download and convert RCAEval RE2 (per-service logs of injected microservice faults).
+"""Download and convert RCAEval RE2 (per-service logs of injected microservice faults), RE3 and RE1.
 
 Pham et al. (2025), Zenodo record 14590730, CC-BY-4.0. Only the logs and the injection
 time of each case are kept: the archives (SS 0.25 GB, OB 1.2 GB, TT 2.8 GB) are checked
@@ -9,6 +9,7 @@ written inside the repo.
     python scripts/fetch_rcaeval.py                    # SS and OB
     python scripts/fetch_rcaeval.py --systems SS,OB,TT --drop-raw
     python scripts/fetch_rcaeval.py --systems RE3-SS,RE3-OB,RE3-TT   # RE3 (0.5 GB, code faults)
+    python scripts/fetch_rcaeval.py --systems RE1-SS,RE1-OB,RE1-TT   # RE1 (0.4 GB, metrics only, no logs)
     python scripts/fetch_rcaeval.py --check            # list the cache, no network
 
 The cache is %LOCALAPPDATA%\\genetic_coil_arena\\rcaeval on Windows, otherwise
@@ -36,7 +37,7 @@ def main() -> int:
     parser.add_argument(
         "--systems",
         default=",".join(DEFAULT_SYSTEMS),
-        help="comma list of SS,OB,TT (RE2) and RE3-SS,RE3-OB,RE3-TT (RE3)",
+        help="comma list of SS,OB,TT (RE2) and RE3-SS,RE3-OB,RE3-TT (RE3), RE1-SS,RE1-OB,RE1-TT (RE1, metrics only)",
     )
     parser.add_argument("--check", action="store_true", help="only count the cache")
     parser.add_argument("--drop-raw", action="store_true", help="delete the zips after")

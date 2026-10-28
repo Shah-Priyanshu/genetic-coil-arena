@@ -1,0 +1,18 @@
+{
+  "id": "r13-test",
+  "commit": "9126dd6a911c199903fa2826580c0f3dcfc2a7d5",
+  "args": [
+    "scripts/r13_real_centre.py",
+    "test",
+    "--team-from",
+    "runs:r11-team",
+    "--train-from",
+    "runs:r13-train"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 2,
+  "after": [
+    "r13-train"
+  ],
+  "timeout_min": 60.0
+}

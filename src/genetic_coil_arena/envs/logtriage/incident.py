@@ -13,6 +13,10 @@ import numpy as np
 from .templating import severity
 
 
+class NoLogsError(ValueError):
+    """A log method was asked to read a metrics-only incident."""
+
+
 @dataclass
 class TemplateStats:
     """Per (service, template) counts before (t < 0) and after (t >= 0) the alert.
@@ -98,6 +102,15 @@ class Incident:
             self.window = (float(self.t[0]), float(self.t[-1]))
 
     @property
+    def has_logs(self) -> bool:
+        """False for metrics-only incidents (RCAEval RE1); log methods must not run on them."""
+        return bool(self.meta.get("has_logs", True))
+
+    def require_logs(self) -> None:
+        if not self.has_logs:
+            raise NoLogsError(f"{self.id}: metrics-only incident, there are no logs")
+
+    @property
     def n_lines(self) -> int:
         return int(self.t.size)
 
@@ -115,6 +128,7 @@ class Incident:
 
     def stats(self) -> TemplateStats:
         """Per (service, template) counts (cached)."""
+        self.require_logs()
         if self._stats is None:
             n_tpl = max(len(self.templates), 1)
             key = self.svc.astype(np.int64) * n_tpl + self.tpl.astype(np.int64)
@@ -161,4 +175,5 @@ class Incident:
 
     def line_text(self, i: int) -> str:
         """One templated line as the naive baselines show it."""
+        self.require_logs()
         return f"{self.t[i]:+.0f}s {self.services[self.svc[i]]} {self.templates[self.tpl[i]]}"

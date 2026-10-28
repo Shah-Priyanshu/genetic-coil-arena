@@ -1,0 +1,13 @@
+{
+  "id": "r13-replicate",
+  "commit": "9126dd6a911c199903fa2826580c0f3dcfc2a7d5",
+  "args": [
+    "scripts/r13_real_centre.py",
+    "replicate",
+    "--team-from",
+    "runs:r11-team"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 2,
+  "timeout_min": 120.0
+}
