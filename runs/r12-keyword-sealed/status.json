@@ -1,0 +1,22 @@
+{
+  "id": "r12-keyword-sealed",
+  "commit": "fc1832a9f13322fe22c3e9baa1f9160d7ffb91d8",
+  "queued_args": [
+    "scripts/r12_growth.py",
+    "run",
+    "--translator",
+    "keyword",
+    "--split",
+    "sealed",
+    "--team-from",
+    "runs:r12-team"
+  ],
+  "state": "running",
+  "started_at": "2026-10-28T02:26:16+00:00",
+  "updated_at": "2026-10-28T02:26:16+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 786 MiB, 12282 MiB, 40",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 1
+}
