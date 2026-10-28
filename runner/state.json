@@ -3,19 +3,13 @@
   "host": "PC",
   "draining_for_update": false,
   "cpu_budget": 24,
-  "cpu_workers_in_use": 11,
+  "cpu_workers_in_use": 9,
   "running": [
     {
       "id": "r7b4-train-hand-goal",
       "lane": "cpu",
       "cpu_workers": 8,
       "started_at": "2026-10-27T16:40:38+00:00"
-    },
-    {
-      "id": "r12-o14-sealed",
-      "lane": "gpu",
-      "cpu_workers": 2,
-      "started_at": "2026-10-28T02:32:07+00:00"
     },
     {
       "id": "r12-zz-aggregate",
@@ -30,14 +24,14 @@
   },
   "idle_since": {
     "cpu": null,
-    "gpu": null
+    "gpu": "2026-10-28T02:42:31+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-28T02:42:29+00:00",
-  "cpu_percent": 39.6,
+  "updated_at": "2026-10-28T02:42:41+00:00",
+  "cpu_percent": 37.4,
   "gpu": {
     "util": 0.0,
-    "mem_used_mb": 797.0,
+    "mem_used_mb": 789.0,
     "mem_total_mb": 12282.0
   }
 }
