@@ -1,0 +1,14 @@
+{
+  "id": "r12b-team",
+  "commit": "862865c6a0edd273d4980a1f8f072ec898b48586",
+  "args": [
+    "scripts/r12b_growth.py",
+    "team",
+    "--team-from",
+    "runs:r11-team"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 2,
+  "priority": 7,
+  "timeout_min": 120.0
+}

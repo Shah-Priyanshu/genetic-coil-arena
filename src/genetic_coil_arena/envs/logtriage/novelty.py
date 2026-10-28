@@ -64,6 +64,7 @@ class Rule:
     w: float
     gate: Optional[float] = None
     cap: Optional[float] = None
+    z_weight: float = 1.0  # 0: the log part alone (G9b's "newcomer alone")
 
 
 OLD_RULE = "metric"
@@ -127,18 +128,27 @@ def _rr(x: np.ndarray) -> np.ndarray:
     return np.where(x > 0, reciprocal_ranks(x), 0.0)
 
 
-def joined_scores(rule: str, z: np.ndarray, n: np.ndarray) -> tuple[np.ndarray, bool]:
-    """``(score per service, whether the log part took part)`` under ``rule``."""
+def joined_scores(
+    rule: str,
+    z: np.ndarray,
+    n: np.ndarray,
+    rules: Optional[Mapping[str, Rule]] = None,
+) -> tuple[np.ndarray, bool]:
+    """``(score per service, whether the log part took part)`` under ``rule``.
+
+    ``rules`` is the table to look the rule up in (default :data:`RULES`; G9b passes its own).
+    """
     z = np.asarray(z, dtype=np.float64)
     if rule == OLD_RULE:
         return z.copy(), False
-    spec = RULES[rule]
+    spec = (RULES if rules is None else rules)[rule]
     n = np.asarray(n, dtype=np.float64)
     if spec.gate is not None and z.max(initial=0.0) >= spec.gate:
         return _rr(z), False
     if spec.cap is not None:
         n = np.where(n > spec.cap, 0.0, n)
-    return _rr(z) + spec.w * _rr(n), bool((n > 0).any())
+    base = _rr(z) if spec.z_weight == 1.0 else spec.z_weight * _rr(z)
+    return base + spec.w * _rr(n), bool((n > 0).any())
 
 
 def joined_ranking(
