@@ -1,0 +1,24 @@
+{
+  "id": "r11b-keyword-sealed",
+  "commit": "b521676b817bd68d88d50f18fa81abb8f41c7ad7",
+  "queued_args": [
+    "scripts/r11_ecosystem.py",
+    "run",
+    "--spec-version",
+    "2",
+    "--translator",
+    "keyword",
+    "--split",
+    "sealed",
+    "--team-from",
+    "runs:r11-team"
+  ],
+  "state": "running",
+  "started_at": "2026-10-28T01:02:58+00:00",
+  "updated_at": "2026-10-28T01:02:58+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 788 MiB, 12282 MiB, 40",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 1
+}
