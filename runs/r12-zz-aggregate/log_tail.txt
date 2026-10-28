@@ -1,0 +1,5 @@
+[22:42:34] wrote docs\results\r12_growth.md and docs\results\r12_growth.json
+[22:42:34] G9: KILL
+[22:42:34] qwen2.5-coder_14b: NOT PASSED
+[22:42:34] gemma4_e4b: KILL
+[22:42:34] keyword: KILL
