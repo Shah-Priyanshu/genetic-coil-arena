@@ -1,0 +1,18 @@
+{
+  "id": "r12c-o14-dev",
+  "commit": "747058f4032a3299084d4a3570ec1509b709c4ea",
+  "args": [
+    "scripts/r12c_desk.py",
+    "run",
+    "--translator",
+    "ollama:qwen2.5-coder:14b",
+    "--split",
+    "dev",
+    "--team-from",
+    "runs:r12-team"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 2,
+  "priority": 5,
+  "timeout_min": 30.0
+}
