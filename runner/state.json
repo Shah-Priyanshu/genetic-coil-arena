@@ -12,28 +12,26 @@
       "started_at": "2026-10-27T16:40:38+00:00"
     },
     {
-      "id": "r12-gemma-dev",
+      "id": "r12-o14-dev",
       "lane": "gpu",
       "cpu_workers": 2,
-      "started_at": "2026-10-28T02:06:21+00:00"
+      "started_at": "2026-10-28T02:09:00+00:00"
     }
   ],
   "backlog": {
-    "ready": [
-      "r12-o14-dev"
-    ],
+    "ready": [],
     "blocked": []
   },
   "idle_since": {
     "cpu": null,
-    "gpu": null
+    "gpu": "2026-10-28T02:08:55+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-28T02:07:54+00:00",
-  "cpu_percent": 43.8,
+  "updated_at": "2026-10-28T02:09:00+00:00",
+  "cpu_percent": 39.6,
   "gpu": {
-    "util": 90.0,
-    "mem_used_mb": 5245.0,
+    "util": 0.0,
+    "mem_used_mb": 788.0,
     "mem_total_mb": 12282.0
   }
 }

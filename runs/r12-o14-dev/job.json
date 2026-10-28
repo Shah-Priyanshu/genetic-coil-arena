@@ -1,0 +1,21 @@
+{
+  "id": "r12-o14-dev",
+  "commit": "0e1a88c52f592098bf6ee87194b87befbfe36ec5",
+  "args": [
+    "scripts/r12_growth.py",
+    "run",
+    "--translator",
+    "ollama:qwen2.5-coder:14b",
+    "--split",
+    "dev",
+    "--team-from",
+    "runs:r12-team"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 2,
+  "priority": 5,
+  "after": [
+    "r12-team"
+  ],
+  "timeout_min": 40.0
+}
