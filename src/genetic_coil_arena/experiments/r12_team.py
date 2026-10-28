@@ -112,12 +112,12 @@ class JoinedTeam:
     def __init__(
         self, team: IncidentTeam, services: Sequence[str], rule: str = nv.OLD_RULE
     ):
-        if rule not in nv.ALL_RULES:
+        if rule not in self._all_rules():
             raise ValueError(f"unknown rule {rule!r}")
         self.team = team
         self.rule = rule
         self.frozen = old_state_hash(team)
-        for definition in nv.joined_definitions():
+        for definition in self._definitions():
             team.specs.register(definition)
         for name in sorted(set(services)):
             team.cc.register(
@@ -143,6 +143,22 @@ class JoinedTeam:
         )
         team.router.add_rule(RoutingRule(nv.SPEC_DECIDE_JOINED, JOINED_CENTRE))
         self.assert_frozen()
+
+    # hooks that G9b's ``JoinedTeamV2`` overrides (newcomer v2, its rules and centre)
+
+    @staticmethod
+    def _all_rules() -> Sequence[str]:
+        return nv.ALL_RULES
+
+    @staticmethod
+    def _definitions() -> list[Any]:
+        return nv.joined_definitions()
+
+    @staticmethod
+    def _ranking(
+        rule: str, mm: Sequence[Mapping[str, Any]], nn: Sequence[Mapping[str, Any]]
+    ) -> tuple[list[int], bool]:
+        return nv.joined_ranking(rule, mm, nn)
 
     def assert_frozen(self) -> None:
         """Raise if anything of the old team changed since before the join."""
@@ -230,7 +246,7 @@ class JoinedTeam:
                 "fault_type": fault,
                 "fault_prob": float(top["fault_probs"][FAULT_TYPES.index(fault)]),
                 "onset_s": top["onset_s"],
-                "used_logs": nv.joined_ranking(rule, mm, nn)[1],
+                "used_logs": self._ranking(rule, mm, nn)[1],
                 "n_envelopes": n_env,
                 "wall_s": wall,
             }
@@ -434,10 +450,13 @@ def run_incident(
     return rec
 
 
-def select_rule(dev_records: Sequence[Mapping[str, Any]]) -> dict[str, Any]:
+def select_rule(
+    dev_records: Sequence[Mapping[str, Any]],
+    candidates: Optional[Sequence[str]] = None,
+) -> dict[str, Any]:
     """The candidate with the best pooled dev top-1 (ties: the earlier rule), plus the table."""
     table = []
-    for rule in nv.RULES:
+    for rule in candidates or nv.RULES:
         rows = [r["rules"][rule] for r in dev_records]
         by = {
             ds: [r["rules"][rule]["top1"] for r in dev_records if r["dataset"] == ds]
