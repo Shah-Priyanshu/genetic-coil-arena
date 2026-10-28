@@ -1,0 +1,18 @@
+{
+  "id": "r12-q30-sealed",
+  "commit": "f231c662c5597c33d2e7caf457af59e2178aaaf8",
+  "args": [
+    "scripts/r12_growth.py",
+    "run",
+    "--translator",
+    "ollama:qwen3-coder:30b",
+    "--split",
+    "sealed",
+    "--team-from",
+    "runs:r12-team"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 4,
+  "priority": 3,
+  "timeout_min": 360.0
+}

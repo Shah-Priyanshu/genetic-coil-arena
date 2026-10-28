@@ -1,0 +1,26 @@
+{
+  "id": "r7b5-train-blind",
+  "commit": "f231c662c5597c33d2e7caf457af59e2178aaaf8",
+  "args": [
+    "scripts/r7b_goal_conditioned.py",
+    "--train-only",
+    "--modes",
+    "blind",
+    "--runs",
+    "8:16",
+    "--generations",
+    "10000",
+    "--population",
+    "64",
+    "--eval-every",
+    "50",
+    "--workers",
+    "8",
+    "--progress",
+    "600"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "priority": 4,
+  "timeout_min": 1800.0
+}
