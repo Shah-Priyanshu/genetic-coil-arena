@@ -1,0 +1,5 @@
+[00:18:17] Ollama already running at http://localhost:11434
+[00:19:17] qwen2.5-coder_14b sealed: 9/106 (60s)
+[00:20:17] qwen2.5-coder_14b sealed: 19/106 (121s)
+[00:21:23] qwen2.5-coder_14b sealed: 30/106 (187s)
+[00:22:29] qwen2.5-coder_14b sealed: 41/106 (252s)
