@@ -18,26 +18,19 @@
       "started_at": "2026-10-28T05:05:18+00:00"
     },
     {
-      "id": "r13-train",
+      "id": "r13-test",
       "lane": "cpu",
       "cpu_workers": 2,
-      "started_at": "2026-10-28T05:05:18+00:00"
+      "started_at": "2026-10-28T05:05:32+00:00"
     }
   ],
   "backlog": {
     "ready": [],
     "blocked": [
       {
-        "id": "r13-test",
-        "blocked_by": [
-          "r13-train"
-        ]
-      },
-      {
         "id": "r13-zz-aggregate",
         "blocked_by": [
           "r13-replicate",
-          "r13-train",
           "r13-test"
         ]
       }
@@ -48,11 +41,11 @@
     "gpu": "2026-10-28T04:37:19+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-28T05:05:18+00:00",
-  "cpu_percent": 39.7,
+  "updated_at": "2026-10-28T05:05:32+00:00",
+  "cpu_percent": 42.6,
   "gpu": {
     "util": 0.0,
-    "mem_used_mb": 828.0,
+    "mem_used_mb": 829.0,
     "mem_total_mb": 12282.0
   }
 }
