@@ -6,3 +6,7 @@
 [00:23:29] qwen2.5-coder_14b sealed: 51/106 (312s)
 [00:24:34] qwen2.5-coder_14b sealed: 62/106 (377s)
 [00:25:35] qwen2.5-coder_14b sealed: 72/106 (438s)
+[00:36:28] qwen2.5-coder_14b sealed: 82/106 (1091s)
+[00:37:16] qwen2.5-coder_14b sealed: 106/106 (1139s)
+[00:37:16] qwen2.5-coder_14b: exact off 0.8452380952380952 on 0.9761904761904762 (n=84), fixed 11 broke 0, silent wrong off 5 on 0
+[00:37:16] qwen2.5-coder_14b: exact off 0.8452380952380952 on 0.9761904761904762 (n=84), fixed 11 broke 0, silent wrong off 5 on 0
