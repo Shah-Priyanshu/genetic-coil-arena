@@ -13,12 +13,14 @@
     "--out",
     "docs/results/r11b_ecosystem.md"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-28T01:03:30+00:00",
-  "updated_at": "2026-10-28T01:03:30+00:00",
-  "elapsed_min": 0.0,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 785 MiB, 12282 MiB, 40",
+  "updated_at": "2026-10-28T01:03:34+00:00",
+  "elapsed_min": 0.1,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 1 %, 786 MiB, 12282 MiB, 40",
   "host": "PC",
   "lane": "cpu",
-  "cpu_workers": 1
+  "cpu_workers": 1,
+  "returncode": 0,
+  "finished_at": "2026-10-28T01:03:34+00:00"
 }
