@@ -58,9 +58,19 @@ ARCHIVES: dict[str, tuple[str, int, str]] = {
     "RE3-SS": ("RE3-SS.zip", 101485651, "467964eddb2a4fef4d6486c4679e749b"),
     "RE3-OB": ("RE3-OB.zip", 190838064, "96947589084348f9d12cba370313458e"),
     "RE3-TT": ("RE3-TT.zip", 241715689, "ae1eb5906fb4d13a16a6a5e58faaf30b"),
+    # RE1 (resource faults, metrics only: no logs.csv; same record). R13.
+    "RE1-SS": ("RE1-SS.zip", 79089075, "d2b15cbd3bb3cf6ec5f3cc65f7fac225"),
+    "RE1-OB": ("RE1-OB.zip", 30966778, "47cce26ed24140e8974e68f9db2a5e9c"),
+    "RE1-TT": ("RE1-TT.zip", 279663965, "48a26925ce47fd4bcfbedbae4f31475b"),
 }
 DEFAULT_SYSTEMS = ("SS", "OB")
 RE3_SYSTEMS = ("RE3-SS", "RE3-OB", "RE3-TT")
+RE1_SYSTEMS = ("RE1-SS", "RE1-OB", "RE1-TT")
+# RE1 names some metric kinds differently from RE2 (Online Boutique: ``load``, ``latency``).
+# Features are indexed by kind, so these are renamed to the RE2 kind they measure. The
+# mapping is fixed here (R13 pre-registration) and every renamed kind is counted in
+# ``_done.json``.
+RE1_KIND_ALIAS = {"load": "workload", "latency": "latency-50"}
 FAULT_TYPES = ("cpu", "mem", "disk", "delay", "loss", "socket")
 SOURCE_FILE = "SOURCE.json"
 CONVERT_VERSION = 3
@@ -115,7 +125,9 @@ def parse_case(name: str) -> tuple[str, str]:
 
 
 def dataset_of(system: str) -> str:
-    """``RE2`` for ``SS``/``OB``/``TT``, ``RE3`` for ``RE3-*``."""
+    """``RE2`` for ``SS``/``OB``/``TT``, ``RE3`` for ``RE3-*``, ``RE1`` for ``RE1-*``."""
+    if system.startswith("RE1-"):
+        return "RE1"
     return "RE3" if system.startswith("RE3-") else "RE2"
 
 
@@ -124,7 +136,9 @@ class NoRootLogsError(ValueError):
 
 
 def metric_features(
-    metrics_csv: Any, inject_time: float
+    metrics_csv: Any,
+    inject_time: float,
+    kind_alias: Optional[dict[str, str]] = None,
 ) -> dict[str, dict[str, list[Any]]]:
     """Per service and kind, how far a metric moved after the alert (BARO-style scaling).
 
@@ -150,6 +164,8 @@ def metric_features(
         if name == "time" or "_" not in name:
             continue
         service, kind = name.rsplit("_", 1)
+        if kind_alias:
+            kind = kind_alias.get(kind, kind)
         x = data[:, j]
         if not np.isfinite(x[pre]).any() or not np.isfinite(x[post]).any():
             continue
@@ -243,6 +259,41 @@ def convert_case(
         tpl=tpl,
         templates=ordered,
         meta={"inject_time": inject_time, "raw_lines": int(t.size)},
+        metrics=metrics,
+    )
+
+
+def convert_metrics_case(
+    metrics_csv: Any,
+    inject_time: float,
+    root_service: str,
+    fault_type: str,
+    rep: int,
+    system: str,
+    case: str,
+    kind_alias: Optional[dict[str, str]] = None,
+) -> Incident:
+    """A metrics-only (RE1) case: no log lines, ``meta["has_logs"] = False``.
+
+    Raises:
+        NoRootLogsError: The root service has no metrics
+    """
+    metrics = metric_features(metrics_csv, inject_time, kind_alias)
+    services = sorted(metrics)
+    if root_service not in services:
+        raise NoRootLogsError(f"{case}: root service {root_service!r} has no metrics")
+    return Incident(
+        id=f"{system}/{case}/{rep}",
+        system=system,
+        services=services,
+        root_service=root_service,
+        fault_type=fault_type,
+        rep=rep,
+        t=np.zeros(0, dtype=np.float32),
+        svc=np.zeros(0, dtype=np.int16),
+        tpl=np.zeros(0, dtype=np.int32),
+        templates=[],
+        meta={"inject_time": inject_time, "raw_lines": 0, "has_logs": False},
         metrics=metrics,
     )
 
@@ -365,7 +416,7 @@ def fetch(
     source_path.write_text(
         json.dumps(
             {
-                "dataset": "RCAEval RE2 and RE3 (logs and metrics)",
+                "dataset": "RCAEval RE1 (metrics only), RE2 and RE3 (logs and metrics)",
                 "record": RECORD,
                 "doi": DOI,
                 "license": LICENSE,
@@ -390,6 +441,8 @@ def _convert_archive(
     md5: str,
     log: Callable[[str], None],
 ) -> dict[str, Any]:
+    if system in RE1_SYSTEMS:
+        return _convert_archive_re1(zip_path, base, system, size, md5, log)
     csv.field_size_limit(min(sys.maxsize, 2**31 - 1))
     started = time.time()
     summary: list[dict[str, Any]] = []
@@ -443,5 +496,92 @@ def _convert_archive(
         "skipped_root_unknown": skipped,
     }
     marker = incident_dir(base, system) / "_done.json"
+    marker.write_text(json.dumps(info), encoding="utf-8")
+    return info
+
+
+def _convert_archive_re1(
+    zip_path: Path,
+    base: Path,
+    system: str,
+    size: int,
+    md5: str,
+    log: Callable[[str], None],
+) -> dict[str, Any]:
+    """Convert a metrics-only RE1 archive; every case is accounted for.
+
+    The metrics file is ``simple_data.csv`` when the case has one, else ``data.csv``. A case
+    that fails to parse or whose root service has no metrics goes to ``failed`` with the
+    reason (never dropped silently). ``metric_kinds`` counts the incidents in which each
+    metric kind (after :data:`RE1_KIND_ALIAS`) is present.
+    """
+    started = time.time()
+    summary: list[dict[str, Any]] = []
+    failed: list[dict[str, Any]] = []
+    kinds: dict[str, int] = {}
+    with zipfile.ZipFile(zip_path) as zf:
+        names = set(zf.namelist())
+        cases = sorted(
+            tuple(n.split("/")[1:3])
+            for n in names
+            if n.endswith("/inject_time.txt")
+            and n.count("/") == 3
+            and n.split("/")[2].isdigit()
+        )
+        for k, (case, rep_s) in enumerate(cases):
+            rep = int(rep_s)
+            prefix = zip_path.stem + "/" + case + "/" + rep_s + "/"
+            try:
+                service, fault = parse_case(case)
+                inject = float(zf.read(prefix + "inject_time.txt").decode().strip())
+                name = (
+                    "simple_data.csv"
+                    if prefix + "simple_data.csv" in names
+                    else "data.csv"
+                )
+                out = _incident_path(base, system, case, rep)
+                if out.exists():
+                    inc = load_file(out)
+                else:
+                    with zf.open(prefix + name) as mraw:
+                        mtext = io.TextIOWrapper(
+                            mraw, encoding="utf-8", errors="replace", newline=""
+                        )
+                        inc = convert_metrics_case(
+                            mtext,
+                            inject,
+                            service,
+                            fault,
+                            rep,
+                            system,
+                            case,
+                            RE1_KIND_ALIAS,
+                        )
+                    save_incident(inc, out)
+            except Exception as err:  # noqa: BLE001 - recorded, not dropped
+                failed.append(
+                    {"case": case, "rep": rep, "error": f"{type(err).__name__}: {err}"}
+                )
+                continue
+            present = {kd for rows in inc.metrics.values() for kd in rows}
+            for kd in present:
+                kinds[kd] = kinds.get(kd, 0) + 1
+            summary.append({"case": case, "rep": rep, "file": name})
+            if (k + 1) % 25 == 0:
+                log(f"{system}: {k + 1}/{len(cases)} ({time.time() - started:.0f}s)")
+    info = {
+        "archive": zip_path.name,
+        "size": size,
+        "md5": md5,
+        "n_incidents": len(summary),
+        "n_cases_found": len(cases),
+        "incidents": summary,
+        "failed": failed,
+        "metric_kinds": dict(sorted(kinds.items())),
+        "logs": False,
+        "kind_alias": RE1_KIND_ALIAS,
+    }
+    marker = incident_dir(base, system) / "_done.json"
+    marker.parent.mkdir(parents=True, exist_ok=True)
     marker.write_text(json.dumps(info), encoding="utf-8")
     return info
