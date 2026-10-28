@@ -1,0 +1,25 @@
+{
+  "id": "r13-zz-aggregate",
+  "commit": "9126dd6a911c199903fa2826580c0f3dcfc2a7d5",
+  "args": [
+    "scripts/r13_real_centre.py",
+    "report",
+    "--from",
+    "runs:r13-replicate",
+    "runs:r13-train",
+    "runs:r13-test",
+    "--out",
+    "docs/results/r13_real_centre.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 1,
+  "after": [
+    "r13-replicate",
+    "r13-train",
+    "r13-test"
+  ],
+  "timeout_min": 20.0,
+  "outputs": [
+    "docs/results/r13_real_centre.md,docs/results/r13_real_centre.json"
+  ]
+}
