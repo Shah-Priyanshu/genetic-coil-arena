@@ -1,3 +1,7 @@
 [23:48:22] Ollama already running at http://localhost:11434
 [23:49:24] qwen2.5-coder_14b dev: 9/31 (61s)
 [23:50:30] qwen2.5-coder_14b dev: 20/31 (127s)
+[00:00:36] qwen2.5-coder_14b dev: 22/31 (733s)
+[00:00:50] qwen2.5-coder_14b dev: 31/31 (747s)
+[00:00:50] qwen2.5-coder_14b: exact off 0.7727272727272727 on 0.9090909090909091 (n=22), fixed 3 broke 0, silent wrong off 3 on 1
+[00:00:50] qwen2.5-coder_14b: exact off 0.7727272727272727 on 0.9090909090909091 (n=22), fixed 3 broke 0, silent wrong off 3 on 1

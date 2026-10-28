@@ -1,0 +1,4343 @@
+{
+ "tag": "qwen2.5-coder_14b",
+ "model": "qwen2.5-coder:14b",
+ "translator": "ollama:qwen2.5-coder:14b",
+ "split": "dev",
+ "smoke": false,
+ "records": [
+  {
+   "id": "r12c-dev-000",
+   "kind": "spec",
+   "category": "ticket",
+   "style": "plain",
+   "text": "Pull up INC-1071 for the sock shop, please.",
+   "gold": {
+    "exclude_services": [],
+    "system": "sock-shop",
+    "ticket": "INC-1071",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "sock-shop",
+    "ticket": "INC-1071",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.2238773999852128,
+   "route_s": 0.36308009998174384,
+   "attempts": 1,
+   "n_prompt_tokens": 2634,
+   "ticket": "INC-1071",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 62,
+   "gold_state": "completed",
+   "gold_ticket": "INC-1071",
+   "nl_score": 0.0,
+   "nl_top1": 1.0,
+   "gold_score": 0.0,
+   "gold_top1": 1.0,
+   "team_s": 0.0327,
+   "summary": "Investigation of the sock-shop incident, requested by ticket INC-1071, top 3 suspects requested. The suspected services, most likely first, are carts, front-end, orders; fault type delay (probability 0.46); onset 05:31 UTC; no services excluded.",
+   "summary_s": 1.8772281999699771,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "sock-shop",
+    "ticket": "INC-1071",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.896388699999079,
+   "round_trip": true,
+   "total_s": 3.13380559995519,
+   "off": {
+    "id": "r12c-dev-000",
+    "kind": "spec",
+    "category": "ticket",
+    "style": "plain",
+    "text": "Pull up INC-1071 for the sock shop, please.",
+    "gold": {
+     "exclude_services": [],
+     "system": "sock-shop",
+     "ticket": "INC-1071",
+     "top_k": 3,
+     "want_fault_type": true
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "sock-shop",
+     "ticket": "INC-1071",
+     "top_k": 3,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.2238773999852128,
+    "route_s": 0.36308009998174384,
+    "attempts": 1,
+    "n_prompt_tokens": 2634,
+    "ticket": "INC-1071",
+    "exact": true,
+    "fields": {
+     "exclude_services": true,
+     "system": true,
+     "ticket": true,
+     "top_k": true,
+     "want_fault_type": true
+    },
+    "nl_state": "completed",
+    "n_envelopes": 62,
+    "gold_state": "completed",
+    "gold_ticket": "INC-1071",
+    "nl_score": 0.0,
+    "nl_top1": 1.0,
+    "gold_score": 0.0,
+    "gold_top1": 1.0,
+    "team_s": 0.16569250001339242,
+    "total_s": 1.3895698999986053
+   },
+   "raw_pred": {
+    "system": "sock-shop",
+    "ticket": "INC-1071",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "sock-shop",
+    "ticket": "INC-1071",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-001",
+   "kind": "spec",
+   "category": "ticket",
+   "style": "terse",
+   "text": "boutique ticket INC-2028",
+   "gold": {
+    "exclude_services": [],
+    "system": "online-boutique",
+    "ticket": "INC-2028",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "online-boutique",
+    "ticket": "INC-2028",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.7226173000526614,
+   "route_s": 0.39583450002828613,
+   "attempts": 1,
+   "n_prompt_tokens": 2628,
+   "ticket": "INC-2028",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 50,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2028",
+   "nl_score": 0.0,
+   "nl_top1": 0.0,
+   "gold_score": 0.0,
+   "gold_top1": 0.0,
+   "team_s": 0.0186,
+   "summary": "Investigation of the online-boutique incident, requested by ticket INC-2028, top 3 suspects requested. The suspected services, most likely first, are shippingservice, emailservice, adservice; fault type loss (probability 0.39); onset 15:39 UTC; no services excluded.",
+   "summary_s": 1.7577885999926366,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "online-boutique",
+    "ticket": "INC-2028",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.9337538999971002,
+   "round_trip": true,
+   "total_s": 3.499005900045298,
+   "off": {
+    "id": "r12c-dev-001",
+    "kind": "spec",
+    "category": "ticket",
+    "style": "terse",
+    "text": "boutique ticket INC-2028",
+    "gold": {
+     "exclude_services": [],
+     "system": "online-boutique",
+     "ticket": "INC-2028",
+     "top_k": 3,
+     "want_fault_type": true
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "online-boutique",
+     "ticket": "INC-2028",
+     "top_k": 3,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.7226173000526614,
+    "route_s": 0.39583450002828613,
+    "attempts": 1,
+    "n_prompt_tokens": 2628,
+    "ticket": "INC-2028",
+    "exact": true,
+    "fields": {
+     "exclude_services": true,
+     "system": true,
+     "ticket": true,
+     "top_k": true,
+     "want_fault_type": true
+    },
+    "nl_state": "completed",
+    "n_envelopes": 50,
+    "gold_state": "completed",
+    "gold_ticket": "INC-2028",
+    "nl_score": 0.0,
+    "nl_top1": 0.0,
+    "gold_score": 0.0,
+    "gold_top1": 0.0,
+    "team_s": 0.21955359994899482,
+    "total_s": 1.9421709000016563
+   },
+   "raw_pred": {
+    "system": "online-boutique",
+    "ticket": "INC-2028",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "online-boutique",
+    "ticket": "INC-2028",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-002",
+   "kind": "spec",
+   "category": "ticket",
+   "style": "chatty",
+   "text": "Train booking is acting up again, ticket INC-2043, any idea what failed?",
+   "gold": {
+    "exclude_services": [],
+    "system": "train-ticket",
+    "ticket": "INC-2043",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "ticket": "INC-2043",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.6810422998969443,
+   "route_s": 0.38599339994834736,
+   "attempts": 1,
+   "n_prompt_tokens": 2639,
+   "ticket": "INC-2043",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 274,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2043",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.0848,
+   "summary": "Investigation of the train-ticket incident, requested by ticket INC-2043, top 3 suspects requested. The suspected services, most likely first, are ts-auth-service, ts-order-service, ts-order-other-service; fault type loss (probability 0.28); onset 06:53 UTC; no services excluded.",
+   "summary_s": 1.7433759000268765,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "train-ticket",
+    "ticket": "INC-2043",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.8677140999934636,
+   "round_trip": true,
+   "total_s": 3.509218199923821,
+   "off": {
+    "id": "r12c-dev-002",
+    "kind": "spec",
+    "category": "ticket",
+    "style": "chatty",
+    "text": "Train booking is acting up again, ticket INC-2043, any idea what failed?",
+    "gold": {
+     "exclude_services": [],
+     "system": "train-ticket",
+     "ticket": "INC-2043",
+     "top_k": 3,
+     "want_fault_type": true
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "train-ticket",
+     "ticket": "INC-2043",
+     "top_k": 3,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.6810422998969443,
+    "route_s": 0.38599339994834736,
+    "attempts": 1,
+    "n_prompt_tokens": 2639,
+    "ticket": "INC-2043",
+    "exact": true,
+    "fields": {
+     "exclude_services": true,
+     "system": true,
+     "ticket": true,
+     "top_k": true,
+     "want_fault_type": true
+    },
+    "nl_state": "completed",
+    "n_envelopes": 274,
+    "gold_state": "completed",
+    "gold_ticket": "INC-2043",
+    "nl_score": 1.0,
+    "nl_top1": 1.0,
+    "gold_score": 1.0,
+    "gold_top1": 1.0,
+    "team_s": 0.10770729999057949,
+    "total_s": 1.7887495998875238
+   },
+   "raw_pred": {
+    "system": "train-ticket",
+    "ticket": "INC-2043",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "train-ticket",
+    "ticket": "INC-2043",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-003",
+   "kind": "spec",
+   "category": "time",
+   "style": "plain",
+   "text": "Online boutique, 18 Nov? no, 18 Jan at 18:36.",
+   "gold": {
+    "at": "--01-18T18:36",
+    "exclude_services": [],
+    "system": "online-boutique",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "online-boutique",
+    "at": "--01-18T18:36",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.7886060000164434,
+   "route_s": 0.3649955000146292,
+   "attempts": 1,
+   "n_prompt_tokens": 2641,
+   "ticket": "INC-1026",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 50,
+   "gold_state": "completed",
+   "gold_ticket": "INC-1026",
+   "nl_score": 0.0,
+   "nl_top1": 1.0,
+   "gold_score": 0.0,
+   "gold_top1": 1.0,
+   "team_s": 0.0249,
+   "summary": "Investigation of the online-boutique incident, requested by time --01-18T18:36 (ticket INC-1026), top 3 suspects requested. The suspected services, most likely first, are emailservice, checkoutservice, adservice; fault type mem (probability 0.52); onset 18:36 UTC; no services excluded.",
+   "summary_s": 2.025017999985721,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "online-boutique",
+    "at": "--01-18T18:36",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 2.0722434000344947,
+   "round_trip": true,
+   "total_s": 3.838524000002164,
+   "off": {
+    "id": "r12c-dev-003",
+    "kind": "spec",
+    "category": "time",
+    "style": "plain",
+    "text": "Online boutique, 18 Nov? no, 18 Jan at 18:36.",
+    "gold": {
+     "at": "--01-18T18:36",
+     "exclude_services": [],
+     "system": "online-boutique",
+     "top_k": 3,
+     "want_fault_type": true
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "online-boutique",
+     "at": "--01-18T18:36",
+     "top_k": 3,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.7886060000164434,
+    "route_s": 0.3649955000146292,
+    "attempts": 1,
+    "n_prompt_tokens": 2641,
+    "ticket": "INC-1026",
+    "exact": true,
+    "fields": {
+     "at": true,
+     "exclude_services": true,
+     "system": true,
+     "top_k": true,
+     "want_fault_type": true
+    },
+    "nl_state": "completed",
+    "n_envelopes": 50,
+    "gold_state": "completed",
+    "gold_ticket": "INC-1026",
+    "nl_score": 0.0,
+    "nl_top1": 1.0,
+    "gold_score": 0.0,
+    "gold_top1": 1.0,
+    "team_s": 0.37609110004268587,
+    "total_s": 2.1646971000591293
+   },
+   "raw_pred": {
+    "system": "online-boutique",
+    "at": "--01-18T18:36",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "online-boutique",
+    "at": "--01-18T18:36",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-004",
+   "kind": "spec",
+   "category": "time",
+   "style": "plain",
+   "text": "Sock shop on Dec... sorry, Nov 22 at 07:00.",
+   "gold": {
+    "at": "--11-22T07:00",
+    "exclude_services": [],
+    "system": "sock-shop",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "sock-shop",
+    "at": "--11-22T07:00",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.8512242999859154,
+   "route_s": 0.36478870001155883,
+   "attempts": 1,
+   "n_prompt_tokens": 2638,
+   "ticket": "INC-2004",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 62,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2004",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.0317,
+   "summary": "Investigation of the sock-shop incident, requested by time --11-22T07:00 (ticket INC-2004), top 3 suspects requested. The suspected services, most likely first, are front-end, catalogue, shipping; fault type disk (probability 0.54); onset 07:00 UTC; no services excluded.",
+   "summary_s": 1.912484000029508,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "sock-shop",
+    "at": "--11-22T07:00",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 2.007479699968826,
+   "round_trip": true,
+   "total_s": 3.7954083000154233,
+   "off": {
+    "id": "r12c-dev-004",
+    "kind": "spec",
+    "category": "time",
+    "style": "plain",
+    "text": "Sock shop on Dec... sorry, Nov 22 at 07:00.",
+    "gold": {
+     "at": "--11-22T07:00",
+     "exclude_services": [],
+     "system": "sock-shop",
+     "top_k": 3,
+     "want_fault_type": true
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "sock-shop",
+     "at": "2024-11-22T07:00",
+     "top_k": 3,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.8512242999859154,
+    "route_s": 0.36478870001155883,
+    "attempts": 1,
+    "n_prompt_tokens": 2638,
+    "ticket": "INC-2004",
+    "exact": false,
+    "fields": {
+     "at": false,
+     "exclude_services": true,
+     "system": true,
+     "top_k": true,
+     "want_fault_type": true
+    },
+    "nl_state": "completed",
+    "n_envelopes": 62,
+    "gold_state": "completed",
+    "gold_ticket": "INC-2004",
+    "nl_score": 1.0,
+    "nl_top1": 1.0,
+    "gold_score": 1.0,
+    "gold_top1": 1.0,
+    "team_s": 0.19784819998312742,
+    "total_s": 2.049072499969043
+   },
+   "raw_pred": {
+    "system": "sock-shop",
+    "at": "2024-11-22T07:00",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "sock-shop",
+    "at": "--11-22T07:00",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [
+    "year"
+   ],
+   "changes": {
+    "at": [
+     "2024-11-22T07:00",
+     "--11-22T07:00"
+    ]
+   }
+  },
+  {
+   "id": "r12c-dev-005",
+   "kind": "spec",
+   "category": "time",
+   "style": "terse",
+   "text": "train ticket 8 dec 16:19",
+   "gold": {
+    "at": "--12-08T16:19",
+    "exclude_services": [],
+    "system": "train-ticket",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "at": "--12-08T16:19",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.8779468000284396,
+   "route_s": 0.39056700002402067,
+   "attempts": 1,
+   "n_prompt_tokens": 2630,
+   "ticket": "INC-2059",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 274,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2059",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.1007,
+   "summary": "Investigation of the train-ticket incident, requested by time --12-08T16:19 (ticket INC-2059), top 3 suspects requested. The suspected services, most likely first, are ts-route-service, ts-payment-service, ts-travel2-service; fault type loss (probability 0.45); onset 16:20 UTC; no services excluded.",
+   "summary_s": 2.0701582999899983,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "train-ticket",
+    "at": "--12-08T16:19",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 2.0011768999975175,
+   "round_trip": true,
+   "total_s": 4.048805100018438,
+   "off": {
+    "id": "r12c-dev-005",
+    "kind": "spec",
+    "category": "time",
+    "style": "terse",
+    "text": "train ticket 8 dec 16:19",
+    "gold": {
+     "at": "--12-08T16:19",
+     "exclude_services": [],
+     "system": "train-ticket",
+     "top_k": 3,
+     "want_fault_type": true
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "train-ticket",
+     "at": "2024-12-08T16:19",
+     "top_k": 3,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.8779468000284396,
+    "route_s": 0.39056700002402067,
+    "attempts": 1,
+    "n_prompt_tokens": 2630,
+    "ticket": "INC-2059",
+    "exact": false,
+    "fields": {
+     "at": false,
+     "exclude_services": true,
+     "system": true,
+     "top_k": true,
+     "want_fault_type": true
+    },
+    "nl_state": "completed",
+    "n_envelopes": 274,
+    "gold_state": "completed",
+    "gold_ticket": "INC-2059",
+    "nl_score": 1.0,
+    "nl_top1": 1.0,
+    "gold_score": 1.0,
+    "gold_top1": 1.0,
+    "team_s": 0.13451760000316426,
+    "total_s": 2.012464400031604
+   },
+   "raw_pred": {
+    "system": "train-ticket",
+    "at": "2024-12-08T16:19",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "train-ticket",
+    "at": "--12-08T16:19",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [
+    "year"
+   ],
+   "changes": {
+    "at": [
+     "2024-12-08T16:19",
+     "--12-08T16:19"
+    ]
+   }
+  },
+  {
+   "id": "r12c-dev-006",
+   "kind": "spec",
+   "category": "time",
+   "style": "formal",
+   "text": "Please examine the Online Boutique incident of 19 January at 13:35.",
+   "gold": {
+    "at": "--01-19T13:35",
+    "exclude_services": [],
+    "system": "online-boutique",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "online-boutique",
+    "at": "--01-19T13:35",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.7940406000125222,
+   "route_s": 0.3697208000230603,
+   "attempts": 1,
+   "n_prompt_tokens": 2638,
+   "ticket": "INC-1033",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 50,
+   "gold_state": "completed",
+   "gold_ticket": "INC-1033",
+   "nl_score": 0.0,
+   "nl_top1": 0.0,
+   "gold_score": 0.0,
+   "gold_top1": 0.0,
+   "team_s": 0.0211,
+   "summary": "Investigation of the online-boutique incident, requested by time --01-19T13:35 (ticket INC-1033), top 3 suspects requested. The suspected services, most likely first, are emailservice, paymentservice, checkoutservice; fault type loss (probability 0.33); onset 13:36 UTC; no services excluded.",
+   "summary_s": 2.014690200041514,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "online-boutique",
+    "at": "--01-19T13:35",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 2.0557034000521526,
+   "round_trip": true,
+   "total_s": 3.8298308000540358,
+   "off": {
+    "id": "r12c-dev-006",
+    "kind": "spec",
+    "category": "time",
+    "style": "formal",
+    "text": "Please examine the Online Boutique incident of 19 January at 13:35.",
+    "gold": {
+     "at": "--01-19T13:35",
+     "exclude_services": [],
+     "system": "online-boutique",
+     "top_k": 3,
+     "want_fault_type": true
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "online-boutique",
+     "at": "--01-19T13:35",
+     "top_k": 3,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.7940406000125222,
+    "route_s": 0.3697208000230603,
+    "attempts": 1,
+    "n_prompt_tokens": 2638,
+    "ticket": "INC-1033",
+    "exact": true,
+    "fields": {
+     "at": true,
+     "exclude_services": true,
+     "system": true,
+     "top_k": true,
+     "want_fault_type": true
+    },
+    "nl_state": "completed",
+    "n_envelopes": 50,
+    "gold_state": "completed",
+    "gold_ticket": "INC-1033",
+    "nl_score": 0.0,
+    "nl_top1": 0.0,
+    "gold_score": 0.0,
+    "gold_top1": 0.0,
+    "team_s": 0.34757510002236813,
+    "total_s": 2.1416157000348903
+   },
+   "raw_pred": {
+    "system": "online-boutique",
+    "at": "--01-19T13:35",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "online-boutique",
+    "at": "--01-19T13:35",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-007",
+   "kind": "spec",
+   "category": "time",
+   "style": "plain",
+   "text": "The shop had trouble on the 21st at 07:51.",
+   "gold": {
+    "at": "---21T07:51",
+    "exclude_services": [],
+    "system": "sock-shop",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "sock-shop",
+    "at": "---21T07:51",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.7150854999781586,
+   "route_s": 0.4003462999826297,
+   "attempts": 1,
+   "n_prompt_tokens": 2637,
+   "ticket": "INC-1116",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 62,
+   "gold_state": "completed",
+   "gold_ticket": "INC-1116",
+   "nl_score": 0.0,
+   "nl_top1": 1.0,
+   "gold_score": 0.0,
+   "gold_top1": 1.0,
+   "team_s": 0.0279,
+   "summary": "Investigation of the sock-shop incident, requested by time ---21T07:51 (ticket INC-1116), top 3 suspects requested. The suspected services, most likely first, are orders, front-end, carts-db; fault type loss (probability 0.33); onset 07:51 UTC; no services excluded.",
+   "summary_s": 1.8634965000092052,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "sock-shop",
+    "at": "---21T07:51",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.976375599973835,
+   "round_trip": true,
+   "total_s": 3.6064819999873636,
+   "off": {
+    "id": "r12c-dev-007",
+    "kind": "spec",
+    "category": "time",
+    "style": "plain",
+    "text": "The shop had trouble on the 21st at 07:51.",
+    "gold": {
+     "at": "---21T07:51",
+     "exclude_services": [],
+     "system": "sock-shop",
+     "top_k": 3,
+     "want_fault_type": true
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "sock-shop",
+     "at": "---21T07:51",
+     "top_k": 3,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.7150854999781586,
+    "route_s": 0.4003462999826297,
+    "attempts": 1,
+    "n_prompt_tokens": 2637,
+    "ticket": "INC-1116",
+    "exact": true,
+    "fields": {
+     "at": true,
+     "exclude_services": true,
+     "system": true,
+     "top_k": true,
+     "want_fault_type": true
+    },
+    "nl_state": "completed",
+    "n_envelopes": 62,
+    "gold_state": "completed",
+    "gold_ticket": "INC-1116",
+    "nl_score": 0.0,
+    "nl_top1": 1.0,
+    "gold_score": 0.0,
+    "gold_top1": 1.0,
+    "team_s": 0.1837721000192687,
+    "total_s": 1.8988575999974273
+   },
+   "raw_pred": {
+    "system": "sock-shop",
+    "at": "---21T07:51",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "sock-shop",
+    "at": "---21T07:51",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-008",
+   "kind": "spec",
+   "category": "time",
+   "style": "terse",
+   "text": "boutique the 18th 13:10",
+   "gold": {
+    "at": "---18T13:10",
+    "exclude_services": [],
+    "system": "online-boutique",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "online-boutique",
+    "at": "---18T13:10",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.7420360000105575,
+   "route_s": 0.36220510001294315,
+   "attempts": 1,
+   "n_prompt_tokens": 2632,
+   "ticket": "INC-1021",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 50,
+   "gold_state": "completed",
+   "gold_ticket": "INC-1021",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.0266,
+   "summary": "Investigation of the online-boutique incident, requested by time ---18T13:10 (ticket INC-1021), top 3 suspects requested. The suspected services, most likely first, are recommendationservice, frontend, paymentservice; fault type loss (probability 0.53); onset 13:11 UTC; no services excluded.",
+   "summary_s": 1.9158153999596834,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "online-boutique",
+    "at": "---18T13:10",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.9698039999930188,
+   "round_trip": true,
+   "total_s": 3.684451399970241,
+   "off": {
+    "id": "r12c-dev-008",
+    "kind": "spec",
+    "category": "time",
+    "style": "terse",
+    "text": "boutique the 18th 13:10",
+    "gold": {
+     "at": "---18T13:10",
+     "exclude_services": [],
+     "system": "online-boutique",
+     "top_k": 3,
+     "want_fault_type": true
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "online-boutique",
+     "at": "---18T13:10",
+     "top_k": 3,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.7420360000105575,
+    "route_s": 0.36220510001294315,
+    "attempts": 1,
+    "n_prompt_tokens": 2632,
+    "ticket": "INC-1021",
+    "exact": true,
+    "fields": {
+     "at": true,
+     "exclude_services": true,
+     "system": true,
+     "top_k": true,
+     "want_fault_type": true
+    },
+    "nl_state": "completed",
+    "n_envelopes": 50,
+    "gold_state": "completed",
+    "gold_ticket": "INC-1021",
+    "nl_score": 1.0,
+    "nl_top1": 1.0,
+    "gold_score": 1.0,
+    "gold_top1": 1.0,
+    "team_s": 0.3608915999648161,
+    "total_s": 2.1029275999753736
+   },
+   "raw_pred": {
+    "system": "online-boutique",
+    "at": "---18T13:10",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "online-boutique",
+    "at": "---18T13:10",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-009",
+   "kind": "spec",
+   "category": "time",
+   "style": "plain",
+   "text": "On the 10th at 12:38, what was wrong with the train ticket system?",
+   "gold": {
+    "at": "---10T12:38",
+    "exclude_services": [],
+    "system": "train-ticket",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "at": "---10T12:38",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.7089677000185475,
+   "route_s": 0.38597840000875294,
+   "attempts": 1,
+   "n_prompt_tokens": 2642,
+   "ticket": "INC-2061",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 274,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2061",
+   "nl_score": 0.0,
+   "nl_top1": 0.0,
+   "gold_score": 0.0,
+   "gold_top1": 0.0,
+   "team_s": 0.1095,
+   "summary": "Investigation of the train-ticket incident, requested by time ---10T12:38 (ticket INC-2061), top 3 suspects requested. The suspected services, most likely first, are ts-order-service, ts-auth-service, ts-travel2-service; fault type delay (probability 0.49); onset 12:38 UTC; no services excluded.",
+   "summary_s": 2.0104098999872804,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "train-ticket",
+    "at": "---10T12:38",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.9423360999207944,
+   "round_trip": true,
+   "total_s": 3.8288776000058276,
+   "off": {
+    "id": "r12c-dev-009",
+    "kind": "spec",
+    "category": "time",
+    "style": "plain",
+    "text": "On the 10th at 12:38, what was wrong with the train ticket system?",
+    "gold": {
+     "at": "---10T12:38",
+     "exclude_services": [],
+     "system": "train-ticket",
+     "top_k": 3,
+     "want_fault_type": true
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "train-ticket",
+     "at": "---10T12:38",
+     "top_k": 3,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.7089677000185475,
+    "route_s": 0.38597840000875294,
+    "attempts": 1,
+    "n_prompt_tokens": 2642,
+    "ticket": "INC-2061",
+    "exact": true,
+    "fields": {
+     "at": true,
+     "exclude_services": true,
+     "system": true,
+     "top_k": true,
+     "want_fault_type": true
+    },
+    "nl_state": "completed",
+    "n_envelopes": 274,
+    "gold_state": "completed",
+    "gold_ticket": "INC-2061",
+    "nl_score": 0.0,
+    "nl_top1": 0.0,
+    "gold_score": 0.0,
+    "gold_top1": 0.0,
+    "team_s": 0.12668470002245158,
+    "total_s": 1.835652400040999
+   },
+   "raw_pred": {
+    "system": "train-ticket",
+    "at": "---10T12:38",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "train-ticket",
+    "at": "---10T12:38",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-010",
+   "kind": "spec",
+   "category": "time",
+   "style": "plain",
+   "text": "Boutique had trouble late on the 20th, 23:49 exactly.",
+   "gold": {
+    "at": "---20T23:49",
+    "exclude_services": [],
+    "system": "online-boutique",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "online-boutique",
+    "at": "---20T23:49",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.7280265999725088,
+   "route_s": 0.3741759000113234,
+   "attempts": 1,
+   "n_prompt_tokens": 2640,
+   "ticket": "INC-1118",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 50,
+   "gold_state": "completed",
+   "gold_ticket": "INC-1118",
+   "nl_score": 0.0,
+   "nl_top1": 0.0,
+   "gold_score": 0.0,
+   "gold_top1": 0.0,
+   "team_s": 0.0318,
+   "summary": "Investigation of the online-boutique incident, requested by time ---20T23:49 (ticket INC-1118), top 3 suspects requested. The suspected services, most likely first, are recommendationservice, productcatalogservice, frontend; fault type delay (probability 0.53); onset 23:49 UTC; no services excluded.",
+   "summary_s": 1.9385444999788888,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "online-boutique",
+    "at": "---20T23:49",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 2.0149180000298657,
+   "round_trip": true,
+   "total_s": 3.6983710999513977,
+   "off": {
+    "id": "r12c-dev-010",
+    "kind": "spec",
+    "category": "time",
+    "style": "plain",
+    "text": "Boutique had trouble late on the 20th, 23:49 exactly.",
+    "gold": {
+     "at": "---20T23:49",
+     "exclude_services": [],
+     "system": "online-boutique",
+     "top_k": 3,
+     "want_fault_type": true
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "online-boutique",
+     "at": "---20T23:49",
+     "top_k": 3,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.7280265999725088,
+    "route_s": 0.3741759000113234,
+    "attempts": 1,
+    "n_prompt_tokens": 2640,
+    "ticket": "INC-1118",
+    "exact": true,
+    "fields": {
+     "at": true,
+     "exclude_services": true,
+     "system": true,
+     "top_k": true,
+     "want_fault_type": true
+    },
+    "nl_state": "completed",
+    "n_envelopes": 50,
+    "gold_state": "completed",
+    "gold_ticket": "INC-1118",
+    "nl_score": 0.0,
+    "nl_top1": 0.0,
+    "gold_score": 0.0,
+    "gold_top1": 0.0,
+    "team_s": 0.441038099990692,
+    "total_s": 2.169064699963201
+   },
+   "raw_pred": {
+    "system": "online-boutique",
+    "at": "---20T23:49",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "online-boutique",
+    "at": "---20T23:49",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-011",
+   "kind": "spec",
+   "category": "time",
+   "style": "plain",
+   "text": "Incident on the sock shop dated 2024-11-24, time 13:08.",
+   "gold": {
+    "at": "2024-11-24T13:08",
+    "exclude_services": [],
+    "system": "sock-shop",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "sock-shop",
+    "at": "2024-11-24T13:08",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.8435642999829724,
+   "route_s": 0.35425400000531226,
+   "attempts": 1,
+   "n_prompt_tokens": 2646,
+   "ticket": "INC-2040",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 62,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2040",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.0262,
+   "summary": "Investigation of the sock-shop incident, requested by time 2024-11-24T13:08 (ticket INC-2040), top 3 suspects requested. The suspected services, most likely first, are carts, front-end, orders; fault type disk (probability 0.52); onset 13:08 UTC; no services excluded.",
+   "summary_s": 2.043518499995116,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "sock-shop",
+    "at": "2024-11-24T13:08",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 2.1017523999908008,
+   "round_trip": true,
+   "total_s": 3.913282799978089,
+   "off": {
+    "id": "r12c-dev-011",
+    "kind": "spec",
+    "category": "time",
+    "style": "plain",
+    "text": "Incident on the sock shop dated 2024-11-24, time 13:08.",
+    "gold": {
+     "at": "2024-11-24T13:08",
+     "exclude_services": [],
+     "system": "sock-shop",
+     "top_k": 3,
+     "want_fault_type": true
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "sock-shop",
+     "at": "2024-11-24T13:08",
+     "top_k": 3,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.8435642999829724,
+    "route_s": 0.35425400000531226,
+    "attempts": 1,
+    "n_prompt_tokens": 2646,
+    "ticket": "INC-2040",
+    "exact": true,
+    "fields": {
+     "at": true,
+     "exclude_services": true,
+     "system": true,
+     "top_k": true,
+     "want_fault_type": true
+    },
+    "nl_state": "completed",
+    "n_envelopes": 62,
+    "gold_state": "completed",
+    "gold_ticket": "INC-2040",
+    "nl_score": 1.0,
+    "nl_top1": 1.0,
+    "gold_score": 1.0,
+    "gold_top1": 1.0,
+    "team_s": 0.13963370001874864,
+    "total_s": 1.983198000001721
+   },
+   "raw_pred": {
+    "system": "sock-shop",
+    "at": "2024-11-24T13:08",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "sock-shop",
+    "at": "2024-11-24T13:08",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-012",
+   "kind": "spec",
+   "category": "time",
+   "style": "formal",
+   "text": "Online boutique, 20 January 2024, 06:09, kindly diagnose.",
+   "gold": {
+    "at": "2024-01-20T06:09",
+    "exclude_services": [],
+    "system": "online-boutique",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "online-boutique",
+    "at": "2024-01-20T06:09",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.908674800011795,
+   "route_s": 0.3763297999976203,
+   "attempts": 1,
+   "n_prompt_tokens": 2642,
+   "ticket": "INC-1073",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 50,
+   "gold_state": "completed",
+   "gold_ticket": "INC-1073",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.0239,
+   "summary": "Investigation of the online-boutique incident, requested by time 2024-01-20T06:09 (ticket INC-1073), top 3 suspects requested. The suspected services, most likely first, are emailservice, paymentservice, currencyservice; fault type socket (probability 0.42); onset 06:09 UTC; no services excluded.",
+   "summary_s": 2.17154800001299,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "online-boutique",
+    "at": "2024-01-20T06:09",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 2.1777050000382587,
+   "round_trip": true,
+   "total_s": 4.104122800024785,
+   "off": {
+    "id": "r12c-dev-012",
+    "kind": "spec",
+    "category": "time",
+    "style": "formal",
+    "text": "Online boutique, 20 January 2024, 06:09, kindly diagnose.",
+    "gold": {
+     "at": "2024-01-20T06:09",
+     "exclude_services": [],
+     "system": "online-boutique",
+     "top_k": 3,
+     "want_fault_type": true
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "online-boutique",
+     "at": "2024-01-20T06:09",
+     "top_k": 3,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.908674800011795,
+    "route_s": 0.3763297999976203,
+    "attempts": 1,
+    "n_prompt_tokens": 2642,
+    "ticket": "INC-1073",
+    "exact": true,
+    "fields": {
+     "at": true,
+     "exclude_services": true,
+     "system": true,
+     "top_k": true,
+     "want_fault_type": true
+    },
+    "nl_state": "completed",
+    "n_envelopes": 50,
+    "gold_state": "completed",
+    "gold_ticket": "INC-1073",
+    "nl_score": 1.0,
+    "nl_top1": 1.0,
+    "gold_score": 1.0,
+    "gold_top1": 1.0,
+    "team_s": 0.3761210000375286,
+    "total_s": 2.2847958000493236
+   },
+   "raw_pred": {
+    "system": "online-boutique",
+    "at": "2024-01-20T06:09",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "online-boutique",
+    "at": "2024-01-20T06:09",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-013",
+   "kind": "spec",
+   "category": "relative",
+   "style": "plain",
+   "text": "Train ticket yesterday at 13:14, why did it fail?",
+   "gold": {
+    "at": "2024-12-10T13:14",
+    "exclude_services": [],
+    "system": "train-ticket",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "at": "2024-12-10T13:14",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.8692658999934793,
+   "route_s": 0.36934029997792095,
+   "attempts": 1,
+   "n_prompt_tokens": 2635,
+   "ticket": "INC-2062",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 274,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2062",
+   "nl_score": 0.0,
+   "nl_top1": 0.0,
+   "gold_score": 0.0,
+   "gold_top1": 0.0,
+   "team_s": 0.161,
+   "summary": "Investigation of the train-ticket incident, requested by time 2024-12-10T13:14 (ticket INC-2062), top 3 suspects requested. The suspected services, most likely first, are ts-admin-basic-info-service, ts-order-service, ts-order-other-service; fault type disk (probability 0.63); onset 13:15 UTC; no services excluded.",
+   "summary_s": 2.1866156000178307,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "train-ticket",
+    "at": "2024-12-10T13:14",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 2.105281699972693,
+   "round_trip": true,
+   "total_s": 4.21688150001131,
+   "off": {
+    "id": "r12c-dev-013",
+    "kind": "spec",
+    "category": "relative",
+    "style": "plain",
+    "text": "Train ticket yesterday at 13:14, why did it fail?",
+    "gold": {
+     "at": "2024-12-10T13:14",
+     "exclude_services": [],
+     "system": "train-ticket",
+     "top_k": 3,
+     "want_fault_type": true
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "train-ticket",
+     "at": "2024-12-10T13:14",
+     "top_k": 3,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.8692658999934793,
+    "route_s": 0.36934029997792095,
+    "attempts": 1,
+    "n_prompt_tokens": 2635,
+    "ticket": "INC-2062",
+    "exact": true,
+    "fields": {
+     "at": true,
+     "exclude_services": true,
+     "system": true,
+     "top_k": true,
+     "want_fault_type": true
+    },
+    "nl_state": "completed",
+    "n_envelopes": 274,
+    "gold_state": "completed",
+    "gold_ticket": "INC-2062",
+    "nl_score": 0.0,
+    "nl_top1": 0.0,
+    "gold_score": 0.0,
+    "gold_top1": 0.0,
+    "team_s": 0.17220710002584383,
+    "total_s": 2.041473000019323
+   },
+   "raw_pred": {
+    "system": "train-ticket",
+    "at": "2024-12-10T13:14",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "train-ticket",
+    "at": "2024-12-10T13:14",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-014",
+   "kind": "spec",
+   "category": "relative",
+   "style": "terse",
+   "text": "train ticket 3 days ago 12:12",
+   "gold": {
+    "at": "2024-12-08T12:12",
+    "exclude_services": [],
+    "system": "train-ticket",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "at": "2024-12-08T12:12",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.8508369000046514,
+   "route_s": 0.3614178000134416,
+   "attempts": 1,
+   "n_prompt_tokens": 2631,
+   "ticket": "INC-2052",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 274,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2052",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.0671,
+   "summary": "Investigation of the train-ticket incident, requested by time 2024-12-08T12:12 (ticket INC-2052), top 3 suspects requested. The suspected services, most likely first, are ts-route-service, ts-user-service, ts-travel-service; fault type loss (probability 0.42); onset 12:12 UTC; no services excluded.",
+   "summary_s": 2.13400650001131,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "train-ticket",
+    "at": "2024-12-08T12:12",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 2.1147408000542782,
+   "round_trip": true,
+   "total_s": 4.051943400015961,
+   "off": {
+    "id": "r12c-dev-014",
+    "kind": "spec",
+    "category": "relative",
+    "style": "terse",
+    "text": "train ticket 3 days ago 12:12",
+    "gold": {
+     "at": "2024-12-08T12:12",
+     "exclude_services": [],
+     "system": "train-ticket",
+     "top_k": 3,
+     "want_fault_type": true
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "train-ticket",
+     "at": "2024-12-08T12:12",
+     "top_k": 3,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.8508369000046514,
+    "route_s": 0.3614178000134416,
+    "attempts": 1,
+    "n_prompt_tokens": 2631,
+    "ticket": "INC-2052",
+    "exact": true,
+    "fields": {
+     "at": true,
+     "exclude_services": true,
+     "system": true,
+     "top_k": true,
+     "want_fault_type": true
+    },
+    "nl_state": "completed",
+    "n_envelopes": 274,
+    "gold_state": "completed",
+    "gold_ticket": "INC-2052",
+    "nl_score": 1.0,
+    "nl_top1": 1.0,
+    "gold_score": 1.0,
+    "gold_top1": 1.0,
+    "team_s": 0.09075009997468442,
+    "total_s": 1.9415869999793358
+   },
+   "raw_pred": {
+    "system": "train-ticket",
+    "at": "2024-12-08T12:12",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "train-ticket",
+    "at": "2024-12-08T12:12",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-015",
+   "kind": "spec",
+   "category": "topk",
+   "style": "plain",
+   "text": "The four likeliest suspects for INC-1105 on the sock shop, please.",
+   "gold": {
+    "exclude_services": [],
+    "system": "sock-shop",
+    "ticket": "INC-1105",
+    "top_k": 4,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "sock-shop",
+    "ticket": "INC-1105",
+    "top_k": 4,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.7971249999827705,
+   "route_s": 0.3692544999648817,
+   "attempts": 1,
+   "n_prompt_tokens": 2639,
+   "ticket": "INC-1105",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 62,
+   "gold_state": "completed",
+   "gold_ticket": "INC-1105",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.0187,
+   "summary": "Investigation of the sock-shop incident, requested by ticket INC-1105, top 4 suspects requested. The suspected services, most likely first, are user, orders, carts, front-end; fault type cpu (probability 0.37); onset 19:50 UTC; no services excluded.",
+   "summary_s": 1.6571088000200689,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "sock-shop",
+    "ticket": "INC-1105",
+    "top_k": 4,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.912255900038872,
+   "round_trip": true,
+   "total_s": 3.4729338000028394,
+   "off": {
+    "id": "r12c-dev-015",
+    "kind": "spec",
+    "category": "topk",
+    "style": "plain",
+    "text": "The four likeliest suspects for INC-1105 on the sock shop, please.",
+    "gold": {
+     "exclude_services": [],
+     "system": "sock-shop",
+     "ticket": "INC-1105",
+     "top_k": 4,
+     "want_fault_type": true
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "sock-shop",
+     "ticket": "INC-1105",
+     "top_k": 4,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.7971249999827705,
+    "route_s": 0.3692544999648817,
+    "attempts": 1,
+    "n_prompt_tokens": 2639,
+    "ticket": "INC-1105",
+    "exact": true,
+    "fields": {
+     "exclude_services": true,
+     "system": true,
+     "ticket": true,
+     "top_k": true,
+     "want_fault_type": true
+    },
+    "nl_state": "completed",
+    "n_envelopes": 62,
+    "gold_state": "completed",
+    "gold_ticket": "INC-1105",
+    "nl_score": 1.0,
+    "nl_top1": 1.0,
+    "gold_score": 1.0,
+    "gold_top1": 1.0,
+    "team_s": 0.12946159997954965,
+    "total_s": 1.9265865999623202
+   },
+   "raw_pred": {
+    "system": "sock-shop",
+    "ticket": "INC-1105",
+    "top_k": 4,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "sock-shop",
+    "ticket": "INC-1105",
+    "top_k": 4,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-016",
+   "kind": "spec",
+   "category": "topk",
+   "style": "terse",
+   "text": "INC-2024 (boutique): five suspects.",
+   "gold": {
+    "exclude_services": [],
+    "system": "online-boutique",
+    "ticket": "INC-2024",
+    "top_k": 5,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "online-boutique",
+    "ticket": "INC-2024",
+    "top_k": 5,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.8258904000394978,
+   "route_s": 0.3609693000325933,
+   "attempts": 1,
+   "n_prompt_tokens": 2632,
+   "ticket": "INC-2024",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 50,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2024",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.0302,
+   "summary": "Investigation of the online-boutique incident, requested by ticket INC-2024, top 5 suspects requested. The suspected services, most likely first, are currencyservice, frontend, frontend-external, productcatalogservice, adservice; fault type loss (probability 0.7); onset 13:56 UTC; no services excluded.",
+   "summary_s": 1.8659336999990046,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "online-boutique",
+    "ticket": "INC-2024",
+    "top_k": 5,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.937684700009413,
+   "round_trip": true,
+   "total_s": 3.722024100038502,
+   "off": {
+    "id": "r12c-dev-016",
+    "kind": "spec",
+    "category": "topk",
+    "style": "terse",
+    "text": "INC-2024 (boutique): five suspects.",
+    "gold": {
+     "exclude_services": [],
+     "system": "online-boutique",
+     "ticket": "INC-2024",
+     "top_k": 5,
+     "want_fault_type": true
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "online-boutique",
+     "ticket": "INC-2024",
+     "top_k": 5,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.8258904000394978,
+    "route_s": 0.3609693000325933,
+    "attempts": 1,
+    "n_prompt_tokens": 2632,
+    "ticket": "INC-2024",
+    "exact": true,
+    "fields": {
+     "exclude_services": true,
+     "system": true,
+     "ticket": true,
+     "top_k": true,
+     "want_fault_type": true
+    },
+    "nl_state": "completed",
+    "n_envelopes": 50,
+    "gold_state": "completed",
+    "gold_ticket": "INC-2024",
+    "nl_score": 1.0,
+    "nl_top1": 1.0,
+    "gold_score": 1.0,
+    "gold_top1": 1.0,
+    "team_s": 0.1434661999810487,
+    "total_s": 1.9693566000205465
+   },
+   "raw_pred": {
+    "system": "online-boutique",
+    "ticket": "INC-2024",
+    "top_k": 5,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "online-boutique",
+    "ticket": "INC-2024",
+    "top_k": 5,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-017",
+   "kind": "spec",
+   "category": "topk",
+   "style": "words",
+   "text": "Train ticket INC-2050, give me one suspect.",
+   "gold": {
+    "exclude_services": [],
+    "system": "train-ticket",
+    "ticket": "INC-2050",
+    "top_k": 1,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "ticket": "INC-2050",
+    "top_k": 1,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.8152609000098892,
+   "route_s": 0.377359299978707,
+   "attempts": 1,
+   "n_prompt_tokens": 2633,
+   "ticket": "INC-2050",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 274,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2050",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.0754,
+   "summary": "Investigation of the train-ticket incident, requested by ticket INC-2050, top 1 suspect requested. The suspected service is ts-route-service; fault type loss (probability 0.49); onset 11:02 UTC; no services excluded.",
+   "summary_s": 1.467984199989587,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "train-ticket",
+    "ticket": "INC-2050",
+    "top_k": 1,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.8757063999655657,
+   "round_trip": true,
+   "total_s": 3.3586450999994764,
+   "off": {
+    "id": "r12c-dev-017",
+    "kind": "spec",
+    "category": "topk",
+    "style": "words",
+    "text": "Train ticket INC-2050, give me one suspect.",
+    "gold": {
+     "exclude_services": [],
+     "system": "train-ticket",
+     "ticket": "INC-2050",
+     "top_k": 1,
+     "want_fault_type": true
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "train-ticket",
+     "ticket": "INC-2050",
+     "top_k": 1,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.8152609000098892,
+    "route_s": 0.377359299978707,
+    "attempts": 1,
+    "n_prompt_tokens": 2633,
+    "ticket": "INC-2050",
+    "exact": true,
+    "fields": {
+     "exclude_services": true,
+     "system": true,
+     "ticket": true,
+     "top_k": true,
+     "want_fault_type": true
+    },
+    "nl_state": "completed",
+    "n_envelopes": 274,
+    "gold_state": "completed",
+    "gold_ticket": "INC-2050",
+    "nl_score": 1.0,
+    "nl_top1": 1.0,
+    "gold_score": 1.0,
+    "gold_top1": 1.0,
+    "team_s": 0.09730209998087958,
+    "total_s": 1.9125629999907687
+   },
+   "raw_pred": {
+    "system": "train-ticket",
+    "ticket": "INC-2050",
+    "top_k": 1,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "train-ticket",
+    "ticket": "INC-2050",
+    "top_k": 1,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-018",
+   "kind": "spec",
+   "category": "topk",
+   "style": "plain",
+   "text": "Sock shop, 24 Nov 12:42, two candidates.",
+   "gold": {
+    "at": "--11-24T12:42",
+    "exclude_services": [],
+    "system": "sock-shop",
+    "top_k": 2,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "sock-shop",
+    "at": "--11-24T12:42",
+    "top_k": 2,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 2.001002900011372,
+   "route_s": 0.36191600002348423,
+   "attempts": 1,
+   "n_prompt_tokens": 2636,
+   "ticket": "INC-2039",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 62,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2039",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.0335,
+   "summary": "Investigation of the sock-shop incident, requested by time --11-24T12:42 (ticket INC-2039), top 2 suspects requested. The suspected services, most likely first, are carts, front-end; fault type disk (probability 0.52); onset 12:42 UTC; no services excluded.",
+   "summary_s": 1.8582035000436008,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "sock-shop",
+    "at": "--11-24T12:42",
+    "top_k": 2,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 2.0230373999802396,
+   "round_trip": true,
+   "total_s": 3.8927064000549727,
+   "off": {
+    "id": "r12c-dev-018",
+    "kind": "spec",
+    "category": "topk",
+    "style": "plain",
+    "text": "Sock shop, 24 Nov 12:42, two candidates.",
+    "gold": {
+     "at": "--11-24T12:42",
+     "exclude_services": [],
+     "system": "sock-shop",
+     "top_k": 2,
+     "want_fault_type": true
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "sock-shop",
+     "at": "2024-11-24T12:42",
+     "top_k": 2,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 2.001002900011372,
+    "route_s": 0.36191600002348423,
+    "attempts": 1,
+    "n_prompt_tokens": 2636,
+    "ticket": "INC-2039",
+    "exact": false,
+    "fields": {
+     "at": false,
+     "exclude_services": true,
+     "system": true,
+     "top_k": true,
+     "want_fault_type": true
+    },
+    "nl_state": "completed",
+    "n_envelopes": 62,
+    "gold_state": "completed",
+    "gold_ticket": "INC-2039",
+    "nl_score": 1.0,
+    "nl_top1": 1.0,
+    "gold_score": 1.0,
+    "gold_top1": 1.0,
+    "team_s": 0.17560040001990274,
+    "total_s": 2.1766033000312746
+   },
+   "raw_pred": {
+    "system": "sock-shop",
+    "at": "2024-11-24T12:42",
+    "top_k": 2,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "sock-shop",
+    "at": "--11-24T12:42",
+    "top_k": 2,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [
+    "year"
+   ],
+   "changes": {
+    "at": [
+     "2024-11-24T12:42",
+     "--11-24T12:42"
+    ]
+   }
+  },
+  {
+   "id": "r12c-dev-019",
+   "kind": "spec",
+   "category": "exclude",
+   "style": "plain",
+   "text": "Boutique INC-2009 skipping adservice.",
+   "gold": {
+    "exclude_services": [
+     "adservice"
+    ],
+    "system": "online-boutique",
+    "ticket": "INC-2009",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "online-boutique",
+    "ticket": "INC-2009",
+    "exclude_services": [
+     "adservice"
+    ],
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "translate_s": 1.8647622999851592,
+   "route_s": 0.3617062999983318,
+   "attempts": 1,
+   "n_prompt_tokens": 2632,
+   "ticket": "INC-2009",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 46,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2009",
+   "nl_score": 0.0,
+   "nl_top1": 0.0,
+   "gold_score": 0.0,
+   "gold_top1": 0.0,
+   "team_s": 0.0164,
+   "summary": "Investigation of the online-boutique incident, requested by ticket INC-2009, top 3 suspects requested. The suspected services, most likely first, are frontend, cartservice, paymentservice; fault type disk (probability 0.56); onset 12:50 UTC. Excluded: adservice.",
+   "summary_s": 1.7617503000074066,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "online-boutique",
+    "ticket": "INC-2009",
+    "top_k": 3,
+    "exclude_services": [
+     "adservice"
+    ],
+    "want_fault_type": true
+   },
+   "recon_s": 2.13382200000342,
+   "round_trip": true,
+   "total_s": 3.642912599992566,
+   "off": {
+    "id": "r12c-dev-019",
+    "kind": "spec",
+    "category": "exclude",
+    "style": "plain",
+    "text": "Boutique INC-2009 skipping adservice.",
+    "gold": {
+     "exclude_services": [
+      "adservice"
+     ],
+     "system": "online-boutique",
+     "ticket": "INC-2009",
+     "top_k": 3,
+     "want_fault_type": true
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "online-boutique",
+     "ticket": "INC-2009",
+     "exclude_services": [
+      "adservice"
+     ],
+     "top_k": 3,
+     "want_fault_type": true
+    },
+    "translate_s": 1.8647622999851592,
+    "route_s": 0.3617062999983318,
+    "attempts": 1,
+    "n_prompt_tokens": 2632,
+    "ticket": "INC-2009",
+    "exact": true,
+    "fields": {
+     "exclude_services": true,
+     "system": true,
+     "ticket": true,
+     "top_k": true,
+     "want_fault_type": true
+    },
+    "nl_state": "completed",
+    "n_envelopes": 46,
+    "gold_state": "completed",
+    "gold_ticket": "INC-2009",
+    "nl_score": 0.0,
+    "nl_top1": 0.0,
+    "gold_score": 0.0,
+    "gold_top1": 0.0,
+    "team_s": 0.21093480003764853,
+    "total_s": 2.0756971000228077
+   },
+   "raw_pred": {
+    "system": "online-boutique",
+    "ticket": "INC-2009",
+    "exclude_services": [
+     "adservice"
+    ],
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "checked_pred": {
+    "system": "online-boutique",
+    "ticket": "INC-2009",
+    "exclude_services": [
+     "adservice"
+    ],
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-020",
+   "kind": "spec",
+   "category": "fault",
+   "style": "plain",
+   "text": "Only the suspects for INC-1111, sock shop.",
+   "gold": {
+    "exclude_services": [],
+    "system": "sock-shop",
+    "ticket": "INC-1111",
+    "top_k": 3,
+    "want_fault_type": false
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "sock-shop",
+    "ticket": "INC-1111",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.6651037999545224,
+   "route_s": 0.3657324999803677,
+   "attempts": 1,
+   "n_prompt_tokens": 2633,
+   "ticket": "INC-1111",
+   "exact": false,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": false
+   },
+   "nl_state": "completed",
+   "n_envelopes": 62,
+   "gold_state": "completed",
+   "gold_ticket": "INC-1111",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.0276,
+   "summary": "Investigation of the sock-shop incident, requested by ticket INC-1111, top 3 suspects requested. The suspected services, most likely first, are user, orders, front-end; fault type socket (probability 0.37); onset 22:44 UTC; no services excluded.",
+   "summary_s": 1.6238474000128917,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "sock-shop",
+    "ticket": "INC-1111",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.864218000031542,
+   "round_trip": true,
+   "total_s": 3.316551199967414,
+   "off": {
+    "id": "r12c-dev-020",
+    "kind": "spec",
+    "category": "fault",
+    "style": "plain",
+    "text": "Only the suspects for INC-1111, sock shop.",
+    "gold": {
+     "exclude_services": [],
+     "system": "sock-shop",
+     "ticket": "INC-1111",
+     "top_k": 3,
+     "want_fault_type": false
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": true,
+    "pred": {
+     "system": "sock-shop",
+     "ticket": "INC-1111",
+     "top_k": 3,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.6651037999545224,
+    "route_s": 0.3657324999803677,
+    "attempts": 1,
+    "n_prompt_tokens": 2633,
+    "ticket": "INC-1111",
+    "exact": false,
+    "fields": {
+     "exclude_services": true,
+     "system": true,
+     "ticket": true,
+     "top_k": true,
+     "want_fault_type": false
+    },
+    "nl_state": "completed",
+    "n_envelopes": 62,
+    "gold_state": "completed",
+    "gold_ticket": "INC-1111",
+    "nl_score": 1.0,
+    "nl_top1": 1.0,
+    "gold_score": 1.0,
+    "gold_top1": 1.0,
+    "team_s": 0.16636919998563826,
+    "total_s": 1.8314729999401607
+   },
+   "raw_pred": {
+    "system": "sock-shop",
+    "ticket": "INC-1111",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "sock-shop",
+    "ticket": "INC-1111",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-021",
+   "kind": "spec",
+   "category": "combo",
+   "style": "plain",
+   "text": "Train ticket 8 Dec 13:58, top 3, leave out ts-station-service, no fault type.",
+   "gold": {
+    "at": "--12-08T13:58",
+    "exclude_services": [
+     "ts-station-service"
+    ],
+    "system": "train-ticket",
+    "top_k": 3,
+    "want_fault_type": false
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "refused",
+   "reason": "OllamaError: cannot reach Ollama at http://localhost:11434: timed out",
+   "decision_ok": false,
+   "pred": null,
+   "translate_s": 0.3741571999853477,
+   "route_s": 0.3741571999853477,
+   "attempts": 1,
+   "n_prompt_tokens": 0,
+   "ticket": null,
+   "exact": false,
+   "fields": {
+    "at": false,
+    "exclude_services": false,
+    "system": false,
+    "top_k": false,
+    "want_fault_type": false
+   },
+   "gold_state": "completed",
+   "gold_ticket": "INC-2055",
+   "nl_score": 0.0,
+   "nl_top1": 0.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.0,
+   "total_s": 0.3741571999853477,
+   "off": {
+    "id": "r12c-dev-021",
+    "kind": "spec",
+    "category": "combo",
+    "style": "plain",
+    "text": "Train ticket 8 Dec 13:58, top 3, leave out ts-station-service, no fault type.",
+    "gold": {
+     "at": "--12-08T13:58",
+     "exclude_services": [
+      "ts-station-service"
+     ],
+     "system": "train-ticket",
+     "top_k": 3,
+     "want_fault_type": false
+    },
+    "routed": "incident",
+    "route_ok": true,
+    "status": "refused",
+    "reason": "OllamaError: cannot reach Ollama at http://localhost:11434: timed out",
+    "decision_ok": false,
+    "pred": null,
+    "translate_s": 0.3741571999853477,
+    "route_s": 0.3741571999853477,
+    "attempts": 1,
+    "n_prompt_tokens": 0,
+    "ticket": null,
+    "exact": false,
+    "fields": {
+     "at": false,
+     "exclude_services": false,
+     "system": false,
+     "top_k": false,
+     "want_fault_type": false
+    },
+    "gold_state": "completed",
+    "gold_ticket": "INC-2055",
+    "nl_score": 0.0,
+    "nl_top1": 0.0,
+    "gold_score": 1.0,
+    "gold_top1": 1.0,
+    "team_s": 0.0,
+    "total_s": 0.3741571999853477
+   },
+   "raw_pred": null,
+   "checked_pred": null,
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-022",
+   "kind": "clarify",
+   "category": "clarify",
+   "style": "plain",
+   "text": "The online boutique failed on the 20th.",
+   "gold": null,
+   "routed": "incident",
+   "route_ok": true,
+   "status": "clarify",
+   "reason": "---20 matches online-boutique incidents on 2 dates (2024-01-20, 2024-02-20). Which date do you mean?",
+   "decision_ok": true,
+   "pred": {
+    "system": "online-boutique",
+    "at": "---20",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 2.3943598000332713,
+   "route_s": 0.7372430000104941,
+   "attempts": 1,
+   "n_prompt_tokens": 2630,
+   "ticket": null,
+   "off": {
+    "id": "r12c-dev-022",
+    "kind": "clarify",
+    "category": "clarify",
+    "style": "plain",
+    "text": "The online boutique failed on the 20th.",
+    "gold": null,
+    "routed": "incident",
+    "route_ok": true,
+    "status": "clarify",
+    "reason": "---20 matches online-boutique incidents on 2 dates (2024-01-20, 2024-02-20). Which date do you mean?",
+    "decision_ok": true,
+    "pred": {
+     "system": "online-boutique",
+     "at": "---20",
+     "top_k": 3,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 2.3943598000332713,
+    "route_s": 0.7372430000104941,
+    "attempts": 1,
+    "n_prompt_tokens": 2630,
+    "ticket": null
+   },
+   "raw_pred": {
+    "system": "online-boutique",
+    "at": "---20",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "online-boutique",
+    "at": "---20",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-023",
+   "kind": "clarify",
+   "category": "clarify",
+   "style": "plain",
+   "text": "Train ticket incident on 8 December, please.",
+   "gold": null,
+   "routed": "incident",
+   "route_ok": true,
+   "status": "clarify",
+   "reason": "18 train-ticket incidents matching --12-08 at or before 2024-12-11T09:00: INC-2042 (2024-12-08T06:18), INC-2043 (2024-12-08T06:53), INC-2044 (2024-12-08T07:28), INC-2045 (2024-12-08T08:04) and 14 more. Which one?",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "at": "--12-08",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.3518829000531696,
+   "route_s": 0.397124300012365,
+   "attempts": 1,
+   "n_prompt_tokens": 2629,
+   "ticket": null,
+   "off": {
+    "id": "r12c-dev-023",
+    "kind": "clarify",
+    "category": "clarify",
+    "style": "plain",
+    "text": "Train ticket incident on 8 December, please.",
+    "gold": null,
+    "routed": "incident",
+    "route_ok": true,
+    "status": "clarify",
+    "reason": "18 train-ticket incidents on 2024-12-08: INC-2042 (2024-12-08T06:18), INC-2043 (2024-12-08T06:53), INC-2044 (2024-12-08T07:28), INC-2045 (2024-12-08T08:04) and 14 more. Which one?",
+    "decision_ok": true,
+    "pred": {
+     "system": "train-ticket",
+     "at": "2024-12-08",
+     "top_k": 3,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.3518829000531696,
+    "route_s": 0.397124300012365,
+    "attempts": 1,
+    "n_prompt_tokens": 2629,
+    "ticket": null
+   },
+   "raw_pred": {
+    "system": "train-ticket",
+    "at": "2024-12-08",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "train-ticket",
+    "at": "--12-08",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [
+    "year"
+   ],
+   "changes": {
+    "at": [
+     "2024-12-08",
+     "--12-08"
+    ]
+   }
+  },
+  {
+   "id": "r12c-dev-024",
+   "kind": "clarify",
+   "category": "clarify",
+   "style": "plain",
+   "text": "Something is off with the sock shop.",
+   "gold": null,
+   "routed": "incident",
+   "route_ok": true,
+   "status": "clarify",
+   "reason": "When did the issue happen? Give a ticket or a date and time.",
+   "decision_ok": true,
+   "pred": null,
+   "translate_s": 1.1468759999843314,
+   "route_s": 0.3772776999976486,
+   "attempts": 1,
+   "n_prompt_tokens": 2627,
+   "ticket": null,
+   "off": {
+    "id": "r12c-dev-024",
+    "kind": "clarify",
+    "category": "clarify",
+    "style": "plain",
+    "text": "Something is off with the sock shop.",
+    "gold": null,
+    "routed": "incident",
+    "route_ok": true,
+    "status": "clarify",
+    "reason": "When did the issue happen? Give a ticket or a date and time.",
+    "decision_ok": true,
+    "pred": null,
+    "translate_s": 1.1468759999843314,
+    "route_s": 0.3772776999976486,
+    "attempts": 1,
+    "n_prompt_tokens": 2627,
+    "ticket": null
+   },
+   "raw_pred": null,
+   "checked_pred": null,
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-025",
+   "kind": "refuse",
+   "category": "refuse",
+   "style": "plain",
+   "text": "Online boutique INC-1010, top 9 suspects.",
+   "gold": null,
+   "routed": "incident",
+   "route_ok": true,
+   "status": "refused",
+   "reason": "literal check: Invalid GoalSpec 'rca.investigate': /params/top_k: 9 is greater than the maximum of 5",
+   "decision_ok": true,
+   "pred": null,
+   "translate_s": 2.35377950000111,
+   "route_s": 0.37372830003732815,
+   "attempts": 2,
+   "n_prompt_tokens": 2633,
+   "ticket": null,
+   "off": {
+    "id": "r12c-dev-025",
+    "kind": "refuse",
+    "category": "refuse",
+    "style": "plain",
+    "text": "Online boutique INC-1010, top 9 suspects.",
+    "gold": null,
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": false,
+    "pred": {
+     "system": "online-boutique",
+     "ticket": "INC-1010",
+     "top_k": 5,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 2.35377950000111,
+    "route_s": 0.37372830003732815,
+    "attempts": 2,
+    "n_prompt_tokens": 2633,
+    "ticket": "INC-1010"
+   },
+   "raw_pred": {
+    "system": "online-boutique",
+    "ticket": "INC-1010",
+    "top_k": 5,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": null,
+   "rules": [
+    "top_k"
+   ],
+   "changes": {
+    "top_k": [
+     5,
+     9
+    ]
+   }
+  },
+  {
+   "id": "r12c-dev-026",
+   "kind": "refuse",
+   "category": "refuse",
+   "style": "plain",
+   "text": "Train ticket, yesterday at 13:14, ten suspects please.",
+   "gold": null,
+   "routed": "incident",
+   "route_ok": true,
+   "status": "refused",
+   "reason": "literal check: Invalid GoalSpec 'rca.investigate': /params/top_k: 10 is greater than the maximum of 5",
+   "decision_ok": true,
+   "pred": null,
+   "translate_s": 2.7151466000359505,
+   "route_s": 0.36416530003771186,
+   "attempts": 2,
+   "n_prompt_tokens": 2635,
+   "ticket": null,
+   "off": {
+    "id": "r12c-dev-026",
+    "kind": "refuse",
+    "category": "refuse",
+    "style": "plain",
+    "text": "Train ticket, yesterday at 13:14, ten suspects please.",
+    "gold": null,
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": false,
+    "pred": {
+     "system": "train-ticket",
+     "at": "2024-12-10T13:14",
+     "top_k": 5,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 2.7151466000359505,
+    "route_s": 0.36416530003771186,
+    "attempts": 2,
+    "n_prompt_tokens": 2635,
+    "ticket": "INC-2062"
+   },
+   "raw_pred": {
+    "system": "train-ticket",
+    "at": "2024-12-10T13:14",
+    "top_k": 5,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": null,
+   "rules": [
+    "top_k"
+   ],
+   "changes": {
+    "top_k": [
+     5,
+     10
+    ]
+   }
+  },
+  {
+   "id": "r12c-dev-027",
+   "kind": "refuse",
+   "category": "refuse",
+   "style": "plain",
+   "text": "Sock shop: ticket INC-2200?",
+   "gold": null,
+   "routed": "incident",
+   "route_ok": true,
+   "status": "refused",
+   "reason": "there is no ticket INC-2200",
+   "decision_ok": true,
+   "pred": {
+    "system": "sock-shop",
+    "ticket": "INC-2200",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.191294000018388,
+   "route_s": 0.34497139998711646,
+   "attempts": 1,
+   "n_prompt_tokens": 2630,
+   "ticket": null,
+   "off": {
+    "id": "r12c-dev-027",
+    "kind": "refuse",
+    "category": "refuse",
+    "style": "plain",
+    "text": "Sock shop: ticket INC-2200?",
+    "gold": null,
+    "routed": "incident",
+    "route_ok": true,
+    "status": "refused",
+    "reason": "there is no ticket INC-2200",
+    "decision_ok": true,
+    "pred": {
+     "system": "sock-shop",
+     "ticket": "INC-2200",
+     "top_k": 3,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.191294000018388,
+    "route_s": 0.34497139998711646,
+    "attempts": 1,
+    "n_prompt_tokens": 2630,
+    "ticket": null
+   },
+   "raw_pred": {
+    "system": "sock-shop",
+    "ticket": "INC-2200",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "sock-shop",
+    "ticket": "INC-2200",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-028",
+   "kind": "refuse",
+   "category": "refuse",
+   "style": "plain",
+   "text": "Train ticket, two days ago.",
+   "gold": null,
+   "routed": "incident",
+   "route_ok": true,
+   "status": "refused",
+   "reason": "no train-ticket incident on 2024-12-09",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "at": "2024-12-09",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.3003432999830693,
+   "route_s": 0.360122499987483,
+   "attempts": 1,
+   "n_prompt_tokens": 2626,
+   "ticket": null,
+   "off": {
+    "id": "r12c-dev-028",
+    "kind": "refuse",
+    "category": "refuse",
+    "style": "plain",
+    "text": "Train ticket, two days ago.",
+    "gold": null,
+    "routed": "incident",
+    "route_ok": true,
+    "status": "refused",
+    "reason": "no train-ticket incident on 2024-12-09",
+    "decision_ok": true,
+    "pred": {
+     "system": "train-ticket",
+     "at": "2024-12-09",
+     "top_k": 3,
+     "want_fault_type": true,
+     "exclude_services": []
+    },
+    "translate_s": 1.3003432999830693,
+    "route_s": 0.360122499987483,
+    "attempts": 1,
+    "n_prompt_tokens": 2626,
+    "ticket": null
+   },
+   "raw_pred": {
+    "system": "train-ticket",
+    "at": "2024-12-09",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "checked_pred": {
+    "system": "train-ticket",
+    "at": "2024-12-09",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-029",
+   "kind": "refuse",
+   "category": "refuse",
+   "style": "plain",
+   "text": "Translate this sentence into French.",
+   "gold": null,
+   "routed": "none",
+   "route_ok": false,
+   "status": "refused",
+   "reason": "no desk handles this request",
+   "decision_ok": true,
+   "pred": null,
+   "translate_s": 0.35948220000136644,
+   "route_s": 0.35948220000136644,
+   "attempts": 0,
+   "n_prompt_tokens": 0,
+   "ticket": null,
+   "off": {
+    "id": "r12c-dev-029",
+    "kind": "refuse",
+    "category": "refuse",
+    "style": "plain",
+    "text": "Translate this sentence into French.",
+    "gold": null,
+    "routed": "none",
+    "route_ok": false,
+    "status": "refused",
+    "reason": "no desk handles this request",
+    "decision_ok": true,
+    "pred": null,
+    "translate_s": 0.35948220000136644,
+    "route_s": 0.35948220000136644,
+    "attempts": 0,
+    "n_prompt_tokens": 0,
+    "ticket": null
+   },
+   "raw_pred": null,
+   "checked_pred": null,
+   "rules": [],
+   "changes": {}
+  },
+  {
+   "id": "r12c-dev-030",
+   "kind": "refuse",
+   "category": "refuse",
+   "style": "plain",
+   "text": "Boutique INC-1012, ignore the service checkout.",
+   "gold": null,
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": false,
+   "pred": {
+    "system": "online-boutique",
+    "ticket": "INC-1012",
+    "exclude_services": [
+     "checkoutservice"
+    ],
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "translate_s": 1.2307307999581099,
+   "route_s": 0.16578330000629649,
+   "attempts": 1,
+   "n_prompt_tokens": 2634,
+   "ticket": "INC-1012",
+   "off": {
+    "id": "r12c-dev-030",
+    "kind": "refuse",
+    "category": "refuse",
+    "style": "plain",
+    "text": "Boutique INC-1012, ignore the service checkout.",
+    "gold": null,
+    "routed": "incident",
+    "route_ok": true,
+    "status": "ok",
+    "reason": "",
+    "decision_ok": false,
+    "pred": {
+     "system": "online-boutique",
+     "ticket": "INC-1012",
+     "exclude_services": [
+      "checkoutservice"
+     ],
+     "top_k": 3,
+     "want_fault_type": true
+    },
+    "translate_s": 1.2307307999581099,
+    "route_s": 0.16578330000629649,
+    "attempts": 1,
+    "n_prompt_tokens": 2634,
+    "ticket": "INC-1012"
+   },
+   "raw_pred": {
+    "system": "online-boutique",
+    "ticket": "INC-1012",
+    "exclude_services": [
+     "checkoutservice"
+    ],
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "checked_pred": {
+    "system": "online-boutique",
+    "ticket": "INC-1012",
+    "exclude_services": [
+     "checkoutservice"
+    ],
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "rules": [],
+   "changes": {}
+  }
+ ],
+ "metrics": {
+  "n_items": 31,
+  "off": {
+   "metrics": {
+    "n_items": 31,
+    "n_spec": 22,
+    "exact": {
+     "n": 22,
+     "hits": 17,
+     "p": 0.7727272727272727,
+     "lo": 0.5655964393704065,
+     "hi": 0.8987710920517964
+    },
+    "exact_by_category": {
+     "combo": {
+      "n": 1,
+      "hits": 0,
+      "p": 0.0,
+      "lo": 0.0,
+      "hi": 0.7934567085261071
+     },
+     "exclude": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     },
+     "fault": {
+      "n": 1,
+      "hits": 0,
+      "p": 0.0,
+      "lo": 0.0,
+      "hi": 0.7934567085261071
+     },
+     "relative": {
+      "n": 2,
+      "hits": 2,
+      "p": 1.0,
+      "lo": 0.34237195288961925,
+      "hi": 1.0
+     },
+     "ticket": {
+      "n": 3,
+      "hits": 3,
+      "p": 1.0,
+      "lo": 0.43849391955098227,
+      "hi": 1.0
+     },
+     "time": {
+      "n": 10,
+      "hits": 8,
+      "p": 0.8,
+      "lo": 0.49015684672072335,
+      "hi": 0.9433190520193067
+     },
+     "topk": {
+      "n": 4,
+      "hits": 3,
+      "p": 0.75,
+      "lo": 0.3006360524426366,
+      "hi": 0.9544139373553637
+     }
+    },
+    "exact_by_style": {
+     "chatty": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     },
+     "formal": {
+      "n": 2,
+      "hits": 2,
+      "p": 1.0,
+      "lo": 0.34237195288961925,
+      "hi": 1.0
+     },
+     "plain": {
+      "n": 13,
+      "hits": 9,
+      "p": 0.6923076923076923,
+      "lo": 0.4236888781333764,
+      "hi": 0.8731950283838191
+     },
+     "terse": {
+      "n": 5,
+      "hits": 4,
+      "p": 0.8,
+      "lo": 0.3755282641185388,
+      "hi": 0.9637768390302125
+     },
+     "words": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     }
+    },
+    "field_accuracy": {
+     "at": 0.7142857142857143,
+     "exclude_services": 0.9545454545454546,
+     "system": 0.9545454545454546,
+     "ticket": 1.0,
+     "top_k": 0.9545454545454546,
+     "want_fault_type": 0.9090909090909091
+    },
+    "routing": {
+     "n": 25,
+     "hits": 25,
+     "p": 1.0,
+     "lo": 0.8668035060468213,
+     "hi": 1.0
+    },
+    "routing_by_domain": {
+     "incident": {
+      "n": 25,
+      "hits": 25,
+      "p": 1.0,
+      "lo": 0.8668035060468213,
+      "hi": 1.0
+     }
+    },
+    "decision": {
+     "n": 31,
+     "hits": 27,
+     "p": 0.8709677419354839,
+     "lo": 0.7114724304561464,
+     "hi": 0.9486579883535524
+    },
+    "decision_by_kind": {
+     "clarify": {
+      "n": 3,
+      "hits": 3,
+      "p": 1.0,
+      "lo": 0.43849391955098227,
+      "hi": 1.0,
+      "status": {
+       "clarify": 3
+      }
+     },
+     "refuse": {
+      "n": 6,
+      "hits": 3,
+      "p": 0.5,
+      "lo": 0.18761280689940868,
+      "hi": 0.8123871931005913,
+      "status": {
+       "ok": 3,
+       "refused": 3
+      }
+     },
+     "spec": {
+      "n": 22,
+      "hits": 21,
+      "p": 0.9545454545454546,
+      "lo": 0.7820151050048196,
+      "hi": 0.9919307806988522,
+      "status": {
+       "ok": 21,
+       "refused": 1
+      }
+     }
+    },
+    "decision_by_category": {
+     "clarify": {
+      "n": 3,
+      "hits": 3,
+      "p": 1.0,
+      "lo": 0.43849391955098227,
+      "hi": 1.0
+     },
+     "combo": {
+      "n": 1,
+      "hits": 0,
+      "p": 0.0,
+      "lo": 0.0,
+      "hi": 0.7934567085261071
+     },
+     "exclude": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     },
+     "fault": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     },
+     "refuse": {
+      "n": 6,
+      "hits": 3,
+      "p": 0.5,
+      "lo": 0.18761280689940868,
+      "hi": 0.8123871931005913
+     },
+     "relative": {
+      "n": 2,
+      "hits": 2,
+      "p": 1.0,
+      "lo": 0.34237195288961925,
+      "hi": 1.0
+     },
+     "ticket": {
+      "n": 3,
+      "hits": 3,
+      "p": 1.0,
+      "lo": 0.43849391955098227,
+      "hi": 1.0
+     },
+     "time": {
+      "n": 10,
+      "hits": 10,
+      "p": 1.0,
+      "lo": 0.7224598312333834,
+      "hi": 1.0
+     },
+     "topk": {
+      "n": 4,
+      "hits": 4,
+      "p": 1.0,
+      "lo": 0.5100999795960008,
+      "hi": 1.0
+     }
+    },
+    "task": {
+     "n": 22,
+     "nl": 0.5454545454545454,
+     "gold": 0.5909090909090909,
+     "diff": {
+      "n": 22,
+      "mean": -0.045454545454545456,
+      "lo": -0.13636363636363635,
+      "hi": 0.0
+     },
+     "nl_top1": 0.6818181818181818,
+     "gold_top1": 0.7272727272727273,
+     "wrong_incident": 0,
+     "no_run": 1
+    },
+    "round_trip": {
+     "n": 0,
+     "hits": 0,
+     "p": null,
+     "lo": null,
+     "hi": null
+    },
+    "fidelity": {
+     "n_summaries": 0,
+     "n_facts": 0,
+     "facts": null,
+     "all_facts": null,
+     "by_fact": {}
+    },
+    "latency": {
+     "n": 0,
+     "total_p50": null,
+     "total_p95": null,
+     "translate_p50": null,
+     "team_p50": null,
+     "summary_p50": null
+    }
+   },
+   "exact": {
+    "n": 22,
+    "hits": 17,
+    "p": 0.7727272727272727,
+    "lo": 0.5655964393704065,
+    "hi": 0.8987710920517964
+   },
+   "silent_wrong": [
+    "r12c-dev-025",
+    "r12c-dev-026",
+    "r12c-dev-030"
+   ],
+   "silent_wrong_traps": [
+    "r12c-dev-025",
+    "r12c-dev-026"
+   ],
+   "right_incident_other_mismatch": [
+    "r12c-dev-004",
+    "r12c-dev-005",
+    "r12c-dev-018",
+    "r12c-dev-020"
+   ],
+   "task": {
+    "n": 22,
+    "nl": 0.5454545454545454,
+    "gold": 0.5909090909090909,
+    "diff": {
+     "n": 22,
+     "mean": -0.045454545454545456,
+     "lo": -0.13636363636363635,
+     "hi": 0.0
+    },
+    "nl_top1": 0.6818181818181818,
+    "gold_top1": 0.7272727272727273,
+    "wrong_incident": 0,
+    "no_run": 1
+   },
+   "decision": {
+    "n": 31,
+    "hits": 27,
+    "p": 0.8709677419354839,
+    "lo": 0.7114724304561464,
+    "hi": 0.9486579883535524
+   }
+  },
+  "on": {
+   "metrics": {
+    "n_items": 31,
+    "n_spec": 22,
+    "exact": {
+     "n": 22,
+     "hits": 20,
+     "p": 0.9090909090909091,
+     "lo": 0.7218461934161421,
+     "hi": 0.9747051037171622
+    },
+    "exact_by_category": {
+     "combo": {
+      "n": 1,
+      "hits": 0,
+      "p": 0.0,
+      "lo": 0.0,
+      "hi": 0.7934567085261071
+     },
+     "exclude": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     },
+     "fault": {
+      "n": 1,
+      "hits": 0,
+      "p": 0.0,
+      "lo": 0.0,
+      "hi": 0.7934567085261071
+     },
+     "relative": {
+      "n": 2,
+      "hits": 2,
+      "p": 1.0,
+      "lo": 0.34237195288961925,
+      "hi": 1.0
+     },
+     "ticket": {
+      "n": 3,
+      "hits": 3,
+      "p": 1.0,
+      "lo": 0.43849391955098227,
+      "hi": 1.0
+     },
+     "time": {
+      "n": 10,
+      "hits": 10,
+      "p": 1.0,
+      "lo": 0.7224598312333834,
+      "hi": 1.0
+     },
+     "topk": {
+      "n": 4,
+      "hits": 4,
+      "p": 1.0,
+      "lo": 0.5100999795960008,
+      "hi": 1.0
+     }
+    },
+    "exact_by_style": {
+     "chatty": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     },
+     "formal": {
+      "n": 2,
+      "hits": 2,
+      "p": 1.0,
+      "lo": 0.34237195288961925,
+      "hi": 1.0
+     },
+     "plain": {
+      "n": 13,
+      "hits": 11,
+      "p": 0.8461538461538461,
+      "lo": 0.5776482949136899,
+      "hi": 0.9567427368172621
+     },
+     "terse": {
+      "n": 5,
+      "hits": 5,
+      "p": 1.0,
+      "lo": 0.5655085052479191,
+      "hi": 1.0
+     },
+     "words": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     }
+    },
+    "field_accuracy": {
+     "at": 0.9285714285714286,
+     "exclude_services": 0.9545454545454546,
+     "system": 0.9545454545454546,
+     "ticket": 1.0,
+     "top_k": 0.9545454545454546,
+     "want_fault_type": 0.9090909090909091
+    },
+    "routing": {
+     "n": 25,
+     "hits": 25,
+     "p": 1.0,
+     "lo": 0.8668035060468213,
+     "hi": 1.0
+    },
+    "routing_by_domain": {
+     "incident": {
+      "n": 25,
+      "hits": 25,
+      "p": 1.0,
+      "lo": 0.8668035060468213,
+      "hi": 1.0
+     }
+    },
+    "decision": {
+     "n": 31,
+     "hits": 29,
+     "p": 0.9354838709677419,
+     "lo": 0.7928101168125354,
+     "hi": 0.9821255922249368
+    },
+    "decision_by_kind": {
+     "clarify": {
+      "n": 3,
+      "hits": 3,
+      "p": 1.0,
+      "lo": 0.43849391955098227,
+      "hi": 1.0,
+      "status": {
+       "clarify": 3
+      }
+     },
+     "refuse": {
+      "n": 6,
+      "hits": 5,
+      "p": 0.8333333333333334,
+      "lo": 0.43649056343635395,
+      "hi": 0.9699474141282697,
+      "status": {
+       "ok": 1,
+       "refused": 5
+      }
+     },
+     "spec": {
+      "n": 22,
+      "hits": 21,
+      "p": 0.9545454545454546,
+      "lo": 0.7820151050048196,
+      "hi": 0.9919307806988522,
+      "status": {
+       "ok": 21,
+       "refused": 1
+      }
+     }
+    },
+    "decision_by_category": {
+     "clarify": {
+      "n": 3,
+      "hits": 3,
+      "p": 1.0,
+      "lo": 0.43849391955098227,
+      "hi": 1.0
+     },
+     "combo": {
+      "n": 1,
+      "hits": 0,
+      "p": 0.0,
+      "lo": 0.0,
+      "hi": 0.7934567085261071
+     },
+     "exclude": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     },
+     "fault": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     },
+     "refuse": {
+      "n": 6,
+      "hits": 5,
+      "p": 0.8333333333333334,
+      "lo": 0.43649056343635395,
+      "hi": 0.9699474141282697
+     },
+     "relative": {
+      "n": 2,
+      "hits": 2,
+      "p": 1.0,
+      "lo": 0.34237195288961925,
+      "hi": 1.0
+     },
+     "ticket": {
+      "n": 3,
+      "hits": 3,
+      "p": 1.0,
+      "lo": 0.43849391955098227,
+      "hi": 1.0
+     },
+     "time": {
+      "n": 10,
+      "hits": 10,
+      "p": 1.0,
+      "lo": 0.7224598312333834,
+      "hi": 1.0
+     },
+     "topk": {
+      "n": 4,
+      "hits": 4,
+      "p": 1.0,
+      "lo": 0.5100999795960008,
+      "hi": 1.0
+     }
+    },
+    "task": {
+     "n": 22,
+     "nl": 0.5454545454545454,
+     "gold": 0.5909090909090909,
+     "diff": {
+      "n": 22,
+      "mean": -0.045454545454545456,
+      "lo": -0.13636363636363635,
+      "hi": 0.0
+     },
+     "nl_top1": 0.6818181818181818,
+     "gold_top1": 0.7272727272727273,
+     "wrong_incident": 0,
+     "no_run": 1
+    },
+    "round_trip": {
+     "n": 21,
+     "hits": 21,
+     "p": 1.0,
+     "lo": 0.8453561767357979,
+     "hi": 0.9999999999999999
+    },
+    "fidelity": {
+     "n_summaries": 21,
+     "n_facts": 160,
+     "facts": 1.0,
+     "all_facts": 1.0,
+     "by_fact": {
+      "at": 1.0,
+      "exclusions": 1.0,
+      "fault_probability": 1.0,
+      "fault_type": 1.0,
+      "onset": 1.0,
+      "suspects": 1.0,
+      "system": 1.0,
+      "ticket": 1.0
+     }
+    },
+    "latency": {
+     "n": 20,
+     "total_p50": 3.7587162000269627,
+     "total_p95": 4.109760735024111,
+     "translate_p50": 1.8061929499963298,
+     "team_p50": 0.02905,
+     "summary_p50": 1.9141496999945957
+    }
+   },
+   "exact": {
+    "n": 22,
+    "hits": 20,
+    "p": 0.9090909090909091,
+    "lo": 0.7218461934161421,
+    "hi": 0.9747051037171622
+   },
+   "silent_wrong": [
+    "r12c-dev-030"
+   ],
+   "silent_wrong_traps": [],
+   "right_incident_other_mismatch": [
+    "r12c-dev-020"
+   ],
+   "task": {
+    "n": 22,
+    "nl": 0.5454545454545454,
+    "gold": 0.5909090909090909,
+    "diff": {
+     "n": 22,
+     "mean": -0.045454545454545456,
+     "lo": -0.13636363636363635,
+     "hi": 0.0
+    },
+    "nl_top1": 0.6818181818181818,
+    "gold_top1": 0.7272727272727273,
+    "wrong_incident": 0,
+    "no_run": 1
+   },
+   "decision": {
+    "n": 31,
+    "hits": 29,
+    "p": 0.9354838709677419,
+    "lo": 0.7928101168125354,
+    "hi": 0.9821255922249368
+   }
+  },
+  "paired": {
+   "n": 22,
+   "fixed": [
+    "r12c-dev-004",
+    "r12c-dev-005",
+    "r12c-dev-018"
+   ],
+   "broke": [],
+   "p": 0.25,
+   "diff": {
+    "n": 22,
+    "mean": 0.13636363636363635,
+    "lo": 0.0,
+    "hi": 0.2727272727272727
+   }
+  },
+  "rules": {
+   "year": 4,
+   "top_k": 2
+  },
+  "n_changed": 6
+ },
+ "vram": {
+  "baseline_smi_mib": 830.0,
+  "peak_smi_mib": 10836.0,
+  "model_smi_mib": 10006.0
+ },
+ "vram_gb": 10.58203125,
+ "spec_version": 3,
+ "sealed_sha256": null,
+ "catalogue": {
+  "n": 182,
+  "fingerprint": "12e4ce9fd1d393ee7c01092ae35572b28b4d73d0e33357327075e186a9bd8952"
+ },
+ "team": {
+  "rule": "gate45_cap50",
+  "g9": {
+   "hash_before": "65a5c5926b2b905c6e36a94756ade66702991c6fda873455afd7d9d5a6691bc6",
+   "hash_after": "65a5c5926b2b905c6e36a94756ade66702991c6fda873455afd7d9d5a6691bc6",
+   "pinned_rule": "gate45_cap50",
+   "n_dev": 88,
+   "n_test": 182,
+   "commit": "0e1a88c52f592098bf6ee87194b87befbfe36ec5",
+   "python": "3.13.7",
+   "finished": "2026-10-27T22:06:13",
+   "chosen": "gate45_cap50"
+  }
+ },
+ "prompt_audit": {
+  "system_lines_changed": [
+   [
+    "Systems: \"sock-shop\" (the shop, the sock shop, the socks shop) and \"online-boutique\" (the boutique, the online boutique). Their services: sock-shop has carts, carts-db, catalogue, catalogue-db, front-end, orders, orders-db, payment, queue-master, rabbitmq, rabbitmq-exporter, session-db, shipping, user, user-db; online-boutique has adservice, cartservice, checkoutservice, currencyservice, emailservice, frontend, frontend-external, paymentservice, productcatalogservice, recommendationservice, redis, shippingservice.",
+    "Systems: \"sock-shop\" (the shop, the sock shop, the socks shop), \"online-boutique\" (the boutique, the online boutique) and \"train-ticket\" (the train ticket system, train ticket, trainticket, the train booking system). Their services: sock-shop has carts, carts-db, catalogue, catalogue-db, front-end, orders, orders-db, payment, queue-master, rabbitmq, rabbitmq-exporter, session-db, shipping, user, user-db; online-boutique has adservice, cartservice, checkoutservice, currencyservice, emailservice, frontend, frontend-external, paymentservice, productcatalogservice, recommendationservice, redis, shippingservice; train-ticket has ts-admin-basic-info-service, ts-admin-order-service, ts-admin-route-service, ts-admin-travel-service, ts-admin-user-service, ts-assurance-mongo, ts-assurance-service, ts-auth-mongo, ts-auth-service, ts-avatar-service, ts-basic-service, ts-cancel-service, ts-config-mongo, ts-config-service, ts-consign-mongo, ts-consign-price-mongo, ts-consign-price-service, ts-consign-service, ts-contacts-mongo, ts-contacts-service, ts-execute-service, ts-food-map-mongo, ts-food-map-service, ts-food-mongo, ts-food-mysql, ts-food-service, ts-inside-payment-mongo, ts-inside-payment-service, ts-news-service, ts-notification-mongo, ts-notification-service, ts-order-mongo, ts-order-other-mongo, ts-order-other-service, ts-order-service, ts-payment-mongo, ts-payment-service, ts-preserve-mongo, ts-preserve-other-mongo, ts-preserve-other-service, ts-preserve-service, ts-price-mongo, ts-price-service, ts-rebook-service, ts-route-mongo, ts-route-plan-service, ts-route-service, ts-seat-service, ts-security-mongo, ts-security-service, ts-station-mongo, ts-station-service, ts-ticket-office-mongo, ts-ticket-office-service, ts-ticketinfo-service, ts-train-mongo, ts-train-service, ts-travel-mongo, ts-travel-plan-service, ts-travel-service, ts-travel2-mongo, ts-travel2-service, ts-ui-dashboard, ts-user-mongo, ts-user-service, ts-verification-code-service, ts-voucher-mysql, ts-voucher-service."
+   ],
+   [
+    "The desk clock: it is Thursday 2024-02-22, 09:00 UTC. All times are UTC; use 24-hour times.",
+    "The desk clock: it is Wednesday 2024-12-11, 09:00 UTC. All times are UTC; use 24-hour times."
+   ],
+   [
+    "- system: \"sock-shop\" or \"online-boutique\". Leave it out when the request names no system (a ticket number alone does not tell the system).",
+    "- system: \"sock-shop\", \"online-boutique\" or \"train-ticket\". Leave it out when the request names no system (a ticket number alone does not tell the system)."
+   ],
+   [
+    "refusal (short reason) only when the request is not about investigating an incident of these two systems (out of domain, including requests to change, restart or delete something), or it contradicts itself (two different tickets, two systems, or a service both excluded and required).",
+    "refusal (short reason) only when the request is not about investigating an incident of these three systems (out of domain, including requests to change, restart or delete something), or it contradicts itself (two different tickets, two systems, or a service both excluded and required)."
+   ]
+  ],
+  "same_line_count": true,
+  "examples_changed": [
+   [
+    "Yesterday at 6 am the shop had trouble. Can you tell why?",
+    {
+     "system": "sock-shop",
+     "at": "2024-02-21T06:00"
+    },
+    {
+     "system": "sock-shop",
+     "at": "2024-12-10T06:00"
+    }
+   ]
+  ],
+  "n_examples": 19,
+  "summary_pack_same": true,
+  "report_note_same": true,
+  "router_line_changed": [
+   "investigating a past incident of the sock shop or the online boutique web shops",
+   "investigating a past incident of the sock shop, the online boutique or the train ticket web systems"
+  ],
+  "router_other_lines_same": true
+ },
+ "rules": [
+  "relative",
+  "year",
+  "month",
+  "top_k"
+ ],
+ "commit": "747058f4032a3299084d4a3570ec1509b709c4ea",
+ "python": "3.13.7",
+ "finished": "2026-10-28T00:00:50"
+}
