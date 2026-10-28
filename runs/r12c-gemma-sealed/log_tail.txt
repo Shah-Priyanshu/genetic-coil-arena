@@ -1,0 +1,6 @@
+[00:13:03] Ollama already running at http://localhost:11434
+[00:14:04] gemma4_e4b sealed: 15/106 (61s)
+[00:15:07] gemma4_e4b sealed: 38/106 (124s)
+[00:16:09] gemma4_e4b sealed: 56/106 (186s)
+[00:17:10] gemma4_e4b sealed: 74/106 (248s)
+[00:18:04] gemma4_e4b sealed: 106/106 (302s)
