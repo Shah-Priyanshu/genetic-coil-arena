@@ -1,0 +1,4666 @@
+{
+ "tag": "gemma4_e4b",
+ "model": "gemma4:e4b",
+ "translator": "ollama:gemma4:e4b",
+ "split": "dev",
+ "smoke": false,
+ "records": [
+  {
+   "id": "r12-dev-000",
+   "kind": "spec",
+   "category": "ticket",
+   "style": "plain",
+   "text": "Look at INC-2035 for me, sock shop.",
+   "gold": {
+    "exclude_services": [],
+    "system": "sock-shop",
+    "ticket": "INC-2035",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "sock-shop",
+    "ticket": "INC-2035",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 0.6438790999818593,
+   "route_s": 0.157945099985227,
+   "attempts": 1,
+   "n_prompt_tokens": 2801,
+   "ticket": "INC-2035",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 62,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2035",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.07251239998731762,
+   "summary": "Investigation of the sock-shop incident, requested by ticket INC-2035, top 3 suspects requested. The suspected services, most likely first, are front-end, payment, user; fault type loss (probability 0.83); onset 20:44 UTC. Excluded: none.",
+   "summary_s": 0.8745533000328578,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": false
+   },
+   "fidelity": 0.8571428571428571,
+   "all_facts": false,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "sock-shop",
+    "ticket": "INC-2035",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.1391948000527918,
+   "round_trip": true,
+   "total_s": 1.5909448000020348
+  },
+  {
+   "id": "r12-dev-001",
+   "kind": "spec",
+   "category": "ticket",
+   "style": "terse",
+   "text": "boutique inc 2026",
+   "gold": {
+    "exclude_services": [],
+    "system": "online-boutique",
+    "ticket": "INC-2026",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "clarify",
+   "reason": "The ticket number format should be INC-XXXX. Can you confirm the ticket number for the online boutique?",
+   "decision_ok": false,
+   "pred": null,
+   "translate_s": 0.9861604999750853,
+   "route_s": 0.20496989996172488,
+   "attempts": 1,
+   "n_prompt_tokens": 2795,
+   "ticket": null,
+   "exact": false,
+   "fields": {
+    "exclude_services": false,
+    "system": false,
+    "ticket": false,
+    "top_k": false,
+    "want_fault_type": false
+   },
+   "gold_state": "completed",
+   "gold_ticket": "INC-2026",
+   "nl_score": 0.0,
+   "nl_top1": 0.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.0,
+   "total_s": 0.9861604999750853
+  },
+  {
+   "id": "r12-dev-002",
+   "kind": "spec",
+   "category": "ticket",
+   "style": "plain",
+   "text": "Pull up INC-2055, train ticket.",
+   "gold": {
+    "exclude_services": [],
+    "system": "train-ticket",
+    "ticket": "INC-2055",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "ticket": "INC-2055",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 0.718975399970077,
+   "route_s": 0.2025955999852158,
+   "attempts": 1,
+   "n_prompt_tokens": 2799,
+   "ticket": "INC-2055",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 274,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2055",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.13513489998877048,
+   "summary": "Investigation of the train-ticket incident, requested by ticket INC-2055, top 3 suspects requested. The suspected services, most likely first, are ts-route-service, ts-admin-travel-service, ts-travel-service; fault type loss (probability 0.42); onset 13:59 UTC. No services excluded.",
+   "summary_s": 0.9316497000399977,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "train-ticket",
+    "ticket": "INC-2055",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.1583947999752127,
+   "round_trip": true,
+   "total_s": 1.7857599999988452
+  },
+  {
+   "id": "r12-dev-003",
+   "kind": "spec",
+   "category": "ticket",
+   "style": "chatty",
+   "text": "Hi! Ops wants the story behind INC-2059 on the train ticket system.",
+   "gold": {
+    "exclude_services": [],
+    "system": "train-ticket",
+    "ticket": "INC-2059",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "ticket": "INC-2059",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 0.9841729999752715,
+   "route_s": 0.20308149995980784,
+   "attempts": 1,
+   "n_prompt_tokens": 2806,
+   "ticket": "INC-2059",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 274,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2059",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.14595049998024479,
+   "summary": "Investigation of the train-ticket incident, requested by ticket INC-2059, top 3 suspects requested. The suspected services, most likely first, are ts-route-service, ts-payment-service, ts-travel2-service; fault type loss (probability 0.45); onset 16:20 UTC. No services excluded.",
+   "summary_s": 0.8935423999791965,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "train-ticket",
+    "ticket": "INC-2059",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.139094399928581,
+   "round_trip": true,
+   "total_s": 2.023665899934713
+  },
+  {
+   "id": "r12-dev-004",
+   "kind": "spec",
+   "category": "ticket",
+   "style": "typo",
+   "text": "ticket INC-2047 trian-ticket please",
+   "gold": {
+    "exclude_services": [],
+    "system": "train-ticket",
+    "ticket": "INC-2047",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "ticket": "INC-2047",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.0002194000408053,
+   "route_s": 0.219457000028342,
+   "attempts": 1,
+   "n_prompt_tokens": 2799,
+   "ticket": "INC-2047",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 274,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2047",
+   "nl_score": 0.0,
+   "nl_top1": 0.0,
+   "gold_score": 0.0,
+   "gold_top1": 0.0,
+   "team_s": 0.08872340002562851,
+   "summary": "Investigation of the train-ticket incident, requested by ticket INC-2047, top 3 suspects requested. The suspected services, most likely first, are ts-admin-travel-service, ts-order-service, ts-travel2-service; fault type disk (probability 0.62); onset 09:15 UTC. No services excluded.",
+   "summary_s": 0.9354028000379913,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "train-ticket",
+    "ticket": "INC-2047",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.1509566999739036,
+   "round_trip": true,
+   "total_s": 2.024345600104425
+  },
+  {
+   "id": "r12-dev-005",
+   "kind": "spec",
+   "category": "time",
+   "style": "plain",
+   "text": "Train ticket, 2024-12-08 at 10:26.",
+   "gold": {
+    "at": "2024-12-08T10:26",
+    "exclude_services": [],
+    "system": "train-ticket",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "at": "2024-12-08T10:26",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.0909230999532156,
+   "route_s": 0.20690729998750612,
+   "attempts": 1,
+   "n_prompt_tokens": 2809,
+   "ticket": "INC-2049",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 274,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2049",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.0996688999584876,
+   "summary": "Investigation of the train-ticket incident, requested by time 2024-12-08T10:26 (ticket INC-2049), top 3 suspects requested. The suspected services, most likely first, are ts-auth-service, ts-order-other-service, ts-order-service; fault type loss (probability 0.28); onset 10:26 UTC. Excluded: no services excluded.",
+   "summary_s": 1.1322758000460453,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "train-ticket",
+    "ticket": "INC-2049",
+    "at": "2024-12-08T10:26",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.381201200070791,
+   "round_trip": false,
+   "total_s": 2.3228677999577485
+  },
+  {
+   "id": "r12-dev-006",
+   "kind": "spec",
+   "category": "time",
+   "style": "formal",
+   "text": "Please investigate the Sock Shop incident of 22 November 2024 at 07:26.",
+   "gold": {
+    "at": "2024-11-22T07:26",
+    "exclude_services": [],
+    "system": "sock-shop",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "sock-shop",
+    "at": "2024-11-22T07:26",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.083531599957496,
+   "route_s": 0.19848099997034296,
+   "attempts": 1,
+   "n_prompt_tokens": 2811,
+   "ticket": "INC-2005",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 62,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2005",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.17541919997893274,
+   "summary": "Investigation of the sock-shop incident, requested by time 2024-11-22T07:26 (ticket INC-2005), top 3 suspects requested. The suspected services, most likely first, are front-end, orders, catalogue; fault type disk (probability 0.45); onset 07:26 UTC. Excluded: no services excluded.",
+   "summary_s": 1.006277600012254,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "sock-shop",
+    "at": "2024-11-22T07:26",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.2576774000190198,
+   "round_trip": true,
+   "total_s": 2.2652283999486826
+  },
+  {
+   "id": "r12-dev-007",
+   "kind": "spec",
+   "category": "time",
+   "style": "keyvalue",
+   "text": "system=online-boutique at=2024-11-23T15:39",
+   "gold": {
+    "at": "2024-11-23T15:39",
+    "exclude_services": [],
+    "system": "online-boutique",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "clarify",
+   "reason": "Please provide a ticket number or confirm if you want to investigate a general incident for the specified time.",
+   "decision_ok": false,
+   "pred": null,
+   "translate_s": 1.0154108999995515,
+   "route_s": 0.2343247999669984,
+   "attempts": 1,
+   "n_prompt_tokens": 2811,
+   "ticket": null,
+   "exact": false,
+   "fields": {
+    "at": false,
+    "exclude_services": false,
+    "system": false,
+    "top_k": false,
+    "want_fault_type": false
+   },
+   "gold_state": "completed",
+   "gold_ticket": "INC-2028",
+   "nl_score": 0.0,
+   "nl_top1": 0.0,
+   "gold_score": 0.0,
+   "gold_top1": 0.0,
+   "team_s": 0.0,
+   "total_s": 1.0154108999995515
+  },
+  {
+   "id": "r12-dev-008",
+   "kind": "spec",
+   "category": "partial",
+   "style": "plain",
+   "text": "Train ticket on Dec 8 at 06:53.",
+   "gold": {
+    "at": "--12-08T06:53",
+    "exclude_services": [],
+    "system": "train-ticket",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "at": "2024-12-08T06:53",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 0.7780090000014752,
+   "route_s": 0.1916823000065051,
+   "attempts": 1,
+   "n_prompt_tokens": 2801,
+   "ticket": "INC-2043",
+   "exact": false,
+   "fields": {
+    "at": false,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 274,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2043",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.17341260000830516,
+   "summary": "Investigation of the train-ticket incident, requested by time 2024-12-08T06:53 (ticket INC-2043), top 3 suspects requested. The suspected services, most likely first, are ts-auth-service, ts-order-service, ts-order-other-service; fault type loss (probability 0.28); onset 06:53 UTC. Excluded: no services excluded.",
+   "summary_s": 1.1233432000153698,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "train-ticket",
+    "ticket": "INC-2043",
+    "at": "2024-12-08T06:53",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.3690642999717966,
+   "round_trip": false,
+   "total_s": 2.07476480002515
+  },
+  {
+   "id": "r12-dev-009",
+   "kind": "spec",
+   "category": "partial",
+   "style": "terse",
+   "text": "shop 22nd 05:42",
+   "gold": {
+    "at": "---22T05:42",
+    "exclude_services": [],
+    "system": "sock-shop",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "clarify",
+   "reason": "What is the ticket number for the incident on the sock-shop on the 22nd at 05:42?",
+   "decision_ok": false,
+   "pred": null,
+   "translate_s": 1.0584439000231214,
+   "route_s": 0.21652980003273115,
+   "attempts": 1,
+   "n_prompt_tokens": 2798,
+   "ticket": null,
+   "exact": false,
+   "fields": {
+    "at": false,
+    "exclude_services": false,
+    "system": false,
+    "top_k": false,
+    "want_fault_type": false
+   },
+   "gold_state": "completed",
+   "gold_ticket": "INC-2001",
+   "nl_score": 0.0,
+   "nl_top1": 0.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.0,
+   "total_s": 1.0584439000231214
+  },
+  {
+   "id": "r12-dev-010",
+   "kind": "spec",
+   "category": "partial",
+   "style": "chatty",
+   "text": "The boutique on the 23rd at 2:21 pm, what happened there?",
+   "gold": {
+    "at": "---23T14:21",
+    "exclude_services": [],
+    "system": "online-boutique",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "online-boutique",
+    "at": "---23T14:21",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 0.7228270000196062,
+   "route_s": 0.19151229999260977,
+   "attempts": 1,
+   "n_prompt_tokens": 2807,
+   "ticket": "INC-2025",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 50,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2025",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.19128799997270107,
+   "summary": "Investigation of the online-boutique incident, requested by time ---23T14:21 (ticket INC-2025), top 3 suspects requested. The suspected services, most likely first, are emailservice, frontend-external, cartservice; fault type delay (probability 0.34); onset 14:22 UTC. Excluded: no services excluded.",
+   "summary_s": 0.9642174000036903,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "online-boutique",
+    "at": "---23T14:21",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.2127738000126556,
+   "round_trip": true,
+   "total_s": 1.8783323999959975
+  },
+  {
+   "id": "r12-dev-011",
+   "kind": "spec",
+   "category": "partial",
+   "style": "question",
+   "text": "What failed on the train ticket system on the 10th at 12:03?",
+   "gold": {
+    "at": "---10T12:03",
+    "exclude_services": [],
+    "system": "train-ticket",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "at": "---10T12:03",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.0257746999850497,
+   "route_s": 0.20078249997459352,
+   "attempts": 1,
+   "n_prompt_tokens": 2808,
+   "ticket": "INC-2060",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 274,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2060",
+   "nl_score": 0.0,
+   "nl_top1": 0.0,
+   "gold_score": 0.0,
+   "gold_top1": 0.0,
+   "team_s": 0.07199199998285621,
+   "summary": "Investigation of the train-ticket incident, requested by time ---10T12:03 (ticket INC-2060), top 3 suspects requested. The suspected services, most likely first, are ts-order-other-service, ts-auth-service, ts-order-service; fault type delay (probability 0.42); onset 12:04 UTC. Excluded: no services excluded.",
+   "summary_s": 1.054432299977634,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "train-ticket",
+    "at": "---10T12:03",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.187287299952004,
+   "round_trip": true,
+   "total_s": 2.15219899994554
+  },
+  {
+   "id": "r12-dev-012",
+   "kind": "spec",
+   "category": "partial",
+   "style": "plain",
+   "text": "Sock shop 24 Nov 13:34.",
+   "gold": {
+    "at": "--11-24T13:34",
+    "exclude_services": [],
+    "system": "sock-shop",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "sock-shop",
+    "at": "2024-11-24T13:34",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.10250239999732,
+   "route_s": 0.19909559999359772,
+   "attempts": 1,
+   "n_prompt_tokens": 2800,
+   "ticket": "INC-2041",
+   "exact": false,
+   "fields": {
+    "at": false,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 62,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2041",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.1922772999969311,
+   "summary": "Investigation of the sock-shop incident, requested by time 2024-11-24T13:34 (ticket INC-2041), top 3 suspects requested. The suspected services, most likely first, are carts, orders, front-end; fault type loss (probability 0.67); onset unknown; no services excluded.",
+   "summary_s": 0.9234063000185415,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "sock-shop",
+    "ticket": "INC-2041",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.1374907999997959,
+   "round_trip": false,
+   "total_s": 2.2181860000127926
+  },
+  {
+   "id": "r12-dev-013",
+   "kind": "spec",
+   "category": "partial",
+   "style": "formal",
+   "text": "Please look at the online boutique of November 22 at 12:24.",
+   "gold": {
+    "at": "--11-22T12:24",
+    "exclude_services": [],
+    "system": "online-boutique",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "online-boutique",
+    "at": "2024-11-22T12:24",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.096475099970121,
+   "route_s": 0.202633099979721,
+   "attempts": 1,
+   "n_prompt_tokens": 2806,
+   "ticket": "INC-2008",
+   "exact": false,
+   "fields": {
+    "at": false,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 50,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2008",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.16078360000392422,
+   "summary": "Investigation of the online-boutique incident, requested by time 2024-11-22T12:24 (ticket INC-2008), top 3 suspects requested. The suspected services, most likely first, are adservice, frontend, checkoutservice; fault type loss (probability 0.56); onset 12:25 UTC. Excluded: no services excluded.",
+   "summary_s": 1.0272291000001132,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "online-boutique",
+    "at": "2024-11-22T12:24",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.2483530000317842,
+   "round_trip": true,
+   "total_s": 2.2844877999741584
+  },
+  {
+   "id": "r12-dev-014",
+   "kind": "spec",
+   "category": "relative",
+   "style": "plain",
+   "text": "Train ticket yesterday at 13:14, find the cause.",
+   "gold": {
+    "at": "2024-12-10T13:14",
+    "exclude_services": [],
+    "system": "train-ticket",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "at": "2024-12-10T13:14",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.107274200010579,
+   "route_s": 0.20745190000161529,
+   "attempts": 1,
+   "n_prompt_tokens": 2802,
+   "ticket": "INC-2062",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 274,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2062",
+   "nl_score": 0.0,
+   "nl_top1": 0.0,
+   "gold_score": 0.0,
+   "gold_top1": 0.0,
+   "team_s": 0.1127703000092879,
+   "summary": "Investigation of the train-ticket incident, requested by time 2024-12-10T13:14 (ticket INC-2062), top 3 suspects requested. The suspected services, most likely first, are ts-admin-basic-info-service, ts-order-service, ts-order-other-service; fault type disk (probability 0.63); onset 13:15 UTC. Excluded: no services excluded.",
+   "summary_s": 1.1576569000026211,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "train-ticket",
+    "ticket": "INC-2062",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.1559428999898955,
+   "round_trip": false,
+   "total_s": 2.377701400022488
+  },
+  {
+   "id": "r12-dev-015",
+   "kind": "spec",
+   "category": "relative",
+   "style": "chatty",
+   "text": "Hey, train ticket yesterday around 12:03 - what failed?",
+   "gold": {
+    "at": "2024-12-10T12:03",
+    "exclude_services": [],
+    "system": "train-ticket",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "at": "2024-12-10T12:03",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.0701216000015847,
+   "route_s": 0.19249180000042543,
+   "attempts": 1,
+   "n_prompt_tokens": 2803,
+   "ticket": "INC-2060",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 274,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2060",
+   "nl_score": 0.0,
+   "nl_top1": 0.0,
+   "gold_score": 0.0,
+   "gold_top1": 0.0,
+   "team_s": 0.0586,
+   "summary": "Investigation of the train-ticket incident, requested by time 2024-12-10T12:03 (ticket INC-2060), top 3 suspects requested. The suspected services, most likely first, are ts-order-other-service, ts-auth-service, ts-order-service; fault type delay (probability 0.42); onset 12:04 UTC. Excluded: no services excluded.",
+   "summary_s": 1.1018283999874257,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "train-ticket",
+    "ticket": "INC-2060",
+    "at": "2024-12-10T12:03",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.339182499970775,
+   "round_trip": false,
+   "total_s": 2.2305499999890106
+  },
+  {
+   "id": "r12-dev-016",
+   "kind": "spec",
+   "category": "topk",
+   "style": "plain",
+   "text": "INC-2057 on train ticket, 2 suspects.",
+   "gold": {
+    "exclude_services": [],
+    "system": "train-ticket",
+    "ticket": "INC-2057",
+    "top_k": 2,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "ticket": "INC-2057",
+    "top_k": 2,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.0695050000213087,
+   "route_s": 0.19398229999933392,
+   "attempts": 1,
+   "n_prompt_tokens": 2801,
+   "ticket": "INC-2057",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 274,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2057",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.13784639997174963,
+   "summary": "Investigation of the train-ticket incident, requested by ticket INC-2057, top 2 suspects requested. The suspected services, most likely first, are ts-route-service, ts-travel-service; fault type loss (probability 0.46); onset 15:10 UTC. Excluded: no services excluded.",
+   "summary_s": 0.8538399999961257,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "train-ticket",
+    "ticket": "INC-2057",
+    "top_k": 2,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.1502985000261106,
+   "round_trip": true,
+   "total_s": 2.061191399989184
+  },
+  {
+   "id": "r12-dev-017",
+   "kind": "spec",
+   "category": "exclude",
+   "style": "plain",
+   "text": "Shop INC-2037, skipping user.",
+   "gold": {
+    "exclude_services": [
+     "user"
+    ],
+    "system": "sock-shop",
+    "ticket": "INC-2037",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "sock-shop",
+    "ticket": "INC-2037",
+    "exclude_services": [
+     "user"
+    ],
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "translate_s": 1.0917182000703178,
+   "route_s": 0.21285090001765639,
+   "attempts": 1,
+   "n_prompt_tokens": 2798,
+   "ticket": "INC-2037",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 58,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2037",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.15681100002257153,
+   "summary": "Investigation of the sock-shop incident, requested by ticket INC-2037, top 3 suspects requested. The suspected services, most likely first, are orders, front-end, orders-db; fault type disk (probability 0.4); onset 21:35 UTC. Excluded: user.",
+   "summary_s": 0.8026803999673575,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "sock-shop",
+    "ticket": "INC-2037",
+    "top_k": 3,
+    "exclude_services": [
+     "user"
+    ],
+    "want_fault_type": true
+   },
+   "recon_s": 1.213407000002917,
+   "round_trip": true,
+   "total_s": 2.051209600060247
+  },
+  {
+   "id": "r12-dev-018",
+   "kind": "spec",
+   "category": "fault",
+   "style": "plain",
+   "text": "Only suspects for INC-2028 please, boutique.",
+   "gold": {
+    "exclude_services": [],
+    "system": "online-boutique",
+    "ticket": "INC-2028",
+    "top_k": 3,
+    "want_fault_type": false
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "online-boutique",
+    "ticket": "INC-2028",
+    "want_fault_type": false,
+    "top_k": 3,
+    "exclude_services": []
+   },
+   "translate_s": 1.08205889997771,
+   "route_s": 0.19524380000075325,
+   "attempts": 1,
+   "n_prompt_tokens": 2800,
+   "ticket": "INC-2028",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 50,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2028",
+   "nl_score": 0.0,
+   "nl_top1": 0.0,
+   "gold_score": 0.0,
+   "gold_top1": 0.0,
+   "team_s": 0.01798679999774322,
+   "summary": "Investigation of the online-boutique incident, requested by ticket INC-2028, top 3 suspects requested. The suspected services, most likely first, are shippingservice, emailservice, adservice; no fault type was requested; onset 15:39 UTC. No services excluded.",
+   "summary_s": 0.779312199971173,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "online-boutique",
+    "ticket": "INC-2028",
+    "top_k": 3,
+    "want_fault_type": false,
+    "exclude_services": []
+   },
+   "recon_s": 1.2653332000481896,
+   "round_trip": true,
+   "total_s": 1.8793578999466263
+  },
+  {
+   "id": "r12-dev-019",
+   "kind": "spec",
+   "category": "combo",
+   "style": "plain",
+   "text": "Train ticket yesterday at 12:38, top 5, no fault type.",
+   "gold": {
+    "at": "2024-12-10T12:38",
+    "exclude_services": [],
+    "system": "train-ticket",
+    "top_k": 5,
+    "want_fault_type": false
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "at": "2024-12-10T12:38",
+    "top_k": 5,
+    "want_fault_type": false,
+    "exclude_services": []
+   },
+   "translate_s": 1.2559177000075579,
+   "route_s": 0.21237180003663525,
+   "attempts": 1,
+   "n_prompt_tokens": 2806,
+   "ticket": "INC-2061",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 274,
+   "gold_state": "completed",
+   "gold_ticket": "INC-2061",
+   "nl_score": 0.0,
+   "nl_top1": 0.0,
+   "gold_score": 0.0,
+   "gold_top1": 0.0,
+   "team_s": 0.07893880002666265,
+   "summary": "Investigation of the train-ticket incident, requested by time 2024-12-10T12:38 (ticket INC-2061), top 5 suspects requested. The suspected services, most likely first, are ts-order-service, ts-auth-service, ts-travel2-service, ts-price-service, ts-travel-service; no fault type was requested; onset 12:38 UTC. No services excluded.",
+   "summary_s": 1.1519790000165813,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "train-ticket",
+    "ticket": "INC-2061",
+    "at": "2024-12-10T12:38",
+    "top_k": 5,
+    "want_fault_type": false,
+    "exclude_services": []
+   },
+   "recon_s": 1.464500100002624,
+   "round_trip": false,
+   "total_s": 2.486835500050802
+  },
+  {
+   "id": "r12-dev-020",
+   "kind": "spec",
+   "category": "ticket",
+   "style": "plain",
+   "text": "Get me the analysis for INC-1055, sock shop incident.",
+   "gold": {
+    "exclude_services": [],
+    "system": "sock-shop",
+    "ticket": "INC-1055",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "sock-shop",
+    "ticket": "INC-1055",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 0.9849536999827251,
+   "route_s": 0.19292800000403076,
+   "attempts": 1,
+   "n_prompt_tokens": 2803,
+   "ticket": "INC-1055",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 62,
+   "gold_state": "completed",
+   "gold_ticket": "INC-1055",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.17229859996587038,
+   "summary": "Investigation of the sock-shop incident, requested by ticket INC-1055, top 3 suspects requested. The suspected services, most likely first, are catalogue, shipping, carts-db; fault type socket (probability 0.52); onset 23:29 UTC. Excluded: no services excluded.",
+   "summary_s": 0.8145035999477841,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "sock-shop",
+    "ticket": "INC-1055",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.126916000037454,
+   "round_trip": true,
+   "total_s": 1.9717558998963796
+  },
+  {
+   "id": "r12-dev-021",
+   "kind": "spec",
+   "category": "ticket",
+   "style": "chatty",
+   "text": "Quick one: what was INC-1030 on the boutique?",
+   "gold": {
+    "exclude_services": [],
+    "system": "online-boutique",
+    "ticket": "INC-1030",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "online-boutique",
+    "ticket": "INC-1030",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 0.9873175999964587,
+   "route_s": 0.1934822999755852,
+   "attempts": 1,
+   "n_prompt_tokens": 2802,
+   "ticket": "INC-1030",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 50,
+   "gold_state": "completed",
+   "gold_ticket": "INC-1030",
+   "nl_score": 0.0,
+   "nl_top1": 1.0,
+   "gold_score": 0.0,
+   "gold_top1": 1.0,
+   "team_s": 0.4485584000358358,
+   "summary": "Investigation of the online-boutique incident, requested by ticket INC-1030, top 3 suspects requested. The suspected services, most likely first, are checkoutservice, paymentservice, currencyservice; fault type loss (probability 0.33); onset 10:32 UTC. Excluded: no services excluded.",
+   "summary_s": 0.8551867000060156,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "online-boutique",
+    "ticket": "INC-1030",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.1354303999687545,
+   "round_trip": true,
+   "total_s": 2.29106270003831
+  },
+  {
+   "id": "r12-dev-022",
+   "kind": "spec",
+   "category": "ticket",
+   "style": "terse",
+   "text": "boutique inc1018",
+   "gold": {
+    "exclude_services": [],
+    "system": "online-boutique",
+    "ticket": "INC-1018",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "online-boutique",
+    "ticket": "INC-1018",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 0.9808865000377409,
+   "route_s": 0.19356169999809936,
+   "attempts": 1,
+   "n_prompt_tokens": 2794,
+   "ticket": "INC-1018",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 50,
+   "gold_state": "completed",
+   "gold_ticket": "INC-1018",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.4954360999981873,
+   "summary": "Investigation of the online-boutique incident, requested by ticket INC-1018, top 3 suspects requested. The suspected services, most likely first, are recommendationservice, cartservice, frontend; fault type socket (probability 0.33); onset 01:54 UTC. Excluded: no services excluded.",
+   "summary_s": 0.8241147000226192,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "online-boutique",
+    "ticket": "INC-1018",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.161166100006085,
+   "round_trip": true,
+   "total_s": 2.3004373000585474
+  },
+  {
+   "id": "r12-dev-023",
+   "kind": "spec",
+   "category": "ticket",
+   "style": "formal",
+   "text": "Could INC-1100 on the boutique be reviewed?",
+   "gold": {
+    "exclude_services": [],
+    "system": "online-boutique",
+    "ticket": "INC-1100",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "online-boutique",
+    "ticket": "INC-1100",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 0.9876876000198536,
+   "route_s": 0.19248299999162555,
+   "attempts": 1,
+   "n_prompt_tokens": 2800,
+   "ticket": "INC-1100",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 46,
+   "gold_state": "completed",
+   "gold_ticket": "INC-1100",
+   "nl_score": 0.0,
+   "nl_top1": 1.0,
+   "gold_score": 0.0,
+   "gold_top1": 1.0,
+   "team_s": 0.3897100000176579,
+   "summary": "Investigation of the online-boutique incident, requested by ticket INC-1100, top 3 suspects requested. The suspected services, most likely first, are checkoutservice, adservice, emailservice; fault type mem (probability 0.43); onset 16:24 UTC. Excluded: no services excluded.",
+   "summary_s": 0.8561368000227958,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "online-boutique",
+    "ticket": "INC-1100",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.134320600074716,
+   "round_trip": true,
+   "total_s": 2.2335344000603072
+  },
+  {
+   "id": "r12-dev-024",
+   "kind": "spec",
+   "category": "time",
+   "style": "plain",
+   "text": "Sock shop 2024-01-19 at 15:57.",
+   "gold": {
+    "at": "2024-01-19T15:57",
+    "exclude_services": [],
+    "system": "sock-shop",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "sock-shop",
+    "at": "2024-01-19T15:57",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.1022819999489002,
+   "route_s": 0.21968259999994189,
+   "attempts": 1,
+   "n_prompt_tokens": 2808,
+   "ticket": "INC-1037",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 62,
+   "gold_state": "completed",
+   "gold_ticket": "INC-1037",
+   "nl_score": 0.0,
+   "nl_top1": 1.0,
+   "gold_score": 0.0,
+   "gold_top1": 1.0,
+   "team_s": 0.15027809998719022,
+   "summary": "Investigation of the sock-shop incident, requested by time 2024-01-19T15:57 (ticket INC-1037), top 3 suspects requested. The suspected services, most likely first, are carts, orders, payment; fault type disk (probability 0.36); onset 15:58 UTC. No services excluded.",
+   "summary_s": 0.9523308000061661,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "sock-shop",
+    "ticket": "INC-1037",
+    "at": "2024-01-19T15:57",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.3821613999898545,
+   "round_trip": false,
+   "total_s": 2.2048908999422565
+  },
+  {
+   "id": "r12-dev-025",
+   "kind": "spec",
+   "category": "time",
+   "style": "chatty",
+   "text": "The boutique on 17 January 2024 at 9:18 pm is still bugging us.",
+   "gold": {
+    "at": "2024-01-17T21:18",
+    "exclude_services": [],
+    "system": "online-boutique",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "online-boutique",
+    "at": "2024-01-17T21:18",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.1363618000177667,
+   "route_s": 0.22064499999396503,
+   "attempts": 1,
+   "n_prompt_tokens": 2812,
+   "ticket": "INC-1011",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 50,
+   "gold_state": "completed",
+   "gold_ticket": "INC-1011",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.4677475999924354,
+   "summary": "Investigation of the online-boutique incident, requested by time 2024-01-17T21:18 (ticket INC-1011), top 3 suspects requested. The suspected services, most likely first, are recommendationservice, frontend, currencyservice; fault type cpu (probability 0.36); onset 21:10 UTC. Excluded: no services excluded.",
+   "summary_s": 1.034162700001616,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "online-boutique",
+    "at": "2024-01-17T21:18",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.2646056999801658,
+   "round_trip": true,
+   "total_s": 2.638272100011818
+  },
+  {
+   "id": "r12-dev-026",
+   "kind": "spec",
+   "category": "partial",
+   "style": "plain",
+   "text": "Shop on Jan 20 at 20:50.",
+   "gold": {
+    "at": "--01-20T20:50",
+    "exclude_services": [],
+    "system": "sock-shop",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "sock-shop",
+    "at": "--01-20T20:50",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.0566163000185043,
+   "route_s": 0.1974904999951832,
+   "attempts": 1,
+   "n_prompt_tokens": 2801,
+   "ticket": "INC-1107",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 62,
+   "gold_state": "completed",
+   "gold_ticket": "INC-1107",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.159470499958843,
+   "summary": "Investigation of the sock-shop incident, requested by time --01-20T20:50 (ticket INC-1107), top 3 suspects requested. The suspected services, most likely first, are user, orders, front-end; fault type mem (probability 0.38); onset 20:50 UTC. Excluded: none.",
+   "summary_s": 0.9514605000149459,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": false
+   },
+   "fidelity": 0.875,
+   "all_facts": false,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "sock-shop",
+    "at": "--01-20T20:50",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.196026699966751,
+   "round_trip": true,
+   "total_s": 2.167547299992293
+  },
+  {
+   "id": "r12-dev-027",
+   "kind": "spec",
+   "category": "partial",
+   "style": "terse",
+   "text": "boutique, the 18th, around 13:10",
+   "gold": {
+    "at": "---18T13:10",
+    "exclude_services": [],
+    "system": "online-boutique",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "online-boutique",
+    "at": "---18T13:10",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.0282781000132672,
+   "route_s": 0.2086913000093773,
+   "attempts": 1,
+   "n_prompt_tokens": 2803,
+   "ticket": "INC-1021",
+   "exact": true,
+   "fields": {
+    "at": true,
+    "exclude_services": true,
+    "system": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 50,
+   "gold_state": "completed",
+   "gold_ticket": "INC-1021",
+   "nl_score": 1.0,
+   "nl_top1": 1.0,
+   "gold_score": 1.0,
+   "gold_top1": 1.0,
+   "team_s": 0.2822774999658577,
+   "summary": "Investigation of the online-boutique incident, requested by time ---18T13:10 (ticket INC-1021), top 3 suspects requested. The suspected services, most likely first, are recommendationservice, frontend, paymentservice; fault type loss (probability 0.53); onset 13:11 UTC. Excluded: no services excluded.",
+   "summary_s": 0.9318511000019498,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "at": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "online-boutique",
+    "at": "---18T13:10",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.2107182000181638,
+   "round_trip": true,
+   "total_s": 2.242406699981075
+  },
+  {
+   "id": "r12-dev-028",
+   "kind": "spec",
+   "category": "topk",
+   "style": "plain",
+   "text": "Shop ticket INC-1071, give me 4 suspects.",
+   "gold": {
+    "exclude_services": [],
+    "system": "sock-shop",
+    "ticket": "INC-1071",
+    "top_k": 4,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "sock-shop",
+    "ticket": "INC-1071",
+    "top_k": 4,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.078542799979914,
+   "route_s": 0.19764779997058213,
+   "attempts": 1,
+   "n_prompt_tokens": 2802,
+   "ticket": "INC-1071",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 62,
+   "gold_state": "completed",
+   "gold_ticket": "INC-1071",
+   "nl_score": 0.0,
+   "nl_top1": 1.0,
+   "gold_score": 0.0,
+   "gold_top1": 1.0,
+   "team_s": 0.13925079995533451,
+   "summary": "Investigation of the sock-shop incident, requested by ticket INC-1071, top 4 suspects requested. The suspected services, most likely first, are carts, front-end, orders, carts-db; fault type delay (probability 0.46); onset 05:31 UTC. Excluded: no services excluded.",
+   "summary_s": 0.8567670999909751,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "sock-shop",
+    "ticket": "INC-1071",
+    "top_k": 4,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.1668558999663219,
+   "round_trip": true,
+   "total_s": 2.0745606999262236
+  },
+  {
+   "id": "r12-dev-029",
+   "kind": "spec",
+   "category": "exclude",
+   "style": "plain",
+   "text": "INC-1063 boutique, without productcatalogservice.",
+   "gold": {
+    "exclude_services": [
+     "productcatalogservice"
+    ],
+    "system": "online-boutique",
+    "ticket": "INC-1063",
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "online-boutique",
+    "ticket": "INC-1063",
+    "exclude_services": [
+     "productcatalogservice"
+    ],
+    "top_k": 3,
+    "want_fault_type": true
+   },
+   "translate_s": 1.1209950000047684,
+   "route_s": 0.22029059997294098,
+   "attempts": 1,
+   "n_prompt_tokens": 2800,
+   "ticket": "INC-1063",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 46,
+   "gold_state": "completed",
+   "gold_ticket": "INC-1063",
+   "nl_score": 0.0,
+   "nl_top1": 0.0,
+   "gold_score": 0.0,
+   "gold_top1": 0.0,
+   "team_s": 0.3181259000557475,
+   "summary": "Investigation of the online-boutique incident, requested by ticket INC-1063, top 3 suspects requested. The suspected services, most likely first, are frontend, recommendationservice, checkoutservice; fault type loss (probability 0.42); onset 02:18 UTC. Excluded: productcatalogservice.",
+   "summary_s": 0.8219067999743856,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "fault_probability": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "online-boutique",
+    "ticket": "INC-1063",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": [
+     "productcatalogservice"
+    ]
+   },
+   "recon_s": 1.3337749000056647,
+   "round_trip": true,
+   "total_s": 2.2610277000349015
+  },
+  {
+   "id": "r12-dev-030",
+   "kind": "spec",
+   "category": "fault",
+   "style": "chatty",
+   "text": "Boutique INC-1081, I only need suspects.",
+   "gold": {
+    "exclude_services": [],
+    "system": "online-boutique",
+    "ticket": "INC-1081",
+    "top_k": 3,
+    "want_fault_type": false
+   },
+   "routed": "incident",
+   "route_ok": true,
+   "status": "ok",
+   "reason": "",
+   "decision_ok": true,
+   "pred": {
+    "system": "online-boutique",
+    "ticket": "INC-1081",
+    "want_fault_type": false,
+    "top_k": 3,
+    "exclude_services": []
+   },
+   "translate_s": 1.0952740999637172,
+   "route_s": 0.2121478999615647,
+   "attempts": 1,
+   "n_prompt_tokens": 2802,
+   "ticket": "INC-1081",
+   "exact": true,
+   "fields": {
+    "exclude_services": true,
+    "system": true,
+    "ticket": true,
+    "top_k": true,
+    "want_fault_type": true
+   },
+   "nl_state": "completed",
+   "n_envelopes": 50,
+   "gold_state": "completed",
+   "gold_ticket": "INC-1081",
+   "nl_score": 0.0,
+   "nl_top1": 0.0,
+   "gold_score": 0.0,
+   "gold_top1": 0.0,
+   "team_s": 0.5120562000083737,
+   "summary": "Investigation of the online-boutique incident, requested by ticket INC-1081, top 3 suspects requested. The suspected services, most likely first, are checkoutservice, emailservice, shippingservice; no fault type was requested; onset 08:47 UTC. No services excluded.",
+   "summary_s": 0.7779061000328511,
+   "summary_error": "",
+   "facts": {
+    "system": true,
+    "ticket": true,
+    "suspects": true,
+    "fault_type": true,
+    "onset": true,
+    "exclusions": true
+   },
+   "fidelity": 1.0,
+   "all_facts": true,
+   "recon_domain": "incident",
+   "recon_status": "ok",
+   "recon_params": {
+    "system": "online-boutique",
+    "ticket": "INC-1081",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "recon_s": 1.1569548000697978,
+   "round_trip": false,
+   "total_s": 2.385236400004942
+  },
+  {
+   "id": "r12-dev-031",
+   "kind": "clarify",
+   "category": "clarify",
+   "style": "plain",
+   "text": "Check the train ticket system on 2024-12-08.",
+   "gold": null,
+   "routed": "incident",
+   "route_ok": true,
+   "status": "clarify",
+   "reason": "18 train-ticket incidents on 2024-12-08: INC-2042 (2024-12-08T06:18), INC-2043 (2024-12-08T06:53), INC-2044 (2024-12-08T07:28), INC-2045 (2024-12-08T08:04) and 14 more. Which one?",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "at": "2024-12-08",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 1.043848600005731,
+   "route_s": 0.2223037999938242,
+   "attempts": 1,
+   "n_prompt_tokens": 2805,
+   "ticket": null
+  },
+  {
+   "id": "r12-dev-032",
+   "kind": "clarify",
+   "category": "clarify",
+   "style": "chatty",
+   "text": "Boutique problem on the 22nd of November, any ideas?",
+   "gold": null,
+   "routed": "incident",
+   "route_ok": true,
+   "status": "clarify",
+   "reason": "What year was the incident on the 22nd of November?",
+   "decision_ok": true,
+   "pred": null,
+   "translate_s": 0.6167432999936864,
+   "route_s": 0.19098150002537295,
+   "attempts": 1,
+   "n_prompt_tokens": 2803,
+   "ticket": null
+  },
+  {
+   "id": "r12-dev-033",
+   "kind": "clarify",
+   "category": "clarify",
+   "style": "terse",
+   "text": "sock shop, some outage last week",
+   "gold": null,
+   "routed": "incident",
+   "route_ok": true,
+   "status": "clarify",
+   "reason": "What date was the outage last week? Please provide a specific date or time.",
+   "decision_ok": true,
+   "pred": null,
+   "translate_s": 0.6681069000042044,
+   "route_s": 0.2145180000225082,
+   "attempts": 1,
+   "n_prompt_tokens": 2794,
+   "ticket": null
+  },
+  {
+   "id": "r12-dev-034",
+   "kind": "clarify",
+   "category": "clarify",
+   "style": "plain",
+   "text": "Investigate something on the train ticket platform.",
+   "gold": null,
+   "routed": "incident",
+   "route_ok": true,
+   "status": "clarify",
+   "reason": "Which incident? Give a ticket or a date and time.",
+   "decision_ok": true,
+   "pred": null,
+   "translate_s": 0.6240158000146039,
+   "route_s": 0.22379780001938343,
+   "attempts": 1,
+   "n_prompt_tokens": 2796,
+   "ticket": null
+  },
+  {
+   "id": "r12-dev-035",
+   "kind": "refuse",
+   "category": "refuse",
+   "style": "plain",
+   "text": "Train ticket INC-2130, what failed?",
+   "gold": null,
+   "routed": "incident",
+   "route_ok": true,
+   "status": "refused",
+   "reason": "there is no ticket INC-2130",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "ticket": "INC-2130",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 0.6967557000461966,
+   "route_s": 0.19371610000962391,
+   "attempts": 1,
+   "n_prompt_tokens": 2799,
+   "ticket": null
+  },
+  {
+   "id": "r12-dev-036",
+   "kind": "refuse",
+   "category": "refuse",
+   "style": "plain",
+   "text": "Sock shop INC-2060 please.",
+   "gold": null,
+   "routed": "incident",
+   "route_ok": true,
+   "status": "refused",
+   "reason": "INC-2060 is a train-ticket incident, not sock-shop",
+   "decision_ok": true,
+   "pred": {
+    "system": "sock-shop",
+    "ticket": "INC-2060",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 0.6741025000228547,
+   "route_s": 0.19610900001134723,
+   "attempts": 1,
+   "n_prompt_tokens": 2797,
+   "ticket": null
+  },
+  {
+   "id": "r12-dev-037",
+   "kind": "refuse",
+   "category": "refuse",
+   "style": "chatty",
+   "text": "Anything on train ticket on the 9th, 14:00?",
+   "gold": null,
+   "routed": "incident",
+   "route_ok": true,
+   "status": "refused",
+   "reason": "no train-ticket incident matching ---09T14:00 at or before 2024-12-11T09:00",
+   "decision_ok": true,
+   "pred": {
+    "system": "train-ticket",
+    "at": "---09T14:00",
+    "top_k": 3,
+    "want_fault_type": true,
+    "exclude_services": []
+   },
+   "translate_s": 0.7655098999966867,
+   "route_s": 0.23799599998164922,
+   "attempts": 1,
+   "n_prompt_tokens": 2804,
+   "ticket": null
+  },
+  {
+   "id": "r12-dev-038",
+   "kind": "refuse",
+   "category": "refuse",
+   "style": "plain",
+   "text": "Investigate INC-2044 on train ticket with six suspects... no, make it nine.",
+   "gold": null,
+   "routed": "incident",
+   "route_ok": true,
+   "status": "refused",
+   "reason": "top_k cannot be set to 9 as the maximum allowed value is 5",
+   "decision_ok": true,
+   "pred": null,
+   "translate_s": 1.1472769000683911,
+   "route_s": 0.22736990003613755,
+   "attempts": 2,
+   "n_prompt_tokens": 2808,
+   "ticket": null
+  },
+  {
+   "id": "r12-dev-039",
+   "kind": "refuse",
+   "category": "refuse",
+   "style": "plain",
+   "text": "Please scale up the train ticket cluster.",
+   "gold": null,
+   "routed": "none",
+   "route_ok": false,
+   "status": "refused",
+   "reason": "no desk handles this request",
+   "decision_ok": true,
+   "pred": null,
+   "translate_s": 0.19866440002806485,
+   "route_s": 0.19866440002806485,
+   "attempts": 0,
+   "n_prompt_tokens": 0,
+   "ticket": null
+  },
+  {
+   "id": "r12-dev-040",
+   "kind": "refuse",
+   "category": "refuse",
+   "style": "formal",
+   "text": "Tell me a joke about microservices.",
+   "gold": null,
+   "routed": "none",
+   "route_ok": false,
+   "status": "refused",
+   "reason": "no desk handles this request",
+   "decision_ok": true,
+   "pred": null,
+   "translate_s": 0.1809963000123389,
+   "route_s": 0.1809963000123389,
+   "attempts": 0,
+   "n_prompt_tokens": 0,
+   "ticket": null
+  }
+ ],
+ "route_records": [
+  {
+   "id": "squad-dev-in-00",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.16932549997000024,
+   "text": "Send red and blue out to eat; until the team has eaten 20 food."
+  },
+  {
+   "id": "squad-dev-in-01",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.18577579996781424,
+   "text": "Send red and blue out to eat; limit 100 steps; be aggressive."
+  },
+  {
+   "id": "squad-dev-in-02",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.17009110003709793,
+   "text": "Send red out to eat; normal caution; target 24 food; for 80 steps."
+  },
+  {
+   "id": "squad-dev-in-03",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.17067219997989014,
+   "text": "Mission: send red out to eat, target 24 food, for 90 steps."
+  },
+  {
+   "id": "squad-dev-in-04",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.16979969997191802,
+   "text": "Send green and blue out to eat; for 200 steps; target 8 food."
+  },
+  {
+   "id": "squad-dev-in-05",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.1661113000009209,
+   "text": "Blue forage; take risks; stop after 8 pieces of food; 90 steps max."
+  },
+  {
+   "id": "squad-dev-in-06",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.1906520000193268,
+   "text": "Red and green should collect food; 75 steps max."
+  },
+  {
+   "id": "squad-dev-in-07",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.17316860001301393,
+   "text": "Red should collect food; stop after 8 pieces of food; stay cautious; 150 steps max."
+  },
+  {
+   "id": "squad-dev-in-08",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.16667320003034547,
+   "text": "Everyone forages; take risks; target 8 food."
+  },
+  {
+   "id": "squad-dev-in-09",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.190548500046134,
+   "text": "Mission: red should collect food, target 15 food, for 80 steps, take risks."
+  },
+  {
+   "id": "squad-dev-in-10",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.18923859996721148,
+   "text": "Green forage; 80 steps max; standard care."
+  },
+  {
+   "id": "squad-dev-in-11",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.18908749998081475,
+   "text": "Send red out to eat; be careful; target 5 food."
+  },
+  {
+   "id": "squad-dev-in-12",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.17060090001905337,
+   "text": "Red and blue should collect food; limit 90 steps; take risks; target 20 food."
+  },
+  {
+   "id": "squad-dev-in-13",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.19144480000250041,
+   "text": "Red and blue forage; standard care; 60 steps max; until the team has eaten 20 food."
+  },
+  {
+   "id": "squad-dev-in-14",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.1704236000077799,
+   "text": "Send green out to eat; limit 90 steps; target 12 food; normal caution."
+  },
+  {
+   "id": "squad-dev-in-15",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.19168320001335815,
+   "text": "Send red and blue out to eat; stop after 5 pieces of food."
+  },
+  {
+   "id": "squad-dev-in-16",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.18450879998272285,
+   "text": "Mission: red forage, limit 50 steps."
+  },
+  {
+   "id": "squad-dev-in-17",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.18555410002591088,
+   "text": "Green and blue forage; limit 300 steps; stay cautious; stop after 5 pieces of food."
+  },
+  {
+   "id": "squad-dev-in-18",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.18708260002313182,
+   "text": "Mission: send red and blue out to eat, 75 steps max."
+  },
+  {
+   "id": "squad-dev-in-19",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.18801659997552633,
+   "text": "Mission: red should collect food, 60 steps max, until the team has eaten 12 food, be careful."
+  },
+  {
+   "id": "squad-dev-in-20",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.19200659997295588,
+   "text": "Green forage; stop after 30 pieces of food; 300 steps max; be careful."
+  },
+  {
+   "id": "squad-dev-in-21",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.18975020002108067,
+   "text": "Mission: blue forage, limit 300 steps, target 30 food, normal caution."
+  },
+  {
+   "id": "squad-dev-in-22",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.18913329998031259,
+   "text": "Mission: send green and blue out to eat, for 300 steps, stay cautious."
+  },
+  {
+   "id": "squad-dev-in-23",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.1855820000055246,
+   "text": "Mission: send red and green out to eat, target 10 food, limit 75 steps."
+  },
+  {
+   "id": "squad-dev-in-24",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.18966150004416704,
+   "text": "Mission: the whole squad collects food, target 12 food, play recklessly."
+  },
+  {
+   "id": "squad-dev-in-25",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.16994890000205487,
+   "text": "Mission: green should collect food, play it safe."
+  },
+  {
+   "id": "squad-dev-in-26",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.184004399983678,
+   "text": "Red and blue should collect food; limit 150 steps."
+  },
+  {
+   "id": "squad-dev-in-27",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.16726550000021234,
+   "text": "Mission: send green out to eat, for 50 steps."
+  },
+  {
+   "id": "squad-dev-in-28",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.16807339998194948,
+   "text": "Mission: send red out to eat, limit 60 steps, standard care, target 10 food."
+  },
+  {
+   "id": "squad-dev-in-29",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.16911059996346012,
+   "text": "Everyone forages; stop after 15 pieces of food; standard care."
+  },
+  {
+   "id": "squad-dev-in-30",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.19205770001281053,
+   "text": "Mission: send red and blue out to eat, standard care."
+  },
+  {
+   "id": "squad-dev-in-31",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.16842330002691597,
+   "text": "Mission: send red and blue out to eat, 150 steps max, target 8 food, be aggressive."
+  },
+  {
+   "id": "squad-dev-in-32",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.18933690001722425,
+   "text": "Mission: blue should collect food, until the team has eaten 8 food."
+  },
+  {
+   "id": "squad-dev-in-33",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.16903639998054132,
+   "text": "Green and blue forage; normal caution; for 250 steps."
+  },
+  {
+   "id": "squad-dev-in-34",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.19531039998400956,
+   "text": "Red and blue should collect food; stop after 12 pieces of food; stay cautious."
+  },
+  {
+   "id": "squad-dev-in-35",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.17016519996104762,
+   "text": "Mission: send green out to eat, for 75 steps, until the team has eaten 25 food, play it safe."
+  },
+  {
+   "id": "squad-dev-ho-00",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.1905904999584891,
+   "text": "red+green: we are done once fifteen items have been eaten, stop after 250 ticks, losses are fine so go all out."
+  },
+  {
+   "id": "squad-dev-ho-01",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.18954369996208698,
+   "text": "green+blue: daring play is welcome."
+  },
+  {
+   "id": "squad-dev-ho-02",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.17168269999092445,
+   "text": "Here is what I am hoping for today: I want the full squad out foraging. Also, you have one hundred twenty moves."
+  },
+  {
+   "id": "squad-dev-ho-03",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.18914309999672696,
+   "text": "Here is what I am hoping for today: I'd like blue to head out and graze. Also, within three hundred ticks; losses are fine so go all out."
+  },
+  {
+   "id": "squad-dev-ho-04",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.16986769996583462,
+   "text": "red+green: aim for twelve pieces of food in total."
+  },
+  {
+   "id": "squad-dev-ho-05",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.16898849996505305,
+   "text": "red: don't hold back, risks are fine, cap the run at 90 moves."
+  },
+  {
+   "id": "squad-dev-ho-06",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.17289500002516434,
+   "text": "Dear control, if it is not too much trouble, please arrange for the following: the job of green and blue is to hunt for food, and you have two hundred moves, and losses are fine so go all out. Thank you very much."
+  },
+  {
+   "id": "squad-dev-ho-07",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.16978140000719577,
+   "text": "blue: you have three hundred moves."
+  },
+  {
+   "id": "squad-dev-ho-08",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.18321290001040325,
+   "text": "Dear control, if it is not too much trouble, please arrange for the following: I want the full squad out foraging, and treat the walls with respect and avoid losses, and we are done once twelve items have been eaten, and stop after 300 ticks. Thank you very much."
+  },
+  {
+   "id": "squad-dev-ho-09",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.171875,
+   "text": "Dear control, if it is not too much trouble, please arrange for the following: all snakes except red should feed, and we are done once eight items have been eaten, and for fifty steps. Thank you very much."
+  },
+  {
+   "id": "squad-dev-ho-10",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.1755554000264965,
+   "text": "Dear control, if it is not too much trouble, please arrange for the following: the job of red and green is to hunt for food, and cap the run at 80 moves, and avoid any danger, and we are done once ten items have been eaten. Thank you very much."
+  },
+  {
+   "id": "squad-dev-ho-11",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.17031600000336766,
+   "text": "Here is what I am hoping for today: all snakes except red should feed. Also, avoid any danger."
+  },
+  {
+   "id": "squad-dev-ho-12",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.17122860002564266,
+   "text": "blue: for eighty steps, the squad needs 24 bites between them."
+  },
+  {
+   "id": "squad-dev-ho-13",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.16974459995981306,
+   "text": "Here is what I am hoping for today: it would be good if green could go and find some food. Also, aim for fifteen pieces of food in total."
+  },
+  {
+   "id": "squad-dev-ho-14",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.19909329997608438,
+   "text": "Dear control, if it is not too much trouble, please arrange for the following: it would be good if blue could go and find some food, and aim for thirty pieces of food in total, and cap the run at 50 moves, and avoid any danger. Thank you very much."
+  },
+  {
+   "id": "squad-dev-ho-15",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.17136259999824688,
+   "text": "Dear control, if it is not too much trouble, please arrange for the following: no snake sits idle, all of them feed, and we are done once twenty items have been eaten, and treat the walls with respect and avoid losses. Thank you very much."
+  },
+  {
+   "id": "squad-dev-ho-16",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.16868839995004237,
+   "text": "blue: aim for ten pieces of food in total, don't hold back, risks are fine."
+  },
+  {
+   "id": "squad-dev-ho-17",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.16792869998607785,
+   "text": "red: the squad needs 24 bites between them, nothing special in terms of caution, you have eighty moves."
+  },
+  {
+   "id": "squad-dev-ho-18",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.1659501999965869,
+   "text": "Here is what I am hoping for today: no snake sits idle, all of them feed. Also, moderate care; you have fifty moves."
+  },
+  {
+   "id": "squad-dev-ho-19",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.16633159999037161,
+   "text": "green+blue: cap the run at 120 moves."
+  },
+  {
+   "id": "squad-dev-ho-20",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.18904970004223287,
+   "text": "Dear control, if it is not too much trouble, please arrange for the following: the job of green is to hunt for food, and for seventy-five steps, and moderate care, and we are done once twenty-four items have been eaten. Thank you very much."
+  },
+  {
+   "id": "squad-dev-ho-21",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.18576299998676404,
+   "text": "green: for three hundred steps, bold moves please."
+  },
+  {
+   "id": "squad-dev-ho-22",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.17312829999718815,
+   "text": "Dear control, if it is not too much trouble, please arrange for the following: it would be good if green and blue could go and find some food, and don't hold back, risks are fine. Thank you very much."
+  },
+  {
+   "id": "squad-dev-ho-23",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.1894225999712944,
+   "text": "Dear control, if it is not too much trouble, please arrange for the following: green on food duty, and for eighty steps, and the squad needs 12 bites between them, and treat the walls with respect and avoid losses. Thank you very much."
+  },
+  {
+   "id": "squad-dev-ho-24",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.17011249996721745,
+   "text": "blue: for ninety steps, the squad needs 8 bites between them, losses are fine so go all out."
+  },
+  {
+   "id": "squad-dev-ho-25",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.17209720000391826,
+   "text": "Dear control, if it is not too much trouble, please arrange for the following: it would be good if green and blue could go and find some food, and the squad needs 5 bites between them, and you have ninety moves. Thank you very much."
+  },
+  {
+   "id": "squad-dev-ho-26",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.17045680002775043,
+   "text": "Dear control, if it is not too much trouble, please arrange for the following: the job of red and green is to hunt for food, and the squad needs 20 bites between them, and an ordinary level of care will do. Thank you very much."
+  },
+  {
+   "id": "squad-dev-ho-27",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.17701009998563677,
+   "text": "Dear control, if it is not too much trouble, please arrange for the following: I'd like red and blue to head out and graze, and losing a snake would be a disaster, and we are done once five items have been eaten, and for ninety steps. Thank you very much."
+  },
+  {
+   "id": "squad-dev-ho-28",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.16898560000117868,
+   "text": "red+blue: within ninety ticks."
+  },
+  {
+   "id": "squad-dev-ho-29",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.16727760003414005,
+   "text": "red+green: bold moves please, cap the run at 200 moves, the squad needs 10 bites between them."
+  },
+  {
+   "id": "squad-dev-ho-30",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.19087049999507144,
+   "text": "Dear control, if it is not too much trouble, please arrange for the following: all snakes except red should feed, and we are done once thirty items have been eaten. Thank you very much."
+  },
+  {
+   "id": "squad-dev-ho-31",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.19125079998048022,
+   "text": "Here is what I am hoping for today: all snakes except green should feed. Also, you have seventy-five moves."
+  },
+  {
+   "id": "squad-dev-ho-32",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.16839050000999123,
+   "text": "Here is what I am hoping for today: no snake sits idle, all of them feed. Also, nothing special in terms of caution."
+  },
+  {
+   "id": "squad-dev-ho-33",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.1748733000131324,
+   "text": "red: within fifty ticks."
+  },
+  {
+   "id": "squad-dev-ho-34",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.18907949997810647,
+   "text": "Dear control, if it is not too much trouble, please arrange for the following: it would be good if green could go and find some food, and you have one hundred fifty moves. Thank you very much."
+  },
+  {
+   "id": "squad-dev-ho-35",
+   "kind": "spec",
+   "domain": "squad",
+   "routed": "squad",
+   "route_ok": true,
+   "route_s": 0.17880369996419176,
+   "text": "Dear control, if it is not too much trouble, please arrange for the following: no snake sits idle, all of them feed, and cap the run at 200 moves, and moderate care, and the squad needs 24 bites between them. Thank you very much."
+  },
+  {
+   "id": "plant-dev-in-00",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.15779540000949055,
+   "text": "Nodes: separator and compressor utilities, keep false alarms at 2%."
+  },
+  {
+   "id": "plant-dev-in-01",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.17844980000518262,
+   "text": "Diagnosis setup: target 5% false alarms, 16-byte uplinks."
+  },
+  {
+   "id": "plant-dev-in-02",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.1836052000289783,
+   "text": "Diagnosis setup: 16 bytes per message, separator node alone."
+  },
+  {
+   "id": "plant-dev-in-03",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.16022510000038892,
+   "text": "Diagnosis setup: target 0.1% false alarms, 16 bytes per message, reactor node alone."
+  },
+  {
+   "id": "plant-dev-in-04",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.1727359999786131,
+   "text": "Diagnosis setup: nodes: separator and compressor utilities, 51-byte uplinks."
+  },
+  {
+   "id": "plant-dev-in-05",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.17753990000346676,
+   "text": "Diagnosis setup: a budget of 16 bytes, false alarm rate 1%."
+  },
+  {
+   "id": "plant-dev-in-06",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.17489500000374392,
+   "text": "False alarm rate 5%, a budget of 51 bytes."
+  },
+  {
+   "id": "plant-dev-in-07",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.1710554999881424,
+   "text": "Diagnosis setup: keep false alarms at 0.1%, use the separator and compressor utilities, 8 bytes per message."
+  },
+  {
+   "id": "plant-dev-in-08",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.17020170000614598,
+   "text": "Use the stripper and compressor utilities, target 0.1% false alarms."
+  },
+  {
+   "id": "plant-dev-in-09",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.1585641999845393,
+   "text": "Diagnosis setup: a budget of 16 bytes."
+  },
+  {
+   "id": "plant-dev-in-10",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.17091099999379367,
+   "text": "Only the reactor, 51 bytes per message."
+  },
+  {
+   "id": "plant-dev-in-11",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.16000849998090416,
+   "text": "Only the compressor utilities, false alarm rate 2%, 16-byte uplinks."
+  },
+  {
+   "id": "plant-dev-in-12",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.15830579999601468,
+   "text": "A budget of 16 bytes, nodes: stripper and compressor utilities."
+  },
+  {
+   "id": "plant-dev-in-13",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.1572310000192374,
+   "text": "Diagnosis setup: nodes: reactor and stripper, a budget of 51 bytes."
+  },
+  {
+   "id": "plant-dev-in-14",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.17682870000135154,
+   "text": "A budget of 8 bytes, nodes: stripper and compressor utilities, keep false alarms at 0.1%."
+  },
+  {
+   "id": "plant-dev-in-15",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.17521379998652264,
+   "text": "False alarm rate 1%, use the separator, stripper and compressor utilities."
+  },
+  {
+   "id": "plant-dev-in-16",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.1863728000316769,
+   "text": "Keep false alarms at 1%, a budget of 51 bytes."
+  },
+  {
+   "id": "plant-dev-in-17",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.18324340000981465,
+   "text": "Target 1% false alarms, a budget of 51 bytes."
+  },
+  {
+   "id": "plant-dev-in-18",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.15998249995755032,
+   "text": "Diagnosis setup: 8-byte uplinks, false alarm rate 5%."
+  },
+  {
+   "id": "plant-dev-in-19",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.1580268000252545,
+   "text": "Diagnosis setup: a budget of 8 bytes, nodes: stripper and compressor utilities."
+  },
+  {
+   "id": "plant-dev-in-20",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.15585310000460595,
+   "text": "Use the stripper and compressor utilities, 51-byte uplinks."
+  },
+  {
+   "id": "plant-dev-in-21",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.1828102000290528,
+   "text": "Diagnosis setup: 8 bytes per message."
+  },
+  {
+   "id": "plant-dev-in-22",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.1610147000174038,
+   "text": "Keep false alarms at 5%, 51 bytes per message."
+  },
+  {
+   "id": "plant-dev-in-23",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.18407610000576824,
+   "text": "Diagnosis setup: false alarm rate 2%, only the stripper, 16-byte uplinks."
+  },
+  {
+   "id": "plant-dev-in-24",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.16707089997362345,
+   "text": "Diagnosis setup: 8-byte uplinks, keep false alarms at 1%."
+  },
+  {
+   "id": "plant-dev-in-25",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.17634259996702895,
+   "text": "Diagnosis setup: keep false alarms at 0.1%, 51-byte uplinks."
+  },
+  {
+   "id": "plant-dev-in-26",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.1586453000199981,
+   "text": "Compressor utilities node alone, a budget of 16 bytes."
+  },
+  {
+   "id": "plant-dev-in-27",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.18195390002802014,
+   "text": "16 bytes per message, false alarm rate 0.5%, use the separator and compressor utilities."
+  },
+  {
+   "id": "plant-dev-in-28",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.17649440001696348,
+   "text": "Diagnosis setup: 16-byte uplinks, all four nodes, target 0.5% false alarms."
+  },
+  {
+   "id": "plant-dev-in-29",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.15878189995419234,
+   "text": "Diagnosis setup: nodes: reactor, separator and stripper, a budget of 16 bytes."
+  },
+  {
+   "id": "plant-dev-in-30",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.16123650001827627,
+   "text": "Diagnosis setup: 8 bytes per message, target 0.5% false alarms."
+  },
+  {
+   "id": "plant-dev-in-31",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.15932279999833554,
+   "text": "Diagnosis setup: 8-byte uplinks, false alarm rate 2%."
+  },
+  {
+   "id": "plant-dev-in-32",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.1595837000058964,
+   "text": "Diagnosis setup: use every node, 51-byte uplinks, false alarm rate 2%."
+  },
+  {
+   "id": "plant-dev-in-33",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.16053539997665212,
+   "text": "Diagnosis setup: 51 bytes per message, target 0.5% false alarms."
+  },
+  {
+   "id": "plant-dev-in-34",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.1716807999764569,
+   "text": "Diagnosis setup: keep false alarms at 0.1%, only the reactor, 16 bytes per message."
+  },
+  {
+   "id": "plant-dev-in-35",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.16061500000068918,
+   "text": "Diagnosis setup: keep false alarms at 0.1%, 51-byte uplinks, stripper node alone."
+  },
+  {
+   "id": "plant-dev-ho-00",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.18563790002372116,
+   "text": "Good morning. For the fault diagnosis run, I would like you to configure things as follows: false alarms should stay near one percent; and let the reactor and stripper carry the load. Please confirm when done."
+  },
+  {
+   "id": "plant-dev-ho-01",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.16120470000896603,
+   "text": "tolerate roughly zero point five percent of normal readings raising an alarm / rely on nothing but the reactor."
+  },
+  {
+   "id": "plant-dev-ho-02",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.16095940000377595,
+   "text": "the alarm budget for normal operation is five percent / everything except the compressor and utilities node / a 16 B payload."
+  },
+  {
+   "id": "plant-dev-ho-03",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.15982220001751557,
+   "text": "Good morning. For the fault diagnosis run, I would like you to configure things as follows: a 51 B payload; and everything except the compressor and utilities node. Please confirm when done."
+  },
+  {
+   "id": "plant-dev-ho-04",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.15790789999300614,
+   "text": "Thinking about the plant diagnosis, I suppose messages capped at fifty-one octets, if that is possible."
+  },
+  {
+   "id": "plant-dev-ho-05",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.17080959997838363,
+   "text": "a 16 B payload / the alarm budget for normal operation is one in a thousand."
+  },
+  {
+   "id": "plant-dev-ho-06",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.15987570001743734,
+   "text": "payloads of eight bytes at most / the alarm budget for normal operation is a tenth of a percent."
+  },
+  {
+   "id": "plant-dev-ho-07",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.16087010002229363,
+   "text": "Thinking about the plant diagnosis, I suppose a 51 B payload, and also the whole sensor network takes part, and also tolerate roughly five in a hundred of normal readings raising an alarm, if that is possible."
+  },
+  {
+   "id": "plant-dev-ho-08",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.15766950004035607,
+   "text": "the reactor and separator should do the reporting / a 51 B payload / false alarms should stay near one in a thousand."
+  },
+  {
+   "id": "plant-dev-ho-09",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.1618665999849327,
+   "text": "Good morning. For the fault diagnosis run, I would like you to configure things as follows: all nodes bar the reactor; and the alarm budget for normal operation is one in two hundred; and a 8 B payload. Please confirm when done."
+  },
+  {
+   "id": "plant-dev-ho-10",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.16140649997396395,
+   "text": "the alarm budget for normal operation is one in a hundred / each node may send eight bytes."
+  },
+  {
+   "id": "plant-dev-ho-11",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.15813250001519918,
+   "text": "Thinking about the plant diagnosis, I suppose payloads of fifty-one bytes at most, and also let the reactor and separator carry the load, if that is possible."
+  },
+  {
+   "id": "plant-dev-ho-12",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.1609794000396505,
+   "text": "Thinking about the plant diagnosis, I suppose the separator and compressor and utilities node should do the reporting, and also payloads of eight bytes at most, and also tolerate roughly two percent of normal readings raising an alarm, if that is possible."
+  },
+  {
+   "id": "plant-dev-ho-13",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.15783410001313314,
+   "text": "Thinking about the plant diagnosis, I suppose false alarms should stay near one in a thousand, and also each node may send sixteen bytes, if that is possible."
+  },
+  {
+   "id": "plant-dev-ho-14",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.18112060002749786,
+   "text": "each node may send sixteen bytes / everything from the separator and nobody else."
+  },
+  {
+   "id": "plant-dev-ho-15",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.1611574999988079,
+   "text": "Thinking about the plant diagnosis, I suppose false alarms should stay near a hundredth, and also each node may send sixteen bytes, if that is possible."
+  },
+  {
+   "id": "plant-dev-ho-16",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.18192470003850758,
+   "text": "everything from the reactor and nobody else / messages capped at fifty-one octets / false alarms should stay near one in a hundred."
+  },
+  {
+   "id": "plant-dev-ho-17",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.15967449999880046,
+   "text": "a 16 B payload / let the reactor and separator carry the load / the alarm budget for normal operation is a tenth of a percent."
+  },
+  {
+   "id": "plant-dev-ho-18",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.16267009999137372,
+   "text": "Thinking about the plant diagnosis, I suppose payloads of sixteen bytes at most, and also the stripper and compressor and utilities node should do the reporting, if that is possible."
+  },
+  {
+   "id": "plant-dev-ho-19",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.16387869999743998,
+   "text": "Good morning. For the fault diagnosis run, I would like you to configure things as follows: each node may send sixteen bytes. Please confirm when done."
+  },
+  {
+   "id": "plant-dev-ho-20",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.16574349999427795,
+   "text": "Good morning. For the fault diagnosis run, I would like you to configure things as follows: the separator and compressor and utilities node should do the reporting. Please confirm when done."
+  },
+  {
+   "id": "plant-dev-ho-21",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.16344969999045134,
+   "text": "Thinking about the plant diagnosis, I suppose the reactor and separator should do the reporting, and also false alarms should stay near one in a hundred, and also each node may send sixteen bytes, if that is possible."
+  },
+  {
+   "id": "plant-dev-ho-22",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.17719140002736822,
+   "text": "Good morning. For the fault diagnosis run, I would like you to configure things as follows: the stripper and compressor and utilities node should do the reporting; and messages capped at sixteen octets; and tolerate roughly a hundredth of normal readings raising an alarm. Please confirm when done."
+  },
+  {
+   "id": "plant-dev-ho-23",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.1600046000094153,
+   "text": "Thinking about the plant diagnosis, I suppose payloads of eight bytes at most, and also everything except the compressor and utilities node, if that is possible."
+  },
+  {
+   "id": "plant-dev-ho-24",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.15949180000461638,
+   "text": "Thinking about the plant diagnosis, I suppose the alarm budget for normal operation is a tenth of a percent, and also a 51 B payload, if that is possible."
+  },
+  {
+   "id": "plant-dev-ho-25",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.1609978000051342,
+   "text": "all nodes bar the reactor / payloads of fifty-one bytes at most / tolerate roughly five percent of normal readings raising an alarm."
+  },
+  {
+   "id": "plant-dev-ho-26",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.15920549997827038,
+   "text": "let the separator and compressor and utilities node carry the load / the alarm budget for normal operation is five in a hundred / a 8 B payload."
+  },
+  {
+   "id": "plant-dev-ho-27",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.16212819999782369,
+   "text": "Good morning. For the fault diagnosis run, I would like you to configure things as follows: a 51 B payload; and false alarms should stay near a hundredth. Please confirm when done."
+  },
+  {
+   "id": "plant-dev-ho-28",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.16183530003763735,
+   "text": "Good morning. For the fault diagnosis run, I would like you to configure things as follows: false alarms should stay near two in a hundred; and messages capped at eight octets; and everything except the reactor. Please confirm when done."
+  },
+  {
+   "id": "plant-dev-ho-29",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.16194779996294528,
+   "text": "a 8 B payload / all nodes bar the reactor / tolerate roughly one percent of normal readings raising an alarm."
+  },
+  {
+   "id": "plant-dev-ho-30",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.17648320004809648,
+   "text": "Thinking about the plant diagnosis, I suppose a 8 B payload, and also tolerate roughly one in fifty of normal readings raising an alarm, and also the reactor and stripper should do the reporting, if that is possible."
+  },
+  {
+   "id": "plant-dev-ho-31",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.17157740000402555,
+   "text": "Good morning. For the fault diagnosis run, I would like you to configure things as follows: tolerate roughly a tenth of a percent of normal readings raising an alarm; and everything except the reactor; and each node may send eight bytes. Please confirm when done."
+  },
+  {
+   "id": "plant-dev-ho-32",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.16470419999677688,
+   "text": "Good morning. For the fault diagnosis run, I would like you to configure things as follows: let the reactor and separator carry the load; and false alarms should stay near two percent; and payloads of eight bytes at most. Please confirm when done."
+  },
+  {
+   "id": "plant-dev-ho-33",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.15896309999516234,
+   "text": "Thinking about the plant diagnosis, I suppose messages capped at sixteen octets, and also false alarms should stay near five in a hundred, if that is possible."
+  },
+  {
+   "id": "plant-dev-ho-34",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.16556659998605028,
+   "text": "Good morning. For the fault diagnosis run, I would like you to configure things as follows: payloads of eight bytes at most; and false alarms should stay near five percent; and rely on nothing but the separator. Please confirm when done."
+  },
+  {
+   "id": "plant-dev-ho-35",
+   "kind": "spec",
+   "domain": "plant",
+   "routed": "plant",
+   "route_ok": true,
+   "route_s": 0.18401550000999123,
+   "text": "messages capped at fifty-one octets / false alarms should stay near one in two hundred / the separator and compressor and utilities node should do the reporting."
+  }
+ ],
+ "metrics": {
+  "all": {
+   "n_items": 41,
+   "n_spec": 31,
+   "exact": {
+    "n": 31,
+    "hits": 25,
+    "p": 0.8064516129032258,
+    "lo": 0.6371939644454013,
+    "hi": 0.9081311641365236
+   },
+   "exact_by_category": {
+    "combo": {
+     "n": 1,
+     "hits": 1,
+     "p": 1.0,
+     "lo": 0.20654329147389294,
+     "hi": 1.0
+    },
+    "exclude": {
+     "n": 2,
+     "hits": 2,
+     "p": 1.0,
+     "lo": 0.34237195288961925,
+     "hi": 1.0
+    },
+    "fault": {
+     "n": 2,
+     "hits": 2,
+     "p": 1.0,
+     "lo": 0.34237195288961925,
+     "hi": 1.0
+    },
+    "partial": {
+     "n": 8,
+     "hits": 4,
+     "p": 0.5,
+     "lo": 0.21521252682444186,
+     "hi": 0.7847874731755582
+    },
+    "relative": {
+     "n": 2,
+     "hits": 2,
+     "p": 1.0,
+     "lo": 0.34237195288961925,
+     "hi": 1.0
+    },
+    "ticket": {
+     "n": 9,
+     "hits": 8,
+     "p": 0.8888888888888888,
+     "lo": 0.5649937852319399,
+     "hi": 0.9801096286728695
+    },
+    "time": {
+     "n": 5,
+     "hits": 4,
+     "p": 0.8,
+     "lo": 0.3755282641185388,
+     "hi": 0.9637768390302125
+    },
+    "topk": {
+     "n": 2,
+     "hits": 2,
+     "p": 1.0,
+     "lo": 0.34237195288961925,
+     "hi": 1.0
+    }
+   },
+   "exact_by_style": {
+    "chatty": {
+     "n": 6,
+     "hits": 6,
+     "p": 1.0,
+     "lo": 0.6096569663469354,
+     "hi": 0.9999999999999999
+    },
+    "formal": {
+     "n": 3,
+     "hits": 2,
+     "p": 0.6666666666666666,
+     "lo": 0.2076549551264879,
+     "hi": 0.9385096847238394
+    },
+    "keyvalue": {
+     "n": 1,
+     "hits": 0,
+     "p": 0.0,
+     "lo": 0.0,
+     "hi": 0.7934567085261071
+    },
+    "plain": {
+     "n": 15,
+     "hits": 13,
+     "p": 0.8666666666666667,
+     "lo": 0.6211750079348376,
+     "hi": 0.9626395301086407
+    },
+    "question": {
+     "n": 1,
+     "hits": 1,
+     "p": 1.0,
+     "lo": 0.20654329147389294,
+     "hi": 1.0
+    },
+    "terse": {
+     "n": 4,
+     "hits": 2,
+     "p": 0.5,
+     "lo": 0.15003570882017148,
+     "hi": 0.8499642911798285
+    },
+    "typo": {
+     "n": 1,
+     "hits": 1,
+     "p": 1.0,
+     "lo": 0.20654329147389294,
+     "hi": 1.0
+    }
+   },
+   "field_accuracy": {
+    "at": 0.6875,
+    "exclude_services": 0.9032258064516129,
+    "system": 0.9032258064516129,
+    "ticket": 0.9333333333333333,
+    "top_k": 0.9032258064516129,
+    "want_fault_type": 0.9032258064516129
+   },
+   "routing": {
+    "n": 179,
+    "hits": 179,
+    "p": 1.0,
+    "lo": 0.9789894641044491,
+    "hi": 1.0
+   },
+   "routing_by_domain": {
+    "incident": {
+     "n": 35,
+     "hits": 35,
+     "p": 1.0,
+     "lo": 0.9010957324106112,
+     "hi": 1.0
+    },
+    "plant": {
+     "n": 72,
+     "hits": 72,
+     "p": 1.0,
+     "lo": 0.9493470601886036,
+     "hi": 1.0
+    },
+    "squad": {
+     "n": 72,
+     "hits": 72,
+     "p": 1.0,
+     "lo": 0.9493470601886036,
+     "hi": 1.0
+    }
+   },
+   "decision": {
+    "n": 41,
+    "hits": 38,
+    "p": 0.926829268292683,
+    "lo": 0.8057225998278872,
+    "hi": 0.9748026267474359
+   },
+   "decision_by_kind": {
+    "clarify": {
+     "n": 4,
+     "hits": 4,
+     "p": 1.0,
+     "lo": 0.5100999795960008,
+     "hi": 1.0,
+     "status": {
+      "clarify": 4
+     }
+    },
+    "refuse": {
+     "n": 6,
+     "hits": 6,
+     "p": 1.0,
+     "lo": 0.6096569663469354,
+     "hi": 0.9999999999999999,
+     "status": {
+      "refused": 6
+     }
+    },
+    "spec": {
+     "n": 31,
+     "hits": 28,
+     "p": 0.9032258064516129,
+     "lo": 0.7509971000182295,
+     "hi": 0.966535963905356,
+     "status": {
+      "clarify": 3,
+      "ok": 28
+     }
+    }
+   },
+   "decision_by_category": {
+    "clarify": {
+     "n": 4,
+     "hits": 4,
+     "p": 1.0,
+     "lo": 0.5100999795960008,
+     "hi": 1.0
+    },
+    "combo": {
+     "n": 1,
+     "hits": 1,
+     "p": 1.0,
+     "lo": 0.20654329147389294,
+     "hi": 1.0
+    },
+    "exclude": {
+     "n": 2,
+     "hits": 2,
+     "p": 1.0,
+     "lo": 0.34237195288961925,
+     "hi": 1.0
+    },
+    "fault": {
+     "n": 2,
+     "hits": 2,
+     "p": 1.0,
+     "lo": 0.34237195288961925,
+     "hi": 1.0
+    },
+    "partial": {
+     "n": 8,
+     "hits": 7,
+     "p": 0.875,
+     "lo": 0.5291051942301386,
+     "hi": 0.9775830911367038
+    },
+    "refuse": {
+     "n": 6,
+     "hits": 6,
+     "p": 1.0,
+     "lo": 0.6096569663469354,
+     "hi": 0.9999999999999999
+    },
+    "relative": {
+     "n": 2,
+     "hits": 2,
+     "p": 1.0,
+     "lo": 0.34237195288961925,
+     "hi": 1.0
+    },
+    "ticket": {
+     "n": 9,
+     "hits": 8,
+     "p": 0.8888888888888888,
+     "lo": 0.5649937852319399,
+     "hi": 0.9801096286728695
+    },
+    "time": {
+     "n": 5,
+     "hits": 4,
+     "p": 0.8,
+     "lo": 0.3755282641185388,
+     "hi": 0.9637768390302125
+    },
+    "topk": {
+     "n": 2,
+     "hits": 2,
+     "p": 1.0,
+     "lo": 0.34237195288961925,
+     "hi": 1.0
+    }
+   },
+   "task": {
+    "n": 31,
+    "nl": 0.5161290322580645,
+    "gold": 0.5806451612903226,
+    "diff": {
+     "n": 31,
+     "mean": -0.06451612903225806,
+     "lo": -0.16129032258064516,
+     "hi": 0.0
+    },
+    "nl_top1": 0.6451612903225806,
+    "gold_top1": 0.7096774193548387,
+    "wrong_incident": 0,
+    "no_run": 3
+   },
+   "round_trip": {
+    "n": 28,
+    "hits": 20,
+    "p": 0.7142857142857143,
+    "lo": 0.529403642629825,
+    "hi": 0.8474618415167003
+   },
+   "fidelity": {
+    "n_summaries": 28,
+    "n_facts": 207,
+    "facts": 0.9903381642512077,
+    "all_facts": 0.9285714285714286,
+    "by_fact": {
+     "at": 1.0,
+     "exclusions": 0.9285714285714286,
+     "fault_probability": 1.0,
+     "fault_type": 1.0,
+     "onset": 1.0,
+     "suspects": 1.0,
+     "system": 1.0,
+     "ticket": 1.0
+    }
+   },
+   "latency": {
+    "n": 27,
+    "total_p50": 2.2181860000127926,
+    "total_p95": 2.4563557700370438,
+    "translate_p50": 1.0701216000015847,
+    "team_p50": 0.159470499958843,
+    "summary_p50": 0.9318511000019498
+   }
+  },
+  "group": {
+   "re3": {
+    "n_items": 20,
+    "n_spec": 20,
+    "exact": {
+     "n": 20,
+     "hits": 14,
+     "p": 0.7,
+     "lo": 0.4810232237710206,
+     "hi": 0.854524726031006
+    },
+    "exact_by_category": {
+     "combo": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     },
+     "exclude": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     },
+     "fault": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     },
+     "partial": {
+      "n": 6,
+      "hits": 2,
+      "p": 0.3333333333333333,
+      "lo": 0.09676933255921683,
+      "hi": 0.7000116786584712
+     },
+     "relative": {
+      "n": 2,
+      "hits": 2,
+      "p": 1.0,
+      "lo": 0.34237195288961925,
+      "hi": 1.0
+     },
+     "ticket": {
+      "n": 5,
+      "hits": 4,
+      "p": 0.8,
+      "lo": 0.3755282641185388,
+      "hi": 0.9637768390302125
+     },
+     "time": {
+      "n": 3,
+      "hits": 2,
+      "p": 0.6666666666666666,
+      "lo": 0.2076549551264879,
+      "hi": 0.9385096847238394
+     },
+     "topk": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     }
+    },
+    "exact_by_style": {
+     "chatty": {
+      "n": 3,
+      "hits": 3,
+      "p": 1.0,
+      "lo": 0.43849391955098227,
+      "hi": 1.0
+     },
+     "formal": {
+      "n": 2,
+      "hits": 1,
+      "p": 0.5,
+      "lo": 0.09452865480086614,
+      "hi": 0.9054713451991339
+     },
+     "keyvalue": {
+      "n": 1,
+      "hits": 0,
+      "p": 0.0,
+      "lo": 0.0,
+      "hi": 0.7934567085261071
+     },
+     "plain": {
+      "n": 10,
+      "hits": 8,
+      "p": 0.8,
+      "lo": 0.49015684672072335,
+      "hi": 0.9433190520193067
+     },
+     "question": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     },
+     "terse": {
+      "n": 2,
+      "hits": 0,
+      "p": 0.0,
+      "lo": 0.0,
+      "hi": 0.6576280471103807
+     },
+     "typo": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     }
+    },
+    "field_accuracy": {
+     "at": 0.5833333333333334,
+     "exclude_services": 0.85,
+     "system": 0.85,
+     "ticket": 0.875,
+     "top_k": 0.85,
+     "want_fault_type": 0.85
+    },
+    "routing": {
+     "n": 20,
+     "hits": 20,
+     "p": 1.0,
+     "lo": 0.8388698745050667,
+     "hi": 1.0
+    },
+    "routing_by_domain": {
+     "incident": {
+      "n": 20,
+      "hits": 20,
+      "p": 1.0,
+      "lo": 0.8388698745050667,
+      "hi": 1.0
+     }
+    },
+    "decision": {
+     "n": 20,
+     "hits": 17,
+     "p": 0.85,
+     "lo": 0.6395767041130426,
+     "hi": 0.9476322080405041
+    },
+    "decision_by_kind": {
+     "spec": {
+      "n": 20,
+      "hits": 17,
+      "p": 0.85,
+      "lo": 0.6395767041130426,
+      "hi": 0.9476322080405041,
+      "status": {
+       "clarify": 3,
+       "ok": 17
+      }
+     }
+    },
+    "decision_by_category": {
+     "combo": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     },
+     "exclude": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     },
+     "fault": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     },
+     "partial": {
+      "n": 6,
+      "hits": 5,
+      "p": 0.8333333333333334,
+      "lo": 0.43649056343635395,
+      "hi": 0.9699474141282697
+     },
+     "relative": {
+      "n": 2,
+      "hits": 2,
+      "p": 1.0,
+      "lo": 0.34237195288961925,
+      "hi": 1.0
+     },
+     "ticket": {
+      "n": 5,
+      "hits": 4,
+      "p": 0.8,
+      "lo": 0.3755282641185388,
+      "hi": 0.9637768390302125
+     },
+     "time": {
+      "n": 3,
+      "hits": 2,
+      "p": 0.6666666666666666,
+      "lo": 0.2076549551264879,
+      "hi": 0.9385096847238394
+     },
+     "topk": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     }
+    },
+    "task": {
+     "n": 20,
+     "nl": 0.55,
+     "gold": 0.65,
+     "diff": {
+      "n": 20,
+      "mean": -0.1,
+      "lo": -0.25,
+      "hi": 0.0
+     },
+     "nl_top1": 0.55,
+     "gold_top1": 0.65,
+     "wrong_incident": 0,
+     "no_run": 3
+    },
+    "round_trip": {
+     "n": 17,
+     "hits": 11,
+     "p": 0.6470588235294118,
+     "lo": 0.4129996672121182,
+     "hi": 0.826905138560951
+    },
+    "fidelity": {
+     "n_summaries": 17,
+     "n_facts": 127,
+     "facts": 0.9921259842519685,
+     "all_facts": 0.9411764705882353,
+     "by_fact": {
+      "at": 1.0,
+      "exclusions": 0.9411764705882353,
+      "fault_probability": 1.0,
+      "fault_type": 1.0,
+      "onset": 1.0,
+      "suspects": 1.0,
+      "system": 1.0,
+      "ticket": 1.0
+     }
+    },
+    "latency": {
+     "n": 16,
+     "total_p50": 2.113481899985345,
+     "total_p95": 2.4049849250295665,
+     "translate_p50": 1.0760902499896474,
+     "team_p50": 0.13649064998026006,
+     "summary_p50": 0.9852475000079721
+    }
+   },
+   "re2": {
+    "n_items": 11,
+    "n_spec": 11,
+    "exact": {
+     "n": 11,
+     "hits": 11,
+     "p": 1.0,
+     "lo": 0.7411599827511859,
+     "hi": 1.0
+    },
+    "exact_by_category": {
+     "exclude": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     },
+     "fault": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     },
+     "partial": {
+      "n": 2,
+      "hits": 2,
+      "p": 1.0,
+      "lo": 0.34237195288961925,
+      "hi": 1.0
+     },
+     "ticket": {
+      "n": 4,
+      "hits": 4,
+      "p": 1.0,
+      "lo": 0.5100999795960008,
+      "hi": 1.0
+     },
+     "time": {
+      "n": 2,
+      "hits": 2,
+      "p": 1.0,
+      "lo": 0.34237195288961925,
+      "hi": 1.0
+     },
+     "topk": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     }
+    },
+    "exact_by_style": {
+     "chatty": {
+      "n": 3,
+      "hits": 3,
+      "p": 1.0,
+      "lo": 0.43849391955098227,
+      "hi": 1.0
+     },
+     "formal": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     },
+     "plain": {
+      "n": 5,
+      "hits": 5,
+      "p": 1.0,
+      "lo": 0.5655085052479191,
+      "hi": 1.0
+     },
+     "terse": {
+      "n": 2,
+      "hits": 2,
+      "p": 1.0,
+      "lo": 0.34237195288961925,
+      "hi": 1.0
+     }
+    },
+    "field_accuracy": {
+     "at": 1.0,
+     "exclude_services": 1.0,
+     "system": 1.0,
+     "ticket": 1.0,
+     "top_k": 1.0,
+     "want_fault_type": 1.0
+    },
+    "routing": {
+     "n": 11,
+     "hits": 11,
+     "p": 1.0,
+     "lo": 0.7411599827511859,
+     "hi": 1.0
+    },
+    "routing_by_domain": {
+     "incident": {
+      "n": 11,
+      "hits": 11,
+      "p": 1.0,
+      "lo": 0.7411599827511859,
+      "hi": 1.0
+     }
+    },
+    "decision": {
+     "n": 11,
+     "hits": 11,
+     "p": 1.0,
+     "lo": 0.7411599827511859,
+     "hi": 1.0
+    },
+    "decision_by_kind": {
+     "spec": {
+      "n": 11,
+      "hits": 11,
+      "p": 1.0,
+      "lo": 0.7411599827511859,
+      "hi": 1.0,
+      "status": {
+       "ok": 11
+      }
+     }
+    },
+    "decision_by_category": {
+     "exclude": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     },
+     "fault": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     },
+     "partial": {
+      "n": 2,
+      "hits": 2,
+      "p": 1.0,
+      "lo": 0.34237195288961925,
+      "hi": 1.0
+     },
+     "ticket": {
+      "n": 4,
+      "hits": 4,
+      "p": 1.0,
+      "lo": 0.5100999795960008,
+      "hi": 1.0
+     },
+     "time": {
+      "n": 2,
+      "hits": 2,
+      "p": 1.0,
+      "lo": 0.34237195288961925,
+      "hi": 1.0
+     },
+     "topk": {
+      "n": 1,
+      "hits": 1,
+      "p": 1.0,
+      "lo": 0.20654329147389294,
+      "hi": 1.0
+     }
+    },
+    "task": {
+     "n": 11,
+     "nl": 0.45454545454545453,
+     "gold": 0.45454545454545453,
+     "diff": {
+      "n": 11,
+      "mean": 0.0,
+      "lo": 0.0,
+      "hi": 0.0
+     },
+     "nl_top1": 0.8181818181818182,
+     "gold_top1": 0.8181818181818182,
+     "wrong_incident": 0,
+     "no_run": 0
+    },
+    "round_trip": {
+     "n": 11,
+     "hits": 9,
+     "p": 0.8181818181818182,
+     "lo": 0.5230138624217553,
+     "hi": 0.9486333993289995
+    },
+    "fidelity": {
+     "n_summaries": 11,
+     "n_facts": 80,
+     "facts": 0.9875,
+     "all_facts": 0.9090909090909091,
+     "by_fact": {
+      "at": 1.0,
+      "exclusions": 0.9090909090909091,
+      "fault_probability": 1.0,
+      "fault_type": 1.0,
+      "onset": 1.0,
+      "suspects": 1.0,
+      "system": 1.0,
+      "ticket": 1.0
+     }
+    },
+    "latency": {
+     "n": 10,
+     "total_p50": 2.251717200007988,
+     "total_p95": 2.524406035008724,
+     "translate_p50": 1.0675795499992091,
+     "team_p50": 0.3539179500367027,
+     "summary_p50": 0.8564519500068855
+    }
+   }
+  },
+  "exact_by_system": {
+   "online-boutique (re2)": {
+    "n": 7,
+    "hits": 7,
+    "p": 1.0,
+    "lo": 0.6456611570247934,
+    "hi": 1.0
+   },
+   "online-boutique (re3)": {
+    "n": 5,
+    "hits": 2,
+    "p": 0.4,
+    "lo": 0.1176182311592533,
+    "hi": 0.769280067791163
+   },
+   "sock-shop (re2)": {
+    "n": 4,
+    "hits": 4,
+    "p": 1.0,
+    "lo": 0.5100999795960008,
+    "hi": 1.0
+   },
+   "sock-shop (re3)": {
+    "n": 5,
+    "hits": 3,
+    "p": 0.6,
+    "lo": 0.23071993220883708,
+    "hi": 0.8823817688407467
+   },
+   "train-ticket (re3)": {
+    "n": 10,
+    "hits": 9,
+    "p": 0.9,
+    "lo": 0.5958436145024278,
+    "hi": 0.9821242504842788
+   }
+  }
+ },
+ "vram": {
+  "baseline_smi_mib": 786.0,
+  "peak_smi_mib": 5246.0,
+  "model_smi_mib": 4460.0
+ },
+ "vram_gb": 5.123046875,
+ "spec_version": 3,
+ "sealed_sha256": null,
+ "r7a_sealed_sha256": "ca6ff07b5fb66ef21c288ba9a82d5e7763992fe2142b1a582baf597e542b5e01",
+ "catalogue": {
+  "n": 182,
+  "fingerprint": "12e4ce9fd1d393ee7c01092ae35572b28b4d73d0e33357327075e186a9bd8952"
+ },
+ "team": {
+  "rule": "gate45_cap50",
+  "chosen": {
+   "hidden": 0,
+   "l2": 1.0,
+   "epochs": 400
+  },
+  "n_train": 150,
+  "g9": {
+   "hash_before": "65a5c5926b2b905c6e36a94756ade66702991c6fda873455afd7d9d5a6691bc6",
+   "hash_after": "65a5c5926b2b905c6e36a94756ade66702991c6fda873455afd7d9d5a6691bc6",
+   "pinned_rule": "gate45_cap50",
+   "n_dev": 88,
+   "n_test": 182,
+   "commit": "0e1a88c52f592098bf6ee87194b87befbfe36ec5",
+   "python": "3.13.7",
+   "finished": "2026-10-27T22:06:13",
+   "chosen": "gate45_cap50"
+  },
+  "recipe": "G4c: TT + SS/OB repetition 1; leave-one-system-out selection"
+ },
+ "prompt_audit": {
+  "system_lines_changed": [
+   [
+    "Systems: \"sock-shop\" (the shop, the sock shop, the socks shop) and \"online-boutique\" (the boutique, the online boutique). Their services: sock-shop has carts, carts-db, catalogue, catalogue-db, front-end, orders, orders-db, payment, queue-master, rabbitmq, rabbitmq-exporter, session-db, shipping, user, user-db; online-boutique has adservice, cartservice, checkoutservice, currencyservice, emailservice, frontend, frontend-external, paymentservice, productcatalogservice, recommendationservice, redis, shippingservice.",
+    "Systems: \"sock-shop\" (the shop, the sock shop, the socks shop), \"online-boutique\" (the boutique, the online boutique) and \"train-ticket\" (the train ticket system, train ticket, trainticket, the train booking system). Their services: sock-shop has carts, carts-db, catalogue, catalogue-db, front-end, orders, orders-db, payment, queue-master, rabbitmq, rabbitmq-exporter, session-db, shipping, user, user-db; online-boutique has adservice, cartservice, checkoutservice, currencyservice, emailservice, frontend, frontend-external, paymentservice, productcatalogservice, recommendationservice, redis, shippingservice; train-ticket has ts-admin-basic-info-service, ts-admin-order-service, ts-admin-route-service, ts-admin-travel-service, ts-admin-user-service, ts-assurance-mongo, ts-assurance-service, ts-auth-mongo, ts-auth-service, ts-avatar-service, ts-basic-service, ts-cancel-service, ts-config-mongo, ts-config-service, ts-consign-mongo, ts-consign-price-mongo, ts-consign-price-service, ts-consign-service, ts-contacts-mongo, ts-contacts-service, ts-execute-service, ts-food-map-mongo, ts-food-map-service, ts-food-mongo, ts-food-mysql, ts-food-service, ts-inside-payment-mongo, ts-inside-payment-service, ts-news-service, ts-notification-mongo, ts-notification-service, ts-order-mongo, ts-order-other-mongo, ts-order-other-service, ts-order-service, ts-payment-mongo, ts-payment-service, ts-preserve-mongo, ts-preserve-other-mongo, ts-preserve-other-service, ts-preserve-service, ts-price-mongo, ts-price-service, ts-rebook-service, ts-route-mongo, ts-route-plan-service, ts-route-service, ts-seat-service, ts-security-mongo, ts-security-service, ts-station-mongo, ts-station-service, ts-ticket-office-mongo, ts-ticket-office-service, ts-ticketinfo-service, ts-train-mongo, ts-train-service, ts-travel-mongo, ts-travel-plan-service, ts-travel-service, ts-travel2-mongo, ts-travel2-service, ts-ui-dashboard, ts-user-mongo, ts-user-service, ts-verification-code-service, ts-voucher-mysql, ts-voucher-service."
+   ],
+   [
+    "The desk clock: it is Thursday 2024-02-22, 09:00 UTC. All times are UTC; use 24-hour times.",
+    "The desk clock: it is Wednesday 2024-12-11, 09:00 UTC. All times are UTC; use 24-hour times."
+   ],
+   [
+    "- system: \"sock-shop\" or \"online-boutique\". Leave it out when the request names no system (a ticket number alone does not tell the system).",
+    "- system: \"sock-shop\", \"online-boutique\" or \"train-ticket\". Leave it out when the request names no system (a ticket number alone does not tell the system)."
+   ],
+   [
+    "refusal (short reason) only when the request is not about investigating an incident of these two systems (out of domain, including requests to change, restart or delete something), or it contradicts itself (two different tickets, two systems, or a service both excluded and required).",
+    "refusal (short reason) only when the request is not about investigating an incident of these three systems (out of domain, including requests to change, restart or delete something), or it contradicts itself (two different tickets, two systems, or a service both excluded and required)."
+   ]
+  ],
+  "same_line_count": true,
+  "examples_changed": [
+   [
+    "Yesterday at 6 am the shop had trouble. Can you tell why?",
+    {
+     "system": "sock-shop",
+     "at": "2024-02-21T06:00"
+    },
+    {
+     "system": "sock-shop",
+     "at": "2024-12-10T06:00"
+    }
+   ]
+  ],
+  "n_examples": 19,
+  "summary_pack_same": true,
+  "report_note_same": true,
+  "router_line_changed": [
+   "investigating a past incident of the sock shop or the online boutique web shops",
+   "investigating a past incident of the sock shop, the online boutique or the train ticket web systems"
+  ],
+  "router_other_lines_same": true
+ },
+ "commit": "0e1a88c52f592098bf6ee87194b87befbfe36ec5",
+ "python": "3.13.7",
+ "finished": "2026-10-27T22:08:52"
+}
