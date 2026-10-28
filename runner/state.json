@@ -3,19 +3,13 @@
   "host": "PC",
   "draining_for_update": false,
   "cpu_budget": 24,
-  "cpu_workers_in_use": 11,
+  "cpu_workers_in_use": 10,
   "running": [
     {
       "id": "r7b4-train-hand-goal",
       "lane": "cpu",
       "cpu_workers": 8,
       "started_at": "2026-10-27T16:40:38+00:00"
-    },
-    {
-      "id": "r12-keyword-sealed",
-      "lane": "cpu",
-      "cpu_workers": 1,
-      "started_at": "2026-10-28T02:26:14+00:00"
     },
     {
       "id": "r12-gemma-sealed",
@@ -33,22 +27,21 @@
         "id": "r12-zz-aggregate",
         "blocked_by": [
           "r12-o14-sealed",
-          "r12-gemma-sealed",
-          "r12-keyword-sealed"
+          "r12-gemma-sealed"
         ]
       }
     ]
   },
   "idle_since": {
     "cpu": null,
-    "gpu": "2026-10-28T02:12:56+00:00"
+    "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-28T02:26:14+00:00",
-  "cpu_percent": 33.6,
+  "updated_at": "2026-10-28T02:26:43+00:00",
+  "cpu_percent": 39.4,
   "gpu": {
-    "util": 0.0,
-    "mem_used_mb": 787.0,
+    "util": 89.0,
+    "mem_used_mb": 5243.0,
     "mem_total_mb": 12282.0
   }
 }
