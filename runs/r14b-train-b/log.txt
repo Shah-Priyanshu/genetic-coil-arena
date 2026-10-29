@@ -177,3 +177,5 @@
 [progress] run 11: gen 1100/1500, val 3.633, best 3.767 at 500, 19137 s
 [progress] run 9: gen 1100/1500, val 3.383, best 3.683 at 950, 19174 s
 [progress] run 12: gen 1100/1500, val 3.650, best 3.667 at 850, 19191 s
+[progress] run 8: gen 1100/1500, val 3.650, best 3.750 at 925, 19258 s
+[progress] run 14: gen 1100/1500, val 3.442, best 3.625 at 750, 19285 s
