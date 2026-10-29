@@ -1,0 +1,20 @@
+{
+  "id": "r16-dev2-q14",
+  "commit": "79e45ea6ada2af5e6fe011c135c2cffd4c5ed2c5",
+  "queued_args": [
+    "scripts/r16_ground_station.py",
+    "run",
+    "--translator",
+    "ollama:qwen2.5-coder:14b",
+    "--split",
+    "dev"
+  ],
+  "state": "running",
+  "started_at": "2026-10-29T10:33:54+00:00",
+  "updated_at": "2026-10-29T10:33:54+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 552 MiB, 12282 MiB, 47",
+  "host": "PC",
+  "lane": "gpu",
+  "cpu_workers": 2
+}
