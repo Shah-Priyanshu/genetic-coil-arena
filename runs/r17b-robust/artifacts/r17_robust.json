@@ -1,0 +1,235 @@
+{
+ "by_condition": {
+  "nominal": {
+   "OpenSwarm default": {
+    "score": -0.698025,
+    "found": 0.339025,
+    "wrong": 0.518525
+   },
+   "blind": {
+    "score": 0.4657625,
+    "found": 0.53679375,
+    "wrong": 0.03551562500000001
+   },
+   "conditioned": {
+    "score": 0.64587890625,
+    "found": 0.68957421875,
+    "wrong": 0.021847656249999996
+   },
+   "hand two-tier": {
+    "score": 0.38239999999999996,
+    "found": 0.46559999999999996,
+    "wrong": 0.0416
+   },
+   "gain": [
+    0.18011640624999997,
+    0.0605876182170594
+   ],
+   "pass": true
+  },
+  "person walks 0.5 m/s": {
+   "OpenSwarm default": {
+    "score": -0.767325,
+    "found": 0.2861,
+    "wrong": 0.5267125
+   },
+   "blind": {
+    "score": -0.06827109375,
+    "found": 0.02993984375,
+    "wrong": 0.049105468750000006
+   },
+   "conditioned": {
+    "score": -0.0120328125,
+    "found": 0.064553125,
+    "wrong": 0.03829296875
+   },
+   "hand two-tier": {
+    "score": -0.0757125,
+    "found": 0.0312875,
+    "wrong": 0.053500000000000006
+   },
+   "gain": [
+    0.05623828124999999,
+    0.04138580117500229
+   ],
+   "pass": true
+  },
+  "person walks 1.2 m/s": {
+   "OpenSwarm default": {
+    "score": -0.7445375000000001,
+    "found": 0.29818750000000005,
+    "wrong": 0.5213625
+   },
+   "blind": {
+    "score": -0.08769140624999999,
+    "found": 0.011663281250000001,
+    "wrong": 0.04967734375
+   },
+   "conditioned": {
+    "score": -0.057129687500000005,
+    "found": 0.0232859375,
+    "wrong": 0.0402078125
+   },
+   "hand two-tier": {
+    "score": -0.0992875,
+    "found": 0.0095875,
+    "wrong": 0.05443750000000001
+   },
+   "gain": [
+    0.03056171875000001,
+    0.0420855620889305
+   ],
+   "pass": false
+  },
+  "GPS error 3 m": {
+   "OpenSwarm default": {
+    "score": -1.0072875,
+    "found": 0.2359375,
+    "wrong": 0.6216125
+   },
+   "blind": {
+    "score": -0.059532031250000006,
+    "found": 0.16598359375,
+    "wrong": 0.11275781249999998
+   },
+   "conditioned": {
+    "score": -0.0371453125,
+    "found": 0.2870234375,
+    "wrong": 0.162084375
+   },
+   "hand two-tier": {
+    "score": -0.07297499999999998,
+    "found": 0.141175,
+    "wrong": 0.107075
+   },
+   "gain": [
+    0.022386718750000006,
+    0.03858612487620208
+   ],
+   "pass": false
+  },
+  "headwind (3 m/s cruise)": {
+   "OpenSwarm default": {
+    "score": -0.7996500000000001,
+    "found": 0.303725,
+    "wrong": 0.5516875
+   },
+   "blind": {
+    "score": 0.36969531250000004,
+    "found": 0.442390625,
+    "wrong": 0.036347656250000006
+   },
+   "conditioned": {
+    "score": 0.5434203125,
+    "found": 0.590734375,
+    "wrong": 0.023657031250000005
+   },
+   "hand two-tier": {
+    "score": 0.34206250000000005,
+    "found": 0.4294375,
+    "wrong": 0.043687500000000004
+   },
+   "gain": [
+    0.173725,
+    0.056274333311464926
+   ],
+   "pass": true
+  },
+  "cold battery (240 s)": {
+   "OpenSwarm default": {
+    "score": -0.679975,
+    "found": 0.3204,
+    "wrong": 0.5001875
+   },
+   "blind": {
+    "score": 0.39238671875,
+    "found": 0.45408515625,
+    "wrong": 0.030849218750000008
+   },
+   "conditioned": {
+    "score": 0.5624976562499999,
+    "found": 0.60113359375,
+    "wrong": 0.019317968750000004
+   },
+   "hand two-tier": {
+    "score": 0.34506249999999994,
+    "found": 0.4197375,
+    "wrong": 0.0373375
+   },
+   "gain": [
+    0.17011093749999998,
+    0.05345424037105544
+   ],
+   "pass": true
+  },
+  "areas x1.6": {
+   "OpenSwarm default": {
+    "score": -1.0731000000000002,
+    "found": 0.16299999999999998,
+    "wrong": 0.61805
+   },
+   "blind": {
+    "score": 0.17045859375,
+    "found": 0.25608046875,
+    "wrong": 0.0428109375
+   },
+   "conditioned": {
+    "score": 0.3109125,
+    "found": 0.35706718750000005,
+    "wrong": 0.02307734375
+   },
+   "hand two-tier": {
+    "score": 0.1573625,
+    "found": 0.25943750000000004,
+    "wrong": 0.0510375
+   },
+   "gain": [
+    0.14045390625,
+    0.055922679423869324
+   ],
+   "pass": true
+  },
+  "10 drones": {
+   "OpenSwarm default": {
+    "score": -0.7588250000000001,
+    "found": 0.35995,
+    "wrong": 0.5593874999999999
+   },
+   "blind": {
+    "score": 0.6045015625,
+    "found": 0.700421875,
+    "wrong": 0.04796015625
+   },
+   "conditioned": {
+    "score": 0.7407015625,
+    "found": 0.7902531250000001,
+    "wrong": 0.02477578125
+   },
+   "hand two-tier": {
+    "score": 0.4594625,
+    "found": 0.5640625,
+    "wrong": 0.0523
+   },
+   "gain": [
+    0.1362,
+    0.054594656896469224
+   ],
+   "pass": true
+  }
+ },
+ "conditions": [
+  "nominal",
+  "person walks 0.5 m/s",
+  "person walks 1.2 m/s",
+  "GPS error 3 m",
+  "headwind (3 m/s cruise)",
+  "cold battery (240 s)",
+  "areas x1.6",
+  "10 drones"
+ ],
+ "pass": false,
+ "fails": [
+  "person walks 1.2 m/s",
+  "GPS error 3 m"
+ ]
+}
