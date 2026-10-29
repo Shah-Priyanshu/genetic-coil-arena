@@ -1,0 +1,20 @@
+{
+  "id": "r16-dev-kw",
+  "commit": "724ea3173815062b1471de821cdafa08946b9a72",
+  "queued_args": [
+    "scripts/r16_ground_station.py",
+    "run",
+    "--translator",
+    "keyword",
+    "--split",
+    "dev"
+  ],
+  "state": "running",
+  "started_at": "2026-10-29T08:11:13+00:00",
+  "updated_at": "2026-10-29T08:11:13+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 89 %, 2630 MiB, 12282 MiB, 65",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 1
+}
