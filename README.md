@@ -87,7 +87,7 @@ On Windows, set `PYTHONUTF8=1`. The CLI prints emoji, which crashes a cp1252 con
 4. **A second, non-game domain,** to prove the interfaces are task-agnostic: in progress (step 1: hand-designed byte baselines done).
 5. **Real small models** behind the same specialist interface.
 
-Open direction (2026-10-29, not adopted): a drone swarm of heterogeneous specialists. Each drone would have two ESP32s (flight and companion), a gyro and accelerometer, environment and swarm positioning sensors, and 2–3 accessories. See [docs/directions/drone_swarm.md](docs/directions/drone_swarm.md). Step 1 (goal G13, `envs/swarm`, job `r14-swarm-talk`) tests in simulation whether the swarm needs to talk and whether its radio binds.
+Open direction (2026-10-29, not adopted): a drone swarm of heterogeneous specialists. Each drone would have two ESP32s (flight and companion), a gyro and accelerometer, environment and swarm positioning sensors, and 2–3 accessories. See [docs/directions/drone_swarm.md](docs/directions/drone_swarm.md). Step 1 ([docs/results/r14_swarm_talk.md](docs/results/r14_swarm_talk.md), goal G13) found that the swarm must talk (+24 points of success) but its radio does not bind: 2 bytes per packet equal 8.
    - R9 (two LoRA specialists on a shared Qwen3-1.7B, latent messages vs JSON): kill criterion not met, so JSON stays the default.
      - Hidden-state messages got 0% exact match.
      - A KV-prefix handoff matched JSON and saved about 43% latency, but is 11 MiB per record against 104 B, so it suits only same-host specialists.

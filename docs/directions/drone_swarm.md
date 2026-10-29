@@ -68,6 +68,12 @@ Risks:
 - **Safety and regulation** for indoor and outdoor flight.
 - **ESP-Drone's maintenance status.**
 
+## Step 1 result (G13, `docs/results/r14_swarm_talk.md`)
+
+**Radio does not bind.** Silent 73.4%, 1 B at 30% loss 94.9%, 2 B 97.6%, 8 B 97.6% (10 × 300 episodes). Talking matters (+24 points, a third faster), but a single-source report fits in 2 bytes.
+
+Implication: in this swarm, learning would have to earn its place through coordination that is hard to hand-design, not compression. Examples are several targets with role allocation, obstacles, and drone or radio failures. Bandwidth binds only for rich content such as maps, images or very large swarms.
+
 ## Step 1 pilot (before pre-registration; 400 episodes per condition, seeds outside the experiment)
 
 The pilot set the design and already points to an answer:
