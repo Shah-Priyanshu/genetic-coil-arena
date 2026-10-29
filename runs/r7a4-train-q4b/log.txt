@@ -241,3 +241,4 @@ Loading weights: 100%|██████████| 398/398 [00:05<00:00, 70.0
 [21:53:06] q4b-r32-n12k-p80 dev: 120/304 (plant-dev-ho-11)
 [21:54:05] q4b-r32-n12k-p80 dev: 160/304 (squad-indist-15)
 [21:55:07] q4b-r32-n12k-p80 dev: 200/304 (squad-heldout-15)
+[21:56:15] q4b-r32-n12k-p80 dev: 240/304 (plant-indist-15)
