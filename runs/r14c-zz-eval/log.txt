@@ -29,3 +29,5 @@
 [progress] 270/374 cells, 1602 s
 [progress] 280/374 cells, 1663 s
 [progress] 290/374 cells, 1728 s
+[progress] 300/374 cells, 1795 s
+[progress] 310/374 cells, 1829 s
