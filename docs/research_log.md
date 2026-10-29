@@ -263,6 +263,17 @@ The user's long-term target: heterogeneous drones, each with two ESP32s, a gyro 
 - **Report:** docs/results/r14_brains.md
 - **Chart:** r14_brains
 
+### R14 step 3: do the brains survive worse conditions?
+- **Date:** 2026-10-29 (part b running)
+- **Question:** Does the learned brains' gain hold when the radio, sensors or drones get worse than in training? Does training on randomised conditions make it hold better?
+- **Why:** Real flights won't match the one training setting. A gain that vanishes with more radio loss or a lost drone would not be worth flashing onto hardware.
+- **What we did:** Played the step-2 brains, the hand design and the sensed oracle in 10 harder conditions, retuning neither side: 50% and 70% radio loss, 3× position drift, a weak gas sensor, narrow and wide plumes, 1 or 2 drones going down mid-mission (new in the simulator), only 4 drones, and a 40 m arena. Each cell has 3,000 episodes at 3 leaks. A second set of 16 brains trains on a random condition every generation, with the same budget. Bars fixed in advance: (a) the step-2 brains beat the hand design in every condition, CI above 0; (b) the randomised brains beat the step-2 brains on average over the harder conditions, and lose at most 3 points at nominal.
+- **Result:** (a) passes: the brains beat the hand design in all 10 conditions. Gains: +17.0 points at 70% radio loss, +21.6 at 3× drift, +24.2 with a weak gas sensor, +21.0 with 2 drones down, +19.6 with only 4 drones and +15.3 in the 40 m arena. The smallest is +5.4, with a narrow plume. With a wide plume the hand design collapses to 10.4% while the brains reach 67.5%. The sensed oracle's fixed smell threshold and move-on rule fail there too (46.5%), so it is a bound only near the settings it was built for; it also does not know which drones went down. Part (b) is running: training finishes about 18:00 UTC and the comparison about 19:00.
+- **Verdict:** ROBUST (part a); part b running
+- **What it means:** The learned coordination is not tuned to one setting. Its gain grows when sensing or positions get worse, and it survives losing a third of the swarm. The radio barely matters: the brains lose only 1 point going from 30% to 70% loss. This result justifies asking for desk hardware. Part b decides whether flight brains should be trained on randomised conditions.
+- **Report:** docs/results/r14_robust_step2.md
+- **Chart:** r14_robust
+
 ## Track: OpenSwarm brains (the chosen direction, 2026-10-29)
 
 The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodiment of the ecosystem. Its hardware: an ESP32-S3 flight controller, a K210 vision module, UWB ranging, optical flow and GPS. Its protocol: a LEADER sends `BEHAVIOR_CMD`s and SCOUTs send `DETECTION` packets over ESP-NOW. This track builds the specialist brains it needs and tests them in simulation before hardware.
@@ -298,7 +309,7 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Question:** Can an operator command the swarm in plain words ("sweep the parking lot at 10 m") and have the ground station send exactly that command, ask when unclear and refuse what the swarm can't do?
 - **Why:** OpenSwarm's leader sends one of 8 behaviours (hover, formation, boids, search grid, perimeter, person-follow, light show, return home) in a 64-byte BEHAVIOR_CMD. A wrong command is a swarm flying somewhere nobody asked, so the key number is how often a request ends as the wrong command.
 - **What we did:** A local model only extracts the behaviour and its stated values. Code does the rest: it fills OpenSwarm's documented defaults, resolves place names from a site map ("the old barn" becomes coordinates), validates against a schema in which each behaviour takes only its own parameters, checks the swarm state (vision scout present, indoor 3 m ceiling, battery, enough drones, no-fly places) and encodes the packet. The largest packet uses 35 of the 64 bytes. A separate agent wrote 150 sealed test requests and 60 dev requests from a labelling guide, without seeing the prompt. Bars fixed in advance, for qwen2.5-coder:14b: exact on ≥ 90% of commands, wrong commands on ≤ 3% of requests, and ≥ 20 points above a keyword parser. Smaller models (gemma4 e4b and e2b) test whether a laptop could run the station.
-- **Result:** Running. On dev, the keyword parser gets 56% of commands exact and sends a wrong command on 28% of requests.
+- **Result:** Running; the sealed runs are queued. Three rounds on the 60 dev requests shaped the station. Round 2 (77.8% exact) exposed a schema-order bug: altitude came second, so after an area the model wrote it into the wrong field. Round 3, with that fixed: qwen 97.2% exact and 5% wrong commands. v4 adds one more check: every length the operator states must set the parameter its words name ("3 m spacing" is never a radius), or the station asks. Replayed on the stored round-3 replies, that gives 1.7% wrong commands with no exact answer lost. The keyword parser: 56% exact, 28% wrong (12% with the same checks).
 - **Verdict:** Running
 - **What it means:** Pending.
 - **Report:** docs/directions/drone_swarm.md

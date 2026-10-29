@@ -209,6 +209,10 @@ HOW_TO_READ = {
     "number of leaks (the brains trained on 3 only). Learned brains sit between the "
     "hand design and the sensed oracle (the coordination bound); with 3 leaks they close "
     "half the gap, and with 4 leaks, which they never saw, they gain the most.",
+    "r14_robust": "Share of 3-leak episodes where every leak is found, in harder "
+    "conditions than training (neither side retuned). The learned brains beat the hand "
+    "design in every one; the gain grows when sensing or positions get worse. With a "
+    "wide plume the sensed oracle's fixed rules fail too, so it is no bound there.",
     "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
     "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
     "translation through the shared meanings could do.",
@@ -341,6 +345,25 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
             pd.DataFrame(pts), x="leaks", y="all found (%)", error_y="ci",
             color="system", barmode="group", category_orders={"system": order},
             title="R14 step 2: learned per-role brains vs the hand design",
+        )  # fmt: skip
+    robust = read_json(res / "r14_robust.json") or read_json(
+        res / "r14_robust_step2.json"
+    )
+    if robust:
+        names = {"hand 2B": "hand design", "step2": "brains (trained at nominal)",
+                 "random": "brains (randomised training)",
+                 "sensed oracle": "sensed oracle"}  # fmt: skip
+        pts = [
+            {"condition": c, "system": name,
+             "all found (%)": 100 * robust["by_condition"][c][key]["all"]}
+            for c in robust["conditions"]
+            for key, name in names.items()
+            if key in robust["by_condition"][c]
+        ]  # fmt: skip
+        figs["r14_robust"] = px.bar(
+            pd.DataFrame(pts), x="condition", y="all found (%)", color="system",
+            barmode="group", category_orders={"system": list(names.values())},
+            title="R14 step 3: the brains in harder conditions (3 leaks)",
         )  # fmt: skip
     inter = read_json(res / "r7e_interlingua.json")
     if inter:

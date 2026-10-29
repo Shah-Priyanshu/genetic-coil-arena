@@ -97,7 +97,34 @@ The radio still does not bind (2 B = 8 B). This is the first good sign for *lear
 | 3 (trained) | 62.5% | 78.3% (+15.9) | 93.2% |
 | 4 | 33.6% | 58.0% (+24.4) | 87.9% |
 
-The brains close half the coordination gap at 3 leaks and gain most on 4 leaks, which they never saw. Step 3 (running, `r14c-*`): the same brains under worse radio, more drift, weaker sensors, other plume widths, drones going down, fewer drones and a larger arena, with neither side retuned. A second set is trained on randomised conditions to see if that buys robustness (bars in `experiments/r14_robust.py`).
+The brains close half the coordination gap at 3 leaks and gain most on 4 leaks, which they never saw.
+
+## Step 3 result (a): the brains survive worse conditions (`docs/results/r14_robust_step2.md`)
+
+**Robust.**
+- **Setup:** the step-2 brains against the hand design, retuning neither side, 3 leaks and 3,000 episodes per condition.
+- **Bar (fixed in advance):** a gain with the CI above 0 in every harder condition.
+
+| Condition | Hand design | Step-2 brains (gain) | Sensed oracle |
+|---|---|---|---|
+| nominal (trained) | 62.5% | 78.3% (+15.9 ± 2.0) | 93.2% |
+| radio loss 50% | 63.4% | 78.0% (+14.6 ± 1.7) | 93.2% |
+| radio loss 70% | 60.4% | 77.3% (+17.0 ± 2.4) | 93.2% |
+| drift ×3 | 51.4% | 73.0% (+21.6 ± 2.5) | 91.8% |
+| weak gas sensor | 50.9% | 75.1% (+24.2 ± 1.8) | 92.0% |
+| narrow plume | 66.2% | 71.6% (+5.4 ± 1.7) | 82.0% |
+| wide plume | 10.4% | 67.5% (+57.1 ± 1.5) | 46.5% |
+| 1 drone down mid-mission | 54.0% | 71.4% (+17.4 ± 2.4) | 90.5% |
+| 2 drones down mid-mission | 40.7% | 61.6% (+21.0 ± 2.5) | 86.0% |
+| 4 drones (2 gas + 2 camera) | 36.9% | 56.5% (+19.6 ± 1.8) | 82.6% |
+| 40 m arena | 30.3% | 45.6% (+15.3 ± 1.3) | 64.2% |
+
+- **Where the gain grows:** when sensing or positions get worse (drift, weak sensor, lost drones).
+- **Where it is smallest:** a narrow plume. There, finding the smell at all limits everyone, and the oracle drops too.
+- **Wide plume:** the hand design's fixed smell threshold fails. The oracle's fixed threshold fails as well, so it is a bound only near its design point. The brains learned to cope.
+- **Caveat:** the oracle is not told which drones went down.
+
+Step 3 (b), running (`r14c-*`): a second set trained on a random condition every generation. Does it beat the step-2 brains on the harder conditions without losing more than 3 points at nominal?
 
 ## Step 1 pilot (before pre-registration; 400 episodes per condition, seeds outside the experiment)
 
