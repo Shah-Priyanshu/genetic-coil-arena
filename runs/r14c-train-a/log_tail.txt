@@ -1,9 +1,3 @@
-[progress] run 107: gen 275/1500, val 3.647, best 3.681 at 150, 5549 s
-[progress] run 105: gen 275/1500, val 3.678, best 3.736 at 125, 5557 s
-[progress] run 104: gen 275/1500, val 2.547, best 2.547 at 275, 5560 s
-[progress] run 100: gen 275/1500, val 3.564, best 3.600 at 100, 5600 s
-[progress] run 103: gen 275/1500, val 3.564, best 3.664 at 175, 5615 s
-[progress] run 106: gen 275/1500, val 3.681, best 3.681 at 275, 5663 s
 [progress] run 107: gen 325/1500, val 3.592, best 3.697 at 300, 6410 s
 [progress] run 102: gen 325/1500, val 3.603, best 3.747 at 175, 6426 s
 [progress] run 104: gen 325/1500, val 2.406, best 2.572 at 300, 6437 s
@@ -198,3 +192,9 @@
 [progress] run 106: gen 1475/1500, val 3.644, best 3.742 at 475, 27261 s
 [train] run 105: best val 3.764 at gen 1325 (7.61 h) -> D:\Projects\genetic-coil-arena-gpu-results\runs\r14c-train-a\artifacts\r14b_brains_run105
 [train] run 102: best val 3.747 at gen 175 (7.62 h) -> D:\Projects\genetic-coil-arena-gpu-results\runs\r14c-train-a\artifacts\r14b_brains_run102
+[train] run 103: best val 3.672 at gen 1150 (7.64 h) -> D:\Projects\genetic-coil-arena-gpu-results\runs\r14c-train-a\artifacts\r14b_brains_run103
+[train] run 100: best val 3.786 at gen 1100 (7.64 h) -> D:\Projects\genetic-coil-arena-gpu-results\runs\r14c-train-a\artifacts\r14b_brains_run100
+[train] run 104: best val 3.789 at gen 1225 (7.65 h) -> D:\Projects\genetic-coil-arena-gpu-results\runs\r14c-train-a\artifacts\r14b_brains_run104
+[train] run 101: best val 3.719 at gen 1400 (7.66 h) -> D:\Projects\genetic-coil-arena-gpu-results\runs\r14c-train-a\artifacts\r14b_brains_run101
+[train] run 107: best val 3.742 at gen 1000 (7.66 h) -> D:\Projects\genetic-coil-arena-gpu-results\runs\r14c-train-a\artifacts\r14b_brains_run107
+[train] run 106: best val 3.742 at gen 475 (7.68 h) -> D:\Projects\genetic-coil-arena-gpu-results\runs\r14c-train-a\artifacts\r14b_brains_run106
