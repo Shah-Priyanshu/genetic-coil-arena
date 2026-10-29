@@ -1,0 +1,18 @@
+{
+  "id": "r15b2-train-ft-a025",
+  "commit": "f6e1dbde8a6889cfcbadf3a6a1ec7508624a0cd0",
+  "args": [
+    "scripts/r15b_aerial_scout.py",
+    "train",
+    "--init",
+    "coco",
+    "--alphas",
+    "0.25",
+    "--seeds",
+    "0",
+    "1"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 4,
+  "timeout_min": 240.0
+}
