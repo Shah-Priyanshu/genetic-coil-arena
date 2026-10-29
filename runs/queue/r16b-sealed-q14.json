@@ -1,0 +1,19 @@
+{
+  "id": "r16b-sealed-q14",
+  "commit": "a8711431255d0583ff2d2e7d1af45a5d079dd58e",
+  "args": [
+    "scripts/r16_ground_station.py",
+    "run",
+    "--translator",
+    "ollama:qwen2.5-coder:14b",
+    "--split",
+    "sealed-b"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 2,
+  "priority": 1,
+  "after": [
+    "r16b-dev-q14"
+  ],
+  "timeout_min": 90.0
+}
