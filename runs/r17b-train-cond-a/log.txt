@@ -181,3 +181,10 @@
 [progress] conditioned run 0: gen 2200/3000, val 0.260, best 0.271 at 750, 3937 s
 [progress] conditioned run 6: gen 2200/3000, val 0.259, best 0.275 at 500, 3944 s
 [progress] conditioned run 2: gen 2200/3000, val 0.272, best 0.290 at 450, 3984 s
+[progress] conditioned run 5: gen 2300/3000, val 0.254, best 0.271 at 700, 4076 s
+[progress] conditioned run 3: gen 2300/3000, val 0.250, best 0.286 at 1800, 4076 s
+[progress] conditioned run 4: gen 2200/3000, val 0.277, best 0.310 at 1950, 4087 s
+[progress] conditioned run 7: gen 2300/3000, val 0.245, best 0.274 at 400, 4092 s
+[progress] conditioned run 1: gen 2300/3000, val 0.258, best 0.271 at 1750, 4105 s
+[progress] conditioned run 0: gen 2300/3000, val 0.250, best 0.271 at 750, 4116 s
+[progress] conditioned run 6: gen 2300/3000, val 0.258, best 0.275 at 500, 4121 s
