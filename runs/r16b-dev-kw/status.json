@@ -17,4 +17,6 @@
   "host": "PC",
   "lane": "cpu",
   "cpu_workers": 1,
-  "re
+  "returncode": 0,
+  "finished_at": "2026-10-29T20:06:16+00:00"
+}

@@ -1,0 +1,7 @@
+[16:06:15] keyword: 25/150, 14 correct
+[16:06:15] keyword: 50/150, 34 correct
+[16:06:15] keyword: 75/150, 43 correct
+[16:06:15] keyword: 100/150, 54 correct
+[16:06:15] keyword: 125/150, 63 correct
+[16:06:15] keyword: 150/150, 75 correct
+[16:06:15] {"n": 150, "by_expect": {"ok": {"asked": 19, "wrong command": 13, "exact": 39, "refused": 19}, "refuse": {"refused": 18, "wrong command": 9, "asked": 3}, "clarify": {"refused": 11, "asked": 18, "wrong command": 1}}, "exact": [0.43333333333333335, 0.33576405263265097, 0.5363608898235731], "asked_when_unclear": [0.6, 0.42320052498273836, 0.7540960567391659], "refused_when_should": [0.6, 0.42320052498273836, 0.7540960567391659], "wrong_commands": [0.15333333333333332, 0.10439879275574346, 0.2195811970519548], "correct": [0.5, 0.4209887046908502, 0.5790112953091499], "median_latency_s": 0.0, "translator": "keyword", "split": "sealed-b"}
