@@ -1,0 +1,19 @@
+{
+  "id": "r16-sealed2-e4b",
+  "commit": "f2d98e6668fcc1d0e6ad626cc4a8abc4e42df11d",
+  "args": [
+    "scripts/r16_ground_station.py",
+    "run",
+    "--translator",
+    "ollama:gemma4:e4b",
+    "--split",
+    "sealed"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 2,
+  "priority": 1,
+  "after": [
+    "r16-dev4-e4b"
+  ],
+  "timeout_min": 90.0
+}
