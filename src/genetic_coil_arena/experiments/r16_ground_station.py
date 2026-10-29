@@ -8,7 +8,8 @@ the state check and the 64-byte ``BEHAVIOR_CMD`` encoding.
 
 ``GroundTranslator`` is the policy translator (parse first, validate after) with these
 steps in front of validation, all fixed on the dev set before any sealed run (v2 after
-the first dev round, v3 after the second, v4 after the third):
+the first dev round, v3 after the second, v4 after the third; v5 after the first sealed
+run, for G14b with a fresh sealed set):
 
 - a question beats a refusal when the model gives both, and a "refusal" that asks a
   question is a question (v3; asking is the safe outcome);
@@ -25,6 +26,11 @@ the first dev round, v3 after the second, v4 after the third):
   stated must set a param of the command, and the param its words name ("3 m spacing"
   is spacing, never a perimeter radius). Otherwise the station asks. The third dev
   round's wrong commands were a dropped "six feet apart" and that spacing-as-radius.
+- v5: numbers in words include fractions and decimals ("two and a half", "one point
+  five"); "at 7 m" with no word naming another setting is an altitude; and a reply that
+  is only a behaviour after the literal check or validation sent the model back is a
+  question (``RETRY_QUESTION``): stripping invented values from a guess left a bare
+  command flying defaults ("do the same as before" became person-follow).
 
 v3 also moved ``alt_m`` to the end of the schema and told the model the order (see
 ``ground.swarm_behavior_definition``): under grammar-constrained decoding the second dev
@@ -131,19 +137,24 @@ def _behavior_name(value: Any) -> Any:
     return {"return_to_home": "rth", "searchgrid": "search_grid"}.get(key, key)
 
 
+RETRY_QUESTION = "What exactly should the swarm do, and with which settings?"
+
+
 class GroundTranslator(PolicyTranslator):
     """``PolicyTranslator`` plus the site map, per-behaviour defaults and the literal
     check (see module)."""
 
     _text = ""
+    _calls = 0
 
     def translate(self, text: str, pack: TranslationPack, priority: int = 0,
                   deadline: int | None = None) -> Any:  # fmt: skip
-        self._text = text
+        self._text, self._calls = text, 0
         return super().translate(text, pack, priority, deadline)
 
     def _decide(self, raw: str, pack: TranslationPack, priority: int,
                 deadline: int | None) -> Any:  # fmt: skip
+        self._calls += 1
         try:
             body = json.loads(raw)
         except ValueError:
@@ -164,6 +175,8 @@ class GroundTranslator(PolicyTranslator):
             params = {k: v for k, v in params.items() if v is not None}
             if "behavior" in params:
                 params["behavior"] = _behavior_name(params["behavior"])
+            if self._calls > 1 and set(params) <= {"behavior"}:
+                return (CLARIFY, [RETRY_QUESTION])
             if isinstance(params.get("area"), str):
                 place = gs.find_place(params["area"])
                 if place is None:

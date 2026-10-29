@@ -35,10 +35,10 @@ def log(msg: str) -> None:
 
 
 def items_for(split: str) -> list[dict[str, Any]]:
-    if split == "sealed":
+    if split in ("sealed", "sealed-b"):
         from genetic_coil_arena.experiments import r16_sealed
 
-        return r16_sealed.load_sealed()
+        return r16_sealed.load_sealed(b=split == "sealed-b")
     return r16.load_items(DATA / "r16_dev.jsonl")
 
 
@@ -152,7 +152,7 @@ def main() -> None:
     sub = p.add_subparsers(dest="cmd", required=True)
     r = sub.add_parser("run")
     r.add_argument("--translator", required=True, help="ollama:<tag> or keyword")
-    r.add_argument("--split", choices=["dev", "sealed"], default="dev")
+    r.add_argument("--split", choices=["dev", "sealed", "sealed-b"], default="dev")
     r.add_argument("--out", default=os.environ.get("GCA_RUN_DIR", "outputs/r16"))
     m = sub.add_parser("report")
     m.add_argument("--from", dest="sources", nargs="+", required=True)

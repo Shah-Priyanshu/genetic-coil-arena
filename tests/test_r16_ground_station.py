@@ -281,7 +281,7 @@ def test_v4_every_stated_length_sets_the_param_its_words_name():
         ("3 m", 3.0, ("spacing_m",))
     ]
     assert gs.stated_lengths("altitude of twenty ft") == [("20 ft", 6.1, ("alt_m",))]
-    assert gs.stated_lengths("hover at 12 m") == [("12 m", 12.0, ())]
+    assert gs.stated_lengths("hover, 12 m please") == [("12 m", 12.0, ())]
     moved = {"behavior": "perimeter", "area": "barn", "radius_m": 3}
     assert gs.misplaced_lengths(moved, "perimeter of the barn with 3 m spacing")
     dropped = {"behavior": "formation", "shape": "line"}
@@ -295,3 +295,21 @@ def test_v4_every_stated_length_sets_the_param_its_words_name():
     assert res.status == "clarify" and "spacing_m" in res.reason
     res = translate({"params": placed}, text="line up six feet apart")
     assert res.status == "ok"
+
+
+def test_v5_fractions_at_means_altitude_and_bare_retries_ask():
+    assert gs.spoken_numbers("two and a half metres") == [2.5]
+    assert gs.spoken_numbers("one point five m, half a metre") == [1.5, 0.5]
+    assert gs.spoken_numbers("one hundred and forty bpm") == [140.0]
+    assert gs.stated_lengths("get in formation at 7 m") == [("7 m", 7.0, ("alt_m",))]
+    assert gs.stated_lengths("at 4 metres distance")[0][2] == ("distance_m",)
+    wrong = {"behavior": "formation", "spacing_m": 7}
+    assert gs.misplaced_lengths(wrong, "get in formation at 7 m")
+    text = "form a v with two and a half metres spacing"
+    right = {"params": {"behavior": "formation", "shape": "v", "spacing_m": 2.5}}
+    assert translate(right, text=text).status == "ok"
+    guess = {"params": {"behavior": "person_follow", "distance_m": 4}}
+    bare = {"params": {"behavior": "person_follow"}}
+    res = translate(guess, bare, text="do the same as before")
+    assert res.status == "clarify" and res.attempts == 2
+    assert translate(bare, text="follow that person").status == "ok"

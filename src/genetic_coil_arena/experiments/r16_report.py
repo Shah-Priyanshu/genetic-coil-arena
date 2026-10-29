@@ -34,8 +34,8 @@ def reaches_drones(row: dict[str, Any], state: gs.SwarmState = NOMINAL) -> bool:
     return row["status"] == "ok" and gs.check(row["params"], state).ok
 
 
-def g14(runs: dict[tuple[str, str], dict]) -> dict[str, Any]:
-    main, base = runs.get(("sealed", MAIN)), runs.get(("sealed", BASELINE))
+def g14(runs: dict[tuple[str, str], dict], split: str = "sealed") -> dict[str, Any]:
+    main, base = runs.get((split, MAIN)), runs.get((split, BASELINE))
     if main is None:
         return {"available": False}
     s = main["summary"]
@@ -61,13 +61,17 @@ def _pct(w: Any) -> str:
 
 def render(runs_list: list[dict]) -> tuple[str, dict]:
     runs = {(r["summary"]["split"], r["summary"]["translator"]): r for r in runs_list}
-    verdict = g14(runs)
+    # G14b (v5) is scored on its own fresh sealed set, "sealed-b"
+    split = "sealed-b" if any(k[0] == "sealed-b" for k in runs) else "sealed"
+    goal = "G14b" if split == "sealed-b" else "G14"
+    verdict = g14(runs, split)
+    verdict_split = split
     lines = ["# R16 (G14): a plain-language ground station for OpenSwarm", ""]
     if verdict["available"]:
         yes = lambda ok: "PASS" if ok else "FAIL"  # noqa: E731
         lines += [
-            f"**G14 {'PASSED' if verdict['passed'] else 'NOT PASSED'}** (sealed set, "
-            f"`{MAIN}`).",
+            f"**{goal} {'PASSED' if verdict['passed'] else 'NOT PASSED'}** "
+            f"(`{split}` set, `{MAIN}`).",
             "",
             f"- Right command: exact {_pct(verdict['exact'])} "
             f"(bar ≥ {100 * EXACT_BAR:.0f}%): {yes(verdict['bar_exact'])}.",
@@ -108,14 +112,14 @@ def render(runs_list: list[dict]) -> tuple[str, dict]:
             "reach_drones_rate": wilson(reach, s["n"]),
         }  # fmt: skip
     for (split, tr), r in sorted(runs.items()):
-        if split != "sealed":
+        if split != verdict_split:
             continue
         bad = [x for x in r["rows"] if not x["correct"]]
         if not bad:
             continue
         lines += [
             "",
-            f"Misses on the sealed set, `{tr}` ({len(bad)}):",
+            f"Misses on the `{split}` set, `{tr}` ({len(bad)}):",
             "",
             "| Request | Expected | Got |",
             "|---|---|---|",

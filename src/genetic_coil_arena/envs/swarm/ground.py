@@ -344,27 +344,61 @@ SHAPE_WORDS = {
 
 
 def spoken_numbers(text: str) -> list[float]:
-    """Numbers written in digits ("2.5", "80%") or words ("one hundred and forty")."""
-    t = text.lower().replace("-", " ")
-    out = [float(x) for x in re.findall(r"\d+(?:\.\d+)?", t)]
-    total, cur, seen = 0, 0, False
-    for word in re.findall(r"[a-z]+", t) + ["."]:
-        if word in _UNITS:
-            cur += _UNITS[word]
-            seen = True
-        elif word in _TENS:
-            cur += _TENS[word]
-            seen = True
-        elif word == "hundred" and seen:
-            cur = max(cur, 1) * 100
-        elif word in ("a", "and") and seen:
-            continue
-        elif word == "hundred":  # "a hundred"
-            cur, seen = 100, True
+    """Numbers written in digits ("2.5", "80%") or words ("one hundred and forty", "two
+    and a half", "one point five", "half a metre")."""
+    return [x for x in _number_tokens(text) if isinstance(x, float)]
+
+
+_FRACTIONS = {"half": 0.5, "quarter": 0.25}
+_DIGITS = re.compile(r"\d+(?:\.\d+)?$")
+
+
+def _number_tokens(text: str) -> list[str | float]:
+    """The lower-cased request as tokens, every number (in digits or words) one float.
+    v5 reads fractions and decimals in words; before, "two and a half" was 2."""
+    toks = re.findall(r"\d+(?:\.\d+)?|[a-z]+|\S", text.lower().replace("-", " "))
+    out: list[str | float] = []
+    cur, seen, i = 0.0, False, 0
+
+    def ahead(k: int) -> str:
+        return toks[i + k] if i + k < len(toks) else ""
+
+    while i < len(toks):
+        tok = toks[i]
+        if _DIGITS.match(tok):
+            if seen:
+                out.append(cur)
+            cur, seen = float(tok), True
+        elif tok in _UNITS:
+            cur, seen = cur + _UNITS[tok], True
+        elif tok in _TENS:
+            cur, seen = cur + _TENS[tok], True
+        elif tok == "hundred":
+            cur, seen = max(cur, 1.0) * 100, True
+        elif (
+            seen and tok == "and" and ahead(1) in ("a", "an") and ahead(2) in _FRACTIONS
+        ):
+            cur += _FRACTIONS[ahead(2)]  # "two and a half"
+            i += 2
+        elif seen and tok == "point" and _UNITS.get(ahead(1), 10) < 10:
+            digits = ""  # "one point five"
+            while _UNITS.get(ahead(1), 10) < 10:
+                digits += str(_UNITS[ahead(1)])
+                i += 1
+            cur += float("0." + digits)
+        elif not seen and tok in _FRACTIONS and ahead(1) in ("a", "an"):
+            cur, seen = _FRACTIONS[tok], True  # "half a metre"
+            i += 1
+        elif tok in ("a", "and") and seen:
+            pass
         else:
             if seen:
-                out.append(float(total + cur))
-            total, cur, seen = 0, 0, False
+                out.append(cur)
+            cur, seen = 0.0, False
+            out.append(tok)
+        i += 1
+    if seen:
+        out.append(cur)
     return out
 
 
@@ -437,14 +471,17 @@ _LENGTH = re.compile(
     r"(?: ([a-z]+))?"
 )
 # words that name the param a length sets, before it ("spacing of 3 m", "radius 10 m",
-# "altitude 8 metres") or after it (the same nouns, and "3 m apart", "10 m out", "5 m
-# back", "8 m up")
-ROLE_BEFORE = {
+# "altitude 8 metres", "at 7 m") or after it (the same nouns, and "3 m apart", "10 m
+# out", "5 m back", "8 m up"); a word after the length wins
+ROLE_NOUNS = {
     "spacing": ("spacing_m",), "spaced": ("spacing_m",), "radius": ("radius_m",),
     "distance": ("distance_m",), "altitude": ("alt_m",), "height": ("alt_m",),
 }  # fmt: skip
+# v5: "at 7 m" with no word naming another setting is an altitude ("hover at 12 m",
+# "search the car park at 10 m"); "at 4 m distance" is still a distance
+ROLE_BEFORE = {**ROLE_NOUNS, "at": ("alt_m",)}
 ROLE_AFTER = {
-    **ROLE_BEFORE,
+    **ROLE_NOUNS,
     "apart": ("spacing_m",), "between": ("spacing_m",),
     "out": ("radius_m",), "away": ("radius_m", "distance_m"),
     "back": ("distance_m",), "behind": ("distance_m",),
@@ -455,24 +492,9 @@ ROLE_AFTER = {
 def with_digits(text: str) -> str:
     """The request lower-cased, one space between tokens, spoken numbers as digits
     ("Six feet apart." -> "6 feet apart .")."""
-    out: list[str] = []
-    cur, seen = 0, False
-    tokens = re.findall(r"\d+(?:\.\d+)?|[a-z]+|\S", text.lower().replace("-", " "))
-    for tok in tokens + [""]:
-        if tok in _UNITS:
-            cur, seen = cur + _UNITS[tok], True
-        elif tok in _TENS:
-            cur, seen = cur + _TENS[tok], True
-        elif tok == "hundred":
-            cur, seen = max(cur, 1) * 100, True
-        elif tok in ("a", "and") and seen:
-            continue
-        else:
-            if seen:
-                out.append(str(cur))
-            cur, seen = 0, False
-            out.append(tok)
-    return " ".join(out).strip()
+    return " ".join(
+        f"{t:g}" if isinstance(t, float) else t for t in _number_tokens(text)
+    )
 
 
 def stated_lengths(text: str) -> list[tuple[str, float, tuple[str, ...]]]:
