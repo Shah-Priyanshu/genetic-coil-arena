@@ -313,3 +313,23 @@ def test_v5_fractions_at_means_altitude_and_bare_retries_ask():
     res = translate(guess, bare, text="do the same as before")
     assert res.status == "clarify" and res.attempts == 2
     assert translate(bare, text="follow that person").status == "ok"
+
+
+def test_g14b_sealed_set_is_pinned_fresh_and_valid():
+    from genetic_coil_arena.experiments import r16_sealed
+
+    assert (
+        r16_sealed.file_sha256(r16_sealed.SEALED_B_PATH) == r16_sealed.SEALED_B_SHA256
+    )
+    items = r16_sealed.load_sealed(b=True)
+    assert len(items) == 150
+    assert [i["expect"] for i in items].count("ok") == 90
+    for item in items:
+        if item["expect"] == "ok":
+            make(item["params"])
+        else:
+            assert "params" not in item
+    texts = {i["text"] for i in items}
+    assert len(texts) == 150
+    seen = {i["text"] for i in r16_sealed.load_dev() + r16_sealed.load_sealed()}
+    assert not texts & (seen | {e.text for e in r16.EXAMPLES})
