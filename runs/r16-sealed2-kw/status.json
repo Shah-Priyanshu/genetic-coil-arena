@@ -1,0 +1,20 @@
+{
+  "id": "r16-sealed2-kw",
+  "commit": "f2d98e6668fcc1d0e6ad626cc4a8abc4e42df11d",
+  "queued_args": [
+    "scripts/r16_ground_station.py",
+    "run",
+    "--translator",
+    "keyword",
+    "--split",
+    "sealed"
+  ],
+  "state": "running",
+  "started_at": "2026-10-29T17:51:37+00:00",
+  "updated_at": "2026-10-29T17:51:37+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 99 %, 6948 MiB, 12282 MiB, 71",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 1
+}
