@@ -1,0 +1,20 @@
+{
+  "id": "r15-zz-report",
+  "commit": "a35c33048d5befa0e3acca0895b1e21017df42ae",
+  "args": [
+    "scripts/r15_scout_brain.py",
+    "report",
+    "--from",
+    "runs:r15-train-*",
+    "--out",
+    "docs/results/r15_scout_brain.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 1,
+  "after": [
+    "r15-train-a025",
+    "r15-train-a05",
+    "r15-train-a075"
+  ],
+  "timeout_min": 30.0
+}
