@@ -9,12 +9,14 @@
     "--split",
     "sealed-b"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-29T21:24:38+00:00",
-  "updated_at": "2026-10-29T21:24:38+00:00",
-  "elapsed_min": 0.0,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 545 MiB, 12282 MiB, 52",
+  "updated_at": "2026-10-29T21:25:34+00:00",
+  "elapsed_min": 0.9,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 546 MiB, 12282 MiB, 61",
   "host": "PC",
   "lane": "gpu",
-  "cpu_workers": 2
+  "cpu_workers": 2,
+  "returncode": 0,
+  "finished_at": "2026-10-29T21:25:34+00:00"
 }
