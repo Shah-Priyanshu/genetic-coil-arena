@@ -1,0 +1,24 @@
+{
+  "id": "r17b-train-blind-a",
+  "commit": "f98e7eb26a4719fbe7b4a0b1d4fc56c394e61b68",
+  "queued_args": [
+    "scripts/r17_mission.py",
+    "train",
+    "--kind",
+    "blind",
+    "--version",
+    "2",
+    "--runs",
+    "0:8",
+    "--workers",
+    "8"
+  ],
+  "state": "running",
+  "started_at": "2026-10-29T21:15:44+00:00",
+  "updated_at": "2026-10-29T21:15:44+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 93 %, 3218 MiB, 12282 MiB, 67",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 8
+}
