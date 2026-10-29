@@ -6,3 +6,8 @@
 [23:24:18] [alpha 0.25] epoch 6/40 loss 1.3382 (413 s)
 [23:25:25] [alpha 0.25] epoch 7/40 loss 1.2895 (480 s)
 [23:26:32] [alpha 0.25] epoch 8/40 loss 1.2501 (547 s)
+[23:27:39] [alpha 0.25] epoch 9/40 loss 1.2187 (614 s)
+[23:28:46] [alpha 0.25] epoch 10/40 loss 1.1937 (681 s)
+[23:29:52] [alpha 0.25] epoch 11/40 loss 1.1728 (747 s)
+[23:30:59] [alpha 0.25] epoch 12/40 loss 1.1525 (814 s)
+[23:32:06] [alpha 0.25] epoch 13/40 loss 1.1366 (881 s)
