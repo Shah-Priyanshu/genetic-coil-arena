@@ -5,6 +5,7 @@ check is marked ``integration`` and skipped when the server is unreachable).
 """
 
 import json
+import os
 import re
 from dataclasses import dataclass
 
@@ -472,6 +473,10 @@ class TestReport:
 # ------------------------------------------------------------------ live (optional)
 @pytest.mark.integration
 def test_live_ollama_translates_one_instruction(registry, domains):
+    if os.environ.get("GCA_LANE") == "cpu":
+        # runner CI runs on the CPU lane, possibly beside a GPU job: a 9 GB model
+        # loaded next to it spills VRAM (it timed out the CI run of b91f8b90)
+        pytest.skip("CPU-lane runner job: the GPU may be in use")
     backend = OllamaBackend("qwen2.5-coder:14b", keep_alive=0)
     if not backend.is_up():
         pytest.skip("Ollama is not running")

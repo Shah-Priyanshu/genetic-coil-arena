@@ -28,6 +28,7 @@ torch; torch is imported inside the functions that need it.
 from __future__ import annotations
 
 import json
+import os
 import time
 import zipfile
 from collections.abc import Sequence
@@ -381,9 +382,11 @@ def train_model(alpha: float, data_dir: Path, epochs: int = 40, batch: int = 128
     """
     import torch
 
-    if torch.cuda.is_available():
+    # a CPU-lane runner job (CI included) may run beside a GPU job: stay off the GPU
+    gpu = torch.cuda.is_available() and os.environ.get("GCA_LANE") != "cpu"
+    if gpu:
         torch.cuda.set_per_process_memory_fraction(0.85)
-    dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    dev = torch.device("cuda" if gpu else "cpu")
     info = json.loads((data_dir / "info.json").read_text(encoding="utf-8"))
     size = int(info["size"])
     tr, va = load_split(data_dir, "train"), load_split(data_dir, "val")
