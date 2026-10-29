@@ -324,3 +324,13 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **What it means:** The model reads plain commands well; the failures are in the edges the station's code should own. One is a plain bug (spoken fractions). One is a convention to settle ("at 7 m" means altitude). The rest are a rule to add: when a retry strips everything but the behaviour from a request that never named one, ask instead of sending defaults. Wrong commands stay far below the 10% kill line, so the direction lives. Next (G14b): those fixes on dev, then a fresh sealed set written the same way, because this one is now spent for this system.
 - **Report:** docs/results/r16_ground_station.md
 - **Chart:** r16_ground
+### G14b: the ground station, fixed, on a fresh sealed set
+- **Date:** 2026-10-29 (running)
+- **Question:** With the three problems G14's misses exposed fixed, does the station meet the same bars on requests it has never seen?
+- **Why:** G14 missed its safety bar by one wrong command in 150. Its sealed set is now spent: we read its misses to find the fixes, so it cannot also judge them.
+- **What we did:** v5 of the station reads fractions and decimals in words ("two and a half"), treats "at N m" as an altitude unless another word names the setting, and asks instead of sending a bare behaviour with defaults after a retry. On the stored dev replies: qwen 0 wrong commands in 60, no right answer lost. A separate agent wrote 150 fresh sealed requests from the labelling guide alone, with those conventions written down. Ten of its texts happened to match earlier requests exactly and were rewritten before the set was pinned. Same bars as G14.
+- **Result:** Running (about 10 minutes of GPU once the current job ends).
+- **Verdict:** Running
+- **What it means:** Pending.
+- **Report:** docs/directions/drone_swarm.md
+
