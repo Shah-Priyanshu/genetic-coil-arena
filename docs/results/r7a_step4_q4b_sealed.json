@@ -1,0 +1,9602 @@
+{
+ "name": "lora",
+ "label": "Qwen3-1.7B + LoRA (q4b-r32-n12k-p80)",
+ "model": "Qwen/Qwen3-1.7B",
+ "config": {
+  "rank": 32,
+  "n": 12000,
+  "n_requested": 12000,
+  "epochs": 3,
+  "batch": 8,
+  "lr": 0.0002,
+  "steps": 4500,
+  "seed": 0,
+  "paraphrase_share": 0.8,
+  "base": "Qwen/Qwen3-4B",
+  "target_modules": [
+   "q_proj",
+   "k_proj",
+   "v_proj",
+   "o_proj",
+   "gate_proj",
+   "up_proj",
+   "down_proj"
+  ],
+  "n_paraphrases": 8086,
+  "n_retries": 480
+ },
+ "dev": {
+  "score": 0.8993055555555556,
+  "exact_dev": 0.8819444444444444,
+  "exact_step1_set": {
+   "indist": 0.9583333333333334,
+   "heldout": 0.875
+  },
+  "n_valid": 288,
+  "refusal": {
+   "tp": 15.0,
+   "fp": 20.0,
+   "fn": 1.0,
+   "tn": 268.0,
+   "precision": 0.42857142857142855,
+   "recall": 0.9375
+  },
+  "clarify": {
+   "asked": 4.0,
+   "rate": 0.013157894736842105,
+   "on_spec": 3.0,
+   "on_spec_rate": 0.010416666666666666,
+   "gold": 0.0,
+   "tp": 0.0,
+   "precision": 0.0,
+   "recall": null
+  },
+  "status_counts": {
+   "clarify": 4,
+   "ok": 265,
+   "refused": 35
+  },
+  "latency": {
+   "cold_first_call_s": 1.4183354999986477,
+   "warm_item_p50_s": 1.50090879999334,
+   "warm_item_p95_s": 2.506649870000545,
+   "warm_call_p50_s": 1.4988855500123464,
+   "warm_call_p95_s": 2.4268188050336916,
+   "max_prompt_tokens": 71,
+   "mean_attempts": 1.0032894736842106
+  }
+ },
+ "records": [
+  {
+   "id": "sealed-squad-000",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "question",
+   "text": "Could red and blue go find some food? Say 90 steps.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red",
+     "blue"
+    ],
+    "food_target": 0,
+    "step_limit": 90
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "red",
+     "blue"
+    ],
+    "step_limit": 90,
+    "caution": "normal",
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.7143411000142805,
+   "call_latencies": [
+    1.7143411000142805
+   ],
+   "n_prompt_tokens": 25,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    3.0,
+    5.0,
+    5.5,
+    6.0,
+    5.0,
+    9.0,
+    5.5,
+    11.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    3.0,
+    5.0,
+    5.5,
+    6.0,
+    5.0,
+    9.0,
+    5.5,
+    11.0
+   ]
+  },
+  {
+   "id": "sealed-squad-001",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "typo",
+   "text": "pls make green forrage thru 250 turns, high caution",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "green"
+    ],
+    "food_target": 0,
+    "step_limit": 250
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "green"
+    ],
+    "step_limit": 250,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.4813024000031874,
+   "call_latencies": [
+    1.4813024000031874
+   ],
+   "n_prompt_tokens": 25,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    6.0,
+    11.5,
+    0.0,
+    8.5,
+    1.0,
+    0.0,
+    0.0,
+    14.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    6.0,
+    11.5,
+    0.0,
+    8.5,
+    1.0,
+    0.0,
+    0.0,
+    14.5
+   ]
+  },
+  {
+   "id": "sealed-squad-002",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "words",
+   "text": "Blue only. Reckless. One hundred twenty moves. Fifteen pellets.",
+   "gold": {
+    "caution": "low",
+    "eaters": [
+     "blue"
+    ],
+    "food_target": 15,
+    "step_limit": 120
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "low",
+    "eaters": [
+     "blue"
+    ],
+    "food_target": 15,
+    "step_limit": 120
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.8616690000053495,
+   "call_latencies": [
+    1.8616690000053495
+   ],
+   "n_prompt_tokens": 26,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    5.5,
+    5.5,
+    7.5,
+    1.0,
+    2.0,
+    4.5,
+    0.0,
+    5.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    5.5,
+    5.5,
+    7.5,
+    1.0,
+    2.0,
+    4.5,
+    0.0,
+    5.5
+   ]
+  },
+  {
+   "id": "sealed-squad-003",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "chat",
+   "text": "Everybody go foraging! Safety first, we need twenty apples between us.",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 20,
+    "step_limit": 300
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 20,
+    "step_limit": 300
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.6743171999696642,
+   "call_latencies": [
+    1.6743171999696642
+   ],
+   "n_prompt_tokens": 25,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    15.0,
+    16.5,
+    20.5,
+    17.5,
+    17.0,
+    6.0,
+    21.0,
+    12.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    15.0,
+    16.5,
+    20.5,
+    17.5,
+    17.0,
+    6.0,
+    21.0,
+    12.0
+   ]
+  },
+  {
+   "id": "sealed-squad-004",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "mixed_units",
+   "text": "I'd like green and red to eat; blue can wander. No more than 2 hundred steps.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red",
+     "green"
+    ],
+    "food_target": 0,
+    "step_limit": 200
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "green",
+     "red"
+    ],
+    "step_limit": 200,
+    "caution": "normal",
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.2509851999930106,
+   "call_latencies": [
+    1.2509851999930106
+   ],
+   "n_prompt_tokens": 31,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    22.5,
+    13.5,
+    9.5,
+    14.0,
+    14.5,
+    2.0,
+    17.0,
+    13.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    22.5,
+    13.5,
+    9.5,
+    14.0,
+    14.5,
+    2.0,
+    17.0,
+    13.5
+   ]
+  },
+  {
+   "id": "sealed-squad-005",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "keyvalue",
+   "text": "forage: blue+green | caution=low | steps=75 | food=9",
+   "gold": {
+    "caution": "low",
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "food_target": 9,
+    "step_limit": 75
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "low",
+    "eaters": [
+     "blue",
+     "green"
+    ],
+    "food_target": 9,
+    "step_limit": 75
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.023401200014632,
+   "call_latencies": [
+    2.023401200014632
+   ],
+   "n_prompt_tokens": 30,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    6.0,
+    4.0,
+    8.0,
+    5.0,
+    6.0,
+    5.0,
+    0.0,
+    8.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    6.0,
+    4.0,
+    8.0,
+    5.0,
+    6.0,
+    5.0,
+    0.0,
+    8.5
+   ]
+  },
+  {
+   "id": "sealed-squad-006",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "multi_sentence",
+   "text": "Hey, quick one. Green is the only one who needs to eat. Keep it to a hundred steps, and don't take chances.",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "green"
+    ],
+    "food_target": 0,
+    "step_limit": 100
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "green"
+    ],
+    "step_limit": 100,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.4371233999845572,
+   "call_latencies": [
+    1.4371233999845572
+   ],
+   "n_prompt_tokens": 38,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    6.5,
+    3.5,
+    0.0,
+    4.5,
+    1.0,
+    0.0,
+    0.0,
+    7.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    6.5,
+    3.5,
+    0.0,
+    4.5,
+    1.0,
+    0.0,
+    0.0,
+    7.5
+   ]
+  },
+  {
+   "id": "sealed-squad-007",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "formal",
+   "text": "Mission for the squad: all three feast until 12 are eaten. Aggressive play is fine.",
+   "gold": {
+    "caution": "low",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 12,
+    "step_limit": 300
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "low",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 12,
+    "step_limit": 300
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.784451799991075,
+   "call_latencies": [
+    1.784451799991075
+   ],
+   "n_prompt_tokens": 31,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    13.0,
+    13.5,
+    13.0,
+    6.0,
+    13.0,
+    12.5,
+    3.0,
+    12.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    13.0,
+    13.5,
+    13.0,
+    6.0,
+    13.0,
+    12.5,
+    3.0,
+    12.5
+   ]
+  },
+  {
+   "id": "sealed-squad-008",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "casual",
+   "text": "red, run for 60 steps. thats it.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 0,
+    "step_limit": 60
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "red"
+    ],
+    "step_limit": 60,
+    "caution": "normal",
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.1873963000252843,
+   "call_latencies": [
+    1.1873963000252843
+   ],
+   "n_prompt_tokens": 22,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    4.5,
+    1.5,
+    4.5,
+    0.0,
+    5.5,
+    2.5,
+    3.5,
+    3.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    4.5,
+    1.5,
+    4.5,
+    0.0,
+    5.5,
+    2.5,
+    3.5,
+    3.5
+   ]
+  },
+  {
+   "id": "sealed-squad-009",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "question",
+   "text": "Can the blue snake grab 7 food, taking it easy and safe?",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "blue"
+    ],
+    "food_target": 7,
+    "step_limit": 300
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "blue"
+    ],
+    "food_target": 7,
+    "step_limit": 300
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.3757001999765635,
+   "call_latencies": [
+    1.3757001999765635
+   ],
+   "n_prompt_tokens": 25,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    7.5,
+    1.0,
+    1.0,
+    5.0,
+    6.0,
+    6.0,
+    4.0,
+    2.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    7.5,
+    1.0,
+    1.0,
+    5.0,
+    6.0,
+    6.0,
+    4.0,
+    2.0
+   ]
+  },
+  {
+   "id": "sealed-squad-010",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "slang",
+   "text": "Only the green and the blue should hunt, I want a baker's dozen eaten, 140 ticks.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "food_target": 13,
+    "step_limit": 140
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "food_target": 12,
+    "step_limit": 140,
+    "caution": "normal"
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.8569165999651887,
+   "call_latencies": [
+    1.8569165999651887
+   ],
+   "n_prompt_tokens": 33,
+   "exact": false,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": false,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    10.5,
+    5.0,
+    10.5,
+    9.5,
+    5.5,
+    10.5,
+    12.5,
+    14.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    10.5,
+    5.0,
+    10.5,
+    9.5,
+    5.5,
+    10.5,
+    13.0,
+    13.0
+   ]
+  },
+  {
+   "id": "sealed-squad-011",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "military",
+   "text": "Squad, listen up: red takes the lead on foraging, solo, for fifty steps, with the target set to ten.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 10,
+    "step_limit": 50
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "red"
+    ],
+    "food_target": 10,
+    "step_limit": 50,
+    "caution": "normal"
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.6123609999776818,
+   "call_latencies": [
+    1.6123609999776818
+   ],
+   "n_prompt_tokens": 36,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    3.5,
+    0.5,
+    4.5,
+    0.5,
+    5.5,
+    2.5,
+    2.5,
+    3.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    3.5,
+    0.5,
+    4.5,
+    0.5,
+    5.5,
+    2.5,
+    2.5,
+    3.5
+   ]
+  },
+  {
+   "id": "sealed-squad-012",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "negation",
+   "text": "Please have all snakes except green go out and eat. Careful. Time limit: 180 steps.",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "blue"
+    ],
+    "food_target": 0,
+    "step_limit": 180
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "blue"
+    ],
+    "step_limit": 180,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.7187322999816388,
+   "call_latencies": [
+    1.7187322999816388
+   ],
+   "n_prompt_tokens": 33,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    2.0,
+    2.0,
+    3.0,
+    5.5,
+    15.5,
+    6.5,
+    5.0,
+    16.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    2.0,
+    2.0,
+    3.0,
+    5.5,
+    15.5,
+    6.5,
+    5.0,
+    16.5
+   ]
+  },
+  {
+   "id": "sealed-squad-013",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "negation",
+   "text": "Don't send blue. Red and green eat - thirty food and then we stop.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red",
+     "green"
+    ],
+    "food_target": 30,
+    "step_limit": 300
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "red",
+     "green"
+    ],
+    "food_target": 30,
+    "caution": "normal",
+    "step_limit": 300
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.429309499973897,
+   "call_latencies": [
+    1.429309499973897
+   ],
+   "n_prompt_tokens": 27,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    22.0,
+    18.5,
+    13.5,
+    20.5,
+    15.0,
+    2.0,
+    17.0,
+    19.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    22.0,
+    18.5,
+    13.5,
+    20.5,
+    15.0,
+    2.0,
+    17.0,
+    19.5
+   ]
+  },
+  {
+   "id": "sealed-squad-014",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "explicit_defaults",
+   "text": "Foraging, all snakes, 300 steps, caution normal.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 0,
+    "step_limit": 300
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "caution": "normal",
+    "step_limit": 300,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.0443236000137404,
+   "call_latencies": [
+    1.0443236000137404
+   ],
+   "n_prompt_tokens": 25,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    14.0,
+    30.5,
+    24.5,
+    24.5,
+    7.0,
+    27.5,
+    23.5,
+    33.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    14.0,
+    30.5,
+    24.5,
+    24.5,
+    7.0,
+    27.5,
+    23.5,
+    33.5
+   ]
+  },
+  {
+   "id": "sealed-squad-015",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "terse",
+   "text": "all three eat, ASAP, no more than 55 ticks, risk it",
+   "gold": {
+    "caution": "low",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 0,
+    "step_limit": 55
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "low",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "step_limit": 55,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.8957162000006065,
+   "call_latencies": [
+    1.8957162000006065
+   ],
+   "n_prompt_tokens": 27,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    9.5,
+    13.5,
+    5.5,
+    7.5,
+    9.5,
+    5.5,
+    4.0,
+    6.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    9.5,
+    13.5,
+    5.5,
+    7.5,
+    9.5,
+    5.5,
+    4.0,
+    6.5
+   ]
+  },
+  {
+   "id": "sealed-squad-016",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "polite",
+   "text": "The red one should forage for one hundred and eighty steps. A cautious approach, please.",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 0,
+    "step_limit": 180
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "red"
+    ],
+    "step_limit": 180,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.5417517999885604,
+   "call_latencies": [
+    1.5417517999885604
+   ],
+   "n_prompt_tokens": 29,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    1.0,
+    1.0,
+    11.5,
+    0.0,
+    4.0,
+    10.5,
+    1.0,
+    9.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    1.0,
+    1.0,
+    11.5,
+    0.0,
+    4.0,
+    10.5,
+    1.0,
+    9.5
+   ]
+  },
+  {
+   "id": "sealed-squad-017",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "question",
+   "text": "How about we let blue and red eat for a quarter-thousand steps, no particular goal?",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red",
+     "blue"
+    ],
+    "food_target": 0,
+    "step_limit": 250
+   },
+   "status": "clarify",
+   "kind": "spec",
+   "refused": false,
+   "clarified": true,
+   "pred": null,
+   "reason": "How many steps should the mission last?",
+   "attempts": 1,
+   "latency_s": 1.1693064999999478,
+   "call_latencies": [
+    1.1693064999999478
+   ],
+   "n_prompt_tokens": 29,
+   "exact": false,
+   "fields": {
+    "caution": false,
+    "eaters": false,
+    "food_target": false,
+    "step_limit": false
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    3.0,
+    4.0,
+    5.0,
+    6.0,
+    5.0,
+    8.0,
+    9.0,
+    12.0
+   ],
+   "nl_per_seed": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "id": "sealed-squad-018",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "typo",
+   "text": "gren and blu foraging, 120 stpes, recless",
+   "gold": {
+    "caution": "low",
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "food_target": 0,
+    "step_limit": 120
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "low",
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "step_limit": 120,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.7831606999970973,
+   "call_latencies": [
+    1.7831606999970973
+   ],
+   "n_prompt_tokens": 27,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    7.5,
+    6.5,
+    7.5,
+    4.0,
+    6.5,
+    5.5,
+    0.0,
+    13.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    7.5,
+    6.5,
+    7.5,
+    4.0,
+    6.5,
+    5.5,
+    0.0,
+    13.5
+   ]
+  },
+  {
+   "id": "sealed-squad-019",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "task_frame",
+   "text": "Task: green collects food. Stop once 25 pieces are in. Play it very safe. 200 moves.",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "green"
+    ],
+    "food_target": 25,
+    "step_limit": 200
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "green"
+    ],
+    "food_target": 25,
+    "step_limit": 200
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.9824608999770135,
+   "call_latencies": [
+    1.9824608999770135
+   ],
+   "n_prompt_tokens": 36,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    6.0,
+    9.5,
+    0.0,
+    8.5,
+    1.0,
+    0.0,
+    0.0,
+    11.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    6.0,
+    9.5,
+    0.0,
+    8.5,
+    1.0,
+    0.0,
+    0.0,
+    11.5
+   ]
+  },
+  {
+   "id": "sealed-squad-020",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "mixed_units",
+   "text": "Red alone, half a dozen food then done.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 6,
+    "step_limit": 300
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "red"
+    ],
+    "food_target": 6,
+    "caution": "normal",
+    "step_limit": 300
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.0032517000217922,
+   "call_latencies": [
+    1.0032517000217922
+   ],
+   "n_prompt_tokens": 20,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    4.0,
+    6.5,
+    5.0,
+    0.0,
+    5.0,
+    2.0,
+    5.0,
+    6.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    4.0,
+    6.5,
+    5.0,
+    0.0,
+    5.0,
+    2.0,
+    5.0,
+    6.5
+   ]
+  },
+  {
+   "id": "sealed-squad-021",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "mixed_units",
+   "text": "Whole team forages until two dozen items are collected, cautiously.",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 24,
+    "step_limit": 300
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 24,
+    "step_limit": 300
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.8949524000054225,
+   "call_latencies": [
+    1.8949524000054225
+   ],
+   "n_prompt_tokens": 23,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    15.0,
+    16.5,
+    23.5,
+    17.5,
+    17.0,
+    6.0,
+    24.5,
+    12.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    15.0,
+    16.5,
+    23.5,
+    17.5,
+    17.0,
+    6.0,
+    24.5,
+    12.0
+   ]
+  },
+  {
+   "id": "sealed-squad-022",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "mixed_units",
+   "text": "Blue and green: eat a score of food, 150 ticks, be bold.",
+   "gold": {
+    "caution": "low",
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "food_target": 20,
+    "step_limit": 150
+   },
+   "status": "refused",
+   "kind": "spec",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "unsatisfiable under the schema: /params/food_target: 150 is greater than the maximum of 40",
+   "attempts": 2,
+   "latency_s": 4.043418000044767,
+   "call_latencies": [
+    1.6682246000273153,
+    2.3751934000174515
+   ],
+   "n_prompt_tokens": 29,
+   "exact": false,
+   "fields": {
+    "caution": false,
+    "eaters": false,
+    "food_target": false,
+    "step_limit": false
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    7.0,
+    8.5,
+    7.0,
+    4.0,
+    8.5,
+    7.5,
+    0.0,
+    14.5
+   ],
+   "nl_per_seed": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "id": "sealed-squad-023",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "Set it up so only red forages. 3 hundred steps is fine, no food goal, standard care.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 0,
+    "step_limit": 300
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "red"
+    ],
+    "caution": "normal",
+    "step_limit": 300,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 0.6859091999940574,
+   "call_latencies": [
+    0.6859091999940574
+   ],
+   "n_prompt_tokens": 33,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    4.0,
+    8.0,
+    5.0,
+    0.0,
+    5.0,
+    2.0,
+    5.0,
+    13.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    4.0,
+    8.0,
+    5.0,
+    0.0,
+    5.0,
+    2.0,
+    5.0,
+    13.0
+   ]
+  },
+  {
+   "id": "sealed-squad-024",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "question",
+   "text": "is it possible to get all of them eating for 100 steps with maximum caution?",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 0,
+    "step_limit": 100
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "step_limit": 100,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.881359799997881,
+   "call_latencies": [
+    1.881359799997881
+   ],
+   "n_prompt_tokens": 29,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    8.5,
+    8.5,
+    16.0,
+    8.0,
+    9.5,
+    4.5,
+    14.5,
+    11.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    8.5,
+    8.5,
+    16.0,
+    8.0,
+    9.5,
+    4.5,
+    14.5,
+    11.0
+   ]
+  },
+  {
+   "id": "sealed-squad-025",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "terse",
+   "text": "Snakes red and green: forage. Go wild. Cap at 50 steps.",
+   "gold": {
+    "caution": "low",
+    "eaters": [
+     "red",
+     "green"
+    ],
+    "food_target": 0,
+    "step_limit": 50
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "low",
+    "eaters": [
+     "red",
+     "green"
+    ],
+    "step_limit": 50,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.6612338999984786,
+   "call_latencies": [
+    1.6612338999984786
+   ],
+   "n_prompt_tokens": 29,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    6.0,
+    8.0,
+    6.0,
+    4.0,
+    9.0,
+    4.0,
+    4.0,
+    1.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    6.0,
+    8.0,
+    6.0,
+    4.0,
+    9.0,
+    4.0,
+    4.0,
+    1.5
+   ]
+  },
+  {
+   "id": "sealed-squad-026",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "multi_sentence",
+   "text": "Blue, green, and red all hunt. They should stop after 35 food. 250 steps tops. Nothing reckless.",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 35,
+    "step_limit": 250
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 35,
+    "step_limit": 250
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.3974292000057176,
+   "call_latencies": [
+    2.3974292000057176
+   ],
+   "n_prompt_tokens": 38,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    15.5,
+    16.5,
+    20.5,
+    16.5,
+    17.5,
+    6.0,
+    23.5,
+    12.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    15.5,
+    16.5,
+    20.5,
+    16.5,
+    17.5,
+    6.0,
+    23.5,
+    12.0
+   ]
+  },
+  {
+   "id": "sealed-squad-027",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "task_frame",
+   "text": "What I want: green forages, 40 food target, and the step budget is 300.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "green"
+    ],
+    "food_target": 40,
+    "step_limit": 300
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "green"
+    ],
+    "food_target": 40,
+    "caution": "normal",
+    "step_limit": 300
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.182499899994582,
+   "call_latencies": [
+    1.182499899994582
+   ],
+   "n_prompt_tokens": 34,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    15.0,
+    10.5,
+    2.0,
+    13.5,
+    20.5,
+    0.0,
+    12.5,
+    16.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    15.0,
+    10.5,
+    2.0,
+    13.5,
+    20.5,
+    0.0,
+    12.5,
+    16.5
+   ]
+  },
+  {
+   "id": "sealed-squad-028",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "terse",
+   "text": "red + blue hunt for 8 food. take no risks.",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "blue"
+    ],
+    "food_target": 8,
+    "step_limit": 300
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "blue"
+    ],
+    "food_target": 8,
+    "step_limit": 300
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.6237440999830142,
+   "call_latencies": [
+    1.6237440999830142
+   ],
+   "n_prompt_tokens": 23,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    2.0,
+    2.0,
+    3.0,
+    5.0,
+    9.0,
+    6.0,
+    5.0,
+    9.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    2.0,
+    2.0,
+    3.0,
+    5.0,
+    9.0,
+    6.0,
+    5.0,
+    9.0
+   ]
+  },
+  {
+   "id": "sealed-squad-029",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "polite",
+   "text": "Please send out the red snake. Fifty-five steps. Tolerate losses, we need results.",
+   "gold": {
+    "caution": "low",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 0,
+    "step_limit": 55
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "low",
+    "eaters": [
+     "red"
+    ],
+    "step_limit": 55,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.458808199968189,
+   "call_latencies": [
+    1.458808199968189
+   ],
+   "n_prompt_tokens": 30,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    5.5,
+    1.5,
+    3.5,
+    2.5,
+    6.5,
+    3.5,
+    2.5,
+    3.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    5.5,
+    1.5,
+    3.5,
+    2.5,
+    6.5,
+    3.5,
+    2.5,
+    3.5
+   ]
+  },
+  {
+   "id": "sealed-squad-030",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "casual",
+   "text": "Let green and blue forage; I don't mind if one dies. 90 steps, 10 food.",
+   "gold": {
+    "caution": "low",
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "food_target": 10,
+    "step_limit": 90
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "food_target": 10,
+    "step_limit": 90,
+    "caution": "normal"
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.8562453999766149,
+   "call_latencies": [
+    1.8562453999766149
+   ],
+   "n_prompt_tokens": 35,
+   "exact": false,
+   "fields": {
+    "caution": false,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    8.0,
+    4.0,
+    8.0,
+    4.0,
+    6.0,
+    6.0,
+    0.0,
+    8.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    8.0,
+    5.5,
+    7.5,
+    5.5,
+    3.5,
+    10.0,
+    8.0,
+    9.0
+   ]
+  },
+  {
+   "id": "sealed-squad-031",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "explicit_defaults",
+   "text": "All snakes forage, with the usual level of care, within 120 steps, goal: 18 food.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 18,
+    "step_limit": 120
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 18,
+    "step_limit": 120,
+    "caution": "normal"
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.105213599978015,
+   "call_latencies": [
+    2.105213599978015
+   ],
+   "n_prompt_tokens": 36,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    13.5,
+    19.5,
+    11.0,
+    14.0,
+    7.0,
+    19.5,
+    15.5,
+    18.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    13.5,
+    19.5,
+    11.0,
+    14.0,
+    7.0,
+    19.5,
+    15.5,
+    18.5
+   ]
+  },
+  {
+   "id": "sealed-squad-032",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "jargon",
+   "text": "Hunting party: red, green. Duration 160 steps. Quota 14.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red",
+     "green"
+    ],
+    "food_target": 14,
+    "step_limit": 160
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "red",
+     "green"
+    ],
+    "food_target": 14,
+    "step_limit": 160,
+    "caution": "normal"
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.8164115999825299,
+   "call_latencies": [
+    1.8164115999825299
+   ],
+   "n_prompt_tokens": 30,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    15.0,
+    12.5,
+    9.5,
+    12.0,
+    11.5,
+    2.0,
+    14.0,
+    9.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    15.0,
+    12.5,
+    9.5,
+    12.0,
+    11.5,
+    2.0,
+    14.0,
+    9.5
+   ]
+  },
+  {
+   "id": "sealed-squad-033",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "The blue snake ought to forage for 210 steps; caution should be high.",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "blue"
+    ],
+    "food_target": 0,
+    "step_limit": 210
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "blue"
+    ],
+    "step_limit": 210,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.5827301000244915,
+   "call_latencies": [
+    1.5827301000244915
+   ],
+   "n_prompt_tokens": 29,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    13.5,
+    1.0,
+    1.0,
+    5.0,
+    6.0,
+    6.0,
+    4.0,
+    2.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    13.5,
+    1.0,
+    1.0,
+    5.0,
+    6.0,
+    6.0,
+    4.0,
+    2.0
+   ]
+  },
+  {
+   "id": "sealed-squad-034",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "negation",
+   "text": "Everyone but red should eat. Reckless is fine. 65 steps. Eleven food.",
+   "gold": {
+    "caution": "low",
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "food_target": 11,
+    "step_limit": 65
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "low",
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "food_target": 11,
+    "step_limit": 65
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.133081600011792,
+   "call_latencies": [
+    2.133081600011792
+   ],
+   "n_prompt_tokens": 30,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    6.0,
+    4.0,
+    8.0,
+    5.0,
+    5.0,
+    4.0,
+    0.0,
+    9.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    6.0,
+    4.0,
+    8.0,
+    5.0,
+    5.0,
+    4.0,
+    0.0,
+    9.0
+   ]
+  },
+  {
+   "id": "sealed-squad-035",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "terse",
+   "text": "forage with blue, 77 steps",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "blue"
+    ],
+    "food_target": 0,
+    "step_limit": 77
+   },
+   "status": "refused",
+   "kind": "spec",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "step limit must be between 50 and 300",
+   "attempts": 1,
+   "latency_s": 1.4409210000303574,
+   "call_latencies": [
+    1.4409210000303574
+   ],
+   "n_prompt_tokens": 20,
+   "exact": false,
+   "fields": {
+    "caution": false,
+    "eaters": false,
+    "food_target": false,
+    "step_limit": false
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    3.5,
+    3.5,
+    5.5,
+    2.5,
+    5.5,
+    7.5,
+    6.5,
+    2.0
+   ],
+   "nl_per_seed": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "id": "sealed-squad-036",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "formal",
+   "text": "Dear squad lead, kindly have the green and red snakes forage prudently, for 130 steps, targeting 16 food. Regards.",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green"
+    ],
+    "food_target": 16,
+    "step_limit": 130
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "green",
+     "red"
+    ],
+    "food_target": 16,
+    "step_limit": 130
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.40333980001742,
+   "call_latencies": [
+    2.40333980001742
+   ],
+   "n_prompt_tokens": 42,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    10.5,
+    12.5,
+    10.5,
+    6.5,
+    7.0,
+    6.5,
+    9.5,
+    2.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    10.5,
+    12.5,
+    10.5,
+    6.5,
+    7.0,
+    6.5,
+    9.5,
+    2.0
+   ]
+  },
+  {
+   "id": "sealed-squad-037",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "terse",
+   "text": "red green blue - eat. 10 food. safe.",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 10,
+    "step_limit": 300
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 10,
+    "step_limit": 300
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.9007902999874204,
+   "call_latencies": [
+    1.9007902999874204
+   ],
+   "n_prompt_tokens": 23,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    10.5,
+    10.5,
+    11.5,
+    11.0,
+    10.5,
+    6.0,
+    11.5,
+    11.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    10.5,
+    10.5,
+    11.5,
+    11.0,
+    10.5,
+    6.0,
+    11.5,
+    11.5
+   ]
+  },
+  {
+   "id": "sealed-squad-038",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "It would be great if just the red snake went out foraging. Not more than ninety steps.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 0,
+    "step_limit": 90
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "red"
+    ],
+    "step_limit": 90,
+    "caution": "normal",
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.1283748000278138,
+   "call_latencies": [
+    1.1283748000278138
+   ],
+   "n_prompt_tokens": 30,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    4.5,
+    3.5,
+    5.5,
+    0.0,
+    5.5,
+    2.0,
+    3.5,
+    4.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    4.5,
+    3.5,
+    5.5,
+    0.0,
+    5.5,
+    2.0,
+    3.5,
+    4.5
+   ]
+  },
+  {
+   "id": "sealed-squad-039",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "Blue and red eat, accept heavy losses if needed, 100 steps.",
+   "gold": {
+    "caution": "low",
+    "eaters": [
+     "red",
+     "blue"
+    ],
+    "food_target": 0,
+    "step_limit": 100
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "low",
+    "eaters": [
+     "blue",
+     "red"
+    ],
+    "step_limit": 100,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.803487099998165,
+   "call_latencies": [
+    1.803487099998165
+   ],
+   "n_prompt_tokens": 27,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    12.0,
+    8.0,
+    7.5,
+    7.5,
+    9.5,
+    8.5,
+    3.0,
+    3.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    12.0,
+    8.0,
+    7.5,
+    7.5,
+    9.5,
+    8.5,
+    3.0,
+    3.0
+   ]
+  },
+  {
+   "id": "sealed-squad-040",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "task_frame",
+   "text": "Get everyone eating for 275 steps; the squad wins at 33 food.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 33,
+    "step_limit": 275
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 33,
+    "step_limit": 275,
+    "caution": "normal"
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.9841112000285648,
+   "call_latencies": [
+    1.9841112000285648
+   ],
+   "n_prompt_tokens": 29,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    14.0,
+    29.5,
+    24.5,
+    24.5,
+    7.0,
+    27.5,
+    22.5,
+    33.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    14.0,
+    29.5,
+    24.5,
+    24.5,
+    7.0,
+    27.5,
+    22.5,
+    33.5
+   ]
+  },
+  {
+   "id": "sealed-squad-041",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "Green alone eats, at a normal level of caution, until it has 5.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "green"
+    ],
+    "food_target": 5,
+    "step_limit": 300
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "green"
+    ],
+    "food_target": 5,
+    "caution": "normal",
+    "step_limit": 300
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.1271113999537192,
+   "call_latencies": [
+    1.1271113999537192
+   ],
+   "n_prompt_tokens": 27,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    5.5,
+    5.5,
+    2.0,
+    5.5,
+    5.5,
+    0.0,
+    5.5,
+    5.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    5.5,
+    5.5,
+    2.0,
+    5.5,
+    5.5,
+    0.0,
+    5.5,
+    5.5
+   ]
+  },
+  {
+   "id": "sealed-squad-042",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "terse",
+   "text": "forage plz - all snakes - 40 food - no step limit",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 40,
+    "step_limit": 300
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 40,
+    "caution": "normal",
+    "step_limit": 300
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.431295299960766,
+   "call_latencies": [
+    1.431295299960766
+   ],
+   "n_prompt_tokens": 27,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    14.0,
+    30.5,
+    24.5,
+    24.5,
+    7.0,
+    27.5,
+    23.5,
+    33.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    14.0,
+    30.5,
+    24.5,
+    24.5,
+    7.0,
+    27.5,
+    23.5,
+    33.5
+   ]
+  },
+  {
+   "id": "sealed-squad-043",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "words",
+   "text": "Let red, green and blue each forage for two hundred forty steps.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 0,
+    "step_limit": 240
+   },
+   "status": "refused",
+   "kind": "spec",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "step limit must be between 50 and 300",
+   "attempts": 1,
+   "latency_s": 1.3629940999671817,
+   "call_latencies": [
+    1.3629940999671817
+   ],
+   "n_prompt_tokens": 25,
+   "exact": false,
+   "fields": {
+    "caution": false,
+    "eaters": false,
+    "food_target": false,
+    "step_limit": false
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    14.0,
+    25.5,
+    24.0,
+    21.0,
+    7.0,
+    26.5,
+    20.5,
+    29.5
+   ],
+   "nl_per_seed": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "id": "sealed-squad-044",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "negation",
+   "text": "Rest blue; let the other two forage - carefully - up to 95 steps.",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green"
+    ],
+    "food_target": 0,
+    "step_limit": 95
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green"
+    ],
+    "step_limit": 95,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.6614171999972314,
+   "call_latencies": [
+    1.6614171999972314
+   ],
+   "n_prompt_tokens": 29,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    10.0,
+    11.0,
+    10.5,
+    4.5,
+    7.0,
+    5.5,
+    7.0,
+    2.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    10.0,
+    11.0,
+    10.5,
+    4.5,
+    7.0,
+    5.5,
+    7.0,
+    2.0
+   ]
+  },
+  {
+   "id": "sealed-squad-045",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "Red snake: forage. Stop when the squad's tally reaches 22. Don't be timid.",
+   "gold": {
+    "caution": "low",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 22,
+    "step_limit": 300
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 22,
+    "step_limit": 300
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.5521694000344723,
+   "call_latencies": [
+    1.5521694000344723
+   ],
+   "n_prompt_tokens": 32,
+   "exact": false,
+   "fields": {
+    "caution": false,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    14.0,
+    15.5,
+    12.5,
+    2.0,
+    7.0,
+    8.0,
+    3.0,
+    13.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    1.0,
+    1.0,
+    13.0,
+    0.0,
+    4.0,
+    15.0,
+    1.0,
+    17.5
+   ]
+  },
+  {
+   "id": "sealed-squad-046",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "caps",
+   "text": "SQUAD ORDER 14: GREEN FORAGES. 120 STEPS. HIGH CAUTION.",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "green"
+    ],
+    "food_target": 0,
+    "step_limit": 120
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "green"
+    ],
+    "step_limit": 120,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.5482223000144586,
+   "call_latencies": [
+    1.5482223000144586
+   ],
+   "n_prompt_tokens": 33,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    6.5,
+    6.5,
+    0.0,
+    5.5,
+    1.0,
+    0.0,
+    0.0,
+    7.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    6.5,
+    6.5,
+    0.0,
+    5.5,
+    1.0,
+    0.0,
+    0.0,
+    7.5
+   ]
+  },
+  {
+   "id": "sealed-squad-047",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "typo",
+   "text": "i need blue n green to get 15 food in under 200 steps, play normally",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "food_target": 15,
+    "step_limit": 200
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "blue",
+     "green"
+    ],
+    "food_target": 15,
+    "step_limit": 200,
+    "caution": "normal"
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.7739120000042021,
+   "call_latencies": [
+    1.7739120000042021
+   ],
+   "n_prompt_tokens": 32,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    11.5,
+    5.0,
+    12.5,
+    10.5,
+    5.0,
+    14.0,
+    15.5,
+    16.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    11.5,
+    5.0,
+    12.5,
+    10.5,
+    5.0,
+    14.0,
+    15.5,
+    16.0
+   ]
+  },
+  {
+   "id": "sealed-squad-048",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "A modest, careful foraging run by the red snake alone: 70 steps.",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 0,
+    "step_limit": 70
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "red"
+    ],
+    "step_limit": 70,
+    "caution": "normal",
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.1340130000025965,
+   "call_latencies": [
+    1.1340130000025965
+   ],
+   "n_prompt_tokens": 28,
+   "exact": false,
+   "fields": {
+    "caution": false,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    1.0,
+    1.0,
+    4.5,
+    0.0,
+    4.5,
+    2.5,
+    1.0,
+    3.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    4.5,
+    3.5,
+    5.5,
+    0.0,
+    5.5,
+    2.5,
+    3.5,
+    3.5
+   ]
+  },
+  {
+   "id": "sealed-squad-049",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "multi_sentence",
+   "text": "For the next 150 steps, have red, green and blue forage; ordinary caution; we'll call it done at 26 food.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 26,
+    "step_limit": 150
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 26,
+    "step_limit": 150,
+    "caution": "normal"
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.9486040000338107,
+   "call_latencies": [
+    1.9486040000338107
+   ],
+   "n_prompt_tokens": 42,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    14.5,
+    22.5,
+    17.0,
+    16.0,
+    7.0,
+    21.5,
+    16.0,
+    20.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    14.5,
+    22.5,
+    17.0,
+    16.0,
+    7.0,
+    21.5,
+    16.0,
+    20.5
+   ]
+  },
+  {
+   "id": "sealed-squad-050",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "negation",
+   "text": "Green and blue take the food; red stays out of it. Daring, 110 ticks.",
+   "gold": {
+    "caution": "low",
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "food_target": 0,
+    "step_limit": 110
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "low",
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "step_limit": 110,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.7185003999620676,
+   "call_latencies": [
+    1.7185003999620676
+   ],
+   "n_prompt_tokens": 32,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    7.5,
+    5.5,
+    8.0,
+    4.0,
+    6.5,
+    6.0,
+    0.0,
+    12.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    7.5,
+    5.5,
+    8.0,
+    4.0,
+    6.5,
+    6.0,
+    0.0,
+    12.5
+   ]
+  },
+  {
+   "id": "sealed-squad-051",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "words",
+   "text": "Everybody forage until 31 pieces of food have been eaten. Time limit three hundred.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 31,
+    "step_limit": 300
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 31,
+    "caution": "normal",
+    "step_limit": 300
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.463089199969545,
+   "call_latencies": [
+    1.463089199969545
+   ],
+   "n_prompt_tokens": 29,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    14.0,
+    30.5,
+    24.5,
+    24.5,
+    7.0,
+    27.5,
+    23.5,
+    31.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    14.0,
+    30.5,
+    24.5,
+    24.5,
+    7.0,
+    27.5,
+    23.5,
+    31.5
+   ]
+  },
+  {
+   "id": "sealed-squad-052",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "terse",
+   "text": "Only red, carefully, 85 steps, 3 food.",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 3,
+    "step_limit": 85
+   },
+   "status": "clarify",
+   "kind": "spec",
+   "refused": false,
+   "clarified": true,
+   "pred": null,
+   "reason": "Which snakes (red, green or blue) should forage?",
+   "attempts": 1,
+   "latency_s": 1.488664299948141,
+   "call_latencies": [
+    1.488664299948141
+   ],
+   "n_prompt_tokens": 24,
+   "exact": false,
+   "fields": {
+    "caution": false,
+    "eaters": false,
+    "food_target": false,
+    "step_limit": false
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    1.0,
+    1.0,
+    3.5,
+    0.0,
+    3.5,
+    3.5,
+    1.0,
+    3.5
+   ],
+   "nl_per_seed": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "id": "sealed-squad-053",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "casual",
+   "text": "Make the green snake eat 1 food and call it a day.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "green"
+    ],
+    "food_target": 1,
+    "step_limit": 300
+   },
+   "status": "refused",
+   "kind": "spec",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "food target must be between 0 and 40",
+   "attempts": 1,
+   "latency_s": 1.2976089000003412,
+   "call_latencies": [
+    1.2976089000003412
+   ],
+   "n_prompt_tokens": 24,
+   "exact": false,
+   "fields": {
+    "caution": false,
+    "eaters": false,
+    "food_target": false,
+    "step_limit": false
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    1.5,
+    1.5,
+    1.5,
+    1.5,
+    1.5,
+    0.0,
+    1.5,
+    1.5
+   ],
+   "nl_per_seed": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "id": "sealed-squad-054",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "terse",
+   "text": "Foragers: red & green. Fifty-eight steps. Aggressively.",
+   "gold": {
+    "caution": "low",
+    "eaters": [
+     "red",
+     "green"
+    ],
+    "food_target": 0,
+    "step_limit": 58
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "low",
+    "eaters": [
+     "red",
+     "green"
+    ],
+    "step_limit": 58,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.665003500005696,
+   "call_latencies": [
+    1.665003500005696
+   ],
+   "n_prompt_tokens": 25,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    8.0,
+    9.0,
+    8.0,
+    6.0,
+    9.0,
+    6.0,
+    4.0,
+    1.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    8.0,
+    9.0,
+    8.0,
+    6.0,
+    9.0,
+    6.0,
+    4.0,
+    1.5
+   ]
+  },
+  {
+   "id": "sealed-squad-055",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "terse",
+   "text": "Squad: three snakes eat, 225 steps, 28 food, caution high",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 28,
+    "step_limit": 225
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 28,
+    "step_limit": 225
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.320994600013364,
+   "call_latencies": [
+    2.320994600013364
+   ],
+   "n_prompt_tokens": 30,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    14.5,
+    14.5,
+    20.5,
+    14.5,
+    17.5,
+    6.5,
+    22.5,
+    12.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    14.5,
+    14.5,
+    20.5,
+    14.5,
+    17.5,
+    6.5,
+    22.5,
+    12.0
+   ]
+  },
+  {
+   "id": "sealed-squad-056",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "Let's see how blue does alone over 190 steps with no goal and normal care.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "blue"
+    ],
+    "food_target": 0,
+    "step_limit": 190
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "blue"
+    ],
+    "step_limit": 190,
+    "caution": "normal",
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.2003752999589778,
+   "call_latencies": [
+    1.2003752999589778
+   ],
+   "n_prompt_tokens": 30,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    6.5,
+    5.0,
+    11.5,
+    3.0,
+    10.5,
+    7.0,
+    7.0,
+    2.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    6.5,
+    5.0,
+    11.5,
+    3.0,
+    10.5,
+    7.0,
+    7.0,
+    2.0
+   ]
+  },
+  {
+   "id": "sealed-squad-057",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "chat",
+   "text": "All hands to the buffet! Careless is OK, 70 steps, 15 bites.",
+   "gold": {
+    "caution": "low",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 15,
+    "step_limit": 70
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "low",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 15,
+    "step_limit": 70
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.17095739999786,
+   "call_latencies": [
+    2.17095739999786
+   ],
+   "n_prompt_tokens": 31,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    10.5,
+    15.5,
+    6.5,
+    7.5,
+    10.5,
+    5.5,
+    4.0,
+    8.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    10.5,
+    15.5,
+    6.5,
+    7.5,
+    10.5,
+    5.5,
+    4.0,
+    8.0
+   ]
+  },
+  {
+   "id": "sealed-squad-058",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "self_correction",
+   "text": "I want red out foraging. Wait, make that green. 120 steps.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "green"
+    ],
+    "food_target": 0,
+    "step_limit": 120
+   },
+   "status": "refused",
+   "kind": "spec",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "there is no green snake; the colours are red, green and blue",
+   "attempts": 1,
+   "latency_s": 1.4944379999651574,
+   "call_latencies": [
+    1.4944379999651574
+   ],
+   "n_prompt_tokens": 29,
+   "exact": false,
+   "fields": {
+    "caution": false,
+    "eaters": false,
+    "food_target": false,
+    "step_limit": false
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    9.5,
+    6.5,
+    2.0,
+    4.5,
+    8.5,
+    0.0,
+    4.5,
+    7.5
+   ],
+   "nl_per_seed": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "id": "sealed-squad-059",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "self_correction",
+   "text": "red and green forage for 100 steps. actually no, 150 steps.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red",
+     "green"
+    ],
+    "food_target": 0,
+    "step_limit": 150
+   },
+   "status": "refused",
+   "kind": "spec",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "there is no green snake; the colours are red, green and blue",
+   "attempts": 1,
+   "latency_s": 1.460241799999494,
+   "call_latencies": [
+    1.460241799999494
+   ],
+   "n_prompt_tokens": 31,
+   "exact": false,
+   "fields": {
+    "caution": false,
+    "eaters": false,
+    "food_target": false,
+    "step_limit": false
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    20.0,
+    12.5,
+    8.5,
+    11.0,
+    10.5,
+    2.0,
+    14.0,
+    8.5
+   ],
+   "nl_per_seed": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "id": "sealed-squad-060",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "formal",
+   "text": "Send two snakes: red and blue. Cautious. 180 steps. Seventeen food.",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "blue"
+    ],
+    "food_target": 17,
+    "step_limit": 180
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "red",
+     "blue"
+    ],
+    "food_target": 17,
+    "step_limit": 180
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.125597200007178,
+   "call_latencies": [
+    2.125597200007178
+   ],
+   "n_prompt_tokens": 32,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    2.0,
+    2.0,
+    3.0,
+    5.5,
+    15.5,
+    6.5,
+    5.0,
+    16.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    2.0,
+    2.0,
+    3.0,
+    5.5,
+    15.5,
+    6.5,
+    5.0,
+    16.5
+   ]
+  },
+  {
+   "id": "sealed-squad-061",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "Please let the whole team search for food at normal caution for exactly 240 steps.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 0,
+    "step_limit": 240
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "step_limit": 240,
+    "caution": "normal",
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.492881199985277,
+   "call_latencies": [
+    1.492881199985277
+   ],
+   "n_prompt_tokens": 29,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    14.0,
+    25.5,
+    24.0,
+    21.0,
+    7.0,
+    26.5,
+    20.5,
+    29.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    14.0,
+    25.5,
+    24.0,
+    21.0,
+    7.0,
+    26.5,
+    20.5,
+    29.5
+   ]
+  },
+  {
+   "id": "sealed-squad-062",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "inverted_wording",
+   "text": "Of the three snakes only blue gets to eat. 100 steps. Low risk tolerance.",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "blue"
+    ],
+    "food_target": 0,
+    "step_limit": 100
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "low",
+    "eaters": [
+     "blue"
+    ],
+    "step_limit": 100,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.5633387999841943,
+   "call_latencies": [
+    1.5633387999841943
+   ],
+   "n_prompt_tokens": 30,
+   "exact": false,
+   "fields": {
+    "caution": false,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    6.5,
+    1.0,
+    1.0,
+    3.5,
+    5.5,
+    4.5,
+    4.0,
+    2.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    4.5,
+    3.5,
+    7.5,
+    1.0,
+    2.0,
+    4.5,
+    0.0,
+    5.5
+   ]
+  },
+  {
+   "id": "sealed-squad-063",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "inverted_wording",
+   "text": "Blue and green both hunt; a high risk appetite; 300 steps.",
+   "gold": {
+    "caution": "low",
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "food_target": 0,
+    "step_limit": 300
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "blue",
+     "green"
+    ],
+    "step_limit": 300,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.279539900016971,
+   "call_latencies": [
+    1.279539900016971
+   ],
+   "n_prompt_tokens": 27,
+   "exact": false,
+   "fields": {
+    "caution": false,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    7.0,
+    10.0,
+    7.0,
+    4.0,
+    8.0,
+    8.0,
+    0.0,
+    20.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    2.0,
+    17.5,
+    6.0,
+    11.0,
+    13.0,
+    6.0,
+    4.0,
+    7.0
+   ]
+  },
+  {
+   "id": "sealed-squad-064",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "polite",
+   "text": "Give red the job of foraging within 95 steps, goal 9 food, please keep it safe.",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 9,
+    "step_limit": 95
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 9,
+    "step_limit": 95
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.851335100014694,
+   "call_latencies": [
+    1.851335100014694
+   ],
+   "n_prompt_tokens": 33,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    1.0,
+    1.0,
+    5.5,
+    0.0,
+    4.0,
+    5.5,
+    1.0,
+    5.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    1.0,
+    1.0,
+    5.5,
+    0.0,
+    4.0,
+    5.5,
+    1.0,
+    5.5
+   ]
+  },
+  {
+   "id": "sealed-squad-065",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "terse",
+   "text": "all of em eat, 40 food, 280 steps",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 40,
+    "step_limit": 280
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 40,
+    "step_limit": 280,
+    "caution": "normal"
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.905166000011377,
+   "call_latencies": [
+    1.905166000011377
+   ],
+   "n_prompt_tokens": 26,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    14.0,
+    29.5,
+    24.5,
+    24.5,
+    7.0,
+    27.5,
+    22.5,
+    33.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    14.0,
+    29.5,
+    24.5,
+    24.5,
+    7.0,
+    27.5,
+    22.5,
+    33.5
+   ]
+  },
+  {
+   "id": "sealed-squad-066",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "question",
+   "text": "Would it be possible for the green snake to forage, bravely, for sixty steps?",
+   "gold": {
+    "caution": "low",
+    "eaters": [
+     "green"
+    ],
+    "food_target": 0,
+    "step_limit": 60
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "low",
+    "eaters": [
+     "green"
+    ],
+    "step_limit": 60,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.441527999995742,
+   "call_latencies": [
+    1.441527999995742
+   ],
+   "n_prompt_tokens": 29,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    1.5,
+    2.5,
+    2.5,
+    3.5,
+    1.5,
+    2.5,
+    1.5,
+    7.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    1.5,
+    2.5,
+    2.5,
+    3.5,
+    1.5,
+    2.5,
+    1.5,
+    7.5
+   ]
+  },
+  {
+   "id": "sealed-squad-067",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "multi_sentence",
+   "text": "Only blue and red are foraging this round. Green stays home. Put the limit at 135 steps and the goal at 12 food.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red",
+     "blue"
+    ],
+    "food_target": 12,
+    "step_limit": 135
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "blue",
+     "red"
+    ],
+    "food_target": 12,
+    "step_limit": 135,
+    "caution": "normal"
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.8559543000301346,
+   "call_latencies": [
+    1.8559543000301346
+   ],
+   "n_prompt_tokens": 42,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    3.0,
+    4.0,
+    5.0,
+    6.5,
+    5.0,
+    8.5,
+    7.5,
+    13.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    3.0,
+    4.0,
+    5.0,
+    6.5,
+    5.0,
+    8.5,
+    7.5,
+    13.0
+   ]
+  },
+  {
+   "id": "sealed-squad-068",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "task_frame",
+   "text": "Forage order -> eaters: green, blue; risk: careful; length: 175 steps; goal: none",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "food_target": 0,
+    "step_limit": 175
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "step_limit": 175,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.7562544999527745,
+   "call_latencies": [
+    1.7562544999527745
+   ],
+   "n_prompt_tokens": 37,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    2.0,
+    11.0,
+    6.0,
+    10.5,
+    12.5,
+    6.5,
+    4.0,
+    7.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    2.0,
+    11.0,
+    6.0,
+    10.5,
+    12.5,
+    6.5,
+    4.0,
+    7.0
+   ]
+  },
+  {
+   "id": "sealed-squad-069",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "chat",
+   "text": "ok so red should go eat a bunch, like 25 food, but not recklessly, and stop at 220 steps",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 25,
+    "step_limit": 220
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 25,
+    "step_limit": 220
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.0159711000160314,
+   "call_latencies": [
+    2.0159711000160314
+   ],
+   "n_prompt_tokens": 39,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    1.0,
+    1.0,
+    12.5,
+    0.0,
+    4.0,
+    15.5,
+    1.0,
+    12.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    1.0,
+    1.0,
+    12.5,
+    0.0,
+    4.0,
+    15.5,
+    1.0,
+    12.5
+   ]
+  },
+  {
+   "id": "sealed-squad-070",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "words",
+   "text": "Green, red, and blue: forage. Stop at forty food or three hundred steps, whichever; caution is normal.",
+   "gold": {
+    "caution": "normal",
+    "eaters": [
+     "red",
+     "green",
+     "blue"
+    ],
+    "food_target": 40,
+    "step_limit": 300
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "green",
+     "red",
+     "blue"
+    ],
+    "food_target": 40,
+    "caution": "normal",
+    "step_limit": 300
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.3698744000284933,
+   "call_latencies": [
+    1.3698744000284933
+   ],
+   "n_prompt_tokens": 35,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    14.0,
+    30.5,
+    24.5,
+    24.5,
+    7.0,
+    27.5,
+    23.5,
+    33.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    14.0,
+    30.5,
+    24.5,
+    24.5,
+    7.0,
+    27.5,
+    23.5,
+    33.5
+   ]
+  },
+  {
+   "id": "sealed-squad-071",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "The team needs sustenance: have blue and green gather, fifty steps, prefer safe.",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "green",
+     "blue"
+    ],
+    "food_target": 0,
+    "step_limit": 50
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "blue",
+     "green"
+    ],
+    "step_limit": 50,
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.664345700002741,
+   "call_latencies": [
+    1.664345700002741
+   ],
+   "n_prompt_tokens": 28,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    3.0,
+    3.0,
+    4.0,
+    4.0,
+    9.0,
+    1.5,
+    4.5,
+    8.0
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    3.0,
+    3.0,
+    4.0,
+    4.0,
+    9.0,
+    1.5,
+    4.5,
+    8.0
+   ]
+  },
+  {
+   "id": "sealed-squad-072",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "typo",
+   "text": "red shuold forage for 80 steps, 4 food, cautious",
+   "gold": {
+    "caution": "high",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 4,
+    "step_limit": 80
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "caution": "high",
+    "eaters": [
+     "red"
+    ],
+    "food_target": 4,
+    "step_limit": 80
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.7434923999826424,
+   "call_latencies": [
+    1.7434923999826424
+   ],
+   "n_prompt_tokens": 28,
+   "exact": true,
+   "fields": {
+    "caution": true,
+    "eaters": true,
+    "food_target": true,
+    "step_limit": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    1.0,
+    1.0,
+    4.5,
+    0.0,
+    4.5,
+    4.5,
+    1.0,
+    4.5
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    1.0,
+    1.0,
+    4.5,
+    0.0,
+    4.5,
+    4.5,
+    1.0,
+    4.5
+   ]
+  },
+  {
+   "id": "sealed-squad-073",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "bad_colour",
+   "text": "Have the yellow snake forage for 100 steps.",
+   "gold": null,
+   "status": "refused",
+   "kind": "refuse",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "there is no yellow snake; the colours are red, green and blue",
+   "attempts": 1,
+   "latency_s": 1.478682100016158,
+   "call_latencies": [
+    1.478682100016158
+   ],
+   "n_prompt_tokens": 23
+  },
+  {
+   "id": "sealed-squad-074",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "range",
+   "text": "Let red hunt for one thousand moves.",
+   "gold": null,
+   "status": "refused",
+   "kind": "refuse",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "step limit must be between 50 and 300",
+   "attempts": 1,
+   "latency_s": 1.4453708999790251,
+   "call_latencies": [
+    1.4453708999790251
+   ],
+   "n_prompt_tokens": 18
+  },
+  {
+   "id": "sealed-squad-075",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "range",
+   "text": "Blue, forage. Target of 80 food.",
+   "gold": null,
+   "status": "refused",
+   "kind": "refuse",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "unsatisfiable under the schema: /params/food_target: 80 is greater than the maximum of 40",
+   "attempts": 2,
+   "latency_s": 2.1677273000241257,
+   "call_latencies": [
+    1.1050811000168324,
+    1.0626462000072934
+   ],
+   "n_prompt_tokens": 22
+  },
+  {
+   "id": "sealed-squad-076",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "contradiction",
+   "text": "Green forages for 100 steps and also for 200 steps.",
+   "gold": null,
+   "status": "refused",
+   "kind": "refuse",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "the order contradicts itself",
+   "attempts": 1,
+   "latency_s": 0.7298611999722198,
+   "call_latencies": [
+    0.7298611999722198
+   ],
+   "n_prompt_tokens": 28
+  },
+  {
+   "id": "sealed-squad-077",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "contradiction",
+   "text": "Everyone eats, but no snake is allowed to eat.",
+   "gold": null,
+   "status": "refused",
+   "kind": "refuse",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "the order contradicts itself",
+   "attempts": 1,
+   "latency_s": 0.7928172000101767,
+   "call_latencies": [
+    0.7928172000101767
+   ],
+   "n_prompt_tokens": 21
+  },
+  {
+   "id": "sealed-squad-078",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "out_of_domain",
+   "text": "Could you write a limerick about a snake?",
+   "gold": null,
+   "status": "refused",
+   "kind": "refuse",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "this is not an order for the squad",
+   "attempts": 1,
+   "latency_s": 0.9990187999792397,
+   "call_latencies": [
+    0.9990187999792397
+   ],
+   "n_prompt_tokens": 21
+  },
+  {
+   "id": "sealed-squad-079",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "bad_colour",
+   "text": "Send the pink and the red ones to eat, 120 steps.",
+   "gold": null,
+   "status": "refused",
+   "kind": "refuse",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "there is no pink snake; the colours are red, green and blue",
+   "attempts": 1,
+   "latency_s": 1.3930616999859922,
+   "call_latencies": [
+    1.3930616999859922
+   ],
+   "n_prompt_tokens": 26
+  },
+  {
+   "id": "sealed-squad-080",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "range",
+   "text": "Red forages for ten steps only.",
+   "gold": null,
+   "status": "refused",
+   "kind": "refuse",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "step limit must be between 50 and 300",
+   "attempts": 1,
+   "latency_s": 1.2739419999998063,
+   "call_latencies": [
+    1.2739419999998063
+   ],
+   "n_prompt_tokens": 18
+  },
+  {
+   "id": "sealed-squad-081",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "out_of_domain",
+   "text": "What's the weather like on the board today?",
+   "gold": null,
+   "status": "refused",
+   "kind": "refuse",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "this is not an order for the squad",
+   "attempts": 1,
+   "latency_s": 1.025100199971348,
+   "call_latencies": [
+    1.025100199971348
+   ],
+   "n_prompt_tokens": 20
+  },
+  {
+   "id": "sealed-squad-082",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "bad_count",
+   "text": "Make the four snakes forage.",
+   "gold": null,
+   "status": "refused",
+   "kind": "refuse",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "the squad has only three snakes",
+   "attempts": 1,
+   "latency_s": 0.8331052000285126,
+   "call_latencies": [
+    0.8331052000285126
+   ],
+   "n_prompt_tokens": 17
+  },
+  {
+   "id": "sealed-squad-083",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "unspecified_referent",
+   "text": "Send two of the snakes out to forage for 100 steps.",
+   "gold": null,
+   "status": "ok",
+   "kind": "clarify",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "eaters": [
+     "red",
+     "green"
+    ],
+    "step_limit": 100,
+    "caution": "normal",
+    "food_target": 0
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.3950343999895267,
+   "call_latencies": [
+    1.3950343999895267
+   ],
+   "n_prompt_tokens": 26
+  },
+  {
+   "id": "sealed-squad-084",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "vague_quantity",
+   "text": "Red forages for a while, carefully.",
+   "gold": null,
+   "status": "clarify",
+   "kind": "clarify",
+   "refused": false,
+   "clarified": true,
+   "pred": null,
+   "reason": "How many steps should the mission last?",
+   "attempts": 1,
+   "latency_s": 1.068692100001499,
+   "call_latencies": [
+    1.068692100001499
+   ],
+   "n_prompt_tokens": 19
+  },
+  {
+   "id": "sealed-squad-085",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "vague_quantity",
+   "text": "Forage until we have plenty of food, everyone.",
+   "gold": null,
+   "status": "clarify",
+   "kind": "clarify",
+   "refused": false,
+   "clarified": true,
+   "pred": null,
+   "reason": "How much food counts as the target?",
+   "attempts": 1,
+   "latency_s": 1.0104137000162154,
+   "call_latencies": [
+    1.0104137000162154
+   ],
+   "n_prompt_tokens": 21
+  },
+  {
+   "id": "sealed-squad-086",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "missing_eaters",
+   "text": "Play it safe for 100 steps.",
+   "gold": null,
+   "status": "clarify",
+   "kind": "clarify",
+   "refused": false,
+   "clarified": true,
+   "pred": null,
+   "reason": "Which snakes (red, green or blue) should forage?",
+   "attempts": 1,
+   "latency_s": 1.3523247999837622,
+   "call_latencies": [
+    1.3523247999837622
+   ],
+   "n_prompt_tokens": 20
+  },
+  {
+   "id": "sealed-squad-087",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "unspecified_referent",
+   "text": "Have some of the snakes eat; green definitely stays out.",
+   "gold": null,
+   "status": "clarify",
+   "kind": "clarify",
+   "refused": false,
+   "clarified": true,
+   "pred": null,
+   "reason": "How many steps should the mission last?",
+   "attempts": 1,
+   "latency_s": 1.0328331000055186,
+   "call_latencies": [
+    1.0328331000055186
+   ],
+   "n_prompt_tokens": 22
+  },
+  {
+   "id": "sealed-squad-088",
+   "domain": "squad",
+   "split": "sealed",
+   "style": "vague_quantity",
+   "text": "Blue eats, but not for too long and not too recklessly.",
+   "gold": null,
+   "status": "clarify",
+   "kind": "clarify",
+   "refused": false,
+   "clarified": true,
+   "pred": null,
+   "reason": "How many steps should the mission last?",
+   "attempts": 1,
+   "latency_s": 0.9999262999626808,
+   "call_latencies": [
+    0.9999262999626808
+   ],
+   "n_prompt_tokens": 24
+  },
+  {
+   "id": "sealed-plant-000",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "words",
+   "text": "Please run the diagnosis with sixteen octets per message, 5e-3 false alarms, on every node.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.005
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "target_far": 0.005,
+    "byte_budget": 16,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 0.9121498000458814,
+   "call_latencies": [
+    0.9121498000458814
+   ],
+   "n_prompt_tokens": 34,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7428,
+    0.7153,
+    0.7375,
+    0.7495,
+    0.7345
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7428,
+    0.7153,
+    0.7375,
+    0.7495,
+    0.7345
+   ]
+  },
+  {
+   "id": "sealed-plant-001",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "terse",
+   "text": "8-byte uplinks. alpha = 0.01. reactor + stripper only.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "stripper"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.01
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor",
+     "stripper"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.01
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.3285037000314333,
+   "call_latencies": [
+    1.3285037000314333
+   ],
+   "n_prompt_tokens": 30,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.5023,
+    0.4562,
+    0.5022,
+    0.484,
+    0.4936
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.5023,
+    0.4562,
+    0.5022,
+    0.484,
+    0.4936
+   ]
+  },
+  {
+   "id": "sealed-plant-002",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "question",
+   "text": "Could we get the diagnosis running at 51 B with one false alarm in two hundred normal samples?",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.005
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "byte_budget": 51,
+    "target_far": 0.005,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.3333899999852292,
+   "call_latencies": [
+    1.3333899999852292
+   ],
+   "n_prompt_tokens": 32,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7164,
+    0.6706,
+    0.7038,
+    0.6761,
+    0.6501
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7164,
+    0.6706,
+    0.7038,
+    0.6761,
+    0.6501
+   ]
+  },
+  {
+   "id": "sealed-plant-003",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "keyvalue",
+   "text": "nodes: separator, compressor/utilities; budget: eight bytes; far: 2%",
+   "gold": {
+    "active_nodes": [
+     "separator",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.02
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "separator",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.02
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.03817529999651,
+   "call_latencies": [
+    2.03817529999651
+   ],
+   "n_prompt_tokens": 29,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.6237,
+    0.6248,
+    0.6302,
+    0.6204,
+    0.6318
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.6237,
+    0.6248,
+    0.6302,
+    0.6204,
+    0.6318
+   ]
+  },
+  {
+   "id": "sealed-plant-004",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "mixed_units",
+   "text": "Use fifty-one bytes. Five per mille false alarms. Stripper only.",
+   "gold": {
+    "active_nodes": [
+     "stripper"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.005
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "stripper"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.005
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.7049178999732248,
+   "call_latencies": [
+    1.7049178999732248
+   ],
+   "n_prompt_tokens": 27,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.2598,
+    0.2419,
+    0.2825,
+    0.2636,
+    0.2588
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.2598,
+    0.2419,
+    0.2825,
+    0.2636,
+    0.2588
+   ]
+  },
+  {
+   "id": "sealed-plant-005",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "Everything stays at its default except the byte budget, which should be 8.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.01
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "byte_budget": 8,
+    "target_far": 0.01,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 0.728609099984169,
+   "call_latencies": [
+    0.728609099984169
+   ],
+   "n_prompt_tokens": 27,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7124,
+    0.7011,
+    0.7175,
+    0.7142,
+    0.7096
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7124,
+    0.7011,
+    0.7175,
+    0.7142,
+    0.7096
+   ]
+  },
+  {
+   "id": "sealed-plant-006",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "negation",
+   "text": "Run diagnosis, leave the reactor out, false alarm target 0.10%.",
+   "gold": {
+    "active_nodes": [
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.001
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor"
+    ],
+    "target_far": 0.001,
+    "byte_budget": 16
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.4112965000094846,
+   "call_latencies": [
+    1.4112965000094846
+   ],
+   "n_prompt_tokens": 29,
+   "exact": false,
+   "fields": {
+    "active_nodes": false,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.6123,
+    0.5445,
+    0.6248,
+    0.6242,
+    0.6271
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.4816,
+    0.4717,
+    0.469,
+    0.4776,
+    0.4702
+   ]
+  },
+  {
+   "id": "sealed-plant-007",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "typo",
+   "text": "i'd like the stripper n the reactor active and a 0.05 false alarm fraction pls",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "stripper"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.05
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "stripper",
+     "reactor"
+    ],
+    "target_far": 0.05,
+    "byte_budget": 16
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.7859864000347443,
+   "call_latencies": [
+    1.7859864000347443
+   ],
+   "n_prompt_tokens": 32,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.5132,
+    0.4931,
+    0.4984,
+    0.4981,
+    0.493
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.5132,
+    0.4931,
+    0.4984,
+    0.4981,
+    0.493
+   ]
+  },
+  {
+   "id": "sealed-plant-008",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "mixed_units",
+   "text": "The false-alarm rate should be a twentieth; budget 16 bytes.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.05
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "target_far": 0.02,
+    "byte_budget": 16,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 0.9649146000156179,
+   "call_latencies": [
+    0.9649146000156179
+   ],
+   "n_prompt_tokens": 27,
+   "exact": false,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": false
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7599,
+    0.7435,
+    0.7621,
+    0.7696,
+    0.7499
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7562,
+    0.7223,
+    0.745,
+    0.7654,
+    0.7496
+   ]
+  },
+  {
+   "id": "sealed-plant-009",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "negation",
+   "text": "Configure: every sensor except the compressor/utilities one. 51-octet frames. 1/100 false alarm.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.01
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.01
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.7748666999978013,
+   "call_latencies": [
+    1.7748666999978013
+   ],
+   "n_prompt_tokens": 39,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.5479,
+    0.5167,
+    0.5555,
+    0.4896,
+    0.4903
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.5479,
+    0.5167,
+    0.5555,
+    0.4896,
+    0.4903
+   ]
+  },
+  {
+   "id": "sealed-plant-010",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "terse",
+   "text": "Plant diagnosis: separator alone, 16 bytes.",
+   "gold": {
+    "active_nodes": [
+     "separator"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.01
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "separator"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.01
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 0.8516056000371464,
+   "call_latencies": [
+    0.8516056000371464
+   ],
+   "n_prompt_tokens": 22,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.2852,
+    0.285,
+    0.2989,
+    0.2811,
+    0.2827
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.2852,
+    0.285,
+    0.2989,
+    0.2811,
+    0.2827
+   ]
+  },
+  {
+   "id": "sealed-plant-011",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "chat",
+   "text": "Hey, can you tighten the false alarms to a thousandth? Keep all nodes. Payload 8 bytes.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.001
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "byte_budget": 8,
+    "target_far": 0.001,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.4626894000102766,
+   "call_latencies": [
+    1.4626894000102766
+   ],
+   "n_prompt_tokens": 33,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7117,
+    0.6947,
+    0.7146,
+    0.6967,
+    0.7037
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7117,
+    0.6947,
+    0.7146,
+    0.6967,
+    0.7037
+   ]
+  },
+  {
+   "id": "sealed-plant-012",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "mixed_units",
+   "text": "0x10 bytes per node, reactor and separator, two percent.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.02
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor",
+     "separator"
+    ],
+    "target_far": 0.02,
+    "byte_budget": 16
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.418364199984353,
+   "call_latencies": [
+    1.418364199984353
+   ],
+   "n_prompt_tokens": 27,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.522,
+    0.5191,
+    0.5348,
+    0.4992,
+    0.5069
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.522,
+    0.5191,
+    0.5348,
+    0.4992,
+    0.5069
+   ]
+  },
+  {
+   "id": "sealed-plant-013",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "terse",
+   "text": "false alarm rate 5 in 100, bytes 8, only compressor and utilities",
+   "gold": {
+    "active_nodes": [
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.05
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.05
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.8078707999666221,
+   "call_latencies": [
+    1.8078707999666221
+   ],
+   "n_prompt_tokens": 31,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.4866,
+    0.4852,
+    0.4831,
+    0.4891,
+    0.4778
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.4866,
+    0.4852,
+    0.4831,
+    0.4891,
+    0.4778
+   ]
+  },
+  {
+   "id": "sealed-plant-014",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "Give me the max payload (51 bytes) with a 1% alarm rate.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.01
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "byte_budget": 51,
+    "target_far": 0.01,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 0.7887138000223786,
+   "call_latencies": [
+    0.7887138000223786
+   ],
+   "n_prompt_tokens": 29,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7299,
+    0.6732,
+    0.7103,
+    0.685,
+    0.6682
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7299,
+    0.6732,
+    0.7103,
+    0.685,
+    0.6682
+   ]
+  },
+  {
+   "id": "sealed-plant-015",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "Smallest message size please, and the strictest false alarm rate available, all four nodes.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.001
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "target_far": 0.001,
+    "byte_budget": 16,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.0789142999565229,
+   "call_latencies": [
+    1.0789142999565229
+   ],
+   "n_prompt_tokens": 30,
+   "exact": false,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": false,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7117,
+    0.6947,
+    0.7146,
+    0.6967,
+    0.7037
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7302,
+    0.7101,
+    0.7353,
+    0.7454,
+    0.72
+   ]
+  },
+  {
+   "id": "sealed-plant-016",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "The default setup, but with false alarms at 2%.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.02
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "target_far": 0.02,
+    "byte_budget": 16,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.0297956999856979,
+   "call_latencies": [
+    1.0297956999856979
+   ],
+   "n_prompt_tokens": 24,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7562,
+    0.7223,
+    0.745,
+    0.7654,
+    0.7496
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7562,
+    0.7223,
+    0.745,
+    0.7654,
+    0.7496
+   ]
+  },
+  {
+   "id": "sealed-plant-017",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "Use the middle byte budget and the loosest false alarm rate.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.05
+   },
+   "status": "clarify",
+   "kind": "spec",
+   "refused": false,
+   "clarified": true,
+   "pred": null,
+   "reason": "Which false-alarm rate should be used?",
+   "attempts": 1,
+   "latency_s": 1.2430562999797985,
+   "call_latencies": [
+    1.2430562999797985
+   ],
+   "n_prompt_tokens": 24,
+   "exact": false,
+   "fields": {
+    "active_nodes": false,
+    "byte_budget": false,
+    "target_far": false
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7599,
+    0.7435,
+    0.7621,
+    0.7696,
+    0.7499
+   ],
+   "nl_per_seed": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "id": "sealed-plant-018",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "terse",
+   "text": "separator+stripper+compressor, 51 bytes, .5%",
+   "gold": {
+    "active_nodes": [
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.005
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.005
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.4634411999722943,
+   "call_latencies": [
+    2.4634411999722943
+   ],
+   "n_prompt_tokens": 27,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.5751,
+    0.5305,
+    0.5784,
+    0.5544,
+    0.5443
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.5751,
+    0.5305,
+    0.5784,
+    0.5544,
+    0.5443
+   ]
+  },
+  {
+   "id": "sealed-plant-019",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "typo",
+   "text": "reactr and sepparator only, 16 bytes",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.01
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor",
+     "separator"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.01
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.14527179999277,
+   "call_latencies": [
+    1.14527179999277
+   ],
+   "n_prompt_tokens": 25,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.5182,
+    0.5111,
+    0.5207,
+    0.4988,
+    0.507
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.5182,
+    0.5111,
+    0.5207,
+    0.4988,
+    0.507
+   ]
+  },
+  {
+   "id": "sealed-plant-020",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "mixed_units",
+   "text": "Ninety-nine percent specificity, sixteen bytes, everything on.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.01
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "target_far": 0.01,
+    "byte_budget": 16,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 0.9777475000009872,
+   "call_latencies": [
+    0.9777475000009872
+   ],
+   "n_prompt_tokens": 23,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.753,
+    0.721,
+    0.7392,
+    0.7584,
+    0.7458
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.753,
+    0.721,
+    0.7392,
+    0.7584,
+    0.7458
+   ]
+  },
+  {
+   "id": "sealed-plant-021",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "negation",
+   "text": "Switch off the stripper, keep the rest, 8 bytes, one-tenth of one percent.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.001
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.001
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.382759400003124,
+   "call_latencies": [
+    2.382759400003124
+   ],
+   "n_prompt_tokens": 31,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7165,
+    0.7277,
+    0.7358,
+    0.6862,
+    0.7213
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7165,
+    0.7277,
+    0.7358,
+    0.6862,
+    0.7213
+   ]
+  },
+  {
+   "id": "sealed-plant-022",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "terse",
+   "text": "Diagnosis w/ 51 bytes/node & FAR=0.02 on reactor, stripper, utilities.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.02
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.02
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.3424894000054337,
+   "call_latencies": [
+    2.3424894000054337
+   ],
+   "n_prompt_tokens": 33,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7485,
+    0.6669,
+    0.7399,
+    0.723,
+    0.6927
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7485,
+    0.6669,
+    0.7399,
+    0.723,
+    0.6927
+   ]
+  },
+  {
+   "id": "sealed-plant-023",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "polite",
+   "text": "Could you please set the uplink to sixteen bytes? Thanks. Oh and keep the false alarm rate at one percent. All nodes.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.01
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "byte_budget": 16,
+    "target_far": 0.01,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 0.5785153000033461,
+   "call_latencies": [
+    0.5785153000033461
+   ],
+   "n_prompt_tokens": 38,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.753,
+    0.721,
+    0.7392,
+    0.7584,
+    0.7458
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.753,
+    0.721,
+    0.7392,
+    0.7584,
+    0.7458
+   ]
+  },
+  {
+   "id": "sealed-plant-024",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "terse",
+   "text": "Reactor node only, 8 B, 0.5 %",
+   "gold": {
+    "active_nodes": [
+     "reactor"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.005
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.005
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.928208600031212,
+   "call_latencies": [
+    1.928208600031212
+   ],
+   "n_prompt_tokens": 25,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.4702,
+    0.4694,
+    0.4684,
+    0.4716,
+    0.4586
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.4702,
+    0.4694,
+    0.4684,
+    0.4716,
+    0.4586
+   ]
+  },
+  {
+   "id": "sealed-plant-025",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "negation",
+   "text": "False alarm: 1 in 20. Nodes: all except stripper and separator. Bytes: 51.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.05
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.05
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.9763053999631666,
+   "call_latencies": [
+    1.9763053999631666
+   ],
+   "n_prompt_tokens": 35,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7569,
+    0.758,
+    0.767,
+    0.7739,
+    0.7565
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7569,
+    0.758,
+    0.767,
+    0.7739,
+    0.7565
+   ]
+  },
+  {
+   "id": "sealed-plant-026",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "multi_sentence",
+   "text": "I need the diagnosis to alarm falsely at most once per thousand normal readings. Use 16-byte messages. Separator and reactor only.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.001
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "separator",
+     "reactor"
+    ],
+    "target_far": 0.001,
+    "byte_budget": 16
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.5956509999814443,
+   "call_latencies": [
+    1.5956509999814443
+   ],
+   "n_prompt_tokens": 38,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.4838,
+    0.5103,
+    0.5167,
+    0.4957,
+    0.502
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.4838,
+    0.5103,
+    0.5167,
+    0.4957,
+    0.502
+   ]
+  },
+  {
+   "id": "sealed-plant-027",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "task_frame",
+   "text": "Take the stripper, the reactor and the separator and give them 8 bytes each. FAR one percent.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.01
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "stripper",
+     "reactor",
+     "separator"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.01
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.648321799992118,
+   "call_latencies": [
+    1.648321799992118
+   ],
+   "n_prompt_tokens": 32,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.5253,
+    0.5069,
+    0.5364,
+    0.5241,
+    0.5229
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.5253,
+    0.5069,
+    0.5364,
+    0.5241,
+    0.5229
+   ]
+  },
+  {
+   "id": "sealed-plant-028",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "terse",
+   "text": "everything on, 51 bytes, 2e-2",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.02
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "byte_budget": 51,
+    "target_far": 0.02,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.3938249999773689,
+   "call_latencies": [
+    1.3938249999773689
+   ],
+   "n_prompt_tokens": 25,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.73,
+    0.6813,
+    0.7129,
+    0.7072,
+    0.6877
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.73,
+    0.6813,
+    0.7129,
+    0.7072,
+    0.6877
+   ]
+  },
+  {
+   "id": "sealed-plant-029",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "terse",
+   "text": "Only compressor-utilities should report. 16 B. Hundredth false-alarm.",
+   "gold": {
+    "active_nodes": [
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.01
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.01
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.0442245000158437,
+   "call_latencies": [
+    1.0442245000158437
+   ],
+   "n_prompt_tokens": 29,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.5221,
+    0.517,
+    0.5313,
+    0.5353,
+    0.5248
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.5221,
+    0.517,
+    0.5313,
+    0.5353,
+    0.5248
+   ]
+  },
+  {
+   "id": "sealed-plant-030",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "words",
+   "text": "sixteen bytes. false alarm rate: point oh five.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.05
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "target_far": 0.005,
+    "byte_budget": 16,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.176671500026714,
+   "call_latencies": [
+    1.176671500026714
+   ],
+   "n_prompt_tokens": 22,
+   "exact": false,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": false
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7599,
+    0.7435,
+    0.7621,
+    0.7696,
+    0.7499
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7428,
+    0.7153,
+    0.7375,
+    0.7495,
+    0.7345
+   ]
+  },
+  {
+   "id": "sealed-plant-031",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "task_frame",
+   "text": "Run it with the eight byte budget on the separator and stripper, rate = 0.005.",
+   "gold": {
+    "active_nodes": [
+     "separator",
+     "stripper"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.005
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "separator",
+     "stripper"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.005
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.1258735000155866,
+   "call_latencies": [
+    2.1258735000155866
+   ],
+   "n_prompt_tokens": 33,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.3883,
+    0.351,
+    0.3747,
+    0.4001,
+    0.386
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.3883,
+    0.351,
+    0.3747,
+    0.4001,
+    0.386
+   ]
+  },
+  {
+   "id": "sealed-plant-032",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "keyvalue",
+   "text": "Budget = 51, FAR = 0.1 %, nodes = reactor",
+   "gold": {
+    "active_nodes": [
+     "reactor"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.001
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.001
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.9073324000346474,
+   "call_latencies": [
+    1.9073324000346474
+   ],
+   "n_prompt_tokens": 29,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.5082,
+    0.528,
+    0.4918,
+    0.4912,
+    0.5134
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.5082,
+    0.528,
+    0.4918,
+    0.4912,
+    0.5134
+   ]
+  },
+  {
+   "id": "sealed-plant-033",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "negation",
+   "text": "Let all nodes but the reactor send 16 bytes; rate of false alarms: 2 per cent.",
+   "gold": {
+    "active_nodes": [
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.02
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "target_far": 0.02,
+    "byte_budget": 16
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.0429444999899715,
+   "call_latencies": [
+    2.0429444999899715
+   ],
+   "n_prompt_tokens": 33,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.6229,
+    0.6081,
+    0.6507,
+    0.6471,
+    0.6355
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.6229,
+    0.6081,
+    0.6507,
+    0.6471,
+    0.6355
+   ]
+  },
+  {
+   "id": "sealed-plant-034",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "false alarms at five percent please, and use the stripper only.",
+   "gold": {
+    "active_nodes": [
+     "stripper"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.05
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "stripper"
+    ],
+    "target_far": 0.05,
+    "byte_budget": 16
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.3627525999909267,
+   "call_latencies": [
+    1.3627525999909267
+   ],
+   "n_prompt_tokens": 24,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.266,
+    0.2816,
+    0.2984,
+    0.2766,
+    0.2748
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.266,
+    0.2816,
+    0.2984,
+    0.2766,
+    0.2748
+   ]
+  },
+  {
+   "id": "sealed-plant-035",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "Use the tiny 8-byte option on all four nodes at a rate of one per cent.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.01
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "byte_budget": 8,
+    "target_far": 0.01,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 0.6679258000222035,
+   "call_latencies": [
+    0.6679258000222035
+   ],
+   "n_prompt_tokens": 30,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7124,
+    0.7011,
+    0.7175,
+    0.7142,
+    0.7096
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7124,
+    0.7011,
+    0.7175,
+    0.7142,
+    0.7096
+   ]
+  },
+  {
+   "id": "sealed-plant-036",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "keyvalue",
+   "text": "Plant, diag, 51B, 0.005, R+S+T+C",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.005
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "byte_budget": 51,
+    "target_far": 0.005,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.3452548999921419,
+   "call_latencies": [
+    1.3452548999921419
+   ],
+   "n_prompt_tokens": 33,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7164,
+    0.6706,
+    0.7038,
+    0.6761,
+    0.6501
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7164,
+    0.6706,
+    0.7038,
+    0.6761,
+    0.6501
+   ]
+  },
+  {
+   "id": "sealed-plant-037",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "self_correction",
+   "text": "I'm thinking sixteen bytes. No wait, fifty-one. Yes, 51 bytes. Rest default.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.01
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "byte_budget": 51,
+    "target_far": 0.01,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 0.7391272999811918,
+   "call_latencies": [
+    0.7391272999811918
+   ],
+   "n_prompt_tokens": 33,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7299,
+    0.6732,
+    0.7103,
+    0.685,
+    0.6682
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7299,
+    0.6732,
+    0.7103,
+    0.685,
+    0.6682
+   ]
+  },
+  {
+   "id": "sealed-plant-038",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "Put reactor and compressor/utilities online with 8 bytes and a 5% rate of false alarms.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.05
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.05
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.1242610000190325,
+   "call_latencies": [
+    2.1242610000190325
+   ],
+   "n_prompt_tokens": 32,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7167,
+    0.7227,
+    0.7215,
+    0.7365,
+    0.698
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7167,
+    0.7227,
+    0.7215,
+    0.7365,
+    0.698
+   ]
+  },
+  {
+   "id": "sealed-plant-039",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "multi_sentence",
+   "text": "Only the reactor and the separator are needed; everything else off. 1 in 1000 false alarms, 51 bytes.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.001
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor",
+     "separator"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.001
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.0463141999789514,
+   "call_latencies": [
+    2.0463141999789514
+   ],
+   "n_prompt_tokens": 40,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.5119,
+    0.4976,
+    0.4812,
+    0.422,
+    0.4778
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.5119,
+    0.4976,
+    0.4812,
+    0.422,
+    0.4778
+   ]
+  },
+  {
+   "id": "sealed-plant-040",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "Allow 2 percent false alarms. Nothing else changes.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.02
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "target_far": 0.02,
+    "byte_budget": 16,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.1894041000050493,
+   "call_latencies": [
+    1.1894041000050493
+   ],
+   "n_prompt_tokens": 22,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7562,
+    0.7223,
+    0.745,
+    0.7654,
+    0.7496
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7562,
+    0.7223,
+    0.745,
+    0.7654,
+    0.7496
+   ]
+  },
+  {
+   "id": "sealed-plant-041",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "negation",
+   "text": "Messages of 8 bytes; use every node apart from the separator; false-alarm budget half of one percent.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.005
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.005
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.418419299996458,
+   "call_latencies": [
+    2.418419299996458
+   ],
+   "n_prompt_tokens": 34,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.701,
+    0.6927,
+    0.7016,
+    0.7063,
+    0.6944
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.701,
+    0.6927,
+    0.7016,
+    0.7063,
+    0.6944
+   ]
+  },
+  {
+   "id": "sealed-plant-042",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "terse",
+   "text": "separator only - 51 B - 5 %",
+   "gold": {
+    "active_nodes": [
+     "separator"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.05
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "separator"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.05
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.6915601000073366,
+   "call_latencies": [
+    1.6915601000073366
+   ],
+   "n_prompt_tokens": 22,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.2977,
+    0.2965,
+    0.2984,
+    0.3101,
+    0.2873
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.2977,
+    0.2965,
+    0.2984,
+    0.3101,
+    0.2873
+   ]
+  },
+  {
+   "id": "sealed-plant-043",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "polite",
+   "text": "Stripper and separator, please. Standard 16 bytes. And a false alarm rate of 0.1%.",
+   "gold": {
+    "active_nodes": [
+     "separator",
+     "stripper"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.001
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "stripper",
+     "separator"
+    ],
+    "target_far": 0.001,
+    "byte_budget": 16
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.6736852999893017,
+   "call_latencies": [
+    1.6736852999893017
+   ],
+   "n_prompt_tokens": 36,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.3487,
+    0.3526,
+    0.3583,
+    0.3524,
+    0.3463
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.3487,
+    0.3526,
+    0.3583,
+    0.3524,
+    0.3463
+   ]
+  },
+  {
+   "id": "sealed-plant-044",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "Increase the budget to 51 bytes.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.01
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "byte_budget": 51,
+    "target_far": 0.01,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 0.8480171999544837,
+   "call_latencies": [
+    0.8480171999544837
+   ],
+   "n_prompt_tokens": 20,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7299,
+    0.6732,
+    0.7103,
+    0.685,
+    0.6682
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7299,
+    0.6732,
+    0.7103,
+    0.685,
+    0.6682
+   ]
+  },
+  {
+   "id": "sealed-plant-045",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "Reduce the payload to the minimum: 8 bytes.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.01
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "byte_budget": 8,
+    "target_far": 0.01,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 0.7998341000056826,
+   "call_latencies": [
+    0.7998341000056826
+   ],
+   "n_prompt_tokens": 22,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7124,
+    0.7011,
+    0.7175,
+    0.7142,
+    0.7096
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7124,
+    0.7011,
+    0.7175,
+    0.7142,
+    0.7096
+   ]
+  },
+  {
+   "id": "sealed-plant-046",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "Make false alarms rarer: one in a thousand.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.001
+   },
+   "status": "clarify",
+   "kind": "spec",
+   "refused": false,
+   "clarified": true,
+   "pred": null,
+   "reason": "Which false-alarm rate should be used?",
+   "attempts": 1,
+   "latency_s": 1.4139776999945752,
+   "call_latencies": [
+    1.4139776999945752
+   ],
+   "n_prompt_tokens": 22,
+   "exact": false,
+   "fields": {
+    "active_nodes": false,
+    "byte_budget": false,
+    "target_far": false
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7302,
+    0.7101,
+    0.7353,
+    0.7454,
+    0.72
+   ],
+   "nl_per_seed": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "id": "sealed-plant-047",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "question",
+   "text": "Could you tell the gateway to use just the utilities node, with eight bytes?",
+   "gold": {
+    "active_nodes": [
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.01
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.01
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.2501843000063673,
+   "call_latencies": [
+    1.2501843000063673
+   ],
+   "n_prompt_tokens": 27,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.478,
+    0.4719,
+    0.4739,
+    0.4832,
+    0.4718
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.478,
+    0.4719,
+    0.4739,
+    0.4832,
+    0.4718
+   ]
+  },
+  {
+   "id": "sealed-plant-048",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "polite",
+   "text": "Please enable every node, with 51-byte payloads and a false alarm limit of 5 percent.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.05
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "byte_budget": 51,
+    "target_far": 0.05,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.284949199995026,
+   "call_latencies": [
+    1.284949199995026
+   ],
+   "n_prompt_tokens": 32,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7343,
+    0.7003,
+    0.7276,
+    0.7196,
+    0.7258
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7343,
+    0.7003,
+    0.7276,
+    0.7196,
+    0.7258
+   ]
+  },
+  {
+   "id": "sealed-plant-049",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "keyvalue",
+   "text": "FAR=1/200; B=16; nodes=reactor,separator",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.005
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor",
+     "separator"
+    ],
+    "target_far": 0.005,
+    "byte_budget": 16
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.9457464999868535,
+   "call_latencies": [
+    1.9457464999868535
+   ],
+   "n_prompt_tokens": 31,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.4922,
+    0.5101,
+    0.518,
+    0.4967,
+    0.5032
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.4922,
+    0.5101,
+    0.518,
+    0.4967,
+    0.5032
+   ]
+  },
+  {
+   "id": "sealed-plant-050",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "terse",
+   "text": "reactor, separator, stripper - 16 bytes - alarms: one in a hundred.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.01
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.01
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.2815519000287168,
+   "call_latencies": [
+    1.2815519000287168
+   ],
+   "n_prompt_tokens": 29,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.5285,
+    0.5053,
+    0.5406,
+    0.5197,
+    0.4739
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.5285,
+    0.5053,
+    0.5406,
+    0.5197,
+    0.4739
+   ]
+  },
+  {
+   "id": "sealed-plant-051",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "words",
+   "text": "Use a budget of 8 bytes. The false alarm rate shall be zero point zero zero one.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.001
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "byte_budget": 8,
+    "target_far": 0.001,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.2968449000036344,
+   "call_latencies": [
+    1.2968449000036344
+   ],
+   "n_prompt_tokens": 31,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7117,
+    0.6947,
+    0.7146,
+    0.6967,
+    0.7037
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7117,
+    0.6947,
+    0.7146,
+    0.6967,
+    0.7037
+   ]
+  },
+  {
+   "id": "sealed-plant-052",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "negation",
+   "text": "I want the strictest alarm setting, and all nodes except the reactor.",
+   "gold": {
+    "active_nodes": [
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.001
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.01
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.2212816000101157,
+   "call_latencies": [
+    1.2212816000101157
+   ],
+   "n_prompt_tokens": 26,
+   "exact": false,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": false
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.6123,
+    0.5445,
+    0.6248,
+    0.6242,
+    0.6271
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.6195,
+    0.6012,
+    0.638,
+    0.6455,
+    0.6345
+   ]
+  },
+  {
+   "id": "sealed-plant-053",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "question",
+   "text": "Could you drop the compressor and utilities node? Keep 16 bytes and 5% false alarms.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.05
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper"
+    ],
+    "target_far": 0.05,
+    "byte_budget": 16
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.8067545999656431,
+   "call_latencies": [
+    1.8067545999656431
+   ],
+   "n_prompt_tokens": 32,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.5436,
+    0.53,
+    0.5418,
+    0.5335,
+    0.5134
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.5436,
+    0.53,
+    0.5418,
+    0.5335,
+    0.5134
+   ]
+  },
+  {
+   "id": "sealed-plant-054",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "terse",
+   "text": "separator, stripper; 8 octets; 2%",
+   "gold": {
+    "active_nodes": [
+     "separator",
+     "stripper"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.02
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "separator",
+     "stripper"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.02
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.862258400011342,
+   "call_latencies": [
+    1.862258400011342
+   ],
+   "n_prompt_tokens": 23,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.3978,
+    0.3703,
+    0.3828,
+    0.4066,
+    0.3941
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.3978,
+    0.3703,
+    0.3828,
+    0.4066,
+    0.3941
+   ]
+  },
+  {
+   "id": "sealed-plant-055",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "words",
+   "text": "Sensor nodes: reactor and compressor/utilities. Bytes: fifty one. False alarms: five tenths of a percent.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.005
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.005
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.097620200016536,
+   "call_latencies": [
+    2.097620200016536
+   ],
+   "n_prompt_tokens": 35,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7511,
+    0.7319,
+    0.7673,
+    0.7531,
+    0.7427
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7511,
+    0.7319,
+    0.7673,
+    0.7531,
+    0.7427
+   ]
+  },
+  {
+   "id": "sealed-plant-056",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "Let the stripper alone report, 51 B, 1 %. Others stay silent.",
+   "gold": {
+    "active_nodes": [
+     "stripper"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.01
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "stripper"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.01
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.320427300001029,
+   "call_latencies": [
+    1.320427300001029
+   ],
+   "n_prompt_tokens": 29,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.2605,
+    0.2497,
+    0.2943,
+    0.2651,
+    0.2587
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.2605,
+    0.2497,
+    0.2943,
+    0.2651,
+    0.2587
+   ]
+  },
+  {
+   "id": "sealed-plant-057",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "task_frame",
+   "text": "Run diagnostics: 16 bytes, 0.02 FAR, all four nodes in.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.02
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "target_far": 0.02,
+    "byte_budget": 16,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 0.8691193999839015,
+   "call_latencies": [
+    0.8691193999839015
+   ],
+   "n_prompt_tokens": 31,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7562,
+    0.7223,
+    0.745,
+    0.7654,
+    0.7496
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7562,
+    0.7223,
+    0.745,
+    0.7654,
+    0.7496
+   ]
+  },
+  {
+   "id": "sealed-plant-058",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "We'll go with the 8 byte limit and a false-alarm rate of 0.001, utilities node and separator only.",
+   "gold": {
+    "active_nodes": [
+     "separator",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.001
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "compressor_utilities",
+     "separator"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.001
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.9568601999781094,
+   "call_latencies": [
+    1.9568601999781094
+   ],
+   "n_prompt_tokens": 40,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.6168,
+    0.621,
+    0.6291,
+    0.6164,
+    0.6238
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.6168,
+    0.621,
+    0.6291,
+    0.6164,
+    0.6238
+   ]
+  },
+  {
+   "id": "sealed-plant-059",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "false alarm rate 0.5 percent, otherwise standard.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.005
+   },
+   "status": "clarify",
+   "kind": "spec",
+   "refused": false,
+   "clarified": true,
+   "pred": null,
+   "reason": "Which false-alarm rate should be used?",
+   "attempts": 1,
+   "latency_s": 1.1661752000218257,
+   "call_latencies": [
+    1.1661752000218257
+   ],
+   "n_prompt_tokens": 23,
+   "exact": false,
+   "fields": {
+    "active_nodes": false,
+    "byte_budget": false,
+    "target_far": false
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7428,
+    0.7153,
+    0.7375,
+    0.7495,
+    0.7345
+   ],
+   "nl_per_seed": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "id": "sealed-plant-060",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "terse",
+   "text": "Configure the sensors: 51 bytes, reactor only, 5%.",
+   "gold": {
+    "active_nodes": [
+     "reactor"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.05
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.05
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.747671499964781,
+   "call_latencies": [
+    1.747671499964781
+   ],
+   "n_prompt_tokens": 27,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.5359,
+    0.544,
+    0.5351,
+    0.5352,
+    0.5338
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.5359,
+    0.544,
+    0.5351,
+    0.5352,
+    0.5338
+   ]
+  },
+  {
+   "id": "sealed-plant-061",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "negation",
+   "text": "Diagnose with the three nodes other than the stripper. 8 B. 1%.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.01
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.01
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.4916508000460453,
+   "call_latencies": [
+    1.4916508000460453
+   ],
+   "n_prompt_tokens": 31,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7164,
+    0.7287,
+    0.7358,
+    0.7243,
+    0.7229
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7164,
+    0.7287,
+    0.7358,
+    0.7243,
+    0.7229
+   ]
+  },
+  {
+   "id": "sealed-plant-062",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "negation",
+   "text": "No stripper, no separator. 16 bytes. Alarm rate 1 in 50.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.02
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor",
+     "compressor_utilities"
+    ],
+    "target_far": 0.02,
+    "byte_budget": 16
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.8120836999733,
+   "call_latencies": [
+    1.8120836999733
+   ],
+   "n_prompt_tokens": 31,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7851,
+    0.7671,
+    0.7823,
+    0.7977,
+    0.7534
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7851,
+    0.7671,
+    0.7823,
+    0.7977,
+    0.7534
+   ]
+  },
+  {
+   "id": "sealed-plant-063",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "mixed_units",
+   "text": "Twenty per thousand false alarms, eight bytes, everything active.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.02
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "byte_budget": 8,
+    "target_far": 0.02,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.5256446999846958,
+   "call_latencies": [
+    1.5256446999846958
+   ],
+   "n_prompt_tokens": 23,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7137,
+    0.7045,
+    0.7178,
+    0.718,
+    0.7185
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7137,
+    0.7045,
+    0.7178,
+    0.718,
+    0.7185
+   ]
+  },
+  {
+   "id": "sealed-plant-064",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "self_correction",
+   "text": "Use 16 bytes, make that 8 bytes, and leave the false alarm rate alone.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.01
+   },
+   "status": "refused",
+   "kind": "spec",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "the false-alarm rate must be 0.1%, 0.5%, 1%, 2% or 5%",
+   "attempts": 1,
+   "latency_s": 2.6705673999967985,
+   "call_latencies": [
+    2.6705673999967985
+   ],
+   "n_prompt_tokens": 31,
+   "exact": false,
+   "fields": {
+    "active_nodes": false,
+    "byte_budget": false,
+    "target_far": false
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7124,
+    0.7011,
+    0.7175,
+    0.7142,
+    0.7096
+   ],
+   "nl_per_seed": [
+    0.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ]
+  },
+  {
+   "id": "sealed-plant-065",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "terse",
+   "text": "Reactor + stripper + separator + utilities, 51 B, p_fa = 0.05",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.05
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "byte_budget": 51,
+    "target_far": 0.05,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.402609900047537,
+   "call_latencies": [
+    1.402609900047537
+   ],
+   "n_prompt_tokens": 34,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7343,
+    0.7003,
+    0.7276,
+    0.7196,
+    0.7258
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7343,
+    0.7003,
+    0.7276,
+    0.7196,
+    0.7258
+   ]
+  },
+  {
+   "id": "sealed-plant-066",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "At sixteen bytes, with every node active, aim for a one in two hundred false alarm rate.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.005
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "target_far": 0.005,
+    "byte_budget": 16,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 0.8884298999910243,
+   "call_latencies": [
+    0.8884298999910243
+   ],
+   "n_prompt_tokens": 31,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7428,
+    0.7153,
+    0.7375,
+    0.7495,
+    0.7345
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7428,
+    0.7153,
+    0.7375,
+    0.7495,
+    0.7345
+   ]
+  },
+  {
+   "id": "sealed-plant-067",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "Only separator and compressor/utilities are active; budget 51; tolerate 1 in 20 false alarms.",
+   "gold": {
+    "active_nodes": [
+     "separator",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.05
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "separator",
+     "compressor_utilities"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.05
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.103182199993171,
+   "call_latencies": [
+    2.103182199993171
+   ],
+   "n_prompt_tokens": 35,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.62,
+    0.5952,
+    0.6141,
+    0.618,
+    0.5972
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.62,
+    0.5952,
+    0.6141,
+    0.618,
+    0.5972
+   ]
+  },
+  {
+   "id": "sealed-plant-068",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "question",
+   "text": "Is it OK to have the reactor, stripper, and separator report 8 bytes at a 0.1 percent rate?",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.001
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "reactor",
+     "stripper",
+     "separator"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.001
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 2.223052999994252,
+   "call_latencies": [
+    2.223052999994252
+   ],
+   "n_prompt_tokens": 36,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.5166,
+    0.5019,
+    0.5286,
+    0.5132,
+    0.5201
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.5166,
+    0.5019,
+    0.5286,
+    0.5132,
+    0.5201
+   ]
+  },
+  {
+   "id": "sealed-plant-069",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "terse",
+   "text": "stripper + compressor/utilities, 16 B, FAR 2%",
+   "gold": {
+    "active_nodes": [
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 16,
+    "target_far": 0.02
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "stripper",
+     "compressor_utilities"
+    ],
+    "target_far": 0.02,
+    "byte_budget": 16
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.6977873000432737,
+   "call_latencies": [
+    1.6977873000432737
+   ],
+   "n_prompt_tokens": 26,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.6162,
+    0.5815,
+    0.5869,
+    0.6178,
+    0.5978
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.6162,
+    0.5815,
+    0.5869,
+    0.6178,
+    0.5978
+   ]
+  },
+  {
+   "id": "sealed-plant-070",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "indirect",
+   "text": "Go with the 51-byte budget; the rate of false alarms is 0.01; separator only.",
+   "gold": {
+    "active_nodes": [
+     "separator"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.01
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "active_nodes": [
+     "separator"
+    ],
+    "byte_budget": 51,
+    "target_far": 0.01
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.1751982999849133,
+   "call_latencies": [
+    1.1751982999849133
+   ],
+   "n_prompt_tokens": 35,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.2802,
+    0.2946,
+    0.286,
+    0.2753,
+    0.2645
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.2802,
+    0.2946,
+    0.286,
+    0.2753,
+    0.2645
+   ]
+  },
+  {
+   "id": "sealed-plant-071",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "task_frame",
+   "text": "Reactor, separator, stripper and compressor/utilities nodes, all active, 8 bytes, 0.5 percent.",
+   "gold": {
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ],
+    "byte_budget": 8,
+    "target_far": 0.005
+   },
+   "status": "ok",
+   "kind": "spec",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "byte_budget": 8,
+    "target_far": 0.005,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 1.4425915000028908,
+   "call_latencies": [
+    1.4425915000028908
+   ],
+   "n_prompt_tokens": 36,
+   "exact": true,
+   "fields": {
+    "active_nodes": true,
+    "byte_budget": true,
+    "target_far": true
+   },
+   "gold_state": "completed",
+   "gold_per_seed": [
+    0.7119,
+    0.6963,
+    0.7156,
+    0.7068,
+    0.7046
+   ],
+   "nl_state": "completed",
+   "nl_per_seed": [
+    0.7119,
+    0.6963,
+    0.7156,
+    0.7068,
+    0.7046
+   ]
+  },
+  {
+   "id": "sealed-plant-072",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "range",
+   "text": "A 32-byte budget for each node's uplink, please.",
+   "gold": null,
+   "status": "ok",
+   "kind": "refuse",
+   "refused": false,
+   "clarified": false,
+   "pred": {
+    "byte_budget": 16,
+    "target_far": 0.01,
+    "active_nodes": [
+     "reactor",
+     "separator",
+     "stripper",
+     "compressor_utilities"
+    ]
+   },
+   "reason": "",
+   "attempts": 1,
+   "latency_s": 0.45519320003222674,
+   "call_latencies": [
+    0.45519320003222674
+   ],
+   "n_prompt_tokens": 26
+  },
+  {
+   "id": "sealed-plant-073",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "range",
+   "text": "I would like false alarms capped at 3 percent.",
+   "gold": null,
+   "status": "refused",
+   "kind": "refuse",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "unsatisfiable under the schema: /params/target_far: 0.03 is not one of [0.001, 0.005, 0.01, 0.02, 0.05]",
+   "attempts": 2,
+   "latency_s": 1.8412414000486024,
+   "call_latencies": [
+    0.8934793000225909,
+    0.9477621000260115
+   ],
+   "n_prompt_tokens": 22
+  },
+  {
+   "id": "sealed-plant-074",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "bad_node",
+   "text": "Add the condenser node to the diagnosis, 16 bytes.",
+   "gold": null,
+   "status": "refused",
+   "kind": "refuse",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "there is no condenser node",
+   "attempts": 1,
+   "latency_s": 0.8562243000487797,
+   "call_latencies": [
+    0.8562243000487797
+   ],
+   "n_prompt_tokens": 25
+  },
+  {
+   "id": "sealed-plant-075",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "out_of_domain",
+   "text": "Tell me a joke about chemical plants.",
+   "gold": null,
+   "status": "refused",
+   "kind": "refuse",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "this is not a request about the diagnosis system",
+   "attempts": 1,
+   "latency_s": 1.0661938000121154,
+   "call_latencies": [
+    1.0661938000121154
+   ],
+   "n_prompt_tokens": 19
+  },
+  {
+   "id": "sealed-plant-076",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "contradiction",
+   "text": "Use exactly 8 bytes and exactly 51 bytes per message.",
+   "gold": null,
+   "status": "refused",
+   "kind": "refuse",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "the request contradicts itself",
+   "attempts": 1,
+   "latency_s": 0.7916519000427797,
+   "call_latencies": [
+    0.7916519000427797
+   ],
+   "n_prompt_tokens": 25
+  },
+  {
+   "id": "sealed-plant-077",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "range",
+   "text": "False alarm rate 0.2 percent, all nodes.",
+   "gold": null,
+   "status": "refused",
+   "kind": "refuse",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "unsatisfiable under the schema: /params/target_far: 0.002 is not one of [0.001, 0.005, 0.01, 0.02, 0.05]",
+   "attempts": 2,
+   "latency_s": 2.107017000031192,
+   "call_latencies": [
+    1.002135700022336,
+    1.1048813000088558
+   ],
+   "n_prompt_tokens": 23
+  },
+  {
+   "id": "sealed-plant-078",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "range",
+   "text": "4 bytes per node and the reactor only.",
+   "gold": null,
+   "status": "refused",
+   "kind": "refuse",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "unsatisfiable under the schema: /params/byte_budget: 4 is not one of [8, 16, 51]",
+   "attempts": 2,
+   "latency_s": 2.245188799977768,
+   "call_latencies": [
+    1.212989799969364,
+    1.0321990000084043
+   ],
+   "n_prompt_tokens": 21
+  },
+  {
+   "id": "sealed-plant-079",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "bad_node",
+   "text": "Run diagnosis with the boiler and the reactor.",
+   "gold": null,
+   "status": "refused",
+   "kind": "refuse",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "there is no boiler node",
+   "attempts": 1,
+   "latency_s": 0.836274900007993,
+   "call_latencies": [
+    0.836274900007993
+   ],
+   "n_prompt_tokens": 20
+  },
+  {
+   "id": "sealed-plant-080",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "out_of_domain",
+   "text": "Summarise yesterday's shift report for me.",
+   "gold": null,
+   "status": "refused",
+   "kind": "refuse",
+   "refused": true,
+   "clarified": false,
+   "pred": null,
+   "reason": "this is not a request about the diagnosis system",
+   "attempts": 1,
+   "latency_s": 1.067634699982591,
+   "call_latencies": [
+    1.067634699982591
+   ],
+   "n_prompt_tokens": 21
+  },
+  {
+   "id": "sealed-plant-081",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "vague_quantity",
+   "text": "Keep the false alarms low.",
+   "gold": null,
+   "status": "clarify",
+   "kind": "clarify",
+   "refused": false,
+   "clarified": true,
+   "pred": null,
+   "reason": "Which false-alarm rate should be used?",
+   "attempts": 1,
+   "latency_s": 1.1143964999937452,
+   "call_latencies": [
+    1.1143964999937452
+   ],
+   "n_prompt_tokens": 17
+  },
+  {
+   "id": "sealed-plant-082",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "vague_quantity",
+   "text": "Use a small payload on a few of the nodes.",
+   "gold": null,
+   "status": "clarify",
+   "kind": "clarify",
+   "refused": false,
+   "clarified": true,
+   "pred": null,
+   "reason": "Which nodes (reactor, separator, stripper, compressor_utilities) should be active?",
+   "attempts": 1,
+   "latency_s": 1.7386158999870531,
+   "call_latencies": [
+    1.7386158999870531
+   ],
+   "n_prompt_tokens": 22
+  },
+  {
+   "id": "sealed-plant-083",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "unspecified_referent",
+   "text": "Use only some of the nodes, 16 bytes.",
+   "gold": null,
+   "status": "clarify",
+   "kind": "clarify",
+   "refused": false,
+   "clarified": true,
+   "pred": null,
+   "reason": "Which nodes (reactor, separator, stripper, compressor_utilities) should be active?",
+   "attempts": 1,
+   "latency_s": 1.6404188000014983,
+   "call_latencies": [
+    1.6404188000014983
+   ],
+   "n_prompt_tokens": 23
+  },
+  {
+   "id": "sealed-plant-084",
+   "domain": "plant",
+   "split": "sealed",
+   "style": "relative_quantity",
+   "text": "Make the message size a bit bigger than it is now.",
+   "gold": null,
+   "status": "clarify",
+   "kind": "clarify",
+   "refused": false,
+   "clarified": true,
+   "pred": null,
+   "reason": "Please give the actual values (bytes, false-alarm rate, nodes).",
+   "attempts": 1,
+   "latency_s": 1.6919808000093326,
+   "call_latencies": [
+    1.6919808000093326
+   ],
+   "n_prompt_tokens": 23
+  }
+ ],
+ "forward": {
+  "n_items": 174,
+  "exact": {
+   "sealed": {
+    "n": 145,
+    "exact": 0.8413793103448276,
+    "exact_ci": [
+     0.7732198599307624,
+     0.8919167685386978
+    ],
+    "field_accuracy": {
+     "active_nodes": 0.9305555555555556,
+     "byte_budget": 0.9305555555555556,
+     "caution": 0.821917808219178,
+     "eaters": 0.8904109589041096,
+     "food_target": 0.8767123287671232,
+     "step_limit": 0.8904109589041096,
+     "target_far": 0.9027777777777778
+    }
+   },
+   "sealed/plant": {
+    "n": 72,
+    "exact": 0.875,
+    "exact_ci": [
+     0.7791873780725083,
+     0.9328229170689444
+    ],
+    "field_accuracy": {
+     "active_nodes": 0.9305555555555556,
+     "byte_budget": 0.9305555555555556,
+     "target_far": 0.9027777777777778
+    }
+   },
+   "sealed/squad": {
+    "n": 73,
+    "exact": 0.8082191780821918,
+    "exact_ci": [
+     0.7034428294648694,
+     0.8821774595452501
+    ],
+    "field_accuracy": {
+     "caution": 0.821917808219178,
+     "eaters": 0.8904109589041096,
+     "food_target": 0.8767123287671232,
+     "step_limit": 0.8904109589041096
+    }
+   },
+   "all": {
+    "n": 145,
+    "exact": 0.8413793103448276,
+    "exact_ci": [
+     0.7732198599307624,
+     0.8919167685386978
+    ],
+    "field_accuracy": {
+     "active_nodes": 0.9305555555555556,
+     "byte_budget": 0.9305555555555556,
+     "caution": 0.821917808219178,
+     "eaters": 0.8904109589041096,
+     "food_target": 0.8767123287671232,
+     "step_limit": 0.8904109589041096,
+     "target_far": 0.9027777777777778
+    }
+   }
+  },
+  "task": {
+   "sealed/squad": {
+    "n_items": 73,
+    "n_seeds": 8,
+    "nl_mean": 8.031678082191782,
+    "nl_ci": 0.9810889191379144,
+    "gold_mean": 8.834760273972602,
+    "gold_ci": 1.1041499475898195,
+    "diff_mean": -0.8030821917808219,
+    "diff_ci": 0.1712320641485521,
+    "within_ci": false,
+    "failed_translations": 8
+   },
+   "sealed/plant": {
+    "n_items": 72,
+    "n_seeds": 5,
+    "nl_mean": 0.56217,
+    "nl_ci": 0.00951701547384024,
+    "gold_mean": 0.6045302777777779,
+    "gold_ci": 0.010619071009112325,
+    "diff_mean": -0.04236027777777782,
+    "diff_ci": 0.0012996441767511085,
+    "within_ci": false,
+    "failed_translations": 4
+   },
+   "all/squad": {
+    "n_items": 73,
+    "n_seeds": 8,
+    "nl_mean": 8.031678082191782,
+    "nl_ci": 0.9810889191379144,
+    "gold_mean": 8.834760273972602,
+    "gold_ci": 1.1041499475898195,
+    "diff_mean": -0.8030821917808219,
+    "diff_ci": 0.1712320641485521,
+    "within_ci": false,
+    "failed_translations": 8
+   },
+   "all/plant": {
+    "n_items": 72,
+    "n_seeds": 5,
+    "nl_mean": 0.56217,
+    "nl_ci": 0.00951701547384024,
+    "gold_mean": 0.6045302777777779,
+    "gold_ci": 0.010619071009112325,
+    "diff_mean": -0.04236027777777782,
+    "diff_ci": 0.0012996441767511085,
+    "within_ci": false,
+    "failed_translations": 4
+   }
+  },
+  "refusal": {
+   "tp": 18.0,
+   "fp": 7.0,
+   "fn": 1.0,
+   "tn": 148.0,
+   "precision": 0.72,
+   "recall": 0.9473684210526315
+  },
+  "clarify": {
+   "asked": 14.0,
+   "rate": 0.08045977011494253,
+   "on_spec": 5.0,
+   "on_spec_rate": 0.034482758620689655,
+   "gold": 10.0,
+   "tp": 9.0,
+   "precision": 0.6428571428571429,
+   "recall": 0.9
+  },
+  "status_counts": {
+   "clarify": 14,
+   "ok": 135,
+   "refused": 25
+  },
+  "retried": 5,
+  "latency": {
+   "p50": 1.4901575499970932,
+   "p95": 2.2717208299902265,
+   "mean": 1.5310405396542581
+  }
+ },
+ "latency": {
+  "cold_first_call_s": 1.7143411000142805,
+  "warm_item_p50_s": 1.488664299948141,
+  "warm_item_p95_s": 2.275511119992007,
+  "warm_call_p50_s": 1.4595249999838416,
+  "warm_call_p95_s": 2.2377442399971192,
+  "max_prompt_tokens": 42,
+  "mean_attempts": 1.028735632183908
+ },
+ "vram": {
+  "weights_mib": 7931.205078125,
+  "peak_allocated_mib": 7971.4521484375,
+  "baseline_smi_mib": 440.0,
+  "peak_smi_mib": 8635.0,
+  "model_smi_mib": 8195.0
+ },
+ "sealed_sha256": "ca6ff07b5fb66ef21c288ba9a82d5e7763992fe2142b1a582baf597e542b5e01",
+ "smoke": false
+}

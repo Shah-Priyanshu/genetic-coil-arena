@@ -326,6 +326,53 @@ def main() -> None:  # pragma: no cover - UI
                               annotation_text=f"silent, drift {r['drift']}")  # fmt: skip
             st.plotly_chart(fig, width="stretch")
 
+        st.header("Probes (exploratory, 2026-10-29)")
+        multi = read_json(res / "r14_multi_probe.json")
+        if multi:
+            pts = [
+                {"sources": key.split("|")[0], "system": key.split("|")[1],
+                 "found": v["found"][0], "ci": v["found"][1], "all": v["all"][0]}
+                for key, v in multi["summary"].items()
+                if key.count("|") == 1
+            ]  # fmt: skip
+            st.plotly_chart(
+                px.bar(pd.DataFrame(pts), x="system", y="found", error_y="ci",
+                       color="sources", barmode="group", hover_data=["all"],
+                       title="Swarm with several gas sources: sources found in 2 min"),
+                width="stretch",
+            )  # fmt: skip
+        inter = read_json(res / "r7e_interlingua.json")
+        if inter:
+            pts = [
+                {
+                    "condition": c,
+                    "share of native": v["of_native"],
+                    "ci": v["of_native_ci"],
+                }
+                for c, v in inter["summary"].items()
+                if isinstance(v, dict) and "of_native" in v
+            ]
+            st.plotly_chart(
+                px.bar(pd.DataFrame(pts), x="condition", y="share of native", error_y="ci",
+                       title="Squad A's centre driving squad B through the meaning space"),
+                width="stretch",
+            )  # fmt: skip
+        kshot = read_json(res / "r13b_kshot.json")
+        if kshot:
+            pts = []
+            for system, r in kshot["systems"].items():
+                for k, m in r["by_k"].items():
+                    for name in ("adapted_joint", "scratch_joint", "frozen_joint",
+                                 "baro_joint"):  # fmt: skip
+                        pts.append({"system": system, "k": int(k), "model": name,
+                                    "joint": m[name][0]})  # fmt: skip
+            st.plotly_chart(
+                px.line(pd.DataFrame(pts), x="k", y="joint", color="model",
+                        facet_col="system", markers=True,
+                        title="Fault specialist on a new system: joint accuracy vs labelled incidents"),
+                width="stretch",
+            )  # fmt: skip
+
     # -------------------------------------------------------------- reports
     with reports:
         files = sorted((DOCS / "results").glob("*.md")) + sorted(
