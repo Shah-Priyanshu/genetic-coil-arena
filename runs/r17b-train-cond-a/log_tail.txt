@@ -1,4 +1,3 @@
-[progress] conditioned run 2: gen 0/3000, val 0.035, best 0.035 at 0, 5 s
 [progress] conditioned run 1: gen 0/3000, val 0.033, best 0.033 at 0, 5 s
 [progress] conditioned run 7: gen 0/3000, val 0.034, best 0.034 at 0, 5 s
 [progress] conditioned run 4: gen 0/3000, val 0.044, best 0.044 at 0, 5 s
@@ -181,3 +180,21 @@
 [progress] conditioned run 0: gen 2200/3000, val 0.260, best 0.271 at 750, 3937 s
 [progress] conditioned run 6: gen 2200/3000, val 0.259, best 0.275 at 500, 3944 s
 [progress] conditioned run 2: gen 2200/3000, val 0.272, best 0.290 at 450, 3984 s
+[progress] conditioned run 5: gen 2300/3000, val 0.254, best 0.271 at 700, 4076 s
+[progress] conditioned run 3: gen 2300/3000, val 0.250, best 0.286 at 1800, 4076 s
+[progress] conditioned run 4: gen 2200/3000, val 0.277, best 0.310 at 1950, 4087 s
+[progress] conditioned run 7: gen 2300/3000, val 0.245, best 0.274 at 400, 4092 s
+[progress] conditioned run 1: gen 2300/3000, val 0.258, best 0.271 at 1750, 4105 s
+[progress] conditioned run 0: gen 2300/3000, val 0.250, best 0.271 at 750, 4116 s
+[progress] conditioned run 6: gen 2300/3000, val 0.258, best 0.275 at 500, 4121 s
+[progress] conditioned run 2: gen 2300/3000, val 0.261, best 0.290 at 450, 4174 s
+[progress] conditioned run 5: gen 2400/3000, val 0.270, best 0.271 at 700, 4243 s
+[progress] conditioned run 3: gen 2400/3000, val 0.260, best 0.286 at 1800, 4256 s
+[progress] conditioned run 7: gen 2400/3000, val 0.239, best 0.274 at 400, 4266 s
+[progress] conditioned run 4: gen 2300/3000, val 0.275, best 0.310 at 1950, 4273 s
+[progress] conditioned run 1: gen 2400/3000, val 0.250, best 0.271 at 1750, 4284 s
+[progress] conditioned run 0: gen 2400/3000, val 0.247, best 0.271 at 750, 4291 s
+[progress] conditioned run 6: gen 2400/3000, val 0.247, best 0.275 at 500, 4301 s
+[progress] conditioned run 2: gen 2400/3000, val 0.253, best 0.290 at 450, 4360 s
+[progress] conditioned run 5: gen 2500/3000, val 0.265, best 0.271 at 700, 4420 s
+[progress] conditioned run 3: gen 2500/3000, val 0.274, best 0.286 at 1800, 4425 s
