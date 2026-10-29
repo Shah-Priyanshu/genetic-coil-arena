@@ -1,2 +1,3 @@
 [load] step2: 16 runs
 [load] random: 16 runs
+[progress] 10/195 cells, 102 s
