@@ -5,3 +5,4 @@
 [progress] 30/195 cells, 237 s
 [progress] 40/195 cells, 307 s
 [progress] 50/195 cells, 385 s
+[progress] 60/195 cells, 459 s
