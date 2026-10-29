@@ -203,3 +203,27 @@ Results on 40 held-out missions × 2,000 episodes. Score = found − 2 × wrong 
 - **Why the camera matters:** the detector sets the best altitude together with the area, so the camera is worth choosing on purpose (the hardware is ours to change).
 - **Next:** R15b's measured curve as a held-out detector, and candidate modules (K210 at 224 px; Grove Vision AI V2; a MaixCAM-class Linux camera with an NPU) compared by search score after a weight and power cost.
 
+### R17 step 1b: not robust to a walking person (`docs/results/r17_robust.md`)
+
+**Setup:** the trained planners, not retrained, in 7 worse conditions.
+
+**Where the planner keeps a clear lead over the one plan:**
+- headwind: +17.4
+- cold battery: +17.0
+- areas ×1.6: +14.0
+- 10 drones: +13.6
+
+**Where it falls short of the bar:**
+- a person walking 1.2 m/s: +3.1 ± 4.2
+- 3 m GPS error: +2.2 ± 3.9
+
+**Why every confirming plan collapses for a walking person:**
+- At 0.5 m/s, finds drop from 69% to 6%.
+- Confirmers hover over where the person was 30–60 s earlier.
+- OpenSwarm's default, which never confirms, still finds 29%, but at 52% wrong finds.
+
+**Next (R17 step 2):**
+- **Hand-off:** the scout that detects a person keeps it in view, as person-follow does, and the confirmer comes to the latest sighting.
+- **Training:** on missions that include walking people and worse GPS.
+- **Scoring:** a find radius that grows with the GPS error.
+

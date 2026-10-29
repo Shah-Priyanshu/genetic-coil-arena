@@ -226,6 +226,10 @@ HOW_TO_READ = {
     "better). The mission-reading planner, like per-mission tuning, sweeps higher with a "
     "better detector and over larger areas (hover for the area); the one tuned plan "
     "always sweeps at 4.6 m.",
+    "r17_robust": "Person-search score (found minus twice the wrong finds) of each "
+    "planner in worse conditions, none retrained. The mission-reading planner keeps its "
+    "lead in wind, cold, larger areas and with more drones; every plan that confirms "
+    "collapses when the person walks.",
     "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
     "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
     "translation through the shared meanings could do.",
@@ -422,6 +426,17 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
                 y="sweep altitude (m)", color="system", hover_data=["area (m²)"],
                 title="R17: the sweep altitude each planner chooses",
             )  # fmt: skip
+    robust17 = read_json(res / "r17_robust.json")
+    if robust17:
+        pts = [
+            {"condition": c, "system": name, "score (points)": 100 * row[name]["score"]}
+            for c, row in robust17["by_condition"].items()
+            for name in ("OpenSwarm default", "hand two-tier", "blind", "conditioned")
+        ]  # fmt: skip
+        figs["r17_robust"] = px.bar(
+            pd.DataFrame(pts), x="condition", y="score (points)", color="system",
+            barmode="group", title="R17 step 1b: the search planners in a worse world",
+        )  # fmt: skip
     inter = read_json(res / "r7e_interlingua.json")
     if inter:
         pts = [

@@ -325,6 +325,17 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **What it means:** The model reads plain commands well; the failures are in the edges the station's code should own. One is a plain bug (spoken fractions). One is a convention to settle ("at 7 m" means altitude). The rest are a rule to add: when a retry strips everything but the behaviour from a request that never named one, ask instead of sending defaults. Wrong commands stay far below the 10% kill line, so the direction lives. Next (G14b): those fixes on dev, then a fresh sealed set written the same way, because this one is now spent for this system.
 - **Report:** docs/results/r16_ground_station.md
 - **Chart:** r16_ground
+### R17 step 1b: does the search planner survive a worse world?
+- **Date:** 2026-10-29
+- **Question:** Does the mission-reading planner keep its lead when the person walks, the GPS is worse, there is a headwind, the battery is cold, the area is larger or there are more drones?
+- **Why:** The planners trained on a still person, 1 m GPS error, 4 m/s drones and a 300 s battery. Real searches won't match that.
+- **What we did:** Replayed the 16 mission-reading planners, the 16 one-plan runs and the hand plans, none retrained, on the 40 held-out missions in 7 worse conditions (2,000 episodes per cell). The bar was fixed in advance with a minimum effect size: the planner beats the one plan by ≥ 3 points, CI above 0, in every condition.
+- **Result:** FAIL in 2 of 7 conditions. The planner keeps a clear lead with a headwind (+17.4), a cold battery (+17.0), areas 1.6× larger (+14.0) and 10 drones (+13.6), the last two outside its training range. It falls short with a person walking 1.2 m/s (+3.1 ± 4.2) and with 3 m GPS error (+2.2 ± 3.9). The bigger finding: a walking person breaks every plan that confirms. Even at 0.5 m/s finds drop from 69% to 6% (one plan 54% → 3%), while OpenSwarm's default, which never confirms, still finds 29%. A confirmer flies to where the person was 30–60 s earlier and hovers over a few square metres. With 3 m GPS error part of the drop is the scoring: a find must land within 5 m, and the GPS error alone puts about a quarter of correct detections outside that.
+- **Verdict:** NOT ROBUST
+- **What it means:** Planning from the mission is worth it, but the search tactic it plans is brittle: confirming by hovering over the reported spot only works for someone who stays put. The fix is the tactic, not the planner. The scout that sees a person should keep it in view (OpenSwarm already has a person-follow behaviour) and hand it to the confirmer, which should search around the latest sighting. Next (R17 step 2): add that hand-off, train on missions that include walking people and worse GPS (R14 showed randomised training costs nothing), and score finds within a radius that grows with the GPS error.
+- **Report:** docs/results/r17_robust.md
+- **Chart:** r17_robust
+
 ### G14b: the ground station, fixed, on a fresh sealed set
 - **Date:** 2026-10-29 (running)
 - **Question:** With the three problems G14's misses exposed fixed, does the station meet the same bars on requests it has never seen?
