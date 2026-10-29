@@ -329,7 +329,8 @@ def _batches(split: dict, idx: np.ndarray, batch: int, size: int, rng: Any,
         imgs = np.asarray(split["images"][sel])
         flip = rng.random(len(sel)) < 0.5 if train else np.zeros(len(sel), bool)
         imgs[flip] = imgs[flip, :, ::-1]
-        yield imgs, targets([image_boxes(split, i) for i in sel], size, flip), sel
+        boxes = [image_boxes(split, i)[:, :4] for i in sel]
+        yield imgs, targets(boxes, size, flip), sel
 
 
 def prefetch(gen: Any, depth: int = 6) -> Any:
@@ -363,8 +364,11 @@ def focal(pred: Any, gt: Any) -> Any:
 
 
 def train_model(alpha: float, data_dir: Path, epochs: int = 40, batch: int = 128,
-                lr: float = 2e-3, seed: int = 0, limit: int = 0,
-                log: Any = print) -> dict[str, Any]:  # fmt: skip
+                lr: float = 2e-3, seed: int = 0, limit: int = 0, log: Any = print,
+                init: Path | None = None, eval_fn: Any = None) -> dict[str, Any]:  # fmt: skip
+    """Train on ``data_dir``'s train split and score its val split with ``eval_fn``
+    (default ``evaluate``); ``init`` starts from saved weights instead of random ones.
+    """
     import torch
 
     torch.cuda.set_per_process_memory_fraction(0.85)
@@ -376,6 +380,8 @@ def train_model(alpha: float, data_dir: Path, epochs: int = 40, batch: int = 128
     torch.manual_seed(seed)
     rng = np.random.default_rng(seed)
     model = build_model(alpha)
+    if init is not None:
+        model.load_state_dict(torch.load(init, map_location="cpu"))
     macs = count_macs(model, size)
     model.to(dev)
     n_params = sum(p.numel() for p in model.parameters())
@@ -419,7 +425,7 @@ def train_model(alpha: float, data_dir: Path, epochs: int = 40, batch: int = 128
             nb += 1
         log(f"[alpha {alpha}] epoch {ep + 1}/{epochs} loss {total / max(nb, 1):.4f} "
             f"({time.time() - start:.0f} s)")  # fmt: skip
-    res = evaluate(model, va, size, dev, to_input)
+    res = (eval_fn or evaluate)(model, va, size, dev, to_input)
     res.update({
         "alpha": alpha, "params": int(n_params), "int8_kb": n_params / 1024,
         "macs": int(macs), "epochs": epochs, "train_images": int(n_tr),
