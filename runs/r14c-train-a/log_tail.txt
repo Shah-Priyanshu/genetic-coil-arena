@@ -1,0 +1,8 @@
+[progress] run 102: gen 0/1500, val 2.472, best 2.472 at 0, 6 s
+[progress] run 100: gen 0/1500, val 2.975, best 2.975 at 0, 7 s
+[progress] run 106: gen 0/1500, val 2.469, best 2.469 at 0, 6 s
+[progress] run 105: gen 0/1500, val 2.725, best 2.725 at 0, 7 s
+[progress] run 101: gen 0/1500, val 2.867, best 2.867 at 0, 7 s
+[progress] run 107: gen 0/1500, val 2.406, best 2.406 at 0, 7 s
+[progress] run 104: gen 0/1500, val 2.400, best 2.400 at 0, 7 s
+[progress] run 103: gen 0/1500, val 3.147, best 3.147 at 0, 7 s
