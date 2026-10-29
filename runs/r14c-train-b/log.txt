@@ -27,3 +27,5 @@
 [progress] run 108: gen 75/1500, val 3.558, best 3.683 at 50, 1969 s
 [progress] run 110: gen 75/1500, val 3.553, best 3.622 at 50, 1974 s
 [progress] run 113: gen 75/1500, val 3.486, best 3.556 at 50, 1988 s
+[progress] run 114: gen 75/1500, val 3.442, best 3.572 at 25, 1999 s
+[progress] run 112: gen 75/1500, val 3.642, best 3.642 at 75, 2009 s
