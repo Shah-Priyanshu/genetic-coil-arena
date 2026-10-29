@@ -59,3 +59,4 @@ Loading weights: 100%|██████████| 398/398 [00:07<00:00, 53.5
 [22:00:20] lora sealed: 80/174 (sealed-squad-079)
 [22:01:21] lora sealed: 100/174 (sealed-plant-010)
 [22:02:37] lora sealed: 120/174 (sealed-plant-030)
+[22:03:44] lora sealed: 140/174 (sealed-plant-050)
