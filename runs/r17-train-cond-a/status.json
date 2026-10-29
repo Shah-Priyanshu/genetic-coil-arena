@@ -1,0 +1,22 @@
+{
+  "id": "r17-train-cond-a",
+  "commit": "4b26057e82e36360ad7e35c761c1ffcad4f52d07",
+  "queued_args": [
+    "scripts/r17_mission.py",
+    "train",
+    "--kind",
+    "conditioned",
+    "--runs",
+    "0:8",
+    "--workers",
+    "8"
+  ],
+  "state": "running",
+  "started_at": "2026-10-29T18:49:00+00:00",
+  "updated_at": "2026-10-29T18:49:00+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 100 %, 6946 MiB, 12282 MiB, 71",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 8
+}
