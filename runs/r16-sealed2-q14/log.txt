@@ -1,1 +1,6 @@
 [15:54:45] Ollama already running at http://localhost:11434
+[15:55:10] ollama:qwen2.5-coder:14b: 25/150, 22 correct
+[15:55:29] ollama:qwen2.5-coder:14b: 50/150, 45 correct
+[15:55:48] ollama:qwen2.5-coder:14b: 75/150, 69 correct
+[15:56:00] ollama:qwen2.5-coder:14b: 100/150, 89 correct
+[15:56:14] ollama:qwen2.5-coder:14b: 125/150, 103 correct
