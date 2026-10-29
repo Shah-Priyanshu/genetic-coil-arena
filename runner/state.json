@@ -18,15 +18,14 @@
       "started_at": "2026-10-29T02:33:19+00:00"
     },
     {
-      "id": "r16-dev-e2b",
+      "id": "r16-dev-e4b",
       "lane": "gpu",
       "cpu_workers": 2,
-      "started_at": "2026-10-29T08:49:26+00:00"
+      "started_at": "2026-10-29T08:51:25+00:00"
     }
   ],
   "backlog": {
     "ready": [
-      "r16-dev-e4b",
       "r16-dev-q14",
       "r15b-train-ft-a05",
       "r15b-train-ft-a075",
@@ -45,13 +44,13 @@
   },
   "idle_since": {
     "cpu": null,
-    "gpu": null
+    "gpu": "2026-10-29T08:51:16+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-29T08:50:38+00:00",
-  "cpu_percent": 67.6,
+  "updated_at": "2026-10-29T08:51:25+00:00",
+  "cpu_percent": 70.3,
   "gpu": {
-    "util": 1.0,
+    "util": 0.0,
     "mem_used_mb": 628.0,
     "mem_total_mb": 12282.0
   }
