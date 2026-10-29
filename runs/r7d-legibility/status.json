@@ -1,0 +1,24 @@
+{
+  "id": "r7d-legibility",
+  "commit": "c740669aae21ae31ea855b50a39d3dc0b374144a",
+  "queued_args": [
+    "scripts/r7d_legibility.py",
+    "--from-json",
+    "runs:r7b3-train-*",
+    "runs:r7b4-train-*",
+    "runs:r7b5-train-*",
+    "runs:r7c-train-*",
+    "--workers",
+    "8",
+    "--out",
+    "docs/results/r7d_legibility.md"
+  ],
+  "state": "running",
+  "started_at": "2026-10-29T01:01:18+00:00",
+  "updated_at": "2026-10-29T01:01:18+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 813 MiB, 12282 MiB, 36",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 8
+}
