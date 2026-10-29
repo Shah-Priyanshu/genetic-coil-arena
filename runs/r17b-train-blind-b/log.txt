@@ -37,3 +37,4 @@
 [progress] blind run 14: gen 400/3000, val 0.123, best 0.131 at 250, 781 s
 [progress] blind run 8: gen 400/3000, val 0.134, best 0.134 at 400, 797 s
 [progress] blind run 9: gen 400/3000, val 0.134, best 0.134 at 400, 799 s
+[progress] blind run 12: gen 400/3000, val 0.133, best 0.133 at 400, 812 s
