@@ -251,3 +251,13 @@ The user's long-term target: heterogeneous drones, each with two ESP32s, a gyro 
 - **What it means:** The swarm's open problem is coordination (who goes where, when to move on). That is the job of learned per-drone brains. Next: train them.
 - **Report:** docs/results/r14_multi_probe.md
 - **Chart:** multi_probe
+
+### R14 step 2: learned per-role brains for the swarm
+- **Date:** 2026-10-29 (running)
+- **Question:** Can small learned "brains", one for gas drones and one for camera drones, coordinate 3-leak searches better than the tuned hand design?
+- **Why:** The probe left a 31-point gap that only better coordination can close. These brains are the first step towards a specialised brain per drone type.
+- **What we did:** Kept the hand design's radio and memory; each drone scores its candidate destinations (explore, a known hotspot, its own best reading) with its role's network. Trained with evolution strategies on 3 leaks (16 runs × 1,500 generations), tested on the probe's 3,000 episodes with 1–4 leaks. Good sign if all-found beats the hand design by ≥ 10 points.
+- **Result:** Running (about 3.5 hours); then evaluated against the hand design and the coordination bound.
+- **Verdict:** Running
+- **What it means:** Pending.
+- **Report:** docs/directions/drone_swarm.md

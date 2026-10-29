@@ -160,18 +160,10 @@ class MultiTargetSwarm:
 
         order = np.argsort(-self.hot[..., 2], axis=2, kind="stable")
         ranked = np.take_along_axis(self.hot, order[..., None], 2)
-        open_n = (ranked[..., 2] >= self.threshold).sum(axis=2)
-        pick = self.cam_rank[None, :] % np.maximum(open_n, 1)
-        cam_t = np.take_along_axis(ranked[..., :2], pick[..., None, None], 2)[:, :, 0]
-        own_ok = sw.own[..., 2] >= self.threshold
-        gas_d = self.is_gas[None, :]
-        cam_has = open_n > 0
-        if self.one_each:  # camera j covers hotspot j; spare cameras keep exploring
-            cam_has = self.cam_rank[None, :] < open_n
-        known = np.where(gas_d, own_ok, cam_has)
-        target = np.where(gas_d[..., None], sw.own[..., :2], cam_t)
-        target = np.where(known[..., None], np.clip(target + sw.jit, 0, a), sw.wp)
+        base, search = self.choose(pos, ranked)
+        target = np.where(search[..., None], np.clip(base + sw.jit, 0, a), base)
         actions = heading_action(target - pos, hover_within=0.25)
+        gas_d = self.is_gas[None, :]
 
         self.step_i += 1
         n_conf = (~np.isnan(self.conf[..., 0])).sum(axis=2)
@@ -183,6 +175,26 @@ class MultiTargetSwarm:
         )
         out_val = np.where(send_conf | ~gas_d, 0.0, sw.own[..., 2])
         return actions, self.codec.encode(out_pos, out_val, send_conf)
+
+    def choose(
+        self, pos: np.ndarray, ranked: np.ndarray
+    ) -> tuple[np.ndarray, np.ndarray]:
+        """Where each drone heads: (B, N, 2) destinations and (B, N) "search around it"
+        flags. ``ranked`` (B, N, 2K, 3) is the hotspot memory, strongest first. The hand
+        rule: gas drones search their own best, camera j the (j mod h)-th open hotspot,
+        everyone else explores. Subclasses replace this with learned brains."""
+        sw = self.sw
+        open_n = (ranked[..., 2] >= self.threshold).sum(axis=2)
+        pick = self.cam_rank[None, :] % np.maximum(open_n, 1)
+        cam_t = np.take_along_axis(ranked[..., :2], pick[..., None, None], 2)[:, :, 0]
+        own_ok = sw.own[..., 2] >= self.threshold
+        gas_d = self.is_gas[None, :]
+        cam_has = open_n > 0
+        if self.one_each:  # camera j covers hotspot j; spare cameras keep exploring
+            cam_has = self.cam_rank[None, :] < open_n
+        known = np.where(gas_d, own_ok, cam_has)
+        dest = np.where(gas_d[..., None], sw.own[..., :2], cam_t)
+        return np.where(known[..., None], dest, sw.wp), known
 
 
 def assign(
