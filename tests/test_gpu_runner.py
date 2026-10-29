@@ -4,6 +4,7 @@ import importlib.util
 import json
 import subprocess
 import sys
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -254,3 +255,39 @@ class TestValidateAndQueue:
         _git(repo, "commit", "-q", "-m", "r")
         expected = _git(repo, "rev-parse", "HEAD:r.py").strip()
         assert runner.runner_version(repo / "r.py") == expected
+
+
+@pytest.mark.parametrize("use_psutil", [True, False])
+def test_kill_tree_kills_children(use_psutil, monkeypatch):
+    if use_psutil and runner.psutil is None:
+        pytest.skip("psutil not installed")
+    if not use_psutil:
+        if sys.platform != "win32":
+            pytest.skip("the fallback is taskkill")
+        monkeypatch.setattr(runner, "psutil", None)
+    code = (
+        "import subprocess, sys, time\n"
+        "c = subprocess.Popen([sys.executable, '-c', 'import time; time.sleep(60)'])\n"
+        "print(c.pid, flush=True)\n"
+        "time.sleep(60)\n"
+    )
+    proc = subprocess.Popen(
+        [sys.executable, "-c", code], stdout=subprocess.PIPE, text=True
+    )
+    child = int(proc.stdout.readline())
+    runner.kill_tree(proc)
+    proc.wait(timeout=10)
+    proc.stdout.close()
+    deadline = time.monotonic() + 10
+    while time.monotonic() < deadline and _alive(child):
+        time.sleep(0.2)
+    assert not _alive(child)
+
+
+def _alive(pid: int) -> bool:
+    if runner.psutil is not None:
+        return runner.psutil.pid_exists(pid)
+    out = subprocess.run(
+        ["tasklist", "/FI", f"PID eq {pid}", "/NH"], capture_output=True, text=True
+    ).stdout
+    return str(pid) in out

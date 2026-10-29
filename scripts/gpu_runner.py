@@ -552,6 +552,32 @@ class Results:
 # ---------------------------------------------------------------------- jobs
 
 
+def kill_tree(proc: subprocess.Popen) -> None:
+    """Kill a job and every process it started.
+
+    A plain ``proc.kill()`` leaves a job's process-pool workers running on Windows;
+    after the G7c timeout on 2026-10-28, 20 orphans halved the next jobs' speed.
+    """
+    children = []
+    if psutil is not None:
+        try:
+            children = psutil.Process(proc.pid).children(recursive=True)
+        except psutil.Error:
+            pass
+    elif os.name == "nt":
+        subprocess.run(
+            ["taskkill", "/T", "/F", "/PID", str(proc.pid)],
+            capture_output=True,
+            check=False,
+        )
+    proc.kill()
+    for child in children:
+        try:
+            child.kill()
+        except psutil.Error:
+            pass
+
+
 def cancel_requested(repo: Path, args: argparse.Namespace, job_id: str) -> bool:
     """True if ``runs/cancel/<job id>`` exists on the jobs branch."""
     git(repo, "fetch", "-q", args.remote, args.jobs_branch, check=False)
@@ -746,16 +772,16 @@ def run_job(
                     log.flush()
                 tail.append(line)
             if interrupt.is_set():
-                proc.kill()
+                kill_tree(proc)
                 state = "interrupted"
                 break
             if time.monotonic() - started > timeout:
-                proc.kill()
+                kill_tree(proc)
                 state = "timeout"
                 break
             if time.monotonic() - last_push > args.push_every:
                 if cancel_requested(repo, args, job_id):
-                    proc.kill()
+                    kill_tree(proc)
                     state = "cancelled"
                     break
                 push_progress("running")
