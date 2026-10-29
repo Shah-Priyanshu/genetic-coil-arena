@@ -332,6 +332,24 @@ def _batches(split: dict, idx: np.ndarray, batch: int, size: int, rng: Any,
         yield imgs, targets([image_boxes(split, i) for i in sel], size, flip), sel
 
 
+def prefetch(gen: Any, depth: int = 6) -> Any:
+    """Run a batch generator in a background thread, ``depth`` batches ahead."""
+    import queue
+    import threading
+
+    q: queue.Queue = queue.Queue(maxsize=depth)
+    done = object()
+
+    def work() -> None:
+        for item in gen:
+            q.put(item)
+        q.put(done)
+
+    threading.Thread(target=work, daemon=True).start()
+    while (item := q.get()) is not done:
+        yield item
+
+
 def focal(pred: Any, gt: Any) -> Any:
     import torch
 
@@ -377,7 +395,9 @@ def train_model(alpha: float, data_dir: Path, epochs: int = 40, batch: int = 128
     for ep in range(epochs):
         model.train()
         total, nb = 0.0, 0
-        for imgs, t, _ in _batches(tr, rng.permutation(n_tr), batch, size, rng, True):
+        for imgs, t, _ in prefetch(
+            _batches(tr, rng.permutation(n_tr), batch, size, rng, True)
+        ):
             out = model(to_input(imgs))
             heat = torch.from_numpy(t["heat"]).to(dev)
             loss = focal(out[:, 0], heat)
