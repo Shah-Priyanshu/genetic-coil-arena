@@ -2,3 +2,4 @@
 [progress] 10/198 cells, 161 s
 [progress] 20/198 cells, 252 s
 [progress] 30/198 cells, 374 s
+[progress] 40/198 cells, 464 s
