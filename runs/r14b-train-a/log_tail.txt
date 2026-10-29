@@ -78,3 +78,11 @@
 [progress] run 4: gen 450/1500, val 3.308, best 3.458 at 425, 7987 s
 [progress] run 2: gen 450/1500, val 3.592, best 3.608 at 350, 8024 s
 [progress] run 3: gen 450/1500, val 3.600, best 3.800 at 75, 8031 s
+[progress] run 6: gen 500/1500, val 3.650, best 3.700 at 450, 8825 s
+[progress] run 0: gen 500/1500, val 3.425, best 3.717 at 325, 8845 s
+[progress] run 5: gen 500/1500, val 3.567, best 3.683 at 100, 8846 s
+[progress] run 7: gen 500/1500, val 3.550, best 3.717 at 425, 8848 s
+[progress] run 1: gen 500/1500, val 3.458, best 3.750 at 25, 8848 s
+[progress] run 4: gen 500/1500, val 3.225, best 3.458 at 425, 8880 s
+[progress] run 2: gen 500/1500, val 3.617, best 3.617 at 500, 8923 s
+[progress] run 3: gen 500/1500, val 3.642, best 3.800 at 75, 8927 s
