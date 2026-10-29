@@ -2,3 +2,4 @@
 [23:19:49] [alpha 0.25] epoch 2/40 loss 1.7411 (144 s)
 [23:20:55] [alpha 0.25] epoch 3/40 loss 1.5601 (210 s)
 [23:22:02] [alpha 0.25] epoch 4/40 loss 1.4622 (277 s)
+[23:23:09] [alpha 0.25] epoch 5/40 loss 1.3933 (344 s)
