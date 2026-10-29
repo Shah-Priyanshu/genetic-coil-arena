@@ -1,0 +1,4 @@
+[04:53:07] Ollama already running at http://localhost:11434
+[04:53:39] ollama:qwen2.5-coder:14b: 25/60, 17 correct
+[04:53:54] ollama:qwen2.5-coder:14b: 50/60, 29 correct
+[04:54:03] {"n": 60, "by_expect": {"ok": {"exact": 27, "wrong command": 2, "refused": 7}, "clarify": {"refused": 12}, "refuse": {"refused": 11, "wrong command": 1}}, "exact": [0.75, 0.5892923231679656, 0.8624967616077461], "asked_when_unclear": [0.0, 0.0, 0.2425007574992425], "refused_when_should": [0.9166666666666666, 0.6461140782014047, 0.9851352905492264], "wrong_commands": [0.05, 0.01714919117914121, 0.13700734625099836], "correct": [0.6333333333333333, 0.5068276736679673, 0.7437926115379172], "median_latency_s": 0.6163561000139453, "translator": "ollama:qwen2.5-coder:14b", "split": "dev"}
