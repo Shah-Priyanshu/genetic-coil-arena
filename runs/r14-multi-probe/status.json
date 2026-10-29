@@ -6,12 +6,14 @@
     "--out",
     "docs/results/r14_multi_probe.md"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-29T02:03:19+00:00",
-  "updated_at": "2026-10-29T02:03:19+00:00",
-  "elapsed_min": 0.0,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 49 %, 8629 MiB, 12282 MiB, 52",
+  "updated_at": "2026-10-29T02:06:01+00:00",
+  "elapsed_min": 2.7,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 440 MiB, 12282 MiB, 44",
   "host": "PC",
   "lane": "cpu",
-  "cpu_workers": 2
+  "cpu_workers": 2,
+  "returncode": 0,
+  "finished_at": "2026-10-29T02:06:01+00:00"
 }
