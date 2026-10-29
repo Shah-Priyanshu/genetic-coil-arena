@@ -40,3 +40,5 @@ C:\Users\priya\AppData\Local\Temp\gca-r15b2-train-ft-a025-_a1jupbx\src\genetic_c
 [06:25:26] [alpha 0.25] epoch 17/20 loss 1.0467 (2751 s)
 [06:27:30] [alpha 0.25] epoch 18/20 loss 1.0440 (2875 s)
 [06:29:35] [alpha 0.25] epoch 19/20 loss 1.0427 (3000 s)
+[06:31:39] [alpha 0.25] epoch 20/20 loss 1.0413 (3124 s)
+[06:31:51] r15b_coco_a0.25_seed1: {"val_ap50": 0.21193479466712722, "val_centre_ap": 0.42813637227222506, "val_present_auc": 0.9347264888485782, "alpha": 0.25, "params": 117333, "int8_kb": 114.5830078125, "macs": 39350528, "epochs": 20, "train_images": 117649, "seconds": 3133.6260089874268, "size": 224, "condition": "fine-tuned", "seed": 1, "lr": 0.001, "weights": "D:\\Projects\\genetic-coil-arena-data\\r15_models\\r15b_coco_a0.25_seed1.pt", "onnx": true}
