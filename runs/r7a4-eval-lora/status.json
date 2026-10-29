@@ -9,12 +9,14 @@
     "--runs",
     "runs:r7a4-train-*"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-29T01:57:50+00:00",
-  "updated_at": "2026-10-29T02:02:58+00:00",
-  "elapsed_min": 5.1,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 48 %, 8629 MiB, 12282 MiB, 55",
+  "updated_at": "2026-10-29T02:05:18+00:00",
+  "elapsed_min": 7.5,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 1 %, 440 MiB, 12282 MiB, 54",
   "host": "PC",
   "lane": "gpu",
-  "cpu_workers": 4
+  "cpu_workers": 4,
+  "returncode": 0,
+  "finished_at": "2026-10-29T02:05:18+00:00"
 }
