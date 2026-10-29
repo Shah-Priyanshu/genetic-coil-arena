@@ -1,0 +1,23 @@
+{
+  "id": "r7a4-eval-lora",
+  "commit": "3795da3c01b1abfe1f56020a25e188d8c378d8dc",
+  "args": [
+    "scripts/r7a_step2.py",
+    "--base",
+    "Qwen/Qwen3-4B",
+    "eval-lora",
+    "--runs",
+    "runs:r7a4-train-*"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 4,
+  "priority": 3,
+  "after": [
+    "r7a4-train-q4b"
+  ],
+  "timeout_min": 300.0,
+  "env": {
+    "HF_HOME": "D:\\hf_cache",
+    "R7A2_STORE": "D:\\hf_cache\\r7a4_store"
+  }
+}
