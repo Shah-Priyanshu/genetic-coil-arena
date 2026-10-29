@@ -29,3 +29,4 @@ C:\Users\priya\AppData\Local\Temp\gca-r15b2-train-sc-a025-ltvk1il_\src\genetic_c
 [16:51:31] [alpha 0.25] epoch 6/20 loss 1.4387 (749 s)
 [16:53:36] [alpha 0.25] epoch 7/20 loss 1.3857 (874 s)
 [16:55:41] [alpha 0.25] epoch 8/20 loss 1.3456 (999 s)
+[16:57:45] [alpha 0.25] epoch 9/20 loss 1.3100 (1123 s)
