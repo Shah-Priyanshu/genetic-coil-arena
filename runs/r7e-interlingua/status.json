@@ -1,0 +1,24 @@
+{
+  "id": "r7e-interlingua",
+  "commit": "89eeaee10473b49ab7d52095518e265dce711bf8",
+  "queued_args": [
+    "scripts/r7e_interlingua.py",
+    "--from-json",
+    "runs:r7b3-train-*",
+    "runs:r7b4-train-*",
+    "runs:r7b5-train-*",
+    "runs:r7c-train-*",
+    "--workers",
+    "8",
+    "--out",
+    "docs/results/r7e_interlingua.md"
+  ],
+  "state": "running",
+  "started_at": "2026-10-29T01:55:48+00:00",
+  "updated_at": "2026-10-29T01:55:48+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 48 %, 10345 MiB, 12282 MiB, 60",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 8
+}
