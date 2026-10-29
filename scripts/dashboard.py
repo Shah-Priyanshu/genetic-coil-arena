@@ -217,6 +217,15 @@ HOW_TO_READ = {
     "should be high, the red bar (wrong commands: the swarm flies something nobody "
     "asked) low; the dashed line is the 3% bar. Bigger models are more helpful; the "
     "small ones refuse or ask more and so send fewer wrong commands.",
+    "r17_mission": "Person search on 40 held-out missions. Score = share found minus "
+    "twice the share of wrong finds (sending the team to the wrong place), in points. "
+    "OpenSwarm's default declares the first detection and is misled by false alarms; "
+    "the planner that reads the mission comes close to tuning every mission by hand.",
+    "r17_plans": "How high the scouts sweep, per held-out mission, against how good the "
+    "detector is (px50: the person size in pixels it finds half the time; lower is "
+    "better). The mission-reading planner, like per-mission tuning, sweeps higher with a "
+    "better detector and over larger areas (hover for the area); the one tuned plan "
+    "always sweeps at 4.6 m.",
     "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
     "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
     "translation through the shared meanings could do.",
@@ -387,6 +396,32 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
         )  # fmt: skip
         fig.add_hline(y=3, line_dash="dash", line_color="#c62828")
         figs["r16_ground"] = fig
+    mission = read_json(res / "r17_mission.json")
+    if mission:
+        pts = [
+            {"system": name, "measure": label, "points": 100 * sys[key]}
+            for name, sys in mission["systems"].items()
+            for key, label in (("score", "score"), ("found", "found"),
+                               ("wrong", "wrong find"))
+        ]  # fmt: skip
+        figs["r17_mission"] = px.bar(
+            pd.DataFrame(pts), x="system", y="points", color="measure",
+            barmode="group", title="R17: planning the person search",
+        )  # fmt: skip
+        pts = [
+            {"px50 (lower = better detector)": row["px50"], "system": name,
+             "sweep altitude (m)": plan["sweep_alt"],
+             "area (m²)": row["width"] * row["height"]}
+            for row in mission.get("plans", [])
+            for name, plan in row["systems"].items()
+            if name in ("blind", "conditioned", "per-mission tuned")
+        ]  # fmt: skip
+        if pts:
+            figs["r17_plans"] = px.scatter(
+                pd.DataFrame(pts), x="px50 (lower = better detector)",
+                y="sweep altitude (m)", color="system", hover_data=["area (m²)"],
+                title="R17: the sweep altitude each planner chooses",
+            )  # fmt: skip
     inter = read_json(res / "r7e_interlingua.json")
     if inter:
         pts = [

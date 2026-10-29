@@ -349,6 +349,22 @@ def example_plans(plans: dict[str, list[list[Plan]]]) -> list[dict[str, Any]]:
             for why, i in picks.items()]  # fmt: skip
 
 
+def plan_table(plans: dict[str, list[list[Plan]]]) -> list[dict[str, Any]]:
+    """Per held-out mission: its spec and each system's plan, averaged over runs."""
+    keys = ("sweep_alt", "sweep_thr", "confirmers", "confirm_alt")
+    out = []
+    for i, m in enumerate(held_out_missions()):
+        row: dict[str, Any] = {"mission": i, "width": m.width, "height": m.height,
+                               "drones": m.drones, "px50": m.detector.px50,
+                               "fa50": m.detector.fa50, "systems": {}}  # fmt: skip
+        for name, runs in plans.items():
+            row["systems"][name] = {
+                k: float(np.mean([getattr(r[i], k) for r in runs])) for k in keys
+            }
+        out.append(row)
+    return out
+
+
 def _pts(x: float) -> str:
     return f"{100 * x:+.1f}"
 

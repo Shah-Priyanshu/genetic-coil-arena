@@ -143,7 +143,7 @@ The brains close half the coordination gap at 3 leaks and gain most on 4 leaks, 
 - Randomisation costs nothing and helps where the plume is unusual, so flight brains can train with it.
 - The bar should have set a minimum effect size; with no minimum, a 0.6-point gain counted as a pass.
 
-## R17: a leader that plans the person search (ladder step 3, running)
+## R17: a leader that plans the person search (ladder step 3)
 
 OpenSwarm's leader must turn "search the north field" into a plan:
 - how high the K210 scouts sweep;
@@ -181,3 +181,25 @@ The pilot set the design and already points to an answer:
 
 - A camera's search radius matters more than position precision. A coarse code must widen the search to its cell, or it is worse than silence (55% before that fix).
 - Expected verdict: talk matters, but on a single-source search **the radio does not bind**. If so, learned compression needs a richer task (step 2's candidates). The centre, translator and monitor pieces (steps 3–4) do not depend on the radio binding.
+
+### R17 result: good sign (`docs/results/r17_mission.md`)
+
+Results on 40 held-out missions × 2,000 episodes. Score = found − 2 × wrong find, in points.
+
+| System | Score | Found | Wrong find |
+|---|---|---|---|
+| OpenSwarm default | −69.8 | 33.9% | 51.9% |
+| hand two-tier | 38.2 | 46.6% | 4.2% |
+| one tuned plan (16 runs) | 46.6 | 53.7% | 3.6% |
+| planner that reads the mission (16 runs) | 64.6 | 69.0% | 2.2% |
+| per-mission tuning | 69.1 | 74.0% | 2.4% |
+
+- **Planner vs one plan:** +18.0 ± 6.1 points, capturing about 80% of the room (+22.6).
+- **Consistency:** every planner run beats every one-plan run.
+- **Plans chosen:** the planner sweeps between 3 and 17 m (averaged over runs); the one tuned plan always sweeps at 4.6 m.
+  - It goes higher over larger areas: correlation +0.62 with area.
+  - It goes higher with better detectors: correlation −0.5 with px50, where lower px50 is better.
+  - With many false alarms it confirms with more looks at a high threshold.
+- **Why the camera matters:** the detector sets the best altitude together with the area, so the camera is worth choosing on purpose (the hardware is ours to change).
+- **Next:** R15b's measured curve as a held-out detector, and candidate modules (K210 at 224 px; Grove Vision AI V2; a MaixCAM-class Linux camera with an NPU) compared by search score after a weight and power cost.
+

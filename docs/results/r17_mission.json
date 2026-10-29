@@ -1,0 +1,2788 @@
+{
+ "systems": {
+  "OpenSwarm default": {
+   "runs": 1,
+   "score": -0.698025,
+   "found": 0.339025,
+   "wrong": 0.518525,
+   "swept": 0.33146679827427344,
+   "per_mission_score": [
+    -0.651,
+    -0.532,
+    -0.5935,
+    0.1,
+    -1.813,
+    -1.8905,
+    0.1895,
+    -1.0255,
+    -1.4395,
+    -1.071,
+    -1.5795,
+    0.4735,
+    -1.4215,
+    -1.49,
+    0.5225,
+    -1.047,
+    -1.763,
+    0.3415,
+    -0.3015,
+    -1.5225,
+    -0.359,
+    -0.516,
+    -1.7305,
+    -1.774,
+    0.3485,
+    -0.1905,
+    0.621,
+    -1.434,
+    -0.604,
+    -0.158,
+    -1.3475,
+    -0.744,
+    0.1125,
+    -1.537,
+    0.769,
+    -0.597,
+    -0.8445,
+    -0.7135,
+    0.311,
+    -1.0195
+   ],
+   "run_scores": [
+    -0.698025
+   ],
+   "minus_blind": [
+    -1.1637875,
+    0.20148206900902368
+   ]
+  },
+  "hand two-tier": {
+   "runs": 1,
+   "score": 0.38239999999999996,
+   "found": 0.46559999999999996,
+   "wrong": 0.0416,
+   "swept": 0.6798734183904271,
+   "per_mission_score": [
+    0.352,
+    0.7265,
+    0.19,
+    0.1685,
+    -0.275,
+    -0.317,
+    0.4435,
+    0.438,
+    0.4385,
+    0.448,
+    0.1215,
+    0.789,
+    0.473,
+    0.026,
+    0.816,
+    0.556,
+    0.1525,
+    0.842,
+    0.7595,
+    0.5225,
+    0.509,
+    0.317,
+    0.0755,
+    -0.2985,
+    0.568,
+    0.0775,
+    0.784,
+    0.439,
+    0.4295,
+    0.327,
+    0.111,
+    0.148,
+    0.434,
+    0.4535,
+    0.8335,
+    0.5195,
+    0.1715,
+    0.7785,
+    0.6105,
+    0.337
+   ],
+   "run_scores": [
+    0.38239999999999996
+   ],
+   "minus_blind": [
+    -0.0833625,
+    0.045162728792429566
+   ]
+  },
+  "blind": {
+   "runs": 16,
+   "score": 0.4657625,
+   "found": 0.53679375,
+   "wrong": 0.03551562500000001,
+   "swept": 0.5711783633084123,
+   "per_mission_score": [
+    0.26290625,
+    0.8204687500000001,
+    0.18281249999999996,
+    0.24374999999999997,
+    -0.04903125000000001,
+    -0.0398125,
+    0.31399999999999995,
+    0.6478125,
+    0.56271875,
+    0.3790625,
+    0.1036875,
+    0.91721875,
+    0.45362499999999994,
+    0.077625,
+    0.90384375,
+    0.7353125,
+    0.025999999999999995,
+    0.8459687499999999,
+    0.8640000000000001,
+    0.5694687500000001,
+    0.6997187500000001,
+    0.48431250000000003,
+    0.12375,
+    0.042749999999999996,
+    0.7811250000000002,
+    0.404125,
+    0.9297187499999999,
+    0.30824999999999997,
+    0.54484375,
+    0.7638750000000001,
+    0.26634375,
+    0.11709375000000001,
+    0.42750000000000005,
+    0.43484375,
+    0.8074687499999997,
+    0.7885937500000001,
+    0.32121875,
+    0.8590000000000001,
+    0.46890624999999997,
+    0.23562499999999997
+   ],
+   "run_scores": [
+    0.4696999999999999,
+    0.466775,
+    0.4668375000000001,
+    0.4681875,
+    0.4658375,
+    0.46575,
+    0.46636249999999996,
+    0.4631,
+    0.4623875,
+    0.464625,
+    0.4624750000000001,
+    0.465625,
+    0.46826249999999997,
+    0.4644499999999999,
+    0.463975,
+    0.46785000000000004
+   ]
+  },
+  "conditioned": {
+   "runs": 16,
+   "score": 0.64587890625,
+   "found": 0.68957421875,
+   "wrong": 0.021847656249999996,
+   "swept": 0.6145609348532843,
+   "per_mission_score": [
+    0.72625,
+    0.8166249999999999,
+    0.37712500000000004,
+    0.52996875,
+    0.186625,
+    0.232875,
+    0.9588125,
+    0.6152187500000001,
+    0.59065625,
+    0.47750000000000004,
+    0.10425,
+    0.95234375,
+    0.4932500000000001,
+    0.060437500000000005,
+    0.96740625,
+    0.6936875000000001,
+    0.7399375,
+    0.9716562500000001,
+    0.9111874999999999,
+    0.77575,
+    0.8151249999999999,
+    0.76090625,
+    0.15999999999999998,
+    0.3561875,
+    0.9195312499999999,
+    0.7426250000000001,
+    0.9736874999999999,
+    0.7341249999999999,
+    0.725,
+    0.7843749999999999,
+    0.34793749999999996,
+    0.2375625,
+    0.8998124999999998,
+    0.4315625,
+    0.9813125000000001,
+    0.8466875,
+    0.5083437500000001,
+    0.8591249999999999,
+    0.9117187499999999,
+    0.6579687500000001
+   ],
+   "run_scores": [
+    0.63465,
+    0.6379875,
+    0.663275,
+    0.640725,
+    0.6413,
+    0.63125,
+    0.6480499999999999,
+    0.6512125,
+    0.6540875,
+    0.6448500000000001,
+    0.6550374999999999,
+    0.6480499999999999,
+    0.6346,
+    0.6431625000000001,
+    0.6483125,
+    0.6575124999999999
+   ],
+   "minus_blind": [
+    0.18011640624999997,
+    0.0605876182170594
+   ]
+  },
+  "per-mission tuned": {
+   "runs": 1,
+   "score": 0.6913875,
+   "found": 0.7396874999999999,
+   "wrong": 0.024149999999999998,
+   "swept": 0.5992544130473323,
+   "per_mission_score": [
+    0.832,
+    0.8625,
+    0.387,
+    0.572,
+    0.198,
+    0.2575,
+    0.973,
+    0.675,
+    0.6425,
+    0.529,
+    0.1525,
+    0.968,
+    0.5325,
+    0.0925,
+    0.981,
+    0.7985,
+    0.896,
+    0.9875,
+    0.9405,
+    0.83,
+    0.846,
+    0.8265,
+    0.188,
+    0.4745,
+    0.948,
+    0.802,
+    0.984,
+    0.807,
+    0.752,
+    0.831,
+    0.3835,
+    0.239,
+    0.922,
+    0.468,
+    0.991,
+    0.9115,
+    0.572,
+    0.886,
+    0.945,
+    0.771
+   ],
+   "run_scores": [
+    0.6913875
+   ],
+   "minus_blind": [
+    0.22562499999999996,
+    0.06554904305840091
+   ]
+  }
+ },
+ "missions": [
+  {
+   "width": 156.7751895927637,
+   "height": 234.62088902542857,
+   "drones": 3,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 8.248533791160153,
+    "slope": 1.7352619586244618,
+    "fa50": 0.003670755579537114,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 136.47150121271608,
+   "height": 82.80832727596201,
+   "drones": 4,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 9.678481257589798,
+    "slope": 1.6134469711551112,
+    "fa50": 0.008391166441066222,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 218.2458448438738,
+   "height": 172.6843677048259,
+   "drones": 4,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 16.887285717424234,
+    "slope": 2.199962733951649,
+    "fa50": 0.0019891644173962186,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 185.68338055142146,
+   "height": 116.88665272651939,
+   "drones": 3,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 17.33632512111585,
+    "slope": 2.6494894297594938,
+    "fa50": 0.0005749868882132984,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 216.33282287411203,
+   "height": 104.52169724117941,
+   "drones": 3,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 14.699437329184896,
+    "slope": 3.449912460382934,
+    "fa50": 0.029755154445431625,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 188.70642075571038,
+   "height": 134.78248411092895,
+   "drones": 6,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 16.939437702037285,
+    "slope": 2.7177771271440685,
+    "fa50": 0.022786409789610634,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 226.32520061518554,
+   "height": 183.49216178860402,
+   "drones": 4,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 6.5726871612772015,
+    "slope": 2.1007456386292502,
+    "fa50": 0.0007440143126250299,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 71.72687522491506,
+   "height": 239.56837217116154,
+   "drones": 5,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 14.435555545960376,
+    "slope": 1.9355944360019304,
+    "fa50": 0.0073018655208220845,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 218.64148989489928,
+   "height": 82.02139233377399,
+   "drones": 6,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 13.338407384724626,
+    "slope": 2.2040471025395,
+    "fa50": 0.013676205312369584,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 123.63577295193721,
+   "height": 172.72810548851461,
+   "drones": 3,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 12.0128113653418,
+    "slope": 2.9619270079058233,
+    "fa50": 0.009456870861438808,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 205.807362216116,
+   "height": 228.6332299165802,
+   "drones": 3,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 12.71204510317226,
+    "slope": 2.4277944610484132,
+    "fa50": 0.010676713707827771,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 110.76278547297646,
+   "height": 69.8768369673841,
+   "drones": 3,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 9.549362232567589,
+    "slope": 2.619400932405254,
+    "fa50": 0.003218495047234806,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 181.553051711017,
+   "height": 199.16701773469984,
+   "drones": 6,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 12.140268480943716,
+    "slope": 1.9876340843056641,
+    "fa50": 0.007391954148842975,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 175.00464578048724,
+   "height": 228.13373485517903,
+   "drones": 3,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 17.94100708972919,
+    "slope": 2.6148599874622787,
+    "fa50": 0.008121265436843486,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 82.17929373712226,
+   "height": 114.35650389471215,
+   "drones": 8,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 7.564662642169624,
+    "slope": 1.55195473754036,
+    "fa50": 0.0020252982246344105,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 114.18987799444136,
+   "height": 230.84772701908489,
+   "drones": 6,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 12.52236872267455,
+    "slope": 3.430736524520043,
+    "fa50": 0.0066296959599425834,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 236.83879838945182,
+   "height": 116.13578001539076,
+   "drones": 5,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 6.60505964608406,
+    "slope": 3.0559353626462094,
+    "fa50": 0.02486004651546281,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 227.86049456903316,
+   "height": 120.05865413406676,
+   "drones": 6,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 7.807249500822618,
+    "slope": 2.5758010743419497,
+    "fa50": 0.001275479612089991,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 66.25406960739605,
+   "height": 110.13961037444687,
+   "drones": 6,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 8.391767223591721,
+    "slope": 1.8734292666958603,
+    "fa50": 0.011061238559361053,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 135.62600195005342,
+   "height": 141.15720595369885,
+   "drones": 8,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 7.902752524787848,
+    "slope": 1.8415654316524674,
+    "fa50": 0.019563482812494933,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 223.58487698620243,
+   "height": 105.5331797676318,
+   "drones": 6,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 14.343701523877915,
+    "slope": 2.112258796739375,
+    "fa50": 0.0022739471845618165,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 80.08903470090384,
+   "height": 125.63472110811301,
+   "drones": 8,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 17.20812891269631,
+    "slope": 1.9469412818931184,
+    "fa50": 0.0050261557798152254,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 228.56349339429818,
+   "height": 72.84640001538064,
+   "drones": 4,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 16.842503610199095,
+    "slope": 1.7428858963525795,
+    "fa50": 0.019112788178494274,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 128.2875521403456,
+   "height": 82.08036866083033,
+   "drones": 8,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 17.797652402250897,
+    "slope": 2.8449068430474203,
+    "fa50": 0.029847830822170345,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 102.09963541249752,
+   "height": 135.83318793249367,
+   "drones": 4,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 13.801004241142405,
+    "slope": 2.4955546818112815,
+    "fa50": 0.001363479427506523,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 214.93717203875772,
+   "height": 75.12000542713474,
+   "drones": 4,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 18.469109381597406,
+    "slope": 3.4325455637806406,
+    "fa50": 0.0013657958521269217,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 112.31766551280182,
+   "height": 184.65584768792723,
+   "drones": 6,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 10.439022610672874,
+    "slope": 3.1496423302701713,
+    "fa50": 0.0007900280187317054,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 86.97180400590936,
+   "height": 190.81595035198706,
+   "drones": 3,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 7.031680065596246,
+    "slope": 2.4500843456490555,
+    "fa50": 0.02166254606760642,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 202.66539436330785,
+   "height": 97.26791730633845,
+   "drones": 5,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 15.69817619687834,
+    "slope": 1.7336964276766131,
+    "fa50": 0.0031947454210434077,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 141.98982860540707,
+   "height": 146.7232788468196,
+   "drones": 5,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 14.795887214374803,
+    "slope": 3.373211620939075,
+    "fa50": 0.0023676127833632135,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 204.9127656291107,
+   "height": 83.44639635077644,
+   "drones": 4,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 18.89194739629572,
+    "slope": 2.387437797474868,
+    "fa50": 0.008291280097296813,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 239.6739303106003,
+   "height": 195.26500023641242,
+   "drones": 3,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 15.0238941536532,
+    "slope": 1.753476026358984,
+    "fa50": 0.002979949188938267,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 219.90022747498097,
+   "height": 152.933911777373,
+   "drones": 8,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 16.07158451120077,
+    "slope": 1.540429205269981,
+    "fa50": 0.0005269237901826585,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 216.6356270071671,
+   "height": 155.4905276739658,
+   "drones": 6,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 12.920843358305387,
+    "slope": 2.101971125136613,
+    "fa50": 0.009101420425553591,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 192.18279818954497,
+   "height": 90.58700254117656,
+   "drones": 4,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 7.6729715928744575,
+    "slope": 2.544939170597676,
+    "fa50": 0.0006386724993519733,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 137.41718862038286,
+   "height": 79.35302132607686,
+   "drones": 8,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 13.599859199566115,
+    "slope": 2.5253870060270946,
+    "fa50": 0.007075041997991006,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 126.44832505780276,
+   "height": 156.35567379038355,
+   "drones": 4,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 18.188918536659223,
+    "slope": 2.504977398944707,
+    "fa50": 0.0036833103749545656,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 104.88523107781674,
+   "height": 195.57828286707485,
+   "drones": 8,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 10.409302127502826,
+    "slope": 1.9473643942678982,
+    "fa50": 0.005378216045951087,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 228.56064536782367,
+   "height": 128.75112420043098,
+   "drones": 4,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 9.8547094947671,
+    "slope": 2.145551415471071,
+    "fa50": 0.0007804816474766104,
+    "fa_slope": 1.5
+   }
+  },
+  {
+   "width": 188.0096444929923,
+   "height": 190.39403400386058,
+   "drones": 3,
+   "battery_s": 300.0,
+   "detector": {
+    "px50": 7.076564897254001,
+    "slope": 1.6311777398415779,
+    "fa50": 0.006629262622795368,
+    "fa_slope": 1.5
+   }
+  }
+ ],
+ "room": {
+  "diff": [
+   0.22562499999999996,
+   0.06554904305840091
+  ],
+  "pass": true
+ },
+ "good_sign": {
+  "diff": [
+   0.18011640624999997,
+   0.0605876182170594
+  ],
+  "pass": true
+ },
+ "examples": [
+  {
+   "why": "smallest area",
+   "mission": 18,
+   "spec": {
+    "width": 66.25406960739605,
+    "height": 110.13961037444687,
+    "drones": 6,
+    "battery_s": 300.0,
+    "detector": {
+     "px50": 8.391767223591721,
+     "slope": 1.8734292666958603,
+     "fa50": 0.011061238559361053,
+     "fa_slope": 1.5
+    }
+   },
+   "plans": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "overlap": 0.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0,
+     "confirm_alt": 4.0,
+     "confirm_thr": 0.7,
+     "confirm_looks": 3
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "overlap": 0.1,
+     "sweep_thr": 0.5,
+     "confirmers": 2,
+     "confirm_alt": 4.0,
+     "confirm_thr": 0.7,
+     "confirm_looks": 3
+    },
+    "blind": {
+     "sweep_alt": 4.729127926782506,
+     "overlap": 0.0040603422618784085,
+     "sweep_thr": 0.5755144435289906,
+     "confirmers": 1,
+     "confirm_alt": 4.285499187210089,
+     "confirm_thr": 0.7291048374539382,
+     "confirm_looks": 4
+    },
+    "conditioned": {
+     "sweep_alt": 5.193081059540743,
+     "overlap": 0.0026908469435274825,
+     "sweep_thr": 0.5690001455584253,
+     "confirmers": 1,
+     "confirm_alt": 6.505763684566665,
+     "confirm_thr": 0.7278235104817306,
+     "confirm_looks": 10
+    },
+    "per-mission tuned": {
+     "sweep_alt": 7.852565292007995,
+     "overlap": 0.5221445846820326,
+     "sweep_thr": 0.5456157656943423,
+     "confirmers": 1,
+     "confirm_alt": 5.460885067393602,
+     "confirm_thr": 0.754127133694386,
+     "confirm_looks": 5
+    }
+   }
+  },
+  {
+   "why": "largest area",
+   "mission": 10,
+   "spec": {
+    "width": 205.807362216116,
+    "height": 228.6332299165802,
+    "drones": 3,
+    "battery_s": 300.0,
+    "detector": {
+     "px50": 12.71204510317226,
+     "slope": 2.4277944610484132,
+     "fa50": 0.010676713707827771,
+     "fa_slope": 1.5
+    }
+   },
+   "plans": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "overlap": 0.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0,
+     "confirm_alt": 4.0,
+     "confirm_thr": 0.7,
+     "confirm_looks": 3
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "overlap": 0.1,
+     "sweep_thr": 0.5,
+     "confirmers": 1,
+     "confirm_alt": 4.0,
+     "confirm_thr": 0.7,
+     "confirm_looks": 3
+    },
+    "blind": {
+     "sweep_alt": 4.729127926782506,
+     "overlap": 0.0040603422618784085,
+     "sweep_thr": 0.5755144435289906,
+     "confirmers": 1,
+     "confirm_alt": 4.285499187210089,
+     "confirm_thr": 0.7291048374539382,
+     "confirm_looks": 4
+    },
+    "conditioned": {
+     "sweep_alt": 11.04533273850341,
+     "overlap": 0.0008465088904800514,
+     "sweep_thr": 0.47618558193285887,
+     "confirmers": 1,
+     "confirm_alt": 3.5814530670232543,
+     "confirm_thr": 0.8831312846128383,
+     "confirm_looks": 7
+    },
+    "per-mission tuned": {
+     "sweep_alt": 7.0835112097134605,
+     "overlap": 0.031079284020815248,
+     "sweep_thr": 0.5028779955631852,
+     "confirmers": 1,
+     "confirm_alt": 3.9892933276483578,
+     "confirm_thr": 0.7873403424317555,
+     "confirm_looks": 3
+    }
+   }
+  },
+  {
+   "why": "best detector",
+   "mission": 6,
+   "spec": {
+    "width": 226.32520061518554,
+    "height": 183.49216178860402,
+    "drones": 4,
+    "battery_s": 300.0,
+    "detector": {
+     "px50": 6.5726871612772015,
+     "slope": 2.1007456386292502,
+     "fa50": 0.0007440143126250299,
+     "fa_slope": 1.5
+    }
+   },
+   "plans": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "overlap": 0.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0,
+     "confirm_alt": 4.0,
+     "confirm_thr": 0.7,
+     "confirm_looks": 3
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "overlap": 0.1,
+     "sweep_thr": 0.5,
+     "confirmers": 1,
+     "confirm_alt": 4.0,
+     "confirm_thr": 0.7,
+     "confirm_looks": 3
+    },
+    "blind": {
+     "sweep_alt": 4.729127926782506,
+     "overlap": 0.0040603422618784085,
+     "sweep_thr": 0.5755144435289906,
+     "confirmers": 1,
+     "confirm_alt": 4.285499187210089,
+     "confirm_thr": 0.7291048374539382,
+     "confirm_looks": 4
+    },
+    "conditioned": {
+     "sweep_alt": 21.06707961077999,
+     "overlap": 0.0014462459733286415,
+     "sweep_thr": 0.30471121940315593,
+     "confirmers": 1,
+     "confirm_alt": 7.729165538144643,
+     "confirm_thr": 0.6552077309018233,
+     "confirm_looks": 10
+    },
+    "per-mission tuned": {
+     "sweep_alt": 18.015871271996616,
+     "overlap": 0.021530730103225676,
+     "sweep_thr": 0.30582403760845556,
+     "confirmers": 1,
+     "confirm_alt": 8.53988641454749,
+     "confirm_thr": 0.4674735052524679,
+     "confirm_looks": 3
+    }
+   }
+  },
+  {
+   "why": "worst detector",
+   "mission": 30,
+   "spec": {
+    "width": 204.9127656291107,
+    "height": 83.44639635077644,
+    "drones": 4,
+    "battery_s": 300.0,
+    "detector": {
+     "px50": 18.89194739629572,
+     "slope": 2.387437797474868,
+     "fa50": 0.008291280097296813,
+     "fa_slope": 1.5
+    }
+   },
+   "plans": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "overlap": 0.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0,
+     "confirm_alt": 4.0,
+     "confirm_thr": 0.7,
+     "confirm_looks": 3
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "overlap": 0.1,
+     "sweep_thr": 0.5,
+     "confirmers": 1,
+     "confirm_alt": 4.0,
+     "confirm_thr": 0.7,
+     "confirm_looks": 3
+    },
+    "blind": {
+     "sweep_alt": 4.729127926782506,
+     "overlap": 0.0040603422618784085,
+     "sweep_thr": 0.5755144435289906,
+     "confirmers": 1,
+     "confirm_alt": 4.285499187210089,
+     "confirm_thr": 0.7291048374539382,
+     "confirm_looks": 4
+    },
+    "conditioned": {
+     "sweep_alt": 4.560401121688784,
+     "overlap": 0.05053616060065952,
+     "sweep_thr": 0.40263045699714545,
+     "confirmers": 1,
+     "confirm_alt": 3.058122742909167,
+     "confirm_thr": 0.7617594913660621,
+     "confirm_looks": 3
+    },
+    "per-mission tuned": {
+     "sweep_alt": 4.714315479808792,
+     "overlap": 0.017733955282642707,
+     "sweep_thr": 0.48209073392345747,
+     "confirmers": 1,
+     "confirm_alt": 3.6118674323761306,
+     "confirm_thr": 0.7192277305922796,
+     "confirm_looks": 5
+    }
+   }
+  },
+  {
+   "why": "fewest false alarms",
+   "mission": 32,
+   "spec": {
+    "width": 219.90022747498097,
+    "height": 152.933911777373,
+    "drones": 8,
+    "battery_s": 300.0,
+    "detector": {
+     "px50": 16.07158451120077,
+     "slope": 1.540429205269981,
+     "fa50": 0.0005269237901826585,
+     "fa_slope": 1.5
+    }
+   },
+   "plans": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "overlap": 0.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0,
+     "confirm_alt": 4.0,
+     "confirm_thr": 0.7,
+     "confirm_looks": 3
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "overlap": 0.1,
+     "sweep_thr": 0.5,
+     "confirmers": 2,
+     "confirm_alt": 4.0,
+     "confirm_thr": 0.7,
+     "confirm_looks": 3
+    },
+    "blind": {
+     "sweep_alt": 4.729127926782506,
+     "overlap": 0.0040603422618784085,
+     "sweep_thr": 0.5755144435289906,
+     "confirmers": 2,
+     "confirm_alt": 4.285499187210089,
+     "confirm_thr": 0.7291048374539382,
+     "confirm_looks": 4
+    },
+    "conditioned": {
+     "sweep_alt": 8.12628362838644,
+     "overlap": 0.01347827713935943,
+     "sweep_thr": 0.30933782586082725,
+     "confirmers": 1,
+     "confirm_alt": 8.194469447726584,
+     "confirm_thr": 0.4336245406739694,
+     "confirm_looks": 9
+    },
+    "per-mission tuned": {
+     "sweep_alt": 5.0293761835384485,
+     "overlap": 0.010295176966347025,
+     "sweep_thr": 0.3273749573504535,
+     "confirmers": 1,
+     "confirm_alt": 6.570197765135958,
+     "confirm_thr": 0.44102650706492413,
+     "confirm_looks": 8
+    }
+   }
+  },
+  {
+   "why": "most false alarms",
+   "mission": 23,
+   "spec": {
+    "width": 128.2875521403456,
+    "height": 82.08036866083033,
+    "drones": 8,
+    "battery_s": 300.0,
+    "detector": {
+     "px50": 17.797652402250897,
+     "slope": 2.8449068430474203,
+     "fa50": 0.029847830822170345,
+     "fa_slope": 1.5
+    }
+   },
+   "plans": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "overlap": 0.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0,
+     "confirm_alt": 4.0,
+     "confirm_thr": 0.7,
+     "confirm_looks": 3
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "overlap": 0.1,
+     "sweep_thr": 0.5,
+     "confirmers": 2,
+     "confirm_alt": 4.0,
+     "confirm_thr": 0.7,
+     "confirm_looks": 3
+    },
+    "blind": {
+     "sweep_alt": 4.729127926782506,
+     "overlap": 0.0040603422618784085,
+     "sweep_thr": 0.5755144435289906,
+     "confirmers": 2,
+     "confirm_alt": 4.285499187210089,
+     "confirm_thr": 0.7291048374539382,
+     "confirm_looks": 4
+    },
+    "conditioned": {
+     "sweep_alt": 3.050952793973579,
+     "overlap": 0.414881368507729,
+     "sweep_thr": 0.7499361544777421,
+     "confirmers": 1,
+     "confirm_alt": 3.088765114480889,
+     "confirm_thr": 0.8200274096895286,
+     "confirm_looks": 10
+    },
+    "per-mission tuned": {
+     "sweep_alt": 3.0694154661857254,
+     "overlap": 0.058973192965859365,
+     "sweep_thr": 0.7040440303004876,
+     "confirmers": 2,
+     "confirm_alt": 3.0754659934402264,
+     "confirm_thr": 0.8445582449253151,
+     "confirm_looks": 6
+    }
+   }
+  }
+ ],
+ "plans": [
+  {
+   "mission": 0,
+   "width": 156.7751895927637,
+   "height": 234.62088902542857,
+   "drones": 3,
+   "px50": 8.248533791160153,
+   "fa50": 0.003670755579537114,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 1.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 16.340695461337383,
+     "sweep_thr": 0.34885392382008307,
+     "confirmers": 1.0,
+     "confirm_alt": 6.409332949863487
+    },
+    "per-mission tuned": {
+     "sweep_alt": 18.566517833091694,
+     "sweep_thr": 0.3160710410052491,
+     "confirmers": 1.0,
+     "confirm_alt": 7.279972634635606
+    }
+   }
+  },
+  {
+   "mission": 1,
+   "width": 136.47150121271608,
+   "height": 82.80832727596201,
+   "drones": 4,
+   "px50": 9.678481257589798,
+   "fa50": 0.008391166441066222,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 1.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 6.101541846829388,
+     "sweep_thr": 0.5053683921194072,
+     "confirmers": 1.125,
+     "confirm_alt": 5.735772573620804
+    },
+    "per-mission tuned": {
+     "sweep_alt": 4.4242790082457,
+     "sweep_thr": 0.6037336707209371,
+     "confirmers": 1.0,
+     "confirm_alt": 5.333060283532728
+    }
+   }
+  },
+  {
+   "mission": 2,
+   "width": 218.2458448438738,
+   "height": 172.6843677048259,
+   "drones": 4,
+   "px50": 16.887285717424234,
+   "fa50": 0.0019891644173962186,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 1.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 8.252449947361741,
+     "sweep_thr": 0.32988210186705497,
+     "confirmers": 1.0,
+     "confirm_alt": 4.678299660824865
+    },
+    "per-mission tuned": {
+     "sweep_alt": 7.933459520058997,
+     "sweep_thr": 0.30972375607862224,
+     "confirmers": 1.0,
+     "confirm_alt": 5.109015754775736
+    }
+   }
+  },
+  {
+   "mission": 3,
+   "width": 185.68338055142146,
+   "height": 116.88665272651939,
+   "drones": 3,
+   "px50": 17.33632512111585,
+   "fa50": 0.0005749868882132984,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 1.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 7.601253558910307,
+     "sweep_thr": 0.30963988708142937,
+     "confirmers": 1.0,
+     "confirm_alt": 5.755440110296144
+    },
+    "per-mission tuned": {
+     "sweep_alt": 7.707148448702964,
+     "sweep_thr": 0.30171611074572957,
+     "confirmers": 1.0,
+     "confirm_alt": 6.77784042377588
+    }
+   }
+  },
+  {
+   "mission": 4,
+   "width": 216.33282287411203,
+   "height": 104.52169724117941,
+   "drones": 3,
+   "px50": 14.699437329184896,
+   "fa50": 0.029755154445431625,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 1.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 4.291096433512747,
+     "sweep_thr": 0.7140128525486629,
+     "confirmers": 1.0,
+     "confirm_alt": 3.152141383624455
+    },
+    "per-mission tuned": {
+     "sweep_alt": 3.723702555949601,
+     "sweep_thr": 0.7606113878743483,
+     "confirmers": 1.0,
+     "confirm_alt": 3.054507355443862
+    }
+   }
+  },
+  {
+   "mission": 5,
+   "width": 188.70642075571038,
+   "height": 134.78248411092895,
+   "drones": 6,
+   "px50": 16.939437702037285,
+   "fa50": 0.022786409789610634,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 2.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 3.511293312813879,
+     "sweep_thr": 0.7745126857081901,
+     "confirmers": 1.0625,
+     "confirm_alt": 2.974582549964107
+    },
+    "per-mission tuned": {
+     "sweep_alt": 3.4050171186793774,
+     "sweep_thr": 0.7130006137756288,
+     "confirmers": 1.0,
+     "confirm_alt": 3.02384538441126
+    }
+   }
+  },
+  {
+   "mission": 6,
+   "width": 226.32520061518554,
+   "height": 183.49216178860402,
+   "drones": 4,
+   "px50": 6.5726871612772015,
+   "fa50": 0.0007440143126250299,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 1.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 16.932250398753936,
+     "sweep_thr": 0.3167491164709054,
+     "confirmers": 1.0,
+     "confirm_alt": 8.102413507274807
+    },
+    "per-mission tuned": {
+     "sweep_alt": 18.015871271996616,
+     "sweep_thr": 0.30582403760845556,
+     "confirmers": 1.0,
+     "confirm_alt": 8.53988641454749
+    }
+   }
+  },
+  {
+   "mission": 7,
+   "width": 71.72687522491506,
+   "height": 239.56837217116154,
+   "drones": 5,
+   "px50": 14.435555545960376,
+   "fa50": 0.0073018655208220845,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 2.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 5.633726367102647,
+     "sweep_thr": 0.4690758857684606,
+     "confirmers": 1.0625,
+     "confirm_alt": 4.3123559044960915
+    },
+    "per-mission tuned": {
+     "sweep_alt": 5.869351190308265,
+     "sweep_thr": 0.4171879838692963,
+     "confirmers": 2.0,
+     "confirm_alt": 4.449319504821443
+    }
+   }
+  },
+  {
+   "mission": 8,
+   "width": 218.64148989489928,
+   "height": 82.02139233377399,
+   "drones": 6,
+   "px50": 13.338407384724626,
+   "fa50": 0.013676205312369584,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 2.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 3.897004224050376,
+     "sweep_thr": 0.7084314231092628,
+     "confirmers": 1.125,
+     "confirm_alt": 3.8793602851917517
+    },
+    "per-mission tuned": {
+     "sweep_alt": 4.3661822980784155,
+     "sweep_thr": 0.6054713608504563,
+     "confirmers": 2.0,
+     "confirm_alt": 3.982303920282857
+    }
+   }
+  },
+  {
+   "mission": 9,
+   "width": 123.63577295193721,
+   "height": 172.72810548851461,
+   "drones": 3,
+   "px50": 12.0128113653418,
+   "fa50": 0.009456870861438808,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 1.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 6.477609528659656,
+     "sweep_thr": 0.4924463356162278,
+     "confirmers": 1.0,
+     "confirm_alt": 4.43455853881602
+    },
+    "per-mission tuned": {
+     "sweep_alt": 8.41133652174473,
+     "sweep_thr": 0.41682031809774045,
+     "confirmers": 1.0,
+     "confirm_alt": 4.515081053336489
+    }
+   }
+  },
+  {
+   "mission": 10,
+   "width": 205.807362216116,
+   "height": 228.6332299165802,
+   "drones": 3,
+   "px50": 12.71204510317226,
+   "fa50": 0.010676713707827771,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 1.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 9.996003543998025,
+     "sweep_thr": 0.45467586446166863,
+     "confirmers": 1.0,
+     "confirm_alt": 3.955974536461872
+    },
+    "per-mission tuned": {
+     "sweep_alt": 7.0835112097134605,
+     "sweep_thr": 0.5028779955631852,
+     "confirmers": 1.0,
+     "confirm_alt": 3.9892933276483578
+    }
+   }
+  },
+  {
+   "mission": 11,
+   "width": 110.76278547297646,
+   "height": 69.8768369673841,
+   "drones": 3,
+   "px50": 9.549362232567589,
+   "fa50": 0.003218495047234806,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 1.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 6.326828308238226,
+     "sweep_thr": 0.3762191259775268,
+     "confirmers": 1.0,
+     "confirm_alt": 6.720675525773558
+    },
+    "per-mission tuned": {
+     "sweep_alt": 3.8112354801652826,
+     "sweep_thr": 0.5917774227832462,
+     "confirmers": 1.0,
+     "confirm_alt": 5.979001815782847
+    }
+   }
+  },
+  {
+   "mission": 12,
+   "width": 181.553051711017,
+   "height": 199.16701773469984,
+   "drones": 6,
+   "px50": 12.140268480943716,
+   "fa50": 0.007391954148842975,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 2.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 6.44012629204426,
+     "sweep_thr": 0.5373121438769455,
+     "confirmers": 1.125,
+     "confirm_alt": 4.549741916352421
+    },
+    "per-mission tuned": {
+     "sweep_alt": 9.171442140549757,
+     "sweep_thr": 0.4378740897235003,
+     "confirmers": 2.0,
+     "confirm_alt": 4.605793295936854
+    }
+   }
+  },
+  {
+   "mission": 13,
+   "width": 175.00464578048724,
+   "height": 228.13373485517903,
+   "drones": 3,
+   "px50": 17.94100708972919,
+   "fa50": 0.008121265436843486,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 1.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 6.2203104684572015,
+     "sweep_thr": 0.4202895691584799,
+     "confirmers": 1.0,
+     "confirm_alt": 3.2412033737413206
+    },
+    "per-mission tuned": {
+     "sweep_alt": 4.024542703415069,
+     "sweep_thr": 0.5362311216767007,
+     "confirmers": 1.0,
+     "confirm_alt": 3.0056683909818753
+    }
+   }
+  },
+  {
+   "mission": 14,
+   "width": 82.17929373712226,
+   "height": 114.35650389471215,
+   "drones": 8,
+   "px50": 7.564662642169624,
+   "fa50": 0.0020252982246344105,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 2.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 2.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 5.024971712504092,
+     "sweep_thr": 0.468835724951508,
+     "confirmers": 1.625,
+     "confirm_alt": 7.2452598504737855
+    },
+    "per-mission tuned": {
+     "sweep_alt": 6.499264987527049,
+     "sweep_thr": 0.44225173207064616,
+     "confirmers": 3.0,
+     "confirm_alt": 6.830729129190741
+    }
+   }
+  },
+  {
+   "mission": 15,
+   "width": 114.18987799444136,
+   "height": 230.84772701908489,
+   "drones": 6,
+   "px50": 12.52236872267455,
+   "fa50": 0.0066296959599425834,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 2.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 4.5397489890908815,
+     "sweep_thr": 0.6213172358003236,
+     "confirmers": 1.125,
+     "confirm_alt": 4.498853956842302
+    },
+    "per-mission tuned": {
+     "sweep_alt": 6.571750383785526,
+     "sweep_thr": 0.41525543297854967,
+     "confirmers": 2.0,
+     "confirm_alt": 4.491677270992396
+    }
+   }
+  },
+  {
+   "mission": 16,
+   "width": 236.83879838945182,
+   "height": 116.13578001539076,
+   "drones": 5,
+   "px50": 6.60505964608406,
+   "fa50": 0.02486004651546281,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 2.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 6.506877294763633,
+     "sweep_thr": 0.7594333213096021,
+     "confirmers": 1.0625,
+     "confirm_alt": 4.673868053564531
+    },
+    "per-mission tuned": {
+     "sweep_alt": 10.082358008373216,
+     "sweep_thr": 0.5946449185324336,
+     "confirmers": 2.0,
+     "confirm_alt": 5.890157715616981
+    }
+   }
+  },
+  {
+   "mission": 17,
+   "width": 227.86049456903316,
+   "height": 120.05865413406676,
+   "drones": 6,
+   "px50": 7.807249500822618,
+   "fa50": 0.001275479612089991,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 2.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 9.39509666954706,
+     "sweep_thr": 0.3686980058608105,
+     "confirmers": 1.0625,
+     "confirm_alt": 7.723515411119224
+    },
+    "per-mission tuned": {
+     "sweep_alt": 6.716134109098828,
+     "sweep_thr": 0.4860264912694892,
+     "confirmers": 1.0,
+     "confirm_alt": 7.179553087851482
+    }
+   }
+  },
+  {
+   "mission": 18,
+   "width": 66.25406960739605,
+   "height": 110.13961037444687,
+   "drones": 6,
+   "px50": 8.391767223591721,
+   "fa50": 0.011061238559361053,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 2.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 4.3663702110408265,
+     "sweep_thr": 0.6350936349633306,
+     "confirmers": 1.4375,
+     "confirm_alt": 5.701756062902768
+    },
+    "per-mission tuned": {
+     "sweep_alt": 7.852565292007995,
+     "sweep_thr": 0.5456157656943423,
+     "confirmers": 1.0,
+     "confirm_alt": 5.460885067393602
+    }
+   }
+  },
+  {
+   "mission": 19,
+   "width": 135.62600195005342,
+   "height": 141.15720595369885,
+   "drones": 8,
+   "px50": 7.902752524787848,
+   "fa50": 0.019563482812494933,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 2.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 2.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 4.257605535692225,
+     "sweep_thr": 0.7683408117251611,
+     "confirmers": 1.5625,
+     "confirm_alt": 4.998795261096778
+    },
+    "per-mission tuned": {
+     "sweep_alt": 4.058743903492372,
+     "sweep_thr": 0.7397707550018197,
+     "confirmers": 1.0,
+     "confirm_alt": 5.25855341861951
+    }
+   }
+  },
+  {
+   "mission": 20,
+   "width": 223.58487698620243,
+   "height": 105.5331797676318,
+   "drones": 6,
+   "px50": 14.343701523877915,
+   "fa50": 0.0022739471845618165,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 2.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 5.37422831900018,
+     "sweep_thr": 0.39155620446875017,
+     "confirmers": 1.125,
+     "confirm_alt": 5.395166760766887
+    },
+    "per-mission tuned": {
+     "sweep_alt": 6.507277896331473,
+     "sweep_thr": 0.3320174958528842,
+     "confirmers": 2.0,
+     "confirm_alt": 5.48325321302487
+    }
+   }
+  },
+  {
+   "mission": 21,
+   "width": 80.08903470090384,
+   "height": 125.63472110811301,
+   "drones": 8,
+   "px50": 17.20812891269631,
+   "fa50": 0.0050261557798152254,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 2.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 2.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 3.387564108242279,
+     "sweep_thr": 0.5488064327463411,
+     "confirmers": 1.5,
+     "confirm_alt": 4.3006592469149325
+    },
+    "per-mission tuned": {
+     "sweep_alt": 3.8647995407371445,
+     "sweep_thr": 0.52138859452795,
+     "confirmers": 2.0,
+     "confirm_alt": 4.446031087256344
+    }
+   }
+  },
+  {
+   "mission": 22,
+   "width": 228.56349339429818,
+   "height": 72.84640001538064,
+   "drones": 4,
+   "px50": 16.842503610199095,
+   "fa50": 0.019112788178494274,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 1.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 4.374220070159154,
+     "sweep_thr": 0.633112110124254,
+     "confirmers": 1.0625,
+     "confirm_alt": 3.1992401974735962
+    },
+    "per-mission tuned": {
+     "sweep_alt": 4.66861613715006,
+     "sweep_thr": 0.6329955639175935,
+     "confirmers": 1.0,
+     "confirm_alt": 3.056572454520174
+    }
+   }
+  },
+  {
+   "mission": 23,
+   "width": 128.2875521403456,
+   "height": 82.08036866083033,
+   "drones": 8,
+   "px50": 17.797652402250897,
+   "fa50": 0.029847830822170345,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 2.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 2.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 3.157484599597309,
+     "sweep_thr": 0.8137787890378378,
+     "confirmers": 1.625,
+     "confirm_alt": 3.218166748430922
+    },
+    "per-mission tuned": {
+     "sweep_alt": 3.0694154661857254,
+     "sweep_thr": 0.7040440303004876,
+     "confirmers": 2.0,
+     "confirm_alt": 3.0754659934402264
+    }
+   }
+  },
+  {
+   "mission": 24,
+   "width": 102.09963541249752,
+   "height": 135.83318793249367,
+   "drones": 4,
+   "px50": 13.801004241142405,
+   "fa50": 0.001363479427506523,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 1.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 6.028935303028771,
+     "sweep_thr": 0.3251796541900969,
+     "confirmers": 1.0,
+     "confirm_alt": 6.3987271247424795
+    },
+    "per-mission tuned": {
+     "sweep_alt": 4.782855407911498,
+     "sweep_thr": 0.3365720138420468,
+     "confirmers": 1.0,
+     "confirm_alt": 5.750526400016181
+    }
+   }
+  },
+  {
+   "mission": 25,
+   "width": 214.93717203875772,
+   "height": 75.12000542713474,
+   "drones": 4,
+   "px50": 18.469109381597406,
+   "fa50": 0.0013657958521269217,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 1.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 4.561598807587587,
+     "sweep_thr": 0.3446338712769995,
+     "confirmers": 1.0,
+     "confirm_alt": 4.532178278793019
+    },
+    "per-mission tuned": {
+     "sweep_alt": 5.062234800142597,
+     "sweep_thr": 0.31177994224125305,
+     "confirmers": 1.0,
+     "confirm_alt": 4.657805022207434
+    }
+   }
+  },
+  {
+   "mission": 26,
+   "width": 112.31766551280182,
+   "height": 184.65584768792723,
+   "drones": 6,
+   "px50": 10.439022610672874,
+   "fa50": 0.0007900280187317054,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 2.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 6.181683063877445,
+     "sweep_thr": 0.3447703230323904,
+     "confirmers": 1.0625,
+     "confirm_alt": 7.243555919176087
+    },
+    "per-mission tuned": {
+     "sweep_alt": 5.283880900646043,
+     "sweep_thr": 0.47606312185633404,
+     "confirmers": 1.0,
+     "confirm_alt": 7.9063250365060425
+    }
+   }
+  },
+  {
+   "mission": 27,
+   "width": 86.97180400590936,
+   "height": 190.81595035198706,
+   "drones": 3,
+   "px50": 7.031680065596246,
+   "fa50": 0.02166254606760642,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 1.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 8.439061598681716,
+     "sweep_thr": 0.6145168246120526,
+     "confirmers": 1.0,
+     "confirm_alt": 5.12556252864851
+    },
+    "per-mission tuned": {
+     "sweep_alt": 9.610007882167146,
+     "sweep_thr": 0.5923304294986533,
+     "confirmers": 1.0,
+     "confirm_alt": 5.623495385748738
+    }
+   }
+  },
+  {
+   "mission": 28,
+   "width": 202.66539436330785,
+   "height": 97.26791730633845,
+   "drones": 5,
+   "px50": 15.69817619687834,
+   "fa50": 0.0031947454210434077,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 2.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 5.420010659561878,
+     "sweep_thr": 0.3863256345521953,
+     "confirmers": 1.125,
+     "confirm_alt": 4.857605475333437
+    },
+    "per-mission tuned": {
+     "sweep_alt": 6.960825473939192,
+     "sweep_thr": 0.3103699100524606,
+     "confirmers": 2.0,
+     "confirm_alt": 4.989375184318046
+    }
+   }
+  },
+  {
+   "mission": 29,
+   "width": 141.98982860540707,
+   "height": 146.7232788468196,
+   "drones": 5,
+   "px50": 14.795887214374803,
+   "fa50": 0.0023676127833632135,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 2.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 4.470839631724392,
+     "sweep_thr": 0.39528897124336415,
+     "confirmers": 1.0,
+     "confirm_alt": 4.931382872787324
+    },
+    "per-mission tuned": {
+     "sweep_alt": 5.700470462129674,
+     "sweep_thr": 0.3495943513837025,
+     "confirmers": 1.0,
+     "confirm_alt": 4.984599348790214
+    }
+   }
+  },
+  {
+   "mission": 30,
+   "width": 204.9127656291107,
+   "height": 83.44639635077644,
+   "drones": 4,
+   "px50": 18.89194739629572,
+   "fa50": 0.008291280097296813,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 1.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 3.9940707707353846,
+     "sweep_thr": 0.5213997840186326,
+     "confirmers": 1.0,
+     "confirm_alt": 3.2609409624230805
+    },
+    "per-mission tuned": {
+     "sweep_alt": 4.714315479808792,
+     "sweep_thr": 0.48209073392345747,
+     "confirmers": 1.0,
+     "confirm_alt": 3.6118674323761306
+    }
+   }
+  },
+  {
+   "mission": 31,
+   "width": 239.6739303106003,
+   "height": 195.26500023641242,
+   "drones": 3,
+   "px50": 15.0238941536532,
+   "fa50": 0.002979949188938267,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 1.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 12.34239556688178,
+     "sweep_thr": 0.33382342529623643,
+     "confirmers": 1.0,
+     "confirm_alt": 4.697257241767715
+    },
+    "per-mission tuned": {
+     "sweep_alt": 14.6538275944801,
+     "sweep_thr": 0.3150289123636162,
+     "confirmers": 1.0,
+     "confirm_alt": 5.717869331045281
+    }
+   }
+  },
+  {
+   "mission": 32,
+   "width": 219.90022747498097,
+   "height": 152.933911777373,
+   "drones": 8,
+   "px50": 16.07158451120077,
+   "fa50": 0.0005269237901826585,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 2.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 2.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 6.092955851566078,
+     "sweep_thr": 0.33103013875868625,
+     "confirmers": 1.4375,
+     "confirm_alt": 6.339855214031481
+    },
+    "per-mission tuned": {
+     "sweep_alt": 5.0293761835384485,
+     "sweep_thr": 0.3273749573504535,
+     "confirmers": 1.0,
+     "confirm_alt": 6.570197765135958
+    }
+   }
+  },
+  {
+   "mission": 33,
+   "width": 216.6356270071671,
+   "height": 155.4905276739658,
+   "drones": 6,
+   "px50": 12.920843358305387,
+   "fa50": 0.009101420425553591,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 2.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 5.3440219550031,
+     "sweep_thr": 0.5971351765324515,
+     "confirmers": 1.1875,
+     "confirm_alt": 4.127684284464676
+    },
+    "per-mission tuned": {
+     "sweep_alt": 7.60828861683255,
+     "sweep_thr": 0.4539599169158407,
+     "confirmers": 2.0,
+     "confirm_alt": 3.978352349756753
+    }
+   }
+  },
+  {
+   "mission": 34,
+   "width": 192.18279818954497,
+   "height": 90.58700254117656,
+   "drones": 4,
+   "px50": 7.6729715928744575,
+   "fa50": 0.0006386724993519733,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 1.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 11.302170248568714,
+     "sweep_thr": 0.31904793420567956,
+     "confirmers": 1.0,
+     "confirm_alt": 8.245658147772165
+    },
+    "per-mission tuned": {
+     "sweep_alt": 7.480179132245498,
+     "sweep_thr": 0.33687219570059074,
+     "confirmers": 1.0,
+     "confirm_alt": 7.622840218354739
+    }
+   }
+  },
+  {
+   "mission": 35,
+   "width": 137.41718862038286,
+   "height": 79.35302132607686,
+   "drones": 8,
+   "px50": 13.599859199566115,
+   "fa50": 0.007075041997991006,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 2.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 2.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 3.3517349569846084,
+     "sweep_thr": 0.6870021090754402,
+     "confirmers": 1.375,
+     "confirm_alt": 4.556846894655951
+    },
+    "per-mission tuned": {
+     "sweep_alt": 3.142356464020223,
+     "sweep_thr": 0.7740842928407332,
+     "confirmers": 1.0,
+     "confirm_alt": 4.852926057620952
+    }
+   }
+  },
+  {
+   "mission": 36,
+   "width": 126.44832505780276,
+   "height": 156.35567379038355,
+   "drones": 4,
+   "px50": 18.188918536659223,
+   "fa50": 0.0036833103749545656,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 1.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 4.7333492799920425,
+     "sweep_thr": 0.3755246634372284,
+     "confirmers": 1.0,
+     "confirm_alt": 4.084630327616255
+    },
+    "per-mission tuned": {
+     "sweep_alt": 5.58520332837866,
+     "sweep_thr": 0.3559056843347237,
+     "confirmers": 1.0,
+     "confirm_alt": 4.225357427035659
+    }
+   }
+  },
+  {
+   "mission": 37,
+   "width": 104.88523107781674,
+   "height": 195.57828286707485,
+   "drones": 8,
+   "px50": 10.409302127502826,
+   "fa50": 0.005378216045951087,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 2.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 2.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 4.7666873279320185,
+     "sweep_thr": 0.5816077552972824,
+     "confirmers": 1.25,
+     "confirm_alt": 5.5758002461021405
+    },
+    "per-mission tuned": {
+     "sweep_alt": 8.160015411276964,
+     "sweep_thr": 0.42796930605480343,
+     "confirmers": 2.0,
+     "confirm_alt": 5.035839467529162
+    }
+   }
+  },
+  {
+   "mission": 38,
+   "width": 228.56064536782367,
+   "height": 128.75112420043098,
+   "drones": 4,
+   "px50": 9.8547094947671,
+   "fa50": 0.0007804816474766104,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 1.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 13.440882380503226,
+     "sweep_thr": 0.3154532672597443,
+     "confirmers": 1.0,
+     "confirm_alt": 7.583260195019372
+    },
+    "per-mission tuned": {
+     "sweep_alt": 10.691234232265508,
+     "sweep_thr": 0.3062301339512059,
+     "confirmers": 1.0,
+     "confirm_alt": 7.519943979470013
+    }
+   }
+  },
+  {
+   "mission": 39,
+   "width": 188.0096444929923,
+   "height": 190.39403400386058,
+   "drones": 3,
+   "px50": 7.076564897254001,
+   "fa50": 0.006629262622795368,
+   "systems": {
+    "OpenSwarm default": {
+     "sweep_alt": 5.0,
+     "sweep_thr": 0.7,
+     "confirmers": 0.0,
+     "confirm_alt": 4.0
+    },
+    "hand two-tier": {
+     "sweep_alt": 8.0,
+     "sweep_thr": 0.5,
+     "confirmers": 1.0,
+     "confirm_alt": 4.0
+    },
+    "blind": {
+     "sweep_alt": 4.627182646376292,
+     "sweep_thr": 0.5910828356136109,
+     "confirmers": 1.0,
+     "confirm_alt": 4.313209832113001
+    },
+    "conditioned": {
+     "sweep_alt": 15.653145062914525,
+     "sweep_thr": 0.39906655399183844,
+     "confirmers": 1.0,
+     "confirm_alt": 6.01215162516564
+    },
+    "per-mission tuned": {
+     "sweep_alt": 18.599250003539307,
+     "sweep_thr": 0.3996828637249626,
+     "confirmers": 1.0,
+     "confirm_alt": 7.010993814339674
+    }
+   }
+  }
+ ]
+}

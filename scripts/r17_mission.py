@@ -92,6 +92,7 @@ def report(args: argparse.Namespace) -> None:
                       f"{time.perf_counter() - start:.0f} s", flush=True)  # fmt: skip
     rep = r17.summarise(cells, plans)
     rep["examples"] = r17.example_plans(plans)
+    rep["plans"] = r17.plan_table(plans)
     md = r17.render(rep)
     js = json.dumps(rep, indent=1, default=float)
     args.out.parent.mkdir(parents=True, exist_ok=True)

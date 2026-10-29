@@ -305,14 +305,15 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Report:** docs/directions/drone_swarm.md
 
 ### R17: a leader that plans the person search
-- **Date:** 2026-10-29 (running)
+- **Date:** 2026-10-29
 - **Question:** Does a leader that reads the mission (area, number of drones, how good the scout's detector is) plan OpenSwarm's person search better than one well-tuned plan used for every mission?
 - **Why:** This is ladder step 3, a learned centre that follows the mission. It also answers a practical question for the hardware: what altitude, threshold and confirmation scheme to fly. A 5-minute battery forces a trade: higher sweeps cover more ground but shrink people below what the K210 detector can see, and false alarms send the team to the wrong place unless a drone confirms.
 - **What we did:** A new numba simulator of one sortie: scouts fly lanes, confirmers fly to detections and look again, every drone gets one battery, and a detection curve includes false alarms. Missions are random (60–240 m sides, 3–8 drones, detectors from good to poor). We compare five systems on 40 held-out missions × 2,000 episodes: the OpenSwarm default (sweep at 5 m, the first detection ≥ 0.7 is the find), a hand two-tier plan, one plan ES-tuned for all missions, an ES-trained planner that reads the mission, and per-mission tuning (the room). Bars fixed in advance: per-mission tuning beats the one plan by ≥ 5 points (room), and the planner beats it by ≥ 3 points with CI above 0 (good sign).
-- **Result:** Running (about 1.5 h on the CPU).
-- **Verdict:** Running
-- **What it means:** Pending. The detector numbers are assumed ranges until R15b measures the real curve, which then becomes a held-out test.
-- **Report:** docs/directions/drone_swarm.md
+- **Result:** The planner that reads the mission scores 64.6 points against 46.6 for the one tuned plan: +18.0 ± 6.1 (bar ≥ +3: met). Per-mission tuning reaches 69.1, so the room was +22.6 (bar ≥ +5: met) and the planner captures about 80% of it. All 16 planner runs (63–66) beat all 16 one-plan runs (46–47); the planner wins on 35 of 40 missions, and its worst loss is 4 points. It finds the person in 69% of searches with 2.2% wrong finds, against 54% and 3.6% for the one plan. The OpenSwarm default (first detection ≥ 0.7 is the find) is misled by false alarms: 52% wrong finds. That figure depends on the assumed false-alarm rates. The plans make sense: the planner sweeps between 3 and 17 m (averaged over runs), higher over larger areas and with better detectors, where the one plan always sweeps at 4.6 m; with many false alarms it confirms with more looks at a higher threshold.
+- **Verdict:** GOOD SIGN
+- **What it means:** The leader should plan from the mission, not run one fixed search. The area and the detector both set the best altitude, so the camera choice matters as well as the plan: a detector that sees people at fewer pixels lets the scouts fly higher and cover more ground on one battery. Next (R17 step 2): R15b's measured detection curve as a held-out detector, then candidate camera modules compared by search score, now that the hardware is ours to choose. Before that, a weight and power cost per module.
+- **Report:** docs/results/r17_mission.md
+- **Chart:** r17_mission
 
 ### R16 (G14): a plain-language ground station for OpenSwarm
 - **Date:** 2026-10-29
