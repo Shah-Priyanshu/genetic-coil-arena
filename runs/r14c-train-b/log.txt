@@ -40,3 +40,5 @@
 [progress] run 111: gen 125/1500, val 3.711, best 3.722 at 50, 2959 s
 [progress] run 115: gen 175/1500, val 3.625, best 3.644 at 150, 3667 s
 [progress] run 109: gen 175/1500, val 3.619, best 3.706 at 150, 3706 s
+[progress] run 110: gen 175/1500, val 3.686, best 3.694 at 125, 3766 s
+[progress] run 113: gen 175/1500, val 3.567, best 3.686 at 125, 3801 s
