@@ -40,3 +40,5 @@ C:\Users\priya\AppData\Local\Temp\gca-r15b2-train-sc-a025-ltvk1il_\src\genetic_c
 [17:14:38] [alpha 0.25] epoch 17/20 loss 1.1850 (2136 s)
 [17:16:47] [alpha 0.25] epoch 18/20 loss 1.1790 (2265 s)
 [17:18:55] [alpha 0.25] epoch 19/20 loss 1.1760 (2393 s)
+[17:21:04] [alpha 0.25] epoch 20/20 loss 1.1732 (2522 s)
+[17:21:26] r15b_scratch_a0.25_seed1: {"val_ap50": 0.15070573470053644, "val_centre_ap": 0.36143826751180796, "val_present_auc": 0.9085395027811642, "alpha": 0.25, "params": 117333, "int8_kb": 114.5830078125, "macs": 39350528, "epochs": 20, "train_images": 117649, "seconds": 2539.9862897396088, "size": 224, "condition": "scratch", "seed": 1, "lr": 0.001, "weights": "D:\\Projects\\genetic-coil-arena-data\\r15_models\\r15b_scratch_a0.25_seed1.pt", "onnx": true}
