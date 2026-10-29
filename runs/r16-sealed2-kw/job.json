@@ -1,0 +1,16 @@
+{
+  "id": "r16-sealed2-kw",
+  "commit": "f2d98e6668fcc1d0e6ad626cc4a8abc4e42df11d",
+  "args": [
+    "scripts/r16_ground_station.py",
+    "run",
+    "--translator",
+    "keyword",
+    "--split",
+    "sealed"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 1,
+  "priority": 1,
+  "timeout_min": 20.0
+}

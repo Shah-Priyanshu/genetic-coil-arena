@@ -3,7 +3,7 @@
   "host": "PC",
   "draining_for_update": false,
   "cpu_budget": 24,
-  "cpu_workers_in_use": 20,
+  "cpu_workers_in_use": 24,
   "running": [
     {
       "id": "r14c-train-a",
@@ -22,10 +22,31 @@
       "lane": "gpu",
       "cpu_workers": 4,
       "started_at": "2026-10-29T15:03:36+00:00"
+    },
+    {
+      "id": "r16-dev4-kw",
+      "lane": "cpu",
+      "cpu_workers": 1,
+      "started_at": "2026-10-29T17:51:33+00:00"
+    },
+    {
+      "id": "r16-sealed2-kw",
+      "lane": "cpu",
+      "cpu_workers": 1,
+      "started_at": "2026-10-29T17:51:33+00:00"
+    },
+    {
+      "id": "ci-b6935316ec3b",
+      "lane": "cpu",
+      "cpu_workers": 2,
+      "started_at": "2026-10-29T17:51:33+00:00"
     }
   ],
   "backlog": {
     "ready": [
+      "r16-dev4-e2b",
+      "r16-dev4-e4b",
+      "r16-dev4-q14",
       "r15b2-train-sc-a025",
       "r15b2-train-sc-a05"
     ],
@@ -44,6 +65,37 @@
           "r15b2-train-sc-a05",
           "r15b2-train-ft-a075"
         ]
+      },
+      {
+        "id": "r16-sealed2-e2b",
+        "blocked_by": [
+          "r16-dev4-e2b"
+        ]
+      },
+      {
+        "id": "r16-sealed2-e4b",
+        "blocked_by": [
+          "r16-dev4-e4b"
+        ]
+      },
+      {
+        "id": "r16-sealed2-q14",
+        "blocked_by": [
+          "r16-dev4-q14"
+        ]
+      },
+      {
+        "id": "r16-zz-report",
+        "blocked_by": [
+          "r16-dev4-q14",
+          "r16-dev4-e4b",
+          "r16-dev4-e2b",
+          "r16-dev4-kw",
+          "r16-sealed2-q14",
+          "r16-sealed2-e4b",
+          "r16-sealed2-e2b",
+          "r16-sealed2-kw"
+        ]
       }
     ]
   },
@@ -52,11 +104,11 @@
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-29T17:50:23+00:00",
-  "cpu_percent": 70.1,
+  "updated_at": "2026-10-29T17:51:33+00:00",
+  "cpu_percent": 69.2,
   "gpu": {
-    "util": 97.0,
-    "mem_used_mb": 6949.0,
+    "util": 100.0,
+    "mem_used_mb": 6952.0,
     "mem_total_mb": 12282.0
   }
 }
