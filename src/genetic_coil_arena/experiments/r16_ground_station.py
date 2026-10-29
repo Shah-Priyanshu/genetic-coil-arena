@@ -8,7 +8,7 @@ the state check and the 64-byte ``BEHAVIOR_CMD`` encoding.
 
 ``GroundTranslator`` is the policy translator (parse first, validate after) with these
 steps in front of validation, all fixed on the dev set before any sealed run (v2 after
-the first dev round, v3 after the second):
+the first dev round, v3 after the second, v4 after the third):
 
 - a question beats a refusal when the model gives both, and a "refusal" that asks a
   question is a question (v3; asking is the safe outcome);
@@ -21,6 +21,10 @@ the first dev round, v3 after the second):
   stops a model from inventing a value or clamping an out-of-range one to the limit.
   Numbers that pass take the request's own value (v3, ``ground.snap_literals``: "20 ft"
   is 6.1 m, not the model's 6.08).
+- the placement check (v4, ``ground.misplaced_lengths``): every length the operator
+  stated must set a param of the command, and the param its words name ("3 m spacing"
+  is spacing, never a perimeter radius). Otherwise the station asks. The third dev
+  round's wrong commands were a dropped "six feet apart" and that spacing-as-radius.
 
 v3 also moved ``alt_m`` to the end of the schema and told the model the order (see
 ``ground.swarm_behavior_definition``): under grammar-constrained decoding the second dev
@@ -174,6 +178,12 @@ class GroundTranslator(PolicyTranslator):
             missing = [k for k, v in need.items() if v is None and k not in params]
             if missing:
                 return (CLARIFY, [" ".join(gs.QUESTIONS[k] for k in missing)])
+            misplaced = gs.misplaced_lengths(params, self._text)
+            if misplaced:
+                return (
+                    CLARIFY,
+                    [f"Which setting is that for? ({'; '.join(misplaced)})"],
+                )
             body = {**body, "params": gs.fill_behavior_defaults(params)}
         return super()._decide(json.dumps(body), pack, priority, deadline)
 

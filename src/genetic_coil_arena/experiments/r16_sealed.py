@@ -5,10 +5,10 @@ command (every behaviour, 10 to 13 each), 30 that should be asked about and 30 t
 be refused. A separate agent (Sonnet) wrote it, and the 60-item dev set
 ``data/r16_dev.jsonl``, from ``data/r16_label_guide.md`` alone. It never saw the
 translator's prompt, its few-shot examples or any model output. The prompt, the schema's
-property order and the translator's checks were revised twice, on the dev set only
-(2026-10-29: v2 after the first dev runs, v3 after the second), before any model saw the
-sealed set; the sealed texts were never read while developing. Every gold command passes the ``swarm.behavior`` v1 schema (checked by a
-test).
+property order and the translator's checks were revised three times, on the dev set only
+(2026-10-29: v2 after the first dev runs, v3 after the second, v4 after the third),
+before any model saw the sealed set; the sealed texts were never read while developing.
+Every gold command passes the ``swarm.behavior`` v1 schema (checked by a test).
 
 Its SHA-256 (over the LF-normalised bytes) is pinned here and asserted by a test and by
 ``load_sealed``. **Never tune on it**; use the dev set.

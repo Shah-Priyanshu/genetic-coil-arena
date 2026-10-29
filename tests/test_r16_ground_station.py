@@ -271,3 +271,27 @@ def test_v3_schema_order_question_refusals_and_snapped_literals():
     snapped = gs.snap_literals({"behavior": "hover", "alt_m": 6.096}, "at twenty feet")
     assert snapped["alt_m"] == 6.1
     assert gs.snap_literals({"min_conf": 0.9}, "confidence 0.9") == {"min_conf": 0.9}
+
+
+def test_v4_every_stated_length_sets_the_param_its_words_name():
+    assert gs.with_digits("Everybody line up, six-feet apart.") == (
+        "everybody line up , 6 feet apart ."
+    )
+    assert gs.stated_lengths("perimeter of the barn with 3 m spacing") == [
+        ("3 m", 3.0, ("spacing_m",))
+    ]
+    assert gs.stated_lengths("altitude of twenty ft") == [("20 ft", 6.1, ("alt_m",))]
+    assert gs.stated_lengths("hover at 12 m") == [("12 m", 12.0, ())]
+    moved = {"behavior": "perimeter", "area": "barn", "radius_m": 3}
+    assert gs.misplaced_lengths(moved, "perimeter of the barn with 3 m spacing")
+    dropped = {"behavior": "formation", "shape": "line"}
+    assert gs.misplaced_lengths(dropped, "line up six feet apart")
+    placed = {"behavior": "formation", "shape": "line", "spacing_m": 1.83}
+    assert gs.misplaced_lengths(placed, "line up six feet apart") == []
+    # a length equal to the behaviour's default is placed (the command flies the same)
+    assert gs.misplaced_lengths({"behavior": "search_grid", "area": "field"},
+                                "search the field at 5 m") == []  # fmt: skip
+    res = translate({"params": moved}, text="perimeter of the barn with 3 m spacing")
+    assert res.status == "clarify" and "spacing_m" in res.reason
+    res = translate({"params": placed}, text="line up six feet apart")
+    assert res.status == "ok"

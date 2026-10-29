@@ -428,3 +428,80 @@ def unsupported(params: Mapping[str, Any], text: str,
             if not any(_said(n, norm) for n in names):
                 out.append(f"area={v} was not named by the operator")
     return out
+
+
+# ------------------------------------------------------------------ stated lengths (v4)
+_FEET = ("ft", "feet", "foot")
+_LENGTH = re.compile(
+    r"(?:\b([a-z]+) (?:of )?)?(\d+(?:\.\d+)?) ?(m|meters?|metres?|ft|feet|foot)\b"
+    r"(?: ([a-z]+))?"
+)
+# words that name the param a length sets, before it ("spacing of 3 m", "radius 10 m",
+# "altitude 8 metres") or after it (the same nouns, and "3 m apart", "10 m out", "5 m
+# back", "8 m up")
+ROLE_BEFORE = {
+    "spacing": ("spacing_m",), "spaced": ("spacing_m",), "radius": ("radius_m",),
+    "distance": ("distance_m",), "altitude": ("alt_m",), "height": ("alt_m",),
+}  # fmt: skip
+ROLE_AFTER = {
+    **ROLE_BEFORE,
+    "apart": ("spacing_m",), "between": ("spacing_m",),
+    "out": ("radius_m",), "away": ("radius_m", "distance_m"),
+    "back": ("distance_m",), "behind": ("distance_m",),
+    "up": ("alt_m",), "high": ("alt_m",),
+}  # fmt: skip
+
+
+def with_digits(text: str) -> str:
+    """The request lower-cased, one space between tokens, spoken numbers as digits
+    ("Six feet apart." -> "6 feet apart .")."""
+    out: list[str] = []
+    cur, seen = 0, False
+    tokens = re.findall(r"\d+(?:\.\d+)?|[a-z]+|\S", text.lower().replace("-", " "))
+    for tok in tokens + [""]:
+        if tok in _UNITS:
+            cur, seen = cur + _UNITS[tok], True
+        elif tok in _TENS:
+            cur, seen = cur + _TENS[tok], True
+        elif tok == "hundred":
+            cur, seen = max(cur, 1) * 100, True
+        elif tok in ("a", "and") and seen:
+            continue
+        else:
+            if seen:
+                out.append(str(cur))
+            cur, seen = 0, False
+            out.append(tok)
+    return " ".join(out).strip()
+
+
+def stated_lengths(text: str) -> list[tuple[str, float, tuple[str, ...]]]:
+    """Every length the request states, as (phrase, metres, the params its words name;
+    empty when no word names one)."""
+    out = []
+    for m in _LENGTH.finditer(with_digits(text)):
+        before, num, unit, after = m.groups()
+        metres = round(float(num) * 0.3048, 2) if unit in _FEET else float(num)
+        role = ROLE_AFTER.get(after or "") or ROLE_BEFORE.get(before or "") or ()
+        out.append((f"{num} {unit}", metres, role))
+    return out
+
+
+def misplaced_lengths(params: Mapping[str, Any], text: str) -> list[str]:
+    """v4: every length the operator stated must set a param of the command (after
+    defaults), and the one its words name ("3 m spacing" sets spacing_m, never
+    radius_m). One note per length that does not; empty when all are placed. The mirror
+    of ``unsupported``: that stops invented numbers, this stops dropped or moved ones.
+    """
+    nums = {k: v for k, v in fill_behavior_defaults(params).items()
+            if isinstance(v, (int, float)) and not isinstance(v, bool)}  # fmt: skip
+    out = []
+    for phrase, metres, role in stated_lengths(text):
+        hits = [k for k, v in nums.items() if abs(v - metres) <= _tolerance(metres)]
+        if not hits:
+            out.append(f"{phrase} sets nothing in the command")
+        elif role and not set(hits) & set(role):
+            out.append(
+                f"{phrase} reads as {' or '.join(role)} but set {', '.join(hits)}"
+            )
+    return out
