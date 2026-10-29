@@ -1,0 +1,2 @@
+[15:53:23] Ollama already running at http://localhost:11434
+[15:53:43] ollama:gemma4:e4b: 25/150, 9 correct
