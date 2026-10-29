@@ -170,7 +170,7 @@ class ScriptedSwarm:
 def run_swarm(
     env: SwarmEnv, policy: ScriptedSwarm, seeds: Sequence[int]
 ) -> dict[str, np.ndarray]:
-    """Play one batch to the end; returns ``confirmed`` (B,) and ``steps`` (B,)."""
+    """Play one batch to the end: ``confirmed`` (all found), ``n_found`` and ``steps``."""
     obs = env.reset(seeds)
     policy.reset(seeds)
     info: dict[str, np.ndarray] = {}
@@ -178,4 +178,8 @@ def run_swarm(
         actions, packets = policy.act(obs)
         obs, _, done, info = env.step(actions, packets)
         if done.all():
-            return {"confirmed": info["confirmed"], "steps": info["steps"]}
+            return {
+                "confirmed": info["confirmed"],
+                "n_found": info["n_found"],
+                "steps": info["steps"],
+            }

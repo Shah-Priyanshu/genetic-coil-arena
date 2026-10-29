@@ -61,10 +61,14 @@ def test_moves_radio_and_loss():
 def test_only_gas_drones_smell_and_camera_confirms():
     env = SwarmEnv()
     env.reset([3])
-    env.pos[0, 3] = env.source[0]  # a camera drone over the source
+    env.pos[0, 3] = env.source[0, 0]  # a camera drone over the source
     _, rewards, done, info = env.step(np.zeros((1, 6), dtype=np.int64))
     assert done[0] and info["confirmed"][0] and rewards[0, 0] == 1.0
-    obs = env._observe(np.zeros((1, 6, 6, 4), np.int64), np.zeros((1, 6, 6), bool))
+    obs = env._observe(
+        np.zeros((1, 6, 6, 4), np.int64),
+        np.zeros((1, 6, 6), bool),
+        np.zeros((1, 6), bool),
+    )
     assert (obs.specialists["gas"][0, 3:] == 0).all()
 
 
@@ -112,3 +116,34 @@ def test_report_smoke():
     cells = r14.run_grid(hand, per_rep=4, reps=2)
     md = r14.render(r14.build_report(hand, cells))
     assert "G13:" in md and "| 8 B |" in md
+
+
+def test_multi_codec_round_trip():
+    from genetic_coil_arena.envs.swarm.multi import MultiCodec
+
+    c = MultiCodec(2, 5, 30.0)
+    pos = np.array([[3.0, 29.0], [12.0, 5.0]])
+    p, v, f = c.decode(c.encode(pos, np.array([0.3, 0.0]), np.array([False, True])))
+    assert np.all(np.abs(p - pos) <= c.cell / 2 + 1e-9)
+    assert f.tolist() == [False, True] and abs(v[0] - 0.3) < 0.05 and v[1] == 0.0
+
+
+def test_several_sources_end_only_when_all_are_found():
+    cfg = replace(SwarmConfig(), n_sources=3)
+    env = SwarmEnv(cfg)
+    env.reset([5])
+    assert env.source.shape == (1, 3, 2)
+    env.pos[0, 3] = env.source[0, 0]
+    _, rewards, done, info = env.step(np.zeros((1, 6), dtype=np.int64))
+    assert not done[0] and info["n_found"][0] == 1 and rewards[0, 0] == 1.0
+
+
+def test_multi_probe_smoke():
+    from genetic_coil_arena.experiments import r14_multi_probe as probe
+
+    knobs = {"one_each": True, "camera_radius": 4.5, "exclude": 8.0, "tune_found": 0.0}
+    cells = probe.run(knobs, reps=2, per_rep=3)
+    rep = {"knobs": knobs, "reps": 2, "per_rep": 3, "summary": probe.summarise(cells)}
+    assert "sensed oracle" in probe.render(rep)
+    oracle = cells["K=3|oracle"]
+    assert all(r["found"] > 2.5 for r in oracle)

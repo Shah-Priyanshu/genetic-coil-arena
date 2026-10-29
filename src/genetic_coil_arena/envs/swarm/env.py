@@ -17,8 +17,9 @@ accessories and the positioning sensors, and uses the radio.
   plume concentration: ``exp(-d^2 / (2 plume_sigma^2))`` at distance d from the source,
   present only with probability ``hit_rate`` per step (turbulent plumes are
   intermittent), with multiplicative noise and a floor. A ``camera`` drone sees the
-  source when its true distance is at most ``camera_range``; that confirms it and ends
-  the episode.
+  source when its true distance is at most ``camera_range``; that confirms it. With
+  ``n_sources`` > 1 there are several sources (at least ``source_gap`` apart; the
+  concentration is the maximum over them), and the episode ends when all are confirmed.
 - Radio: each step every drone may broadcast one packet of ``MessageSpec.length`` bytes
   (int64 values in [0, 256)). Each other drone receives it with probability
   ``1 - loss``, in its next observation (``inbox`` and ``inbox_ok``).
@@ -51,7 +52,8 @@ class SwarmConfig:
         speed, dt: Flight speed and step length
         max_steps: Episode length (T)
         pad: Launch pad centre; drones start within ``pad_radius`` of it
-        source_box: The source is uniform in ``[lo, hi]^2``
+        source_box: Each source is uniform in ``[lo, hi]^2``
+        n_sources, source_gap: Number of sources and their minimum separation
         plume_sigma, hit_rate, gas_noise, gas_floor: Plume and gas sensor model
         camera_range: Distance at which a camera confirms the source
         drift: Dead-reckoning random walk per step and axis
@@ -68,6 +70,8 @@ class SwarmConfig:
     pad: tuple[float, float] = (2.0, 2.0)
     pad_radius: float = 1.0
     source_box: tuple[float, float] = (8.0, 28.0)
+    n_sources: int = 1
+    source_gap: float = 8.0
     plume_sigma: float = 3.0
     hit_rate: float = 0.6
     gas_noise: float = 0.2
@@ -116,7 +120,11 @@ class SwarmEnv(MultiAgentEnv):
                 "inbox": ((n, length), np.int64),
                 "inbox_ok": ((n,), bool),
             },
-            centre_obs={"pos": ((n, 2), np.float32), "source": ((2,), np.float32)},
+            centre_obs={
+                "pos": ((n, 2), np.float32),
+                "source": ((c.n_sources, 2), np.float32),
+                "found": ((c.n_sources,), bool),
+            },
             message=c.message,
             max_steps=c.max_steps,
         )
@@ -135,7 +143,8 @@ class SwarmEnv(MultiAgentEnv):
         b, n, t = len(seeds), c.n_drones, c.max_steps
         self._b = b
         self.pos = np.zeros((b, n, 2))
-        self.source = np.zeros((b, 2))
+        k = c.n_sources
+        self.source = np.zeros((b, k, 2))
         self._drift = np.zeros((b, t + 1, n, 2))
         self._hit = np.zeros((b, t + 1, n), dtype=bool)
         self._gnoise = np.zeros((b, t + 1, n))
@@ -148,7 +157,10 @@ class SwarmEnv(MultiAgentEnv):
             self.pos[i] = np.asarray(c.pad) + np.stack(
                 [rad * np.cos(ang), rad * np.sin(ang)], 1
             )
-            self.source[i] = g.uniform(*c.source_box, size=2)
+            src = g.uniform(*c.source_box, size=(k, 2))
+            while k > 1 and _min_gap(src) < c.source_gap:
+                src = g.uniform(*c.source_box, size=(k, 2))
+            self.source[i] = src
             steps = g.normal(0.0, c.drift, size=(t, n, 2))
             self._drift[i, 1:] = np.cumsum(steps, axis=0)
             self._hit[i] = g.random((t + 1, n)) < c.hit_rate
@@ -159,17 +171,22 @@ class SwarmEnv(MultiAgentEnv):
         self.t = np.zeros(b, dtype=np.int64)
         self.done = np.zeros(b, dtype=bool)
         self.confirmed = np.zeros(b, dtype=bool)
+        self.found = np.zeros((b, k), dtype=bool)
         self.steps = np.zeros(b, dtype=np.int64)
         empty = np.zeros((b, n, n, c.message.length), dtype=np.int64)
-        return self._observe(empty, np.zeros((b, n, n), dtype=bool))
+        cam = self._sees().any(axis=2)
+        return self._observe(empty, np.zeros((b, n, n), dtype=bool), cam)
 
     # ------------------------------------------------------------------ dynamics
     def concentration(self, pos: np.ndarray) -> np.ndarray:
         """Mean plume concentration at true positions (B, N, 2) -> (B, N)."""
-        d2 = ((pos - self.source[:, None, :]) ** 2).sum(-1)
-        return np.exp(-d2 / (2 * self.config.plume_sigma**2))
+        d2 = ((pos[:, :, None, :] - self.source[:, None, :, :]) ** 2).sum(-1)
+        return np.exp(-d2 / (2 * self.config.plume_sigma**2)).max(axis=2)
 
-    def _observe(self, inbox: np.ndarray, ok: np.ndarray) -> Observations:
+    def _observe(
+        self, inbox: np.ndarray, ok: np.ndarray, cam: np.ndarray
+    ) -> Observations:
+        """``cam`` (B, N): the camera drone saw a source it had not been found before."""
         c = self.config
         b, n = self.pos.shape[:2]
         rows = np.arange(b)
@@ -181,7 +198,6 @@ class SwarmEnv(MultiAgentEnv):
             self._gnoise[rows, tt]
         )
         gas = np.where(gas_role, np.clip(gas, 0.0, None), 0.0)
-        cam = self._sees()
         diff = self.pos[:, :, None, :] - self.pos[:, None, :, :]
         ranges = np.sqrt((diff**2).sum(-1)) + self._rnoise[rows, tt]
         ranges = np.clip(ranges, 0.0, None) * (1 - np.eye(n))[None]
@@ -200,14 +216,17 @@ class SwarmEnv(MultiAgentEnv):
             centre={
                 "pos": self.pos.astype(np.float32),
                 "source": self.source.astype(np.float32),
+                "found": self.found.copy(),
             },
         )
 
     def _sees(self) -> np.ndarray:
+        """(B, N, K): camera drone n sees not-yet-found source k."""
         c = self.config
-        cam_role = (c.role_index == ROLES.index("camera"))[None, :]
-        d = np.sqrt(((self.pos - self.source[:, None, :]) ** 2).sum(-1))
-        return cam_role & (d <= c.camera_range)
+        cam_role = (c.role_index == ROLES.index("camera"))[None, :, None]
+        diff = self.pos[:, :, None, :] - self.source[:, None, :, :]
+        d = np.sqrt((diff**2).sum(-1))
+        return cam_role & (d <= c.camera_range) & ~self.found[:, None, :]
 
     def step(
         self, actions: np.ndarray, messages: Optional[np.ndarray] = None
@@ -235,11 +254,22 @@ class SwarmEnv(MultiAgentEnv):
             ok = self._deliver[rows, self.t] & ~np.eye(n, dtype=bool)[None]
         # inbox[b, i, j] = what receiver i got from sender j
         inbox = np.where(ok[..., None], sent[:, None, :, :], 0)
-        seen = self._sees().any(axis=1) & live
-        self.confirmed |= seen
+        sees = self._sees() & live[:, None, None]
+        new = sees.any(axis=1)
+        self.found |= new
+        self.confirmed = self.found.all(axis=1)
         self.steps = np.where(live, self.t, self.steps)
-        self.done = self.done | seen | (self.t >= c.max_steps)
-        rewards = np.where(seen[:, None], 1.0, 0.0).repeat(n, 1).astype(np.float32)
-        obs = self._observe(inbox, ok)
-        info = {"confirmed": self.confirmed.copy(), "steps": self.steps.copy()}
+        self.done = self.done | self.confirmed | (self.t >= c.max_steps)
+        rewards = new.sum(axis=1, keepdims=True).repeat(n, 1).astype(np.float32)
+        obs = self._observe(inbox, ok, sees.any(axis=2))
+        info = {
+            "confirmed": self.confirmed.copy(),
+            "n_found": self.found.sum(axis=1),
+            "steps": self.steps.copy(),
+        }
         return StepResult(obs, rewards, self.done.copy(), info)
+
+
+def _min_gap(points: np.ndarray) -> float:
+    d = np.sqrt(((points[:, None, :] - points[None, :, :]) ** 2).sum(-1))
+    return float(d[~np.eye(len(points), dtype=bool)].min())
