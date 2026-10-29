@@ -121,6 +121,11 @@ New packages (the squad-lab stack):
   - all randomness drawn per seed at `reset`.
 
   `HandCodec` packs (position, value) reports into bytes; `ScriptedSwarm` is the hand-designed PSO-style search. `experiments/r14_swarm_talk.py` and `scripts/r14_swarm_talk.py` run the need-to-talk and radio-budget grid.
+- **OpenSwarm brains (the chosen direction since 2026-10-29).**
+  - The user's drone platform lives in `D:\Projects\drone` (OpenSwarm: ESP32-S3 node, K210 vision module, ESP-NOW protocol in `SWARM_PROTOCOL.md`). **Read-only for us.**
+  - R14 step 2 (`envs/swarm/brains.py`, `experiments/r14_brains.py`) trains per-role swarm brains.
+  - R15 (`experiments/r15_scout_brain.py`, `scripts/r15_scout_brain.py` with `prepare`/`train`/`report`) trains the K210-sized person detector on COCO.
+  - **Datasets live on D: next to the repo:** `D:\Projects\genetic-coil-arena-data` (COCO zips in `coco/`, prepared arrays in `coco_person160/`, trained models in `r15_models/`). Never on C:, never in git.
 - **Channels (`channels/`).** `latent`: learned projectors from sender hidden states to receiver soft prompts. R9 found them not worth it (see the records experiment). Domain-agnostic.
 - **Records experiment (`experiments/records.py`, `latent_vs_json.py`).** R9: invoice-like snippets, extractor A then normalizer B with JSON, latent (k=1/4/16), KV-prefix and single-model conditions; `scripts/r9_latent_vs_json.py` writes `docs/results/r9_latent_vs_json.{md,json}`, `scripts/r9_state_probe.py` probes what the sent states carry. Verdict: JSON stays the default; KV handoff only as a same-host fast path.
 - **Lazy top level.** `genetic_coil_arena/__init__.py` resolves `Config`, `EvolutionArena`, `SnakeGame` and `SnakeAgent` on first access, so importing `protocol`, `runtime`, `evaluation` or `learning` never loads `snake_core` or numba (a subprocess test checks it). Keep it that way.

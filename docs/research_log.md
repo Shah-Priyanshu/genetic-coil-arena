@@ -261,3 +261,22 @@ The user's long-term target: heterogeneous drones, each with two ESP32s, a gyro 
 - **Verdict:** Running
 - **What it means:** Pending.
 - **Report:** docs/directions/drone_swarm.md
+
+## Track: OpenSwarm brains (the chosen direction, 2026-10-29)
+
+The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodiment of the ecosystem. Its hardware: an ESP32-S3 flight controller, a K210 vision module, UWB ranging, optical flow and GPS. Its protocol: a LEADER sends `BEHAVIOR_CMD`s and SCOUTs send `DETECTION` packets over ESP-NOW. This track builds the specialist brains it needs and tests them in simulation before hardware.
+
+**Why this direction:**
+- It is where the user wants the work to go, with real hardware and a deadline (31 Dec 2026).
+- Its design matches what held up here: typed messages, a coordinating leader, specialist roles and a plain-language front end.
+- Dropped: incident triage (no real data), more snake-squad work (done its job), learned compression (ESP-NOW has room) and LLM specialists (lost to small trained models).
+
+### R15: the scout brain (person detector for the K210)
+- **Date:** 2026-10-29 (running)
+- **Question:** How well can a person detector small enough for OpenSwarm's K210 module find people, and how does accuracy trade against size and compute?
+- **Why:** The SCOUT role's DETECTION packet needs a person's centre and confidence. That brain must fit the K210 (a few MB of memory, int8).
+- **What we did:** COCO 2017 persons, letterboxed to 160×160. A MobileNet-style CenterNet detector at widths 0.25, 0.5 and 0.75, using only K210-friendly layers. Trained on train2017 (118k images) on the GPU and scored on the 5,000 val2017 images: AP50, AP50 for persons at least 32 px tall, and person-present AUC. Exported to ONNX for the K210 toolchain.
+- **Result:** Running.
+- **Verdict:** Running
+- **What it means:** Pending.
+- **Report:** docs/directions/drone_swarm.md
