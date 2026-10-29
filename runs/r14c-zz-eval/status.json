@@ -12,12 +12,14 @@
     "--out",
     "docs/results/r14_robust.md"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-29T18:13:18+00:00",
-  "updated_at": "2026-10-29T18:43:49+00:00",
-  "elapsed_min": 30.5,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 98 %, 6946 MiB, 12282 MiB, 70",
+  "updated_at": "2026-10-29T18:48:49+00:00",
+  "elapsed_min": 35.5,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 99 %, 6946 MiB, 12282 MiB, 71",
   "host": "PC",
   "lane": "cpu",
-  "cpu_workers": 8
+  "cpu_workers": 8,
+  "returncode": 0,
+  "finished_at": "2026-10-29T18:48:49+00:00"
 }
