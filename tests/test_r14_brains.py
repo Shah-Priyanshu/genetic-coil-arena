@@ -1,6 +1,6 @@
 """R14 step 2: learned swarm brains (population batching, training and evaluation smoke)."""
 
-from dataclasses import replace
+from dataclasses import asdict, replace
 
 import numpy as np
 
@@ -97,3 +97,18 @@ def test_robust_verdicts_on_made_up_cells():
     rep = rr.summarise(cells, sets)
     assert rep["robust"] == {"pass": False, "fails": ["loss 70%"]}
     assert rep["randomised"]["pass"]  # +6 points under stress, -1 at nominal
+
+
+def test_int8_brains_play_and_export_a_c_header():
+    from genetic_coil_arena.experiments import r14_int8 as ri
+
+    settings = rb.BrainSettings()
+    _, pol = rb.make_policy(settings, 3)
+    theta = np.random.default_rng(0).normal(0, 0.3, pol.gas_net.n_params * 2)
+    run = {"run": 7, "theta": theta, "best_val": 1.5, "settings": asdict(settings)}
+    key, f = ri.play((("nominal", "s", 7, False), "nominal", run, False, 1, 4))
+    _, q = ri.play((("nominal", "s", 7, True), "nominal", run, True, 1, 4))
+    assert len(f) == len(q) == 1 and 0 <= q[0] <= 1
+    header = ri.c_header(run, settings.hidden)
+    assert "static const int8_t gas_w0[15][16]" in header
+    assert "static const int8_t cam_w1[16][1]" in header and "#pragma once" in header
