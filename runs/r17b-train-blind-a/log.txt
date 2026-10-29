@@ -246,3 +246,8 @@
 [done] run 5: best val 0.164 at generation 2050, 6063 s
 [progress] blind run 7: gen 3000/3000, val 0.156, best 0.166 at 1750, 6075 s
 [done] run 7: best val 0.166 at generation 1750, 6075 s
+[progress] blind run 6: gen 3000/3000, val 0.146, best 0.165 at 2950, 6116 s
+[done] run 6: best val 0.165 at generation 2950, 6116 s
+[progress] blind run 0: gen 3000/3000, val 0.155, best 0.165 at 1700, 6127 s
+[done] run 0: best val 0.165 at generation 1700, 6127 s
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-train-blind-a\artifacts\r17b_planner_blind_run0

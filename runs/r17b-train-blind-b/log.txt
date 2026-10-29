@@ -242,3 +242,11 @@
 [done] run 10: best val 0.167 at generation 3000, 6040 s
 [progress] blind run 12: gen 3000/3000, val 0.141, best 0.172 at 2950, 6076 s
 [done] run 12: best val 0.172 at generation 2950, 6076 s
+[progress] blind run 14: gen 3000/3000, val 0.159, best 0.167 at 1900, 6115 s
+[done] run 14: best val 0.167 at generation 1900, 6115 s
+[progress] blind run 15: gen 3000/3000, val 0.156, best 0.175 at 1700, 6116 s
+[done] run 15: best val 0.175 at generation 1700, 6116 s
+[progress] blind run 9: gen 3000/3000, val 0.161, best 0.171 at 2600, 6131 s
+[done] run 9: best val 0.171 at generation 2600, 6131 s
+[progress] blind run 13: gen 3000/3000, val 0.159, best 0.167 at 1450, 6145 s
+[done] run 13: best val 0.167 at generation 1450, 6145 s
