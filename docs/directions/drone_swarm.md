@@ -86,6 +86,19 @@ With 3 sources, coordination becomes the bottleneck:
 
 The radio still does not bind (2 B = 8 B). This is the first good sign for *learned coordination* in the swarm; whether a learned policy closes the 31-point gap is the next (CPU-heavy) test.
 
+## Step 2 result: learned per-role brains (`docs/results/r14_brains.md`)
+
+**Good sign.** One small network per role (gas, camera), trained with evolution strategies on 3 leaks, decides where each drone heads; the radio and memory stay the hand design's.
+
+| Leaks | Hand design | Learned brains (16 runs) | Sensed oracle |
+|---|---|---|---|
+| 1 | 96.6% | 97.0% | 98.6% |
+| 2 | 85.4% | 91.3% | 96.9% |
+| 3 (trained) | 62.5% | 78.3% (+15.9) | 93.2% |
+| 4 | 33.6% | 58.0% (+24.4) | 87.9% |
+
+The brains close half the coordination gap at 3 leaks and gain most on 4 leaks, which they never saw. Step 3 (running, `r14c-*`): the same brains under worse radio, more drift, weaker sensors, other plume widths, drones going down, fewer drones and a larger arena, with neither side retuned. A second set is trained on randomised conditions to see if that buys robustness (bars in `experiments/r14_robust.py`).
+
 ## Step 1 pilot (before pre-registration; 400 episodes per condition, seeds outside the experiment)
 
 The pilot set the design and already points to an answer:

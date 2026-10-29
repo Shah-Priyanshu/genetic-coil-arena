@@ -253,14 +253,15 @@ The user's long-term target: heterogeneous drones, each with two ESP32s, a gyro 
 - **Chart:** multi_probe
 
 ### R14 step 2: learned per-role brains for the swarm
-- **Date:** 2026-10-29 (running)
+- **Date:** 2026-10-29
 - **Question:** Can small learned "brains", one for gas drones and one for camera drones, coordinate 3-leak searches better than the tuned hand design?
 - **Why:** The probe left a 31-point gap that only better coordination can close. These brains are the first step towards a specialised brain per drone type.
-- **What we did:** Kept the hand design's radio and memory; each drone scores its candidate destinations (explore, a known hotspot, its own best reading) with its role's network. Trained with evolution strategies on 3 leaks (16 runs × 1,500 generations), tested on the probe's 3,000 episodes with 1–4 leaks. Good sign if all-found beats the hand design by ≥ 10 points.
-- **Result:** Running (about 3.5 hours); then evaluated against the hand design and the coordination bound.
-- **Verdict:** Running
-- **What it means:** Pending.
-- **Report:** docs/directions/drone_swarm.md
+- **What we did:** Kept the hand design's radio and memory; each drone scores its candidate destinations (explore, a known hotspot, its own best reading) with its role's network (about 270 weights each). Trained with evolution strategies on 3 leaks (16 runs × 1,500 generations, 7.3 h each), tested on the probe's 3,000 episodes with 1–4 leaks. Good sign, fixed in advance: all three found at least 10 points more often than the hand design, CI above 0.
+- **Result:** All three leaks found in 78.3% of episodes, against 62.5% for the hand design and 93.2% for the coordination bound: +15.9 points (± 0.5 over the 16 runs; even the worst run reaches 76.1%). The brains close half the gap. With 4 leaks, which they never trained on, the gain grows to +24.4 points (58.0% vs 33.6%); with 2 leaks +5.9; with 1 leak they match the hand design (97.0% vs 96.6%). Most runs reached their best validation score within a few hundred generations.
+- **Verdict:** GOOD SIGN
+- **What it means:** Learned per-role coordination beats a tuned hand design by a wide margin, and the gain grows as the mission gets harder. The brains are tiny (two 15-16-1 networks), so they would run on an ESP32-S3 with room to spare. Before this counts for hardware, step 3 tests whether the gain survives worse radio, drift, weaker sensors and drones going down, and whether training on randomised conditions makes it hold.
+- **Report:** docs/results/r14_brains.md
+- **Chart:** r14_brains
 
 ## Track: OpenSwarm brains (the chosen direction, 2026-10-29)
 

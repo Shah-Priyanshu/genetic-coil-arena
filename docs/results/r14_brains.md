@@ -1,0 +1,35 @@
+# R14 step 2: learned per-role brains coordinate the swarm
+
+**GOOD SIGN.** At 3 sources the learned brains find all leaks +15.9 ± 0.5 points more often than the tuned hand design (bar: ≥ +10 with the CI above 0); 16 training runs, each evaluated on the probe's 3,000 test episodes.
+
+| Sources | Learned brains (mean ± CI over runs) | Hand design | Sensed oracle | Silent |
+|---|---|---|---|---|
+| 1 | 0.97 found, 97.0 ± 0.1% all | 0.97 found, 96.6% all | 0.99 found, 98.6% all | 0.70 found, 70.4% all |
+| 2 | 1.91 found, 91.3 ± 0.2% all | 1.85 found, 85.4% all | 1.97 found, 96.9% all | 1.42 found, 48.3% all |
+| 3 | 2.78 found, 78.3 ± 0.5% all | 2.60 found, 62.5% all | 2.93 found, 93.2% all | 2.07 found, 30.8% all |
+| 4 | 3.53 found, 58.0 ± 1.1% all | 3.18 found, 33.6% all | 3.88 found, 87.9% all | 2.66 found, 16.6% all |
+
+Trained on 3 sources only; 1, 2 and 4 test generalisation to other mission sizes.
+
+| Run | Best validation (found + all) | at generation | Training time |
+|---|---|---|---|
+| 0 | 3.717 | 325 | 7.3 h |
+| 1 | 3.750 | 25 | 7.3 h |
+| 2 | 3.708 | 1050 | 7.4 h |
+| 3 | 3.800 | 75 | 7.4 h |
+| 4 | 3.650 | 975 | 7.3 h |
+| 5 | 3.717 | 1500 | 7.3 h |
+| 6 | 3.775 | 525 | 7.2 h |
+| 7 | 3.767 | 1000 | 7.3 h |
+| 8 | 3.750 | 925 | 7.3 h |
+| 9 | 3.683 | 950 | 7.3 h |
+| 10 | 3.717 | 1325 | 7.3 h |
+| 11 | 3.767 | 500 | 7.3 h |
+| 12 | 3.700 | 1150 | 7.3 h |
+| 13 | 3.508 | 1500 | 7.4 h |
+| 14 | 3.700 | 1275 | 7.3 h |
+| 15 | 3.733 | 1425 | 7.4 h |
+
+Settings: `{"generations": 1500, "population": 64, "episodes": 16, "sigma": 0.1, "lr": 0.03, "weight_decay": 0.001, "hidden": 16, "eval_every": 25, "val_episodes": 120, "k": 3, "progress_s": 600.0}`; hand knobs `{"one_each": false, "camera_radius": 4.5, "exclude": 8.0}`.
+
+Reproduce: `python scripts/r14_brains.py train --runs 0:8` then `python scripts/r14_brains.py eval --from runs:r14b-train-*`.

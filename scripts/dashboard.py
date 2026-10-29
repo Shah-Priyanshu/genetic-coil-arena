@@ -205,6 +205,10 @@ HOW_TO_READ = {
     "multi_probe": "Leaks found within 2 minutes (out of 1 or 3). The gap between "
     "'hand 2B' and 'sensed oracle' is what better coordination could still win. It is "
     "small with 1 leak and large with 3.",
+    "r14_brains": "Share of episodes where every leak is found within 2 minutes, by "
+    "number of leaks (the brains trained on 3 only). Learned brains sit between the "
+    "hand design and the sensed oracle (the coordination bound); with 3 leaks they close "
+    "half the gap, and with 4 leaks, which they never saw, they gain the most.",
     "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
     "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
     "translation through the shared meanings could do.",
@@ -319,6 +323,24 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
             pd.DataFrame(pts), x="system", y="found", error_y="ci", color="leaks",
             barmode="group", hover_data=["all found"],
             title="Probe: leaks found in 2 min, one leak vs three",
+        )  # fmt: skip
+    brains = read_json(res / "r14_brains.json")
+    if brains:
+        names = {"silent": "silent", "hand 2B": "hand design",
+                 "sensed oracle": "sensed oracle"}  # fmt: skip
+        pts = []
+        for k, r in brains["by_k"].items():
+            pts.append({"leaks": str(k), "system": "learned brains",
+                        "all found (%)": 100 * r["learned"]["all"][0],
+                        "ci": 100 * r["learned"]["all"][1]})  # fmt: skip
+            for key, name in names.items():
+                pts.append({"leaks": str(k), "system": name,
+                            "all found (%)": 100 * r["refs"][key]["all"], "ci": 0.0})  # fmt: skip
+        order = ["silent", "hand design", "learned brains", "sensed oracle"]
+        figs["r14_brains"] = px.bar(
+            pd.DataFrame(pts), x="leaks", y="all found (%)", error_y="ci",
+            color="system", barmode="group", category_orders={"system": order},
+            title="R14 step 2: learned per-role brains vs the hand design",
         )  # fmt: skip
     inter = read_json(res / "r7e_interlingua.json")
     if inter:
