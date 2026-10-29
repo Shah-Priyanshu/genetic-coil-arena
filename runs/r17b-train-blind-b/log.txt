@@ -252,3 +252,13 @@
 [done] run 13: best val 0.167 at generation 1450, 6145 s
 [progress] blind run 11: gen 3000/3000, val 0.149, best 0.160 at 2000, 6161 s
 [done] run 11: best val 0.160 at generation 2000, 6161 s
+[progress] blind run 8: gen 3000/3000, val 0.167, best 0.167 at 3000, 6177 s
+[done] run 8: best val 0.167 at generation 3000, 6177 s
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-train-blind-b\artifacts\r17b_planner_blind_run8
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-train-blind-b\artifacts\r17b_planner_blind_run9
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-train-blind-b\artifacts\r17b_planner_blind_run10
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-train-blind-b\artifacts\r17b_planner_blind_run11
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-train-blind-b\artifacts\r17b_planner_blind_run12
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-train-blind-b\artifacts\r17b_planner_blind_run13
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-train-blind-b\artifacts\r17b_planner_blind_run14
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-train-blind-b\artifacts\r17b_planner_blind_run15
