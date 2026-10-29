@@ -1,0 +1,25 @@
+{
+  "id": "r17-zz-report",
+  "commit": "4b26057e82e36360ad7e35c761c1ffcad4f52d07",
+  "args": [
+    "scripts/r17_mission.py",
+    "report",
+    "--from",
+    "runs:r17-train-*",
+    "runs:r17-oracle",
+    "--workers",
+    "8",
+    "--out",
+    "docs/results/r17_mission.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "after": [
+    "r17-train-blind-a",
+    "r17-train-cond-a",
+    "r17-train-blind-b",
+    "r17-train-cond-b",
+    "r17-oracle"
+  ],
+  "timeout_min": 60.0
+}

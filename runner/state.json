@@ -6,16 +6,16 @@
   "cpu_workers_in_use": 12,
   "running": [
     {
-      "id": "r17-train-cond-b",
-      "lane": "cpu",
-      "cpu_workers": 8,
-      "started_at": "2026-10-29T19:44:44+00:00"
-    },
-    {
       "id": "r15b2-train-sc-a025",
       "lane": "gpu",
       "cpu_workers": 4,
       "started_at": "2026-10-29T19:56:52+00:00"
+    },
+    {
+      "id": "r17-zz-report",
+      "lane": "cpu",
+      "cpu_workers": 8,
+      "started_at": "2026-10-29T20:57:17+00:00"
     }
   ],
   "backlog": {
@@ -61,25 +61,19 @@
           "r16b-sealed-e4b",
           "r16b-sealed-e2b"
         ]
-      },
-      {
-        "id": "r17-zz-report",
-        "blocked_by": [
-          "r17-train-cond-b"
-        ]
       }
     ]
   },
   "idle_since": {
-    "cpu": null,
+    "cpu": "2026-10-29T20:57:09+00:00",
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-29T20:56:17+00:00",
-  "cpu_percent": 30.7,
+  "updated_at": "2026-10-29T20:57:17+00:00",
+  "cpu_percent": 13.5,
   "gpu": {
     "util": 96.0,
-    "mem_used_mb": 3218.0,
+    "mem_used_mb": 3215.0,
     "mem_total_mb": 12282.0
   }
 }
