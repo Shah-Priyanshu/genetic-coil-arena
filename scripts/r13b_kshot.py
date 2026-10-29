@@ -28,6 +28,7 @@ def main() -> None:
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("--team-from", required=True)
     p.add_argument("--cache-dir", default=None)
+    p.add_argument("--split", choices=probe.SPLITS, default="random")
     p.add_argument("--out", type=Path, default=Path("docs/results/r13b_kshot.md"))
     args = p.parse_args()
     cache = Path(args.cache_dir) if args.cache_dir else None
@@ -49,11 +50,10 @@ def main() -> None:
         raise SystemExit("the frozen model changed")
     systems = {}
     for i, system in enumerate(sorted({r["system"] for r in rows})):
-        systems[system] = probe.run_system(
-            [r for r in rows if r["system"] == system], i
-        )
+        part = [r for r in rows if r["system"] == system]
+        systems[system] = probe.run_system(part, i, args.split)
         print(f"[r13b] {system} done", flush=True)
-    rep = {"systems": systems, "model_sha256": digest}
+    rep = {"systems": systems, "model_sha256": digest, "split": args.split}
     md = probe.render(rep)
     js = json.dumps(
         rep, indent=1, default=lambda o: o.tolist() if hasattr(o, "tolist") else str(o)

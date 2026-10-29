@@ -13,7 +13,11 @@ Exploratory probe (not a pre-registered goal). RE1 (375 incidents, metrics only)
 - **Train Ticket:** 32.0% frozen → 49.5% at k = 20 → 54.0% at k = 40 (BARO 23.8%).
 - **Five labels can hurt.** At k = 5 the adapter is below the frozen model on Sock Shop (47.1 against 55.2): the L2 pull was fixed in advance, not tuned for tiny k.
 - **The specialist as a prior adds little once there are labels.** A model trained from zero on the same k incidents is within about 1 point of the adapter from k = 10 on. What carries over is the *feature design* (metric kinds, never names), not the fitted weights.
-- **Caveat: optimistic splits.** RE1 repeats each (service, fault) combination over repetitions, so random splits put near-duplicates of test incidents in training. A split by repetition (label the first round, test on later ones) would be the honest next check.
+- **Stricter splits confirm the gain.** RE1 repeats each (service, fault) combination over 5 repetitions, so the random split above is optimistic. Two stricter splits were run locally the same day with the same code (`--split`):
+  - **By repetition** (`r13b_kshot_rep.md`): k labels from repetition 1 only, tested on repetitions 2–5. Online Boutique goes 52.0 → 86.4 at k = 20; Sock Shop 56.0 → 68.3; Train Ticket 32.0 → 57.1.
+  - **By service** (`r13b_kshot_service.md`): two root services held out, k labels from the other three, 30 draws. Online Boutique goes 54.3 → 78.5 at k = 20 and → 86.1 at k = 40; Train Ticket 31.3 → 49.3; Sock Shop 58.3 → 58.9 (k = 20) and → 61.9 (k = 40).
+
+  So the labels help even for services never labelled. Sock Shop gains least when its services are disjoint.
 
 **For the real-data direction:** the deployable recipe is "typed metric reports with kind-based features, plus about 20 labelled incidents per new system". Once the target system has labels, a big pretrained specialist matters little.
 <!-- analysis:end -->

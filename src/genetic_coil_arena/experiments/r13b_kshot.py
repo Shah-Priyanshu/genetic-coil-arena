@@ -55,6 +55,8 @@ def incident_row(model: Any, inc: Any) -> dict[str, Any]:
         "y": FAULT_TYPES.index(inc.fault_type),
         "baro_top_ok": ranking[0] == inc.root_service,
         "baro_fault_ok": b_fault == inc.fault_type,
+        "rep": int(inc.rep),
+        "service": inc.root_service,
     }
 
 
@@ -91,7 +93,36 @@ def predict(w: np.ndarray, x: np.ndarray) -> np.ndarray:
     return (_features(x) @ w).argmax(axis=1)
 
 
-def run_system(rows: Sequence[dict], seed: int = 0) -> dict[str, Any]:
+SPLITS = ("random", "rep", "service")
+
+
+def draw(
+    rows: Sequence[dict], k: int, split: str, rng: np.random.Generator
+) -> tuple[np.ndarray, np.ndarray]:
+    """(train, test) indices. ``random``: k of all, the rest test. ``rep``: k of the
+    first repetition, repetitions 2+ test. ``service``: two root services held out for
+    the test, k drawn from the others."""
+    idx = np.arange(len(rows))
+    test = None
+    if split == "random":
+        pool = idx
+    elif split == "rep":
+        first = np.array([r["rep"] == 1 for r in rows])
+        pool, test = idx[first], idx[~first]
+    elif split == "service":
+        services = sorted({r["service"] for r in rows})
+        held = set(rng.choice(services, size=2, replace=False))
+        out = np.array([r["service"] in held for r in rows])
+        pool, test = idx[~out], idx[out]
+    else:
+        raise ValueError(f"unknown split {split!r}")
+    train = rng.choice(pool, size=min(k, len(pool)), replace=False) if k else idx[:0]
+    return train, np.setdiff1d(idx, train) if test is None else test
+
+
+def run_system(
+    rows: Sequence[dict], seed: int = 0, split: str = "random"
+) -> dict[str, Any]:
     x = np.stack([r["x"] for r in rows])
     y = np.array([r["y"] for r in rows])
     top_ok = np.array([r["baro_top_ok"] for r in rows])
@@ -103,11 +134,8 @@ def run_system(rows: Sequence[dict], seed: int = 0) -> dict[str, Any]:
         acc: dict[str, list[float]] = {m: [] for m in (
             "adapted_fault", "adapted_joint", "scratch_fault", "scratch_joint",
             "frozen_joint", "baro_joint")}  # fmt: skip
-        for _ in range(N_DRAWS if k else 1):
-            train = (
-                rng.choice(len(rows), size=k, replace=False) if k else np.zeros(0, int)
-            )
-            test = np.setdiff1d(np.arange(len(rows)), train)
+        for _ in range(N_DRAWS if k or split == "service" else 1):
+            train, test = draw(rows, k, split, rng)
             wa = fit_adapter(x[train], y[train], w_prior)
             ws = fit_adapter(x[train], y[train], np.zeros_like(w_prior))
             for name, w in (("adapted", wa), ("scratch", ws)):
@@ -127,6 +155,7 @@ def render(rep: dict[str, Any]) -> str:
     lines = [
         "# R13b probe: how many labelled incidents does the fault specialist need on a new system?",
         "",
+        f"Split: `{rep.get('split', 'random')}`. "
         "Exploratory probe (not a pre-registered goal). RE1 (375 incidents, metrics only). "
         "The frozen G4c fault specialist plus a softmax adapter fitted on k labelled "
         "incidents of the target system (L2 towards the frozen model), tested on the rest. "
