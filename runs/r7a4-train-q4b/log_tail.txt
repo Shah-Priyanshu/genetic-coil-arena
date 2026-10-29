@@ -1,16 +1,3 @@
-[21:03:37] q4b-r32-n12k-p80: 12000 training records (8086 paraphrases, 480 retries)
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-D:\venvs\gca\Lib\site-packages\huggingface_hub\file_download.py:149: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in D:\hf_cache\hub\models--Qwen--Qwen3-4B. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
-To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
-  warnings.warn(message)
-D:\venvs\gca\Lib\site-packages\huggingface_hub\file_download.py:149: UserWarning: `huggingface_hub` cache-system uses symlinks by default to efficiently store duplicated files but your machine does not support them in D:\hf_cache\hub. Caching files will still work but in a degraded version that might require more space on your disk. This warning can be disabled by setting the `HF_HUB_DISABLE_SYMLINKS_WARNING` environment variable. For more details, see https://huggingface.co/docs/huggingface_hub/how-to-cache#limitations.
-To support symlinks on Windows, you either need to activate Developer Mode or to run Python as an administrator. In order to activate developer mode, see this article: https://docs.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
-  warnings.warn(message)
-W1028 21:03:44.871000 18340 Lib\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
-
-Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]
-Fetching 3 files:  33%|███▎      | 1/3 [00:07<00:14,  7.26s/it]
-Fetching 3 files:  67%|██████▋   | 2/3 [03:37<02:06, 126.55s/it]
 Fetching 3 files: 100%|██████████| 3/3 [03:38<00:00, 69.16s/it] 
 Fetching 3 files: 100%|██████████| 3/3 [03:38<00:00, 72.72s/it]
 
@@ -189,3 +176,25 @@ Loading weights: 100%|██████████| 398/398 [00:05<00:00, 70.0
 [21:38:34] [q4b-r32-n12k-p80] step 3300/4500 loss 0.0002 (1863s)
 [21:38:48] [q4b-r32-n12k-p80] step 3325/4500 loss 0.0016 (1877s)
 [21:39:01] [q4b-r32-n12k-p80] step 3350/4500 loss 0.0027 (1891s)
+[21:39:16] [q4b-r32-n12k-p80] step 3375/4500 loss 0.0003 (1905s)
+[21:39:29] [q4b-r32-n12k-p80] step 3400/4500 loss 0.0016 (1918s)
+[21:39:42] [q4b-r32-n12k-p80] step 3425/4500 loss 0.0004 (1931s)
+[21:39:55] [q4b-r32-n12k-p80] step 3450/4500 loss 0.0011 (1944s)
+[21:40:09] [q4b-r32-n12k-p80] step 3475/4500 loss 0.0002 (1958s)
+[21:40:23] [q4b-r32-n12k-p80] step 3500/4500 loss 0.0002 (1972s)
+[21:40:37] [q4b-r32-n12k-p80] step 3525/4500 loss 0.0002 (1986s)
+[21:40:50] [q4b-r32-n12k-p80] step 3550/4500 loss 0.0011 (1999s)
+[21:41:03] [q4b-r32-n12k-p80] step 3575/4500 loss 0.0011 (2012s)
+[21:41:16] [q4b-r32-n12k-p80] step 3600/4500 loss 0.0041 (2025s)
+[21:41:31] [q4b-r32-n12k-p80] step 3625/4500 loss 0.0002 (2040s)
+[21:41:45] [q4b-r32-n12k-p80] step 3650/4500 loss 0.0006 (2054s)
+[21:41:59] [q4b-r32-n12k-p80] step 3675/4500 loss 0.0005 (2068s)
+[21:42:13] [q4b-r32-n12k-p80] step 3700/4500 loss 0.0005 (2082s)
+[21:42:28] [q4b-r32-n12k-p80] step 3725/4500 loss 0.0003 (2097s)
+[21:42:40] [q4b-r32-n12k-p80] step 3750/4500 loss 0.0003 (2109s)
+[21:42:54] [q4b-r32-n12k-p80] step 3775/4500 loss 0.0002 (2123s)
+[21:43:08] [q4b-r32-n12k-p80] step 3800/4500 loss 0.0000 (2137s)
+[21:43:21] [q4b-r32-n12k-p80] step 3825/4500 loss 0.0001 (2150s)
+[21:43:35] [q4b-r32-n12k-p80] step 3850/4500 loss 0.0001 (2165s)
+[21:43:49] [q4b-r32-n12k-p80] step 3875/4500 loss 0.0011 (2178s)
+[21:44:03] [q4b-r32-n12k-p80] step 3900/4500 loss 0.0001 (2193s)
