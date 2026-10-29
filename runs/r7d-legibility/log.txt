@@ -23,3 +23,4 @@
 [g12] centre-goal run 5: eaters exact 0.870, efficacy 0.91 (22/84, 112 s)
 [g12] centre-goal run 6: eaters exact 0.870, efficacy 0.50 (23/84, 112 s)
 [g12] centre-goal run 7: eaters exact 0.950, efficacy 0.67 (24/84, 118 s)
+[g12] hand-goal run 0: eaters exact 1.000, efficacy 0.97 (25/84, 129 s)

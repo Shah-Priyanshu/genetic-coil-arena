@@ -1,0 +1,33 @@
+{
+  "id": "r7a4-train-q4b",
+  "commit": "3795da3c01b1abfe1f56020a25e188d8c378d8dc",
+  "queued_args": [
+    "scripts/r7a_step2.py",
+    "--base",
+    "Qwen/Qwen3-4B",
+    "--online",
+    "train",
+    "--pool",
+    "runs:r7a3-para-verify",
+    "--rank",
+    "32",
+    "--n",
+    "12000",
+    "--epochs",
+    "3",
+    "--batch",
+    "8",
+    "--paraphrase-share",
+    "0.8",
+    "--name",
+    "q4b-r32-n12k-p80"
+  ],
+  "state": "running",
+  "started_at": "2026-10-29T01:03:35+00:00",
+  "updated_at": "2026-10-29T01:03:35+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 813 MiB, 12282 MiB, 36",
+  "host": "PC",
+  "lane": "gpu",
+  "cpu_workers": 4
+}
