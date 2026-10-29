@@ -1,0 +1,16 @@
+{
+  "id": "r14c-train-b",
+  "commit": "a541e5bd55ce2e0e4eb3f94a8b3328ab03788e1e",
+  "args": [
+    "scripts/r14_brains.py",
+    "train",
+    "--runs",
+    "108:116",
+    "--workers",
+    "8",
+    "--randomise"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "timeout_min": 720.0
+}

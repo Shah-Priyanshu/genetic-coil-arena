@@ -1,0 +1,17 @@
+{
+  "id": "r14c-robust-step2",
+  "commit": "a541e5bd55ce2e0e4eb3f94a8b3328ab03788e1e",
+  "args": [
+    "scripts/r14_robust.py",
+    "--set",
+    "step2=runs:r14b-train-*",
+    "--workers",
+    "8",
+    "--out",
+    "docs/results/r14_robust_step2.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "priority": 1,
+  "timeout_min": 120.0
+}
