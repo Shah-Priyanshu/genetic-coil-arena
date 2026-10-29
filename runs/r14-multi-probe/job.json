@@ -1,0 +1,12 @@
+{
+  "id": "r14-multi-probe",
+  "commit": "6ecd41b2e1b384d3ea83571bdcdf0e1f1e0994ca",
+  "args": [
+    "scripts/r14_multi_probe.py",
+    "--out",
+    "docs/results/r14_multi_probe.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 2,
+  "timeout_min": 120.0
+}

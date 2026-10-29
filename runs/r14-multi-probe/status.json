@@ -1,0 +1,17 @@
+{
+  "id": "r14-multi-probe",
+  "commit": "6ecd41b2e1b384d3ea83571bdcdf0e1f1e0994ca",
+  "queued_args": [
+    "scripts/r14_multi_probe.py",
+    "--out",
+    "docs/results/r14_multi_probe.md"
+  ],
+  "state": "running",
+  "started_at": "2026-10-29T02:03:19+00:00",
+  "updated_at": "2026-10-29T02:03:19+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 49 %, 8629 MiB, 12282 MiB, 52",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 2
+}
