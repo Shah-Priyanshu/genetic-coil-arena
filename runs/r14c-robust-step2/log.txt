@@ -6,3 +6,4 @@
 [progress] 50/198 cells, 561 s
 [progress] 60/198 cells, 651 s
 [progress] 70/198 cells, 775 s
+[progress] 80/198 cells, 863 s
