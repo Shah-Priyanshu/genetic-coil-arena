@@ -1,27 +1,3 @@
-[progress] conditioned run 5: gen 300/3000, val 0.258, best 0.266 at 200, 560 s
-[progress] conditioned run 6: gen 300/3000, val 0.255, best 0.261 at 200, 561 s
-[progress] conditioned run 3: gen 400/3000, val 0.266, best 0.280 at 250, 719 s
-[progress] conditioned run 0: gen 400/3000, val 0.257, best 0.270 at 300, 727 s
-[progress] conditioned run 1: gen 400/3000, val 0.267, best 0.270 at 300, 728 s
-[progress] conditioned run 7: gen 400/3000, val 0.274, best 0.274 at 400, 731 s
-[progress] conditioned run 4: gen 400/3000, val 0.273, best 0.273 at 400, 734 s
-[progress] conditioned run 6: gen 400/3000, val 0.271, best 0.271 at 400, 740 s
-[progress] conditioned run 5: gen 400/3000, val 0.256, best 0.266 at 200, 740 s
-[progress] conditioned run 2: gen 400/3000, val 0.268, best 0.278 at 350, 743 s
-[progress] conditioned run 3: gen 500/3000, val 0.275, best 0.280 at 250, 887 s
-[progress] conditioned run 7: gen 500/3000, val 0.259, best 0.274 at 400, 906 s
-[progress] conditioned run 0: gen 500/3000, val 0.254, best 0.270 at 300, 908 s
-[progress] conditioned run 4: gen 500/3000, val 0.269, best 0.273 at 450, 910 s
-[progress] conditioned run 1: gen 500/3000, val 0.256, best 0.270 at 300, 910 s
-[progress] conditioned run 5: gen 500/3000, val 0.252, best 0.266 at 200, 919 s
-[progress] conditioned run 2: gen 500/3000, val 0.274, best 0.290 at 450, 922 s
-[progress] conditioned run 6: gen 500/3000, val 0.275, best 0.275 at 500, 926 s
-[progress] conditioned run 3: gen 600/3000, val 0.262, best 0.280 at 250, 1066 s
-[progress] conditioned run 7: gen 600/3000, val 0.251, best 0.274 at 400, 1087 s
-[progress] conditioned run 1: gen 600/3000, val 0.253, best 0.270 at 300, 1090 s
-[progress] conditioned run 0: gen 600/3000, val 0.268, best 0.270 at 300, 1091 s
-[progress] conditioned run 4: gen 600/3000, val 0.268, best 0.273 at 450, 1093 s
-[progress] conditioned run 5: gen 600/3000, val 0.262, best 0.266 at 200, 1097 s
 [progress] conditioned run 2: gen 600/3000, val 0.259, best 0.290 at 450, 1099 s
 [progress] conditioned run 6: gen 600/3000, val 0.259, best 0.275 at 500, 1107 s
 [progress] conditioned run 3: gen 700/3000, val 0.243, best 0.280 at 250, 1249 s
@@ -198,3 +174,27 @@
 [progress] conditioned run 1: gen 2800/3000, val 0.258, best 0.278 at 2550, 4994 s
 [progress] conditioned run 0: gen 2800/3000, val 0.244, best 0.271 at 750, 4995 s
 [progress] conditioned run 6: gen 2800/3000, val 0.261, best 0.275 at 500, 5001 s
+[progress] conditioned run 2: gen 2800/3000, val 0.263, best 0.290 at 450, 5056 s
+[progress] conditioned run 5: gen 2900/3000, val 0.256, best 0.271 at 700, 5115 s
+[progress] conditioned run 3: gen 2900/3000, val 0.251, best 0.286 at 1800, 5122 s
+[progress] conditioned run 7: gen 2900/3000, val 0.231, best 0.274 at 400, 5125 s
+[progress] conditioned run 4: gen 2800/3000, val 0.265, best 0.310 at 1950, 5135 s
+[progress] conditioned run 0: gen 2900/3000, val 0.256, best 0.271 at 750, 5148 s
+[progress] conditioned run 1: gen 2900/3000, val 0.259, best 0.278 at 2550, 5151 s
+[progress] conditioned run 6: gen 2900/3000, val 0.263, best 0.275 at 500, 5154 s
+[progress] conditioned run 2: gen 2900/3000, val 0.254, best 0.290 at 450, 5212 s
+[progress] conditioned run 5: gen 3000/3000, val 0.249, best 0.271 at 700, 5278 s
+[done] run 5: best val 0.271 at generation 700, 5278 s
+[progress] conditioned run 7: gen 3000/3000, val 0.256, best 0.274 at 400, 5281 s
+[done] run 7: best val 0.274 at generation 400, 5281 s
+[progress] conditioned run 3: gen 3000/3000, val 0.258, best 0.286 at 1800, 5290 s
+[done] run 3: best val 0.286 at generation 1800, 5290 s
+[progress] conditioned run 4: gen 2900/3000, val 0.271, best 0.310 at 1950, 5292 s
+[progress] conditioned run 0: gen 3000/3000, val 0.240, best 0.271 at 750, 5306 s
+[done] run 0: best val 0.271 at generation 750, 5306 s
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-train-cond-a\artifacts\r17b_planner_conditioned_run0
+[progress] conditioned run 1: gen 3000/3000, val 0.250, best 0.278 at 2550, 5311 s
+[done] run 1: best val 0.278 at generation 2550, 5311 s
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-train-cond-a\artifacts\r17b_planner_conditioned_run1
+[progress] conditioned run 6: gen 3000/3000, val 0.262, best 0.275 at 500, 5318 s
+[done] run 6: best val 0.275 at generation 500, 5318 s
