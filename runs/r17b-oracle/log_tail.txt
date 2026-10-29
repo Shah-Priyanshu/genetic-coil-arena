@@ -1,0 +1,11 @@
+[done] mission 7: val 0.883 from hand
+[done] mission 4: val 0.898 from hand-off
+[done] mission 1: val 0.520 from hand-off
+[done] mission 5: val 0.662 from hand-off
+[done] mission 6: val 0.631 from hand-off
+[done] mission 2: val 0.259 from hand
+[done] mission 3: val 0.002 from hand-off
+[done] mission 8: val 0.720 from hand
+[done] mission 10: val 0.909 from hand-off
+[done] mission 9: val 0.759 from hand-off
+[done] mission 11: val 0.516 from hand

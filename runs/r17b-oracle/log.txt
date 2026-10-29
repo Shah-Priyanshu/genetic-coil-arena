@@ -5,3 +5,6 @@
 [done] mission 6: val 0.631 from hand-off
 [done] mission 2: val 0.259 from hand
 [done] mission 3: val 0.002 from hand-off
+[done] mission 8: val 0.720 from hand
+[done] mission 10: val 0.909 from hand-off
+[done] mission 9: val 0.759 from hand-off
