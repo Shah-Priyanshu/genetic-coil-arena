@@ -290,4 +290,4 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Result:** Running (about 12 hours on the GPU).
 - **Verdict:** Running
 - **What it means:** Pending.
-- **Report:** docs/results/r15b_aerial_scout.md
+- **Report:** docs/directions/drone_swarm.md
