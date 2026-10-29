@@ -21,3 +21,4 @@
 [progress] run 103: gen 50/1500, val 3.647, best 3.647 at 50, 1308 s
 [progress] run 107: gen 50/1500, val 3.450, best 3.450 at 50, 1318 s
 [progress] run 102: gen 50/1500, val 3.497, best 3.497 at 50, 1330 s
+[progress] run 105: gen 50/1500, val 3.483, best 3.483 at 50, 1352 s
