@@ -1,0 +1,60 @@
+{"id": "d001", "text": "Everyone hover at 12 m", "expect": "ok", "params": {"behavior": "hover", "alt_m": 12}, "tags": ["hover"]}
+{"id": "d002", "text": "all drones just hold where you are please", "expect": "ok", "params": {"behavior": "hover"}, "tags": ["hover", "default"]}
+{"id": "d003", "text": "keep position at twenty feet", "expect": "ok", "params": {"behavior": "hover", "alt_m": 6.1}, "tags": ["hover", "feet"]}
+{"id": "d004", "text": "Swarm, stay put at altitude 8 metres, we are swapping a battery on the ground rig", "expect": "ok", "params": {"behavior": "hover", "alt_m": 8}, "tags": ["hover"]}
+{"id": "d005", "text": "form a circle, 3 m apart", "expect": "ok", "params": {"behavior": "formation", "shape": "circle", "spacing_m": 3}, "tags": ["formation"]}
+{"id": "d006", "text": "line formation please", "expect": "ok", "params": {"behavior": "formation", "shape": "line"}, "tags": ["formation", "default"]}
+{"id": "d007", "text": "get in a V at 15 m altitude", "expect": "ok", "params": {"behavior": "formation", "shape": "v", "alt_m": 15}, "tags": ["formation"]}
+{"id": "d008", "text": "grid, spacing five metres, height 10 m", "expect": "ok", "params": {"behavior": "formation", "shape": "grid", "spacing_m": 5, "alt_m": 10}, "tags": ["formation"]}
+{"id": "d009", "text": "formation with 2 m between each drone", "expect": "ok", "params": {"behavior": "formation", "spacing_m": 2}, "tags": ["formation"]}
+{"id": "d010", "text": "Everybody line up in a line, six feet apart", "expect": "ok", "params": {"behavior": "formation", "shape": "line", "spacing_m": 1.83}, "tags": ["formation", "feet"]}
+{"id": "d011", "text": "flock like birds", "expect": "ok", "params": {"behavior": "boids"}, "tags": ["boids", "default"]}
+{"id": "d012", "text": "boids mode, cohesion 2, separation 3", "expect": "ok", "params": {"behavior": "boids", "cohesion": 2, "separation": 3}, "tags": ["boids"]}
+{"id": "d013", "text": "go free flocking, alignment 0.5", "expect": "ok", "params": {"behavior": "boids", "alignment": 0.5}, "tags": ["boids"]}
+{"id": "d014", "text": "pls swarm like birds, strong separation of 4 and normal cohesion 1", "expect": "ok", "params": {"behavior": "boids", "separation": 4, "cohesion": 1}, "tags": ["boids"]}
+{"id": "d015", "text": "sweep the north field", "expect": "ok", "params": {"behavior": "search_grid", "area": "north field"}, "tags": ["search_grid", "default"]}
+{"id": "d016", "text": "search the parking lot at 10 m", "expect": "ok", "params": {"behavior": "search_grid", "area": "car park", "alt_m": 10}, "tags": ["search_grid", "alias"]}
+{"id": "d017", "text": "grid search over the old barn, we lost a dog", "expect": "ok", "params": {"behavior": "search_grid", "area": "barn"}, "tags": ["search_grid", "alias"]}
+{"id": "d018", "text": "Scan the riverbank in lanes, fly at 30 feet", "expect": "ok", "params": {"behavior": "search_grid", "area": "river bank", "alt_m": 9.14}, "tags": ["search_grid", "alias", "feet"]}
+{"id": "d019", "text": "search the apple orchard", "expect": "ok", "params": {"behavior": "search_grid", "area": "orchard"}, "tags": ["search_grid", "alias"]}
+{"id": "d020", "text": "circle the barn, radius 25 m", "expect": "ok", "params": {"behavior": "perimeter", "area": "barn", "radius_m": 25}, "tags": ["perimeter"]}
+{"id": "d021", "text": "guard the east woods", "expect": "ok", "params": {"behavior": "perimeter", "area": "east woods"}, "tags": ["perimeter", "default"]}
+{"id": "d022", "text": "patrol around the field to the north at 8 m altitude, radius fifteen metres", "expect": "ok", "params": {"behavior": "perimeter", "area": "north field", "radius_m": 15, "alt_m": 8}, "tags": ["perimeter", "alias"]}
+{"id": "d023", "text": "orbit home 20 ft out", "expect": "ok", "params": {"behavior": "perimeter", "area": "home", "radius_m": 6.1}, "tags": ["perimeter", "feet"]}
+{"id": "d024", "text": "watch the car park from above, circle it", "expect": "ok", "params": {"behavior": "perimeter", "area": "car park"}, "tags": ["perimeter"]}
+{"id": "d025", "text": "follow the guy the camera sees", "expect": "ok", "params": {"behavior": "person_follow"}, "tags": ["person_follow", "default"]}
+{"id": "d026", "text": "track the person, stay 5 m back", "expect": "ok", "params": {"behavior": "person_follow", "distance_m": 5}, "tags": ["person_follow"]}
+{"id": "d027", "text": "follow person with 80% confidence minimum", "expect": "ok", "params": {"behavior": "person_follow", "min_conf": 0.8}, "tags": ["person_follow"]}
+{"id": "d028", "text": "tail the hiker at 4 metres distance, altitude 3 m, confidence at least 0.9", "expect": "ok", "params": {"behavior": "person_follow", "distance_m": 4, "alt_m": 3, "min_conf": 0.9}, "tags": ["person_follow"]}
+{"id": "d029", "text": "rainbow lights!", "expect": "ok", "params": {"behavior": "light_show", "pattern": "rainbow"}, "tags": ["light_show"]}
+{"id": "d030", "text": "light show, pulse, 90 bpm", "expect": "ok", "params": {"behavior": "light_show", "pattern": "pulse", "bpm": 90}, "tags": ["light_show"]}
+{"id": "d031", "text": "do a chase pattern", "expect": "ok", "params": {"behavior": "light_show", "pattern": "chase"}, "tags": ["light_show"]}
+{"id": "d032", "text": "lights on, wave, one hundred and forty bpm", "expect": "ok", "params": {"behavior": "light_show", "pattern": "wave", "bpm": 140}, "tags": ["light_show"]}
+{"id": "d033", "text": "RTH all units", "expect": "ok", "params": {"behavior": "rth"}, "tags": ["rth"]}
+{"id": "d034", "text": "guys come on back home", "expect": "ok", "params": {"behavior": "rth"}, "tags": ["rth", "default"]}
+{"id": "d035", "text": "return to launch point now please", "expect": "ok", "params": {"behavior": "rth"}, "tags": ["rth", "alias"]}
+{"id": "d036", "text": "bring them all back to base, mission over", "expect": "ok", "params": {"behavior": "rth"}, "tags": ["rth", "alias"]}
+{"id": "d037", "text": "search the lake", "expect": "clarify", "tags": ["unknown-place"]}
+{"id": "d038", "text": "perimeter please", "expect": "clarify", "tags": ["no-place"]}
+{"id": "d039", "text": "do the thing from yesterday", "expect": "clarify", "tags": []}
+{"id": "d040", "text": "get into position", "expect": "clarify", "tags": []}
+{"id": "d041", "text": "circle over there", "expect": "clarify", "tags": ["unknown-place"]}
+{"id": "d042", "text": "sweep the hill for the missing kid", "expect": "clarify", "tags": ["unknown-place"]}
+{"id": "d043", "text": "grid search", "expect": "clarify", "tags": ["no-place"]}
+{"id": "d044", "text": "guard the quarry at 10 m", "expect": "clarify", "tags": ["unknown-place"]}
+{"id": "d045", "text": "Do what we did last time with the drones", "expect": "clarify", "tags": []}
+{"id": "d046", "text": "search the area", "expect": "clarify", "tags": ["no-place"]}
+{"id": "d047", "text": "patrol the garage", "expect": "clarify", "tags": ["unknown-place"]}
+{"id": "d048", "text": "set them up for the demo", "expect": "clarify", "tags": []}
+{"id": "d049", "text": "what's the weather like today", "expect": "refuse", "tags": ["out-of-domain"]}
+{"id": "d050", "text": "land all drones", "expect": "refuse", "tags": ["out-of-domain"]}
+{"id": "d051", "text": "take photos of the barn", "expect": "refuse", "tags": ["out-of-domain"]}
+{"id": "d052", "text": "send drone 3 to the car park", "expect": "refuse", "tags": ["single-drone"]}
+{"id": "d053", "text": "hover and then do a light show", "expect": "refuse", "tags": ["two-behaviours"]}
+{"id": "d054", "text": "form a line in a circle", "expect": "refuse", "tags": ["two-behaviours"]}
+{"id": "d055", "text": "hover at 50 m", "expect": "refuse", "tags": ["range"]}
+{"id": "d056", "text": "formation spacing 0.5 m", "expect": "refuse", "tags": ["range"]}
+{"id": "d057", "text": "boids with altitude 10 m", "expect": "refuse", "tags": ["wrong-param"]}
+{"id": "d058", "text": "perimeter of the barn with 3 m spacing", "expect": "refuse", "tags": ["wrong-param"]}
+{"id": "d059", "text": "tell me a joke", "expect": "refuse", "tags": ["out-of-domain"]}
+{"id": "d060", "text": "light show at 300 bpm", "expect": "refuse", "tags": ["range"]}
