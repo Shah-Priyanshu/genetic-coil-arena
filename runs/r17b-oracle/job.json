@@ -1,0 +1,19 @@
+{
+  "id": "r17b-oracle",
+  "commit": "6042a819195284fa951f11f3288b12a1ab4183e9",
+  "args": [
+    "scripts/r17_mission.py",
+    "oracle",
+    "--version",
+    "2",
+    "--missions",
+    "0:40",
+    "--generations",
+    "300",
+    "--workers",
+    "8"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "timeout_min": 180.0
+}
