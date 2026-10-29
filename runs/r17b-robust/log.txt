@@ -7,3 +7,15 @@
 [progress] 3000/10880 cells, 43 s
 [progress] 3500/10880 cells, 52 s
 [progress] 4000/10880 cells, 59 s
+[progress] 4500/10880 cells, 65 s
+[progress] 5000/10880 cells, 71 s
+[progress] 5500/10880 cells, 76 s
+[progress] 6000/10880 cells, 82 s
+[progress] 6500/10880 cells, 88 s
+[progress] 7000/10880 cells, 92 s
+[progress] 7500/10880 cells, 97 s
+[progress] 8000/10880 cells, 101 s
+[progress] 8500/10880 cells, 107 s
+[progress] 9000/10880 cells, 113 s
+[progress] 9500/10880 cells, 118 s
+[progress] 10000/10880 cells, 125 s
