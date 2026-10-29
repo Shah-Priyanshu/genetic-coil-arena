@@ -1,0 +1,20 @@
+{
+  "id": "r15-zz-report",
+  "commit": "a35c33048d5befa0e3acca0895b1e21017df42ae",
+  "queued_args": [
+    "scripts/r15_scout_brain.py",
+    "report",
+    "--from",
+    "runs:r15-train-*",
+    "--out",
+    "docs/results/r15_scout_brain.md"
+  ],
+  "state": "running",
+  "started_at": "2026-10-29T07:39:06+00:00",
+  "updated_at": "2026-10-29T07:39:06+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 625 MiB, 12282 MiB, 51",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 1
+}
