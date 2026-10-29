@@ -213,3 +213,5 @@
 [progress] blind run 0: gen 2600/3000, val 0.151, best 0.165 at 1700, 5294 s
 [progress] blind run 6: gen 2600/3000, val 0.161, best 0.164 at 2050, 5306 s
 [progress] blind run 2: gen 2600/3000, val 0.154, best 0.162 at 2550, 5342 s
+[progress] blind run 1: gen 2600/3000, val 0.144, best 0.163 at 850, 5360 s
+[progress] blind run 3: gen 2700/3000, val 0.158, best 0.163 at 1150, 5386 s
