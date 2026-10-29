@@ -1,0 +1,18 @@
+{
+ "val_ap50": 0.2687926750816732,
+ "val_centre_ap": 0.465448273256175,
+ "val_present_auc": 0.9448911593342053,
+ "alpha": 0.5,
+ "params": 444837,
+ "int8_kb": 434.4111328125,
+ "macs": 142926336,
+ "epochs": 20,
+ "train_images": 117649,
+ "seconds": 5246.257479429245,
+ "size": 224,
+ "condition": "fine-tuned",
+ "seed": 2,
+ "lr": 0.001,
+ "weights": "D:\\Projects\\genetic-coil-arena-data\\r15_models\\r15b_coco_a0.5_seed2.pt",
+ "onnx": true
+}
