@@ -35,3 +35,4 @@
 [progress] 330/374 cells, 1892 s
 [progress] 340/374 cells, 1932 s
 [progress] 350/374 cells, 1992 s
+[progress] 360/374 cells, 2057 s
