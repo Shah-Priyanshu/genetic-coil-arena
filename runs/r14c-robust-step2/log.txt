@@ -10,3 +10,4 @@
 [progress] 90/198 cells, 961 s
 [progress] 100/198 cells, 1057 s
 [progress] 110/198 cells, 1153 s
+[progress] 120/198 cells, 1289 s
