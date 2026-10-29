@@ -30,3 +30,11 @@
 [progress] blind run 3: gen 300/3000, val 0.423, best 0.429 at 150, 547 s
 [progress] blind run 5: gen 300/3000, val 0.437, best 0.439 at 150, 548 s
 [progress] blind run 0: gen 300/3000, val 0.422, best 0.426 at 250, 549 s
+[progress] blind run 4: gen 400/3000, val 0.437, best 0.450 at 350, 725 s
+[progress] blind run 7: gen 400/3000, val 0.426, best 0.430 at 100, 730 s
+[progress] blind run 5: gen 400/3000, val 0.406, best 0.439 at 150, 731 s
+[progress] blind run 2: gen 400/3000, val 0.424, best 0.440 at 200, 732 s
+[progress] blind run 1: gen 400/3000, val 0.412, best 0.426 at 250, 735 s
+[progress] blind run 6: gen 400/3000, val 0.418, best 0.430 at 350, 735 s
+[progress] blind run 0: gen 400/3000, val 0.418, best 0.426 at 250, 737 s
+[progress] blind run 3: gen 400/3000, val 0.426, best 0.429 at 150, 738 s
