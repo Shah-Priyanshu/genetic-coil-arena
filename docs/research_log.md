@@ -336,6 +336,16 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Report:** docs/results/r17_robust.md
 - **Chart:** r17_robust
 
+### R17 step 2: a hand-off for people who walk
+- **Date:** 2026-10-29 (running)
+- **Question:** If the scout that sees a person keeps it in view until a confirmer takes over, does the search survive a walking person? Does a planner trained on harder missions keep its lead?
+- **Why:** Step 1b showed every confirming plan collapses when the person walks, because confirmers hover over where the person was.
+- **What we did:** A new plan setting, the hand-off: the detecting scout holds the sighting for up to N seconds, as OpenSwarm's person-follow does, and the candidate moves with each re-sighting. Harder missions: half have a walking person (0.2–1.5 m/s); all have 1–4 m GPS error, wind, a 220–320 s battery, and a find radius that grows with the GPS error. The leader reads GPS quality, wind and battery, never whether the person walks. 16 one-plan and 16 mission-reading runs, tested on 40 held-out missions. Bars fixed in advance: (a) the hand-off adds ≥ 10 points on walking missions; (b) the planner beats the one plan by ≥ 3; (c) it beats the step-1 planner by ≥ 10 on walking missions; (d) it stays within 3 points of the step-1 planner when the person stands still. A pipeline smoke test previewed bar (a), which involves no training, before the bars were committed; they were not changed.
+- **Result:** Running (about 4 h on the CPU).
+- **Verdict:** Running
+- **What it means:** Pending.
+- **Report:** docs/directions/drone_swarm.md
+
 ### G14b: the ground station, fixed, on a fresh sealed set
 - **Date:** 2026-10-29 (running)
 - **Question:** With the three problems G14's misses exposed fixed, does the station meet the same bars on requests it has never seen?
