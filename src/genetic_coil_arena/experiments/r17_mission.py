@@ -35,13 +35,15 @@ import json
 import math
 import time
 from collections.abc import Sequence
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from pathlib import Path
 from typing import Any
 
 import numpy as np
 
 from ..envs.swarm.mission import (
+    FOUND_M,
+    LOC0,
     OPENSWARM_DEFAULT,
     Detector,
     Mission,
@@ -62,6 +64,10 @@ PLAN_RANGES = (
     ("confirm_looks", 1.0, 10.0),
 )
 N_FEATURES, N_PLAN = 6, len(PLAN_RANGES)
+# R17 step 2 (version 2): the plan adds the hand-off; missions add a walking person,
+# GPS error, wind and battery, and the leader reads the last three
+PLAN_RANGES_V2 = PLAN_RANGES + (("track_s", 0.0, 120.0),)
+N_FEATURES_V2, N_PLAN_V2 = 9, len(PLAN_RANGES_V2)
 TRAIN_BASE, VAL_BASE, TEST_BASE = 10_000_000, 1_500_000_000, 2_000_000_000
 ORACLE_BASE, ORACLE_VAL_BASE = 500_000_000, 1_000_000_000
 RUN_STRIDE = 20_000_000
@@ -69,48 +75,78 @@ N_TEST, N_VAL, TEST_EPISODES = 40, 24, 2000
 ROOM_BAR, GAIN_BAR = 0.05, 0.03
 
 
-def sample_mission(rng: np.random.Generator) -> Mission:
+def find_radius(loc_error: float) -> float:
+    """Version 2: the ground team searches a radius that grows with the GPS error."""
+    return FOUND_M + 2.5 * (loc_error - LOC0)
+
+
+def sample_mission(rng: np.random.Generator, version: int = 1) -> Mission:
     w, h = rng.uniform(60.0, 240.0, 2)
     det = Detector(
         px50=float(rng.uniform(6.0, 20.0)),
         slope=float(rng.uniform(1.5, 3.5)),
         fa50=float(10 ** rng.uniform(math.log10(0.0005), math.log10(0.03))),
     )
-    return Mission(float(w), float(h), int(rng.choice([3, 4, 5, 6, 8])), 300.0, det)
+    m = Mission(float(w), float(h), int(rng.choice([3, 4, 5, 6, 8])), 300.0, det)
+    if version == 1:
+        return m
+    walk = float(rng.uniform(0.2, 1.5)) if rng.random() < 0.5 else 0.0
+    loc = float(rng.uniform(1.0, 4.0))
+    return replace(m, battery_s=float(rng.uniform(220.0, 320.0)), person_speed=walk,
+                   loc_error=loc, speed=float(rng.uniform(3.0, 5.0)),
+                   found_m=find_radius(loc))  # fmt: skip
 
 
-def held_out_missions() -> list[Mission]:
-    rng = np.random.default_rng(1718)
-    return [sample_mission(rng) for _ in range(N_TEST)]
+def held_out_missions(version: int = 1) -> list[Mission]:
+    rng = np.random.default_rng(1718 if version == 1 else 1728)
+    return [sample_mission(rng, version) for _ in range(N_TEST)]
 
 
-def val_missions() -> list[Mission]:
-    rng = np.random.default_rng(1719)
-    return [sample_mission(rng) for _ in range(N_VAL)]
+def val_missions(version: int = 1) -> list[Mission]:
+    rng = np.random.default_rng(1719 if version == 1 else 1729)
+    return [sample_mission(rng, version) for _ in range(N_VAL)]
 
 
-def features(m: Mission) -> np.ndarray:
+def features(m: Mission, version: int = 1) -> np.ndarray:
+    """What the leader knows: the area, the drones and the detector; version 2 adds
+    the GPS quality, the wind (cruise speed) and the battery. Never the person's speed.
+    """
     d = m.detector
-    return np.array([(m.width - 150) / 90, (m.height - 150) / 90, (m.drones - 5) / 2.5,
-                     (d.px50 - 13) / 7, d.slope - 2.5,
-                     (math.log10(d.fa50) + 2.4) / 0.9], dtype=np.float32)  # fmt: skip
+    f = [(m.width - 150) / 90, (m.height - 150) / 90, (m.drones - 5) / 2.5,
+         (d.px50 - 13) / 7, d.slope - 2.5, (math.log10(d.fa50) + 2.4) / 0.9]  # fmt: skip
+    if version == 2:
+        f += [(m.loc_error - 2.5) / 1.5, m.speed - 4.0, (m.battery_s - 270) / 50]
+    return np.array(f, dtype=np.float32)
 
 
-def decode_plan(u: np.ndarray, drones: int) -> Plan:
-    lo = np.array([r[1] for r in PLAN_RANGES])
-    hi = np.array([r[2] for r in PLAN_RANGES])
+def n_features(version: int) -> int:
+    return N_FEATURES if version == 1 else N_FEATURES_V2
+
+
+def n_plan(version: int) -> int:
+    return N_PLAN if version == 1 else N_PLAN_V2
+
+
+def decode_plan(u: np.ndarray, drones: int, version: int = 1) -> Plan:
+    ranges = PLAN_RANGES if version == 1 else PLAN_RANGES_V2
+    lo = np.array([r[1] for r in ranges])
+    hi = np.array([r[2] for r in ranges])
     v = lo + (hi - lo) / (1.0 + np.exp(-np.asarray(u, dtype=np.float64)))
     return Plan(sweep_alt=float(v[0]), overlap=float(v[1]), sweep_thr=float(v[2]),
                 confirmers=min(drones - 1, int(round(v[3] * drones))),
                 confirm_alt=float(v[4]), confirm_thr=float(v[5]),
-                confirm_looks=int(round(v[6])))  # fmt: skip
+                confirm_looks=int(round(v[6])),
+                track_s=float(v[7]) if version == 2 else 0.0)  # fmt: skip
 
 
-def encode_plan(plan: Plan, drones: int) -> np.ndarray:
+def encode_plan(plan: Plan, drones: int, version: int = 1) -> np.ndarray:
     v = [plan.sweep_alt, plan.overlap, plan.sweep_thr, plan.confirmers / drones,
          plan.confirm_alt, plan.confirm_thr, plan.confirm_looks]  # fmt: skip
+    ranges = PLAN_RANGES if version == 1 else PLAN_RANGES_V2
+    if version == 2:
+        v.append(plan.track_s)
     u = []
-    for x, (_, lo, hi) in zip(v, PLAN_RANGES):
+    for x, (_, lo, hi) in zip(v, ranges):
         f = min(max((x - lo) / (hi - lo), 0.02), 0.98)
         u.append(math.log(f / (1 - f)))
     return np.array(u)
@@ -133,6 +169,7 @@ class PlannerSettings:
     eval_every: int = 50
     val_episodes: int = 200
     progress_s: float = 120.0
+    version: int = 1
 
 
 class Planner:
@@ -140,25 +177,32 @@ class Planner:
     ``features`` to it."""
 
     def __init__(self, settings: PlannerSettings):
-        self.settings = settings
-        self.net = MLP((N_FEATURES, settings.hidden, N_PLAN)) if (
-            settings.conditioned) else None  # fmt: skip
-        self.n_params = self.net.n_params if self.net else N_PLAN
+        self.settings, self.version = settings, settings.version
+        nf, npl = n_features(self.version), n_plan(self.version)
+        self.net = MLP((nf, settings.hidden, npl)) if settings.conditioned else None
+        self.n_params = self.net.n_params if self.net else npl
 
     def init(self, rng: np.random.Generator) -> np.ndarray:
-        u0 = encode_plan(hand_two_tier(6), 6)
+        start = hand_two_tier(6)
+        if (
+            self.version == 2
+        ):  # version 2 starts from the hand plan with a 30 s hand-off
+            start = replace(start, track_s=30.0)
+        u0 = encode_plan(start, 6, self.version)
         if self.net is None:
             return u0
+        npl = len(u0)
         theta = self.net.init(rng, scale=0.5)
-        theta[-N_PLAN:] = u0  # the output bias: every mission starts at the hand plan
-        theta[-N_PLAN - self.settings.hidden * N_PLAN : -N_PLAN] *= 0.1
+        theta[-npl:] = u0  # the output bias: every mission starts at the hand plan
+        theta[-npl - self.settings.hidden * npl : -npl] *= 0.1
         return theta
 
     def plans(self, theta: np.ndarray, missions: Sequence[Mission]) -> list[Plan]:
+        v = self.version
         if self.net is None:
-            return [decode_plan(theta, m.drones) for m in missions]
-        u = self.net.forward(theta, np.stack([features(m) for m in missions]))
-        return [decode_plan(u[i], m.drones) for i, m in enumerate(missions)]
+            return [decode_plan(theta, m.drones, v) for m in missions]
+        u = self.net.forward(theta, np.stack([features(m, v) for m in missions]))
+        return [decode_plan(u[i], m.drones, v) for i, m in enumerate(missions)]
 
 
 def mean_score(plans: Sequence[Plan], missions: Sequence[Mission],
@@ -172,7 +216,7 @@ def train_run(run: int, settings: PlannerSettings) -> dict[str, Any]:
     theta0 = planner.init(np.random.default_rng([run, 17]))
     es = EvolutionStrategy(theta0, population=settings.population, sigma=settings.sigma,
                            lr=settings.lr, weight_decay=0.0, seed=run)  # fmt: skip
-    val = val_missions()
+    val = val_missions(settings.version)
     val_seeds = [
         mission_seeds(VAL_BASE, i, settings.val_episodes) for i in range(N_VAL)
     ]
@@ -196,7 +240,8 @@ def train_run(run: int, settings: PlannerSettings) -> dict[str, Any]:
         if g == settings.generations:
             break
         rng = np.random.default_rng([run, g, 1717])
-        missions = [sample_mission(rng) for _ in range(settings.missions)]
+        missions = [sample_mission(rng, settings.version)
+                    for _ in range(settings.missions)]  # fmt: skip
         base = TRAIN_BASE + run * RUN_STRIDE + g * settings.missions * settings.episodes
         seeds = [[base + i * settings.episodes + e for e in range(settings.episodes)]
                  for i in range(settings.missions)]  # fmt: skip
@@ -239,17 +284,20 @@ def tune_mission(index: int, generations: int = 300, population: int = 32,
 def save_run(out: dict[str, Any], folder: Path) -> Path:
     folder.mkdir(parents=True, exist_ok=True)
     kind = "conditioned" if out["settings"]["conditioned"] else "blind"
-    stem = folder / f"r17_planner_{kind}_run{out['run']}"
+    prefix = "r17_planner" if out["settings"].get("version", 1) == 1 else "r17b_planner"
+    stem = folder / f"{prefix}_{kind}_run{out['run']}"
     np.savez(stem.with_suffix(".npz"), theta=out["theta"])
     meta = {k: v for k, v in out.items() if k != "theta"}
     stem.with_suffix(".json").write_text(json.dumps(meta, indent=1), encoding="utf-8")
     return stem
 
 
-def load_runs(folders: Sequence[Path], kind: str) -> list[dict[str, Any]]:
+def load_runs(folders: Sequence[Path], kind: str,
+              version: int = 1) -> list[dict[str, Any]]:  # fmt: skip
+    prefix = "r17_planner" if version == 1 else "r17b_planner"
     runs = []
     for folder in folders:
-        for meta in sorted(Path(folder).rglob(f"r17_planner_{kind}_run*.json")):
+        for meta in sorted(Path(folder).rglob(f"{prefix}_{kind}_run*.json")):
             d = json.loads(meta.read_text(encoding="utf-8"))
             with np.load(meta.with_suffix(".npz")) as z:
                 d["theta"] = z["theta"]

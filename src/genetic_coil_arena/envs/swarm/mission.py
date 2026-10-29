@@ -32,7 +32,13 @@ For robustness tests only, ``Mission`` can also make the person wander
 (``person_speed``), worsen the GPS (``loc_error``) or slow the drones (``speed``, a
 headwind); the defaults leave every episode unchanged.
 
-**Outcome:** a declaration within ``FOUND_M`` of the person is a find; any other
+**Hand-off (R17 step 2, ``Plan.track_s``):** with confirmers, the scout that makes a
+detection stops sweeping and holds it in view for up to ``track_s`` s, flying to the
+candidate's latest position and moving it with every re-sighting, until a confirmer
+starts looking (then it resumes its lane). ``track_s = 0`` is step 1's tactic. A find
+radius (``Mission.found_m``) can grow with the GPS error.
+
+**Outcome:** a declaration within ``found_m`` (default ``FOUND_M``) of the person is a find; any other
 declaration is a wrong find (the rescue team goes to the wrong place); no declaration
 by the end of the sortie is a miss. ``score = found - 2 * wrong``.
 
@@ -91,11 +97,12 @@ class Mission:
     person_speed: float = 0.0  # m/s; a moving person wanders (robustness only)
     loc_error: float = LOC0  # GPS part of a detection's position error (m)
     speed: float = SPEED  # cruise speed (m/s); lower for a headwind
+    found_m: float = FOUND_M  # a declaration this close to the person is a find
 
     def vector(self) -> np.ndarray:
         return np.array([self.width, self.height, self.drones, self.battery_s,
                          *astuple(self.detector), self.person_speed, self.loc_error,
-                         self.speed], dtype=np.float64)  # fmt: skip
+                         self.speed, self.found_m], dtype=np.float64)  # fmt: skip
 
 
 @dataclass(frozen=True)
@@ -107,6 +114,7 @@ class Plan:
     confirm_alt: float = 4.0
     confirm_thr: float = 0.7
     confirm_looks: int = 3
+    track_s: float = 0.0  # R17 step 2: a scout holds a sighting this long (0 = never)
 
     def vector(self) -> np.ndarray:
         return np.array(astuple(self), dtype=np.float64)
@@ -167,13 +175,15 @@ def _step_to(x, y, gx, gy, budget):
 
 @njit(cache=True)
 def _add(kx, ky, ks, nk, x, y):
+    """Add a detection as a candidate, or merge it into an open one within MERGE_M:
+    the new count and the candidate's index (-1 when the list is full)."""
     for c in range(nk):
         if ks[c] < 2 and math.hypot(kx[c] - x, ky[c] - y) <= MERGE_M:
-            return nk
+            return nk, c
     if nk < MAX_CANDIDATES:
         kx[nk], ky[nk], ks[nk] = x, y, 0
-        nk += 1
-    return nk
+        return nk + 1, nk
+    return nk, -1
 
 
 @njit(cache=True)
@@ -181,7 +191,8 @@ def _episode(seed, mv, pv, out):
     np.random.seed(seed)
     width, height, n_drones, battery = mv[0], mv[1], int(mv[2]), mv[3]
     px50, slope, fa50, fa_slope = mv[4], mv[5], mv[6], mv[7]
-    walk, loc0, spd = mv[8], mv[9], mv[10]
+    walk, loc0, spd, found_m = mv[8], mv[9], mv[10], mv[11]
+    track_s = pv[7]
     tx, ty = np.random.random() * width, np.random.random() * height
     heading = np.random.random() * 2 * math.pi if walk > 0 else 0.0
     hx, hy = width / 2.0, -5.0
@@ -205,7 +216,8 @@ def _episode(seed, mv, pv, out):
 
     sx, sy = np.full(n_sw, hx), np.full(n_sw, hy)
     swp = np.zeros(n_sw, np.int64)
-    smode = np.zeros(n_sw, np.int64)  # 0 climb, 1 sweep, 2 return, 3 landed
+    smode = np.zeros(n_sw, np.int64)  # 0 climb, 1 sweep, 2 return, 3 landed, 4 hold
+    strack, stimer = np.full(n_sw, -1, np.int64), np.zeros(n_sw)
     sclimb = np.full(n_sw, sweep_alt / CLIMB)
     sused = np.zeros(n_sw)
     cx, cy = np.full(max(n_conf, 1), hx), np.full(max(n_conf, 1), hy)
@@ -264,19 +276,48 @@ def _episode(seed, mv, pv, out):
                         ry = ty + np.random.normal() * sig_s
                         if n_conf == 0:
                             out[0] = (
-                                1.0 if math.hypot(rx - tx, ry - ty) <= FOUND_M else 2.0
+                                1.0 if math.hypot(rx - tx, ry - ty) <= found_m else 2.0
                             )
                             out[1], out[2] = t, swept / lanes
                             return
-                        nk = _add(kx, ky, ks, nk, rx, ry)
+                        nk, idx = _add(kx, ky, ks, nk, rx, ry)
+                        if track_s > 0 and idx >= 0:
+                            smode[i], strack[i], stimer[i] = 4, idx, track_s
                 for _ in range(np.random.poisson(lam_s)):
                     fx = sx[i] + (np.random.random() - 0.5) * s_s
                     fy = sy[i] + (np.random.random() - 0.5) * s_s
                     if n_conf == 0:
-                        out[0] = 1.0 if math.hypot(fx - tx, fy - ty) <= FOUND_M else 2.0
+                        out[0] = 1.0 if math.hypot(fx - tx, fy - ty) <= found_m else 2.0
                         out[1], out[2] = t, swept / lanes
                         return
-                    nk = _add(kx, ky, ks, nk, fx, fy)
+                    nk, idx = _add(kx, ky, ks, nk, fx, fy)
+                    if track_s > 0 and idx >= 0 and smode[i] == 1:
+                        smode[i], strack[i], stimer[i] = 4, idx, track_s
+                continue
+            if smode[i] == 4:  # hold the sighting in view until a confirmer takes it
+                c = strack[i]
+                need = math.hypot(sx[i] - hx, sy[i] - hy) / spd + sweep_alt / CLIMB
+                handed = False
+                for j in range(n_conf):
+                    if cmode[j] == 3 and ctarget[j] == c:
+                        handed = True
+                if battery - sused[i] <= need + RESERVE_S:
+                    smode[i], strack[i] = 2, -1
+                    continue
+                if handed or ks[c] == 2 or stimer[i] <= 0:
+                    smode[i], strack[i] = 1, -1
+                    continue
+                stimer[i] -= 1.0
+                sx[i], sy[i], _, _ = _step_to(sx[i], sy[i], kx[c], ky[c], spd)
+                half = s_s / 2
+                if abs(tx - sx[i]) <= half and abs(ty - sy[i]) <= half:
+                    if np.random.random() < p_s:  # re-sighting moves the candidate
+                        kx[c] = tx + np.random.normal() * sig_s
+                        ky[c] = ty + np.random.normal() * sig_s
+                for _ in range(np.random.poisson(lam_s)):
+                    fx = sx[i] + (np.random.random() - 0.5) * s_s
+                    fy = sy[i] + (np.random.random() - 0.5) * s_s
+                    nk, _ = _add(kx, ky, ks, nk, fx, fy)
                 continue
             sx[i], sy[i], _, arrived = _step_to(sx[i], sy[i], hx, hy, spd)
             if arrived:
@@ -320,13 +361,13 @@ def _episode(seed, mv, pv, out):
                     if np.random.random() < p_c:
                         rx = tx + np.random.normal() * sig_c
                         ry = ty + np.random.normal() * sig_c
-                        out[0] = 1.0 if math.hypot(rx - tx, ry - ty) <= FOUND_M else 2.0
+                        out[0] = 1.0 if math.hypot(rx - tx, ry - ty) <= found_m else 2.0
                         out[1], out[2] = t, swept / lanes
                         return
                 if np.random.poisson(lam_c) > 0:
                     fx = kx[c] + (np.random.random() - 0.5) * s_c
                     fy = ky[c] + (np.random.random() - 0.5) * s_c
-                    out[0] = 1.0 if math.hypot(fx - tx, fy - ty) <= FOUND_M else 2.0
+                    out[0] = 1.0 if math.hypot(fx - tx, fy - ty) <= found_m else 2.0
                     out[1], out[2] = t, swept / lanes
                     return
                 clooks[j] += 1

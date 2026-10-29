@@ -121,3 +121,47 @@ def test_robustness_bar_needs_size_and_ci_everywhere():
     assert not rep["by_condition"]["GPS error 3 m"]["pass"]  # CI above 0 but < 3 points
     assert not rep["pass"] and rep["fails"] == ["GPS error 3 m"]
     assert "FAIL" in rr.render(rep)
+
+
+def test_handoff_keeps_a_walking_person_and_version_2_plans():
+    from dataclasses import replace
+
+    from genetic_coil_arena.experiments import r17b_handoff as rh
+
+    m = Mission(80.0, 80.0, 6, 300.0, Detector(px50=8, fa50=1e-9), person_speed=0.5)
+    plain = run_missions(m, hand_two_tier(6), SEEDS)
+    handoff = run_missions(m, replace(hand_two_tier(6), track_s=60.0), SEEDS)
+    assert handoff["found"].mean() > plain["found"].mean() + 0.3
+    plan = replace(hand_two_tier(6), track_s=45.0)
+    back = r17.decode_plan(r17.encode_plan(plan, 6, 2), 6, 2)
+    assert abs(back.track_s - 45.0) < 1e-6
+    assert r17.decode_plan(r17.encode_plan(plan, 6), 6).track_s == 0.0
+    ms = r17.held_out_missions(2)
+    assert 0 < sum(x.person_speed > 0 for x in ms) < len(ms)
+    assert r17.features(ms[0], 2).shape == (r17.N_FEATURES_V2,)
+    for conditioned in (False, True):
+        settings = r17.PlannerSettings(conditioned=conditioned, version=2)
+        planner = r17.Planner(settings)
+        plans = planner.plans(planner.init(np.random.default_rng(0)), ms[:4])
+        assert all(abs(p.track_s - 30.0) < 3 for p in plans)
+    assert set(rh.BARS) == set(rh.LABELS)
+
+
+def test_handoff_summary_bars():
+    from genetic_coil_arena.experiments import r17b_handoff as rh
+
+    rng = np.random.default_rng(2)
+    cells = {}
+    shifts = {"OpenSwarm default": -0.5, "hand two-tier": 0.0,
+              "hand two-tier + hand-off": 0.2, "step-1 planner": 0.0, "blind v2": 0.1,
+              "conditioned v2": 0.25}  # fmt: skip
+    for name, shift in shifts.items():
+        for i in range(r17.N_TEST):
+            s = 0.3 + shift + rng.normal(0, 0.01)
+            cells[(2, name, 0, i)] = {"score": s, "found": s, "wrong": 0.0}
+    for name, shift in (("step-1 planner", 0.0), ("conditioned v2", -0.01)):
+        for i in range(r17.N_TEST):
+            cells[(1, name, 0, i)] = {"score": 0.6 + shift, "found": 0.6, "wrong": 0.0}
+    rep = rh.summarise(cells)
+    assert rep["passed"] and all(rep["bars"].values())
+    assert "GOOD SIGN" in rh.render(rep)
