@@ -1,0 +1,2 @@
+[17:27:22] Ollama already running at http://localhost:11434
+[17:27:50] ollama:qwen2.5-coder:14b: 25/150, 21 correct
