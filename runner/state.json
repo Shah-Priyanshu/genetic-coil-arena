@@ -32,7 +32,8 @@
   ],
   "backlog": {
     "ready": [
-      "r17b-train-cond-b"
+      "r17b-train-cond-b",
+      "ci-885b00732f4f"
     ],
     "blocked": [
       {
@@ -57,11 +58,11 @@
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-29T22:00:19+00:00",
-  "cpu_percent": 91.7,
+  "updated_at": "2026-10-29T22:01:32+00:00",
+  "cpu_percent": 91.6,
   "gpu": {
-    "util": 96.0,
-    "mem_used_mb": 4136.0,
+    "util": 100.0,
+    "mem_used_mb": 4130.0,
     "mem_total_mb": 12282.0
   }
 }
