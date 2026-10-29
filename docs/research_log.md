@@ -281,3 +281,13 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **What it means:** A sub-megabyte brain reliably tells whether a person is in view and finds people who fill part of the frame. Small, distant people are the weak spot, and an 8× bigger model buys only 6 points there. Drones see exactly those people, from above. Next: test it on aerial footage (VisDrone) and fine-tune it for the drone's view.
 - **Report:** docs/results/r15_scout_brain.md
 - **Chart:** r15_scout
+
+### R15b: the scout brain from a drone's view
+- **Date:** 2026-10-29 (running)
+- **Question:** Does the COCO-trained scout brain find people in drone footage, and how much does training on aerial images help?
+- **Why:** COCO photos are taken from the ground, while a SCOUT drone looks down from altitude, where people are a few pixels wide and seen from above. R15 showed that small people are the brain's weak spot.
+- **What we did:** VisDrone2019-DET (drone footage from 14 cities; 6,471 training frames and 1,610 test frames, 16–25 people per frame). Every frame is cut into 224×224 tiles (OpenSwarm's input size) at native and half resolution. Three brains at widths 0.25, 0.5 and 0.75: R15's COCO models unchanged (zero-shot), the same models fine-tuned on aerial tiles, and the same training from random weights (scratch). Scored once on the test frames. Besides AP50, "centre AP" counts a detection when its centre lands on the person, because that is what the DETECTION packet carries. Scores are also broken down by person size. Bars fixed in advance, at width 0.5: (1) fine-tuning beats zero-shot by ≥ 10 AP50 points, and (2) starting from COCO beats scratch, both with paired intervals above 0 for every seed.
+- **Result:** Running (about 12 hours on the GPU).
+- **Verdict:** Running
+- **What it means:** Pending.
+- **Report:** docs/results/r15b_aerial_scout.md
