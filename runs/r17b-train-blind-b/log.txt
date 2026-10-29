@@ -250,3 +250,5 @@
 [done] run 9: best val 0.171 at generation 2600, 6131 s
 [progress] blind run 13: gen 3000/3000, val 0.159, best 0.167 at 1450, 6145 s
 [done] run 13: best val 0.167 at generation 1450, 6145 s
+[progress] blind run 11: gen 3000/3000, val 0.149, best 0.160 at 2000, 6161 s
+[done] run 11: best val 0.160 at generation 2000, 6161 s
