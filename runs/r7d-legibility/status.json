@@ -13,12 +13,14 @@
     "--out",
     "docs/results/r7d_legibility.md"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-29T01:01:18+00:00",
-  "updated_at": "2026-10-29T01:06:26+00:00",
-  "elapsed_min": 5.1,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 814 MiB, 12282 MiB, 37",
+  "updated_at": "2026-10-29T01:07:58+00:00",
+  "elapsed_min": 6.7,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 100 %, 10447 MiB, 12282 MiB, 70",
   "host": "PC",
   "lane": "cpu",
-  "cpu_workers": 8
+  "cpu_workers": 8,
+  "returncode": 0,
+  "finished_at": "2026-10-29T01:07:58+00:00"
 }
