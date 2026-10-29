@@ -257,3 +257,17 @@ def test_translator_question_beats_refusal_and_literals_are_checked():
     moved = {"params": {"behavior": "formation", "shape": "v", "alt_m": 15}}
     res = translate(clamped, moved, text="get in a V at 15 m altitude")
     assert res.status == "ok" and res.spec.params["alt_m"] == 15
+
+
+def test_v3_schema_order_question_refusals_and_snapped_literals():
+    props = list(gs.swarm_behavior_definition().params_schema["properties"])
+    assert props[0] == "behavior" and props[-1] == "alt_m"  # alt_m is shared: last
+    asks = {"refusal": "The lake is not on the site map. Which mapped area?"}
+    assert translate(asks).status == "clarify"
+    assert translate({"refusal": "Not a swarm command."}).status == "refused"
+    near = {"params": {"behavior": "perimeter", "area": "home", "radius_m": 6.08}}
+    res = translate(near, text="orbit home 20 ft out")
+    assert res.status == "ok" and res.spec.params["radius_m"] == 6.1
+    snapped = gs.snap_literals({"behavior": "hover", "alt_m": 6.096}, "at twenty feet")
+    assert snapped["alt_m"] == 6.1
+    assert gs.snap_literals({"min_conf": 0.9}, "confidence 0.9") == {"min_conf": 0.9}

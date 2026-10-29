@@ -131,7 +131,13 @@ def find_place(name: str, site: Sequence[Place] = SITE) -> Place | None:
 
 # ------------------------------------------------------------------ the GoalSpec
 def swarm_behavior_definition(site: Sequence[Place] = SITE) -> SpecDefinition:
-    """``swarm.behavior`` v1: one behaviour and its own params."""
+    """``swarm.behavior`` v1: one behaviour and its own params.
+
+    Property order matters: grammar-constrained decoding (Ollama structured outputs)
+    writes optional properties in schema order, so once a model has written a later
+    one it cannot go back. The behaviours' own params come in groups, and ``alt_m``,
+    which five behaviours share, comes last (with it second, "search the car park at
+    10 m" could only put the 10 after ``area``, into ``distance_m``)."""
     num = {"type": "number"}
     props: dict[str, Any] = {
         "behavior": {
@@ -139,8 +145,6 @@ def swarm_behavior_definition(site: Sequence[Place] = SITE) -> SpecDefinition:
             "enum": sorted(BEHAVIORS),
             "description": "The one behaviour the whole swarm switches to.",
         },
-        "alt_m": {**num, "minimum": 0.5, "maximum": ALT_MAX_M,
-                  "description": "Flight altitude in metres."},  # fmt: skip
         "shape": {"type": "string", "enum": sorted(SHAPES),
                   "description": "Formation shape."},  # fmt: skip
         "spacing_m": {**num, "minimum": SEPARATION_MIN_M, "maximum": 10,
@@ -160,6 +164,8 @@ def swarm_behavior_definition(site: Sequence[Place] = SITE) -> SpecDefinition:
                     "description": "Light-show pattern."},  # fmt: skip
         "bpm": {"type": "integer", "minimum": 40, "maximum": 200,
                 "description": "Light-show tempo in beats per minute."},  # fmt: skip
+        "alt_m": {**num, "minimum": 0.5, "maximum": ALT_MAX_M,
+                  "description": "Flight altitude in metres."},  # fmt: skip
     }
     rules = []
     for b, params in BEHAVIOR_PARAMS.items():
@@ -371,6 +377,23 @@ def literal_values(text: str) -> list[float]:
     return out
 
 
+def snap_literals(params: Mapping[str, Any], text: str) -> dict[str, Any]:
+    """Params with every number replaced by the request's own value it matches (within
+    ``unsupported``'s tolerance): "20 ft" is 6.1 m even when a model writes 6.08."""
+    values = literal_values(text)
+    out = dict(params)
+    for k, v in params.items():
+        if isinstance(v, (int, float)) and not isinstance(v, bool) and values:
+            c = min(values, key=lambda c: abs(v - c))
+            if abs(v - c) <= _tolerance(c):
+                out[k] = c
+    return out
+
+
+def _tolerance(c: float) -> float:
+    return max(0.011, 0.005 * abs(c))
+
+
 def _said(phrase: str, text: str) -> bool:
     return (
         re.search(rf"(?<![a-z0-9]){re.escape(_norm(phrase))}(?![a-z0-9])", text)
@@ -390,7 +413,7 @@ def unsupported(params: Mapping[str, Any], text: str,
         if k == "behavior" or v is None:
             continue
         if isinstance(v, (int, float)) and not isinstance(v, bool):
-            if not any(abs(v - c) <= max(0.011, 0.005 * abs(c)) for c in values):
+            if not any(abs(v - c) <= _tolerance(c) for c in values):
                 out.append(f"{k}={v:g} is not a number the operator said; leave "
                            "unstated parameters out")  # fmt: skip
         elif k == "shape" and isinstance(v, str):

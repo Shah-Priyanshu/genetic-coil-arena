@@ -7,9 +7,11 @@ from OpenSwarm's config, place names resolved against the site map, schema valid
 the state check and the 64-byte ``BEHAVIOR_CMD`` encoding.
 
 ``GroundTranslator`` is the policy translator (parse first, validate after) with these
-steps in front of validation, all fixed on the dev set before any sealed run:
+steps in front of validation, all fixed on the dev set before any sealed run (v2 after
+the first dev round, v3 after the second):
 
-- a question beats a refusal when the model gives both (asking is the safe outcome);
+- a question beats a refusal when the model gives both, and a "refusal" that asks a
+  question is a question (v3; asking is the safe outcome);
 - a named place becomes its canonical name, or a question when the site map does not
   know it, and a behaviour that needs a place it was not given asks for one (the model
   never sees coordinates);
@@ -17,6 +19,12 @@ steps in front of validation, all fixed on the dev set before any sealed run:
   model stated must come from the request (numbers in any unit or as words). Otherwise
   the reply is sent back once with the reason, and refused if it still fails. This
   stops a model from inventing a value or clamping an out-of-range one to the limit.
+  Numbers that pass take the request's own value (v3, ``ground.snap_literals``: "20 ft"
+  is 6.1 m, not the model's 6.08).
+
+v3 also moved ``alt_m`` to the end of the schema and told the model the order (see
+``ground.swarm_behavior_definition``): under grammar-constrained decoding the second dev
+round's altitude errors were the schema order, not the model's reading.
 
 ``keyword_reply`` is the regex baseline behind the same interface.
 
@@ -55,8 +63,8 @@ between neighbours); alt_m.
 alt_m.
 - "perimeter": circle around a place to watch or guard it. area (a place name); radius_m; \
 alt_m.
-- "person_follow": follow the person the scout's camera detects. distance_m; alt_m; \
-min_conf (detection confidence 0-1, e.g. 80% -> 0.8).
+- "person_follow": follow the person the scout's camera detects. distance_m; min_conf \
+(detection confidence 0-1, e.g. 80% -> 0.8); alt_m.
 - "light_show": synchronised LED show. pattern: "rainbow", "pulse", "chase", "sparkle" or \
 "wave"; bpm (tempo).
 - "rth": return to home (come back, go home, recall the swarm).
@@ -70,6 +78,7 @@ refuse because another parameter is missing: leave it out and the station uses i
 - Give a behaviour only the parameters listed for it, and only values the operator stated. \
 Never invent, guess or adjust a value; never move a value to a different parameter.
 - Numbers: convert to metres (1 ft = 0.3048 m) and give plain numbers.
+- Write params in the order listed above, alt_m always last.
 - Ask (a question in clarify, refusal empty) when the operator wants the swarm to act but \
 the place is missing or not on the site map, or it is unclear which behaviour is meant.
 - Refuse (a short reason in refusal, clarify empty) when the request is not about flying \
@@ -140,6 +149,9 @@ class GroundTranslator(PolicyTranslator):
             question = body.get("clarify")
             if isinstance(question, str) and question.strip():
                 return (CLARIFY, [question.strip()])
+            refusal = body.get("refusal")
+            if isinstance(refusal, str) and "?" in refusal:
+                return (CLARIFY, [refusal.strip()])
         stop = isinstance(body, dict) and any(
             isinstance(body.get(k), str) and body[k].strip()
             for k in ("refusal", "clarify")
@@ -157,6 +169,7 @@ class GroundTranslator(PolicyTranslator):
             invented = gs.unsupported(params, self._text)
             if invented:
                 return (_UNSATISFIABLE, invented)
+            params = gs.snap_literals(params, self._text)
             need = gs.BEHAVIOR_PARAMS.get(params.get("behavior"), {})
             missing = [k for k, v in need.items() if v is None and k not in params]
             if missing:
