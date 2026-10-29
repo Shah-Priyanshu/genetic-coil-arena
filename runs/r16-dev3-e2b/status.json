@@ -1,0 +1,20 @@
+{
+  "id": "r16-dev3-e2b",
+  "commit": "2b95fc2d2afe5ff9b654de538e86275b8139abf9",
+  "queued_args": [
+    "scripts/r16_ground_station.py",
+    "run",
+    "--translator",
+    "ollama:gemma4:e2b",
+    "--split",
+    "dev"
+  ],
+  "state": "running",
+  "started_at": "2026-10-29T15:00:48+00:00",
+  "updated_at": "2026-10-29T15:00:48+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 546 MiB, 12282 MiB, 49",
+  "host": "PC",
+  "lane": "gpu",
+  "cpu_workers": 2
+}
