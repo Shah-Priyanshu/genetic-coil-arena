@@ -1,0 +1,22 @@
+{
+  "id": "r15b2-zz-report2",
+  "commit": "6da9b7ddb972e4b1643aa3264270093ff47e1b5b",
+  "args": [
+    "scripts/r15b_aerial_scout.py",
+    "report",
+    "--from",
+    "runs:r15b2-train-*",
+    "--out",
+    "docs/results/r15b_aerial_scout.md"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 4,
+  "after": [
+    "r15b2-train-ft-a025",
+    "r15b2-train-sc-a025",
+    "r15b2-train-ft-a05",
+    "r15b2-train-sc-a05",
+    "r15b2-train-ft-a075"
+  ],
+  "timeout_min": 240.0
+}
