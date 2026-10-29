@@ -17,3 +17,6 @@
 [07:51:42] [alpha 0.5] epoch 17/20 loss 0.8821 (4541 s)
 [07:56:04] [alpha 0.5] epoch 18/20 loss 0.8780 (4803 s)
 [08:00:27] [alpha 0.5] epoch 19/20 loss 0.8759 (5066 s)
+[08:04:49] [alpha 0.5] epoch 20/20 loss 0.8754 (5328 s)
+C:\Users\priya\AppData\Local\Temp\gca-r15b2-train-ft-a05-uffuo0zk\src\genetic_coil_arena\experiments\r15_scout_brain.py:408: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:219.)
+  x = torch.from_numpy(np.ascontiguousarray(imgs)).to(dev).permute(0, 3, 1, 2)
