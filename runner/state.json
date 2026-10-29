@@ -3,28 +3,21 @@
   "host": "PC",
   "draining_for_update": false,
   "cpu_budget": 24,
-  "cpu_workers_in_use": 2,
-  "running": [
-    {
-      "id": "r14-multi-probe",
-      "lane": "cpu",
-      "cpu_workers": 2,
-      "started_at": "2026-10-29T02:03:19+00:00"
-    }
-  ],
+  "cpu_workers_in_use": 0,
+  "running": [],
   "backlog": {
     "ready": [],
     "blocked": []
   },
   "idle_since": {
-    "cpu": null,
+    "cpu": "2026-10-29T02:06:03+00:00",
     "gpu": "2026-10-29T02:05:20+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-29T02:05:38+00:00",
-  "cpu_percent": 10.3,
+  "updated_at": "2026-10-29T02:06:07+00:00",
+  "cpu_percent": 6.2,
   "gpu": {
-    "util": 1.0,
+    "util": 0.0,
     "mem_used_mb": 440.0,
     "mem_total_mb": 12282.0
   }
