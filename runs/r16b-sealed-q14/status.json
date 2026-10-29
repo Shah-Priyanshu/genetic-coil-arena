@@ -1,0 +1,20 @@
+{
+  "id": "r16b-sealed-q14",
+  "commit": "a8711431255d0583ff2d2e7d1af45a5d079dd58e",
+  "queued_args": [
+    "scripts/r16_ground_station.py",
+    "run",
+    "--translator",
+    "ollama:qwen2.5-coder:14b",
+    "--split",
+    "sealed-b"
+  ],
+  "state": "running",
+  "started_at": "2026-10-29T21:27:20+00:00",
+  "updated_at": "2026-10-29T21:27:20+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 545 MiB, 12282 MiB, 51",
+  "host": "PC",
+  "lane": "gpu",
+  "cpu_workers": 2
+}
