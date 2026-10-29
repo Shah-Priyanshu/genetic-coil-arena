@@ -291,3 +291,13 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Verdict:** Running
 - **What it means:** Pending.
 - **Report:** docs/directions/drone_swarm.md
+
+### R16 (G14): a plain-language ground station for OpenSwarm
+- **Date:** 2026-10-29 (running)
+- **Question:** Can an operator command the swarm in plain words ("sweep the parking lot at 10 m") and have the ground station send exactly that command, ask when unclear and refuse what the swarm can't do?
+- **Why:** OpenSwarm's leader sends one of 8 behaviours (hover, formation, boids, search grid, perimeter, person-follow, light show, return home) in a 64-byte BEHAVIOR_CMD. A wrong command is a swarm flying somewhere nobody asked, so the key number is how often a request ends as the wrong command.
+- **What we did:** A local model only extracts the behaviour and its stated values. Code does the rest: it fills OpenSwarm's documented defaults, resolves place names from a site map ("the old barn" becomes coordinates), validates against a schema in which each behaviour takes only its own parameters, checks the swarm state (vision scout present, indoor 3 m ceiling, battery, enough drones, no-fly places) and encodes the packet. The largest packet uses 35 of the 64 bytes. A separate agent wrote 150 sealed test requests and 60 dev requests from a labelling guide, without seeing the prompt. Bars fixed in advance, for qwen2.5-coder:14b: exact on ≥ 90% of commands, wrong commands on ≤ 3% of requests, and ≥ 20 points above a keyword parser. Smaller models (gemma4 e4b and e2b) test whether a laptop could run the station.
+- **Result:** Running. On dev, the keyword parser gets 56% of commands exact and sends a wrong command on 28% of requests.
+- **Verdict:** Running
+- **What it means:** Pending.
+- **Report:** docs/directions/drone_swarm.md
