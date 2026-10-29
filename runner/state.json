@@ -3,7 +3,7 @@
   "host": "PC",
   "draining_for_update": false,
   "cpu_budget": 24,
-  "cpu_workers_in_use": 16,
+  "cpu_workers_in_use": 22,
   "running": [
     {
       "id": "r14b-train-a",
@@ -16,6 +16,12 @@
       "lane": "cpu",
       "cpu_workers": 8,
       "started_at": "2026-10-29T02:33:19+00:00"
+    },
+    {
+      "id": "r15b-prepare",
+      "lane": "cpu",
+      "cpu_workers": 6,
+      "started_at": "2026-10-29T08:01:27+00:00"
     }
   ],
   "backlog": {
@@ -27,6 +33,46 @@
           "r14b-train-a",
           "r14b-train-b"
         ]
+      },
+      {
+        "id": "r15b-train-ft-a025",
+        "blocked_by": [
+          "r15b-prepare"
+        ]
+      },
+      {
+        "id": "r15b-train-ft-a05",
+        "blocked_by": [
+          "r15b-prepare"
+        ]
+      },
+      {
+        "id": "r15b-train-ft-a075",
+        "blocked_by": [
+          "r15b-prepare"
+        ]
+      },
+      {
+        "id": "r15b-train-sc-a025",
+        "blocked_by": [
+          "r15b-prepare"
+        ]
+      },
+      {
+        "id": "r15b-train-sc-a05",
+        "blocked_by": [
+          "r15b-prepare"
+        ]
+      },
+      {
+        "id": "r15b-zz-report",
+        "blocked_by": [
+          "r15b-train-ft-a025",
+          "r15b-train-sc-a025",
+          "r15b-train-ft-a05",
+          "r15b-train-sc-a05",
+          "r15b-train-ft-a075"
+        ]
       }
     ]
   },
@@ -35,8 +81,8 @@
     "gpu": "2026-10-29T07:38:58+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-29T08:00:18+00:00",
-  "cpu_percent": 63.9,
+  "updated_at": "2026-10-29T08:01:27+00:00",
+  "cpu_percent": 63.6,
   "gpu": {
     "util": 1.0,
     "mem_used_mb": 612.0,
