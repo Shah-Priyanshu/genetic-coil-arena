@@ -238,3 +238,27 @@
 [progress] blind run 1: gen 2900/3000, val 0.431, best 0.443 at 2500, 5274 s
 [progress] blind run 6: gen 2900/3000, val 0.437, best 0.455 at 1850, 5274 s
 [progress] blind run 3: gen 2900/3000, val 0.432, best 0.446 at 2500, 5274 s
+[progress] blind run 4: gen 3000/3000, val 0.440, best 0.450 at 350, 5426 s
+[done] run 4: best val 0.450 at generation 350, 5426 s
+[progress] blind run 0: gen 3000/3000, val 0.431, best 0.446 at 2300, 5433 s
+[done] run 0: best val 0.446 at generation 2300, 5433 s
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17-train-blind-a\artifacts\r17_planner_blind_run0
+[progress] blind run 2: gen 3000/3000, val 0.420, best 0.441 at 2150, 5436 s
+[done] run 2: best val 0.441 at generation 2150, 5436 s
+[progress] blind run 6: gen 3000/3000, val 0.425, best 0.455 at 1850, 5446 s
+[done] run 6: best val 0.455 at generation 1850, 5446 s
+[progress] blind run 7: gen 3000/3000, val 0.442, best 0.453 at 2500, 5449 s
+[done] run 7: best val 0.453 at generation 2500, 5449 s
+[progress] blind run 3: gen 3000/3000, val 0.433, best 0.446 at 2500, 5452 s
+[done] run 3: best val 0.446 at generation 2500, 5452 s
+[progress] blind run 5: gen 3000/3000, val 0.439, best 0.452 at 1550, 5452 s
+[done] run 5: best val 0.452 at generation 1550, 5452 s
+[progress] blind run 1: gen 3000/3000, val 0.427, best 0.443 at 2500, 5456 s
+[done] run 1: best val 0.443 at generation 2500, 5456 s
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17-train-blind-a\artifacts\r17_planner_blind_run1
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17-train-blind-a\artifacts\r17_planner_blind_run2
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17-train-blind-a\artifacts\r17_planner_blind_run3
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17-train-blind-a\artifacts\r17_planner_blind_run4
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17-train-blind-a\artifacts\r17_planner_blind_run5
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17-train-blind-a\artifacts\r17_planner_blind_run6
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17-train-blind-a\artifacts\r17_planner_blind_run7
