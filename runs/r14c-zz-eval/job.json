@@ -1,0 +1,22 @@
+{
+  "id": "r14c-zz-eval",
+  "commit": "a541e5bd55ce2e0e4eb3f94a8b3328ab03788e1e",
+  "args": [
+    "scripts/r14_robust.py",
+    "--set",
+    "step2=runs:r14b-train-*",
+    "--set",
+    "random=runs:r14c-train-*",
+    "--workers",
+    "8",
+    "--out",
+    "docs/results/r14_robust.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "after": [
+    "r14c-train-a",
+    "r14c-train-b"
+  ],
+  "timeout_min": 180.0
+}
