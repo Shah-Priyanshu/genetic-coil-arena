@@ -1,7 +1,11 @@
-"""Live project dashboard (Streamlit): runner status, goal ladder, result charts and reports.
+"""Project dashboard (Streamlit): the research story, live runner, goal ladder, charts, reports.
 
     powershell -File scripts/start_dashboard.ps1        # own window, http://localhost:8501
     D:/venvs/dash/Scripts/streamlit run scripts/dashboard.py
+
+The first tab tells the story from ``docs/research_log.md``. For every test it shows the
+question, why it was run, what was done, the result, the verdict, what it means and its
+chart, with the full report one click away. Keep that file current with every result.
 
 It only reads files: the results worktree (``runner/state.json``, ``runs/*``) and ``docs/``
 of this checkout. It never imports the project package, never writes, and never touches
@@ -30,7 +34,19 @@ CATEGORIES = {
     "mixed": "#f9a825",
     "kill": "#c62828",
     "pending": "#1565c0",
+    "probe": "#6a1b9a",
 }
+LOG_FIELDS = (
+    "Date",
+    "Question",
+    "Why",
+    "What we did",
+    "Result",
+    "Verdict",
+    "What it means",
+    "Report",
+    "Chart",
+)
 
 
 # ------------------------------------------------------------------ data helpers
@@ -78,15 +94,50 @@ def verdict_of(status: str) -> str:
 
 def category_of(verdict: str) -> str:
     v = verdict.lower()
+    if v.startswith("probe"):
+        return "probe"
     if v.startswith(("pre-registered", "planned", "in progress", "running")):
         return "pending"
     if "leaning kill" in v or "inconclusive" in v or "not passed" in v:
         return "mixed"
     if v.startswith("kill"):
         return "kill"
-    if v.startswith(("passed", "pass", "met")):
+    if v.startswith(("passed", "pass", "met", "matched")):
         return "pass"
     return "mixed"
+
+
+def parse_research_log(text: str) -> dict[str, Any]:
+    """``docs/research_log.md`` -> {"intro": str, "tracks": [{"title", "summary",
+    "entries": [{"title", <LOG_FIELDS>...}]}]}."""
+    intro: list[str] = []
+    tracks: list[dict[str, Any]] = []
+    entry: dict[str, str] | None = None
+    for line in text.splitlines():
+        if line.startswith("## Track: "):
+            tracks.append(
+                {
+                    "title": line[len("## Track: ") :].strip(),
+                    "summary": "",
+                    "entries": [],
+                }
+            )
+            entry = None
+        elif line.startswith("### ") and tracks:
+            entry = {"title": line[4:].strip()}
+            tracks[-1]["entries"].append(entry)
+        elif entry is not None and line.startswith("- **"):
+            m = re.match(r"- \*\*(.+?):\*\*\s*(.*)", line)
+            if m and m.group(1) in LOG_FIELDS:
+                entry[m.group(1)] = m.group(2).strip()
+        elif tracks and entry is None and line.strip():
+            tracks[-1]["summary"] = (tracks[-1]["summary"] + " " + line.strip()).strip()
+        elif not tracks and not line.startswith("# "):
+            intro.append(line)
+    for t in tracks:
+        for e in t["entries"]:
+            e["category"] = category_of(e.get("Verdict", ""))
+    return {"intro": "\n".join(intro).strip(), "tracks": tracks}
 
 
 def read_json(path: Path) -> Any:
@@ -133,11 +184,170 @@ def read_csv(path: Path) -> list[dict[str, str]]:
         return []
 
 
-# ------------------------------------------------------------------ app
-def main() -> None:  # pragma: no cover - UI
+# ------------------------------------------------------------------ charts
+HOW_TO_READ = {
+    "g7_curves": "Each line is the median score of 16 training runs while they learn, per "
+    "condition. Higher is better. The goal-aware centres climb; the goal-blind one stays "
+    "near −4 because it cannot know which snakes should eat.",
+    "g7_heldout": "Average score on the 6 goals no run ever trained on, with 95% "
+    "intervals. (d) is the hand-coded reference. The last bar is G7c's 16 fresh runs of "
+    "(b): it reaches (d)'s level without the two failed runs.",
+    "g12_scatter": "Each dot is one trained squad. Further right = the decoder names the "
+    "eaters correctly more often; higher = writing decoded symbols steers a snake better. "
+    "Squads that must send the goal in their messages (centre-goal) sit top right; "
+    "goal-blind squads have nothing to read.",
+    "g2_plant": "Fault-diagnosis quality (macro-F1, higher is better) against how many "
+    "bytes each sensor may send. Learned codes stay near 0.97 even at 1 byte, where the "
+    "best hand design falls to 0.82.",
+    "g13_swarm": "Share of episodes where the leak is found within 2 minutes, by message "
+    "size. Dotted lines are silent swarms. Every talking line is flat from 2 bytes: more "
+    "bytes do not help, so the radio is not the bottleneck.",
+    "multi_probe": "Leaks found within 2 minutes (out of 1 or 3). The gap between "
+    "'hand 2B' and 'sensed oracle' is what better coordination could still win. It is "
+    "small with 1 leak and large with 3.",
+    "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
+    "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
+    "translation through the shared meanings could do.",
+    "kshot": "Joint accuracy (right service and right fault) on a new system against how "
+    "many of its incidents are labelled (k). The adapted specialist climbs far above the "
+    "frozen one and the BARO baseline.",
+}
+
+
+def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
+    """Chart name -> plotly figure, for the results that exist."""
     import pandas as pd
     import plotly.express as px
     import plotly.graph_objects as go
+
+    figs: dict[str, Any] = {}
+    curves = read_csv(res / "r7b_goal_conditioned_16runs_curves.csv")
+    if curves:
+        cdf = pd.DataFrame(curves)
+        cdf = cdf[cdf["val_mission"] != ""].astype(
+            {"generation": int, "val_mission": float}
+        )
+        med = cdf.groupby(["mode", "generation"])["val_mission"].median().reset_index()
+        fig = go.Figure()
+        for mode, part in med.groupby("mode"):
+            fig.add_trace(
+                go.Scatter(x=part["generation"], y=part["val_mission"], name=mode)
+            )
+        fig.update_layout(
+            title="G7: score while training (median of 16 runs)",
+            xaxis_title="generation",
+            yaxis_title="mission score",
+        )
+        figs["g7_curves"] = fig
+    ref = read_json(res / "r7b_goal_conditioned_16runs.json")
+    r7c = read_json(res / "r7c_reliability.json")
+    if ref:
+        bars = [
+            {"condition": c["name"], "held-out score": c["mean"], "ci": c["ci"]}
+            for c in ref["sets"]["heldout"]["result"]["conditions"]
+        ]
+        if r7c:
+            kept = [r["heldout"] for r in r7c["per_run"] if r["kept"]]
+            n, m = len(kept), sum(kept) / len(kept)
+            sd = (sum((x - m) ** 2 for x in kept) / (n - 1)) ** 0.5
+            bars.append({"condition": "(b) fresh runs, G7c", "held-out score": m,
+                         "ci": 2.13 * sd / n**0.5})  # fmt: skip
+        figs["g7_heldout"] = px.bar(
+            pd.DataFrame(bars), x="condition", y="held-out score", error_y="ci",
+            title="G7/G7c: score on goals never trained on",
+        )  # fmt: skip
+    r7d = read_json(res / "r7d_legibility.json")
+    if r7d:
+        pts = [
+            {"condition": r["mode"], "run": r["run"],
+             "eaters read correctly": r["read"]["eaters_exact"],
+             "write efficacy": r["write"]["efficacy"]}
+            for r in r7d["runs"]
+            if r["write"]["efficacy"] == r["write"]["efficacy"]
+        ]  # fmt: skip
+        figs["g12_scatter"] = px.scatter(
+            pd.DataFrame(pts), x="eaters read correctly", y="write efficacy",
+            color="condition", hover_data=["run"],
+            title="G12: every squad's language, read and written",
+        )  # fmt: skip
+    plant = read_json(res / "plant_learned_codes.json")
+    if plant:
+        pdf = pd.DataFrame([r for r in plant["rows"] if r.get("variant") == "base"])
+        line = pdf.groupby(["encoding", "budget"])["macro_f1"].mean().reset_index()
+        hand = {t["budget"]: t["hand_mean"] for t in plant["g2_tests"]}
+        line = pd.concat(
+            [line, pd.DataFrame([{"encoding": "best hand design", "budget": b,
+                                  "macro_f1": v} for b, v in hand.items()])]
+        )  # fmt: skip
+        figs["g2_plant"] = px.line(
+            line, x="budget", y="macro_f1", color="encoding", markers=True, log_x=True,
+            title="G2: diagnosis quality by bytes per sensor message",
+        )  # fmt: skip
+    swarm = read_json(res / "r14_swarm_talk.json")
+    if swarm:
+        pts = [
+            {"budget": c["budget"], "loss": c["loss"], "drift": c["drift"],
+             "found": sum(c["success"]) / len(c["success"])}
+            for c in swarm["cells"].values()
+        ]  # fmt: skip
+        sdf = pd.DataFrame(pts)
+        talk = sdf[sdf["budget"] > 0].copy()
+        talk["setting"] = (
+            "loss " + talk["loss"].astype(str) + ", drift " + talk["drift"].astype(str)
+        )
+        fig = px.line(
+            talk, x="budget", y="found", color="setting", markers=True, log_x=True,
+            title="G13: leak found within 2 min, by bytes per message",
+        )  # fmt: skip
+        for _, r in sdf[sdf["budget"] == 0].iterrows():
+            fig.add_hline(y=r["found"], line_dash="dot",
+                          annotation_text=f"silent, drift {r['drift']}")  # fmt: skip
+        figs["g13_swarm"] = fig
+    multi = read_json(res / "r14_multi_probe.json")
+    if multi:
+        pts = [
+            {"leaks": key.split("|")[0], "system": key.split("|")[1],
+             "found": v["found"][0], "ci": v["found"][1], "all found": v["all"][0]}
+            for key, v in multi["summary"].items()
+            if key.count("|") == 1
+        ]  # fmt: skip
+        figs["multi_probe"] = px.bar(
+            pd.DataFrame(pts), x="system", y="found", error_y="ci", color="leaks",
+            barmode="group", hover_data=["all found"],
+            title="Probe: leaks found in 2 min, one leak vs three",
+        )  # fmt: skip
+    inter = read_json(res / "r7e_interlingua.json")
+    if inter:
+        pts = [
+            {"condition": c, "share of B's own score": v["of_native"],
+             "ci": v["of_native_ci"]}
+            for c, v in inter["summary"].items()
+            if isinstance(v, dict) and "of_native" in v
+        ]  # fmt: skip
+        figs["interlingua"] = px.bar(
+            pd.DataFrame(pts), x="condition", y="share of B's own score", error_y="ci",
+            title="Probe: squad A's centre driving squad B's snakes",
+        )  # fmt: skip
+    kshot = read_json(res / "r13b_kshot.json")
+    if kshot:
+        pts = [
+            {"system": system, "labelled incidents (k)": int(k), "model": name,
+             "joint accuracy": m[name][0]}
+            for system, r in kshot["systems"].items()
+            for k, m in r["by_k"].items()
+            for name in ("adapted_joint", "scratch_joint", "frozen_joint", "baro_joint")
+        ]  # fmt: skip
+        figs["kshot"] = px.line(
+            pd.DataFrame(pts), x="labelled incidents (k)", y="joint accuracy",
+            color="model", facet_col="system", markers=True,
+            title="Probe: the fault specialist on a new system, by labels",
+        )  # fmt: skip
+    return figs
+
+
+# ------------------------------------------------------------------ app
+def main() -> None:  # pragma: no cover - UI
+    import pandas as pd
     import streamlit as st
 
     st.set_page_config(page_title="genetic-coil-arena", layout="wide")
@@ -146,10 +356,68 @@ def main() -> None:  # pragma: no cover - UI
     every = None if refresh == "off" else int(refresh.split()[0])
     st.sidebar.caption(f"Results worktree: `{RESULTS}`")
     st.sidebar.caption(f"Docs: `{DOCS}`")
+    res = DOCS / "results"
+    figs = build_charts(res)
 
-    live, goals_tab, charts, reports = st.tabs(
-        ["Live runner", "Goal ladder", "Results", "Reports"]
+    story, live, goals_tab, charts, reports = st.tabs(
+        ["Research story", "Live runner", "Goal ladder", "All charts", "Reports"]
     )
+
+    # -------------------------------------------------------------- story
+    with story:
+        log = parse_research_log(
+            (DOCS / "research_log.md").read_text(encoding="utf-8", errors="replace")
+        )
+        st.markdown(log["intro"])
+        st.caption(
+            "Verdict colours: "
+            + " · ".join(
+                f":{c}[{label}]"
+                for c, label in (
+                    ("green", "passed / works"),
+                    ("orange", "mixed / not passed"),
+                    ("red", "killed"),
+                    ("violet", "exploratory probe"),
+                    ("blue", "pending"),
+                )
+            )
+        )
+        state = read_json(RESULTS / "runner" / "state.json") or {}
+        running = [j["id"] for j in state.get("running", [])]
+        st.info(
+            "Running now: " + (", ".join(running) if running else "nothing")
+            + " (details in the Live runner tab)."
+        )  # fmt: skip
+        colour = {"pass": "green", "mixed": "orange", "kill": "red",
+                  "probe": "violet", "pending": "blue"}  # fmt: skip
+        for track in log["tracks"]:
+            st.header(track["title"])
+            st.markdown(track["summary"])
+            for e in track["entries"]:
+                with st.container(border=True):
+                    c = colour.get(e["category"], "gray")
+                    st.markdown(
+                        f"#### {e['title']}  \n:{c}-background[**{e.get('Verdict', '?')}**]"
+                        f" · {e.get('Date', '')}"
+                    )
+                    left, right = st.columns(2)
+                    left.markdown(f"**Question:** {e.get('Question', '')}")
+                    left.markdown(f"**Why:** {e.get('Why', '')}")
+                    left.markdown(f"**What we did:** {e.get('What we did', '')}")
+                    right.markdown(f"**Result:** {e.get('Result', '')}")
+                    right.markdown(f"**What it means:** {e.get('What it means', '')}")
+                    key = e.get("Chart", "")
+                    if key in figs:
+                        st.plotly_chart(figs[key], width="stretch", key=f"story-{key}")
+                        st.caption("How to read it: " + HOW_TO_READ.get(key, ""))
+                    report = e.get("Report", "")
+                    if report and (REPO / report).exists():
+                        with st.expander(f"Full report ({report})"):
+                            st.markdown(
+                                (REPO / report).read_text(
+                                    encoding="utf-8", errors="replace"
+                                )
+                            )
 
     # -------------------------------------------------------------- live
     with live:
@@ -203,6 +471,10 @@ def main() -> None:  # pragma: no cover - UI
 
     # -------------------------------------------------------------- goals
     with goals_tab:
+        st.caption(
+            "Every pre-registered test: its pass bar, its kill bar and its status. "
+            "The Research story tab explains them in plain language."
+        )
         rows = parse_goals((DOCS / "goals.md").read_text(encoding="utf-8"))
         counts = pd.Series([r["category"] for r in rows]).value_counts()
         cols = st.columns(4)
@@ -214,10 +486,10 @@ def main() -> None:  # pragma: no cover - UI
             col.metric(label, int(counts.get(cat, 0)))
         df = pd.DataFrame(rows)[["id", "goal", "verdict", "track", "category"]]
 
-        def colour(row: pd.Series) -> list[str]:
+        def paint(row: pd.Series) -> list[str]:
             return [f"color: {CATEGORIES[row['category']]}"] * len(row)
 
-        st.dataframe(df.style.apply(colour, axis=1), width="stretch", hide_index=True)
+        st.dataframe(df.style.apply(paint, axis=1), width="stretch", hide_index=True)
         for r in rows:
             with st.expander(f"{r['id']}: {r['goal']} ({r['verdict']})"):
                 st.markdown(f"**Target:** {r['target']}")
@@ -226,157 +498,16 @@ def main() -> None:  # pragma: no cover - UI
 
     # -------------------------------------------------------------- charts
     with charts:
-        res = DOCS / "results"
-        st.header("A learned centre follows goals (G7, G7c)")
-        curves = read_csv(res / "r7b_goal_conditioned_16runs_curves.csv")
-        if curves:
-            cdf = pd.DataFrame(curves)
-            cdf = cdf[cdf["val_mission"] != ""].astype(
-                {"generation": int, "val_mission": float}
-            )
-            agg = (
-                cdf.groupby(["mode", "generation"])["val_mission"]
-                .quantile([0.25, 0.5, 0.75])
-                .unstack()
-                .reset_index()
-            )
-            fig = go.Figure()
-            for mode, part in agg.groupby("mode"):
-                fig.add_trace(go.Scatter(x=part["generation"], y=part[0.5], name=mode))
-            fig.update_layout(
-                title="Validation mission score while training (median of 16 runs)",
-                xaxis_title="generation",
-                yaxis_title="mission score",
-            )
-            st.plotly_chart(fig, width="stretch")
-        ref = read_json(res / "r7b_goal_conditioned_16runs.json")
-        r7c = read_json(res / "r7c_reliability.json")
-        if ref:
-            bars = [
-                {"condition": c["name"], "held-out score": c["mean"], "ci": c["ci"]}
-                for c in ref["sets"]["heldout"]["result"]["conditions"]
-            ]
-            if r7c:
-                kept = [r["heldout"] for r in r7c["per_run"] if r["kept"]]
-                n = len(kept)
-                m = sum(kept) / n
-                sd = (sum((x - m) ** 2 for x in kept) / (n - 1)) ** 0.5
-                bars.append({"condition": "(b) fresh runs, G7c", "held-out score": m,
-                             "ci": 2.13 * sd / n**0.5})  # fmt: skip
-            bdf = pd.DataFrame(bars)
-            st.plotly_chart(
-                px.bar(bdf, x="condition", y="held-out score", error_y="ci",
-                       title="Held-out goals (mean ± 95% CI over runs)"),
-                width="stretch",
-            )  # fmt: skip
-        st.header("Reading and writing the learned language (G12)")
-        r7d = read_json(res / "r7d_legibility.json")
-        if r7d:
-            pts = [
-                {"condition": r["mode"], "run": r["run"],
-                 "eater set read": r["read"]["eaters_exact"],
-                 "write efficacy": r["write"]["efficacy"]}
-                for r in r7d["runs"]
-                if r["write"]["efficacy"] == r["write"]["efficacy"]
-            ]  # fmt: skip
-            st.plotly_chart(
-                px.scatter(pd.DataFrame(pts), x="eater set read", y="write efficacy",
-                           color="condition", hover_data=["run"],
-                           title="Per squad: read accuracy vs write efficacy (held-out goals)"),
-                width="stretch",
-            )  # fmt: skip
-        st.header("Learned codes where bandwidth binds (G2, plant floor)")
-        plant = read_json(res / "plant_learned_codes.json")
-        if plant:
-            pdf = pd.DataFrame([r for r in plant["rows"] if r.get("variant") == "base"])
-            line = pdf.groupby(["encoding", "budget"])["macro_f1"].mean().reset_index()
-            hand = {
-                t["budget"]: t["hand_mean"] for t in plant["g2_tests"]
-            }  # best hand design per budget
-            line = pd.concat(
-                [line, pd.DataFrame([{"encoding": "best hand design", "budget": b,
-                                      "macro_f1": v} for b, v in hand.items()])]
-            )  # fmt: skip
-            st.plotly_chart(
-                px.line(line, x="budget", y="macro_f1", color="encoding", markers=True,
-                        log_x=True, title="Fault diagnosis macro-F1 by bytes per uplink"),
-                width="stretch",
-            )  # fmt: skip
-        st.header("Drone swarm step 1 (G13)")
-        swarm = read_json(res / "r14_swarm_talk.json")
-        if swarm:
-            pts = []
-            for c in swarm["cells"].values():
-                s = c["success"]
-                pts.append({"budget": c["budget"], "loss": c["loss"], "drift": c["drift"],
-                            "success": sum(s) / len(s)})  # fmt: skip
-            sdf = pd.DataFrame(pts)
-            silent = sdf[sdf["budget"] == 0]
-            talk = sdf[sdf["budget"] > 0].copy()
-            talk["setting"] = (
-                "loss "
-                + talk["loss"].astype(str)
-                + ", drift "
-                + talk["drift"].astype(str)
-            )
-            fig = px.line(talk, x="budget", y="success", color="setting", markers=True,
-                          log_x=True, title="Source found within 2 min, by bytes per packet")  # fmt: skip
-            for _, r in silent.iterrows():
-                fig.add_hline(y=r["success"], line_dash="dot",
-                              annotation_text=f"silent, drift {r['drift']}")  # fmt: skip
-            st.plotly_chart(fig, width="stretch")
-
-        st.header("Probes (exploratory, 2026-10-29)")
-        multi = read_json(res / "r14_multi_probe.json")
-        if multi:
-            pts = [
-                {"sources": key.split("|")[0], "system": key.split("|")[1],
-                 "found": v["found"][0], "ci": v["found"][1], "all": v["all"][0]}
-                for key, v in multi["summary"].items()
-                if key.count("|") == 1
-            ]  # fmt: skip
-            st.plotly_chart(
-                px.bar(pd.DataFrame(pts), x="system", y="found", error_y="ci",
-                       color="sources", barmode="group", hover_data=["all"],
-                       title="Swarm with several gas sources: sources found in 2 min"),
-                width="stretch",
-            )  # fmt: skip
-        inter = read_json(res / "r7e_interlingua.json")
-        if inter:
-            pts = [
-                {
-                    "condition": c,
-                    "share of native": v["of_native"],
-                    "ci": v["of_native_ci"],
-                }
-                for c, v in inter["summary"].items()
-                if isinstance(v, dict) and "of_native" in v
-            ]
-            st.plotly_chart(
-                px.bar(pd.DataFrame(pts), x="condition", y="share of native", error_y="ci",
-                       title="Squad A's centre driving squad B through the meaning space"),
-                width="stretch",
-            )  # fmt: skip
-        kshot = read_json(res / "r13b_kshot.json")
-        if kshot:
-            pts = []
-            for system, r in kshot["systems"].items():
-                for k, m in r["by_k"].items():
-                    for name in ("adapted_joint", "scratch_joint", "frozen_joint",
-                                 "baro_joint"):  # fmt: skip
-                        pts.append({"system": system, "k": int(k), "model": name,
-                                    "joint": m[name][0]})  # fmt: skip
-            st.plotly_chart(
-                px.line(pd.DataFrame(pts), x="k", y="joint", color="model",
-                        facet_col="system", markers=True,
-                        title="Fault specialist on a new system: joint accuracy vs labelled incidents"),
-                width="stretch",
-            )  # fmt: skip
+        for key, fig in figs.items():
+            st.plotly_chart(fig, width="stretch", key=f"all-{key}")
+            st.caption("How to read it: " + HOW_TO_READ.get(key, ""))
 
     # -------------------------------------------------------------- reports
     with reports:
-        files = sorted((DOCS / "results").glob("*.md")) + sorted(
-            (DOCS / "directions").glob("*.md")
+        files = (
+            [DOCS / "research_log.md"]
+            + sorted((DOCS / "results").glob("*.md"))
+            + sorted((DOCS / "directions").glob("*.md"))
         )
         names = [str(f.relative_to(DOCS)) for f in files]
         pick = st.selectbox("Report", names, index=0 if names else None)

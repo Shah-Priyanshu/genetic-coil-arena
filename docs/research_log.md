@@ -1,0 +1,249 @@
+# Research log
+
+**The end goal:** a team of specialist AI models that talk to each other in a compact language they learn themselves. A command centre coordinates them, and a translator lets a person give orders in plain language and read back what happened. The long-term target is a drone swarm: every drone is a specialist (gas sensor, camera, ...) with its own small "brain" running on an ESP32.
+
+**How we test:** every claim is decided by a test written down *before* the run (a "goal", G-number) with a pass bar and a kill bar. Results always come with baselines, several independent training runs and 95% confidence intervals. Data used for a final test ("sealed" sets) is used once. Quick **probes** are exploratory: they show where a real test is worth running.
+
+**Where the evidence points so far:**
+
+- **Learned languages work** in simulation and on sensor data when the channel is tight. They match good hand-designed codes, can be read and written by a monitor, and can be bridged between teams.
+- **A learned command centre can follow structured goals**, including combinations it never trained on.
+- **The plain-language translator works** (97.6% exact with a code check).
+- **Large language models as specialists did not pay off** on real incident data. Small trained specialists sending typed reports did.
+- **The drone swarm** needs to talk, but its radio is not the bottleneck. Coordination is, once there are several targets.
+
+## Track: Learned messages between specialists
+
+Can specialists invent their own compact message code, and when does it beat a code a human designed? This is the heart of the end goal.
+
+### R6: learned protocol in the snake squad
+- **Date:** 2026-10-23
+- **Question:** If a centre and three snake specialists learn their own 3-bit messages from scratch, do they do as well as a hand-designed code?
+- **Why:** The first check that learned communication works at all in our lab.
+- **What we did:** Trained the centre and the specialists together with evolution strategies (ES), and compared team food against a hand-coded direction message, at observation radius 3 and 5.
+- **Result:** Learned 35.4 against hand-coded 34.9 team food at radius 3; 27.3 against 27.3 at radius 5.
+- **Verdict:** MATCHED
+- **What it means:** Learned codes are as good as a good human design, not better, when the channel is roomy enough.
+- **Report:** docs/results/learned_protocol.md
+
+### G2: learned codes where bandwidth binds (plant floor)
+- **Date:** 2026-10-24
+- **Question:** When each sensor node may send only 1–4 bytes, does a learned code diagnose plant faults better than the best hand-designed code?
+- **Why:** The bandwidth-limited edge case (LoRa-class radios, sensor nodes) is where learned compression should matter. It uses real industrial data (the Tennessee Eastman process).
+- **What we did:** Four sensor nodes encoded their readings into 1, 2, 4 or 8 bytes with learned codes (end-to-end, k-means, local classifier) or hand designs. A centre diagnosed 17 fault types. 10 replicates.
+- **Result:** At 1 byte, learned codes reach 0.96–0.97 macro-F1 against 0.82 for the best hand design (+0.14, all 9 comparisons significant).
+- **Verdict:** PASS
+- **What it means:** The clearest win for learned communication so far. It holds exactly where bytes are scarce.
+- **Report:** docs/results/plant_learned_codes.md
+- **Chart:** g2_plant
+
+### G2b: do learned codes extend to new faults?
+- **Date:** 2026-10-25
+- **Question:** Frozen codes trained on 12 faults: can they describe 5 faults never seen, with only 3 labelled examples each?
+- **Why:** A real deployment meets faults nobody trained for.
+- **What we did:** Trained codes on 12 faults, froze them, then tested on 5 unseen faults across 5 splits × 10 replicates.
+- **Result:** No learned code beat the designed fault-ID code (1 byte: 0.832 against 0.837).
+- **Verdict:** LEANING KILL
+- **What it means:** Learned codes do not generalise to unseen faults better than a designed code.
+- **Report:** docs/results/plant_novel_faults.md
+
+### R9: raw hidden states between language models
+- **Date:** 2026-10-24
+- **Question:** Can two LLM specialists talk by passing internal vectors instead of text?
+- **Why:** A "language the models invent" could be their internal states.
+- **What we did:** Invoice-like records: model A extracts, model B normalises. Compared JSON text, learned latent vectors and KV-cache handoff.
+- **Result:** Latent vectors gave 0% exact. KV handoff is lossless and 43% faster, but about 100,000× bigger than JSON.
+- **Verdict:** KILL
+- **What it means:** Between LLMs, typed JSON stays the protocol. KV handoff is only a same-machine shortcut.
+- **Report:** docs/results/r9_latent_vs_json.md
+
+## Track: A command centre that follows goals
+
+Can a learned centre take a structured order (a "GoalSpec": which snakes eat, how cautiously) and coordinate specialists that never see the order themselves?
+
+### G7: a learned centre follows a GoalSpec
+- **Date:** 2026-10-26 to 2026-10-28
+- **Question:** Can a learned centre follow goals, including combinations it never trained on, as well as a hand-coded centre?
+- **Why:** The command centre is the coordinator of the whole ecosystem. It must obey orders, not one fixed task.
+- **What we did:** 21 goals (which of 3 snakes eat × 3 caution levels); trained on 15, tested on 6 held out. Compared (a) a goal-blind centre, (b) goal only at the centre, so it must travel through the 3-bit messages, (c) goal at the centre and the specialists, and (d) a hand-coded centre. 16 training runs each at 10k generations.
+- **Result:** On unseen goals, (c) reaches 92% of the hand-coded centre and (b) 85%, against −15% for goal-blind. (b) failed to train in 2 of 16 runs.
+- **Verdict:** PASS
+- **What it means:** A learned centre can carry orders to specialists through a learned language and generalise to new orders.
+- **Report:** docs/results/r7b_goal_conditioned_16runs.md
+- **Chart:** g7_curves
+
+### G7c: is that training reliable?
+- **Date:** 2026-10-29
+- **Question:** Do the "goal only in the messages" runs train reliably, given that 2 of 16 failed in G7?
+- **Why:** A method that sometimes silently fails is not a foundation.
+- **What we did:** 20 fresh runs, with a pre-registered rule to discard runs whose training-goal score stayed below 12.
+- **Result:** No run failed. They reach 95% of the hand-coded centre on unseen goals, level with condition (c). Overall 2 of 36 runs have failed (about 6%).
+- **Verdict:** PASS
+- **What it means:** Reliable. G7's gap came from two unlucky runs.
+- **Report:** docs/results/r7c_reliability.md
+- **Chart:** g7_heldout
+
+## Track: Reading and writing the learned language
+
+A language only the machines understand is unsafe. Can a monitor read it, and can an operator write into it?
+
+### G12: a monitor reads and writes the learned language
+- **Date:** 2026-10-29
+- **Question:** From the 3-bit messages alone, can a decoder tell which snakes were told to eat? Can writing the decoded symbols steer a snake?
+- **Why:** The roadmap's "reverse translator" must decode learned payloads for monitoring, and humans need a way to countermand.
+- **What we did:** Fitted one small decoder per trained squad on training-goal episodes. It maps symbols to human meanings: eat or do not eat, and where the food is. Tested on unseen goals across 34 squads.
+- **Result:** The decoder names the right set of eaters in 94% of episodes. Writing "stop" stops a snake fully; writing "eat" gives 74% of a real eater's food. Caution is not carried. Almost every squad (33 of 34) invents its own dialect.
+- **Verdict:** PASS
+- **What it means:** Learned languages can be monitored and steered, but each team needs its own decoder.
+- **Report:** docs/results/r7d_legibility.md
+- **Chart:** g12_scatter
+
+### Probe: bridging two teams' dialects
+- **Date:** 2026-10-29
+- **Question:** Can squad A's centre command squad B's snakes if we translate between their dialects through the shared human meanings?
+- **Why:** In an ecosystem, parts trained separately must work together without retraining.
+- **What we did:** For 34 squad pairs: A's centre → A's decoder → B's writer → B's snakes, on unseen goals.
+- **Result:** Without the bridge: 0% of B's own score. With it: 71%, almost exactly the ceiling of B's writer (73%).
+- **Verdict:** PROBE: WORKS
+- **What it means:** Separately trained parts can be joined after the fact. The limit is how rich the shared meaning vocabulary is (only 8 coarse situations today).
+- **Report:** docs/results/r7e_interlingua.md
+- **Chart:** interlingua
+
+## Track: Plain language in, plain language out (the translator)
+
+A person types an order; the translator turns it into a validated GoalSpec. Afterwards a summary is written back in plain language.
+
+### G3: the end-to-end slice
+- **Date:** 2026-10-25
+- **Question:** Does natural language → translator → GoalSpec → centre → specialists → summary work end to end?
+- **Why:** The translator is the human interface of the ecosystem.
+- **What we did:** 174 hand-written requests, never used for tuning (a sealed set), through qwen2.5-coder:14b with a parse-then-validate policy.
+- **Result:** 95.9% exact. The task score from plain language equals the hand-written-spec run. Round trip 100%; p95 latency 1.4 s.
+- **Verdict:** PASS
+- **What it means:** A local 14B model is a dependable translator.
+- **Report:** docs/results/r7a_step2.md
+
+### G3b: can a small distilled model replace the 14B?
+- **Date:** 2026-10-25 to 2026-10-29
+- **Question:** Can a small fine-tuned model (1.7B, then 4B) translate as well, so it fits beside other models?
+- **Why:** A 9 GB translator crowds a 12 GB GPU.
+- **What we did:** Fine-tuned LoRA students on templates plus thousands of verified paraphrases, chosen on a dev set, then one sealed run each.
+- **Result:** 1.7B: 82.8% (twice). 4B: 84.1%.
+- **Verdict:** KILL
+- **What it means:** A bigger student is not the fix. The gap is the shift from template-like training phrasing to real phrasing. The prompted 14B stays.
+- **Report:** docs/results/r7a_step3.md
+
+### G8/G8b: the whole chain on real incidents
+- **Date:** 2026-10-27
+- **Question:** Can one translator route requests across domains (squad, plant, incidents) and drive the real incident team?
+- **Why:** Tests the ecosystem as a product on real data.
+- **What we did:** Requests like "what broke on the 17th?" were resolved against a catalogue of real incidents, run through the trained team, then summarised.
+- **Result:** G8 failed on dates without a month. After fixing the spec (G8b): 92.5% exact, routing 100%, summaries keep 100% of facts.
+- **Verdict:** PASS (G8b)
+- **What it means:** The plain-language desk works on real incidents once the spec handles partial dates.
+- **Report:** docs/results/r11b_ecosystem.md
+
+### G10/G10b: growing the desk and checking the translator
+- **Date:** 2026-10-28
+- **Question:** Does the desk extend to a new system without prompt changes? Can a few code rules catch the translator's guesses?
+- **Why:** Adding a system should not mean rewriting prompts, and silent wrong answers are the worst failure.
+- **What we did:** Added Train Ticket and 62 new incidents. Then added a "literal check" that removes any year, month or count the request did not actually state.
+- **Result:** Exact match rose from 84.5% to 97.6% with the check, with zero silent wrong answers. One error class remains, so not every criterion passed.
+- **Verdict:** NOT PASSED (3 of 4)
+- **What it means:** Small code checks around an LLM fix most of its mistakes. A 30B model was not better (92.9%).
+- **Report:** docs/results/r12c_literal_check.md
+
+## Track: Specialists on real data (incident triage)
+
+Real microservice incidents (the RCAEval benchmark): find the broken service and the fault type. This is the real-data test of specialists plus a centre.
+
+### G4, G4b, G4d, G4e: LLMs as specialists
+- **Date:** 2026-10-25 to 2026-10-27
+- **Question:** Do teams of LLM specialists, each reading part of the data, beat one model or a simple statistical method?
+- **Why:** The original plan used LLM specialists on a shared base model.
+- **What we did:** Four designs: LLM log readers, LLM centres, hybrid teams, and an LLM picking from a shortlist. Run on 62–120 test incidents, compared with BARO (a statistical anomaly ranker) and simple code.
+- **Result:** Every LLM team lost to simple code. For example, the typed LLM team got 4% top-1 against BARO's 88%, and an LLM picking from a shortlist made it worse (77% against 81%).
+- **Verdict:** KILL (4 tests)
+- **What it means:** On this data, LLMs are not good specialists. Code and small trained models are.
+- **Report:** docs/results/r10_step4.md
+
+### G4c: a small trained fault specialist
+- **Date:** 2026-10-27
+- **Question:** Does a small trained classifier that sends a typed report (six fault probabilities) make the team better?
+- **Why:** After the LLM failures: train a tiny specialist for exactly the part that was weak, the fault type.
+- **What we did:** A 59-feature softmax classifier trained on other systems' incidents. The rule centre takes the fault type from its report.
+- **Result:** Joint accuracy 68.3% against BARO's 45.0% (+23 points).
+- **Verdict:** PASS
+- **What it means:** Small trained specialists with typed messages are the working recipe on real data.
+- **Report:** docs/results/r10_step3.md
+
+### G11a/G11b: does it replicate, and can the centre be learned?
+- **Date:** 2026-10-28
+- **Question:** Does G4c's gain hold on 375 fresh incidents? Does a learned centre beat the simple rule centre?
+- **Why:** One result on one dataset is not enough, and the centre is the next thing to learn.
+- **What we did:** Ran the frozen team on RE1 (new data), and trained a ranking centre on RE1 then tested it on RE2.
+- **Result:** +9.3 points pooled, but not on Online Boutique (missing metric kinds). The learned centre gained only +2.4, not significant.
+- **Verdict:** PARTIAL / KILL
+- **What it means:** The specialist mostly transfers. Learned centres need far more data than real incidents give.
+- **Report:** docs/results/r13_real_centre.md
+
+### Probe: how many labels does a new system need?
+- **Date:** 2026-10-29
+- **Question:** If a new deployment labels a few of its own incidents, does the specialist recover where it failed?
+- **Why:** Real deployments always differ from the training data.
+- **What we did:** A small adapter on top of the frozen specialist, fitted on k = 5–40 labelled incidents of the target system. Checked with random, by-repetition and unseen-service splits.
+- **Result:** Online Boutique goes from 52% to 83–86% joint with 20 labels, and holds for unseen services (54% → 78.5%). A model trained from scratch on the same labels does as well.
+- **Verdict:** PROBE: PRACTICAL
+- **What it means:** About 20 labels per new system fix transfer. The feature design carries over, not the trained weights.
+- **Report:** docs/results/r13b_kshot.md
+- **Chart:** kshot
+
+## Track: Growth (adding specialists)
+
+Can a new specialist join a working team without retraining everyone?
+
+### G1: a newcomer joins the snake squad
+- **Date:** 2026-10-24
+- **Question:** Can a new specialist join and reach 90% of a jointly trained one at ≤ 30% of the compute, with the old team unchanged?
+- **Why:** An ecosystem must grow one specialist at a time.
+- **What we did:** Added a newcomer either copied from an existing specialist or trained from scratch, under learned and hand-coded protocols.
+- **Result:** A copied newcomer joins at almost zero cost; a from-scratch one is costly under both protocols.
+- **Verdict:** PASS (copy) / FAIL (scratch)
+- **What it means:** New specialists should start as copies of existing ones (LoRA from LoRA).
+- **Report:** docs/results/add_specialist.md
+
+### G9/G9b: a newcomer joins the incident team
+- **Date:** 2026-10-28
+- **Question:** Can a log-reading newcomer join the real incident team, gaining on code faults without hurting the old ones?
+- **Why:** Growth on real data, not just simulation.
+- **What we did:** Added a log-novelty newcomer through the same command centre, keeping the old team frozen.
+- **Result:** +22.6 points on code-level faults, but −3.3 on the old resource faults, in two tries.
+- **Verdict:** KILL
+- **What it means:** A rule centre cannot tell when to trust the newcomer. That needs a signal the reports do not carry yet.
+- **Report:** docs/results/r12_growth.md
+
+## Track: Drone swarm (open direction)
+
+The user's long-term target: heterogeneous drones, each with two ESP32s, a gyro and accelerometer, two positioning sensors and 2–3 accessories, each with its own specialist brain.
+
+### G13: does the swarm need to talk, and does the radio bind?
+- **Date:** 2026-10-29
+- **Question:** In a simulated gas-leak search, do drones need to talk? Do tiny 1–2 byte messages lose much?
+- **Why:** Learned compression only matters if communication matters *and* bandwidth is tight.
+- **What we did:** 3 gas-sensing and 3 camera drones in a 30 m arena, with drifting positions and a lossy radio. Hand-designed silent and talking swarms at 1–8 bytes per message, 3,000 episodes per setting.
+- **Result:** Talking adds +24 points (73% → 98% found). But 2 bytes are as good as 8, and 1 byte keeps 89% of the gain.
+- **Verdict:** RADIO DOES NOT BIND
+- **What it means:** The swarm must talk, but compression is not where learning helps here.
+- **Report:** docs/results/r14_swarm_talk.md
+- **Chart:** g13_swarm
+
+### Probe: several gas leaks at once
+- **Date:** 2026-10-29
+- **Question:** With 3 leaks, how much better could the swarm do with ideal coordination than with a tuned hand design?
+- **Why:** If hand design leaves little room, learned coordination has nothing to win.
+- **What we did:** Tuned a hand-designed gossip swarm. Compared it with a bound where a leak's exact position is known to all at the first sniff, cameras are split ideally and gas drones move on.
+- **Result:** All three found: hand design 61.9%, ideal coordination 93.1% (+31 points, 77 steps faster). With one leak the gap is only 2 points.
+- **Verdict:** PROBE: ROOM FOR LEARNING
+- **What it means:** The swarm's open problem is coordination (who goes where, when to move on). That is the job of learned per-drone brains. Next: train them.
+- **Report:** docs/results/r14_multi_probe.md
+- **Chart:** multi_probe
