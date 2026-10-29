@@ -213,6 +213,10 @@ HOW_TO_READ = {
     "conditions than training (neither side retuned). The learned brains beat the hand "
     "design in every one; the gain grows when sensing or positions get worse. With a "
     "wide plume the sensed oracle's fixed rules fail too, so it is no bound there.",
+    "r16_ground": "The ground station on the 150 sealed requests, by model. Green bars "
+    "should be high, the red bar (wrong commands: the swarm flies something nobody "
+    "asked) low; the dashed line is the 3% bar. Bigger models are more helpful; the "
+    "small ones refuse or ask more and so send fewer wrong commands.",
     "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
     "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
     "translation through the shared meanings could do.",
@@ -365,6 +369,24 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
             barmode="group", category_orders={"system": list(names.values())},
             title="R14 step 3: the brains in harder conditions (3 leaks)",
         )  # fmt: skip
+    ground = read_json(res / "r16_ground_station.json")
+    if ground:
+        measures = {"exact": "exact command", "asked_when_unclear": "asked when unclear",
+                    "refused_when_should": "refused when should",
+                    "wrong_commands": "wrong command"}  # fmt: skip
+        pts = [
+            {"translator": r["translator"].replace("ollama:", ""), "measure": label,
+             "%": 100 * r[key][0]}
+            for name, r in ground["runs"].items() if name.startswith("sealed|")
+            for key, label in measures.items()
+        ]  # fmt: skip
+        fig = px.bar(
+            pd.DataFrame(pts), x="translator", y="%", color="measure", barmode="group",
+            color_discrete_sequence=["#2e7d32", "#66bb6a", "#a5d6a7", "#c62828"],
+            title="R16: the ground station on the sealed requests",
+        )  # fmt: skip
+        fig.add_hline(y=3, line_dash="dash", line_color="#c62828")
+        figs["r16_ground"] = fig
     inter = read_json(res / "r7e_interlingua.json")
     if inter:
         pts = [
