@@ -11,12 +11,14 @@
     "--workers",
     "8"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-29T19:44:46+00:00",
-  "updated_at": "2026-10-29T20:56:01+00:00",
-  "elapsed_min": 71.2,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 94 %, 3218 MiB, 12282 MiB, 69",
+  "updated_at": "2026-10-29T20:57:07+00:00",
+  "elapsed_min": 72.4,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 91 %, 3218 MiB, 12282 MiB, 68",
   "host": "PC",
   "lane": "cpu",
-  "cpu_workers": 8
+  "cpu_workers": 8,
+  "returncode": 0,
+  "finished_at": "2026-10-29T20:57:07+00:00"
 }
