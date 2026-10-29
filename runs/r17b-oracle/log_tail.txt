@@ -46,3 +46,29 @@
 [saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m22.json
 [done] mission 23: val 0.214 from hand-off
 [saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m23.json
+[done] mission 25: val 0.434 from default
+[done] mission 27: val 0.436 from hand-off
+[done] mission 24: val 0.003 from hand-off
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m24.json
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m25.json
+[done] mission 26: val 0.491 from hand
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m26.json
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m27.json
+[done] mission 28: val 0.228 from hand
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m28.json
+[done] mission 29: val 0.001 from hand
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m29.json
+[done] mission 33: val 0.856 from hand-off
+[done] mission 31: val 0.789 from hand
+[done] mission 30: val 0.851 from hand
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m30.json
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m31.json
+[done] mission 32: val 0.488 from hand-off
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m32.json
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m33.json
+[done] mission 37: val 0.807 from hand-off
+[done] mission 34: val 0.051 from hand-off
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m34.json
+[done] mission 35: val 0.098 from hand
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m35.json
+[done] mission 38: val 0.912 from hand

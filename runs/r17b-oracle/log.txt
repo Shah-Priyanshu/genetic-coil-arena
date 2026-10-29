@@ -66,3 +66,6 @@
 [done] mission 32: val 0.488 from hand-off
 [saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m32.json
 [saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m33.json
+[done] mission 37: val 0.807 from hand-off
+[done] mission 34: val 0.051 from hand-off
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m34.json
