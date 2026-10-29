@@ -211,6 +211,10 @@ HOW_TO_READ = {
     "kshot": "Joint accuracy (right service and right fault) on a new system against how "
     "many of its incidents are labelled (k). The adapted specialist climbs far above the "
     "frozen one and the BARO baseline.",
+    "r15_scout": "Each point is one trained detector; further right = more memory on "
+    "the K210. Higher is better on every line. People who fill part of the frame are "
+    "found well (top two lines); small, distant people are the weak spot (bottom line), "
+    "and growing the model 8× buys only 6 points there.",
 }
 
 
@@ -341,6 +345,21 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
             pd.DataFrame(pts), x="labelled incidents (k)", y="joint accuracy",
             color="model", facet_col="system", markers=True,
             title="Probe: the fault specialist on a new system, by labels",
+        )  # fmt: skip
+    scout = read_json(res / "r15_scout_brain.json")
+    if scout:
+        pts = [
+            {"int8 weights (KB)": r["int8_kb"], "measure": name, "value": r[key],
+             "width": r["alpha"]}
+            for r in scout
+            for key, name in (("ap50", "AP50, all persons"),
+                              ("ap50_tall", "AP50, persons ≥ 32 px tall"),
+                              ("present_auc", "person-present AUC"))
+        ]  # fmt: skip
+        figs["r15_scout"] = px.line(
+            pd.DataFrame(pts).sort_values("int8 weights (KB)"), x="int8 weights (KB)",
+            y="value", color="measure", markers=True, hover_data=["width"],
+            title="R15: the scout brain's accuracy by model size (COCO val2017)",
         )  # fmt: skip
     return figs
 

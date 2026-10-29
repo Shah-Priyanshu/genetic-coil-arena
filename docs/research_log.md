@@ -272,11 +272,12 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - Dropped: incident triage (no real data), more snake-squad work (done its job), learned compression (ESP-NOW has room) and LLM specialists (lost to small trained models).
 
 ### R15: the scout brain (person detector for the K210)
-- **Date:** 2026-10-29 (running)
+- **Date:** 2026-10-29
 - **Question:** How well can a person detector small enough for OpenSwarm's K210 module find people, and how does accuracy trade against size and compute?
-- **Why:** The SCOUT role's DETECTION packet needs a person's centre and confidence. That brain must fit the K210 (a few MB of memory, int8).
-- **What we did:** COCO 2017 persons, letterboxed to 160×160. A MobileNet-style CenterNet detector at widths 0.25, 0.5 and 0.75, using only K210-friendly layers. Trained on train2017 (118k images) on the GPU and scored on the 5,000 val2017 images: AP50, AP50 for persons at least 32 px tall, and person-present AUC. Exported to ONNX for the K210 toolchain.
-- **Result:** Running.
-- **Verdict:** Running
-- **What it means:** Pending.
-- **Report:** docs/directions/drone_swarm.md
+- **Why:** The SCOUT role's DETECTION packet needs a person's centre and confidence. That brain must fit the K210 (a few MB of memory, int8). OpenSwarm's plan names YOLOv2-tiny at 224×224 but has no trained model yet.
+- **What we did:** COCO 2017 persons, letterboxed to 160×160. A MobileNet-style CenterNet detector at widths 0.25, 0.5 and 0.75, using only K210-friendly layers. Trained on train2017 (118k images, 40 epochs) on the GPU and scored on the 5,000 val2017 images: AP50, AP50 for persons at least 32 px tall, and person-present AUC. Exported to ONNX for the K210 toolchain. An exploratory measurement: no bar was set in advance.
+- **Result:** Smallest (115 KB int8, 20 M multiply-adds per frame): AP50 0.24, tall persons 0.48, present AUC 0.91. Largest (959 KB, 159 M): AP50 0.30, tall persons 0.58, present AUC 0.93. Width 0.5 (434 KB) sits between. All three fit the K210 and export to ONNX.
+- **Verdict:** MEASURED: FITS THE K210
+- **What it means:** A sub-megabyte brain reliably tells whether a person is in view and finds people who fill part of the frame. Small, distant people are the weak spot, and an 8× bigger model buys only 6 points there. Drones see exactly those people, from above. Next: test it on aerial footage (VisDrone) and fine-tune it for the drone's view.
+- **Report:** docs/results/r15_scout_brain.md
+- **Chart:** r15_scout

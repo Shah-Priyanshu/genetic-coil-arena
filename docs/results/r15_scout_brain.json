@@ -1,0 +1,53 @@
+[
+ {
+  "ap50": 0.24078902591896528,
+  "ap50_tall": 0.47521887341302715,
+  "present_auc": 0.9075478548552802,
+  "present_rate": 0.4812,
+  "val_images": 5000,
+  "alpha": 0.25,
+  "params": 117333,
+  "int8_kb": 114.5830078125,
+  "macs": 20076800,
+  "epochs": 40,
+  "train_images": 118287,
+  "seconds": 2691.523656606674,
+  "size": 160,
+  "onnx": true,
+  "weights": "D:\\Projects\\genetic-coil-arena-data\\r15_models\\scout_a0.25_s160.pt"
+ },
+ {
+  "ap50": 0.28142784726330256,
+  "ap50_tall": 0.542250976223614,
+  "present_auc": 0.9211698330631914,
+  "present_rate": 0.4812,
+  "val_images": 5000,
+  "alpha": 0.5,
+  "params": 444837,
+  "int8_kb": 434.4111328125,
+  "macs": 72921600,
+  "epochs": 40,
+  "train_images": 118287,
+  "seconds": 4945.7526042461395,
+  "size": 160,
+  "onnx": true,
+  "weights": "D:\\Projects\\genetic-coil-arena-data\\r15_models\\scout_a0.5_s160.pt"
+ },
+ {
+  "ap50": 0.3037312873349697,
+  "ap50_tall": 0.5811348816590236,
+  "present_auc": 0.929891283100396,
+  "present_rate": 0.4812,
+  "val_images": 5000,
+  "alpha": 0.75,
+  "params": 982517,
+  "int8_kb": 959.4892578125,
+  "macs": 158534400,
+  "epochs": 40,
+  "train_images": 118287,
+  "seconds": 7996.645026445389,
+  "size": 160,
+  "onnx": true,
+  "weights": "D:\\Projects\\genetic-coil-arena-data\\r15_models\\scout_a0.75_s160.pt"
+ }
+]
