@@ -1,0 +1,21 @@
+{
+  "id": "r14d-int8",
+  "commit": "f563eb597b03b798b2cac066c3fb7c83ec9495c2",
+  "args": [
+    "scripts/r14_int8.py",
+    "--set",
+    "step2=runs:r14b-train-*",
+    "--set",
+    "random=runs:r14c-train-*",
+    "--header-from",
+    "random",
+    "--workers",
+    "8",
+    "--out",
+    "docs/results/r14_int8.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "priority": 1,
+  "timeout_min": 150.0
+}
