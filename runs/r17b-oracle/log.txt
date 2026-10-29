@@ -10,3 +10,21 @@
 [done] mission 9: val 0.759 from hand-off
 [done] mission 11: val 0.516 from hand
 [done] mission 12: val 0.000 from hand
+[done] mission 15: val 0.507 from hand
+[done] mission 0: val 0.147 from hand
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m0.json
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m1.json
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m2.json
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m3.json
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m4.json
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m5.json
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m6.json
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m7.json
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m8.json
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m9.json
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m10.json
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m11.json
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m12.json
+[done] mission 13: val 0.101 from default
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m13.json
+[done] mission 17: val 0.000 from hand-off
