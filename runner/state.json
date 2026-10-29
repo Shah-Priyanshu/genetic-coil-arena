@@ -27,10 +27,11 @@
   "backlog": {
     "ready": [
       "r16-dev-q14",
-      "r15b-train-ft-a05",
-      "r15b-train-ft-a075",
-      "r15b-train-sc-a025",
-      "r15b-train-sc-a05"
+      "r15b2-train-ft-a025",
+      "r15b2-train-ft-a05",
+      "r15b2-train-ft-a075",
+      "r15b2-train-sc-a025",
+      "r15b2-train-sc-a05"
     ],
     "blocked": [
       {
@@ -39,19 +40,29 @@
           "r14b-train-a",
           "r14b-train-b"
         ]
+      },
+      {
+        "id": "r15b2-zz-report",
+        "blocked_by": [
+          "r15b2-train-ft-a025",
+          "r15b2-train-sc-a025",
+          "r15b2-train-ft-a05",
+          "r15b2-train-sc-a05",
+          "r15b2-train-ft-a075"
+        ]
       }
     ]
   },
   "idle_since": {
     "cpu": null,
-    "gpu": "2026-10-29T08:51:16+00:00"
+    "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-29T08:51:25+00:00",
-  "cpu_percent": 70.3,
+  "updated_at": "2026-10-29T08:52:37+00:00",
+  "cpu_percent": 70.1,
   "gpu": {
     "util": 0.0,
-    "mem_used_mb": 628.0,
+    "mem_used_mb": 639.0,
     "mem_total_mb": 12282.0
   }
 }
