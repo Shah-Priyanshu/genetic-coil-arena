@@ -4,7 +4,7 @@
 
 - Date: 2026-10-29
 - Commit: 439e81b8 (code; this report is committed on top of it)
-- Compute: Intel64 Family 6 Model 183 Stepping 1, GenuineIntel, 28 logical cores, 1 worker processes. Training wall time 0.0 min (0.00 CPU-hours), evaluation 0.1 min.
+- Compute: Intel64 Family 6 Model 183 Stepping 1, GenuineIntel, 28 logical cores, 1 worker processes. Training wall time 0.0 min (0.00 CPU-hours), evaluation 0.0 min.
 - Source squads: R6 r = 3 runs 0–1 (`C:\Users\priya\AppData\Local\Temp\pytest-of-unknown\pytest-210\test_driver_end_to_end_and_res0\params.npz`, sha256 f1511983b767…): 3 snakes, one shared specialist network per squad, trained 2000 ES generations × population 128 × 8 episodes.
 - Training: ES population 4 × 1 episodes per member; generations: newcomer from scratch 2, newcomer copied 2, joint retraining 2. Validation every 2 generations on 2 episodes.
 - Held-out evaluation: 3 test episodes per run (R6's test seeds, now with 4 snakes). Runs are the independent units for every CI/test.
