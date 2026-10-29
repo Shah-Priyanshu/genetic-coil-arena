@@ -1,0 +1,14 @@
+{
+  "id": "r15b-zz-report",
+  "commit": "3907a2d5f2f228c3fd23080dae83bf9563715aa1",
+  "queued_args": [
+    "scripts/r15b_aerial_scout.py",
+    "report",
+    "--from",
+    "runs:r15b-train-*",
+    "--out",
+    "docs/results/r15b_aerial_scout.md"
+  ],
+  "state": "rejected",
+  "reason": "dependency r15b-train-ft-a025 ended failed"
+}
