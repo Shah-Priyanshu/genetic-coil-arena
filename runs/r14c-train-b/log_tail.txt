@@ -1,10 +1,3 @@
-[progress] run 110: gen 275/1500, val 3.692, best 3.694 at 125, 5535 s
-[progress] run 109: gen 275/1500, val 3.633, best 3.706 at 150, 5540 s
-[progress] run 113: gen 275/1500, val 3.683, best 3.686 at 125, 5626 s
-[progress] run 112: gen 275/1500, val 3.642, best 3.700 at 150, 5633 s
-[progress] run 108: gen 275/1500, val 3.717, best 3.803 at 150, 5634 s
-[progress] run 114: gen 275/1500, val 3.592, best 3.675 at 225, 5647 s
-[progress] run 111: gen 275/1500, val 3.658, best 3.722 at 50, 5654 s
 [progress] run 115: gen 325/1500, val 3.706, best 3.706 at 325, 6282 s
 [progress] run 109: gen 325/1500, val 3.600, best 3.706 at 150, 6404 s
 [progress] run 110: gen 325/1500, val 3.669, best 3.708 at 300, 6439 s
@@ -198,3 +191,10 @@
 [progress] run 108: gen 1475/1500, val 3.608, best 3.803 at 150, 27189 s
 [progress] run 112: gen 1475/1500, val 3.686, best 3.711 at 1400, 27230 s
 [train] run 115: best val 3.750 at gen 1000 (7.58 h) -> D:\Projects\genetic-coil-arena-gpu-results\runs\r14c-train-b\artifacts\r14b_brains_run115
+[train] run 109: best val 3.764 at gen 500 (7.62 h) -> D:\Projects\genetic-coil-arena-gpu-results\runs\r14c-train-b\artifacts\r14b_brains_run109
+[train] run 111: best val 3.775 at gen 1150 (7.64 h) -> D:\Projects\genetic-coil-arena-gpu-results\runs\r14c-train-b\artifacts\r14b_brains_run111
+[train] run 110: best val 3.756 at gen 375 (7.64 h) -> D:\Projects\genetic-coil-arena-gpu-results\runs\r14c-train-b\artifacts\r14b_brains_run110
+[train] run 114: best val 3.719 at gen 1375 (7.66 h) -> D:\Projects\genetic-coil-arena-gpu-results\runs\r14c-train-b\artifacts\r14b_brains_run114
+[train] run 113: best val 3.744 at gen 950 (7.66 h) -> D:\Projects\genetic-coil-arena-gpu-results\runs\r14c-train-b\artifacts\r14b_brains_run113
+[train] run 108: best val 3.803 at gen 150 (7.67 h) -> D:\Projects\genetic-coil-arena-gpu-results\runs\r14c-train-b\artifacts\r14b_brains_run108
+[train] run 112: best val 3.711 at gen 1400 (7.67 h) -> D:\Projects\genetic-coil-arena-gpu-results\runs\r14c-train-b\artifacts\r14b_brains_run112
