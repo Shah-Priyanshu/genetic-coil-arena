@@ -1,0 +1,19 @@
+{
+  "id": "r14b-zz-eval",
+  "commit": "86dadd13f6f0ea31bed0ddf497bde15fe870f396",
+  "args": [
+    "scripts/r14_brains.py",
+    "eval",
+    "--from",
+    "runs:r14b-train-*",
+    "--out",
+    "docs/results/r14_brains.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 4,
+  "after": [
+    "r14b-train-a",
+    "r14b-train-b"
+  ],
+  "timeout_min": 180.0
+}
