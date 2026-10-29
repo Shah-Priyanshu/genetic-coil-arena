@@ -9,3 +9,104 @@ To support symlinks on Windows, you either need to activate Developer Mode or to
 W1028 21:03:44.871000 18340 Lib\site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
 
 Fetching 3 files:   0%|          | 0/3 [00:00<?, ?it/s]
+Fetching 3 files:  33%|███▎      | 1/3 [00:07<00:14,  7.26s/it]
+Fetching 3 files:  67%|██████▋   | 2/3 [03:37<02:06, 126.55s/it]
+Fetching 3 files: 100%|██████████| 3/3 [03:38<00:00, 69.16s/it] 
+Fetching 3 files: 100%|██████████| 3/3 [03:38<00:00, 72.72s/it]
+
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/398 [00:00<01:16,  5.17it/s]
+Loading weights:   3%|▎         | 10/398 [00:00<00:11, 34.70it/s]
+Loading weights:   5%|▍         | 19/398 [00:00<00:07, 51.64it/s]
+Loading weights:   7%|▋         | 26/398 [00:00<00:06, 54.04it/s]
+Loading weights:   8%|▊         | 32/398 [00:00<00:07, 51.25it/s]
+Loading weights:  11%|█         | 44/398 [00:00<00:05, 64.29it/s]
+Loading weights:  14%|█▎        | 54/398 [00:01<00:06, 55.38it/s]
+Loading weights:  16%|█▌        | 63/398 [00:01<00:05, 57.44it/s]
+Loading weights:  19%|█▊        | 74/398 [00:01<00:05, 60.87it/s]
+Loading weights:  21%|██        | 83/398 [00:01<00:04, 65.62it/s]
+Loading weights:  23%|██▎       | 92/398 [00:01<00:04, 71.02it/s]
+Loading weights:  25%|██▌       | 100/398 [00:01<00:04, 68.66it/s]
+Loading weights:  28%|██▊       | 110/398 [00:01<00:04, 67.34it/s]
+Loading weights:  30%|███       | 120/398 [00:02<00:04, 66.01it/s]
+Loading weights:  32%|███▏      | 129/398 [00:02<00:04, 61.31it/s]
+Loading weights:  35%|███▌      | 141/398 [00:02<00:04, 63.95it/s]
+Loading weights:  38%|███▊      | 151/398 [00:02<00:03, 65.29it/s]
+Loading weights:  41%|████      | 163/398 [00:02<00:03, 70.13it/s]
+Loading weights:  44%|████▍     | 176/398 [00:02<00:03, 73.00it/s]
+Loading weights:  47%|████▋     | 186/398 [00:02<00:02, 76.70it/s]
+Loading weights:  49%|████▉     | 196/398 [00:03<00:02, 74.99it/s]
+Loading weights:  52%|█████▏    | 208/398 [00:03<00:02, 81.92it/s]
+Loading weights:  55%|█████▍    | 217/398 [00:03<00:02, 71.36it/s]
+Loading weights:  58%|█████▊    | 229/398 [00:03<00:02, 68.38it/s]
+Loading weights:  61%|██████    | 242/398 [00:03<00:02, 71.90it/s]
+Loading weights:  63%|██████▎   | 250/398 [00:03<00:02, 69.32it/s]
+Loading weights:  66%|██████▌   | 262/398 [00:03<00:01, 73.25it/s]
+Loading weights:  69%|██████▊   | 273/398 [00:04<00:01, 74.26it/s]
+Loading weights:  71%|███████▏  | 284/398 [00:04<00:01, 76.05it/s]
+Loading weights:  74%|███████▍  | 295/398 [00:04<00:01, 69.94it/s]
+Loading weights:  77%|███████▋  | 306/398 [00:04<00:01, 76.26it/s]
+Loading weights:  80%|███████▉  | 318/398 [00:04<00:01, 75.06it/s]
+Loading weights:  83%|████████▎ | 330/398 [00:04<00:00, 76.20it/s]
+Loading weights:  85%|████████▌ | 340/398 [00:05<00:00, 74.78it/s]
+Loading weights:  88%|████████▊ | 352/398 [00:05<00:00, 80.50it/s]
+Loading weights:  91%|█████████ | 362/398 [00:05<00:00, 82.64it/s]
+Loading weights:  93%|█████████▎| 371/398 [00:05<00:00, 83.28it/s]
+Loading weights:  95%|█████████▌| 380/398 [00:05<00:00, 75.27it/s]
+Loading weights:  97%|█████████▋| 388/398 [00:05<00:00, 74.23it/s]
+Loading weights: 100%|██████████| 398/398 [00:05<00:00, 70.09it/s]
+[21:07:46] [q4b-r32-n12k-p80] step 25/4500 loss 1.7889 (16s)
+[21:08:01] [q4b-r32-n12k-p80] step 50/4500 loss 0.2552 (30s)
+[21:08:16] [q4b-r32-n12k-p80] step 75/4500 loss 0.1610 (45s)
+[21:08:30] [q4b-r32-n12k-p80] step 100/4500 loss 0.1263 (59s)
+[21:08:43] [q4b-r32-n12k-p80] step 125/4500 loss 0.0947 (72s)
+[21:08:56] [q4b-r32-n12k-p80] step 150/4500 loss 0.0824 (86s)
+[21:09:10] [q4b-r32-n12k-p80] step 175/4500 loss 0.0614 (99s)
+[21:09:24] [q4b-r32-n12k-p80] step 200/4500 loss 0.0535 (113s)
+[21:09:37] [q4b-r32-n12k-p80] step 225/4500 loss 0.0590 (126s)
+[21:09:50] [q4b-r32-n12k-p80] step 250/4500 loss 0.0344 (139s)
+[21:10:04] [q4b-r32-n12k-p80] step 275/4500 loss 0.0303 (153s)
+[21:10:18] [q4b-r32-n12k-p80] step 300/4500 loss 0.0428 (167s)
+[21:10:30] [q4b-r32-n12k-p80] step 325/4500 loss 0.0246 (179s)
+[21:10:44] [q4b-r32-n12k-p80] step 350/4500 loss 0.0286 (193s)
+[21:10:57] [q4b-r32-n12k-p80] step 375/4500 loss 0.0323 (206s)
+[21:11:10] [q4b-r32-n12k-p80] step 400/4500 loss 0.0167 (220s)
+[21:11:24] [q4b-r32-n12k-p80] step 425/4500 loss 0.0295 (233s)
+[21:11:38] [q4b-r32-n12k-p80] step 450/4500 loss 0.0328 (247s)
+[21:11:52] [q4b-r32-n12k-p80] step 475/4500 loss 0.0295 (261s)
+[21:12:05] [q4b-r32-n12k-p80] step 500/4500 loss 0.0333 (274s)
+[21:12:19] [q4b-r32-n12k-p80] step 525/4500 loss 0.0201 (289s)
+[21:12:33] [q4b-r32-n12k-p80] step 550/4500 loss 0.0347 (303s)
+[21:12:47] [q4b-r32-n12k-p80] step 575/4500 loss 0.0227 (317s)
+[21:13:03] [q4b-r32-n12k-p80] step 600/4500 loss 0.0222 (332s)
+[21:13:16] [q4b-r32-n12k-p80] step 625/4500 loss 0.0110 (345s)
+[21:13:30] [q4b-r32-n12k-p80] step 650/4500 loss 0.0222 (359s)
+[21:13:44] [q4b-r32-n12k-p80] step 675/4500 loss 0.0199 (373s)
+[21:13:58] [q4b-r32-n12k-p80] step 700/4500 loss 0.0431 (387s)
+[21:14:11] [q4b-r32-n12k-p80] step 725/4500 loss 0.0245 (400s)
+[21:14:24] [q4b-r32-n12k-p80] step 750/4500 loss 0.0126 (413s)
+[21:14:36] [q4b-r32-n12k-p80] step 775/4500 loss 0.0303 (425s)
+[21:14:49] [q4b-r32-n12k-p80] step 800/4500 loss 0.0156 (438s)
+[21:15:03] [q4b-r32-n12k-p80] step 825/4500 loss 0.0221 (452s)
+[21:15:17] [q4b-r32-n12k-p80] step 850/4500 loss 0.0188 (466s)
+[21:15:31] [q4b-r32-n12k-p80] step 875/4500 loss 0.0111 (480s)
+[21:15:45] [q4b-r32-n12k-p80] step 900/4500 loss 0.0074 (494s)
+[21:16:00] [q4b-r32-n12k-p80] step 925/4500 loss 0.0078 (510s)
+[21:16:15] [q4b-r32-n12k-p80] step 950/4500 loss 0.0099 (524s)
+[21:16:29] [q4b-r32-n12k-p80] step 975/4500 loss 0.0166 (538s)
+[21:16:43] [q4b-r32-n12k-p80] step 1000/4500 loss 0.0200 (552s)
+[21:16:57] [q4b-r32-n12k-p80] step 1025/4500 loss 0.0121 (567s)
+[21:17:11] [q4b-r32-n12k-p80] step 1050/4500 loss 0.0247 (580s)
+[21:17:25] [q4b-r32-n12k-p80] step 1075/4500 loss 0.0237 (594s)
+[21:17:39] [q4b-r32-n12k-p80] step 1100/4500 loss 0.0162 (608s)
+[21:17:53] [q4b-r32-n12k-p80] step 1125/4500 loss 0.0182 (622s)
+[21:18:06] [q4b-r32-n12k-p80] step 1150/4500 loss 0.0133 (636s)
+[21:18:21] [q4b-r32-n12k-p80] step 1175/4500 loss 0.0205 (650s)
+[21:18:34] [q4b-r32-n12k-p80] step 1200/4500 loss 0.0253 (664s)
+[21:18:47] [q4b-r32-n12k-p80] step 1225/4500 loss 0.0219 (676s)
+[21:19:00] [q4b-r32-n12k-p80] step 1250/4500 loss 0.0147 (689s)
+[21:19:14] [q4b-r32-n12k-p80] step 1275/4500 loss 0.0173 (703s)
+[21:19:28] [q4b-r32-n12k-p80] step 1300/4500 loss 0.0116 (717s)
+[21:19:42] [q4b-r32-n12k-p80] step 1325/4500 loss 0.0063 (731s)
+[21:19:56] [q4b-r32-n12k-p80] step 1350/4500 loss 0.0094 (746s)
+[21:20:11] [q4b-r32-n12k-p80] step 1375/4500 loss 0.0133 (760s)
