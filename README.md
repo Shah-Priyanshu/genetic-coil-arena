@@ -48,6 +48,8 @@ Evolution beats random but is far from greedy. Treat this as an open problem, no
 
 ## Quick start
 
+A live dashboard (runner status and logs, goal ladder, result charts, every report) runs with `powershell -File scripts/start_dashboard.ps1` at http://localhost:8501. It needs a venv with `streamlit plotly pandas` (default `D:envs\dash`).
+
 ```bash
 pip install -e ".[dev]"
 pytest tests/ --ignore=tests/test_viewer.py   # test_viewer.py opens a pygame window
