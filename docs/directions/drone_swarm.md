@@ -124,7 +124,24 @@ The brains close half the coordination gap at 3 leaks and gain most on 4 leaks, 
 - **Wide plume:** the hand design's fixed smell threshold fails. The oracle's fixed threshold fails as well, so it is a bound only near its design point. The brains learned to cope.
 - **Caveat:** the oracle is not told which drones went down.
 
-Step 3 (b), running (`r14c-*`): a second set trained on a random condition every generation. Does it beat the step-2 brains on the harder conditions without losing more than 3 points at nominal?
+## Step 3 result (b): randomised training adds little (`docs/results/r14_robust.md`)
+
+**Setup:** 16 brains trained on a random condition every generation, with the same budget as step 2.
+**Bar:** beat the step-2 brains on average over the harder conditions, CI above 0, and lose at most 3 points at nominal.
+**Result:** passes, but the gain is tiny.
+
+| | Gain over the step-2 brains |
+|---|---|
+| average over the harder conditions | +0.6 ± 0.2 points |
+| nominal | 0.0 |
+| wide plume (most of the gain) | +4.6 (72.1% vs 67.5%) |
+| 4 drones (outside the randomised range) | −0.6 |
+| 40 m arena (outside the randomised range) | −0.9 |
+
+**What it means:**
+- The step-2 brains were already robust.
+- Randomisation costs nothing and helps where the plume is unusual, so flight brains can train with it.
+- The bar should have set a minimum effect size; with no minimum, a 0.6-point gain counted as a pass.
 
 ## R17: a leader that plans the person search (ladder step 3, running)
 
