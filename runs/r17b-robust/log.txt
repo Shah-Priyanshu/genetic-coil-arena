@@ -1,0 +1,8 @@
+[load] blind 16, conditioned 16
+[progress] 500/10880 cells, 10 s
+[progress] 1000/10880 cells, 15 s
+[progress] 1500/10880 cells, 20 s
+[progress] 2000/10880 cells, 28 s
+[progress] 2500/10880 cells, 36 s
+[progress] 3000/10880 cells, 43 s
+[progress] 3500/10880 cells, 52 s
