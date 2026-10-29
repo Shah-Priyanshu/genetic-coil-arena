@@ -1,0 +1,21 @@
+{
+  "id": "r14c-robust-step2",
+  "commit": "a541e5bd55ce2e0e4eb3f94a8b3328ab03788e1e",
+  "queued_args": [
+    "scripts/r14_robust.py",
+    "--set",
+    "step2=runs:r14b-train-*",
+    "--workers",
+    "8",
+    "--out",
+    "docs/results/r14_robust_step2.md"
+  ],
+  "state": "running",
+  "started_at": "2026-10-29T10:32:36+00:00",
+  "updated_at": "2026-10-29T10:32:36+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 2 %, 558 MiB, 12282 MiB, 51",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 8
+}

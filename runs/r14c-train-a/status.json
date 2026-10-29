@@ -1,0 +1,21 @@
+{
+  "id": "r14c-train-a",
+  "commit": "a541e5bd55ce2e0e4eb3f94a8b3328ab03788e1e",
+  "queued_args": [
+    "scripts/r14_brains.py",
+    "train",
+    "--runs",
+    "100:108",
+    "--workers",
+    "8",
+    "--randomise"
+  ],
+  "state": "running",
+  "started_at": "2026-10-29T10:32:37+00:00",
+  "updated_at": "2026-10-29T10:32:37+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 2 %, 558 MiB, 12282 MiB, 51",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 8
+}
