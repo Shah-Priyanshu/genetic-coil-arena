@@ -1,0 +1,12 @@
+# R15: the scout brain, a person detector sized for OpenSwarm's K210
+
+COCO 2017 persons, letterboxed to the input size; trained on train2017, scored on the 5,000 val2017 images. AP50 = average precision at IoU 0.5 for persons ("tall": persons at least 32 px high). Present AUC = how well the frame's top score separates frames with a person (≥ 0.5% of the image, VWW's rule) from frames without. int8 weights = one byte per parameter.
+
+| Width (alpha) | Input | Params | int8 weights | MACs per frame | AP50 | AP50, tall persons | Present AUC | Training |
+|---|---|---|---|---|---|---|---|---|
+| 0.25 | 160×160 | 117 k | 115 KB | 20.1 M | 0.241 | 0.475 | 0.908 | 45 min |
+| 0.5 | 160×160 | 445 k | 434 KB | 72.9 M | 0.281 | 0.542 | 0.921 | 82 min |
+| 0.75 | 160×160 | 983 k | 959 KB | 158.5 M | 0.304 | 0.581 | 0.930 | 133 min |
+
+Reproduce: `python scripts/r15_scout_brain.py train` then `report`.
+
