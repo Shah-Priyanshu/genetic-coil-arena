@@ -127,7 +127,10 @@ def translate(*replies, text="x"):
 
 
 def test_translator_resolves_places_and_fills_defaults():
-    res = translate({"params": {"behavior": "Search Grid", "area": "parking lot"}})
+    res = translate(
+        {"params": {"behavior": "Search Grid", "area": "parking lot"}},
+        text="search the parking lot",
+    )
     assert res.status == "ok"
     assert res.spec.params == {
         "behavior": "search_grid",
@@ -143,12 +146,12 @@ def test_translator_asks_for_missing_or_unknown_places():
 
 
 def test_translator_refuses_after_invalid_retry():
+    text = "fly in formation 0.3 m apart"
     bad = {"params": {"behavior": "formation", "spacing_m": 0.3}}
-    assert translate(bad, bad).status == "refused"
-    fixed = translate(bad, {"params": {"behavior": "formation", "spacing_m": 0.8}})
-    assert (
-        fixed.status == "ok"
-    )  # the model may "fix" a value: scored as a wrong command
+    assert translate(bad, bad, text=text).status == "refused"
+    # a model that clamps to the 0.8 m limit on the retry is stopped by the literal check
+    clamped = {"params": {"behavior": "formation", "spacing_m": 0.8}}
+    assert translate(bad, clamped, text=text).status == "refused"
     assert translate({"refusal": "not a swarm command"}).status == "refused"
 
 
@@ -225,3 +228,32 @@ def test_sealed_set_is_pinned_and_every_gold_command_is_valid():
     sealed = {i["text"] for i in r16_sealed.load_sealed()}
     assert not sealed & {i["text"] for i in r16_sealed.load_dev()}
     assert not sealed & {e.text for e in r16.EXAMPLES}
+
+
+def test_spoken_numbers_and_literal_check():
+    assert gs.spoken_numbers("one hundred and forty bpm") == [140.0]
+    assert sorted(gs.spoken_numbers("spacing five metres, height 10 m")) == [5.0, 10.0]
+    assert gs.spoken_numbers("twenty-five m, a hundred feet") == [25.0, 100.0]
+    ok = {"behavior": "perimeter", "area": "home", "radius_m": 6.1}
+    assert gs.unsupported(ok, "orbit home 20 ft out") == []
+    assert (
+        gs.unsupported({"behavior": "person_follow", "min_conf": 0.8}, "80% sure") == []
+    )
+    clamped = {"behavior": "formation", "shape": "v", "spacing_m": 10}
+    assert len(gs.unsupported(clamped, "get in a V at 15 m altitude")) == 1
+    invented = {"behavior": "formation", "shape": "line", "spacing_m": 2}
+    assert len(gs.unsupported(invented, "formation with 2 m between each drone")) == 1
+    assert gs.unsupported(
+        {"behavior": "search_grid", "area": "north field"}, "sweep the hill"
+    )
+
+
+def test_translator_question_beats_refusal_and_literals_are_checked():
+    both = {"refusal": "not enough detail", "clarify": "Which area?"}
+    assert translate(both).status == "clarify"
+    clamped = {"params": {"behavior": "formation", "shape": "v", "spacing_m": 10}}
+    res = translate(clamped, clamped, text="get in a V at 15 m altitude")
+    assert res.status == "refused" and res.attempts == 2
+    moved = {"params": {"behavior": "formation", "shape": "v", "alt_m": 15}}
+    res = translate(clamped, moved, text="get in a V at 15 m altitude")
+    assert res.status == "ok" and res.spec.params["alt_m"] == 15

@@ -319,3 +319,89 @@ def decode(packet: bytes) -> dict[str, Any]:
     raw = packet[2:].rstrip(b"\0")
     return {"behavior": names[packet[0]], "count": packet[1],
             "params": json.loads(raw) if raw else {}}  # fmt: skip
+
+
+# ------------------------------------------------------------------ literal check
+_UNITS = {w: i for i, w in enumerate(
+    "zero one two three four five six seven eight nine ten eleven twelve thirteen "
+    "fourteen fifteen sixteen seventeen eighteen nineteen".split()
+)}  # fmt: skip
+_TENS = {w: 10 * (i + 2) for i, w in enumerate(
+    "twenty thirty forty fifty sixty seventy eighty ninety".split()
+)}  # fmt: skip
+SHAPE_WORDS = {
+    "line": ("line", "row", "single file", "column"),
+    "v": ("v", "vee", "chevron"),
+    "grid": ("grid", "square", "block"),
+    "circle": ("circle", "ring"),
+}
+
+
+def spoken_numbers(text: str) -> list[float]:
+    """Numbers written in digits ("2.5", "80%") or words ("one hundred and forty")."""
+    t = text.lower().replace("-", " ")
+    out = [float(x) for x in re.findall(r"\d+(?:\.\d+)?", t)]
+    total, cur, seen = 0, 0, False
+    for word in re.findall(r"[a-z]+", t) + ["."]:
+        if word in _UNITS:
+            cur += _UNITS[word]
+            seen = True
+        elif word in _TENS:
+            cur += _TENS[word]
+            seen = True
+        elif word == "hundred" and seen:
+            cur = max(cur, 1) * 100
+        elif word in ("a", "and") and seen:
+            continue
+        elif word == "hundred":  # "a hundred"
+            cur, seen = 100, True
+        else:
+            if seen:
+                out.append(float(total + cur))
+            total, cur, seen = 0, 0, False
+    return out
+
+
+def literal_values(text: str) -> list[float]:
+    """Every value a stated number can become: as said, from feet to metres, and from
+    a percentage to a fraction."""
+    out = []
+    for n in spoken_numbers(text):
+        out += [n, round(n * 0.3048, 2), round(n / 100, 2)]
+    return out
+
+
+def _said(phrase: str, text: str) -> bool:
+    return (
+        re.search(rf"(?<![a-z0-9]){re.escape(_norm(phrase))}(?![a-z0-9])", text)
+        is not None
+    )
+
+
+def unsupported(params: Mapping[str, Any], text: str,
+                site: Sequence[Place] = SITE) -> list[str]:  # fmt: skip
+    """The params a model stated that the request does not support: a number the
+    operator never said (in any unit), a shape or pattern never named, a place none of
+    whose names appear. Empty when every stated value comes from the request."""
+    norm = _norm(text)
+    values = literal_values(text)
+    out = []
+    for k, v in params.items():
+        if k == "behavior" or v is None:
+            continue
+        if isinstance(v, (int, float)) and not isinstance(v, bool):
+            if not any(abs(v - c) <= max(0.011, 0.005 * abs(c)) for c in values):
+                out.append(f"{k}={v:g} is not a number the operator said; leave "
+                           "unstated parameters out")  # fmt: skip
+        elif k == "shape" and isinstance(v, str):
+            if not any(_said(w, norm) for w in SHAPE_WORDS.get(v, (v,))):
+                out.append(f"shape={v} was not named; leave unstated parameters out")
+        elif k == "pattern" and isinstance(v, str):
+            if not _said(v, norm):
+                out.append(f"pattern={v} was not named; leave unstated parameters out")
+        elif k == "area" and isinstance(v, str):
+            place = find_place(v, site)
+            names = (place.name, *place.aliases) if place else (v,)
+            if not any(_said(n, norm) for n in names):
+                out.append(f"area={v} was not named by the operator")
+    return out

@@ -6,10 +6,17 @@ after the model's extraction is code (``envs/swarm/ground.py``): per-behaviour d
 from OpenSwarm's config, place names resolved against the site map, schema validation,
 the state check and the 64-byte ``BEHAVIOR_CMD`` encoding.
 
-``GroundTranslator`` is the policy translator (parse first, validate after) with two
-steps in front of validation: a named place becomes its canonical name, or a question
-when the site map does not know it, and a behaviour that needs a place it was not given
-asks for one. The model never sees coordinates.
+``GroundTranslator`` is the policy translator (parse first, validate after) with these
+steps in front of validation, all fixed on the dev set before any sealed run:
+
+- a question beats a refusal when the model gives both (asking is the safe outcome);
+- a named place becomes its canonical name, or a question when the site map does not
+  know it, and a behaviour that needs a place it was not given asks for one (the model
+  never sees coordinates);
+- the literal check (``ground.unsupported``): every number, shape, pattern and place the
+  model stated must come from the request (numbers in any unit or as words). Otherwise
+  the reply is sent back once with the reason, and refused if it still fails. This
+  stops a model from inventing a value or clamping an out-of-range one to the limit.
 
 ``keyword_reply`` is the regex baseline behind the same interface.
 
@@ -31,6 +38,7 @@ from ..envs.swarm import ground as gs
 from ..protocol.goalspec import SpecRegistry
 from ..translator import CLARIFY, OK, REFUSED, PolicyTranslator
 from ..translator.core import Example, TranslationPack
+from ..translator.policy import _UNSATISFIABLE
 
 PLACES = ", ".join(f'"{p.name}"' for p in gs.SITE)
 
@@ -57,13 +65,17 @@ Place names on the site map: {PLACES}. Copy the operator's place name into area;
 station resolves it.
 
 Rules:
+- Every parameter is optional except area (search_grid and perimeter). Never ask or \
+refuse because another parameter is missing: leave it out and the station uses its default.
+- Give a behaviour only the parameters listed for it, and only values the operator stated. \
+Never invent, guess or adjust a value; never move a value to a different parameter.
 - Numbers: convert to metres (1 ft = 0.3048 m) and give plain numbers.
-- If the request needs a place the operator did not name (e.g. "search over there"), ask \
-in clarify which area.
-- If the request is not about flying the swarm, or asks for something none of the \
-behaviours does (landing, filming, spraying, delivering, single-drone moves), or asks for \
-two behaviours at once, refuse with a short reason.
-- Never invent a value the operator did not give.
+- Ask (a question in clarify, refusal empty) when the operator wants the swarm to act but \
+the place is missing or not on the site map, or it is unclear which behaviour is meant.
+- Refuse (a short reason in refusal, clarify empty) when the request is not about flying \
+the swarm; asks for something none of the behaviours does (landing, take-off, filming, \
+photos, spraying, delivering, flying to coordinates, moving one drone, speed); asks for two \
+behaviours at once; or states a parameter the chosen behaviour does not have.
 
 Reply with {{"refusal": "", "clarify": "", "params": {{...}}}}: params when you can \
 fill the command, otherwise a refusal or a clarifying question."""
@@ -76,6 +88,8 @@ EXAMPLES = (
     Example("Keep an eye on the barn from 15 metres out.",
             {"behavior": "perimeter", "area": "barn", "radius_m": 15}),
     Example("Search the area over there.", clarify="Which area should the swarm search?"),
+    Example("Comb the beach for the dog.",
+            clarify="The beach is not on the site map. Which mapped area should be searched?"),
     Example("Everyone come back now.", {"behavior": "rth"}),
     Example("Land drone 3 in the field.",
             refusal="Landing a single drone is not a swarm behaviour."),
@@ -105,7 +119,15 @@ def _behavior_name(value: Any) -> Any:
 
 
 class GroundTranslator(PolicyTranslator):
-    """``PolicyTranslator`` plus the site map and per-behaviour defaults (see module)."""
+    """``PolicyTranslator`` plus the site map, per-behaviour defaults and the literal
+    check (see module)."""
+
+    _text = ""
+
+    def translate(self, text: str, pack: TranslationPack, priority: int = 0,
+                  deadline: int | None = None) -> Any:  # fmt: skip
+        self._text = text
+        return super().translate(text, pack, priority, deadline)
 
     def _decide(self, raw: str, pack: TranslationPack, priority: int,
                 deadline: int | None) -> Any:  # fmt: skip
@@ -114,6 +136,10 @@ class GroundTranslator(PolicyTranslator):
         except ValueError:
             return super()._decide(raw, pack, priority, deadline)
         params = body.get("params") if isinstance(body, dict) else None
+        if isinstance(body, dict):
+            question = body.get("clarify")
+            if isinstance(question, str) and question.strip():
+                return (CLARIFY, [question.strip()])
         stop = isinstance(body, dict) and any(
             isinstance(body.get(k), str) and body[k].strip()
             for k in ("refusal", "clarify")
@@ -128,6 +154,9 @@ class GroundTranslator(PolicyTranslator):
                     return (CLARIFY, [f"I don't know {params['area']!r}. "
                                       f"Known places: {PLACES}."])  # fmt: skip
                 params["area"] = place.name
+            invented = gs.unsupported(params, self._text)
+            if invented:
+                return (_UNSATISFIABLE, invented)
             need = gs.BEHAVIOR_PARAMS.get(params.get("behavior"), {})
             missing = [k for k, v in need.items() if v is None and k not in params]
             if missing:
