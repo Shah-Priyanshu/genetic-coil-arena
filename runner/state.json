@@ -3,26 +3,39 @@
   "host": "PC",
   "draining_for_update": false,
   "cpu_budget": 24,
-  "cpu_workers_in_use": 8,
+  "cpu_workers_in_use": 12,
   "running": [
     {
       "id": "r7d-legibility",
       "lane": "cpu",
       "cpu_workers": 8,
       "started_at": "2026-10-29T01:01:18+00:00"
+    },
+    {
+      "id": "r7a4-train-q4b",
+      "lane": "gpu",
+      "cpu_workers": 4,
+      "started_at": "2026-10-29T01:03:33+00:00"
     }
   ],
   "backlog": {
     "ready": [],
-    "blocked": []
+    "blocked": [
+      {
+        "id": "r7a4-eval-lora",
+        "blocked_by": [
+          "r7a4-train-q4b"
+        ]
+      }
+    ]
   },
   "idle_since": {
     "cpu": null,
     "gpu": "2026-10-29T00:48:57+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-29T01:02:25+00:00",
-  "cpu_percent": 33.9,
+  "updated_at": "2026-10-29T01:03:33+00:00",
+  "cpu_percent": 37.3,
   "gpu": {
     "util": 0.0,
     "mem_used_mb": 812.0,
