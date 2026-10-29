@@ -47,3 +47,4 @@
 [done] mission 23: val 0.214 from hand-off
 [saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m23.json
 [done] mission 25: val 0.434 from default
+[done] mission 27: val 0.436 from hand-off
