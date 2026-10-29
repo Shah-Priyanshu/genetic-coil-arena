@@ -21,17 +21,17 @@ Can specialists invent their own compact message code, and when does it beat a c
 - **Question:** If a centre and three snake specialists learn their own 3-bit messages from scratch, do they do as well as a hand-designed code?
 - **Why:** The first check that learned communication works at all in our lab.
 - **What we did:** Trained the centre and the specialists together with evolution strategies (ES), and compared team food against a hand-coded direction message, at observation radius 3 and 5.
-- **Result:** Learned 35.4 against hand-coded 34.9 team food at radius 3; 27.3 against 27.3 at radius 5.
+- **Result:** On the GPU runs, learned 35.4 against hand-coded 34.9 team food at radius 3, and 27.3 against 27.3 at radius 5 (`learned_protocol_gpu_r5.md`). An earlier 4-run CPU version was worse: learned 22.5 against 30.7, and one run in four formed no code (`learned_protocol.md`).
 - **Verdict:** MATCHED
 - **What it means:** Learned codes are as good as a good human design, not better, when the channel is roomy enough.
-- **Report:** docs/results/learned_protocol.md
+- **Report:** docs/results/learned_protocol_gpu_r3.md
 
 ### G2: learned codes where bandwidth binds (plant floor)
 - **Date:** 2026-10-24
 - **Question:** When each sensor node may send only 1–4 bytes, does a learned code diagnose plant faults better than the best hand-designed code?
 - **Why:** The bandwidth-limited edge case (LoRa-class radios, sensor nodes) is where learned compression should matter. It uses real industrial data (the Tennessee Eastman process).
 - **What we did:** Four sensor nodes encoded their readings into 1, 2, 4 or 8 bytes with learned codes (end-to-end, k-means, local classifier) or hand designs. A centre diagnosed 17 fault types. 10 replicates.
-- **Result:** At 1 byte, learned codes reach 0.96–0.97 macro-F1 against 0.82 for the best hand design (+0.14, all 9 comparisons significant).
+- **Result:** At 1 byte, the end-to-end and local-classifier codes reach 0.96–0.97 macro-F1 against 0.82 for the best hand design (+0.14); learned k-means reaches 0.83. All 9 learned-vs-hand comparisons are significant.
 - **Verdict:** PASS
 - **What it means:** The clearest win for learned communication so far. It holds exactly where bytes are scarce.
 - **Report:** docs/results/plant_learned_codes.md
@@ -92,7 +92,7 @@ A language only the machines understand is unsafe. Can a monitor read it, and ca
 - **Question:** From the 3-bit messages alone, can a decoder tell which snakes were told to eat? Can writing the decoded symbols steer a snake?
 - **Why:** The roadmap's "reverse translator" must decode learned payloads for monitoring, and humans need a way to countermand.
 - **What we did:** Fitted one small decoder per trained squad on training-goal episodes. It maps symbols to human meanings: eat or do not eat, and where the food is. Tested on unseen goals across 34 squads.
-- **Result:** The decoder names the right set of eaters in 94% of episodes. Writing "stop" stops a snake fully; writing "eat" gives 74% of a real eater's food. Caution is not carried. Almost every squad (33 of 34) invents its own dialect.
+- **Result:** The decoder names the right set of eaters in 94% of episodes. Writing "stop" stops a snake fully; writing "eat" gives 74% of a real eater's food. Caution is not carried. The 34 squads speak 33 distinct dialects; only one pair shares one.
 - **Verdict:** PASS
 - **What it means:** Learned languages can be monitored and steered, but each team needs its own decoder.
 - **Report:** docs/results/r7d_legibility.md
@@ -118,7 +118,7 @@ A person types an order; the translator turns it into a validated GoalSpec. Afte
 - **Question:** Does natural language → translator → GoalSpec → centre → specialists → summary work end to end?
 - **Why:** The translator is the human interface of the ecosystem.
 - **What we did:** 174 hand-written requests, never used for tuning (a sealed set), through qwen2.5-coder:14b with a parse-then-validate policy.
-- **Result:** 95.9% exact. The task score from plain language equals the hand-written-spec run. Round trip 100%; p95 latency 1.4 s.
+- **Result:** 95.9% exact. The task score from plain language is within the confidence interval of the hand-written-spec run. Round trip 100%; p95 latency 1.4 s.
 - **Verdict:** PASS
 - **What it means:** A local 14B model is a dependable translator.
 - **Report:** docs/results/r7a_step2.md
@@ -128,7 +128,7 @@ A person types an order; the translator turns it into a validated GoalSpec. Afte
 - **Question:** Can a small fine-tuned model (1.7B, then 4B) translate as well, so it fits beside other models?
 - **Why:** A 9 GB translator crowds a 12 GB GPU.
 - **What we did:** Fine-tuned LoRA students on templates plus thousands of verified paraphrases, chosen on a dev set, then one sealed run each.
-- **Result:** 1.7B: 82.8% (twice). 4B: 84.1%.
+- **Result:** 1.7B: 82.8% (twice; this report). 4B: 84.1% (`docs/results/r7a_step4_q4b_sealed.json`).
 - **Verdict:** KILL
 - **What it means:** A bigger student is not the fix. The gap is the shift from template-like training phrasing to real phrasing. The prompted 14B stays.
 - **Report:** docs/results/r7a_step3.md
@@ -147,7 +147,7 @@ A person types an order; the translator turns it into a validated GoalSpec. Afte
 - **Date:** 2026-10-28
 - **Question:** Does the desk extend to a new system without prompt changes? Can a few code rules catch the translator's guesses?
 - **Why:** Adding a system should not mean rewriting prompts, and silent wrong answers are the worst failure.
-- **What we did:** Added Train Ticket and 62 new incidents. Then added a "literal check" that removes any year, month or count the request did not actually state.
+- **What we did:** Added Train Ticket and 62 new incidents (G10, `r12_growth.md`). Then added a "literal check" that removes any year, month or count the request did not actually state.
 - **Result:** Exact match rose from 84.5% to 97.6% with the check, with zero silent wrong answers. One error class remains, so not every criterion passed.
 - **Verdict:** NOT PASSED (3 of 4)
 - **What it means:** Small code checks around an LLM fix most of its mistakes. A 30B model was not better (92.9%).
@@ -161,11 +161,15 @@ Real microservice incidents (the RCAEval benchmark): find the broken service and
 - **Date:** 2026-10-25 to 2026-10-27
 - **Question:** Do teams of LLM specialists, each reading part of the data, beat one model or a simple statistical method?
 - **Why:** The original plan used LLM specialists on a shared base model.
-- **What we did:** Four designs: LLM log readers, LLM centres, hybrid teams, and an LLM picking from a shortlist. Run on 62–120 test incidents, compared with BARO (a statistical anomaly ranker) and simple code.
+- **What we did:** Four designs, run on 62–120 test incidents and compared with BARO (a statistical anomaly ranker) and simple code:
+  - LLM log readers (`r10_log_triage.md`);
+  - hybrid teams with LLM centres (`r10_step2.md`);
+  - LLM teams on code-level faults (`r10_step4.md`);
+  - an LLM picking from a shortlist (`r10_step5.md`).
 - **Result:** Every LLM team lost to simple code. For example, the typed LLM team got 4% top-1 against BARO's 88%, and an LLM picking from a shortlist made it worse (77% against 81%).
 - **Verdict:** KILL (4 tests)
 - **What it means:** On this data, LLMs are not good specialists. Code and small trained models are.
-- **Report:** docs/results/r10_step4.md
+- **Report:** docs/results/r10_log_triage.md
 
 ### G4c: a small trained fault specialist
 - **Date:** 2026-10-27
