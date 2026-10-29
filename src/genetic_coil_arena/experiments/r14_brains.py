@@ -18,13 +18,18 @@ tuned knobs) and the sensed oracle on the same episodes.
 Good sign (fixed in advance): at 3 sources, the learned brains' all-found rate, averaged
 over training runs, beats the hand design by at least 10 points, with the run CI's lower
 bound above 0.
+
+Step 3 (``randomise=True``, see ``r14_robust``): every generation plays one condition
+drawn from ``RANDOM_CONDITIONS`` (sources, loss, drift, sensor, plume, drone failures)
+instead of the fixed 3-source setting, and the checkpoint is kept by validation over
+``VAL_MIX``.
 """
 
 from __future__ import annotations
 
 import json
 import time
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from pathlib import Path
 from typing import Any
 
@@ -41,6 +46,19 @@ TRAIN_BASE, VAL_BASE, RUN_STRIDE = 9_000_000_000, 9_500_000_000, 10_000_000
 HAND_KNOBS = {"one_each": False, "camera_radius": 4.5, "exclude": 8.0}  # probe-tuned
 EVAL_KS = (1, 2, 3, 4)
 GOOD_SIGN_POINTS = 0.10
+VAL_MIX = ({}, {"loss": 0.6, "failures": 1}, {"drift": 0.08, "n_sources": 4})
+
+
+def random_condition(rng: np.random.Generator) -> dict[str, Any]:
+    """One training condition of step 3 (overrides of the probe's 3-source config)."""
+    return {
+        "n_sources": int(rng.integers(2, 5)),
+        "loss": float(rng.uniform(0.1, 0.7)),
+        "drift": float(rng.uniform(0.01, 0.09)),
+        "hit_rate": float(rng.uniform(0.4, 0.8)),
+        "plume_sigma": float(rng.uniform(2.0, 4.5)),
+        "failures": int(rng.choice([0, 0, 1, 2])),
+    }
 
 
 @dataclass(frozen=True)
@@ -56,10 +74,14 @@ class BrainSettings:
     val_episodes: int = 120
     k: int = 3
     progress_s: float = 600.0
+    randomise: bool = False
 
 
-def make_policy(settings: BrainSettings, k: int) -> tuple[Any, LearnedSwarm]:
-    cfg = probe.config(k, 2)
+def make_policy(
+    settings: BrainSettings, k: int, over: dict[str, Any] | None = None
+) -> tuple[Any, LearnedSwarm]:
+    """The probe's config for ``k`` sources with ``over`` replaced, and its policy."""
+    cfg = replace(probe.config(k, 2), **(over or {}))
     pol = LearnedSwarm(
         cfg, MultiCodec(2, probe.POS_BITS[2], cfg.arena),
         brain(settings.hidden), brain(settings.hidden), **HAND_KNOBS,
@@ -74,11 +96,12 @@ def split(theta: np.ndarray, pol: LearnedSwarm) -> tuple[np.ndarray, np.ndarray]
 
 
 def rollout(
-    settings: BrainSettings, k: int, thetas: np.ndarray, seeds: list[int]
-) -> np.ndarray:
+    settings: BrainSettings, k: int, thetas: np.ndarray, seeds: list[int],
+    over: dict[str, Any] | None = None,
+) -> np.ndarray:  # fmt: skip
     """(P, E) episode scores (found + all found) of every member on the same seeds."""
     thetas = np.atleast_2d(thetas)
-    cfg, pol = make_policy(settings, k)
+    cfg, pol = make_policy(settings, k, over)
     gas_p, cam_p = split(thetas, pol)
     pol.set_params(gas_p, cam_p, len(seeds))
     all_seeds = list(seeds) * len(thetas)
@@ -109,7 +132,11 @@ def train_run(run: int, settings: BrainSettings) -> dict[str, Any]:
     last = 0.0
     for g in range(settings.generations + 1):
         if g % settings.eval_every == 0 or g == settings.generations:
-            val = float(rollout(settings, settings.k, es.theta, val_seeds).mean())
+            mix = VAL_MIX if settings.randomise else ({},)
+            val = float(np.mean([
+                rollout(settings, settings.k, es.theta, val_seeds, over).mean()
+                for over in mix
+            ]))  # fmt: skip
             curve.append({"generation": g, "val": val,
                           "wall_s": time.perf_counter() - start})  # fmt: skip
             if val > best[0]:
@@ -126,8 +153,10 @@ def train_run(run: int, settings: BrainSettings) -> dict[str, Any]:
             TRAIN_BASE + run * RUN_STRIDE + g * settings.episodes + i
             for i in range(settings.episodes)
         ]
+        over = random_condition(np.random.default_rng([run, g, 1416])) if (
+            settings.randomise) else None  # fmt: skip
         cands = es.ask()
-        es.tell(rollout(settings, settings.k, cands, seeds).mean(axis=1))
+        es.tell(rollout(settings, settings.k, cands, seeds, over).mean(axis=1))
     return {
         "run": run,
         "theta": best[1],

@@ -23,6 +23,10 @@ accessories and the positioning sensors, and uses the radio.
 - Radio: each step every drone may broadcast one packet of ``MessageSpec.length`` bytes
   (int64 values in [0, 256)). Each other drone receives it with probability
   ``1 - loss``, in its next observation (``inbox`` and ``inbox_ok``).
+- Failures (R14 step 3): ``failures`` drones per episode, chosen at random, go down at a
+  step drawn uniformly from ``fail_window`` (a flat battery or a crash): from then on a
+  downed drone stays where it landed, its radio is silent and its camera confirms
+  nothing. Nobody is told; the others only stop hearing from it.
 
 All randomness of an episode is drawn at ``reset`` from its own seed, so a seed always
 gives the same episode whatever else is in the batch.
@@ -60,6 +64,8 @@ class SwarmConfig:
         range_noise: Std of the inter-drone range measurements
         loss: Packet loss probability per sender, receiver and step
         message: Packet format; ``length`` = bytes per packet (0 = no radio)
+        failures, fail_window: Drones that go down per episode, and the steps
+            ``[lo, hi)`` in which each goes down
     """
 
     arena: float = 30.0
@@ -83,12 +89,18 @@ class SwarmConfig:
     message: MessageSpec = field(
         default_factory=lambda: MessageSpec("discrete", 4, 256)
     )
+    failures: int = 0
+    fail_window: tuple[int, int] = (20, 160)
 
     def __post_init__(self) -> None:
         if not self.roles or any(r not in ROLES for r in self.roles):
             raise ValueError(f"roles must be a non-empty tuple of {ROLES}")
         if not 0.0 <= self.loss <= 1.0:
             raise ValueError("loss must lie in [0, 1]")
+        if not 0 <= self.failures <= len(self.roles):
+            raise ValueError("failures must lie in [0, n_drones]")
+        if not 1 <= self.fail_window[0] < self.fail_window[1]:
+            raise ValueError("fail_window must be [lo, hi) with 1 <= lo < hi")
         if self.message.kind != "discrete" or self.message.vocab_size != 256:
             raise ValueError("the radio carries bytes: a discrete 256-symbol message")
 
@@ -150,6 +162,7 @@ class SwarmEnv(MultiAgentEnv):
         self._gnoise = np.zeros((b, t + 1, n))
         self._rnoise = np.zeros((b, t + 1, n, n))
         self._deliver = np.zeros((b, t + 1, n, n), dtype=bool)
+        self._fail_at = np.full((b, n), t + 1, dtype=np.int64)  # step it goes down
         for i, seed in enumerate(seeds):
             g = np.random.default_rng([seed, 1414])
             ang = g.uniform(0, 2 * np.pi, n)
@@ -168,6 +181,10 @@ class SwarmEnv(MultiAgentEnv):
             noise = g.normal(0.0, c.range_noise, (t + 1, n, n))
             self._rnoise[i] = (noise + noise.transpose(0, 2, 1)) / np.sqrt(2)
             self._deliver[i] = g.random((t + 1, n, n)) >= c.loss
+            if c.failures:  # own stream: episodes without failures stay as they were
+                f = np.random.default_rng([seed, 1415])
+                who = f.choice(n, size=c.failures, replace=False)
+                self._fail_at[i, who] = f.integers(*c.fail_window, size=c.failures)
         self.t = np.zeros(b, dtype=np.int64)
         self.done = np.zeros(b, dtype=bool)
         self.confirmed = np.zeros(b, dtype=bool)
@@ -197,7 +214,8 @@ class SwarmEnv(MultiAgentEnv):
         gas = conc * (1 + c.gas_noise * self._gnoise[rows, tt]) + c.gas_floor * np.abs(
             self._gnoise[rows, tt]
         )
-        gas = np.where(gas_role, np.clip(gas, 0.0, None), 0.0)
+        up = self.t[:, None] < self._fail_at  # a downed drone's sensors are off
+        gas = np.where(gas_role & up, np.clip(gas, 0.0, None), 0.0)
         diff = self.pos[:, :, None, :] - self.pos[:, None, :, :]
         ranges = np.sqrt((diff**2).sum(-1)) + self._rnoise[rows, tt]
         ranges = np.clip(ranges, 0.0, None) * (1 - np.eye(n))[None]
@@ -224,9 +242,10 @@ class SwarmEnv(MultiAgentEnv):
         """(B, N, K): camera drone n sees not-yet-found source k."""
         c = self.config
         cam_role = (c.role_index == ROLES.index("camera"))[None, :, None]
+        up = (self.t[:, None] < self._fail_at)[:, :, None]
         diff = self.pos[:, :, None, :] - self.source[:, None, :, :]
         d = np.sqrt((diff**2).sum(-1))
-        return cam_role & (d <= c.camera_range) & ~self.found[:, None, :]
+        return cam_role & up & (d <= c.camera_range) & ~self.found[:, None, :]
 
     def step(
         self, actions: np.ndarray, messages: Optional[np.ndarray] = None
@@ -236,6 +255,7 @@ class SwarmEnv(MultiAgentEnv):
         b, n = acts.shape
         live = ~self.done
         move = MOVES[acts] * (c.speed * c.dt)
+        move = np.where((self.t[:, None] >= self._fail_at)[..., None], 0.0, move)
         self.pos = np.where(
             live[:, None, None], np.clip(self.pos + move, 0.0, c.arena), self.pos
         )
@@ -252,6 +272,7 @@ class SwarmEnv(MultiAgentEnv):
                 raise ValueError("message symbols are bytes in [0, 255]")
             rows = np.arange(b)
             ok = self._deliver[rows, self.t] & ~np.eye(n, dtype=bool)[None]
+            ok &= (self.t[:, None] < self._fail_at)[:, None, :]  # downed senders
         # inbox[b, i, j] = what receiver i got from sender j
         inbox = np.where(ok[..., None], sent[:, None, :, :], 0)
         sees = self._sees() & live[:, None, None]

@@ -147,3 +147,29 @@ def test_multi_probe_smoke():
     assert "sensed oracle" in probe.render(rep)
     oracle = cells["K=3|oracle"]
     assert all(r["found"] > 2.5 for r in oracle)
+
+
+def test_downed_drones_stop_fall_silent_and_see_nothing():
+    cfg = replace(SwarmConfig(), failures=2, fail_window=(1, 2))  # down after step 1
+    env = SwarmEnv(cfg)
+    env.reset([5])
+    down = np.flatnonzero(env._fail_at[0] == 1)
+    assert len(down) == 2
+    msgs = np.full((1, 6, 4), 9, dtype=np.int64)
+    env.step(np.zeros((1, 6), dtype=np.int64), msgs)  # t = 1: down from now on
+    before = env.pos.copy()
+    obs, *_ = env.step(np.full((1, 6), 1), msgs)
+    moved = np.abs(env.pos - before).sum(-1)[0] > 0
+    assert not moved[down].any() and moved[np.setdiff1d(np.arange(6), down)].any()
+    assert not obs.specialists["inbox_ok"][0][:, down].any()
+    for j in down:  # a downed camera over a source confirms nothing
+        env.pos[0, j] = env.source[0, 0]
+    env.pos[0, np.setdiff1d(np.arange(6), down)] = 0.0
+    _, _, _, info = env.step(np.zeros((1, 6), dtype=np.int64), msgs)
+    assert not info["confirmed"][0]
+    # no failures: the episode is exactly the old one
+    a = SwarmEnv(SwarmConfig()).reset([5]).specialists["pos_est"]
+    b = SwarmEnv(replace(SwarmConfig(), failures=0)).reset([5]).specialists["pos_est"]
+    assert np.array_equal(a, b)
+    with pytest.raises(ValueError):
+        SwarmConfig(failures=7)

@@ -42,6 +42,8 @@ def main() -> None:
     t.add_argument("--population", type=int, default=rb.BrainSettings.population)
     t.add_argument("--episodes", type=int, default=rb.BrainSettings.episodes)
     t.add_argument("--progress", type=float, default=rb.BrainSettings.progress_s)
+    t.add_argument("--randomise", action="store_true",
+                   help="step 3: a random condition every generation")  # fmt: skip
     t.add_argument("--workers", type=int, default=4)
     t.add_argument("--out", default=os.environ.get("GCA_RUN_DIR", "outputs/r14b"))
     e = sub.add_parser("eval")
@@ -58,6 +60,7 @@ def main() -> None:
             population=args.population,
             episodes=args.episodes,
             progress_s=args.progress,
+            randomise=args.randomise,
         )
         jobs = [(r, settings, args.out) for r in range(a, b)]
         with ProcessPoolExecutor(min(args.workers, len(jobs))) as pool:
