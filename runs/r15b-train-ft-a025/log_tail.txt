@@ -16,3 +16,28 @@
 [04:40:02] [alpha 0.25] epoch 16/20 loss 1.0500 (2137 s)
 [04:42:15] [alpha 0.25] epoch 17/20 loss 1.0469 (2270 s)
 [04:44:28] [alpha 0.25] epoch 18/20 loss 1.0444 (2403 s)
+[04:46:41] [alpha 0.25] epoch 19/20 loss 1.0433 (2536 s)
+[04:48:53] [alpha 0.25] epoch 20/20 loss 1.0435 (2668 s)
+C:\Users\priya\AppData\Local\Temp\gca-r15b-train-ft-a025-xu0wtjlr\src\genetic_coil_arena\experiments\r15_scout_brain.py:397: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:219.)
+  x = torch.from_numpy(np.ascontiguousarray(imgs)).to(dev).permute(0, 3, 1, 2)
+Traceback (most recent call last):
+  File "C:\Users\priya\AppData\Local\Temp\gca-r15b-train-ft-a025-xu0wtjlr\scripts\r15b_aerial_scout.py", line 142, in <module>
+    main()
+    ~~~~^^
+  File "C:\Users\priya\AppData\Local\Temp\gca-r15b-train-ft-a025-xu0wtjlr\scripts\r15b_aerial_scout.py", line 136, in main
+    train(args)
+    ~~~~~^^^^^^
+  File "C:\Users\priya\AppData\Local\Temp\gca-r15b-train-ft-a025-xu0wtjlr\scripts\r15b_aerial_scout.py", line 48, in train
+    res = r15.train_model(
+        alpha, data, args.epochs, args.batch, args.lr, seed, args.limit, log,
+        init=init, eval_fn=r15b.val_metrics,
+    )  # fmt: skip
+  File "C:\Users\priya\AppData\Local\Temp\gca-r15b-train-ft-a025-xu0wtjlr\src\genetic_coil_arena\experiments\r15_scout_brain.py", line 428, in train_model
+    res = (eval_fn or evaluate)(model, va, size, dev, to_input)
+  File "C:\Users\priya\AppData\Local\Temp\gca-r15b-train-ft-a025-xu0wtjlr\src\genetic_coil_arena\experiments\r15b_aerial_scout.py", line 482, in val_metrics
+    m = tile_metrics(preds, best, va)["pooled"]
+        ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\priya\AppData\Local\Temp\gca-r15b-train-ft-a025-xu0wtjlr\src\genetic_coil_arena\experiments\r15b_aerial_scout.py", line 454, in tile_metrics
+    frames, scales = split["src"], split["scale"]
+                     ~~~~~^^^^^^^
+KeyError: 'src'
