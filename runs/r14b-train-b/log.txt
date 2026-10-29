@@ -235,3 +235,4 @@
 [progress] run 9: gen 1450/1500, val 3.458, best 3.683 at 950, 25340 s
 [progress] run 8: gen 1450/1500, val 3.633, best 3.750 at 925, 25380 s
 [progress] run 14: gen 1450/1500, val 3.458, best 3.700 at 1275, 25388 s
+[progress] run 10: gen 1450/1500, val 3.483, best 3.717 at 1325, 25659 s
