@@ -9,12 +9,14 @@
     "-p",
     "no:cacheprovider"
   ],
-  "state": "running",
+  "state": "failed",
   "started_at": "2026-10-29T09:59:24+00:00",
-  "updated_at": "2026-10-29T10:09:34+00:00",
-  "elapsed_min": 10.2,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 100 %, 11742 MiB, 12282 MiB, 56",
+  "updated_at": "2026-10-29T10:11:48+00:00",
+  "elapsed_min": 12.4,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 98 %, 3207 MiB, 12282 MiB, 67",
   "host": "PC",
   "lane": "cpu",
-  "cpu_workers": 2
+  "cpu_workers": 2,
+  "returncode": 1,
+  "finished_at": "2026-10-29T10:11:48+00:00"
 }

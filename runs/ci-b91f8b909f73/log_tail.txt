@@ -6,3 +6,51 @@
 ........................................................................ [ 24%]
 ........................................................................ [ 28%]
 ........................................................................ [ 33%]
+..............................................................F......... [ 37%]
+........................................................................ [ 41%]
+........................................................................ [ 45%]
+........................................................................ [ 49%]
+........................................................................ [ 53%]
+........................................................................ [ 57%]
+........................................................................ [ 61%]
+........................................................................ [ 66%]
+........................................................................ [ 70%]
+........................................................................ [ 74%]
+........................................................................ [ 78%]
+........................................................................ [ 82%]
+........................................................................ [ 86%]
+........................................................................ [ 90%]
+........................................................................ [ 94%]
+........................................................................ [ 99%]
+.................                                                        [100%]
+================================== FAILURES ===================================
+_________________ test_live_ollama_translates_one_instruction _________________
+
+registry = <genetic_coil_arena.protocol.goalspec.SpecRegistry object at 0x000001CD5501F9B0>
+domains = {'squad': Domain(name='squad', spec_name='squad.mission', pack=TranslationPack(spec_name='squad.mission', system='You ...: 16, 'target_far': 0.01, 'active_nodes': ['reactor', 'separator', 'stripper', 'compressor_utilities']}, outcome=None)}
+
+    @pytest.mark.integration
+    def test_live_ollama_translates_one_instruction(registry, domains):
+        backend = OllamaBackend("qwen2.5-coder:14b", keep_alive=0)
+        if not backend.is_up():
+            pytest.skip("Ollama is not running")
+        try:
+            have = [
+                m["name"]
+                for m in backend._transport("GET", "/api/tags", None, 10).get("models", [])
+            ]
+        except OllamaError:
+            pytest.skip("Ollama is not answering")
+        if backend.base_id not in have:
+            pytest.skip(f"{backend.base_id} is not installed")
+        res = Translator(backend, registry).translate(
+            "Red and blue forage, play it safe, 120 steps.", domains["squad"].pack
+        )
+>       assert res.ok and res.spec.params["eaters"] and registry.is_valid(res.spec)
+E       AssertionError: assert (False)
+E        +  where False = TranslationResult(text='Red and blue forage, play it safe, 120 steps.', status='error', spec=None, reason='OllamaError...t http://localhost:11434: timed out', errors=(), attempts=1, latency_s=0, call_latencies=(), n_prompt_tokens=0, raw='').ok
+
+tests\test_experiments_r7a.py:490: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/test_experiments_r7a.py::test_live_ollama_translates_one_instruction
+1 failed, 1744 passed in 741.01s (0:12:21)
