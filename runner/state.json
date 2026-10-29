@@ -6,33 +6,26 @@
   "cpu_workers_in_use": 4,
   "running": [
     {
-      "id": "r7a4-train-q4b",
+      "id": "r7a4-eval-lora",
       "lane": "gpu",
       "cpu_workers": 4,
-      "started_at": "2026-10-29T01:03:33+00:00"
+      "started_at": "2026-10-29T01:57:50+00:00"
     }
   ],
   "backlog": {
     "ready": [],
-    "blocked": [
-      {
-        "id": "r7a4-eval-lora",
-        "blocked_by": [
-          "r7a4-train-q4b"
-        ]
-      }
-    ]
+    "blocked": []
   },
   "idle_since": {
     "cpu": "2026-10-29T01:53:32+00:00",
-    "gpu": null
+    "gpu": "2026-10-29T01:57:46+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-29T01:57:29+00:00",
-  "cpu_percent": 10.7,
+  "updated_at": "2026-10-29T01:57:50+00:00",
+  "cpu_percent": 12.2,
   "gpu": {
-    "util": 37.0,
-    "mem_used_mb": 10343.0,
+    "util": 0.0,
+    "mem_used_mb": 440.0,
     "mem_total_mb": 12282.0
   }
 }
