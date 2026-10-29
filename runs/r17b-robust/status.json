@@ -1,0 +1,21 @@
+{
+  "id": "r17b-robust",
+  "commit": "ee1a53db96dc0f987ba0da916793d1b37b92d74a",
+  "queued_args": [
+    "scripts/r17_robust.py",
+    "--from",
+    "runs:r17-train-*",
+    "--workers",
+    "8",
+    "--out",
+    "docs/results/r17_robust.md"
+  ],
+  "state": "running",
+  "started_at": "2026-10-29T21:03:44+00:00",
+  "updated_at": "2026-10-29T21:03:44+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 94 %, 3216 MiB, 12282 MiB, 67",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 8
+}
