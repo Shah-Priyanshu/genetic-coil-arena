@@ -255,29 +255,34 @@ def train_run(run: int, settings: PlannerSettings) -> dict[str, Any]:
 
 
 def tune_mission(index: int, generations: int = 300, population: int = 32,
-                 episodes: int = 128, val_episodes: int = 1000) -> dict[str, Any]:  # fmt: skip
+                 episodes: int = 128, val_episodes: int = 1000,
+                 version: int = 1) -> dict[str, Any]:  # fmt: skip
     """ES on one test mission's plan alone, from the default and the hand plan, on its
-    own tuning seeds; the start whose result scores best on separate seeds wins."""
-    m = held_out_missions()[index]
+    own tuning seeds; the start whose result scores best on separate seeds wins.
+    Version 2 also starts from the hand plan with a 30 s hand-off."""
+    m = held_out_missions(version)[index]
     val_seeds = mission_seeds(ORACLE_VAL_BASE, index, val_episodes)
-    best: tuple[float, np.ndarray, str] = (-np.inf, np.zeros(N_PLAN), "")
-    for k, (name, plan) in enumerate((("default", OPENSWARM_DEFAULT),
-                                      ("hand", hand_two_tier(m.drones)))):  # fmt: skip
-        es = EvolutionStrategy(encode_plan(plan, m.drones), population=population,
+    best: tuple[float, np.ndarray, str] = (-np.inf, np.zeros(n_plan(version)), "")
+    starts = [("default", OPENSWARM_DEFAULT), ("hand", hand_two_tier(m.drones))]
+    if version == 2:
+        starts.append(("hand-off", replace(hand_two_tier(m.drones), track_s=30.0)))
+    for k, (name, plan) in enumerate(starts):
+        es = EvolutionStrategy(encode_plan(plan, m.drones, version), population=population,
                                sigma=0.15, lr=0.05, weight_decay=0.0,
                                seed=index * 10 + k)  # fmt: skip
         for g in range(generations):
             seeds = [ORACLE_BASE + index * 1_000_000 + (k * generations + g) * episodes + e
                      for e in range(episodes)]  # fmt: skip
-            es.tell(np.array([run_missions(m, decode_plan(c, m.drones), seeds)["score"].mean()
+            es.tell(np.array([run_missions(m, decode_plan(c, m.drones, version),
+                                           seeds)["score"].mean()
                               for c in es.ask()]))  # fmt: skip
-        v = float(
-            run_missions(m, decode_plan(es.theta, m.drones), val_seeds)["score"].mean()
-        )
+        plan = decode_plan(es.theta, m.drones, version)
+        v = float(run_missions(m, plan, val_seeds)["score"].mean())
         if v > best[0]:
             best = (v, es.theta.copy(), name)
     return {"mission": index, "u": best[1].tolist(), "val": best[0], "start": best[2],
-            "plan": asdict(decode_plan(best[1], m.drones))}  # fmt: skip
+            "version": version,
+            "plan": asdict(decode_plan(best[1], m.drones, version))}  # fmt: skip
 
 
 # ------------------------------------------------------------------ save, load, evaluate
@@ -305,10 +310,11 @@ def load_runs(folders: Sequence[Path], kind: str,
     return sorted(runs, key=lambda r: r["run"])
 
 
-def load_oracle(folders: Sequence[Path]) -> dict[int, dict[str, Any]]:
+def load_oracle(folders: Sequence[Path], version: int = 1) -> dict[int, dict[str, Any]]:
+    prefix = "r17_oracle_m" if version == 1 else "r17b_oracle_m"
     out = {}
     for folder in folders:
-        for f in sorted(Path(folder).rglob("r17_oracle_m*.json")):
+        for f in sorted(Path(folder).rglob(f"{prefix}*.json")):
             d = json.loads(f.read_text(encoding="utf-8"))
             out[d["mission"]] = d
     return out

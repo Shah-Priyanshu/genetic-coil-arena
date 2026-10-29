@@ -44,9 +44,10 @@ def _train_one(args: tuple) -> str:
 
 
 def _oracle_one(args: tuple) -> str:
-    index, generations, out = args
-    res = r17.tune_mission(index, generations=generations)
-    path = out / f"r17_oracle_m{index}.json"
+    index, generations, version, out = args
+    res = r17.tune_mission(index, generations=generations, version=version)
+    prefix = "r17_oracle_m" if version == 1 else "r17b_oracle_m"
+    path = out / f"{prefix}{index}.json"
     path.write_text(json.dumps(res, indent=1), encoding="utf-8")
     print(
         f"[done] mission {index}: val {res['val']:.3f} from {res['start']}", flush=True
@@ -68,7 +69,7 @@ def train(args: argparse.Namespace) -> None:
 def oracle(args: argparse.Namespace) -> None:
     out = _out()
     out.mkdir(parents=True, exist_ok=True)
-    tasks = [(i, args.generations, out) for i in _span(args.missions)]
+    tasks = [(i, args.generations, args.version, out) for i in _span(args.missions)]
     with ProcessPoolExecutor(args.workers) as pool:
         for path in pool.map(_oracle_one, tasks):
             print(f"[saved] {path}", flush=True)
@@ -121,6 +122,7 @@ def main() -> None:
     o = sub.add_parser("oracle")
     o.add_argument("--missions", default=f"0:{r17.N_TEST}")
     o.add_argument("--generations", type=int, default=300)
+    o.add_argument("--version", type=int, choices=[1, 2], default=1)
     o.add_argument("--workers", type=int, default=workers)
     r = sub.add_parser("report")
     r.add_argument("--from", dest="sources", nargs="+", required=True)

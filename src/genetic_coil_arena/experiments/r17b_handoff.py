@@ -51,7 +51,8 @@ SYSTEMS_V2 = ("OpenSwarm default", "hand two-tier", "hand two-tier + hand-off",
 
 
 def plans_for(version: int, step1: list[dict], blind2: list[dict],
-              cond2: list[dict]) -> dict[str, list[list[Plan]]]:  # fmt: skip
+              cond2: list[dict], oracle2: dict[int, dict] | None = None,
+              ) -> dict[str, list[list[Plan]]]:  # fmt: skip
     """Per system, one list of plans (one per held-out mission of ``version``) per run."""
     ms = r17.held_out_missions(version)
 
@@ -69,14 +70,19 @@ def plans_for(version: int, step1: list[dict], blind2: list[dict],
                                                   track_s=HANDOFF_S) for m in ms]],
             **out, "blind v2": learned(blind2),
         }  # fmt: skip
+        if oracle2 and len(oracle2) == len(ms):  # a reference, not part of any bar
+            out["per-mission tuned v2"] = [[
+                r17.decode_plan(np.array(oracle2[i]["u"]), m.drones, 2)
+                for i, m in enumerate(ms)]]  # fmt: skip
     return out
 
 
 def tasks(step1: list[dict], blind2: list[dict], cond2: list[dict],
-          episodes: int = EPISODES) -> list[tuple]:  # fmt: skip
+          episodes: int = EPISODES, oracle2: dict[int, dict] | None = None,
+          ) -> list[tuple]:  # fmt: skip
     out = []
     for version in (2, 1):
-        for name, runs in plans_for(version, step1, blind2, cond2).items():
+        for name, runs in plans_for(version, step1, blind2, cond2, oracle2).items():
             for r, plans in enumerate(runs):
                 for i, plan in enumerate(plans):
                     out.append(((version, name, r, i), version, i, plan, episodes))
@@ -101,7 +107,10 @@ def _per_mission(
 def summarise(cells: dict[tuple, dict]) -> dict[str, Any]:
     walking = np.array([m.person_speed > 0 for m in r17.held_out_missions(2)])
     out: dict[str, Any] = {"v2": {}, "v1": {}, "walking_missions": int(walking.sum())}
-    for version, names in ((2, SYSTEMS_V2), (1, ("step-1 planner", "conditioned v2"))):
+    extra = ("per-mission tuned v2",) if any(k[1] == "per-mission tuned v2"
+                                             for k in cells) else ()  # fmt: skip
+    for version, names in ((2, SYSTEMS_V2 + extra),
+                           (1, ("step-1 planner", "conditioned v2"))):  # fmt: skip
         for name in names:
             row = {w: float(_per_mission(cells, version, name, w).mean())
                    for w in ("score", "found", "wrong")}  # fmt: skip

@@ -31,13 +31,14 @@ def main() -> None:
     step1 = r17.load_runs(folders, "conditioned")
     blind2 = r17.load_runs(folders, "blind", version=2)
     cond2 = r17.load_runs(folders, "conditioned", version=2)
+    oracle2 = r17.load_oracle(folders, version=2)
     print(f"[load] step-1 {len(step1)}, blind v2 {len(blind2)}, conditioned v2 "
           f"{len(cond2)}", flush=True)  # fmt: skip
     if not (step1 and blind2 and cond2):
         raise SystemExit(
             "need step-1 conditioned and version 2 blind and conditioned runs"
         )
-    todo = rh.tasks(step1, blind2, cond2, args.episodes)
+    todo = rh.tasks(step1, blind2, cond2, args.episodes, oracle2)
     cells, start = {}, time.perf_counter()
     with ProcessPoolExecutor(args.workers) as pool:
         for i, (key, res) in enumerate(pool.map(rh.play_cell, todo, chunksize=16), 1):
