@@ -6,3 +6,11 @@
 [progress] run 107: gen 0/1500, val 2.406, best 2.406 at 0, 7 s
 [progress] run 104: gen 0/1500, val 2.400, best 2.400 at 0, 7 s
 [progress] run 103: gen 0/1500, val 3.147, best 3.147 at 0, 7 s
+[progress] run 101: gen 25/1500, val 3.525, best 3.525 at 25, 621 s
+[progress] run 106: gen 25/1500, val 3.500, best 3.500 at 25, 645 s
+[progress] run 107: gen 25/1500, val 3.181, best 3.181 at 25, 662 s
+[progress] run 100: gen 25/1500, val 3.469, best 3.469 at 25, 664 s
+[progress] run 104: gen 25/1500, val 2.497, best 2.497 at 25, 669 s
+[progress] run 105: gen 25/1500, val 3.467, best 3.467 at 25, 688 s
+[progress] run 103: gen 25/1500, val 3.494, best 3.494 at 25, 697 s
+[progress] run 102: gen 25/1500, val 3.214, best 3.214 at 25, 704 s
