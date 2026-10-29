@@ -274,6 +274,16 @@ The user's long-term target: heterogeneous drones, each with two ESP32s, a gyro 
 - **Report:** docs/results/r14_robust.md
 - **Chart:** r14_robust
 
+### R14 step 4a: the swarm brains in int8, ready for the ESP32
+- **Date:** 2026-10-29
+- **Question:** Do the learned swarm brains keep their gain when they run in 8-bit integers, as they would on an ESP32-S3?
+- **Why:** Microcontrollers run integer maths much faster than floats, and their ML libraries (ESP-DL, TFLite Micro) expect int8 networks. The bench step needs brains that run that way.
+- **What we did:** Ran both sets of 16 trained brains (step 2 and randomised) the way the chip would: int8 weights and inputs, 32-bit integer sums and a 256-entry tanh table. Played them on the same 3,000 test episodes as the float versions, at nominal, at 70% radio loss and with 2 drones down. Bar fixed in advance: at nominal, int8 within 1 point of float and still above the hand design. The best-validation randomised brain (run 108) was exported as a C header.
+- **Result:** No measurable loss. At nominal, int8 minus float is −0.1 ± 0.6 points (step 2) and +0.3 ± 0.6 (randomised). Every condition stays within ±0.3. The header holds both brains in 4 KB: two 15-16-1 networks, about 270 weights each.
+- **Verdict:** PASS
+- **What it means:** The brains are ready for the chip as they are, with no retraining for quantisation. The bench step can start from `hardware/esp32/swarm_brains_int8.h` and time the brains on a real ESP32-S3.
+- **Report:** docs/results/r14_int8.md
+
 ## Track: OpenSwarm brains (the chosen direction, 2026-10-29)
 
 The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodiment of the ecosystem. Its hardware: an ESP32-S3 flight controller, a K210 vision module, UWB ranging, optical flow and GPS. Its protocol: a LEADER sends `BEHAVIOR_CMD`s and SCOUTs send `DETECTION` packets over ESP-NOW. This track builds the specialist brains it needs and tests them in simulation before hardware.
@@ -347,12 +357,13 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Report:** docs/directions/drone_swarm.md
 
 ### G14b: the ground station, fixed, on a fresh sealed set
-- **Date:** 2026-10-29 (running)
+- **Date:** 2026-10-29
 - **Question:** With the three problems G14's misses exposed fixed, does the station meet the same bars on requests it has never seen?
 - **Why:** G14 missed its safety bar by one wrong command in 150. Its sealed set is now spent: we read its misses to find the fixes, so it cannot also judge them.
 - **What we did:** v5 of the station reads fractions and decimals in words ("two and a half"), treats "at N m" as an altitude unless another word names the setting, and asks instead of sending a bare behaviour with defaults after a retry. On the stored dev replies: qwen 0 wrong commands in 60, no right answer lost. A separate agent wrote 150 fresh sealed requests from the labelling guide alone, with those conventions written down. Ten of its texts happened to match earlier requests exactly and were rewritten before the set was pinned. Same bars as G14.
-- **Result:** Running (about 10 minutes of GPU once the current job ends).
-- **Verdict:** Running
-- **What it means:** Pending.
-- **Report:** docs/directions/drone_swarm.md
+- **Result:** NOT PASSED again, narrowly on two bars. qwen 14B: 88.9% exact (bar ≥ 90%), 4 wrong commands in 150 = 2.7% (the rate meets ≤ 3% but the upper bound is 6.6%, over 6%), +46 over keywords (met). The fixes did their job: the "at N m" rule caught three commands the model would have flown with the altitude in the wrong setting (they became questions, which costs exactness, not safety). The four wrong commands: a two-step request ("search the orchard then return home" flew the search), a vague one ("get ready for the demo" hovered), a landing request flown as return-home, and a bare "half" the number parser does not read. One prompt gap: the model only sees canonical place names, so it asked about "motorway" and "forest" instead of mapping them to the site map's aliases. gemma4 e2b came close on the same set: 85.6% exact, 2.7% wrong; e4b 60.0% exact, 0.7% wrong.
+- **Verdict:** NOT PASSED (narrowly)
+- **What it means:** Two sealed rounds land within a hair of the bars, and each round's fixes work but uncover the next edge. The remaining wrong commands are mostly the model guessing at vague or two-step requests. A real station would show the operator the parsed command and send it on one tap; with that confirm step the share of wrong commands that reach the drones drops to whatever the operator overlooks. Rather than a third round of patches, the next ground-station step should test that confirm-before-send flow and give the model the site map's aliases, with a fresh sealed set.
+- **Report:** docs/results/r16b_ground_station.md
+- **Chart:** r16b_ground
 

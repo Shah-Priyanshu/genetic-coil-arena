@@ -143,6 +143,16 @@ The brains close half the coordination gap at 3 leaks and gain most on 4 leaks, 
 - Randomisation costs nothing and helps where the plume is unusual, so flight brains can train with it.
 - The bar should have set a minimum effect size; with no minimum, a 0.6-point gain counted as a pass.
 
+## Bench preparation: the brains in int8 (`docs/results/r14_int8.md`)
+
+**Pass.** The trained swarm brains lose nothing in int8. At nominal the int8 brains score −0.1 ± 0.6 points against float (step 2) and +0.3 ± 0.6 (randomised). At 70% radio loss and with 2 drones down they stay within ±0.3.
+
+`hardware/esp32/swarm_brains_int8.h` holds the best-validation randomised brain (run 108) as int8 C arrays, 4 KB:
+- the feature list and how to quantise the inputs;
+- the per-layer integer recipe.
+
+The bench step needs that header, an ESP32-S3, and a loop that builds the 15 features per candidate.
+
 ## R17: a leader that plans the person search (ladder step 3)
 
 OpenSwarm's leader must turn "search the north field" into a plan:
