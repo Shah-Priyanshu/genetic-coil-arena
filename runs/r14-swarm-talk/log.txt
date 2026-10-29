@@ -1,0 +1,2 @@
+[r14] tuned in 124 s: {1: {'pos_bits': 3, 'radius': 4.5, 'tune_success': 0.9316666666666666}, 2: {'pos_bits': 5, 'radius': 4.5, 'tune_success': 0.9833333333333333}, 4: {'pos_bits': 8, 'radius': 4.5, 'tune_success': 0.9866666666666667}, 8: {'pos_bits': 24, 'radius': 4.5, 'tune_success': 0.985}}
+G13: RADIO DOES NOT BIND (306 s); wrote docs\results\r14_swarm_talk.md
