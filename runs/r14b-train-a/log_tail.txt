@@ -1,0 +1,8 @@
+[progress] run 2: gen 0/1500, val 3.050, best 3.050 at 0, 1 s
+[progress] run 4: gen 0/1500, val 3.192, best 3.192 at 0, 1 s
+[progress] run 1: gen 0/1500, val 3.400, best 3.400 at 0, 1 s
+[progress] run 5: gen 0/1500, val 2.442, best 2.442 at 0, 1 s
+[progress] run 3: gen 0/1500, val 2.683, best 2.683 at 0, 1 s
+[progress] run 0: gen 0/1500, val 2.833, best 2.833 at 0, 1 s
+[progress] run 6: gen 0/1500, val 2.050, best 2.050 at 0, 1 s
+[progress] run 7: gen 0/1500, val 2.475, best 2.475 at 0, 1 s
