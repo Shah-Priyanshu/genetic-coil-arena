@@ -111,3 +111,28 @@ def test_bootstrap_identity_weights_reproduce_ap():
         table, weights=(w[frames[table["det_tile"]]], w[frames[table["gt_tile"]]])
     )
     assert plain == pytest.approx(weighted) == pytest.approx(1.0)
+
+
+def test_train_then_validate_on_prepared_tiles(tmp_path):
+    """The runner path: train_model loads tiles with r15.load_split, saves the weights,
+    then val_metrics needs the tiles' source frames and scales."""
+    pytest.importorskip("torch")
+    import json
+
+    from genetic_coil_arena.experiments import r15_scout_brain as r15
+
+    rng = np.random.default_rng(0)
+    for split, n in (("train", 6), ("val", 4)):
+        np.save(tmp_path / f"{split}_images.npy",
+                rng.integers(0, 255, (n, 32, 32, 3), dtype=np.uint8))  # fmt: skip
+        boxes = np.array([[4, 4, 8, 12, 1]] * n, np.float32)
+        np.save(tmp_path / f"{split}_boxes.npy", boxes)
+        np.save(tmp_path / f"{split}_offsets.npy", np.arange(n + 1))
+        np.save(tmp_path / f"{split}_src.npy", np.arange(n) // 2)
+        np.save(tmp_path / f"{split}_scale.npy", np.ones(n, np.float32))
+    (tmp_path / "info.json").write_text(json.dumps({"size": 32}), encoding="utf-8")
+    out = r15.train_model(0.25, tmp_path, epochs=1, batch=4, log=lambda m: None,
+                          eval_fn=r15b.val_metrics, save=tmp_path / "w.pt")  # fmt: skip
+    assert (tmp_path / "w.pt").exists()
+    assert {"val_ap50", "val_centre_ap", "val_present_auc"} <= set(out["result"])
+    assert set(r15b.load_tiles(tmp_path, "val")) >= {"src", "scale"}

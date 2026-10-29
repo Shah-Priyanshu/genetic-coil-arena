@@ -252,8 +252,9 @@ def prepare(
 
 def load_tiles(data_dir: Path, split: str) -> dict[str, np.ndarray]:
     d = r15.load_split(data_dir, split)
-    d["src"] = np.load(data_dir / f"{split}_src.npy")
-    d["scale"] = np.load(data_dir / f"{split}_scale.npy")
+    missing = [k for k in r15.EXTRAS if k not in d]
+    if missing:
+        raise FileNotFoundError(f"{data_dir} has no {split} {missing}: run prepare")
     return d
 
 

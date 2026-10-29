@@ -42,6 +42,7 @@ PAD = 114
 PERSON = 1
 VWW_AREA = 0.005
 TALL_PX = 32
+EXTRAS = ("src", "scale")
 
 
 # ------------------------------------------------------------------ data
@@ -132,11 +133,18 @@ def prepare(coco_dir: Path, out_dir: Path, size: int = 160, workers: int = 6,
 
 
 def load_split(data_dir: Path, split: str) -> dict[str, np.ndarray]:
-    return {
+    """Images (memory-mapped), boxes and offsets, plus any per-image extras a prepared
+    set stores (R15b's tiles keep ``src`` and ``scale``)."""
+    out = {
         "images": np.load(data_dir / f"{split}_images.npy", mmap_mode="r"),
         "boxes": np.load(data_dir / f"{split}_boxes.npy"),
         "offsets": np.load(data_dir / f"{split}_offsets.npy"),
     }
+    for extra in EXTRAS:
+        path = data_dir / f"{split}_{extra}.npy"
+        if path.exists():
+            out[extra] = np.load(path)
+    return out
 
 
 def image_boxes(split: dict[str, np.ndarray], i: int) -> np.ndarray:
@@ -365,13 +373,16 @@ def focal(pred: Any, gt: Any) -> Any:
 
 def train_model(alpha: float, data_dir: Path, epochs: int = 40, batch: int = 128,
                 lr: float = 2e-3, seed: int = 0, limit: int = 0, log: Any = print,
-                init: Path | None = None, eval_fn: Any = None) -> dict[str, Any]:  # fmt: skip
+                init: Path | None = None, eval_fn: Any = None,
+                save: Path | None = None) -> dict[str, Any]:  # fmt: skip
     """Train on ``data_dir``'s train split and score its val split with ``eval_fn``
-    (default ``evaluate``); ``init`` starts from saved weights instead of random ones.
+    (default ``evaluate``); ``init`` starts from saved weights instead of random ones,
+    and ``save`` stores the trained weights before the evaluation runs.
     """
     import torch
 
-    torch.cuda.set_per_process_memory_fraction(0.85)
+    if torch.cuda.is_available():
+        torch.cuda.set_per_process_memory_fraction(0.85)
     dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     info = json.loads((data_dir / "info.json").read_text(encoding="utf-8"))
     size = int(info["size"])
@@ -425,6 +436,9 @@ def train_model(alpha: float, data_dir: Path, epochs: int = 40, batch: int = 128
             nb += 1
         log(f"[alpha {alpha}] epoch {ep + 1}/{epochs} loss {total / max(nb, 1):.4f} "
             f"({time.time() - start:.0f} s)")  # fmt: skip
+    if save is not None:
+        save.parent.mkdir(parents=True, exist_ok=True)
+        torch.save(model.state_dict(), save)
     res = (eval_fn or evaluate)(model, va, size, dev, to_input)
     res.update({
         "alpha": alpha, "params": int(n_params), "int8_kb": n_params / 1024,

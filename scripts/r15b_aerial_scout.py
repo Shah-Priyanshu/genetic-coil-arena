@@ -36,7 +36,6 @@ def coco_weights(models: Path, alpha: float) -> Path:
 
 
 def train(args: argparse.Namespace) -> None:
-    import torch
 
     data = args.data / TILES
     out = Path(args.out)
@@ -45,12 +44,11 @@ def train(args: argparse.Namespace) -> None:
     for alpha in args.alphas:
         for seed in args.seeds:
             init = coco_weights(models, alpha) if args.init == "coco" else None
+            tag = f"r15b_{args.init}_a{alpha:g}_seed{seed}"
             res = r15.train_model(
                 alpha, data, args.epochs, args.batch, args.lr, seed, args.limit, log,
-                init=init, eval_fn=r15b.val_metrics,
+                init=init, eval_fn=r15b.val_metrics, save=models / f"{tag}.pt",
             )  # fmt: skip
-            tag = f"r15b_{args.init}_a{alpha:g}_seed{seed}"
-            torch.save(res["model"].state_dict(), models / f"{tag}.pt")
             res["result"].update({
                 "condition": "fine-tuned" if args.init == "coco" else "scratch",
                 "seed": seed, "lr": args.lr, "weights": str(models / f"{tag}.pt"),
