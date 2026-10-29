@@ -22,3 +22,4 @@ C:\Users\priya\AppData\Local\Temp\gca-r15b2-train-ft-a05-uffuo0zk\src\genetic_co
   x = torch.from_numpy(np.ascontiguousarray(imgs)).to(dev).permute(0, 3, 1, 2)
 [08:05:14] r15b_coco_a0.5_seed0: {"val_ap50": 0.26781883290251607, "val_centre_ap": 0.46107388713030334, "val_present_auc": 0.9426038708606361, "alpha": 0.5, "params": 444837, "int8_kb": 434.4111328125, "macs": 142926336, "epochs": 20, "train_images": 117649, "seconds": 5348.85303902626, "size": 224, "condition": "fine-tuned", "seed": 0, "lr": 0.001, "weights": "D:\\Projects\\genetic-coil-arena-data\\r15_models\\r15b_coco_a0.5_seed0.pt", "onnx": true}
 [08:09:37] [alpha 0.5] epoch 1/20 loss 1.4802 (262 s)
+[08:13:59] [alpha 0.5] epoch 2/20 loss 1.1802 (524 s)
