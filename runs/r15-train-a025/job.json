@@ -1,0 +1,15 @@
+{
+  "id": "r15-train-a025",
+  "commit": "a35c33048d5befa0e3acca0895b1e21017df42ae",
+  "args": [
+    "scripts/r15_scout_brain.py",
+    "train",
+    "--alphas",
+    "0.25",
+    "--epochs",
+    "40"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 2,
+  "timeout_min": 600.0
+}
