@@ -1,0 +1,14 @@
+{
+  "id": "r13b-kshot",
+  "commit": "72e73866c27ba80712d29dc91e24ac579826194a",
+  "args": [
+    "scripts/r13b_kshot.py",
+    "--team-from",
+    "runs:r11-team",
+    "--out",
+    "docs/results/r13b_kshot.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 2,
+  "timeout_min": 60.0
+}
