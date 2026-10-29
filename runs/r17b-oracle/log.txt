@@ -9,3 +9,4 @@
 [done] mission 10: val 0.909 from hand-off
 [done] mission 9: val 0.759 from hand-off
 [done] mission 11: val 0.516 from hand
+[done] mission 12: val 0.000 from hand
