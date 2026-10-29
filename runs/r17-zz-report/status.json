@@ -12,12 +12,14 @@
     "--out",
     "docs/results/r17_mission.md"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-29T20:57:19+00:00",
-  "updated_at": "2026-10-29T20:57:19+00:00",
-  "elapsed_min": 0.0,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 95 %, 3215 MiB, 12282 MiB, 68",
+  "updated_at": "2026-10-29T20:57:38+00:00",
+  "elapsed_min": 0.3,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 94 %, 3215 MiB, 12282 MiB, 68",
   "host": "PC",
   "lane": "cpu",
-  "cpu_workers": 8
+  "cpu_workers": 8,
+  "returncode": 0,
+  "finished_at": "2026-10-29T20:57:38+00:00"
 }
