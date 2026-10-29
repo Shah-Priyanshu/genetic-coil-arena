@@ -1,0 +1,16 @@
+{
+  "id": "r16-dev2-q14",
+  "commit": "79e45ea6ada2af5e6fe011c135c2cffd4c5ed2c5",
+  "args": [
+    "scripts/r16_ground_station.py",
+    "run",
+    "--translator",
+    "ollama:qwen2.5-coder:14b",
+    "--split",
+    "dev"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 2,
+  "priority": 1,
+  "timeout_min": 60.0
+}
