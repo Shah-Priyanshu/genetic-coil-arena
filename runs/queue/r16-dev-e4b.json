@@ -1,0 +1,16 @@
+{
+  "id": "r16-dev-e4b",
+  "commit": "724ea3173815062b1471de821cdafa08946b9a72",
+  "args": [
+    "scripts/r16_ground_station.py",
+    "run",
+    "--translator",
+    "ollama:gemma4:e4b",
+    "--split",
+    "dev"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 2,
+  "priority": 1,
+  "timeout_min": 60.0
+}
