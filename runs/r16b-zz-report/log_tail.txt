@@ -1,0 +1,200 @@
+| perimeter the north field, radius two and a half metres | `{'behavior': 'perimeter', 'area': 'north field', 'radius_m': 2.5}` | clarify: Which setting is that for? (2.5 metres sets nothing in the command) |
+| line abreast, two metres apart, at 6 m | `{'behavior': 'formation', 'shape': 'line', 'spacing_m': 2, 'alt_m': 6}` | clarify: Which setting is that for? (2 metres sets nothing in the command) |
+| make it happen | `clarify` | refused: keyword parser found nothing |
+| come follow the walker, one point five metres back | `{'behavior': 'person_follow', 'distance_m': 1.5}` | clarify: Which setting is that for? (1.5 metres sets nothing in the command) |
+| Birds mode. separation four, alignment half. | `{'behavior': 'boids', 'separation': 4, 'alignment': 0.5}` | refused: keyword parser found nothing |
+| go boids, cohesion one point five, separation three, alignment two | `{'behavior': 'boids', 'cohesion': 1.5, 'separation': 3, 'alignment': 2}` | {'behavior': 'boids', 'cohesion': 1.0, 'separation': 1.5, 'alignment': 1.0} |
+| circle the barn while doing a rainbow show | `refuse` | {'behavior': 'light_show', 'pattern': 'rainbow', 'bpm': 120} |
+| follow him, stay 4 m back | `{'behavior': 'person_follow', 'distance_m': 4}` | clarify: Which setting is that for? (4 m sets nothing in the command) |
+| follow the person, confidence 20% | `refuse` | {'behavior': 'person_follow', 'distance_m': 3.0, 'alt_m': 2.0, 'min_conf': 0.7} |
+| bring them home please | `{'behavior': 'rth'}` | refused: keyword parser found nothing |
+| boids mode, cohesion 2 | `{'behavior': 'boids', 'cohesion': 2}` | {'behavior': 'boids', 'cohesion': 1.0, 'separation': 1.5, 'alignment': 1.0} |
+| retrun to home | `{'behavior': 'rth'}` | refused: keyword parser found nothing |
+| search the barn but don't move | `refuse` | {'behavior': 'search_grid', 'area': 'barn', 'alt_m': 5.0} |
+| Jonas here, can we do that thing we tried with the team yesterday afternoon, you know the one | `clarify` | refused: keyword parser found nothing |
+| boids at 10 m altitude | `refuse` | clarify: Which setting is that for? (10 m sets nothing in the command) |
+| go | `clarify` | refused: keyword parser found nothing |
+| Party time! LEDs on, chase pattern | `{'behavior': 'light_show', 'pattern': 'chase'}` | refused: keyword parser found nothing |
+| We have a missing hiker, last seen near the old barn, can you circle it at 20 m out | `{'behavior': 'perimeter', 'area': 'barn', 'radius_m': 20}` | clarify: Which setting is that for? (20 m reads as radius_m but set alt_m) |
+| pls hvoer at 15 m | `{'behavior': 'hover', 'alt_m': 15}` | refused: keyword parser found nothing |
+| Ravi radioed that the crew is almost ready, so get everyone into position for what comes next | `clarify` | refused: keyword parser found nothing |
+| search the orchard then return home | `refuse` | {'behavior': 'rth'} |
+| flock freely please, alignment 5 | `{'behavior': 'boids', 'alignment': 5}` | {'behavior': 'boids', 'cohesion': 1.0, 'separation': 1.5, 'alignment': 1.0} |
+| person follow, distance six feet | `{'behavior': 'person_follow', 'distance_m': 1.83}` | clarify: Which setting is that for? (6 feet sets nothing in the command) |
+| Stick with the person, 65% confidence is enough | `{'behavior': 'person_follow', 'min_conf': 0.65}` | refused: keyword parser found nothing |
+| perimter around parking | `{'behavior': 'perimeter', 'area': 'car park'}` | refused: keyword parser found nothing |
+| circle the motorway | `{'behavior': 'perimeter', 'area': 'highway'}` | {'behavior': 'formation', 'shape': 'circle', 'spacing_m': 1.5} |
+| follow that guy at eight metres distance and 3 m high, confidence ninety five percent | `{'behavior': 'person_follow', 'distance_m': 8, 'alt_m': 3, 'min_conf': 0.95}` | clarify: Which setting is that for? (8 metres sets nothing in the command) |
+| serach the river | `{'behavior': 'search_grid', 'area': 'river bank'}` | refused: keyword parser found nothing |
+| fall in as a V at 10 m, spacing four metres | `{'behavior': 'formation', 'shape': 'v', 'spacing_m': 4, 'alt_m': 10}` | refused: keyword parser found nothing |
+| put on a show, tempo 60 | `{'behavior': 'light_show', 'bpm': 60}` | {'behavior': 'light_show', 'pattern': 'rainbow', 'bpm': 120} |
+| guard the car park, radius 20 m | `{'behavior': 'perimeter', 'area': 'car park', 'radius_m': 20}` | clarify: Which setting is that for? (20 m sets nothing in the command) |
+| Swarm, circle up 7 m apart and fly at 15 ft | `{'behavior': 'formation', 'shape': 'circle', 'spacing_m': 7, 'alt_m': 4.57}` | clarify: Which setting is that for? (7 m sets nothing in the command) |
+| everyone ready? okay, move | `clarify` | refused: keyword parser found nothing |
+| guys come on back | `{'behavior': 'rth'}` | refused: keyword parser found nothing |
+| circle the barn | `{'behavior': 'perimeter', 'area': 'barn'}` | {'behavior': 'formation', 'shape': 'circle', 'spacing_m': 1.5} |
+| start the mission | `clarify` | refused: keyword parser found nothing |
+| swarm like starlings, tight cohesion 4 | `{'behavior': 'boids', 'cohesion': 4}` | refused: keyword parser found nothing |
+| have drone seven return home | `refuse` | {'behavior': 'rth'} |
+| follow the human, 80% confidence | `{'behavior': 'person_follow', 'min_conf': 0.8}` | {'behavior': 'person_follow', 'distance_m': 3.0, 'alt_m': 2.0, 'min_conf': 0.7} |
+| can we get a V shape with five metres between each drone | `{'behavior': 'formation', 'shape': 'v', 'spacing_m': 5}` | clarify: Which setting is that for? (5 metres sets nothing in the command) |
+| do what we did last time | `clarify` | refused: keyword parser found nothing |
+| secure the apple orchard, radius 50 ft, altitude 20 ft | `{'behavior': 'perimeter', 'area': 'orchard', 'radius_m': 15.24, 'alt_m': 6.1}` | refused: keyword parser found nothing |
+| follow the person, only lock on if confidence is 50% | `{'behavior': 'person_follow', 'min_conf': 0.5}` | {'behavior': 'person_follow', 'distance_m': 3.0, 'alt_m': 2.0, 'min_conf': 0.7} |
+| line up, one metre apart | `{'behavior': 'formation', 'shape': 'line', 'spacing_m': 1}` | clarify: Which setting is that for? (1 metre sets nothing in the command) |
+| folow the person at 6 m altitude, distance 8 m | `{'behavior': 'person_follow', 'alt_m': 6, 'distance_m': 8}` | refused: keyword parser found nothing |
+| make a V shape that is also a line | `refuse` | {'behavior': 'formation', 'shape': 'line', 'spacing_m': 1.5} |
+| form a line and flock | `refuse` | {'behavior': 'boids', 'cohesion': 1.0, 'separation': 1.5, 'alignment': 1.0} |
+| Hold position at half a metre | `{'behavior': 'hover', 'alt_m': 0.5}` | clarify: Which setting is that for? (0.5 metre sets nothing in the command) |
+| patrol the football pitch | `clarify` | refused: keyword parser found nothing |
+| freeze right where you are, at 2.5 m | `{'behavior': 'hover', 'alt_m': 2.5}` | refused: keyword parser found nothing |
+| boids, sepration 1 | `{'behavior': 'boids', 'separation': 1}` | {'behavior': 'boids', 'cohesion': 1.0, 'separation': 1.5, 'alignment': 1.0} |
+| Swarm, hover at eight metres. | `{'behavior': 'hover', 'alt_m': 8}` | clarify: Which setting is that for? (8 metres sets nothing in the command) |
+| keep watch over the east woods with a radius of 25 metres at 10 m | `{'behavior': 'perimeter', 'area': 'east woods', 'radius_m': 25, 'alt_m': 10}` | clarify: Which setting is that for? (25 metres sets nothing in the command) |
+| Hover over us for the speeches, and then straight afterwards do a light show for the guests | `refuse` | {'behavior': 'light_show', 'pattern': 'rainbow', 'bpm': 120} |
+| Just let them wander around like a flock of geese, loosely together, cohesion 0.3 | `{'behavior': 'boids', 'cohesion': 0.3}` | {'behavior': 'boids', 'cohesion': 1.0, 'separation': 1.5, 'alignment': 1.0} |
+| start boid behaviour with zero separation | `{'behavior': 'boids', 'separation': 0}` | refused: keyword parser found nothing |
+| same as before | `clarify` | refused: keyword parser found nothing |
+| Get into a grid with spacing of 5 feet | `{'behavior': 'formation', 'shape': 'grid', 'spacing_m': 1.52}` | clarify: Which setting is that for? (5 feet sets nothing in the command) |
+| follow whoever the scout sees, at least 90 percent sure, keep 2.5 m away | `{'behavior': 'person_follow', 'min_conf': 0.9, 'distance_m': 2.5}` | clarify: Which setting is that for? (2.5 m sets nothing in the command) |
+| show us a wave at a slow 40 beats per minute | `{'behavior': 'light_show', 'pattern': 'wave', 'bpm': 40}` | {'behavior': 'light_show', 'pattern': 'wave', 'bpm': 120} |
+| free flock, separation two and a half | `{'behavior': 'boids', 'separation': 2.5}` | {'behavior': 'boids', 'cohesion': 1.0, 'separation': 1.5, 'alignment': 1.0} |
+| hover with cohesion 2 | `refuse` | {'behavior': 'hover'} |
+| switch to the usual | `clarify` | refused: keyword parser found nothing |
+| patrol the orchard 15 m out | `{'behavior': 'perimeter', 'area': 'orchard', 'radius_m': 15}` | refused: keyword parser found nothing |
+| circle the hill | `clarify` | {'behavior': 'formation', 'shape': 'circle', 'spacing_m': 1.5} |
+| get ready for the demo | `clarify` | refused: keyword parser found nothing |
+| rth at 20 m | `refuse` | clarify: Which setting is that for? (20 m sets nothing in the command) |
+| pulse at 75 bpm for the kids | `{'behavior': 'light_show', 'pattern': 'pulse', 'bpm': 75}` | refused: keyword parser found nothing |
+| search the forest at ten metres | `{'behavior': 'search_grid', 'area': 'east woods', 'alt_m': 10}` | clarify: Which setting is that for? (10 metres sets nothing in the command) |
+| wave pattern, one hundred and sixty bpm | `{'behavior': 'light_show', 'pattern': 'wave', 'bpm': 160}` | refused: keyword parser found nothing |
+| pulse pattern at 90 bpm | `{'behavior': 'light_show', 'pattern': 'pulse', 'bpm': 90}` | refused: keyword parser found nothing |
+| perimeter of the barn, radius 150 m | `refuse` | clarify: Which setting is that for? (150 m sets nothing in the command) |
+
+Misses on the `sealed-b` set, `ollama:gemma4:e2b` (26):
+
+| Request | Expected | Got |
+|---|---|---|
+| Let them flock with alignment 3 and cohesion 0.5 | `{'behavior': 'boids', 'alignment': 3, 'cohesion': 0.5}` | clarify: I don't know ']))}<tool_call/>```json{'. Known places: "home", "north field", "car park", "river bank", "barn", "east woods", "orchard", "school", "highway". |
+| make it happen | `clarify` | refused: Please specify which swarm behaviour you want me to execute. |
+| Birds mode. separation four, alignment half. | `{'behavior': 'boids', 'separation': 4, 'alignment': 0.5}` | refused: The instruction contains non-numeric values for parameters that require numbers. |
+| follow the person, confidence 20% | `refuse` | clarify: Detection confidence must be between 0 and 1. |
+| guard it | `clarify` | refused: Please specify what you want the swarm to guard (e.g., a place). |
+| hover at 40 ft | `{'behavior': 'hover', 'alt_m': 12.19}` | refused: unsatisfiable under the schema: alt_m=121.92 is not a number the operator said; leave unstated parameters out |
+| light show | `{'behavior': 'light_show'}` | clarify: What pattern and BPM would you like for the light show? |
+| make a circle | `{'behavior': 'formation', 'shape': 'circle'}` | clarify: What should the circle be around? Please specify an area for the perimeter behaviour. |
+| Jonas here, can we do that thing we tried with the team yesterday afternoon, you know the one | `clarify` | refused: I do not have memory of past specific swarm commands. Please state the desired behaviour and parameters. |
+| go | `clarify` | refused: Incomplete command. Please specify a behaviour. |
+| grid formation at 8 m | `{'behavior': 'formation', 'shape': 'grid', 'alt_m': 8}` | clarify: Which setting is that for? (8 m reads as alt_m but set spacing_m) |
+| Ravi radioed that the crew is almost ready, so get everyone into position for what comes next | `clarify` | {'behavior': 'hover'} |
+| frmation grid pls | `{'behavior': 'formation', 'shape': 'grid'}` | clarify: What spacing and altitude would you like for the grid formation? |
+| follow the person at 3 m | `{'behavior': 'person_follow', 'alt_m': 3}` | clarify: Which setting is that for? (3 m reads as alt_m but set distance_m) |
+| start the mission | `clarify` | refused: Mission start is not a specific swarm behaviour. |
+| have drone seven return home | `refuse` | {'behavior': 'rth'} |
+| do what we did last time | `clarify` | refused: Please specify which previous action you are referring to. |
+| start boid behaviour with zero separation | `{'behavior': 'boids', 'separation': 0}` | {'behavior': 'boids', 'cohesion': 0.0, 'separation': 0.0, 'alignment': 0.0} |
+| same as before | `clarify` | refused: Please specify what you are referring to. |
+| Perimeter around the riverbank at 7 m | `{'behavior': 'perimeter', 'area': 'river bank', 'alt_m': 7}` | clarify: Which setting is that for? (7 m reads as alt_m but set radius_m) |
+| follow the person | `{'behavior': 'person_follow'}` | clarify: What distance should the swarm maintain from the person? |
+| search here | `{'behavior': 'search_grid', 'area': 'home'}` | clarify: Which area should the swarm search? |
+| hover with cohesion 2 | `refuse` | {'behavior': 'boids', 'cohesion': 2.0, 'separation': 1.5, 'alignment': 1.0} |
+| switch to the usual | `clarify` | refused: I do not have a defined 'usual' swarm behaviour. Please specify which behaviour you would like to switch to. |
+| get ready for the demo | `clarify` | refused: I need a specific behaviour and parameters to act upon. |
+| pulse at 75 bpm for the kids | `{'behavior': 'light_show', 'pattern': 'pulse', 'bpm': 75}` | refused: Light show behaviour does not support a BPM parameter. |
+
+Misses on the `sealed-b` set, `ollama:gemma4:e4b` (61):
+
+| Request | Expected | Got |
+|---|---|---|
+| track the person at 5 m distance | `{'behavior': 'person_follow', 'distance_m': 5}` | clarify: What detection confidence should be used for tracking? (e.g., 0.8 for 80%) |
+| Let them flock with alignment 3 and cohesion 0.5 | `{'behavior': 'boids', 'alignment': 3, 'cohesion': 0.5}` | refused: The 'boids' behaviour requires integer weights for cohesion, separation, and alignment (0-5). Please provide integer values for all three. |
+| Marta wants the swarm to ring the old barn tonight, with 3 m spacing between the drones please | `refuse` | {'behavior': 'formation', 'shape': 'circle', 'spacing_m': 3.0} |
+| make it happen | `clarify` | refused: Please specify a behaviour and its parameters. |
+| watch the launch pad, 30 feet out | `{'behavior': 'perimeter', 'area': 'home', 'radius_m': 9.14}` | clarify: The launch pad is not on the site map. Which mapped area should be monitored? |
+| v formation please | `{'behavior': 'formation', 'shape': 'v'}` | clarify: What area should the swarm form a 'v' shape in? |
+| sweep in lanes at 8 m | `clarify` | refused: The search_grid behaviour requires an area parameter. |
+| Birds mode. separation four, alignment half. | `{'behavior': 'boids', 'separation': 4, 'alignment': 0.5}` | refused: unsatisfiable under the schema: alignment=0.5 is not a number the operator said; leave unstated parameters out |
+| sparkle show please | `{'behavior': 'light_show', 'pattern': 'sparkle'}` | clarify: What tempo (BPM) would you like for the sparkle show? |
+| guard the pond for me | `clarify` | refused: The pond is not on the site map. |
+| follow him, stay 4 m back | `{'behavior': 'person_follow', 'distance_m': 4}` | refused: You did not specify a person to follow. |
+| follow the person, confidence 20% | `refuse` | clarify: Please specify the distance you want to maintain while following the person. |
+| we need eyes on the target area, perimeter pattern | `clarify` | refused: Please specify the area for the perimeter pattern. |
+| Look for the missing hiker in the woods, fly lanes at 15 ft | `{'behavior': 'search_grid', 'area': 'east woods', 'alt_m': 4.57}` | refused: Please specify a mapped area for the search. |
+| guard it | `clarify` | refused: Please specify the area you want to guard. |
+| light show | `{'behavior': 'light_show'}` | refused: Please specify a pattern and tempo for the light show. |
+| perimeter over there | `clarify` | refused: Please specify the area for the perimeter. |
+| line formation 0.5 m apart | `refuse` | clarify: What shape should the formation be, and what altitude should be used? |
+| make a circle | `{'behavior': 'formation', 'shape': 'circle'}` | clarify: What area should the swarm form a circle around, and what radius should it use? |
+| circle and watch the place | `clarify` | refused: Please specify the area for the perimeter watch. |
+| Jonas here, can we do that thing we tried with the team yesterday afternoon, you know the one | `clarify` | refused: Please specify the desired swarm behaviour. |
+| stay put and keep your altitude | `{'behavior': 'hover'}` | refused: The 'hover' behaviour requires an altitude to be specified if the operator wants to change it, but if no altitude is given, the default is assumed. Please specify an altitude if you wish to change it, otherwise, the swarm will maintain its current altitude. |
+| The kids at the fete would love it if the drones drifted about like a flock of birds, Sam says | `{'behavior': 'boids'}` | clarify: What exactly should the swarm do, and with which settings? |
+| boids at 10 m altitude | `refuse` | clarify: Please provide weights for cohesion, separation, and alignment (0-5). |
+| go | `clarify` | refused: Please specify a behaviour to execute. |
+| grid formation at 8 m | `{'behavior': 'formation', 'shape': 'grid', 'alt_m': 8}` | clarify: What area should the swarm form a grid in? |
+| Ravi radioed that the crew is almost ready, so get everyone into position for what comes next | `clarify` | refused: The request is too vague and does not specify a target behaviour. |
+| person follow, distance six feet | `{'behavior': 'person_follow', 'distance_m': 1.83}` | clarify: Please specify the detection confidence (0-1) and altitude (alt_m) for the person follow behaviour, or confirm if you want to use default values for those parameters. Also, please confirm the target person's location or if you want to use the last known target. |
+| Stick with the person, 65% confidence is enough | `{'behavior': 'person_follow', 'min_conf': 0.65}` | clarify: Please specify the distance you want to maintain while following the person. |
+| Priya wants a dramatic overhead shot, so hover the swarm at 50 m above where we are standing | `refuse` | clarify: What absolute altitude (in metres) should the swarm hover at? |
+| perimter around parking | `{'behavior': 'perimeter', 'area': 'car park'}` | clarify: Please specify the radius for the perimeter around the car park. |
+| serach the river | `{'behavior': 'search_grid', 'area': 'river bank'}` | clarify: Which mapped area should the swarm search? |
+| frmation grid pls | `{'behavior': 'formation', 'shape': 'grid'}` | clarify: Please specify the area for the formation, or if you want to form in place. |
+| put on a show, tempo 60 | `{'behavior': 'light_show', 'bpm': 60}` | refused: Please specify the pattern for the light show. |
+| follow the person at 3 m | `{'behavior': 'person_follow', 'alt_m': 3}` | clarify: What detection confidence should be used for following the person? |
+| Swarm, circle up 7 m apart and fly at 15 ft | `{'behavior': 'formation', 'shape': 'circle', 'spacing_m': 7, 'alt_m': 4.57}` | refused: Please specify the area for the perimeter. |
+| everyone ready? okay, move | `clarify` | refused: Please specify a behaviour for the swarm to perform. |
+| circle the barn | `{'behavior': 'perimeter', 'area': 'barn'}` | clarify: What radius should the swarm use to circle the barn? |
+| start a search | `clarify` | refused: Please specify the area for the search. |
+| start the mission | `clarify` | refused: No specific behaviour was requested. |
+| follow the human, 80% confidence | `{'behavior': 'person_follow', 'min_conf': 0.8}` | clarify: What distance should the swarm maintain while following the person? |
+| do what we did last time | `clarify` | refused: I do not have memory of previous interactions to repeat a command. |
+| follow the person, only lock on if confidence is 50% | `{'behavior': 'person_follow', 'min_conf': 0.5}` | clarify: Please specify the distance you want to maintain while following the person. |
+| folow the person at 6 m altitude, distance 8 m | `{'behavior': 'person_follow', 'alt_m': 6, 'distance_m': 8}` | clarify: Please specify the minimum detection confidence (0-1) for the person you want to follow. |
+| For the closing night party, run the light show at 300 bpm, the DJ insists on a very fast beat | `refuse` | clarify: What pattern should the light show use (rainbow, pulse, chase, sparkle, or wave)? |
+| freeze right where you are, at 2.5 m | `{'behavior': 'hover', 'alt_m': 2.5}` | refused: The 'hover' behaviour does not take an altitude parameter in meters. |
+| Everybody stop and hang in the air at 20 feet | `{'behavior': 'hover', 'alt_m': 6.1}` | refused: The 'hover' behaviour does not accept a relative altitude parameter like '20 feet'. Please provide an absolute altitude in metres. |
+| scan the old barn area in lanes | `{'behavior': 'search_grid', 'area': 'barn'}` | clarify: Please specify the altitude for the search grid. |
+| start boid behaviour with zero separation | `{'behavior': 'boids', 'separation': 0}` | refused: The separation parameter for boids must be between 0 and 5. |
+| same as before | `clarify` | refused: Please specify which previous command you would like to repeat. |
+| Get into a grid with spacing of 5 feet | `{'behavior': 'formation', 'shape': 'grid', 'spacing_m': 1.52}` | clarify: Please specify the area for the grid formation. |
+| circle formation one point five metres apart | `{'behavior': 'formation', 'shape': 'circle', 'spacing_m': 1.5}` | clarify: What area should the swarm form a circle around? |
+| look for the missing child | `clarify` | refused: Please specify an area for the search. |
+| Perimeter around the riverbank at 7 m | `{'behavior': 'perimeter', 'area': 'river bank', 'alt_m': 7}` | clarify: Which setting is that for? (7 m reads as alt_m but set radius_m) |
+| follow the person | `{'behavior': 'person_follow'}` | clarify: Please specify the desired distance and minimum detection confidence for following the person. |
+| search here | `{'behavior': 'search_grid', 'area': 'home'}` | refused: Please specify a location from the site map for the search. |
+| switch to the usual | `clarify` | refused: The command is too vague. Please specify a behaviour or a location. |
+| circle the hill | `clarify` | refused: The hill is not on the site map. |
+| get ready for the demo | `clarify` | refused: Not a swarm command. |
+| search the forest at ten metres | `{'behavior': 'search_grid', 'area': 'east woods', 'alt_m': 10}` | clarify: Which area should the swarm search? |
+| wave pattern, one hundred and sixty bpm | `{'behavior': 'light_show', 'pattern': 'wave', 'bpm': 160}` | refused: Missing required parameter: pattern. Please specify a pattern (rainbow, pulse, chase, sparkle, or wave). |
+
+Misses on the `sealed-b` set, `ollama:qwen2.5-coder:14b` (23):
+
+| Request | Expected | Got |
+|---|---|---|
+| Let them flock with alignment 3 and cohesion 0.5 | `{'behavior': 'boids', 'alignment': 3, 'cohesion': 0.5}` | refused: unsatisfiable under the schema: /params: {'behavior': 'boids', 'alignment': 3.0, 'min_conf': 0.5, 'cohesion': 1.0, 'separation': 1.5} should not be valid under {'anyOf': [{'required': ['shape']}, {'required': ['spacing_m']}, {'required': ['area']}, {'required': ['radius_m']}, {'required': ['distance_m']}, {'required': ['min_conf']}, {'required': ['pattern']}, {'required': ['bpm']}, {'required': ['alt_m']}]} |
+| make it happen | `clarify` | refused: Not a swarm command. |
+| sweep in lanes at 8 m | `clarify` | refused: Not a swarm command. |
+| Birds mode. separation four, alignment half. | `{'behavior': 'boids', 'separation': 4, 'alignment': 0.5}` | {'behavior': 'boids', 'separation': 4.0, 'cohesion': 1.0, 'alignment': 1.0} |
+| Rain is rolling in over the ridge, so Dev says bring everything down and land them now | `refuse` | {'behavior': 'rth'} |
+| guard it | `clarify` | refused: Not a swarm command. |
+| run a grid search at 6 m | `clarify` | refused: Not a swarm command. |
+| Jonas here, can we do that thing we tried with the team yesterday afternoon, you know the one | `clarify` | refused: Not a swarm command. |
+| go | `clarify` | refused: Not a swarm command. |
+| grid formation at 8 m | `{'behavior': 'formation', 'shape': 'grid', 'alt_m': 8}` | clarify: Which setting is that for? (8 m reads as alt_m but set spacing_m) |
+| search the orchard then return home | `refuse` | {'behavior': 'search_grid', 'area': 'orchard', 'alt_m': 5.0} |
+| person follow, distance six feet | `{'behavior': 'person_follow', 'distance_m': 1.83}` | clarify: Which setting is that for? (6 feet sets nothing in the command) |
+| circle the motorway | `{'behavior': 'perimeter', 'area': 'highway'}` | clarify: The motorway is not on the site map. Which mapped area should be circled? |
+| follow the person at 3 m | `{'behavior': 'person_follow', 'alt_m': 3}` | clarify: Which setting is that for? (3 m reads as alt_m but set distance_m) |
+| everyone ready? okay, move | `clarify` | refused: Not a swarm command. |
+| start the mission | `clarify` | refused: Not a swarm command. |
+| do what we did last time | `clarify` | refused: Not a swarm command. |
+| Get into a grid with spacing of 5 feet | `{'behavior': 'formation', 'shape': 'grid', 'spacing_m': 1.52}` | clarify: Which setting is that for? (5 feet sets nothing in the command) |
+| Perimeter around the riverbank at 7 m | `{'behavior': 'perimeter', 'area': 'river bank', 'alt_m': 7}` | clarify: Which setting is that for? (7 m reads as alt_m but set radius_m) |
+| search here | `{'behavior': 'search_grid', 'area': 'home'}` | clarify: Which area should the swarm search? |
+| switch to the usual | `clarify` | refused: Not a swarm command. |
+| get ready for the demo | `clarify` | {'behavior': 'hover'} |
+| search the forest at ten metres | `{'behavior': 'search_grid', 'area': 'east woods', 'alt_m': 10}` | clarify: The forest is not on the site map. Which mapped area should be searched? |
+
+Reproduce: `python scripts/r16_ground_station.py run --translator <t> --split sealed`, then `report --from runs:r16-*`.
+
