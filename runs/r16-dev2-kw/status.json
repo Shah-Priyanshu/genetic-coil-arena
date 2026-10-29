@@ -9,12 +9,14 @@
     "--split",
     "dev"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-29T10:00:36+00:00",
-  "updated_at": "2026-10-29T10:00:36+00:00",
+  "updated_at": "2026-10-29T10:00:38+00:00",
   "elapsed_min": 0.0,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 91 %, 3473 MiB, 12282 MiB, 67",
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 97 %, 11623 MiB, 12282 MiB, 67",
   "host": "PC",
   "lane": "cpu",
-  "cpu_workers": 1
+  "cpu_workers": 1,
+  "returncode": 0,
+  "finished_at": "2026-10-29T10:00:38+00:00"
 }
