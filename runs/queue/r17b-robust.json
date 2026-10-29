@@ -1,0 +1,17 @@
+{
+  "id": "r17b-robust",
+  "commit": "ee1a53db96dc0f987ba0da916793d1b37b92d74a",
+  "args": [
+    "scripts/r17_robust.py",
+    "--from",
+    "runs:r17-train-*",
+    "--workers",
+    "8",
+    "--out",
+    "docs/results/r17_robust.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "priority": 1,
+  "timeout_min": 90.0
+}
