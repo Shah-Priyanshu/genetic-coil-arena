@@ -95,6 +95,13 @@ def test_tile_metrics_bins_groups_and_bootstrap():
     assert m["scale 0.5"]["n_persons all"] == 1
     assert m["scale 0.5"]["ap50 all"] == pytest.approx(1.0)
     assert len(pooled["boot ap50"]) == 50
+    op = pooled["operating"]
+    # scores 0.95 (false), 0.9 and 0.8 (hits), 0.7 (ignored person)
+    assert op["0.7"]["recall 32+"] == 1.0 and op["0.7"]["recall 0-8"] == 0.0
+    assert op["0.7"]["recall all"] == pytest.approx(2 / 3)
+    assert op["0.7"]["false_per_tile"] == pytest.approx(1 / 3)
+    assert op["0.7"]["tile_false_alarm_rate"] == 1.0  # the empty tile's 0.95
+    assert op["0.7"]["tile_hit_rate"] == 1.0
     mean, lo, hi = r15b.paired(pooled["boot ap50"], pooled["boot ap50"])
     assert mean == lo == hi == 0.0  # resamples without persons (nan) are skipped
 

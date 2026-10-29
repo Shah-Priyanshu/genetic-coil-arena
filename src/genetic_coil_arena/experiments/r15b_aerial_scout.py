@@ -69,6 +69,7 @@ SIZE_BINS = ((0.0, 8.0), (8.0, 16.0), (16.0, 32.0), (32.0, math.inf))
 MIN_HIT = 4.0  # centre hit: half-width of the smallest accepted box
 SPLITS = {"train": "train", "val": "val", "test": "test-dev"}
 GOOD_POINTS = 0.10
+THRESHOLDS = (0.3, 0.5, 0.7)  # 0.7 = OpenSwarm's person_follow confidence threshold
 BIN_NAMES = [("all", 0.0, math.inf)] + [
     (f"{lo:g}-{hi:g}" if hi < math.inf else f"{lo:g}+", lo, hi) for lo, hi in SIZE_BINS
 ]
@@ -471,7 +472,40 @@ def tile_metrics(
                 res[f"boot {key}"] = [
                     ap_bin(t, weights=(w[df], w[gf]), tiles=gmask) for w in weights
                 ]
+        res["operating"] = operating_points(tables["centre"], top, present, gmask)
         out[gname] = res
+    return out
+
+
+def operating_points(
+    table: dict, top: np.ndarray, present: np.ndarray, tiles: np.ndarray
+) -> dict[str, dict[str, float]]:
+    """What a scout sees at a fixed confidence threshold (centre hits): recall per person
+    size bin, false detections per tile, and per tile the share of tiles with a person
+    whose top score passes (hit rate) and of empty tiles that pass (false-alarm rate).
+    Greedy matching runs in score order, so the matches above a threshold are those a
+    run on the detections above it would make."""
+    out = {}
+    det_on = tiles[table["det_tile"]]
+    for tau in THRESHOLDS:
+        keep = det_on & (table["score"] >= tau)
+        hit_gt = np.zeros(len(table["gt_size"]), bool)
+        hit_gt[table["det_gt"][keep & (table["det_gt"] >= 0)]] = True
+        row: dict[str, float] = {}
+        for bname, lo, hi in BIN_NAMES:
+            gt_in = ap_parts(table, lo, hi, tiles)["gt"]
+            row[f"recall {bname}"] = (
+                float(hit_gt[gt_in].mean()) if gt_in.any() else float("nan")
+            )
+        n_tiles = int(tiles.sum())
+        false = int((keep & (table["det_gt"] < 0)).sum())
+        row["false_per_tile"] = false / n_tiles if n_tiles else float("nan")
+        pos, neg = present & tiles, ~present & tiles
+        row["tile_hit_rate"] = float((top[pos] >= tau).mean()) if pos.any() else 0.0
+        row["tile_false_alarm_rate"] = (
+            float((top[neg] >= tau).mean()) if neg.any() else 0.0
+        )
+        out[f"{tau:g}"] = row
     return out
 
 
@@ -638,6 +672,31 @@ def render(rep: dict[str, Any], runs: list[dict], test_frames: int) -> str:
                     f"| {_avg(rs, scaled(1, 'centre_ap'))} "
                     f"| {_avg(rs, scaled(0.5, 'centre_ap'))} |"
                 )
+    lines += [
+        "",
+        "What a scout sees at a fixed confidence threshold (centre hits, scales "
+        "pooled): recall by person size, false detections per tile, and the share of "
+        "empty tiles that raise an alarm. 0.7 is OpenSwarm's person-follow threshold.",
+        "",
+        "| Brain | Width | Threshold | "
+        + " | ".join(f"recall {b} px" for b in bins)
+        + " | False detections per tile | Empty tiles alarmed |",
+        "|---|---|---|" + "---|" * (len(bins) + 2),
+    ]
+    for c in conds:
+        for a in alphas:
+            rs = _find(runs, c, a)
+            if not rs or "operating" not in rs[0]["test"]["pooled"]:
+                continue
+            for tau in ("0.5", "0.7"):
+
+                def op(key: str, tau: str = tau) -> Any:
+                    return lambda r: r["test"]["pooled"]["operating"][tau][key]
+
+                cells = [_avg(rs, op(f"recall {b}")) for b in bins]
+                cells += [_avg(rs, op("false_per_tile")),
+                          _avg(rs, op("tile_false_alarm_rate"))]  # fmt: skip
+                lines.append(f"| {c} | {a:g} | {tau} | " + " | ".join(cells) + " |")
     trained = [r for r in runs if r["condition"] != "zero-shot"]
     if trained:
         s = trained[0]
@@ -652,7 +711,7 @@ def render(rep: dict[str, Any], runs: list[dict], test_frames: int) -> str:
     lines += [
         "",
         "Reproduce: `python scripts/r15b_aerial_scout.py prepare`, `train --init coco` "
-        "and `--init scratch`, then `report --from runs:r15b-train-*`.",
+        "and `--init scratch`, then `report --from runs:r15b2-train-*`.",
         "",
     ]
     return "\n".join(lines)
