@@ -36,3 +36,7 @@
 [done] mission 17: val 0.992 from hand
 [saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17-oracle\artifacts\r17_oracle_m17.json
 [saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17-oracle\artifacts\r17_oracle_m18.json
+[done] mission 21: val 0.848 from hand
+[done] mission 19: val 0.813 from hand
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17-oracle\artifacts\r17_oracle_m19.json
+[done] mission 22: val 0.251 from hand
