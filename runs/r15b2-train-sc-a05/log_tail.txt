@@ -5,3 +5,4 @@
 [17:50:56] [alpha 0.5] epoch 5/20 loss 1.2887 (1276 s)
 [17:55:08] [alpha 0.5] epoch 6/20 loss 1.2256 (1529 s)
 [17:59:21] [alpha 0.5] epoch 7/20 loss 1.1762 (1782 s)
+[18:03:34] [alpha 0.5] epoch 8/20 loss 1.1395 (2035 s)
