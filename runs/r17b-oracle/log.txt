@@ -28,3 +28,5 @@
 [done] mission 13: val 0.101 from default
 [saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-oracle\artifacts\r17b_oracle_m13.json
 [done] mission 17: val 0.000 from hand-off
+[done] mission 18: val 0.187 from hand
+[done] mission 19: val 0.010 from hand
