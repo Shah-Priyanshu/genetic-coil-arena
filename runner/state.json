@@ -38,7 +38,8 @@
       "r16-dev3-q14",
       "r15b2-train-ft-a075",
       "r15b2-train-sc-a025",
-      "r15b2-train-sc-a05"
+      "r15b2-train-sc-a05",
+      "ci-4bb0f6a1c728"
     ],
     "blocked": [
       {
@@ -64,8 +65,8 @@
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-29T10:59:17+00:00",
-  "cpu_percent": 98.2,
+  "updated_at": "2026-10-29T11:00:40+00:00",
+  "cpu_percent": 98.3,
   "gpu": {
     "util": 86.0,
     "mem_used_mb": 4149.0,
