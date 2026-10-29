@@ -28,6 +28,10 @@ logit(thr))``, uniform in the footprint. A detection's ground position is off by
   ``confirm_alt`` for up to ``confirm_looks`` looks at ``confirm_thr``, and the first
   detection there is declared the find. A candidate with no detection is dropped.
 
+For robustness tests only, ``Mission`` can also make the person wander
+(``person_speed``), worsen the GPS (``loc_error``) or slow the drones (``speed``, a
+headwind); the defaults leave every episode unchanged.
+
 **Outcome:** a declaration within ``FOUND_M`` of the person is a find; any other
 declaration is a wrong find (the rescue team goes to the wrong place); no declaration
 by the end of the sortie is a miss. ``score = found - 2 * wrong``.
@@ -84,10 +88,14 @@ class Mission:
     drones: int = 6
     battery_s: float = 300.0
     detector: Detector = field(default_factory=Detector)
+    person_speed: float = 0.0  # m/s; a moving person wanders (robustness only)
+    loc_error: float = LOC0  # GPS part of a detection's position error (m)
+    speed: float = SPEED  # cruise speed (m/s); lower for a headwind
 
     def vector(self) -> np.ndarray:
         return np.array([self.width, self.height, self.drones, self.battery_s,
-                         *astuple(self.detector)], dtype=np.float64)  # fmt: skip
+                         *astuple(self.detector), self.person_speed, self.loc_error,
+                         self.speed], dtype=np.float64)  # fmt: skip
 
 
 @dataclass(frozen=True)
@@ -141,10 +149,10 @@ _logit_nb = njit(cache=True)(_logit)
 
 
 @njit(cache=True)
-def _tier(alt, thr, px50, slope, fa50, fa_slope):
+def _tier(alt, thr, px50, slope, fa50, fa_slope, loc0):
     p = _phi_nb(slope * math.log(PX_M / alt / px50) - _logit_nb(thr))
     lam = fa50 * math.exp(-fa_slope * _logit_nb(thr))
-    return FOOTPRINT * alt, p, lam, LOC0 + LOC1 * alt
+    return FOOTPRINT * alt, p, lam, loc0 + LOC1 * alt
 
 
 @njit(cache=True)
@@ -173,12 +181,14 @@ def _episode(seed, mv, pv, out):
     np.random.seed(seed)
     width, height, n_drones, battery = mv[0], mv[1], int(mv[2]), mv[3]
     px50, slope, fa50, fa_slope = mv[4], mv[5], mv[6], mv[7]
+    walk, loc0, spd = mv[8], mv[9], mv[10]
     tx, ty = np.random.random() * width, np.random.random() * height
+    heading = np.random.random() * 2 * math.pi if walk > 0 else 0.0
     hx, hy = width / 2.0, -5.0
     sweep_alt, overlap, n_conf = pv[0], pv[1], int(pv[3])
     conf_alt, looks = pv[4], int(pv[6])
-    s_s, p_s, lam_s, sig_s = _tier(sweep_alt, pv[2], px50, slope, fa50, fa_slope)
-    s_c, p_c, lam_c, sig_c = _tier(conf_alt, pv[5], px50, slope, fa50, fa_slope)
+    s_s, p_s, lam_s, sig_s = _tier(sweep_alt, pv[2], px50, slope, fa50, fa_slope, loc0)
+    s_c, p_c, lam_c, sig_c = _tier(conf_alt, pv[5], px50, slope, fa50, fa_slope, loc0)
     n_sw = n_drones - n_conf
 
     strip = width / n_sw
@@ -211,6 +221,14 @@ def _episode(seed, mv, pv, out):
     out[0], out[1] = 0.0, battery
     for t in range(1, int(battery) + 200):
         active = False
+        if walk > 0:  # the person wanders, turning a little each second
+            heading += np.random.normal() * 0.3
+            tx += walk * math.cos(heading)
+            ty += walk * math.sin(heading)
+            if tx < 0 or tx > width:
+                heading, tx = math.pi - heading, min(max(tx, 0.0), width)
+            if ty < 0 or ty > height:
+                heading, ty = -heading, min(max(ty, 0.0), height)
         for i in range(n_sw):
             if smode[i] == 3:
                 continue
@@ -222,13 +240,13 @@ def _episode(seed, mv, pv, out):
                     smode[i] = 1
                 continue
             if smode[i] == 1:
-                need = math.hypot(sx[i] - hx, sy[i] - hy) / SPEED + sweep_alt / CLIMB
+                need = math.hypot(sx[i] - hx, sy[i] - hy) / spd + sweep_alt / CLIMB
                 if battery - sused[i] <= need + RESERVE_S or swp[i] >= n_wp:
                     smode[i] = 2
                     continue
                 half, seen = s_s / 2, False
                 for _ in range(SUBSTEPS):  # the camera sees the whole path flown
-                    budget = SPEED / SUBSTEPS
+                    budget = spd / SUBSTEPS
                     while budget > 1e-9 and swp[i] < n_wp:
                         k = swp[i]
                         sx[i], sy[i], d, arrived = _step_to(sx[i], sy[i], wx[i, k],
@@ -260,18 +278,18 @@ def _episode(seed, mv, pv, out):
                         return
                     nk = _add(kx, ky, ks, nk, fx, fy)
                 continue
-            sx[i], sy[i], _, arrived = _step_to(sx[i], sy[i], hx, hy, SPEED)
+            sx[i], sy[i], _, arrived = _step_to(sx[i], sy[i], hx, hy, spd)
             if arrived:
                 smode[i] = 3
         for c in range(nk):  # oldest pending candidate first
             if ks[c] != 0:
                 continue
             best, best_go = -1, 1e18
-            back = math.hypot(kx[c] - hx, ky[c] - hy) / SPEED + conf_alt / CLIMB
+            back = math.hypot(kx[c] - hx, ky[c] - hy) / spd + conf_alt / CLIMB
             for j in range(n_conf):
                 if cmode[j] != 0 and cmode[j] != 4:
                     continue
-                go = math.hypot(cx[j] - kx[c], cy[j] - ky[c]) / SPEED
+                go = math.hypot(cx[j] - kx[c], cy[j] - ky[c]) / spd
                 if cmode[j] == 0:
                     go += conf_alt / CLIMB
                 if cused[j] + go + looks + back + RESERVE_S <= battery and go < best_go:
@@ -293,7 +311,7 @@ def _episode(seed, mv, pv, out):
                 if cclimb[j] <= 0:
                     cmode[j] = 2
             elif cmode[j] == 2:
-                cx[j], cy[j], _, arrived = _step_to(cx[j], cy[j], kx[c], ky[c], SPEED)
+                cx[j], cy[j], _, arrived = _step_to(cx[j], cy[j], kx[c], ky[c], spd)
                 if arrived:
                     cmode[j] = 3
             elif cmode[j] == 3:
@@ -315,7 +333,7 @@ def _episode(seed, mv, pv, out):
                 if clooks[j] >= looks:
                     ks[c], cmode[j] = 2, 4
             else:
-                cx[j], cy[j], _, arrived = _step_to(cx[j], cy[j], hx, hy, SPEED)
+                cx[j], cy[j], _, arrived = _step_to(cx[j], cy[j], hx, hy, spd)
                 if arrived:
                     cmode[j] = 0
                     cused[j] += conf_alt / CLIMB

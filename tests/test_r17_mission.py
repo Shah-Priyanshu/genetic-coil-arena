@@ -84,3 +84,40 @@ def test_summary_bars():
     rep = r17.summarise(cells, plans)
     assert rep["good_sign"]["pass"] and not rep["room"]["pass"]
     assert "PASS" in r17.render(rep) and "FAIL" in r17.render(rep)
+
+
+def test_robustness_conditions_change_the_world_not_the_defaults():
+    from dataclasses import replace
+
+    from genetic_coil_arena.experiments import r17_robust as rr
+
+    m = Mission(120.0, 120.0, 6, 300.0, Detector(px50=8, fa50=0.001))
+    base = run_missions(m, hand_two_tier(6), SEEDS)
+    same = run_missions(replace(m, person_speed=0.0, loc_error=1.0, speed=4.0),
+                        hand_two_tier(6), SEEDS)  # fmt: skip
+    assert np.array_equal(base["score"], same["score"])
+    walking = run_missions(replace(m, person_speed=1.2), hand_two_tier(6), SEEDS)
+    assert walking["found"].mean() < base["found"].mean()
+    slow = run_missions(replace(m, speed=2.0), hand_two_tier(6), SEEDS)
+    assert slow["swept"].mean() < base["swept"].mean()
+    big = rr.missions_for("areas x1.6")[0]
+    assert big.width == pytest.approx(1.6 * r17.held_out_missions()[0].width)
+    assert rr.missions_for("10 drones")[0].drones == 10
+
+
+def test_robustness_bar_needs_size_and_ci_everywhere():
+    from genetic_coil_arena.experiments import r17_robust as rr
+
+    rng = np.random.default_rng(1)
+    cells = {}
+    for cond, gain in (("nominal", 0.10), ("GPS error 3 m", 0.02)):
+        for name, shift in (("blind", 0.0), ("conditioned", gain),
+                            ("OpenSwarm default", -0.5), ("hand two-tier", 0.0)):  # fmt: skip
+            for i in range(r17.N_TEST):
+                s = 0.4 + shift + rng.normal(0, 0.005)
+                cells[(cond, name, 0, i)] = {"score": s, "found": s, "wrong": 0.0}
+    rep = rr.summarise(cells)
+    assert rep["by_condition"]["nominal"]["pass"]
+    assert not rep["by_condition"]["GPS error 3 m"]["pass"]  # CI above 0 but < 3 points
+    assert not rep["pass"] and rep["fails"] == ["GPS error 3 m"]
+    assert "FAIL" in rr.render(rep)
