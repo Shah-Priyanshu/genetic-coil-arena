@@ -8,12 +8,14 @@
     "--out",
     "docs/results/r7c_reliability.md"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-29T00:33:44+00:00",
-  "updated_at": "2026-10-29T00:33:44+00:00",
-  "elapsed_min": 0.0,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 1 %, 814 MiB, 12282 MiB, 39",
+  "updated_at": "2026-10-29T00:34:54+00:00",
+  "elapsed_min": 1.2,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 814 MiB, 12282 MiB, 39",
   "host": "PC",
   "lane": "cpu",
-  "cpu_workers": 2
+  "cpu_workers": 2,
+  "returncode": 0,
+  "finished_at": "2026-10-29T00:34:54+00:00"
 }
