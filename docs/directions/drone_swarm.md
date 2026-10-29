@@ -74,6 +74,18 @@ Risks:
 
 Implication: in this swarm, learning would have to earn its place through coordination that is hard to hand-design, not compression. Examples are several targets with role allocation, obstacles, and drone or radio failures. Bandwidth binds only for rich content such as maps, images or very large swarms.
 
+## Several sources (probe, `docs/results/r14_multi_probe.md`)
+
+With 3 sources, coordination becomes the bottleneck:
+
+| System | All three found in 2 min |
+|---|---|
+| Tuned hand-designed gossip swarm | 61.9% |
+| Sensing-limited oracle (sources become known exactly at the first sniff, cameras split greedily, gas drones move on) | 93.1% |
+| Silent | 29.9% |
+
+The radio still does not bind (2 B = 8 B). This is the first good sign for *learned coordination* in the swarm; whether a learned policy closes the 31-point gap is the next (CPU-heavy) test.
+
 ## Step 1 pilot (before pre-registration; 400 episodes per condition, seeds outside the experiment)
 
 The pilot set the design and already points to an answer:
