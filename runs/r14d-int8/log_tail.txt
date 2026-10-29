@@ -11,3 +11,8 @@
 [progress] 90/195 cells, 675 s
 [progress] 100/195 cells, 753 s
 [progress] 110/195 cells, 831 s
+[progress] 120/195 cells, 915 s
+[progress] 130/195 cells, 994 s
+[progress] 140/195 cells, 1050 s
+[progress] 150/195 cells, 1134 s
+[progress] 160/195 cells, 1214 s
