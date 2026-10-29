@@ -37,3 +37,5 @@
 [23:58:50] [alpha 0.25] epoch 37/40 loss 0.9744 (2485 s)
 [23:59:57] [alpha 0.25] epoch 38/40 loss 0.9752 (2552 s)
 [00:01:04] [alpha 0.25] epoch 39/40 loss 0.9735 (2619 s)
+[00:02:10] [alpha 0.25] epoch 40/40 loss 0.9727 (2685 s)
+[00:02:19] scout_a0.25_s160: {"ap50": 0.24078902591896528, "ap50_tall": 0.47521887341302715, "present_auc": 0.9075478548552802, "present_rate": 0.4812, "val_images": 5000, "alpha": 0.25, "params": 117333, "int8_kb": 114.5830078125, "macs": 20076800, "epochs": 40, "train_images": 118287, "seconds": 2691.523656606674, "size": 160, "onnx": true, "weights": "D:\\Projects\\genetic-coil-arena-data\\r15_models\\scout_a0.25_s160.pt"}
