@@ -1,0 +1,4 @@
+[15:50:39] Ollama already running at http://localhost:11434
+[15:50:58] ollama:gemma4:e4b: 25/60, 13 correct
+[15:51:06] ollama:gemma4:e4b: 50/60, 30 correct
+[15:51:09] {"n": 60, "by_expect": {"ok": {"exact": 21, "refused": 4, "asked": 11}, "clarify": {"asked": 7, "refused": 5}, "refuse": {"refused": 10, "asked": 2}}, "exact": [0.5833333333333334, 0.4219996966427768, 0.7285966649491271], "asked_when_unclear": [0.5833333333333334, 0.3195073356553728, 0.8067425380947535], "refused_when_should": [0.8333333333333334, 0.5519636426153274, 0.9530358523851776], "wrong_commands": [0.0, 0.0, 0.06017393047793289], "correct": [0.6333333333333333, 0.5068276736679673, 0.7437926115379172], "median_latency_s": 0.30904600000940263, "translator": "ollama:gemma4:e4b", "split": "dev"}
