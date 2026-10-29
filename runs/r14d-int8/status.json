@@ -1,0 +1,25 @@
+{
+  "id": "r14d-int8",
+  "commit": "f563eb597b03b798b2cac066c3fb7c83ec9495c2",
+  "queued_args": [
+    "scripts/r14_int8.py",
+    "--set",
+    "step2=runs:r14b-train-*",
+    "--set",
+    "random=runs:r14c-train-*",
+    "--header-from",
+    "random",
+    "--workers",
+    "8",
+    "--out",
+    "docs/results/r14_int8.md"
+  ],
+  "state": "running",
+  "started_at": "2026-10-29T21:06:02+00:00",
+  "updated_at": "2026-10-29T21:06:02+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 93 %, 3215 MiB, 12282 MiB, 68",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 8
+}
