@@ -24,16 +24,16 @@
       "started_at": "2026-10-29T21:15:41+00:00"
     },
     {
-      "id": "r16b-dev-e2b",
+      "id": "r16b-dev-e4b",
       "lane": "gpu",
       "cpu_workers": 2,
-      "started_at": "2026-10-29T21:21:43+00:00"
+      "started_at": "2026-10-29T21:22:32+00:00"
     }
   ],
   "backlog": {
     "ready": [
-      "r16b-dev-e4b",
       "r16b-dev-q14",
+      "r16b-sealed-e2b",
       "r15b2-train-sc-a05",
       "r17b-train-cond-a",
       "r17b-train-cond-b"
@@ -43,12 +43,6 @@
         "id": "r15b2-zz-report2",
         "blocked_by": [
           "r15b2-train-sc-a05"
-        ]
-      },
-      {
-        "id": "r16b-sealed-e2b",
-        "blocked_by": [
-          "r16b-dev-e2b"
         ]
       },
       {
@@ -68,7 +62,6 @@
         "blocked_by": [
           "r16b-dev-q14",
           "r16b-dev-e4b",
-          "r16b-dev-e2b",
           "r16b-sealed-q14",
           "r16b-sealed-e4b",
           "r16b-sealed-e2b"
@@ -90,11 +83,11 @@
     "gpu": "2026-10-29T21:21:30+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-29T21:21:43+00:00",
-  "cpu_percent": 94.8,
+  "updated_at": "2026-10-29T21:22:32+00:00",
+  "cpu_percent": 94.3,
   "gpu": {
     "util": 0.0,
-    "mem_used_mb": 545.0,
+    "mem_used_mb": 533.0,
     "mem_total_mb": 12282.0
   }
 }
