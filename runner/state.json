@@ -38,7 +38,8 @@
       "r15b2-train-sc-a025",
       "r15b2-train-sc-a05",
       "r17-train-cond-a",
-      "r17-train-cond-b"
+      "r17-train-cond-b",
+      "ci-28933e0e5eea"
     ],
     "blocked": [
       {
@@ -94,11 +95,11 @@
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-29T18:20:56+00:00",
-  "cpu_percent": 88.4,
+  "updated_at": "2026-10-29T18:22:07+00:00",
+  "cpu_percent": 93.2,
   "gpu": {
-    "util": 92.0,
-    "mem_used_mb": 6939.0,
+    "util": 99.0,
+    "mem_used_mb": 6946.0,
     "mem_total_mb": 12282.0
   }
 }
