@@ -34,7 +34,8 @@
     "ready": [
       "r16b-zz-report",
       "r17b-train-cond-a",
-      "r17b-train-cond-b"
+      "r17b-train-cond-b",
+      "ci-aa8514b3a28d"
     ],
     "blocked": [
       {
@@ -56,14 +57,14 @@
   },
   "idle_since": {
     "cpu": null,
-    "gpu": "2026-10-29T21:29:18+00:00"
+    "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-29T21:29:29+00:00",
-  "cpu_percent": 94.2,
+  "updated_at": "2026-10-29T21:30:40+00:00",
+  "cpu_percent": 85.4,
   "gpu": {
-    "util": 0.0,
-    "mem_used_mb": 545.0,
+    "util": 99.0,
+    "mem_used_mb": 4130.0,
     "mem_total_mb": 12282.0
   }
 }
