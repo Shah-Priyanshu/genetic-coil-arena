@@ -1,0 +1,12 @@
+{
+  "id": "r14-swarm-talk",
+  "commit": "04aaf2acfeb939981ae53408e1b0e4f62a4d3e3d",
+  "args": [
+    "scripts/r14_swarm_talk.py",
+    "--out",
+    "docs/results/r14_swarm_talk.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 2,
+  "timeout_min": 120.0
+}
