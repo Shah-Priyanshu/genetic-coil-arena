@@ -1,0 +1,16 @@
+{
+  "id": "r16-dev4-kw",
+  "commit": "f2d98e6668fcc1d0e6ad626cc4a8abc4e42df11d",
+  "args": [
+    "scripts/r16_ground_station.py",
+    "run",
+    "--translator",
+    "keyword",
+    "--split",
+    "dev"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 1,
+  "priority": 2,
+  "timeout_min": 20.0
+}

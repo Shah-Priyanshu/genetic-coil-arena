@@ -1,0 +1,27 @@
+{
+  "id": "r16-zz-report",
+  "commit": "f2d98e6668fcc1d0e6ad626cc4a8abc4e42df11d",
+  "args": [
+    "scripts/r16_ground_station.py",
+    "report",
+    "--from",
+    "runs:r16-dev4-*",
+    "runs:r16-sealed2-*",
+    "--out",
+    "docs/results/r16_ground_station.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 1,
+  "priority": 1,
+  "after": [
+    "r16-dev4-q14",
+    "r16-dev4-e4b",
+    "r16-dev4-e2b",
+    "r16-dev4-kw",
+    "r16-sealed2-q14",
+    "r16-sealed2-e4b",
+    "r16-sealed2-e2b",
+    "r16-sealed2-kw"
+  ],
+  "timeout_min": 20.0
+}
