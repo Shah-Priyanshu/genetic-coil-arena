@@ -304,6 +304,16 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **What it means:** Pending.
 - **Report:** docs/directions/drone_swarm.md
 
+### R17: a leader that plans the person search
+- **Date:** 2026-10-29 (running)
+- **Question:** Does a leader that reads the mission (area, number of drones, how good the scout's detector is) plan OpenSwarm's person search better than one well-tuned plan used for every mission?
+- **Why:** This is ladder step 3, a learned centre that follows the mission. It also answers a practical question for the hardware: what altitude, threshold and confirmation scheme to fly. A 5-minute battery forces a trade: higher sweeps cover more ground but shrink people below what the K210 detector can see, and false alarms send the team to the wrong place unless a drone confirms.
+- **What we did:** A new numba simulator of one sortie: scouts fly lanes, confirmers fly to detections and look again, every drone gets one battery, and a detection curve includes false alarms. Missions are random (60–240 m sides, 3–8 drones, detectors from good to poor). We compare five systems on 40 held-out missions × 2,000 episodes: the OpenSwarm default (sweep at 5 m, the first detection ≥ 0.7 is the find), a hand two-tier plan, one plan ES-tuned for all missions, an ES-trained planner that reads the mission, and per-mission tuning (the room). Bars fixed in advance: per-mission tuning beats the one plan by ≥ 5 points (room), and the planner beats it by ≥ 3 points with CI above 0 (good sign).
+- **Result:** Running (about 1.5 h on the CPU).
+- **Verdict:** Running
+- **What it means:** Pending. The detector numbers are assumed ranges until R15b measures the real curve, which then becomes a held-out test.
+- **Report:** docs/directions/drone_swarm.md
+
 ### R16 (G14): a plain-language ground station for OpenSwarm
 - **Date:** 2026-10-29 (running)
 - **Question:** Can an operator command the swarm in plain words ("sweep the parking lot at 10 m") and have the ground station send exactly that command, ask when unclear and refuse what the swarm can't do?

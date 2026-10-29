@@ -126,6 +126,31 @@ The brains close half the coordination gap at 3 leaks and gain most on 4 leaks, 
 
 Step 3 (b), running (`r14c-*`): a second set trained on a random condition every generation. Does it beat the step-2 brains on the harder conditions without losing more than 3 points at nominal?
 
+## R17: a leader that plans the person search (ladder step 3, running)
+
+OpenSwarm's leader must turn "search the north field" into a plan:
+- how high the K210 scouts sweep;
+- how far apart their lanes are;
+- the detection threshold;
+- how many drones stay back to confirm detections, at what height and for how many looks.
+
+The best plan depends on the mission. Higher sweeps cover more ground on one ~5 min battery, but people shrink in pixels, so recall falls. A low threshold finds more people but also more false alarms. Confirming costs drones.
+
+**Setup.** `envs/swarm/mission.py` simulates one sortie (lanes, battery, a detection curve with false alarms, confirmers flying to candidates). Score = found − 2 × wrong find.
+
+**Systems compared on 40 held-out missions:**
+- the OpenSwarm default (SEARCH_GRID at 5 m, the first detection ≥ 0.7 is the find);
+- a hand two-tier plan;
+- one ES-tuned plan for all missions (blind);
+- an ES-trained planner that reads the mission (conditioned);
+- per-mission tuning, which shows the room.
+
+**Bars, fixed in advance:**
+- room: per-mission tuning beats the blind plan by ≥ 5 points;
+- good sign: the conditioned planner beats the blind plan by ≥ 3 points, CI above 0.
+
+**Caveat:** the detector's curve and false-alarm rate are ranges, not yet measurements. Once R15b reports, its measured curve becomes a held-out detector. The default plan's wrong finds come straight from the assumed false-alarm rates.
+
 ## Step 1 pilot (before pre-registration; 400 episodes per condition, seeds outside the experiment)
 
 The pilot set the design and already points to an answer:
