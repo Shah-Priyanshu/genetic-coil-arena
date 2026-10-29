@@ -3,3 +3,4 @@
 [06:49:54] [alpha 0.5] epoch 3/20 loss 1.1204 (833 s)
 [06:54:26] [alpha 0.5] epoch 4/20 loss 1.0815 (1105 s)
 [06:58:58] [alpha 0.5] epoch 5/20 loss 1.0490 (1377 s)
+[07:03:30] [alpha 0.5] epoch 6/20 loss 1.0249 (1649 s)
