@@ -1,0 +1,8 @@
+[progress] blind run 1: gen 0/3000, val 0.039, best 0.039 at 0, 7 s
+[progress] blind run 3: gen 0/3000, val 0.039, best 0.039 at 0, 7 s
+[progress] blind run 6: gen 0/3000, val 0.039, best 0.039 at 0, 7 s
+[progress] blind run 2: gen 0/3000, val 0.039, best 0.039 at 0, 7 s
+[progress] blind run 0: gen 0/3000, val 0.039, best 0.039 at 0, 7 s
+[progress] blind run 4: gen 0/3000, val 0.039, best 0.039 at 0, 7 s
+[progress] blind run 5: gen 0/3000, val 0.039, best 0.039 at 0, 7 s
+[progress] blind run 7: gen 0/3000, val 0.039, best 0.039 at 0, 7 s
