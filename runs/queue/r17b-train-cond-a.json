@@ -1,0 +1,19 @@
+{
+  "id": "r17b-train-cond-a",
+  "commit": "f98e7eb26a4719fbe7b4a0b1d4fc56c394e61b68",
+  "args": [
+    "scripts/r17_mission.py",
+    "train",
+    "--kind",
+    "conditioned",
+    "--version",
+    "2",
+    "--runs",
+    "0:8",
+    "--workers",
+    "8"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "timeout_min": 240.0
+}
