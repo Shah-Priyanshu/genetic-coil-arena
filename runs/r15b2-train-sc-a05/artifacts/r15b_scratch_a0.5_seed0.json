@@ -1,0 +1,18 @@
+{
+ "val_ap50": 0.23637394711618567,
+ "val_centre_ap": 0.43854683470403577,
+ "val_present_auc": 0.9332639198907292,
+ "alpha": 0.5,
+ "params": 444837,
+ "int8_kb": 434.4111328125,
+ "macs": 142926336,
+ "epochs": 20,
+ "train_images": 117649,
+ "seconds": 5092.443723678589,
+ "size": 224,
+ "condition": "scratch",
+ "seed": 0,
+ "lr": 0.001,
+ "weights": "D:\\Projects\\genetic-coil-arena-data\\r15_models\\r15b_scratch_a0.5_seed0.pt",
+ "onnx": true
+}
