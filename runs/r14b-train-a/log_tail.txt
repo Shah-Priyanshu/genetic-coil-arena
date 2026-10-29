@@ -197,3 +197,4 @@
 [progress] run 4: gen 1200/1500, val 3.567, best 3.650 at 975, 21016 s
 [progress] run 1: gen 1200/1500, val 3.542, best 3.750 at 25, 21026 s
 [progress] run 3: gen 1200/1500, val 3.483, best 3.800 at 75, 21296 s
+[progress] run 2: gen 1200/1500, val 3.550, best 3.708 at 1050, 21309 s
