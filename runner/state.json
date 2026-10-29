@@ -3,33 +3,26 @@
   "host": "PC",
   "draining_for_update": false,
   "cpu_budget": 24,
-  "cpu_workers_in_use": 10,
+  "cpu_workers_in_use": 2,
   "running": [
     {
-      "id": "r7c-train-c",
+      "id": "r7c-zz-report2",
       "lane": "cpu",
-      "cpu_workers": 10,
-      "started_at": "2026-10-28T10:31:03+00:00"
+      "cpu_workers": 2,
+      "started_at": "2026-10-29T00:33:42+00:00"
     }
   ],
   "backlog": {
     "ready": [],
-    "blocked": [
-      {
-        "id": "r7c-zz-report2",
-        "blocked_by": [
-          "r7c-train-c"
-        ]
-      }
-    ]
+    "blocked": []
   },
   "idle_since": {
-    "cpu": null,
+    "cpu": "2026-10-29T00:33:38+00:00",
     "gpu": "2026-10-28T07:04:54+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-10-29T00:33:07+00:00",
-  "cpu_percent": 6.6,
+  "updated_at": "2026-10-29T00:33:42+00:00",
+  "cpu_percent": 6.4,
   "gpu": {
     "util": 0.0,
     "mem_used_mb": 814.0,

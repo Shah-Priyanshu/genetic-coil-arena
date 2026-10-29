@@ -1,0 +1,17 @@
+{
+  "id": "r7c-zz-report2",
+  "commit": "24dc6320a6b3025975222892b301777b4474ef54",
+  "args": [
+    "scripts/r7c_reliability.py",
+    "--from-json",
+    "runs:r7c-train-*",
+    "--out",
+    "docs/results/r7c_reliability.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 2,
+  "after": [
+    "r7c-train-c",
+    "r7c-train-d"
+  ]
+}
