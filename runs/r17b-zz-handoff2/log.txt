@@ -1,0 +1,40 @@
+[load] step-1 16, blind v2 16, conditioned v2 16
+[progress] 500/3360 cells, 12 s
+[progress] 1000/3360 cells, 18 s
+[progress] 1500/3360 cells, 23 s
+[progress] 2000/3360 cells, 28 s
+[progress] 2500/3360 cells, 33 s
+[progress] 3000/3360 cells, 37 s
+[progress] 3360/3360 cells, 40 s
+# R17 step 2: hand-off for walking people, and a planner trained for it
+
+**NOT YET** (all four bars needed).
+
+| Bar | Difference (points, 95% CI over missions) | Needed | Met |
+|---|---|---|---|
+| (a) hand-off: hand two-tier + hand-off − hand two-tier, walking missions | +9.2 ± 5.1 | ≥ +10, CI > 0 | no |
+| (b) planner: conditioned v2 − blind v2, all missions | +11.4 ± 3.3 | ≥ +3, CI > 0 | yes |
+| (c) fixes step 1b: conditioned v2 − step-1 planner, walking missions | +26.6 ± 10.9 | ≥ +10, CI > 0 | yes |
+| (d) no regression: conditioned v2 − step-1 planner, step-1 missions | -15.3 ± 3.6 | ≥ -3 | no |
+
+Version 2 held-out missions (40, 23 with a walking person) × 2000 episodes; score = found − 2 × wrong find, in points.
+
+| System | Score | Walking | Still | Found | Wrong find |
+|---|---|---|---|---|---|
+| OpenSwarm default | -71.1 | -53.6 | -94.7 | 30.7% | 50.9% |
+| hand two-tier | 2.5 | -5.1 | 12.7 | 13.7% | 5.6% |
+| hand two-tier + hand-off | 5.2 | 4.0 | 6.8 | 14.9% | 4.8% |
+| step-1 planner | 18.4 | 2.7 | 39.6 | 23.7% | 2.6% |
+| blind v2 | 17.9 | 18.3 | 17.3 | 23.1% | 2.6% |
+| conditioned v2 | 29.3 | 29.3 | 29.3 | 32.9% | 1.8% |
+| per-mission tuned v2 | 38.7 | 34.6 | 44.1 | 43.7% | 2.5% |
+
+Step-1 held-out missions (a still person, nominal):
+
+| System | Score | Found | Wrong find |
+|---|---|---|---|
+| step-1 planner | 64.6 | 69.0% | 2.2% |
+| conditioned v2 | 49.2 | 53.3% | 2.0% |
+
+Reproduce: `python scripts/r17b_handoff.py --from runs:r17-train-* runs:r17b-train-*`.
+
