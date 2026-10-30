@@ -7,12 +7,14 @@
     "runs:r15b2-train-ft-a05",
     "runs:r15d-train-neg"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-30T13:06:13+00:00",
-  "updated_at": "2026-10-30T13:06:13+00:00",
-  "elapsed_min": 0.0,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 595 MiB, 12282 MiB, 50",
+  "updated_at": "2026-10-30T13:08:55+00:00",
+  "elapsed_min": 2.7,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 595 MiB, 12282 MiB, 49",
   "host": "PC",
   "lane": "gpu",
-  "cpu_workers": 4
+  "cpu_workers": 4,
+  "returncode": 0,
+  "finished_at": "2026-10-30T13:08:55+00:00"
 }
