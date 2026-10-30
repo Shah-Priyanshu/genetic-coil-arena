@@ -1,0 +1,22 @@
+{
+  "id": "r17c-zz-hint",
+  "commit": "c4b9bdfa3bfb5bcbc2e83fcc74fc68c49b6649b0",
+  "args": [
+    "scripts/r17c_hint.py",
+    "--from",
+    "runs:r17-train-cond-*",
+    "runs:r17b-train-cond-*",
+    "runs:r17c-train-*",
+    "--workers",
+    "8",
+    "--out",
+    "docs/results/r17c_hint.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "after": [
+    "r17c-train-cond-a",
+    "r17c-train-cond-b"
+  ],
+  "timeout_min": 60.0
+}
