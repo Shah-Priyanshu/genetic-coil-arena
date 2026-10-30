@@ -1,0 +1,17 @@
+{
+  "id": "r17g-system",
+  "commit": "8e2eb677436a58b63ef98f89d0761a5d360bead4",
+  "args": [
+    "scripts/r17g_system.py",
+    "--from",
+    "runs:r17b-train-cond-*",
+    "--workers",
+    "8",
+    "--out",
+    "docs/results/r17g_system.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "priority": 1,
+  "timeout_min": 150.0
+}
