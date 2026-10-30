@@ -1,0 +1,22 @@
+{
+  "id": "r15d-prepare-neg",
+  "commit": "719e42c745927a64a65230b80955929f77eb4222",
+  "queued_args": [
+    "scripts/r15b_aerial_scout.py",
+    "--tiles-suffix",
+    "_neg",
+    "prepare",
+    "--keep-empty",
+    "1.0",
+    "--workers",
+    "6"
+  ],
+  "state": "running",
+  "started_at": "2026-10-30T04:51:07+00:00",
+  "updated_at": "2026-10-30T04:51:07+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 98 %, 4135 MiB, 12282 MiB, 70",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 6
+}
