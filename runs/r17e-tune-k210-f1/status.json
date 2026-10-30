@@ -1,0 +1,22 @@
+{
+  "id": "r17e-tune-k210-f1",
+  "commit": "ceec3c06d683cb28b2621ba5168f78825496d64e",
+  "queued_args": [
+    "scripts/r17e_requirements.py",
+    "tune",
+    "--camera",
+    "K210 224=docs/results/r15b_aerial_scout.json",
+    "--frames",
+    "1",
+    "--workers",
+    "8"
+  ],
+  "state": "running",
+  "started_at": "2026-10-30T02:41:26+00:00",
+  "updated_at": "2026-10-30T02:41:26+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 92 %, 4136 MiB, 12282 MiB, 69",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 8
+}
