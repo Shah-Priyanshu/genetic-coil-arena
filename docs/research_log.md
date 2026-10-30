@@ -347,14 +347,15 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r17_robust
 
 ### R17 step 2: a hand-off for people who walk
-- **Date:** 2026-10-29 (running)
+- **Date:** 2026-10-30
 - **Question:** If the scout that sees a person keeps it in view until a confirmer takes over, does the search survive a walking person? Does a planner trained on harder missions keep its lead?
 - **Why:** Step 1b showed every confirming plan collapses when the person walks, because confirmers hover over where the person was.
 - **What we did:** A new plan setting, the hand-off: the detecting scout holds the sighting for up to N seconds, as OpenSwarm's person-follow does, and the candidate moves with each re-sighting. Harder missions: half have a walking person (0.2–1.5 m/s); all have 1–4 m GPS error, wind, a 220–320 s battery, and a find radius that grows with the GPS error. The leader reads GPS quality, wind and battery, never whether the person walks. 16 one-plan and 16 mission-reading runs, tested on 40 held-out missions. Bars fixed in advance: (a) the hand-off adds ≥ 10 points on walking missions; (b) the planner beats the one plan by ≥ 3; (c) it beats the step-1 planner by ≥ 10 on walking missions; (d) it stays within 3 points of the step-1 planner when the person stands still. A pipeline smoke test previewed bar (a), which involves no training, before the bars were committed; they were not changed.
-- **Result:** Running (about 4 h on the CPU).
-- **Verdict:** Running
-- **What it means:** Pending.
-- **Report:** docs/directions/drone_swarm.md
+- **Result:** NOT YET: 2 of 4 bars met. (b) Reading the mission still pays: the new planner beats the one plan by +11.4 ± 3.3 points. (c) The walking-person collapse is fixed: on walking missions the new planner scores 29.3 against 2.7 for the step-1 planner (+26.6 ± 10.9). (a) A fixed 60 s hand-off added to the hand plan gains +9.2 ± 5.1 on walking missions, just under the +10 bar, and costs 6 points when the person stands still. (d) Failed: on step 1's still-person missions the new planner scores 49.2 against 64.6 (−15.3 ± 3.6). It cannot tell whether the person walks, so it hedges on every mission. Tuning each mission alone reaches 38.7 overall (34.6 walking, 44.1 still), so the planner captures about half of the room above the one plan (17.9).
+- **Verdict:** NOT YET
+- **What it means:** The hand-off is the right tactic for someone who walks, and a planner that reads the mission still beats one fixed plan. But a single plan has to hedge between a still and a walking person, and that costs 15 points when the person is still. That is missing information, not a missing tactic: an operator usually knows whether the person is injured or moving. Next: make "may be moving" a mission input (the ground station can ask for it), and let the leader switch to the hand-off when one person keeps being re-sighted in different places.
+- **Report:** docs/results/r17b_handoff.md
+- **Chart:** r17b_handoff
 
 ### G14b: the ground station, fixed, on a fresh sealed set
 - **Date:** 2026-10-29

@@ -237,3 +237,22 @@ Results on 40 held-out missions × 2,000 episodes. Score = found − 2 × wrong 
 - **Training:** on missions that include walking people and worse GPS.
 - **Scoring:** a find radius that grows with the GPS error.
 
+### R17 step 2: hand-off, not yet (`docs/results/r17b_handoff.md`)
+
+**Setup:** version 2 missions, half with a walking person, plus worse GPS, wind and battery variation; 16 + 16 planners.
+
+**Scores on 40 held-out missions:**
+
+| System | All | Walking | Still |
+|---|---|---|---|
+| one plan, v2 | 17.9 | 18.3 | 17.3 |
+| planner that reads the mission, v2 | 29.3 | 29.3 | 29.3 |
+| step-1 planner (no hand-off) | 18.4 | 2.7 | 39.6 |
+| per-mission tuning | 38.7 | 34.6 | 44.1 |
+
+- **Met:** the planner beats the one plan (+11.4) and fixes walking people (+26.6 over step 1).
+- **Missed:**
+  - a fixed 60 s hand-off adds +9.2 against a +10 bar;
+  - on still-person missions the new planner is 15 points below step 1. It hedges because it cannot tell whether the person moves.
+- **Next:** "may be moving" as a mission input from the operator (the ground station can ask), and a leader that switches to the hand-off when re-sightings move.
+

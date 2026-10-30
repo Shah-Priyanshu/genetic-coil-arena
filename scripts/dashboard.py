@@ -233,6 +233,10 @@ HOW_TO_READ = {
     "planner in worse conditions, none retrained. The mission-reading planner keeps its "
     "lead in wind, cold, larger areas and with more drones; every plan that confirms "
     "collapses when the person walks.",
+    "r17b_handoff": "Person-search score on missions where the person walks and where "
+    "they stand still. The step-1 planner collapses when the person walks; the version 2 "
+    "planner (with the hand-off) holds up there but gives up points when the person is "
+    "still, because it cannot tell the two apart.",
     "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
     "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
     "translation through the shared meanings could do.",
@@ -443,6 +447,17 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
         figs["r17_robust"] = px.bar(
             pd.DataFrame(pts), x="condition", y="score (points)", color="system",
             barmode="group", title="R17 step 1b: the search planners in a worse world",
+        )  # fmt: skip
+    handoff = read_json(res / "r17b_handoff.json")
+    if handoff:
+        pts = [
+            {"system": name, "person": person, "score (points)": 100 * row[person]}
+            for name, row in handoff["v2"].items()
+            for person in ("walking", "still")
+        ]  # fmt: skip
+        figs["r17b_handoff"] = px.bar(
+            pd.DataFrame(pts), x="system", y="score (points)", color="person",
+            barmode="group", title="R17 step 2: walking and still people",
         )  # fmt: skip
     inter = read_json(res / "r7e_interlingua.json")
     if inter:
