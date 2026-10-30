@@ -278,3 +278,5 @@
 [progress] conditioned run 14: gen 3400/6000, val 0.226, best 0.297 at 300, 5527 s
 [progress] conditioned run 10: gen 3400/6000, val 0.215, best 0.276 at 550, 5549 s
 [progress] conditioned run 8: gen 3600/6000, val 0.166, best 0.256 at 650, 5553 s
+[progress] conditioned run 12: gen 3500/6000, val 0.219, best 0.294 at 350, 5565 s
+[progress] conditioned run 13: gen 3400/6000, val 0.224, best 0.275 at 450, 5576 s
