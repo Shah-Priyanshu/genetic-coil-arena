@@ -1,0 +1,18 @@
+{
+  "id": "r15d-zz-report",
+  "commit": "719e42c745927a64a65230b80955929f77eb4222",
+  "queued_args": [
+    "scripts/r15d_negatives.py",
+    "--from",
+    "runs:r15b2-train-ft-a05",
+    "runs:r15d-train-neg"
+  ],
+  "state": "running",
+  "started_at": "2026-10-30T13:06:13+00:00",
+  "updated_at": "2026-10-30T13:06:13+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 595 MiB, 12282 MiB, 50",
+  "host": "PC",
+  "lane": "gpu",
+  "cpu_workers": 4
+}
