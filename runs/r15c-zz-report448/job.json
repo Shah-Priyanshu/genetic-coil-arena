@@ -1,0 +1,21 @@
+{
+  "id": "r15c-zz-report448",
+  "commit": "6d49128d800b9e5f250a36b6ca0256b6eb565bca",
+  "args": [
+    "scripts/r15b_aerial_scout.py",
+    "--size",
+    "448",
+    "report",
+    "--from",
+    "runs:r15c-train448",
+    "--out",
+    "docs/results/r15c_aerial448.md"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 4,
+  "priority": 1,
+  "after": [
+    "r15c-train448"
+  ],
+  "timeout_min": 120.0
+}
