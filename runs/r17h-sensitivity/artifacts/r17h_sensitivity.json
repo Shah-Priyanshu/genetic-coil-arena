@@ -1,0 +1,117 @@
+{
+ "rows": [
+  {
+   "variant": "recommended (as in step 6)",
+   "score": 0.42680000000000007,
+   "found": 0.523025,
+   "wrong": 0.0481125,
+   "found_change": 0.0,
+   "breaks": false
+  },
+  {
+   "variant": "1 frame per second of video",
+   "score": 0.2652625,
+   "found": 0.3526875,
+   "wrong": 0.0437125,
+   "found_change": -0.17033749999999998,
+   "breaks": true
+  },
+  {
+   "variant": "2 frames per second of video",
+   "score": 0.397825,
+   "found": 0.49602500000000005,
+   "wrong": 0.0491,
+   "found_change": -0.026999999999999913,
+   "breaks": false
+  },
+  {
+   "variant": "filter keeps 80% of detections",
+   "score": 0.358575,
+   "found": 0.46147499999999997,
+   "wrong": 0.051449999999999996,
+   "found_change": -0.061549999999999994,
+   "breaks": true
+  },
+  {
+   "variant": "filter keeps 60% of detections",
+   "score": 0.284725,
+   "found": 0.388075,
+   "wrong": 0.051675000000000006,
+   "found_change": -0.13494999999999996,
+   "breaks": true
+  },
+  {
+   "variant": "false alarms cut 5x (not 10x)",
+   "score": 0.2885625,
+   "found": 0.3970625,
+   "wrong": 0.05425,
+   "found_change": -0.12596249999999998,
+   "breaks": true
+  },
+  {
+   "variant": "false alarms cut 20x",
+   "score": 0.5535125000000001,
+   "found": 0.6352625000000001,
+   "wrong": 0.04087500000000001,
+   "found_change": 0.1122375000000001,
+   "breaks": false
+  },
+  {
+   "variant": "operator sees a person 70% of looks",
+   "score": 0.42395000000000005,
+   "found": 0.522375,
+   "wrong": 0.049212500000000006,
+   "found_change": -0.0006499999999999284,
+   "breaks": false
+  },
+  {
+   "variant": "operator sees a person 50% of looks",
+   "score": 0.38505,
+   "found": 0.473475,
+   "wrong": 0.0442125,
+   "found_change": -0.04954999999999998,
+   "breaks": false
+  },
+  {
+   "variant": "operator accepts 5% of empty views",
+   "score": 0.25956250000000003,
+   "found": 0.4008625,
+   "wrong": 0.07065,
+   "found_change": -0.12216249999999995,
+   "breaks": true
+  },
+  {
+   "variant": "operator accepts 10% of empty views",
+   "score": 0.10058750000000001,
+   "found": 0.32348750000000004,
+   "wrong": 0.11145000000000001,
+   "found_change": -0.19953749999999992,
+   "breaks": true
+  },
+  {
+   "variant": "person smaller (0.28 m)",
+   "score": 0.339975,
+   "found": 0.4417,
+   "wrong": 0.0508625,
+   "found_change": -0.08132499999999998,
+   "breaks": true
+  },
+  {
+   "variant": "person larger (0.40 m)",
+   "score": 0.49515000000000003,
+   "found": 0.58355,
+   "wrong": 0.0442,
+   "found_change": 0.06052500000000005,
+   "breaks": false
+  }
+ ],
+ "breaking": [
+  "1 frame per second of video",
+  "filter keeps 80% of detections",
+  "filter keeps 60% of detections",
+  "false alarms cut 5x (not 10x)",
+  "operator accepts 5% of empty views",
+  "operator accepts 10% of empty views",
+  "person smaller (0.28 m)"
+ ]
+}
