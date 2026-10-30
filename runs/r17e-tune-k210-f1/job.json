@@ -1,0 +1,18 @@
+{
+  "id": "r17e-tune-k210-f1",
+  "commit": "ceec3c06d683cb28b2621ba5168f78825496d64e",
+  "args": [
+    "scripts/r17e_requirements.py",
+    "tune",
+    "--camera",
+    "K210 224=docs/results/r15b_aerial_scout.json",
+    "--frames",
+    "1",
+    "--workers",
+    "8"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "priority": 1,
+  "timeout_min": 240.0
+}
