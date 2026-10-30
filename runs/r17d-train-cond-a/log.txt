@@ -491,3 +491,12 @@
 [progress] conditioned run 2: gen 5900/6000, val 0.141, best 0.286 at 550, 9643 s
 [progress] conditioned run 1: gen 5800/6000, val 0.170, best 0.280 at 350, 9655 s
 [done] run 2: best val 0.286 at generation 550, 9759 s
+[progress] conditioned run 1: gen 5950/6000, val 0.205, best 0.280 at 350, 9831 s
+[done] run 1: best val 0.280 at generation 350, 9888 s
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17d-train-cond-a\artifacts\r17c_planner_conditioned_run1
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17d-train-cond-a\artifacts\r17c_planner_conditioned_run2
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17d-train-cond-a\artifacts\r17c_planner_conditioned_run3
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17d-train-cond-a\artifacts\r17c_planner_conditioned_run4
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17d-train-cond-a\artifacts\r17c_planner_conditioned_run5
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17d-train-cond-a\artifacts\r17c_planner_conditioned_run6
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17d-train-cond-a\artifacts\r17c_planner_conditioned_run7
