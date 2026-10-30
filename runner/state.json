@@ -24,10 +24,10 @@
       "started_at": "2026-10-30T02:34:21+00:00"
     },
     {
-      "id": "r17e-tune-k210-f3",
+      "id": "r17e-zz-report-k210",
       "lane": "cpu",
       "cpu_workers": 8,
-      "started_at": "2026-10-30T03:11:31+00:00"
+      "started_at": "2026-10-30T03:36:48+00:00"
     }
   ],
   "backlog": {
@@ -47,12 +47,6 @@
           "r17d-train-cond-a",
           "r17d-train-cond-b"
         ]
-      },
-      {
-        "id": "r17e-zz-report-k210",
-        "blocked_by": [
-          "r17e-tune-k210-f3"
-        ]
       }
     ]
   },
@@ -61,11 +55,11 @@
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-30T03:36:31+00:00",
-  "cpu_percent": 89.2,
+  "updated_at": "2026-10-30T03:36:48+00:00",
+  "cpu_percent": 76.9,
   "gpu": {
-    "util": 97.0,
-    "mem_used_mb": 4139.0,
+    "util": 93.0,
+    "mem_used_mb": 4138.0,
     "mem_total_mb": 12282.0
   }
 }
