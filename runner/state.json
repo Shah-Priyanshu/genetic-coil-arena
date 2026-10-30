@@ -45,6 +45,25 @@
           "r17d-train-cond-a",
           "r17d-train-cond-b"
         ]
+      },
+      {
+        "id": "r17e-tune-448-f1",
+        "blocked_by": [
+          "r15c-zz-report448"
+        ]
+      },
+      {
+        "id": "r17e-tune-448-f3",
+        "blocked_by": [
+          "r15c-zz-report448"
+        ]
+      },
+      {
+        "id": "r17e-zz-report-cameras",
+        "blocked_by": [
+          "r17e-tune-448-f3",
+          "r17e-tune-448-f1"
+        ]
       }
     ]
   },
@@ -53,11 +72,11 @@
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-30T03:38:37+00:00",
-  "cpu_percent": 75.0,
+  "updated_at": "2026-10-30T03:39:47+00:00",
+  "cpu_percent": 71.0,
   "gpu": {
-    "util": 94.0,
-    "mem_used_mb": 4143.0,
+    "util": 96.0,
+    "mem_used_mb": 4137.0,
     "mem_total_mb": 12282.0
   }
 }
