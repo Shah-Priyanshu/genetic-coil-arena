@@ -57,7 +57,8 @@ def _oracle_one(args: tuple) -> str:
 
 def train(args: argparse.Namespace) -> None:
     settings = replace(r17.PlannerSettings(), conditioned=args.kind == "conditioned",
-                       generations=args.generations, version=args.version)  # fmt: skip
+                       generations=args.generations, version=args.version,
+                       hidden=args.hidden)  # fmt: skip
     out = _out()
     out.mkdir(parents=True, exist_ok=True)
     tasks = [(run, settings, out) for run in _span(args.runs)]
@@ -118,6 +119,7 @@ def main() -> None:
     t.add_argument("--version", type=int, choices=[1, 2, 3], default=1,
                    help="2: step 2 missions and the hand-off (experiments/r17b_handoff.py)")  # fmt: skip
     t.add_argument("--generations", type=int, default=r17.PlannerSettings.generations)
+    t.add_argument("--hidden", type=int, default=r17.PlannerSettings.hidden)
     t.add_argument("--workers", type=int, default=workers)
     o = sub.add_parser("oracle")
     o.add_argument("--missions", default=f"0:{r17.N_TEST}")

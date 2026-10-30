@@ -256,3 +256,11 @@ Results on 40 held-out missions × 2,000 episodes. Score = found − 2 × wrong 
   - on still-person missions the new planner is 15 points below step 1. It hedges because it cannot tell whether the person moves.
 - **Next:** "may be moving" as a mission input from the operator (the ground station can ask), and a leader that switches to the hand-off when re-sightings move.
 
+### R17 step 3: the moving hint does not help (`docs/results/r17c_hint.md`)
+
+**Not yet.**
+- **Does the planner use the hint?** Yes: it holds a sighting 26 s when told "still" and 95 s when told "may be moving".
+- **Does the hint help?** Barely: 29.4 with a perfect hint against step 2's 29.3. On still-person missions it stays 15.6 points below the step-1 planner.
+- **So step 2's "hedging" explanation was wrong.** The broad-trained planner sweeps higher (10.6 vs 6.8 m) and keeps more confirmers (39% vs 24%) even when told the person is still. Per-mission tuning finds better plans.
+- **Next:** a larger planner (32 hidden units, 6,000 generations), judged against the same bars. If that fails, keep separate planners and let the hint pick.
+
