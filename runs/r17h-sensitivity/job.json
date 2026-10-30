@@ -1,0 +1,17 @@
+{
+  "id": "r17h-sensitivity",
+  "commit": "74f07a33742fc1b9bee5edc3fab27132cd7f7a29",
+  "args": [
+    "scripts/r17h_sensitivity.py",
+    "--from",
+    "runs:r17b-train-cond-*",
+    "--workers",
+    "16",
+    "--out",
+    "docs/results/r17h_sensitivity.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 16,
+  "priority": 1,
+  "timeout_min": 240.0
+}
