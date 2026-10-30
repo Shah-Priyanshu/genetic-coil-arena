@@ -1,0 +1,20 @@
+{
+  "id": "r15b2-zz-report2",
+  "commit": "6da9b7ddb972e4b1643aa3264270093ff47e1b5b",
+  "queued_args": [
+    "scripts/r15b_aerial_scout.py",
+    "report",
+    "--from",
+    "runs:r15b2-train-*",
+    "--out",
+    "docs/results/r15b_aerial_scout.md"
+  ],
+  "state": "running",
+  "started_at": "2026-10-30T01:44:22+00:00",
+  "updated_at": "2026-10-30T01:44:22+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 552 MiB, 12282 MiB, 51",
+  "host": "PC",
+  "lane": "gpu",
+  "cpu_workers": 4
+}
