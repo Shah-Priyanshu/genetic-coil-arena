@@ -1,0 +1,19 @@
+{
+  "id": "r17f-mission-time",
+  "commit": "7220a8c0b959ce02548a1dd379f1fe1faeaa2a6e",
+  "args": [
+    "scripts/r17f_mission_time.py",
+    "--from",
+    "runs:r17-train-cond-*",
+    "runs:r17b-train-cond-*",
+    "runs:r17b-oracle",
+    "--workers",
+    "8",
+    "--out",
+    "docs/results/r17f_mission_time.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "priority": 1,
+  "timeout_min": 90.0
+}
