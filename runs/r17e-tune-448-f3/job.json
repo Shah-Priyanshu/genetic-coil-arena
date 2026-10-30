@@ -1,0 +1,21 @@
+{
+  "id": "r17e-tune-448-f3",
+  "commit": "5036ed611bcca552a89cfa85aae207a071fcdca9",
+  "args": [
+    "scripts/r17e_requirements.py",
+    "tune",
+    "--camera",
+    "448 camera=runs:r15c-zz-report448",
+    "--frames",
+    "3",
+    "--workers",
+    "8"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "priority": 1,
+  "after": [
+    "r15c-zz-report448"
+  ],
+  "timeout_min": 240.0
+}
