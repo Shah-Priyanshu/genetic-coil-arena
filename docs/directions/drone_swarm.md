@@ -290,6 +290,19 @@ Per-frame recall of the width-0.5 brain, by person size in the 224-px tile. Alti
 **Result:** no better. It stays 18 points below the step-1 planner on still people, and validation peaks by generation 600.
 **What it means:** one planner trained by evolution over broad missions stalls. Next is planning at mission time: the ground station tunes the plan in the simulator for the actual mission just before launch.
 
+### R17 step 5: plan at mission time (`docs/results/r17f_mission_time.md`)
+
+**Not yet, by 0.2 points**, but the best design so far.
+
+| Planner | 85% walking hint | Still person, hint "still" |
+|---|---|---|
+| mission-time tuning (30 s on one core) | **34.1** | **63.1** |
+| step-2 planner | 29.3 | 49.2 |
+| step-1 planner | 18.4 | 64.6 |
+| tuning knowing the person (reference) | 38.7 | — |
+
+**Recommendation for OpenSwarm's leader:** tune the plan on the ground station just before launch, warm-started from a learned planner. Use the learned planner alone only when there is no time to tune.
+
 ### R17 step 4: the scout brain's specification (`docs/results/r17e_requirements.md`)
 
 **Setup:** R15b's measured brain in the search simulator, with the operator confirming candidates. Results are found / wrong finds.

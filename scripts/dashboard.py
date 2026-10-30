@@ -245,6 +245,9 @@ HOW_TO_READ = {
     "cut, with the operator confirming. Solid: plans tuned per mission; dashed: the hand "
     "two-tier plan. With today's brain (x1) no plan reaches half the people; a 10-30 "
     "times cut does, depending on how many independent frames a second of video holds.",
+    "r17f_mission_time": "Person-search score of each way of planning, on missions "
+    "where the person may walk (with the operator's hint) and where the person stands "
+    "still. Tuning at mission time is the only one good on both.",
     "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
     "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
     "translation through the shared meanings could do.",
@@ -503,6 +506,16 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
         fig.update_xaxes(autorange="reversed")
         fig.add_hline(y=50, line_dash="dot")
         figs["r17e_requirements"] = fig
+    mt = read_json(res / "r17f_mission_time.json")
+    if mt:
+        pts = [
+            {"planner": name, "missions": which, "score (points)": 100 * v}
+            for which, row in mt["table"].items() for name, v in row.items()
+        ]  # fmt: skip
+        figs["r17f_mission_time"] = px.bar(
+            pd.DataFrame(pts), x="planner", y="score (points)", color="missions",
+            barmode="group", title="R17 step 5: plan at mission time",
+        )  # fmt: skip
     inter = read_json(res / "r7e_interlingua.json")
     if inter:
         pts = [

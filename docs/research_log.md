@@ -389,14 +389,15 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Report:** docs/results/r17d_hint.md
 
 ### R17 step 5: plan at mission time
-- **Date:** 2026-10-30 (running)
+- **Date:** 2026-10-30
 - **Question:** Instead of one learned planner, can the ground station tune the plan in the simulator for the actual mission just before launch, and beat the planner while keeping still-person searches as good as step 1?
 - **Why:** Steps 2–3b showed one planner trained over broad missions stalls well below per-mission tuning, whatever its size. The ground station has a computer and this simulator.
 - **What we did:** For each held-out mission, about a minute of one CPU core: a short evolution search (100 generations of 32 candidates) over 8 versions of the mission, with the person's speed drawn from what the operator's hint implies (right 85% of the time). It starts from the hand plan with a hand-off and from the step-2 planner's own plan. Scored on the true mission's test episodes. Bars fixed in advance: (a) beat the step-2 planner by ≥ 5 points with the 85% hint, CI above 0; (b) on step 1's still-person missions with the hint "still", at most 3 points below the step-1 planner.
-- **Result:** Running (about 15 min on the CPU).
-- **Verdict:** Running
-- **What it means:** Pending.
-- **Report:** docs/directions/drone_swarm.md
+- **Result:** NOT YET by 0.2 points on bar (a), met on (b). With the 85% hint, mission-time tuning scores 34.1 against 29.3 for the step-2 planner (+4.8 ± 2.4; bar +5). On still people with the hint "still" it scores 63.1 against 64.6 for the step-1 planner (−1.5; bar ≥ −3), where the step-2 planner had 49.2. It is the only system good on both sets, and close to tuning with perfect knowledge of the person (38.7). Tuning took 30 s per mission on one CPU core (median; at most 68 s). The step-2 planner's own plan was the better starting point in 40% of missions.
+- **Verdict:** NOT YET (narrowly)
+- **What it means:** For OpenSwarm's leader, planning at mission time beats any single learned planner tested here: it keeps the still-person searches step 2 lost and gains on walking people. The ground station, not the drone, should do it: half a minute on one core, a few seconds spread over a laptop's cores, warm-started from a learned planner where that helps. The learned planners remain useful as a fast first guess when there is no time to tune. The +5 bar was missed by a hair, so the case for the extra gain over the step-2 planner is suggestive, not established. The still-person recovery is clear.
+- **Report:** docs/results/r17f_mission_time.md
+- **Chart:** r17f_mission_time
 
 ### R17 step 4: what the scout brain must reach before a search works
 - **Date:** 2026-10-30
