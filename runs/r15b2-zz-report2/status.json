@@ -9,12 +9,14 @@
     "--out",
     "docs/results/r15b_aerial_scout.md"
   ],
-  "state": "running",
+  "state": "done",
   "started_at": "2026-10-30T01:44:22+00:00",
-  "updated_at": "2026-10-30T02:25:05+00:00",
-  "elapsed_min": 40.7,
-  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 4122 MiB, 12282 MiB, 42",
+  "updated_at": "2026-10-30T02:26:16+00:00",
+  "elapsed_min": 41.9,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 551 MiB, 12282 MiB, 45",
   "host": "PC",
   "lane": "gpu",
-  "cpu_workers": 4
+  "cpu_workers": 4,
+  "returncode": 0,
+  "finished_at": "2026-10-30T02:26:16+00:00"
 }
