@@ -581,7 +581,8 @@ def _bar_line(name: str, ok: bool, what: str, diffs: list[dict], bar: str) -> st
     return f"**{name}: {'PASS' if ok else 'FAIL'}.** {what}: {parts} ({bar})."
 
 
-def render(rep: dict[str, Any], runs: list[dict], test_frames: int) -> str:
+def render(rep: dict[str, Any], runs: list[dict], test_frames: int,
+           size: int = 224) -> str:  # fmt: skip
     conds = ("zero-shot", "fine-tuned", "scratch")
     alphas = sorted({r["alpha"] for r in runs})
 
@@ -610,7 +611,7 @@ def render(rep: dict[str, Any], runs: list[dict], test_frames: int) -> str:
             "bar: interval above 0",
         ),
         "",
-        f"VisDrone2019-DET test-dev: {test_frames} drone frames cut into 224×224 tiles "
+        f"VisDrone2019-DET test-dev: {test_frames} drone frames cut into {size}×{size} tiles "
         "at native and half resolution, scored once after all training. Intervals: 95% "
         "paired bootstrap over frames. Centre AP counts a detection when its centre "
         "falls inside the person's box (grown to at least 8×8 px), which is what "
@@ -639,7 +640,7 @@ def render(rep: dict[str, Any], runs: list[dict], test_frames: int) -> str:
     for key, label in (("centre_ap", "Centre AP"), ("ap50", "AP50")):
         lines += [
             "",
-            f"{label} by person size (square root of box area, in pixels of the 224 "
+            f"{label} by person size (square root of box area, in pixels of the {size} "
             "tile; persons per bin in the header):",
             "",
             "| Brain | Width | "
@@ -714,4 +715,14 @@ def render(rep: dict[str, Any], runs: list[dict], test_frames: int) -> str:
         "and `--init scratch`, then `report --from runs:r15b2-train-*`.",
         "",
     ]
+    if size != 224:  # R15c probe: no bars; the title and the bar lines are replaced
+        lines = [
+            f"# R15c probe: the scout brain at a {size}×{size} input",
+            "",
+            "No pre-registered bars. The question: is recall at a given person size in "
+            "pixels the same at this input as at 224? If it is (within about 5 points "
+            "per size bin at threshold 0.5), pixels on the person summarise a camera "
+            "and its resolution; compare the operating-point table with R15b's.",
+            "",
+        ] + lines[6:]
     return "\n".join(lines)

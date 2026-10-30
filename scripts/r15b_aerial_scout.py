@@ -23,7 +23,12 @@ from genetic_coil_arena.experiments import r15_scout_brain as r15  # noqa: E402
 from genetic_coil_arena.experiments import r15b_aerial_scout as r15b  # noqa: E402
 from genetic_coil_arena.experiments.r7b_report import resolve_sources  # noqa: E402
 
-TILES = "visdrone_tiles224"
+
+def tiles(size: int) -> str:
+    """The prepared tile folder for ``size`` (224 is OpenSwarm's K210 input)."""
+    return f"visdrone_tiles{size}"
+
+
 COCO_SIZE = 160
 
 
@@ -37,7 +42,7 @@ def coco_weights(models: Path, alpha: float) -> Path:
 
 def train(args: argparse.Namespace) -> None:
 
-    data = args.data / TILES
+    data = args.data / tiles(args.size)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     models = args.data / "r15_models"
@@ -45,6 +50,8 @@ def train(args: argparse.Namespace) -> None:
         for seed in args.seeds:
             init = coco_weights(models, alpha) if args.init == "coco" else None
             tag = f"r15b_{args.init}_a{alpha:g}_seed{seed}"
+            if args.size != 224:
+                tag += f"_s{args.size}"
             res = r15.train_model(
                 alpha, data, args.epochs, args.batch, args.lr, seed, args.limit, log,
                 init=init, eval_fn=r15b.val_metrics, save=models / f"{tag}.pt",
@@ -52,7 +59,8 @@ def train(args: argparse.Namespace) -> None:
             res["result"].update({
                 "condition": "fine-tuned" if args.init == "coco" else "scratch",
                 "seed": seed, "lr": args.lr, "weights": str(models / f"{tag}.pt"),
-                "onnx": r15.export_onnx(res["model"], 224, models / f"{tag}.onnx"),
+                "size": args.size,
+                "onnx": r15.export_onnx(res["model"], args.size, models / f"{tag}.onnx"),
             })  # fmt: skip
             (out / f"{tag}.json").write_text(
                 json.dumps(res["result"], indent=1), encoding="utf-8"
@@ -66,21 +74,24 @@ def report(args: argparse.Namespace) -> None:
     torch.cuda.set_per_process_memory_fraction(0.85)
     dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     to_input = r15b.input_fn(dev)
-    test = r15b.load_tiles(args.data / TILES, "test")
+    test = r15b.load_tiles(args.data / tiles(args.size), "test")
     coco_val = r15.load_split(args.data / f"coco_person{COCO_SIZE}", "val")
     runs = []
     for alpha in (0.25, 0.5, 0.75):
         runs.append({"condition": "zero-shot", "alpha": alpha, "seed": 0,
+                     "size": args.size,
                      "weights": str(coco_weights(args.data / "r15_models", alpha))})  # fmt: skip
     for src in resolve_sources(args.sources):
         for f in sorted(Path(src).glob("r15b_*.json")):
-            runs.append(json.loads(f.read_text(encoding="utf-8")))
+            run = json.loads(f.read_text(encoding="utf-8"))
+            if run.get("size", 224) == args.size:
+                runs.append(run)
     for r in runs:
         model = r15.build_model(r["alpha"])
         model.load_state_dict(torch.load(r["weights"], map_location="cpu"))
         model.to(dev)
         start = time.time()
-        preds, top = r15b.predict(model, test, 224, dev, to_input, top=100)
+        preds, top = r15b.predict(model, test, args.size, dev, to_input, top=100)
         r["test"] = r15b.tile_metrics(preds, top, test, n_boot=args.boot)
         coco = r15.evaluate(model, coco_val, COCO_SIZE, dev, to_input)
         r["coco_val"] = {k: coco[k] for k in ("ap50", "ap50_tall", "present_auc")}
@@ -89,7 +100,8 @@ def report(args: argparse.Namespace) -> None:
             f"{r['test']['pooled']['centre_ap all']:.3f}, COCO AP50 "
             f"{coco['ap50']:.3f} ({time.time() - start:.0f} s)")  # fmt: skip
     rep = r15b.verdict(runs)
-    md = r15b.render(rep, runs, test_frames=int(len(np.unique(test["src"]))))
+    md = r15b.render(rep, runs, test_frames=int(len(np.unique(test["src"]))),
+                     size=args.size)  # fmt: skip
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(md, encoding="utf-8")
     args.out.with_suffix(".json").write_text(
@@ -106,6 +118,8 @@ def report(args: argparse.Namespace) -> None:
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("--data", type=Path, default=r15.DATA_DIR)
+    p.add_argument("--size", type=int, default=224,
+                   help="tile size; 224 is the K210's input (448: R15c probe)")  # fmt: skip
     sub = p.add_subparsers(dest="cmd", required=True)
     a = sub.add_parser("prepare")
     a.add_argument("--workers", type=int, default=6)
@@ -127,8 +141,9 @@ def main() -> None:
     )
     args = p.parse_args()
     if args.cmd == "prepare":
-        info = r15b.prepare(args.data / "visdrone", args.data / TILES,
-                            workers=args.workers, limit=args.limit)  # fmt: skip
+        info = r15b.prepare(args.data / "visdrone", args.data / tiles(args.size),
+                            size=args.size, workers=args.workers,
+                            limit=args.limit)  # fmt: skip
         log(json.dumps(info))
     elif args.cmd == "train":
         train(args)
