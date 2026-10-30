@@ -70,6 +70,9 @@ MIN_HIT = 4.0  # centre hit: half-width of the smallest accepted box
 SPLITS = {"train": "train", "val": "val", "test": "test-dev"}
 GOOD_POINTS = 0.10
 THRESHOLDS = (0.3, 0.5, 0.7)  # 0.7 = OpenSwarm's person_follow confidence threshold
+# operating points are also stored on this finer grid (R15d compares brains at
+# matched recall); the report's table shows THRESHOLDS only
+FINE_THRESHOLDS = tuple(round(0.3 + 0.05 * i, 2) for i in range(9))
 BIN_NAMES = [("all", 0.0, math.inf)] + [
     (f"{lo:g}-{hi:g}" if hi < math.inf else f"{lo:g}+", lo, hi) for lo, hi in SIZE_BINS
 ]
@@ -175,6 +178,7 @@ def prepare(
     workers: int = 6,
     limit: int = 0,
     seed: int = 15,
+    keep_empty: float = KEEP_EMPTY,
 ) -> dict[str, Any]:
     """Tiles, boxes (x, y, w, h, counted), offsets, source frame and scale per split."""
     from multiprocessing import Pool
@@ -186,7 +190,7 @@ def prepare(
         "size": size,
         "stride": r15.STRIDE,
         "scales": SCALES,
-        "keep_empty": KEEP_EMPTY,
+        "keep_empty": keep_empty,
         "splits": {},
     }
     for split, name in SPLITS.items():
@@ -205,7 +209,7 @@ def prepare(
                 with z.open(member) as f:
                     w, h = Image.open(f).size
                 persons, ignore = parse_annotations(z.read(a).decode())
-                keep = KEEP_EMPTY if split == "train" else 1.0
+                keep = keep_empty if split == "train" else 1.0
                 plan = plan_tiles(w, h, persons, size, keep, rng)
                 jobs.append(
                     (zpath, member, [(s, x, y) for s, x, y, _ in plan], ignore, size)
@@ -487,7 +491,7 @@ def operating_points(
     run on the detections above it would make."""
     out = {}
     det_on = tiles[table["det_tile"]]
-    for tau in THRESHOLDS:
+    for tau in sorted(set(THRESHOLDS) | set(FINE_THRESHOLDS)):
         keep = det_on & (table["score"] >= tau)
         hit_gt = np.zeros(len(table["gt_size"]), bool)
         hit_gt[table["det_gt"][keep & (table["det_gt"] >= 0)]] = True

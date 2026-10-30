@@ -24,9 +24,10 @@ from genetic_coil_arena.experiments import r15b_aerial_scout as r15b  # noqa: E4
 from genetic_coil_arena.experiments.r7b_report import resolve_sources  # noqa: E402
 
 
-def tiles(size: int) -> str:
-    """The prepared tile folder for ``size`` (224 is OpenSwarm's K210 input)."""
-    return f"visdrone_tiles{size}"
+def tiles(size: int, suffix: str = "") -> str:
+    """The prepared tile folder for ``size`` (224 is OpenSwarm's K210 input); R15d's
+    training set with every empty tile is ``suffix`` "_neg"."""
+    return f"visdrone_tiles{size}{suffix}"
 
 
 COCO_SIZE = 160
@@ -42,7 +43,7 @@ def coco_weights(models: Path, alpha: float) -> Path:
 
 def train(args: argparse.Namespace) -> None:
 
-    data = args.data / tiles(args.size)
+    data = args.data / tiles(args.size, args.tiles_suffix)
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     models = args.data / "r15_models"
@@ -52,6 +53,7 @@ def train(args: argparse.Namespace) -> None:
             tag = f"r15b_{args.init}_a{alpha:g}_seed{seed}"
             if args.size != 224:
                 tag += f"_s{args.size}"
+            tag += args.tiles_suffix
             res = r15.train_model(
                 alpha, data, args.epochs, args.batch, args.lr, seed, args.limit, log,
                 init=init, eval_fn=r15b.val_metrics, save=models / f"{tag}.pt",
@@ -60,6 +62,7 @@ def train(args: argparse.Namespace) -> None:
                 "condition": "fine-tuned" if args.init == "coco" else "scratch",
                 "seed": seed, "lr": args.lr, "weights": str(models / f"{tag}.pt"),
                 "size": args.size,
+                "tiles": tiles(args.size, args.tiles_suffix),
                 "onnx": r15.export_onnx(res["model"], args.size, models / f"{tag}.onnx"),
             })  # fmt: skip
             (out / f"{tag}.json").write_text(
@@ -118,12 +121,15 @@ def report(args: argparse.Namespace) -> None:
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("--data", type=Path, default=r15.DATA_DIR)
+    p.add_argument("--tiles-suffix", default="",
+                   help="training tile folder suffix (R15d: _neg, every empty tile)")  # fmt: skip
     p.add_argument("--size", type=int, default=224,
                    help="tile size; 224 is the K210's input (448: R15c probe)")  # fmt: skip
     sub = p.add_subparsers(dest="cmd", required=True)
     a = sub.add_parser("prepare")
     a.add_argument("--workers", type=int, default=6)
     a.add_argument("--limit", type=int, default=0)
+    a.add_argument("--keep-empty", type=float, default=r15b.KEEP_EMPTY)
     t = sub.add_parser("train")
     t.add_argument("--init", choices=["coco", "scratch"], required=True)
     t.add_argument("--alphas", type=float, nargs="+", default=[0.5])
@@ -141,9 +147,10 @@ def main() -> None:
     )
     args = p.parse_args()
     if args.cmd == "prepare":
-        info = r15b.prepare(args.data / "visdrone", args.data / tiles(args.size),
-                            size=args.size, workers=args.workers,
-                            limit=args.limit)  # fmt: skip
+        info = r15b.prepare(args.data / "visdrone",
+                            args.data / tiles(args.size, args.tiles_suffix),
+                            size=args.size, workers=args.workers, limit=args.limit,
+                            keep_empty=args.keep_empty)  # fmt: skip
         log(json.dumps(info))
     elif args.cmd == "train":
         train(args)

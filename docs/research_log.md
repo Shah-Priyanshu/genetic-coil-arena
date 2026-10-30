@@ -326,6 +326,16 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Report:** docs/results/r17_mission.md
 - **Chart:** r17_mission
 
+### R15d: train on every empty tile to cut false detections
+- **Date:** 2026-10-30 (running)
+- **Question:** If the scout brain trains on every empty tile instead of 20% of them, does it raise far fewer false detections at the same recall?
+- **Why:** R17 step 4 set the scout's specification at 10–30 times fewer false detections. Showing the brain more of what is not a person is the cheapest first try.
+- **What we did:** R15b's recipe (width 0.5, from COCO, 20 epochs), changing only the share of empty training tiles from 20% to 100%; two seeds. Compared with R15b's three width-0.5 brains on the same VisDrone test tiles at matched recall: the threshold where each finds 28.8% of 8–16 px people (R15b's recall at 0.5), read off a finer threshold grid. Bar fixed in advance: at most half the false detections per tile.
+- **Result:** Running (tile preparation on the CPU, then about 6 h on the GPU).
+- **Verdict:** Running
+- **What it means:** Pending.
+- **Report:** docs/results/r15b_aerial_scout.md
+
 ### R15c probe: does a bigger camera input change recall per pixel?
 - **Date:** 2026-10-30 (running)
 - **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?

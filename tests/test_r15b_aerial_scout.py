@@ -143,3 +143,26 @@ def test_train_then_validate_on_prepared_tiles(tmp_path):
     assert (tmp_path / "w.pt").exists()
     assert {"val_ap50", "val_centre_ap", "val_present_auc"} <= set(out["result"])
     assert set(r15b.load_tiles(tmp_path, "val")) >= {"src", "scale"}
+
+
+def test_r15d_false_detections_at_matched_recall():
+    from genetic_coil_arena.experiments import r15d_negatives as r15d
+    from genetic_coil_arena.experiments.r15b_aerial_scout import FINE_THRESHOLDS
+
+    def ops(fa_scale):
+        out = {}
+        for (
+            t
+        ) in FINE_THRESHOLDS:  # recall falls linearly, false detections geometrically
+            out[f"{t:g}"] = {"recall 8-16": 0.6 - (t - 0.3), "recall 0-8": 0.1,
+                             "false_per_tile": fa_scale * 10 ** (-(t - 0.3) * 5)}  # fmt: skip
+        return out
+
+    m = r15d.matched_false(ops(1.0), target=0.4)
+    assert abs(m["threshold"] - 0.5) < 1e-9 and abs(m["false_per_tile"] - 0.1) < 1e-9
+    assert np.isnan(r15d.matched_false(ops(1.0), target=0.9)["threshold"])
+    runs = [{"group": "R15b", "seed": 0, "operating": ops(1.0)},
+            {"group": "all empty tiles", "seed": 0, "operating": ops(0.4)}]  # fmt: skip
+    rep = r15d.summarise(runs)
+    assert rep["pass"] and abs(rep["ratio"] - 0.4) < 1e-6
+    assert "PASS" in r15d.render(rep)
