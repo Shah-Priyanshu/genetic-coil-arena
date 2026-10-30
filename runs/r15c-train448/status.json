@@ -1,0 +1,26 @@
+{
+  "id": "r15c-train448",
+  "commit": "6d49128d800b9e5f250a36b6ca0256b6eb565bca",
+  "queued_args": [
+    "scripts/r15b_aerial_scout.py",
+    "--size",
+    "448",
+    "train",
+    "--init",
+    "coco",
+    "--alphas",
+    "0.5",
+    "--seeds",
+    "0",
+    "--batch",
+    "32"
+  ],
+  "state": "running",
+  "started_at": "2026-10-30T02:34:23+00:00",
+  "updated_at": "2026-10-30T02:34:23+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 551 MiB, 12282 MiB, 40",
+  "host": "PC",
+  "lane": "gpu",
+  "cpu_workers": 4
+}
