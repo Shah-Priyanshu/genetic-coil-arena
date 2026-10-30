@@ -6,3 +6,11 @@
 [progress] conditioned run 10: gen 0/6000, val 0.031, best 0.031 at 0, 5 s
 [progress] conditioned run 12: gen 0/6000, val 0.033, best 0.033 at 0, 5 s
 [progress] conditioned run 13: gen 0/6000, val 0.036, best 0.036 at 0, 5 s
+[progress] conditioned run 9: gen 100/6000, val 0.262, best 0.262 at 100, 160 s
+[progress] conditioned run 10: gen 100/6000, val 0.249, best 0.249 at 100, 164 s
+[progress] conditioned run 12: gen 100/6000, val 0.251, best 0.251 at 100, 165 s
+[progress] conditioned run 14: gen 100/6000, val 0.213, best 0.213 at 100, 165 s
+[progress] conditioned run 8: gen 100/6000, val 0.227, best 0.227 at 100, 165 s
+[progress] conditioned run 11: gen 100/6000, val 0.246, best 0.246 at 100, 167 s
+[progress] conditioned run 15: gen 100/6000, val 0.267, best 0.267 at 100, 168 s
+[progress] conditioned run 13: gen 100/6000, val 0.233, best 0.233 at 100, 168 s
