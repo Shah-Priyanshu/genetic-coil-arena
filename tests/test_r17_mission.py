@@ -237,4 +237,4 @@ def test_requirements_summary():
                 }
     rep = rq.summarise(cells)
     assert rep["needed_fa_mult"] == {"K210, 3 frames/look": 0.1}
-    assert "10 times fewer" in rq.render(rep)
+    assert "about 10 times fewer" in rq.render(rep)

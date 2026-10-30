@@ -284,3 +284,17 @@ Per-frame recall of the width-0.5 brain, by person size in the 224-px tile. Alti
 - The measured curve is flatter than R17 assumed (half recall near 27 px), so R17's absolute numbers are optimistic.
 - More pixels per person is the lever, through a higher-resolution camera module or lower sweeps.
 
+### R17 step 4: the scout brain's specification (`docs/results/r17e_requirements.md`)
+
+**Setup:** R15b's measured brain in the search simulator, with the operator confirming candidates. Results are found / wrong finds.
+
+| False detections | Tuned, 1 frame per look | Tuned, 3 frames per look |
+|---|---|---|
+| as measured | 25% / 6.4% | 41% / 9.9% |
+| 10× fewer | 49% / 4.4% | **72% / 4.5%** |
+| 30× fewer | **62% / 4.6%** | 81% / 3.2% |
+
+**Specification:** cut false detections 10–30×, the higher figure if consecutive frames carry little new information.
+
+**Cheapest route:** require a detection to persist over consecutive frames at the same spot before reporting it. Measuring how often false detections persist needs drone video (VisDrone video set).
+

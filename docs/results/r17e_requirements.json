@@ -1,0 +1,208 @@
+{
+ "rows": [
+  {
+   "camera": "K210 224",
+   "frames": 1.0,
+   "fa_mult": 1.0,
+   "OpenSwarm default": {
+    "score": -1.5787499999999999,
+    "found": 0.047450000000000006,
+    "wrong": 0.8131
+   },
+   "hand two-tier": {
+    "score": -0.045137500000000004,
+    "found": 0.23533749999999998,
+    "wrong": 0.14023750000000001
+   },
+   "tuned per mission": {
+    "score": 0.1214,
+    "found": 0.249025,
+    "wrong": 0.06381250000000001
+   }
+  },
+  {
+   "camera": "K210 224",
+   "frames": 1.0,
+   "fa_mult": 0.3,
+   "OpenSwarm default": {
+    "score": -0.7759750000000001,
+    "found": 0.080725,
+    "wrong": 0.42835
+   },
+   "hand two-tier": {
+    "score": 0.15988750000000002,
+    "found": 0.2547875,
+    "wrong": 0.047450000000000006
+   },
+   "tuned per mission": {
+    "score": 0.273825,
+    "found": 0.38205,
+    "wrong": 0.05411250000000001
+   }
+  },
+  {
+   "camera": "K210 224",
+   "frames": 1.0,
+   "fa_mult": 0.1,
+   "OpenSwarm default": {
+    "score": -0.25251250000000003,
+    "found": 0.09753749999999999,
+    "wrong": 0.175025
+   },
+   "hand two-tier": {
+    "score": 0.22571249999999998,
+    "found": 0.25898750000000004,
+    "wrong": 0.0166375
+   },
+   "tuned per mission": {
+    "score": 0.40062500000000006,
+    "found": 0.489525,
+    "wrong": 0.04445
+   }
+  },
+  {
+   "camera": "K210 224",
+   "frames": 1.0,
+   "fa_mult": 0.03,
+   "OpenSwarm default": {
+    "score": -0.010100000000000001,
+    "found": 0.104575,
+    "wrong": 0.0573375
+   },
+   "hand two-tier": {
+    "score": 0.253225,
+    "found": 0.26335,
+    "wrong": 0.0050625
+   },
+   "tuned per mission": {
+    "score": 0.5307875,
+    "found": 0.6235875,
+    "wrong": 0.046400000000000004
+   }
+  },
+  {
+   "camera": "K210 224",
+   "frames": 1.0,
+   "fa_mult": 0.01,
+   "OpenSwarm default": {
+    "score": 0.06557500000000001,
+    "found": 0.10652500000000001,
+    "wrong": 0.020475
+   },
+   "hand two-tier": {
+    "score": 0.2600625,
+    "found": 0.2633625,
+    "wrong": 0.00165
+   },
+   "tuned per mission": {
+    "score": 0.6351375000000001,
+    "found": 0.7119625,
+    "wrong": 0.0384125
+   }
+  },
+  {
+   "camera": "K210 224",
+   "frames": 3.0,
+   "fa_mult": 1.0,
+   "OpenSwarm default": {
+    "score": -1.8459125,
+    "found": 0.0469375,
+    "wrong": 0.946425
+   },
+   "hand two-tier": {
+    "score": -0.152675,
+    "found": 0.321375,
+    "wrong": 0.23702500000000004
+   },
+   "tuned per mission": {
+    "score": 0.21315,
+    "found": 0.411625,
+    "wrong": 0.0992375
+   }
+  },
+  {
+   "camera": "K210 224",
+   "frames": 3.0,
+   "fa_mult": 0.3,
+   "OpenSwarm default": {
+    "score": -1.34115,
+    "found": 0.13130000000000003,
+    "wrong": 0.736225
+   },
+   "hand two-tier": {
+    "score": 0.25830000000000003,
+    "found": 0.47684999999999994,
+    "wrong": 0.10927499999999998
+   },
+   "tuned per mission": {
+    "score": 0.4689,
+    "found": 0.603575,
+    "wrong": 0.06733750000000001
+   }
+  },
+  {
+   "camera": "K210 224",
+   "frames": 3.0,
+   "fa_mult": 0.1,
+   "OpenSwarm default": {
+    "score": -0.5749000000000001,
+    "found": 0.212275,
+    "wrong": 0.39358750000000003
+   },
+   "hand two-tier": {
+    "score": 0.42935,
+    "found": 0.51015,
+    "wrong": 0.040400000000000005
+   },
+   "tuned per mission": {
+    "score": 0.62435,
+    "found": 0.71505,
+    "wrong": 0.04535
+   }
+  },
+  {
+   "camera": "K210 224",
+   "frames": 3.0,
+   "fa_mult": 0.03,
+   "OpenSwarm default": {
+    "score": -0.030874999999999996,
+    "found": 0.259325,
+    "wrong": 0.1451
+   },
+   "hand two-tier": {
+    "score": 0.49711249999999996,
+    "found": 0.5223125,
+    "wrong": 0.0126
+   },
+   "tuned per mission": {
+    "score": 0.7415125,
+    "found": 0.8052875,
+    "wrong": 0.0318875
+   }
+  },
+  {
+   "camera": "K210 224",
+   "frames": 3.0,
+   "fa_mult": 0.01,
+   "OpenSwarm default": {
+    "score": 0.17072499999999996,
+    "found": 0.275675,
+    "wrong": 0.05247500000000001
+   },
+   "hand two-tier": {
+    "score": 0.5173375,
+    "found": 0.5258375,
+    "wrong": 0.0042499999999999994
+   },
+   "tuned per mission": {
+    "score": 0.8242499999999999,
+    "found": 0.8769750000000001,
+    "wrong": 0.0263625
+   }
+  }
+ ],
+ "needed_fa_mult": {
+  "K210 224, 1 frames/look": 0.03,
+  "K210 224, 3 frames/look": 0.1
+ }
+}

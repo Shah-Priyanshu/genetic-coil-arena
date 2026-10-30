@@ -241,6 +241,10 @@ HOW_TO_READ = {
     "in one frame, by how many pixels wide the person is, at three confidence thresholds. "
     "Rough altitudes for the OV2640 camera are in the labels. At OpenSwarm's 0.7 the "
     "scout misses almost everyone; at 0.5 it finds a third to a half of people up close.",
+    "r17e_requirements": "Person found (%) as the scout brain's false detections are "
+    "cut, with the operator confirming. Solid: plans tuned per mission; dashed: the hand "
+    "two-tier plan. With today's brain (x1) no plan reaches half the people; a 10-30 "
+    "times cut does, depending on how many independent frames a second of video holds.",
     "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
     "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
     "translation through the shared meanings could do.",
@@ -482,6 +486,23 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
                 pd.DataFrame(pts), x="person size", y="recall (%)", color="threshold",
                 markers=True, title="R15b: what the scout sees per frame",
             )  # fmt: skip
+    req = read_json(res / "r17e_requirements.json")
+    if req:
+        pts = [
+            {"false detections (x measured)": r["fa_mult"],
+             "found (%)": 100 * r[system]["found"],
+             "plan": f"{system}, {r['frames']:g} frame(s)/look",
+             "wrong finds (%)": 100 * r[system]["wrong"]}
+            for r in req["rows"] for system in ("tuned per mission", "hand two-tier")
+        ]  # fmt: skip
+        fig = px.line(
+            pd.DataFrame(pts), x="false detections (x measured)", y="found (%)",
+            color="plan", markers=True, log_x=True, hover_data=["wrong finds (%)"],
+            title="R17 step 4: how far the scout's false alarms must fall",
+        )  # fmt: skip
+        fig.update_xaxes(autorange="reversed")
+        fig.add_hline(y=50, line_dash="dot")
+        figs["r17e_requirements"] = fig
     inter = read_json(res / "r7e_interlingua.json")
     if inter:
         pts = [

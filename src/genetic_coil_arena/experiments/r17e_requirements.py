@@ -139,7 +139,7 @@ def render(rep: dict[str, Any], episodes: int = EPISODES) -> str:
              f"with ≤ {100 * WRONG_TARGET:.0f}% wrong finds.", ""]  # fmt: skip
     for cond, mult in rep["needed_fa_mult"].items():
         lines.append(f"- **{cond}:** " + (
-            f"false detections cut to {mult:g}× ({1 / mult:g} times fewer)" if mult
+            f"false detections cut to {mult:g}× (about {1 / mult:.0f} times fewer)" if mult
             else "not reached at any tested cut (down to 100 times fewer)"))  # fmt: skip
     lines += ["", f"Step 1's 40 held-out missions × {episodes} episodes; operator confirms; "
               "found / wrong find, averaged over missions.", "",
