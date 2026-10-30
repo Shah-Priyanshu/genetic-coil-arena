@@ -1,0 +1,18 @@
+{
+  "id": "r15d-prepare-neg",
+  "commit": "719e42c745927a64a65230b80955929f77eb4222",
+  "args": [
+    "scripts/r15b_aerial_scout.py",
+    "--tiles-suffix",
+    "_neg",
+    "prepare",
+    "--keep-empty",
+    "1.0",
+    "--workers",
+    "6"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 6,
+  "priority": 1,
+  "timeout_min": 120.0
+}
