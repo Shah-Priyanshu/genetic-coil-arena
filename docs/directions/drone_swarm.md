@@ -364,3 +364,23 @@ Tuned plans, operator confirms; found / wrong finds.
 - operator accuracy;
 - 448-px frame rate on the module.
 
+### Which assumption matters most (R17 step 6b, `docs/results/r17h_sensitivity.md`)
+
+Change in the share found from the recommended system's 52.3%, moving one assumption at a time:
+
+| Variant | Found | Wrong finds |
+|---|---|---|
+| operator accepts 10% of empty views | −20.0 | 11.1% |
+| 1 frame per second of video | −17.0 | 4.4% |
+| filter keeps 60% of detections | −13.5 | 5.2% |
+| false alarms cut 5× | −12.6 | 5.4% |
+| operator accepts 5% of empty views | −12.2 | 7.1% |
+| person 0.28 m | −8.1 | 5.1% |
+| operator sees a person in 50% of looks | −5.0 | 4.4% |
+| false alarms cut 20× | +11.2 | 4.1% |
+
+**Measure first:**
+- the operator's false-accept rate on drone images (a labelling session);
+- independent frames per second (video);
+- a persistence filter's cut and its loss of detections (video).
+

@@ -256,6 +256,10 @@ HOW_TO_READ = {
     "share found and the share of wrong finds for each camera and false-alarm level, "
     "with plans tuned at mission time. Only the 448-px camera with false alarms cut 10x "
     "finds half the people while keeping wrong finds under 5%.",
+    "r17h_sensitivity": "How the recommended search system's share found changes when "
+    "one assumption moves. Long red bars are the assumptions to measure first: the "
+    "operator wrongly accepting empty views, and how many independent frames a second "
+    "of video gives.",
     "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
     "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
     "translation through the shared meanings could do.",
@@ -555,6 +559,19 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
             color_discrete_sequence=["#2e7d32", "#c62828"],
             title="R17 step 6: realistic searches with mission-time planning",
         )  # fmt: skip
+    sens = read_json(res / "r17h_sensitivity.json")
+    if sens:
+        rows = sorted(sens["rows"], key=lambda r: r["found_change"])
+        fig = px.bar(
+            pd.DataFrame([{"assumption": r["variant"],
+                           "change in found (points)": 100 * r["found_change"],
+                           "wrong finds (%)": 100 * r["wrong"]} for r in rows]),
+            x="change in found (points)", y="assumption", orientation="h",
+            color="change in found (points)", color_continuous_scale="RdYlGn",
+            hover_data=["wrong finds (%)"],
+            title="R17 step 6b: which assumption matters most",
+        )  # fmt: skip
+        figs["r17h_sensitivity"] = fig
     inter = read_json(res / "r7e_interlingua.json")
     if inter:
         pts = [

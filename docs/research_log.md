@@ -421,14 +421,15 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r17g_system
 
 ### R17 step 6b: which assumption matters most?
-- **Date:** 2026-10-30 (running)
+- **Date:** 2026-10-30
 - **Question:** Step 6's recommended system passed narrowly on unmeasured assumptions. Which assumption moves the result most, and so should be measured first?
 - **Why:** Bench time and video data are limited, and the one measurement that could break the recommendation should come first.
 - **What we did:** Moved one assumption at a time from step 6's recommended system and replanned every mission at mission time. Variants: 1 or 2 independent frames per second of video instead of 3; a filter that keeps 80% or 60% of detections; false alarms cut 5× or 20× instead of 10×; an operator who sees the person in 70% or 50% of looks; an operator who accepts 5% or 10% of empty views; a person 0.28 or 0.40 m in size. Read-out fixed in advance: the variants that drop the share found below 40% or push wrong finds above 5%. No bar.
-- **Result:** Running (about 1 h on the CPU).
-- **Verdict:** Running
-- **What it means:** Pending.
-- **Report:** docs/directions/drone_swarm.md
+- **Result:** The base case reproduces step 6 exactly (52.3% found, 4.8% wrong). From most to least damaging: the operator accepting 10% of empty views (32.3% found, 11.1% wrong) or 5% (40.1%, 7.1%); 1 independent frame per second instead of 3 (35.3%); a filter that keeps only 60% of detections (38.8%, 5.2% wrong); false alarms cut 5× instead of 10× (39.7%, 5.4%); a smaller person (44.2%, 5.1%); a filter keeping 80% (46.1%, 5.1%). The operator missing the person matters little (70% of looks: 52.2%; 50%: 47.3%). Upside: false alarms cut 20× gives 63.5% (4.1% wrong) and a larger person 58.4%. Seven of twelve variants break the read-out (below 40% found or above 5% wrong).
+- **Verdict:** MEASURED: THE OPERATOR'S FALSE ACCEPTS AND VIDEO FRAMES MATTER MOST
+- **What it means:** The recommendation is fragile, and the ranking says what to measure first. (1) How often an operator accepts a drone image with no one in it: cheap to measure with a labelling session on detector crops. (2) How many independent looks a second of video gives, and (3) how far a persistence filter cuts false alarms and at what loss of detections: both need drone video (VisDrone-VID). How often the operator misses a person matters much less, because a confirmer looks several times.
+- **Report:** docs/results/r17h_sensitivity.md
+- **Chart:** r17h_sensitivity
 
 ### R17 step 5b: how much tuning time is a mission worth?
 - **Date:** 2026-10-30
