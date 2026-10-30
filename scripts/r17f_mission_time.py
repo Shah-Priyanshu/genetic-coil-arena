@@ -23,6 +23,8 @@ def main() -> None:
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     p.add_argument("--from", dest="sources", nargs="+", required=True)
     p.add_argument("--missions", type=int, default=r17.N_TEST)
+    p.add_argument("--generations", type=int, default=rf.GENERATIONS,
+                   help="tuning budget (the budget curve reruns with other values)")  # fmt: skip
     p.add_argument("--workers", type=int, default=int(os.environ.get("GCA_WORKERS", 4)))
     p.add_argument(
         "--out", type=Path, default=Path("docs/results/r17f_mission_time.md")
@@ -36,7 +38,8 @@ def main() -> None:
           flush=True)  # fmt: skip
     if not step1 or not step2:
         raise SystemExit("need step-1 and step-2 conditioned planners")
-    todo = [(which, i, step2[0]) for which in rf.SETS for i in range(args.missions)]
+    todo = [(which, i, step2[0], args.generations)
+            for which in rf.SETS for i in range(args.missions)]  # fmt: skip
     tuned, start = {}, time.perf_counter()
     with ProcessPoolExecutor(args.workers) as pool:
         for k, rec in enumerate(pool.map(rf.tune_task, todo), 1):

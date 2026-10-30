@@ -71,8 +71,10 @@ def _fitness(u: np.ndarray, variants: list[Mission], base: int) -> float:
 
 
 def tune_task(task: tuple) -> dict[str, Any]:
-    """(set, mission index, the step-2 planner's run 0) -> the tuned plan."""
-    which, i, run2 = task
+    """(set, mission index, the step-2 planner's run 0[, generations]) -> the tuned
+    plan."""
+    which, i, run2 = task[:3]
+    generations = task[3] if len(task) > 3 else GENERATIONS
     start = time.perf_counter()
     m = missions_for(which)[i]
     variants = prior_variants(m, i)
@@ -88,8 +90,8 @@ def tune_task(task: tuple) -> dict[str, Any]:
         es = EvolutionStrategy(r17.encode_plan(plan, m.drones, 2), population=POPULATION,
                                sigma=0.15, lr=0.05, weight_decay=0.0,
                                seed=i * 10 + k)  # fmt: skip
-        for g in range(GENERATIONS):
-            base = TUNE_BASE + i * 1_000_000 + (k * GENERATIONS + g) * 10_000
+        for g in range(generations):
+            base = TUNE_BASE + i * 1_000_000 + (k * generations + g) * 10_000
             es.tell(np.array([_fitness(c, variants, base) for c in es.ask()]))
         check = _fitness(es.theta, variants, CHECK_BASE + i * 100_000)
         if check > best[0]:
