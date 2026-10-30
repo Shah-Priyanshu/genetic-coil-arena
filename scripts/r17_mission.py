@@ -115,7 +115,7 @@ def main() -> None:
     t = sub.add_parser("train")
     t.add_argument("--kind", choices=["blind", "conditioned"], required=True)
     t.add_argument("--runs", default="0:8")
-    t.add_argument("--version", type=int, choices=[1, 2], default=1,
+    t.add_argument("--version", type=int, choices=[1, 2, 3], default=1,
                    help="2: step 2 missions and the hand-off (experiments/r17b_handoff.py)")  # fmt: skip
     t.add_argument("--generations", type=int, default=r17.PlannerSettings.generations)
     t.add_argument("--workers", type=int, default=workers)

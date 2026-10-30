@@ -165,3 +165,35 @@ def test_handoff_summary_bars():
     rep = rh.summarise(cells)
     assert rep["passed"] and all(rep["bars"].values())
     assert "GOOD SIGN" in rh.render(rep)
+
+
+def test_version_3_hint_feature_and_conditions():
+    from genetic_coil_arena.experiments import r17c_hint as rc
+
+    v2, v3 = r17.held_out_missions(2), r17.held_out_missions(3)
+    assert [m.person_speed for m in v2] == [m.person_speed for m in v3]
+    right = [(m.moving_hint > 0) == (m.person_speed > 0) for m in v3]
+    assert 0.6 < np.mean(right) < 1.0
+    assert r17.features(v3[0], 3).shape == (r17.N_FEATURES_V3,)
+    assert r17.features(v3[0], 3)[-1] == v3[0].moving_hint
+    wrong = rc.missions_for("hint always wrong")
+    assert all((m.moving_hint > 0) != (m.person_speed > 0) for m in wrong)
+    assert all(m.moving_hint == -1 for m in rc.missions_for("still person, hint still"))
+    planner = r17.Planner(r17.PlannerSettings(version=3))
+    plans = planner.plans(planner.init(np.random.default_rng(0)), v3[:3])
+    assert all(abs(p.track_s - 30.0) < 3 for p in plans)
+
+
+def test_hint_summary_bars():
+    from genetic_coil_arena.experiments import r17c_hint as rc
+
+    rng = np.random.default_rng(3)
+    cells = {}
+    shift = {"step-1 planner": 0.0, "planner v2": -0.1, "planner v3 (hint)": 0.0}
+    for cond in rc.CONDITIONS:
+        for name, d in shift.items():
+            for i in range(r17.N_TEST):
+                s = 0.4 + d + rng.normal(0, 0.005)
+                cells[(cond, name, 0, i)] = {"score": s, "found": s, "wrong": 0.0}
+    rep = rc.summarise(cells)
+    assert rep["passed"] and "GOOD SIGN" in rc.render(rep)

@@ -68,6 +68,9 @@ N_FEATURES, N_PLAN = 6, len(PLAN_RANGES)
 # GPS error, wind and battery, and the leader reads the last three
 PLAN_RANGES_V2 = PLAN_RANGES + (("track_s", 0.0, 120.0),)
 N_FEATURES_V2, N_PLAN_V2 = 9, len(PLAN_RANGES_V2)
+# R17 step 3 (version 3): version 2 plus the operator's hint whether the person may be
+# moving, right HINT_ACCURACY of the time in training
+N_FEATURES_V3, HINT_ACCURACY = 10, 0.85
 TRAIN_BASE, VAL_BASE, TEST_BASE = 10_000_000, 1_500_000_000, 2_000_000_000
 ORACLE_BASE, ORACLE_VAL_BASE = 500_000_000, 1_000_000_000
 RUN_STRIDE = 20_000_000
@@ -92,17 +95,32 @@ def sample_mission(rng: np.random.Generator, version: int = 1) -> Mission:
         return m
     walk = float(rng.uniform(0.2, 1.5)) if rng.random() < 0.5 else 0.0
     loc = float(rng.uniform(1.0, 4.0))
-    return replace(m, battery_s=float(rng.uniform(220.0, 320.0)), person_speed=walk,
-                   loc_error=loc, speed=float(rng.uniform(3.0, 5.0)),
-                   found_m=find_radius(loc))  # fmt: skip
+    m = replace(m, battery_s=float(rng.uniform(220.0, 320.0)), person_speed=walk,
+                loc_error=loc, speed=float(rng.uniform(3.0, 5.0)),
+                found_m=find_radius(loc))  # fmt: skip
+    return with_hint(m, rng) if version == 3 else m
+
+
+def with_hint(m: Mission, rng: np.random.Generator,
+              accuracy: float = HINT_ACCURACY) -> Mission:  # fmt: skip
+    """The mission with the operator's moving hint, right ``accuracy`` of the time."""
+    truth = 1.0 if m.person_speed > 0 else -1.0
+    return replace(m, moving_hint=truth if rng.random() < accuracy else -truth)
 
 
 def held_out_missions(version: int = 1) -> list[Mission]:
+    """Version 3's are version 2's missions with hints (from their own stream)."""
+    if version == 3:
+        rng = np.random.default_rng(1738)
+        return [with_hint(m, rng) for m in held_out_missions(2)]
     rng = np.random.default_rng(1718 if version == 1 else 1728)
     return [sample_mission(rng, version) for _ in range(N_TEST)]
 
 
 def val_missions(version: int = 1) -> list[Mission]:
+    if version == 3:
+        rng = np.random.default_rng(1739)
+        return [with_hint(m, rng) for m in val_missions(2)]
     rng = np.random.default_rng(1719 if version == 1 else 1729)
     return [sample_mission(rng, version) for _ in range(N_VAL)]
 
@@ -114,13 +132,15 @@ def features(m: Mission, version: int = 1) -> np.ndarray:
     d = m.detector
     f = [(m.width - 150) / 90, (m.height - 150) / 90, (m.drones - 5) / 2.5,
          (d.px50 - 13) / 7, d.slope - 2.5, (math.log10(d.fa50) + 2.4) / 0.9]  # fmt: skip
-    if version == 2:
+    if version >= 2:
         f += [(m.loc_error - 2.5) / 1.5, m.speed - 4.0, (m.battery_s - 270) / 50]
+    if version == 3:
+        f.append(m.moving_hint)
     return np.array(f, dtype=np.float32)
 
 
 def n_features(version: int) -> int:
-    return N_FEATURES if version == 1 else N_FEATURES_V2
+    return {1: N_FEATURES, 2: N_FEATURES_V2, 3: N_FEATURES_V3}[version]
 
 
 def n_plan(version: int) -> int:
@@ -136,14 +156,14 @@ def decode_plan(u: np.ndarray, drones: int, version: int = 1) -> Plan:
                 confirmers=min(drones - 1, int(round(v[3] * drones))),
                 confirm_alt=float(v[4]), confirm_thr=float(v[5]),
                 confirm_looks=int(round(v[6])),
-                track_s=float(v[7]) if version == 2 else 0.0)  # fmt: skip
+                track_s=float(v[7]) if version >= 2 else 0.0)  # fmt: skip
 
 
 def encode_plan(plan: Plan, drones: int, version: int = 1) -> np.ndarray:
     v = [plan.sweep_alt, plan.overlap, plan.sweep_thr, plan.confirmers / drones,
          plan.confirm_alt, plan.confirm_thr, plan.confirm_looks]  # fmt: skip
     ranges = PLAN_RANGES if version == 1 else PLAN_RANGES_V2
-    if version == 2:
+    if version >= 2:
         v.append(plan.track_s)
     u = []
     for x, (_, lo, hi) in zip(v, ranges):
@@ -185,7 +205,7 @@ class Planner:
     def init(self, rng: np.random.Generator) -> np.ndarray:
         start = hand_two_tier(6)
         if (
-            self.version == 2
+            self.version >= 2
         ):  # version 2 starts from the hand plan with a 30 s hand-off
             start = replace(start, track_s=30.0)
         u0 = encode_plan(start, 6, self.version)
@@ -286,10 +306,13 @@ def tune_mission(index: int, generations: int = 300, population: int = 32,
 
 
 # ------------------------------------------------------------------ save, load, evaluate
+PLANNER_PREFIX = {1: "r17_planner", 2: "r17b_planner", 3: "r17c_planner"}
+
+
 def save_run(out: dict[str, Any], folder: Path) -> Path:
     folder.mkdir(parents=True, exist_ok=True)
     kind = "conditioned" if out["settings"]["conditioned"] else "blind"
-    prefix = "r17_planner" if out["settings"].get("version", 1) == 1 else "r17b_planner"
+    prefix = PLANNER_PREFIX[out["settings"].get("version", 1)]
     stem = folder / f"{prefix}_{kind}_run{out['run']}"
     np.savez(stem.with_suffix(".npz"), theta=out["theta"])
     meta = {k: v for k, v in out.items() if k != "theta"}
@@ -299,7 +322,7 @@ def save_run(out: dict[str, Any], folder: Path) -> Path:
 
 def load_runs(folders: Sequence[Path], kind: str,
               version: int = 1) -> list[dict[str, Any]]:  # fmt: skip
-    prefix = "r17_planner" if version == 1 else "r17b_planner"
+    prefix = PLANNER_PREFIX[version]
     runs = []
     for folder in folders:
         for meta in sorted(Path(folder).rglob(f"{prefix}_{kind}_run*.json")):

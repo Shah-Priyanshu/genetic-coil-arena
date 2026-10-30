@@ -98,6 +98,9 @@ class Mission:
     loc_error: float = LOC0  # GPS part of a detection's position error (m)
     speed: float = SPEED  # cruise speed (m/s); lower for a headwind
     found_m: float = FOUND_M  # a declaration this close to the person is a find
+    # the operator's hint about the person (+1 may be moving, -1 still, 0 not said);
+    # read by version 3 planners only, never by the simulator
+    moving_hint: float = 0.0
 
     def vector(self) -> np.ndarray:
         return np.array([self.width, self.height, self.drones, self.battery_s,

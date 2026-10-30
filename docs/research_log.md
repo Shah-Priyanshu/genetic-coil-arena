@@ -357,6 +357,16 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Report:** docs/results/r17b_handoff.md
 - **Chart:** r17b_handoff
 
+### R17 step 3: tell the leader whether the person may be moving
+- **Date:** 2026-10-30 (running)
+- **Question:** If the operator says whether the person may be moving, does the planner stop hedging, keeping step 2's gain on walking people without losing step 1's score on still ones?
+- **Why:** Step 2's planner could not tell a still person from a walking one and gave up 15 points on still-person missions. An operator usually knows ("injured hiker" vs "lost child"), and the ground station can ask.
+- **What we did:** Version 3 planners read one more input: the operator's hint (+1 may be moving, −1 still), right 85% of the time in training. 16 runs with step 2's budget. Tested on the same held-out missions with the hint 85% right, always right, always wrong and absent, and on step 1's still-person missions. Bars fixed in advance: (a) on still-person missions at most 3 points below the step-1 planner; (b) +3 over the step-2 planner with the 85% hint, CI above 0; (c) at most 3 points below the step-2 planner on walking missions.
+- **Result:** Running (about 2 h on the CPU).
+- **Verdict:** Running
+- **What it means:** Pending.
+- **Report:** docs/directions/drone_swarm.md
+
 ### G14b: the ground station, fixed, on a fresh sealed set
 - **Date:** 2026-10-29
 - **Question:** With the three problems G14's misses exposed fixed, does the station meet the same bars on requests it has never seen?
