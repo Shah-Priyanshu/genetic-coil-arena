@@ -1,0 +1,49 @@
+[load] 800 tuned missions
+[progress] 200/2400 cells, 8 s
+[progress] 400/2400 cells, 10 s
+[progress] 600/2400 cells, 11 s
+[progress] 800/2400 cells, 13 s
+[progress] 1000/2400 cells, 14 s
+[progress] 1200/2400 cells, 16 s
+[progress] 1400/2400 cells, 18 s
+[progress] 1600/2400 cells, 20 s
+[progress] 1800/2400 cells, 22 s
+[progress] 2000/2400 cells, 23 s
+[progress] 2200/2400 cells, 25 s
+[progress] 2400/2400 cells, 26 s
+# R17 step 4: what the scout brain must reach before a search works
+
+Read-out (fixed in advance): the smallest cut in false detections at which tuned searches find the person in ≥ 50% of episodes with ≤ 5% wrong finds.
+
+- **448 camera, 1 frames/look:** false detections cut to 0.1× (about 10 times fewer)
+- **448 camera, 3 frames/look:** false detections cut to 0.1× (about 10 times fewer)
+- **K210 224, 1 frames/look:** false detections cut to 0.03× (about 33 times fewer)
+- **K210 224, 3 frames/look:** false detections cut to 0.1× (about 10 times fewer)
+
+Step 1's 40 held-out missions × 2000 episodes; operator confirms; found / wrong find, averaged over missions.
+
+| Camera | Frames per look | False detections | OpenSwarm default | Hand two-tier (0.6) | Tuned per mission |
+|---|---|---|---|---|---|
+| 448 camera | 1 | ×1 | 3% / 96.4% | 26% / 25.1% | 41% / 8.7% |
+| 448 camera | 1 | ×0.3 | 10% / 79.4% | 39% / 11.9% | 59% / 6.5% |
+| 448 camera | 1 | ×0.1 | 17% / 45.6% | 42% / 4.4% | 71% / 4.8% |
+| 448 camera | 1 | ×0.03 | 21% / 17.4% | 43% / 1.4% | 80% / 3.4% |
+| 448 camera | 1 | ×0.01 | 23% / 6.3% | 43% / 0.5% | 86% / 2.6% |
+| 448 camera | 3 | ×1 | 2% / 98.2% | 20% / 32.9% | 54% / 12.0% |
+| 448 camera | 3 | ×0.3 | 8% / 91.7% | 42% / 21.3% | 75% / 7.0% |
+| 448 camera | 3 | ×0.1 | 22% / 71.8% | 60% / 10.2% | 85% / 3.9% |
+| 448 camera | 3 | ×0.03 | 38% / 36.4% | 65% / 3.3% | 91% / 2.3% |
+| 448 camera | 3 | ×0.01 | 47% / 14.7% | 67% / 1.2% | 94% / 1.5% |
+| K210 224 | 1 | ×1 | 5% / 81.3% | 24% / 14.0% | 25% / 6.4% |
+| K210 224 | 1 | ×0.3 | 8% / 42.8% | 25% / 4.7% | 38% / 5.4% |
+| K210 224 | 1 | ×0.1 | 10% / 17.5% | 26% / 1.7% | 49% / 4.4% |
+| K210 224 | 1 | ×0.03 | 10% / 5.7% | 26% / 0.5% | 62% / 4.6% |
+| K210 224 | 1 | ×0.01 | 11% / 2.0% | 26% / 0.2% | 71% / 3.8% |
+| K210 224 | 3 | ×1 | 5% / 94.6% | 32% / 23.7% | 41% / 9.9% |
+| K210 224 | 3 | ×0.3 | 13% / 73.6% | 48% / 10.9% | 60% / 6.7% |
+| K210 224 | 3 | ×0.1 | 21% / 39.4% | 51% / 4.0% | 72% / 4.5% |
+| K210 224 | 3 | ×0.03 | 26% / 14.5% | 52% / 1.3% | 81% / 3.2% |
+| K210 224 | 3 | ×0.01 | 28% / 5.2% | 53% / 0.4% | 88% / 2.6% |
+
+Reproduce: `python scripts/r17e_requirements.py report --from runs:r17e-tune-*`.
+
