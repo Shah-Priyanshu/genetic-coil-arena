@@ -17,3 +17,7 @@
 [04:46:52] [alpha 0.5] epoch 17/20 loss 0.9273 (11501 s)
 [04:58:07] [alpha 0.5] epoch 18/20 loss 0.9226 (12176 s)
 [05:09:21] [alpha 0.5] epoch 19/20 loss 0.9183 (12850 s)
+[05:20:35] [alpha 0.5] epoch 20/20 loss 0.9171 (13524 s)
+C:\Users\priya\AppData\Local\Temp\gca-r15d-train-neg-mrb77378\src\genetic_coil_arena\experiments\r15_scout_brain.py:411: UserWarning: The given NumPy array is not writable, and PyTorch does not support non-writable tensors. This means writing to this tensor will result in undefined behavior. You may want to copy the array to protect its data or make it writable before converting it to a tensor. This type of warning will be suppressed for the rest of this program. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\utils\tensor_numpy.cpp:219.)
+  x = torch.from_numpy(np.ascontiguousarray(imgs)).to(dev).permute(0, 3, 1, 2)
+[05:20:52] r15b_coco_a0.5_seed0_neg: {"val_ap50": 0.28840073991935217, "val_centre_ap": 0.48227144843446496, "val_present_auc": 0.9537628337187809, "alpha": 0.5, "params": 444837, "int8_kb": 434.4111328125, "macs": 142926336, "epochs": 20, "train_images": 314299, "seconds": 13537.305139064789, "size": 224, "condition": "fine-tuned", "seed": 0, "lr": 0.001, "weights": "D:\\Projects\\genetic-coil-arena-data\\r15_models\\r15b_coco_a0.5_seed0_neg.pt", "tiles": "visdrone_tiles224_neg", "onnx": true}
