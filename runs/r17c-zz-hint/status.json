@@ -1,0 +1,23 @@
+{
+  "id": "r17c-zz-hint",
+  "commit": "c4b9bdfa3bfb5bcbc2e83fcc74fc68c49b6649b0",
+  "queued_args": [
+    "scripts/r17c_hint.py",
+    "--from",
+    "runs:r17-train-cond-*",
+    "runs:r17b-train-cond-*",
+    "runs:r17c-train-*",
+    "--workers",
+    "8",
+    "--out",
+    "docs/results/r17c_hint.md"
+  ],
+  "state": "running",
+  "started_at": "2026-10-30T01:45:04+00:00",
+  "updated_at": "2026-10-30T01:45:04+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 0 %, 1668 MiB, 12282 MiB, 48",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 8
+}
