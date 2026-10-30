@@ -489,3 +489,6 @@
 [done] run 10: best val 0.276 at generation 550, 9618 s
 [progress] conditioned run 14: gen 6000/6000, val 0.200, best 0.297 at 300, 9646 s
 [done] run 14: best val 0.297 at generation 300, 9646 s
+[progress] conditioned run 15: gen 6000/6000, val 0.188, best 0.276 at 500, 9699 s
+[done] run 15: best val 0.276 at generation 500, 9699 s
+[progress] conditioned run 9: gen 5800/6000, val 0.165, best 0.288 at 200, 9710 s
