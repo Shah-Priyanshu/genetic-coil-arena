@@ -1,0 +1,43 @@
+[load] step-1 planner: 16, planner v2: 16, planner v3 (hint): 16
+[progress] 500/9600 cells, 13 s
+[progress] 1000/9600 cells, 18 s
+[progress] 1500/9600 cells, 23 s
+[progress] 2000/9600 cells, 29 s
+[progress] 2500/9600 cells, 35 s
+[progress] 3000/9600 cells, 40 s
+[progress] 3500/9600 cells, 45 s
+[progress] 4000/9600 cells, 51 s
+[progress] 4500/9600 cells, 58 s
+[progress] 5000/9600 cells, 62 s
+[progress] 5500/9600 cells, 67 s
+[progress] 6000/9600 cells, 73 s
+[progress] 6500/9600 cells, 79 s
+[progress] 7000/9600 cells, 84 s
+[progress] 7500/9600 cells, 89 s
+[progress] 8000/9600 cells, 94 s
+[progress] 8500/9600 cells, 98 s
+[progress] 9000/9600 cells, 102 s
+[progress] 9500/9600 cells, 106 s
+[progress] 9600/9600 cells, 107 s
+# R17 step 3: tell the leader whether the person may be moving
+
+**NOT YET** (all three bars needed).
+
+| Bar | Difference (points, 95% CI over missions) | Needed | Met |
+|---|---|---|---|
+| (a) still people: v3 − step-1 planner (still person, hint still) | -15.6 ± 2.9 | ≥ −3 | no |
+| (b) gain: v3 − v2 (hint 85% right) | -0.9 ± 1.8 | ≥ +3, CI > 0 | no |
+| (c) walking kept: v3 − v2 on walking missions (hint 85% right) | -2.3 ± 2.8 | ≥ −3 | yes |
+
+Score (found − 2 × wrong find, points); 40 held-out missions × 2000 episodes per condition (23 with a walking person in the version 2 set).
+
+| Condition | step-1 planner | planner v2 | planner v3 (hint) |
+|---|---|---|---|
+| hint 85% right | 18.4 | 29.3 | 28.4 |
+| hint always right | 18.4 | 29.3 | 29.4 |
+| hint always wrong | 18.4 | 29.3 | 22.3 |
+| no hint | 18.4 | 29.3 | 26.8 |
+| still person, hint still | 64.6 | 49.2 | 49.0 |
+
+Reproduce: `python scripts/r17c_hint.py --from runs:r17-train-cond-* runs:r17b-train-cond-* runs:r17c-train-*`.
+
