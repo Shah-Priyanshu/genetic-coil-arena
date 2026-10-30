@@ -1,0 +1,20 @@
+{
+  "id": "r17f-budget-g200",
+  "commit": "0f08308c196b2c9c0bac92dc167c0cb5226f85d1",
+  "args": [
+    "scripts/r17f_mission_time.py",
+    "--from",
+    "runs:r17-train-cond-*",
+    "runs:r17b-train-cond-*",
+    "runs:r17b-oracle",
+    "--generations",
+    "200",
+    "--workers",
+    "8",
+    "--out",
+    "docs/results/r17f_budget_g200.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "timeout_min": 150.0
+}
