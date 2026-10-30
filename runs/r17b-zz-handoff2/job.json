@@ -1,0 +1,25 @@
+{
+  "id": "r17b-zz-handoff2",
+  "commit": "6042a819195284fa951f11f3288b12a1ab4183e9",
+  "args": [
+    "scripts/r17b_handoff.py",
+    "--from",
+    "runs:r17-train-cond-*",
+    "runs:r17b-train-*",
+    "runs:r17b-oracle",
+    "--workers",
+    "8",
+    "--out",
+    "docs/results/r17b_handoff.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "after": [
+    "r17b-train-blind-a",
+    "r17b-train-blind-b",
+    "r17b-train-cond-a",
+    "r17b-train-cond-b",
+    "r17b-oracle"
+  ],
+  "timeout_min": 60.0
+}

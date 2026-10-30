@@ -12,10 +12,10 @@
       "started_at": "2026-10-29T21:29:29+00:00"
     },
     {
-      "id": "r17b-train-cond-b",
+      "id": "r17b-zz-handoff2",
       "lane": "cpu",
       "cpu_workers": 8,
-      "started_at": "2026-10-29T22:58:59+00:00"
+      "started_at": "2026-10-30T00:14:36+00:00"
     }
   ],
   "backlog": {
@@ -26,22 +26,16 @@
         "blocked_by": [
           "r15b2-train-sc-a05"
         ]
-      },
-      {
-        "id": "r17b-zz-handoff2",
-        "blocked_by": [
-          "r17b-train-cond-b"
-        ]
       }
     ]
   },
   "idle_since": {
-    "cpu": null,
+    "cpu": "2026-10-30T00:14:29+00:00",
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-30T00:14:17+00:00",
-  "cpu_percent": 13.1,
+  "updated_at": "2026-10-30T00:14:36+00:00",
+  "cpu_percent": 11.4,
   "gpu": {
     "util": 98.0,
     "mem_used_mb": 4920.0,
