@@ -238,3 +238,25 @@ def test_requirements_summary():
     rep = rq.summarise(cells)
     assert rep["needed_fa_mult"] == {"K210, 3 frames/look": 0.1}
     assert "about 10 times fewer" in rq.render(rep)
+
+
+def test_mission_time_prior_and_summary():
+    from genetic_coil_arena.experiments import r17f_mission_time as rf
+
+    m = Mission(moving_hint=1.0)
+    moving = rf.prior_variants(m, 0, 200)
+    still = rf.prior_variants(Mission(moving_hint=-1.0), 0, 200)
+    assert 0.75 < np.mean([v.person_speed > 0 for v in moving]) < 0.95
+    assert 0.05 < np.mean([v.person_speed > 0 for v in still]) < 0.25
+    assert all(0.2 <= v.person_speed <= 1.5 for v in moving if v.person_speed > 0)
+    cells, tuned = {}, {}
+    rng = np.random.default_rng(4)
+    for which, shift in zip(rf.SETS, (0.08, 0.0)):
+        for name, d in (("step-1 planner", 0.0), ("step-2 planner", 0.0),
+                        ("mission-time tuning", shift)):  # fmt: skip
+            for i in range(r17.N_TEST):
+                cells[(which, name, 0, i)] = 0.3 + d + rng.normal(0, 0.01)
+                tuned[(which, i)] = {"seconds": 5.0, "start": "planner"}
+    rep = rf.summarise(cells, tuned)
+    assert rep["passed"] and rep["planner_start_share"] == 1.0
+    assert "GOOD SIGN" in rf.render(rep)

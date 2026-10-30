@@ -388,6 +388,16 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **What it means:** Neither size nor training time is the limit. One planner trained by evolution over a broad range of missions stalls well below what tuning each mission alone reaches (44 vs about 30 on still people). The practical design is to plan at mission time: the ground station tunes the plan in the simulator for the actual mission just before launch, using what it knows and averaging over what it does not, such as whether the person walks. That is tested next.
 - **Report:** docs/results/r17d_hint.md
 
+### R17 step 5: plan at mission time
+- **Date:** 2026-10-30 (running)
+- **Question:** Instead of one learned planner, can the ground station tune the plan in the simulator for the actual mission just before launch, and beat the planner while keeping still-person searches as good as step 1?
+- **Why:** Steps 2–3b showed one planner trained over broad missions stalls well below per-mission tuning, whatever its size. The ground station has a computer and this simulator.
+- **What we did:** For each held-out mission, about a minute of one CPU core: a short evolution search (100 generations of 32 candidates) over 8 versions of the mission, with the person's speed drawn from what the operator's hint implies (right 85% of the time). It starts from the hand plan with a hand-off and from the step-2 planner's own plan. Scored on the true mission's test episodes. Bars fixed in advance: (a) beat the step-2 planner by ≥ 5 points with the 85% hint, CI above 0; (b) on step 1's still-person missions with the hint "still", at most 3 points below the step-1 planner.
+- **Result:** Running (about 15 min on the CPU).
+- **Verdict:** Running
+- **What it means:** Pending.
+- **Report:** docs/directions/drone_swarm.md
+
 ### R17 step 4: what the scout brain must reach before a search works
 - **Date:** 2026-10-30
 - **Question:** With the scout brain R15b measured on drone footage, how many fewer false detections does it need, from a temporal filter on the drone or a better model, before a tuned search finds the person without sending the team to the wrong place?
