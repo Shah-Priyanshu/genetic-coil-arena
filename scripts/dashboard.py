@@ -242,9 +242,10 @@ HOW_TO_READ = {
     "Rough altitudes for the OV2640 camera are in the labels. At OpenSwarm's 0.7 the "
     "scout misses almost everyone; at 0.5 it finds a third to a half of people up close.",
     "r17e_requirements": "Person found (%) as the scout brain's false detections are "
-    "cut, with the operator confirming. Solid: plans tuned per mission; dashed: the hand "
-    "two-tier plan. With today's brain (x1) no plan reaches half the people; a 10-30 "
-    "times cut does, depending on how many independent frames a second of video holds.",
+    "cut, with the operator confirming and plans tuned per mission, for the K210 camera "
+    "(224 px) and a 448-px camera. With today's brains no K210 search reaches half the "
+    "people; a 10-30 times cut does. The 448-px camera finds 13-22 points more at every "
+    "level.",
     "r17f_mission_time": "Person-search score of each way of planning, on missions "
     "where the person may walk (with the operator's hint) and where the person stands "
     "still. Tuning at mission time is the only one good on both.",
@@ -497,9 +498,9 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
         pts = [
             {"false detections (x measured)": r["fa_mult"],
              "found (%)": 100 * r[system]["found"],
-             "plan": f"{system}, {r['frames']:g} frame(s)/look",
+             "plan": f"{r['camera']}: {system}, {r['frames']:g} frame(s)/look",
              "wrong finds (%)": 100 * r[system]["wrong"]}
-            for r in req["rows"] for system in ("tuned per mission", "hand two-tier")
+            for r in req["rows"] for system in ("tuned per mission",)
         ]  # fmt: skip
         fig = px.line(
             pd.DataFrame(pts), x="false detections (x measured)", y="found (%)",

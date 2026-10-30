@@ -328,3 +328,14 @@ Per-frame recall of the width-0.5 brain, by person size in the 224-px tile. Alti
 
 **What it means for a camera:** a 448 camera with the same lens sees a person at altitude h as the K210 sees it at h/2. But each look raises about 2.7× the false detections. R17 step 4 with this brain weighs the two.
 
+### Camera choice (R17 step 4 with the R15c brain)
+
+Tuned plans, operator confirms; found / wrong finds.
+
+| False detections | K210 224, 1 / 3 frames per look | 448-px camera, 1 / 3 frames per look |
+|---|---|---|
+| as measured | 25% / 41% found | 41% / 54% found |
+| 10× fewer | 49% / 72% found | 71% / 85% found |
+
+**Recommendation:** a camera module whose NPU runs the scout brain at 448 px (MaixCAM-class, about 1 TOPS), plus a persistence filter that cuts false detections about 10×. Bench check: frame rate at 448 on the chosen module, and whether a K210 can keep up.
+
