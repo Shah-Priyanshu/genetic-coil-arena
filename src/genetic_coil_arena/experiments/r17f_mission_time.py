@@ -75,8 +75,16 @@ def tune_task(task: tuple) -> dict[str, Any]:
     plan."""
     which, i, run2 = task[:3]
     generations = task[3] if len(task) > 3 else GENERATIONS
+    out = tune_mission(missions_for(which)[i], i, run2, generations)
+    out["set"] = which
+    return out
+
+
+def tune_mission(m: Mission, i: int, run2: dict, generations: int = GENERATIONS,
+                 ) -> dict[str, Any]:  # fmt: skip
+    """Mission-time tuning of one mission (``i`` picks its seeds), starting from the hand
+    plan with a hand-off and from the step-2 planner's plan."""
     start = time.perf_counter()
-    m = missions_for(which)[i]
     variants = prior_variants(m, i)
     learned = r17.Planner(r17.PlannerSettings(**run2["settings"])).plans(
         run2["theta"], [m]
@@ -96,7 +104,7 @@ def tune_task(task: tuple) -> dict[str, Any]:
         check = _fitness(es.theta, variants, CHECK_BASE + i * 100_000)
         if check > best[0]:
             best = (check, es.theta.copy(), name)
-    return {"set": which, "mission": i, "u": best[1].tolist(), "start": best[2],
+    return {"mission": i, "u": best[1].tolist(), "start": best[2],
             "check": best[0], "seconds": time.perf_counter() - start}  # fmt: skip
 
 

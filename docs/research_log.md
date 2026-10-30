@@ -409,6 +409,16 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Report:** docs/results/r17f_mission_time.md
 - **Chart:** r17f_mission_time
 
+### R17 step 6: the recommended search system on realistic missions
+- **Date:** 2026-10-30 (running)
+- **Question:** Put together, how well would a search go with the recommended setup: the 448-px camera, a filter cutting false detections 10×, the operator confirming, the hand-off for walkers and mission-time planning?
+- **Why:** Each R15–R17 step measured one piece. A hardware decision needs the whole chain on realistic missions, and a comparison with today's K210 brain and OpenSwarm's default.
+- **What we did:** Step 3's 40 held-out missions (half with a walking person; GPS error, wind and battery vary; the moving hint is right 85% of the time) × 2,000 episodes, with the measured scout brains. Conditions: the K210 brain as measured, the K210 with the filter, the 448 camera without and with the filter, and the recommended setup with 1 frame per look. Plans: OpenSwarm's default, the step-2 planner, and mission-time tuning. Bar fixed in advance: the recommended setup finds the person in ≥ 50% of episodes with ≤ 5% wrong finds.
+- **Result:** Running (about 40 min on the CPU).
+- **Verdict:** Running
+- **What it means:** Pending.
+- **Report:** docs/directions/drone_swarm.md
+
 ### R17 step 5b: how much tuning time is a mission worth?
 - **Date:** 2026-10-30
 - **Question:** How does mission-time planning improve with more tuning time, and where does it level off?

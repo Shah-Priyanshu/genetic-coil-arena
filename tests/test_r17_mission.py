@@ -260,3 +260,34 @@ def test_mission_time_prior_and_summary():
     rep = rf.summarise(cells, tuned)
     assert rep["passed"] and rep["planner_start_share"] == 1.0
     assert "GOOD SIGN" in rf.render(rep)
+
+
+def test_system_conditions_and_bar():
+    from genetic_coil_arena.experiments import r17g_system as rg
+
+    ms = rg.missions_for(rg.RECOMMENDED)
+    assert len(ms) == r17.N_TEST and all(m.operator_confirms for m in ms)
+    assert (
+        ms[0].frames_per_look == 3.0
+        and ms[0].px_m > rg.missions_for(rg.CONDITIONS[0])[0].px_m
+    )
+    assert sum(m.person_speed > 0 for m in ms) == sum(
+        m.person_speed > 0 for m in r17.held_out_missions(2)
+    )
+    cells = {}
+    for cond in rg.CONDITIONS:
+        good = cond == rg.RECOMMENDED
+        for system in ("OpenSwarm default", "step-2 planner", "mission-time tuning"):
+            for i in range(3):
+                f, w = (
+                    (0.6, 0.03)
+                    if good and system == "mission-time tuning"
+                    else (0.2, 0.1)
+                )
+                cells[(cond, system, 0, i)] = {
+                    "score": f - 2 * w,
+                    "found": f,
+                    "wrong": w,
+                }
+    rep = rg.summarise(cells)
+    assert rep["pass"] and "PASS" in rg.render(rep)
