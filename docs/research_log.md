@@ -336,6 +336,16 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **What it means:** Pending.
 - **Report:** docs/results/r15b_aerial_scout.md
 
+### R15e: how often does an operator confirm a false alarm?
+- **Date:** 2026-10-30 (waiting for the labelling session)
+- **Question:** Shown a spot the scout brain flagged, how often does a person say "person" when there is none, and "no person" when there is one?
+- **Why:** R17 step 6b found the operator's false-accept rate is the assumption the search results depend on most. Accepting 10% of empty views instead of 2% costs 20 points of people found.
+- **What we did:** R15b's width-0.5 brain flagged spots at confidence ≥ 0.5 on 4,000 VisDrone validation tiles (native scale; the test split untouched). 200 were sampled, 100 on a person and 100 false alarms, each shown as a 72-px crop around the spot (3× enlarged) with a ring on it, in random order, on a private labelling page. The answers and decision times are stored in the page's database; the true labels stay in the data folder. From the scout's own view, not a closer confirmer's, so this is a pessimistic first measurement.
+- **Result:** Waiting for the labelling session.
+- **Verdict:** Running
+- **What it means:** Pending. The measured rates replace R17's assumed 90% / 2% and step 6 is rerun with them.
+- **Report:** docs/directions/drone_swarm.md
+
 ### R15c probe: does a bigger camera input change recall per pixel?
 - **Date:** 2026-10-30
 - **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?
