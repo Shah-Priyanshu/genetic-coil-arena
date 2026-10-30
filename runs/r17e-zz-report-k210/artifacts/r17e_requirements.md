@@ -1,0 +1,23 @@
+# R17 step 4: what the scout brain must reach before a search works
+
+Read-out (fixed in advance): the smallest cut in false detections at which tuned searches find the person in ≥ 50% of episodes with ≤ 5% wrong finds.
+
+- **K210 224, 1 frames/look:** false detections cut to 0.03× (33.3333 times fewer)
+- **K210 224, 3 frames/look:** false detections cut to 0.1× (10 times fewer)
+
+Step 1's 40 held-out missions × 2000 episodes; operator confirms; found / wrong find, averaged over missions.
+
+| Camera | Frames per look | False detections | OpenSwarm default | Hand two-tier (0.6) | Tuned per mission |
+|---|---|---|---|---|---|
+| K210 224 | 1 | ×1 | 5% / 81.3% | 24% / 14.0% | 25% / 6.4% |
+| K210 224 | 1 | ×0.3 | 8% / 42.8% | 25% / 4.7% | 38% / 5.4% |
+| K210 224 | 1 | ×0.1 | 10% / 17.5% | 26% / 1.7% | 49% / 4.4% |
+| K210 224 | 1 | ×0.03 | 10% / 5.7% | 26% / 0.5% | 62% / 4.6% |
+| K210 224 | 1 | ×0.01 | 11% / 2.0% | 26% / 0.2% | 71% / 3.8% |
+| K210 224 | 3 | ×1 | 5% / 94.6% | 32% / 23.7% | 41% / 9.9% |
+| K210 224 | 3 | ×0.3 | 13% / 73.6% | 48% / 10.9% | 60% / 6.7% |
+| K210 224 | 3 | ×0.1 | 21% / 39.4% | 51% / 4.0% | 72% / 4.5% |
+| K210 224 | 3 | ×0.03 | 26% / 14.5% | 52% / 1.3% | 81% / 3.2% |
+| K210 224 | 3 | ×0.01 | 28% / 5.2% | 53% / 0.4% | 88% / 2.6% |
+
+Reproduce: `python scripts/r17e_requirements.py report --from runs:r17e-tune-*`.
