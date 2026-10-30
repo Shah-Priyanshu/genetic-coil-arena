@@ -305,14 +305,15 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r15_scout
 
 ### R15b: the scout brain from a drone's view
-- **Date:** 2026-10-29 (running)
+- **Date:** 2026-10-30
 - **Question:** Does the COCO-trained scout brain find people in drone footage, and how much does training on aerial images help?
 - **Why:** COCO photos are taken from the ground, while a SCOUT drone looks down from altitude, where people are a few pixels wide and seen from above. R15 showed that small people are the brain's weak spot.
 - **What we did:** VisDrone2019-DET (drone footage from 14 cities; 6,471 training frames and 1,610 test frames, 16–25 people per frame). Every frame is cut into 224×224 tiles (OpenSwarm's input size) at native and half resolution. Three brains at widths 0.25, 0.5 and 0.75: R15's COCO models unchanged (zero-shot), the same models fine-tuned on aerial tiles, and the same training from random weights (scratch). Scored once on the test frames. Besides AP50, "centre AP" counts a detection when its centre lands on the person, because that is what the DETECTION packet carries. Scores are also broken down by person size. Bars fixed in advance, at width 0.5: (1) fine-tuning beats zero-shot by ≥ 10 AP50 points, and (2) starting from COCO beats scratch, both with paired intervals above 0 for every seed.
-- **Result:** Running (about 12 hours on the GPU).
-- **Verdict:** Running
-- **What it means:** Pending.
-- **Report:** docs/directions/drone_swarm.md
+- **Result:** Both bars pass at width 0.5. Fine-tuning on aerial tiles beats the COCO brain unchanged by +11.7 AP50 points (bar +10; 0.145 vs 0.029), and starting from COCO beats training from scratch by +2.1 (bar: above 0), the same for all three seeds. Width 0.75 is best (AP50 0.170, centre AP 0.336); width 0.25 (115 KB) keeps most of it (0.109, 0.284). What a scout sees per frame (width 0.5, fine-tuned), by person size in the 224-px tile: at confidence 0.5, recall is 11% under 8 px, 29% at 8–16 px, 45% at 16–32 px and 61% above 32 px, with 0.10 false detections per tile (4.5% of empty tiles raise one). At OpenSwarm's person-follow threshold 0.7 it almost never fires: 2–7% below 32 px, 24% above, but with only 0.002 false detections per tile. At 0.3 recall is 22/47/67/81% with 0.9 false detections per tile. From above, a person is about 66/h px wide in the tile at altitude h m (OV2640, ~60°), so 8–16 px means roughly 4–8 m, and OpenSwarm's 5 m search altitude puts people near 13 px.
+- **Verdict:** PASS (both bars)
+- **What it means:** The drone's view needs its own training, and a sub-megabyte brain trained on it is usable, but only up close: at 5 m it sees a person in about 3 frames out of 10 at threshold 0.5. OpenSwarm's 0.7 threshold would make the scout nearly blind, so the threshold must come down and the false alarms that brings must be confirmed, which is what R17's two-tier plans do. The measured curve is also flatter than the range R17 assumed (half recall near 27 px, not 6–20), so R17's numbers are optimistic. Next: R17 with this measured detector, and the camera choice, since more pixels per person is the main lever.
+- **Report:** docs/results/r15b_aerial_scout.md
+- **Chart:** r15b_scout
 
 ### R17: a leader that plans the person search
 - **Date:** 2026-10-29

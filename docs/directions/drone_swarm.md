@@ -264,3 +264,23 @@ Results on 40 held-out missions × 2,000 episodes. Score = found − 2 × wrong 
 - **So step 2's "hedging" explanation was wrong.** The broad-trained planner sweeps higher (10.6 vs 6.8 m) and keeps more confirmers (39% vs 24%) even when told the person is still. Per-mission tuning finds better plans.
 - **Next:** a larger planner (32 hidden units, 6,000 generations), judged against the same bars. If that fails, keep separate planners and let the hint pick.
 
+## R15b result: the scout brain from a drone's view (`docs/results/r15b_aerial_scout.md`)
+
+**Both bars pass.**
+- Fine-tuning on VisDrone beats the COCO brain by +11.7 AP50 points (width 0.5).
+- Starting from COCO beats training from scratch by +2.1.
+
+Per-frame recall of the width-0.5 brain, by person size in the 224-px tile. Altitudes are rough, for the OV2640 at ~66/h px per person.
+
+| Threshold | < 8 px (above ~8 m) | 8–16 px (~4–8 m) | 16–32 px (~2–4 m) | 32+ px | False detections per tile |
+|---|---|---|---|---|---|
+| 0.3 | 22% | 47% | 67% | 81% | 0.90 |
+| 0.5 | 11% | 29% | 45% | 61% | 0.10 |
+| 0.7 (OpenSwarm) | 2% | 5% | 7% | 24% | 0.002 |
+
+**Consequences:**
+- OpenSwarm's 0.7 threshold leaves the scout nearly blind.
+- Search needs a lower threshold plus confirmation, which is R17's two-tier tactic.
+- The measured curve is flatter than R17 assumed (half recall near 27 px), so R17's absolute numbers are optimistic.
+- More pixels per person is the lever, through a higher-resolution camera module or lower sweeps.
+

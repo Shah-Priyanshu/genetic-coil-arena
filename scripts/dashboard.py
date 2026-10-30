@@ -237,6 +237,10 @@ HOW_TO_READ = {
     "they stand still. The step-1 planner collapses when the person walks; the version 2 "
     "planner (with the hand-off) holds up there but gives up points when the person is "
     "still, because it cannot tell the two apart.",
+    "r15b_scout": "What the scout brain (width 0.5, fine-tuned on drone footage) sees "
+    "in one frame, by how many pixels wide the person is, at three confidence thresholds. "
+    "Rough altitudes for the OV2640 camera are in the labels. At OpenSwarm's 0.7 the "
+    "scout misses almost everyone; at 0.5 it finds a third to a half of people up close.",
     "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
     "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
     "translation through the shared meanings could do.",
@@ -459,6 +463,25 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
             pd.DataFrame(pts), x="system", y="score (points)", color="person",
             barmode="group", title="R17 step 2: walking and still people",
         )  # fmt: skip
+    aerial = read_json(res / "r15b_aerial_scout.json")
+    if aerial:
+        runs = [r for r in aerial["runs"]
+                if r["condition"] == "fine-tuned" and r["alpha"] == 0.5]  # fmt: skip
+        bins = {"0-8": "0-8 px (above ~8 m)", "8-16": "8-16 px (~4-8 m)",
+                "16-32": "16-32 px (~2-4 m)", "32+": "32+ px (below ~2 m)"}  # fmt: skip
+        pts = [
+            {"person size": label, "threshold": thr,
+             "recall (%)": 100 * sum(
+                 r["test"]["pooled"]["operating"][thr][f"recall {b}"] for r in runs)
+             / len(runs)}
+            for thr in ("0.3", "0.5", "0.7") for b, label in bins.items()
+            if runs and thr in runs[0]["test"]["pooled"]["operating"]
+        ]  # fmt: skip
+        if pts:
+            figs["r15b_scout"] = px.line(
+                pd.DataFrame(pts), x="person size", y="recall (%)", color="threshold",
+                markers=True, title="R15b: what the scout sees per frame",
+            )  # fmt: skip
     inter = read_json(res / "r7e_interlingua.json")
     if inter:
         pts = [
