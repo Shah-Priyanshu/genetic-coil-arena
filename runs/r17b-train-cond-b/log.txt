@@ -259,3 +259,5 @@
 [saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-train-cond-b\artifacts\r17b_planner_conditioned_run12
 [saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-train-cond-b\artifacts\r17b_planner_conditioned_run13
 [saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-train-cond-b\artifacts\r17b_planner_conditioned_run14
+[done] run 15: best val 0.293 at generation 1350, 4514 s
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17b-train-cond-b\artifacts\r17b_planner_conditioned_run15
