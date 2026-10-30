@@ -6,3 +6,5 @@
 [progress] 2500/9600 cells, 35 s
 [progress] 3000/9600 cells, 40 s
 [progress] 3500/9600 cells, 45 s
+[progress] 4000/9600 cells, 51 s
+[progress] 4500/9600 cells, 58 s
