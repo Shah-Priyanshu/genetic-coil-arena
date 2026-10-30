@@ -1,0 +1,16 @@
+{
+  "id": "r15c-prepare448",
+  "commit": "6d49128d800b9e5f250a36b6ca0256b6eb565bca",
+  "args": [
+    "scripts/r15b_aerial_scout.py",
+    "--size",
+    "448",
+    "prepare",
+    "--workers",
+    "6"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 6,
+  "priority": 1,
+  "timeout_min": 240.0
+}
