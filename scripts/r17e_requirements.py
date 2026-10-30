@@ -23,9 +23,16 @@ from genetic_coil_arena.experiments.r7b_report import resolve_sources  # noqa: E
 
 
 def _cameras(specs: list[str]) -> dict[str, dict]:
+    """``name=path`` or ``name=runs:<job>`` (that job's ``r15*_aerial*.json``)."""
     out = {}
     for spec in specs:
         name, path = spec.split("=", 1)
+        if path.startswith("runs:"):
+            found = [f for folder in resolve_sources([path])
+                     for f in sorted(folder.glob("r15*_aerial*.json"))]  # fmt: skip
+            if not found:
+                raise SystemExit(f"no aerial report in {path}")
+            path = str(found[0])
         out[name] = rq.camera_table(Path(path))
     return out
 
