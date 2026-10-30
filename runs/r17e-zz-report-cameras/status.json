@@ -1,0 +1,26 @@
+{
+  "id": "r17e-zz-report-cameras",
+  "commit": "5036ed611bcca552a89cfa85aae207a071fcdca9",
+  "queued_args": [
+    "scripts/r17e_requirements.py",
+    "report",
+    "--camera",
+    "K210 224=docs/results/r15b_aerial_scout.json",
+    "--camera",
+    "448 camera=runs:r15c-zz-report448",
+    "--from",
+    "runs:r17e-tune-*",
+    "--workers",
+    "8",
+    "--out",
+    "docs/results/r17e_requirements.md"
+  ],
+  "state": "running",
+  "started_at": "2026-10-30T05:57:43+00:00",
+  "updated_at": "2026-10-30T05:57:43+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 99 %, 4133 MiB, 12282 MiB, 70",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 8
+}
