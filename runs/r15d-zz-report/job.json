@@ -1,0 +1,17 @@
+{
+  "id": "r15d-zz-report",
+  "commit": "719e42c745927a64a65230b80955929f77eb4222",
+  "args": [
+    "scripts/r15d_negatives.py",
+    "--from",
+    "runs:r15b2-train-ft-a05",
+    "runs:r15d-train-neg"
+  ],
+  "lane": "gpu",
+  "cpu_workers": 4,
+  "priority": 1,
+  "after": [
+    "r15d-train-neg"
+  ],
+  "timeout_min": 120.0
+}
