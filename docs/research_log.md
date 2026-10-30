@@ -326,6 +326,16 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Report:** docs/results/r17_mission.md
 - **Chart:** r17_mission
 
+### R15c probe: does a bigger camera input change recall per pixel?
+- **Date:** 2026-10-30 (running)
+- **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?
+- **Why:** The camera choice comes down to pixels on the person: more input pixels let a scout fly higher for the same person size. That reasoning only holds if recall depends on the person's size in pixels and not on the input size.
+- **What we did:** The same pipeline as R15b at 448×448 tiles: one width-0.5 brain fine-tuned from COCO, with the same steps and pixels per step (batch 32 instead of 128), scored on VisDrone test. A probe with no pre-registered bar: it supports the assumption if recall per size bin at threshold 0.5 is within about 5 points of the 224 brain's.
+- **Result:** Running (tile preparation on the CPU, then about 2 h on the GPU).
+- **Verdict:** Running
+- **What it means:** Pending.
+- **Report:** docs/results/r15b_aerial_scout.md
+
 ### R16 (G14): a plain-language ground station for OpenSwarm
 - **Date:** 2026-10-29
 - **Question:** Can an operator command the swarm in plain words ("sweep the parking lot at 10 m") and have the ground station send exactly that command, ask when unclear and refuse what the swarm can't do?
