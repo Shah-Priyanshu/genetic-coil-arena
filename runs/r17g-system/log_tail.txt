@@ -1,2 +1,5 @@
 [load] step-2 planners: 16
 [progress] 20/200 missions tuned, 211 s
+[progress] 40/200 missions tuned, 446 s
+[progress] 60/200 missions tuned, 486 s
+[progress] 80/200 missions tuned, 576 s
