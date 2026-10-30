@@ -18,3 +18,5 @@
 [progress] 360/520 missions tuned, 1104 s
 [progress] 380/520 missions tuned, 1153 s
 [progress] 400/520 missions tuned, 1191 s
+[progress] 420/520 missions tuned, 1227 s
+[progress] 440/520 missions tuned, 1250 s
