@@ -337,14 +337,14 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Report:** docs/results/r15b_aerial_scout.md
 
 ### R15c probe: does a bigger camera input change recall per pixel?
-- **Date:** 2026-10-30 (running)
+- **Date:** 2026-10-30
 - **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?
 - **Why:** The camera choice comes down to pixels on the person: more input pixels let a scout fly higher for the same person size. That reasoning only holds if recall depends on the person's size in pixels and not on the input size.
 - **What we did:** The same pipeline as R15b at 448×448 tiles: one width-0.5 brain fine-tuned from COCO, with the same steps and pixels per step (batch 32 instead of 128), scored on VisDrone test. A probe with no pre-registered bar: it supports the assumption if recall per size bin at threshold 0.5 is within about 5 points of the 224 brain's.
-- **Result:** Running (tile preparation on the CPU, then about 2 h on the GPU).
-- **Verdict:** Running
-- **What it means:** Pending.
-- **Report:** docs/results/r15b_aerial_scout.md
+- **Result:** Recall per person size in pixels is the same at 448 as at 224, within 4 points in every bin at threshold 0.5. The 448 brain finds 12/29/47/66% of people at 0–8/8–16/16–32/32+ px, against 11/29/45/61% for the 224 brain. False detections per tile rise to 0.26, against 0.10 per 224 tile. A 448 tile holds 4× the pixels, so per area of image that is slightly lower (about 0.065 per 224-px area). At 0.7 the 448 brain finds 2/6/8/29% with 0.008 false detections per tile.
+- **Verdict:** PROBE: PIXELS ON THE PERSON HOLD
+- **What it means:** A camera can be summarised by the pixels it puts on a person. A 448-input module with the same lens sees a person at altitude h as the K210 sees it at h/2, which lets scouts sweep twice as high for the same recall and cover four times the ground per lane. But each look raises about 2.7× the false detections, and false alarms are the scout's real limit (R17 step 4). Which effect wins is measured next by R17 step 4 with this 448 brain.
+- **Report:** docs/results/r15c_aerial448.md
 
 ### R16 (G14): a plain-language ground station for OpenSwarm
 - **Date:** 2026-10-29

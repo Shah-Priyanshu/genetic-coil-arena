@@ -317,3 +317,14 @@ Per-frame recall of the width-0.5 brain, by person size in the 224-px tile. Alti
 
 **Cheapest route:** require a detection to persist over consecutive frames at the same spot before reporting it. Measuring how often false detections persist needs drone video (VisDrone video set).
 
+## R15c probe: a 448-px input (`docs/results/r15c_aerial448.md`)
+
+**Pixels on the person hold:** recall per size bin at 0.5 is within 4 points of the 224 brain's.
+
+| Brain | Recall 0–8 / 8–16 / 16–32 / 32+ px | False detections per tile |
+|---|---|---|
+| 448 | 12 / 29 / 47 / 66% | 0.26 per 448 tile |
+| 224 (R15b) | 11 / 29 / 45 / 61% | 0.10 per 224 tile |
+
+**What it means for a camera:** a 448 camera with the same lens sees a person at altitude h as the K210 sees it at h/2. But each look raises about 2.7× the false detections. R17 step 4 with this brain weighs the two.
+
