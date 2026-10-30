@@ -4,3 +4,4 @@ C:\Users\priya\AppData\Local\Temp\gca-r15b2-zz-report2-hsqj0o3i\src\genetic_coil
 [21:49:07] zero-shot a0.5 seed 0: test AP50 0.029, centre AP 0.072, COCO AP50 0.281 (111 s)
 [21:50:43] zero-shot a0.75 seed 0: test AP50 0.034, centre AP 0.075, COCO AP50 0.304 (95 s)
 [21:54:04] fine-tuned a0.25 seed 0: test AP50 0.109, centre AP 0.283, COCO AP50 0.070 (201 s)
+[21:57:17] fine-tuned a0.25 seed 1: test AP50 0.109, centre AP 0.286, COCO AP50 0.068 (193 s)
