@@ -378,6 +378,16 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **What it means:** Step 2's explanation was wrong: the loss on still people was not hedging over a possibly walking person, since a correct hint does not recover it. One small network trained over the broader, harsher missions plans worse for the nominal case even when told the person is still, while per-mission tuning finds better plans (44 vs 30 on still people). That points to a training limit, not missing information. A larger planner (32 hidden units, 6,000 generations) is now tested against the same bars. If it also fails, the leader should keep separate planners and let the hint pick one.
 - **Report:** docs/results/r17c_hint.md
 
+### R17 step 4: what the scout brain must reach before a search works
+- **Date:** 2026-10-30 (running)
+- **Question:** With the scout brain R15b measured on drone footage, how many fewer false detections does it need, from a temporal filter on the drone or a better model, before a tuned search finds the person without sending the team to the wrong place?
+- **Why:** R15b's brain raises about 0.1 false detections per frame at threshold 0.5, and a first look in the simulator showed searches drowning in candidates. That makes false alarms, not recall, the scout's real specification.
+- **What we did:** Put R15b's measured table (recall by person size at thresholds 0.3/0.5/0.7, false detections per tile) into the search simulator. The confirming drone's view goes to the operator: the operator recognises a person in view 90% of the time and wrongly accepts an empty view 2% of the time (assumptions). False detections were cut by 1×, 3×, 10×, 30× and 100×, with 1 or 3 independent frames per second of video. Each of step 1's 40 held-out missions got its own tuned plan at every level. Read-out fixed in advance: the smallest cut at which tuned searches find the person in ≥ 50% of episodes with ≤ 5% wrong finds. No bar, since this measures a requirement.
+- **Result:** Running (about 2 h on the CPU).
+- **Verdict:** Running
+- **What it means:** Pending.
+- **Report:** docs/results/r15b_aerial_scout.md
+
 ### G14b: the ground station, fixed, on a fresh sealed set
 - **Date:** 2026-10-29
 - **Question:** With the three problems G14's misses exposed fixed, does the station meet the same bars on requests it has never seen?

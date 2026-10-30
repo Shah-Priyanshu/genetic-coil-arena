@@ -197,3 +197,44 @@ def test_hint_summary_bars():
                 cells[(cond, name, 0, i)] = {"score": s, "found": s, "wrong": 0.0}
     rep = rc.summarise(cells)
     assert rep["passed"] and "GOOD SIGN" in rc.render(rep)
+
+
+def test_measured_table_and_operator_confirmation():
+    from dataclasses import replace
+    from pathlib import Path
+
+    from genetic_coil_arena.experiments import r17e_requirements as rq
+
+    cam = rq.camera_table(Path("docs/results/r15b_aerial_scout.json"))
+    assert len(cam["recall"]) == 12 and len(cam["false"]) == 3 and cam["size"] == 224
+    ms = rq.missions_for(cam, 3.0, 0.1)
+    assert ms[0].operator_confirms and ms[0].frames_per_look == 3.0
+    assert ms[0].table[12:] == tuple(f * 0.1 for f in cam["false"])
+    # a table that always sees people and never raises false detections finds everyone
+    m = Mission(40.0, 40.0, 6, 300.0, table=(1.0,) * 12 + (0.0,) * 3)
+    assert run_missions(m, OPENSWARM_DEFAULT, SEEDS)["found"].mean() > 0.97
+    blind = Mission(40.0, 40.0, 6, 300.0, table=(0.0,) * 12 + (0.0,) * 3)
+    assert run_missions(blind, OPENSWARM_DEFAULT, SEEDS)["found"].mean() == 0
+    # the operator never confirms a person who is not in view, and accepts few empties
+    noisy = replace(m, table=(0.0,) * 12 + (0.5,) * 3, operator_confirms=True)
+    r = run_missions(noisy, hand_two_tier(6), SEEDS)
+    assert r["found"].mean() < 0.2 and r["wrong"].mean() > 0
+    with pytest.raises(ValueError):
+        Mission(table=(1.0,) * 5).vector()
+
+
+def test_requirements_summary():
+    from genetic_coil_arena.experiments import r17e_requirements as rq
+
+    cells = {}
+    for mult, found, wrong in ((1.0, 0.2, 0.3), (0.1, 0.55, 0.04), (0.01, 0.7, 0.01)):
+        for system in ("OpenSwarm default", "hand two-tier", "tuned per mission"):
+            for i in range(3):
+                cells[("K210", 3.0, mult, system, i)] = {
+                    "score": found - 2 * wrong,
+                    "found": found,
+                    "wrong": wrong,
+                }
+    rep = rq.summarise(cells)
+    assert rep["needed_fa_mult"] == {"K210, 3 frames/look": 0.1}
+    assert "10 times fewer" in rq.render(rep)

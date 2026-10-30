@@ -280,7 +280,14 @@ def tune_mission(index: int, generations: int = 300, population: int = 32,
     """ES on one test mission's plan alone, from the default and the hand plan, on its
     own tuning seeds; the start whose result scores best on separate seeds wins.
     Version 2 also starts from the hand plan with a 30 s hand-off."""
-    m = held_out_missions(version)[index]
+    return tune_plan(held_out_missions(version)[index], index, generations, population,
+                     episodes, val_episodes, version)  # fmt: skip
+
+
+def tune_plan(m: Mission, index: int, generations: int = 300, population: int = 32,
+              episodes: int = 128, val_episodes: int = 1000,
+              version: int = 1) -> dict[str, Any]:  # fmt: skip
+    """``tune_mission`` for any mission (``index`` picks its tuning and check seeds)."""
     val_seeds = mission_seeds(ORACLE_VAL_BASE, index, val_episodes)
     best: tuple[float, np.ndarray, str] = (-np.inf, np.zeros(n_plan(version)), "")
     starts = [("default", OPENSWARM_DEFAULT), ("hand", hand_two_tier(m.drones))]

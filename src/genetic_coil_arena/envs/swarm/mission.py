@@ -38,6 +38,14 @@ candidate's latest position and moving it with every re-sighting, until a confir
 starts looking (then it resumes its lane). ``track_s = 0`` is step 1's tactic. A find
 radius (``Mission.found_m``) can grow with the GPS error.
 
+**Measured detector and operator (R17 step 4):** with ``Mission.table`` the per-frame
+recall and false detections come from a measured table (``TABLE_THR`` x ``TABLE_PX``,
+R15b), person size is ``px_m / altitude`` px and a one-second look holds
+``frames_per_look`` independent frames. With ``operator_confirms`` the confirmer's view
+goes to the operator, who recognises a person in it (``OP_HIT`` per look) or wrongly
+accepts an empty one (``OP_FALSE`` per candidate); the detector's own confirmations are
+not used then.
+
 **Outcome:** a declaration within ``found_m`` (default ``FOUND_M``) of the person is a find; any other
 declaration is a wrong find (the rescue team goes to the wrong place); no declaration
 by the end of the sortie is a miss. ``score = found - 2 * wrong``.
@@ -60,6 +68,17 @@ FOOTPRINT = 1.155  # footprint side / altitude: 2 tan(30 deg), OV2640's ~60 deg 
 INPUT_PX = 224  # K210 detector input (OpenSwarm ai_module.h)
 PERSON_M = 0.45  # a person's width seen from above (shoulders); choice
 PX_M = INPUT_PX * PERSON_M / FOOTPRINT  # person width in px times altitude in m
+# R17 step 4: a measured detection table (R15b) instead of the parametric curve.
+# Recall is given per frame at these thresholds and person sizes (px, the square root
+# of the person's box area, geometric bin centres of R15b's 0-8 / 8-16 / 16-32 / 32+),
+# then false detections per tile at the same thresholds.
+TABLE_THR = (0.3, 0.5, 0.7)
+TABLE_PX = (5.7, 11.3, 22.6, 45.0)
+PERSON_AREA_M = 0.34  # sqrt of a person's box area seen from above (0.45 x 0.25 m)
+# operator confirmation (step 4): the confirmer streams its view and the operator
+# decides; per look the operator recognises a person in view with OP_HIT, and per
+# candidate wrongly accepts an empty view with OP_FALSE (choices, not measurements)
+OP_HIT, OP_FALSE = 0.9, 0.02
 SPEED, CLIMB = 4.0, 2.0  # m/s cruise and climb/descent; choice
 RESERVE_S = 15.0  # battery seconds kept for landing; choice
 LOC0, LOC1 = 1.0, 0.05  # detection position error: GPS (m) + per metre of altitude
@@ -101,11 +120,24 @@ class Mission:
     # the operator's hint about the person (+1 may be moving, -1 still, 0 not said);
     # read by version 3 planners only, never by the simulator
     moving_hint: float = 0.0
+    # step 4: person size in px x altitude for the camera, independent frames per
+    # one-second look, and the measured table (12 recalls, 3 false-detection rates;
+    # empty = the parametric ``detector``)
+    px_m: float = PX_M
+    frames_per_look: float = 1.0
+    table: tuple[float, ...] = ()
+    operator_confirms: bool = False
 
     def vector(self) -> np.ndarray:
+        if self.table and len(self.table) != len(TABLE_THR) * (len(TABLE_PX) + 1):
+            raise ValueError("table needs 12 recalls and 3 false-detection rates")
+        table = list(self.table) or [0.0] * (len(TABLE_THR) * (len(TABLE_PX) + 1))
         return np.array([self.width, self.height, self.drones, self.battery_s,
                          *astuple(self.detector), self.person_speed, self.loc_error,
-                         self.speed, self.found_m], dtype=np.float64)  # fmt: skip
+                         self.speed, self.found_m, self.px_m, self.frames_per_look,
+                         1.0 if self.table else 0.0, *table,
+                         1.0 if self.operator_confirms else 0.0],
+                        dtype=np.float64)  # fmt: skip
 
 
 @dataclass(frozen=True)
@@ -166,6 +198,45 @@ def _tier(alt, thr, px50, slope, fa50, fa_slope, loc0):
     return FOOTPRINT * alt, p, lam, loc0 + LOC1 * alt
 
 
+_TABLE_THR = np.array(TABLE_THR)
+_TABLE_LOGPX = np.log(np.array(TABLE_PX))
+
+
+@njit(cache=True)
+def _interp(x, xs, ys):
+    """Piecewise-linear interpolation, clamped at both ends."""
+    if x <= xs[0]:
+        return ys[0]
+    for i in range(1, len(xs)):
+        if x <= xs[i]:
+            w = (x - xs[i - 1]) / (xs[i] - xs[i - 1])
+            return ys[i - 1] * (1.0 - w) + ys[i] * w
+    return ys[len(xs) - 1]
+
+
+@njit(cache=True)
+def _tier_table(alt, thr, mv, loc0):
+    """Footprint, per-look detection probability and false detections, and position
+    error from the measured table: recall interpolated in log px (below the first
+    bin it falls in proportion to px) and in threshold (clamped to 0.3-0.7); false
+    detections interpolated in log space; ``frames_per_look`` independent frames."""
+    px_m, n = mv[12], mv[13]
+    rec = mv[15:27].reshape(3, 4)
+    fa = mv[27:30]
+    px = px_m / alt
+    lpx = math.log(px)
+    per_thr = np.empty(3)
+    for k in range(3):
+        r = _interp(lpx, _TABLE_LOGPX, rec[k])
+        if px < math.exp(_TABLE_LOGPX[0]):
+            r *= px / math.exp(_TABLE_LOGPX[0])
+        per_thr[k] = r
+    p = min(max(_interp(thr, _TABLE_THR, per_thr), 0.0), 1.0)
+    lam = math.exp(_interp(thr, _TABLE_THR, np.log(np.maximum(fa, 1e-9))))
+    p_look = 1.0 - (1.0 - p) ** n
+    return FOOTPRINT * alt, p_look, lam * n, loc0 + LOC1 * alt
+
+
 @njit(cache=True)
 def _step_to(x, y, gx, gy, budget):
     """Move up to ``budget`` m towards (gx, gy): new x, y, distance moved, arrived."""
@@ -201,8 +272,14 @@ def _episode(seed, mv, pv, out):
     hx, hy = width / 2.0, -5.0
     sweep_alt, overlap, n_conf = pv[0], pv[1], int(pv[3])
     conf_alt, looks = pv[4], int(pv[6])
-    s_s, p_s, lam_s, sig_s = _tier(sweep_alt, pv[2], px50, slope, fa50, fa_slope, loc0)
-    s_c, p_c, lam_c, sig_c = _tier(conf_alt, pv[5], px50, slope, fa50, fa_slope, loc0)
+    if mv[14] > 0:
+        s_s, p_s, lam_s, sig_s = _tier_table(sweep_alt, pv[2], mv, loc0)
+        s_c, p_c, lam_c, sig_c = _tier_table(conf_alt, pv[5], mv, loc0)
+    else:
+        s_s, p_s, lam_s, sig_s = _tier(sweep_alt, pv[2], px50, slope, fa50, fa_slope,
+                                       loc0)  # fmt: skip
+        s_c, p_c, lam_c, sig_c = _tier(conf_alt, pv[5], px50, slope, fa50, fa_slope,
+                                       loc0)  # fmt: skip
     n_sw = n_drones - n_conf
 
     strip = width / n_sw
@@ -358,6 +435,24 @@ def _episode(seed, mv, pv, out):
                 cx[j], cy[j], _, arrived = _step_to(cx[j], cy[j], kx[c], ky[c], spd)
                 if arrived:
                     cmode[j] = 3
+            elif cmode[j] == 3 and mv[30] > 0:  # the operator judges the view
+                half = s_c / 2
+                if abs(tx - kx[c]) <= half and abs(ty - ky[c]) <= half:
+                    if np.random.random() < OP_HIT:
+                        rx = tx + np.random.normal() * sig_c
+                        ry = ty + np.random.normal() * sig_c
+                        out[0] = 1.0 if math.hypot(rx - tx, ry - ty) <= found_m else 2.0
+                        out[1], out[2] = t, swept / lanes
+                        return
+                elif clooks[j] == 0 and np.random.random() < OP_FALSE:
+                    out[0] = (
+                        1.0 if math.hypot(kx[c] - tx, ky[c] - ty) <= found_m else 2.0
+                    )
+                    out[1], out[2] = t, swept / lanes
+                    return
+                clooks[j] += 1
+                if clooks[j] >= looks:
+                    ks[c], cmode[j] = 2, 4
             elif cmode[j] == 3:
                 half = s_c / 2
                 if abs(tx - kx[c]) <= half and abs(ty - ky[c]) <= half:
