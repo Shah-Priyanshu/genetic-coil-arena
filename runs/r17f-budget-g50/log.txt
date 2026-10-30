@@ -4,3 +4,5 @@
 [progress] 30/80 missions tuned, 98 s
 [progress] 40/80 missions tuned, 121 s
 [progress] 50/80 missions tuned, 142 s
+[progress] 60/80 missions tuned, 163 s
+[progress] 70/80 missions tuned, 185 s
