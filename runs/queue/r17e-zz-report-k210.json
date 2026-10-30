@@ -1,0 +1,24 @@
+{
+  "id": "r17e-zz-report-k210",
+  "commit": "ceec3c06d683cb28b2621ba5168f78825496d64e",
+  "args": [
+    "scripts/r17e_requirements.py",
+    "report",
+    "--camera",
+    "K210 224=docs/results/r15b_aerial_scout.json",
+    "--from",
+    "runs:r17e-tune-*",
+    "--workers",
+    "8",
+    "--out",
+    "docs/results/r17e_requirements.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 8,
+  "priority": 1,
+  "after": [
+    "r17e-tune-k210-f3",
+    "r17e-tune-k210-f1"
+  ],
+  "timeout_min": 60.0
+}
