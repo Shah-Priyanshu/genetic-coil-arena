@@ -2,3 +2,4 @@ C:\Users\priya\AppData\Local\Temp\gca-r15c-zz-report448-mm9puvuf\src\genetic_coi
   x = torch.from_numpy(np.ascontiguousarray(imgs)).to(dev).permute(0, 3, 1, 2)
 [01:29:51] zero-shot a0.25 seed 0: test AP50 0.023, centre AP 0.075, COCO AP50 0.241 (188 s)
 [01:31:54] zero-shot a0.5 seed 0: test AP50 0.035, centre AP 0.085, COCO AP50 0.281 (123 s)
+[01:33:15] zero-shot a0.75 seed 0: test AP50 0.046, centre AP 0.095, COCO AP50 0.304 (81 s)
