@@ -3,19 +3,13 @@
   "host": "PC",
   "draining_for_update": false,
   "cpu_budget": 24,
-  "cpu_workers_in_use": 20,
+  "cpu_workers_in_use": 12,
   "running": [
     {
       "id": "r15c-train448",
       "lane": "gpu",
       "cpu_workers": 4,
       "started_at": "2026-10-30T02:34:21+00:00"
-    },
-    {
-      "id": "r17f-budget-g200",
-      "lane": "cpu",
-      "cpu_workers": 8,
-      "started_at": "2026-10-30T05:06:00+00:00"
     },
     {
       "id": "r17f-budget-g400",
@@ -67,10 +61,10 @@
     "gpu": null
   },
   "psutil": true,
-  "updated_at": "2026-10-30T05:19:02+00:00",
-  "cpu_percent": 58.8,
+  "updated_at": "2026-10-30T05:19:27+00:00",
+  "cpu_percent": 63.6,
   "gpu": {
-    "util": 95.0,
+    "util": 96.0,
     "mem_used_mb": 4138.0,
     "mem_total_mb": 12282.0
   }
