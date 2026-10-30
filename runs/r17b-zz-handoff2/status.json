@@ -1,0 +1,23 @@
+{
+  "id": "r17b-zz-handoff2",
+  "commit": "6042a819195284fa951f11f3288b12a1ab4183e9",
+  "queued_args": [
+    "scripts/r17b_handoff.py",
+    "--from",
+    "runs:r17-train-cond-*",
+    "runs:r17b-train-*",
+    "runs:r17b-oracle",
+    "--workers",
+    "8",
+    "--out",
+    "docs/results/r17b_handoff.md"
+  ],
+  "state": "running",
+  "started_at": "2026-10-30T00:14:37+00:00",
+  "updated_at": "2026-10-30T00:14:37+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 97 %, 4920 MiB, 12282 MiB, 70",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 8
+}
