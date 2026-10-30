@@ -6,3 +6,5 @@
 [progress] 448 camera: 120/200 tuned, 624 s
 [progress] 448 camera: 140/200 tuned, 752 s
 [progress] 448 camera: 160/200 tuned, 880 s
+[progress] 448 camera: 180/200 tuned, 1024 s
+[progress] 448 camera: 200/200 tuned, 1166 s
