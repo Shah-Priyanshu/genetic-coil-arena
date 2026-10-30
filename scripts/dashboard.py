@@ -248,6 +248,9 @@ HOW_TO_READ = {
     "r17f_mission_time": "Person-search score of each way of planning, on missions "
     "where the person may walk (with the operator's hint) and where the person stands "
     "still. Tuning at mission time is the only one good on both.",
+    "r17f_budget": "Mission-time planning score against how long the ground station "
+    "tunes each mission (one CPU core). Dotted lines: the learned planners. Most of the "
+    "gain comes in the first half minute.",
     "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
     "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
     "translation through the shared meanings could do.",
@@ -516,6 +519,24 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
             pd.DataFrame(pts), x="planner", y="score (points)", color="missions",
             barmode="group", title="R17 step 5: plan at mission time",
         )  # fmt: skip
+    budget = read_json(res / "r17f_budget.json")
+    if budget:
+        pts = [
+            {"seconds of tuning (one core)": p["seconds_median"], "missions": which,
+             "score (points)": 100 * p[which]}
+            for p in budget["points"]
+            for which in ("hint 85% right", "still person, hint still")
+        ]  # fmt: skip
+        fig = px.line(
+            pd.DataFrame(pts), x="seconds of tuning (one core)", y="score (points)",
+            color="missions", markers=True, log_x=True,
+            title="R17 step 5b: how much tuning time a mission is worth",
+        )  # fmt: skip
+        for name, ref in budget["references"].items():
+            for which, v in ref.items():
+                fig.add_hline(y=100 * v, line_dash="dot",
+                              annotation_text=f"{name} ({which})")  # fmt: skip
+        figs["r17f_budget"] = fig
     inter = read_json(res / "r7e_interlingua.json")
     if inter:
         pts = [

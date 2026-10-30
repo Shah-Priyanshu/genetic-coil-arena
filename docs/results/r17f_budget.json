@@ -1,0 +1,84 @@
+{
+ "points": [
+  {
+   "generations": 25,
+   "seconds_median": 9.518991000019014,
+   "hint 85% right": 0.3132625,
+   "still person, hint still": 0.598925,
+   "gain_vs_step2": [
+    0.020411718750000002,
+    0.019138481266185683
+   ],
+   "still_vs_step1": [
+    -0.046953906249999997,
+    0.018830430622399894
+   ]
+  },
+  {
+   "generations": 50,
+   "seconds_median": 18.74492620001547,
+   "hint 85% right": 0.33145,
+   "still person, hint still": 0.614225,
+   "gain_vs_step2": [
+    0.03859921875000001,
+    0.02143191404325962
+   ],
+   "still_vs_step1": [
+    -0.03165390625000001,
+    0.02008056461829982
+   ]
+  },
+  {
+   "generations": 100,
+   "seconds_median": 30.39634189993376,
+   "hint 85% right": 0.3410125,
+   "still person, hint still": 0.6310375,
+   "gain_vs_step2": [
+    0.04816171875000001,
+    0.024104792297012182
+   ],
+   "still_vs_step1": [
+    -0.01484140625,
+    0.01903780895140013
+   ]
+  },
+  {
+   "generations": 200,
+   "seconds_median": 68.55566284997622,
+   "hint 85% right": 0.3449875,
+   "still person, hint still": 0.640925,
+   "gain_vs_step2": [
+    0.05213671875000001,
+    0.030586633488154956
+   ],
+   "still_vs_step1": [
+    -0.004953906249999999,
+    0.015058923671279666
+   ]
+  },
+  {
+   "generations": 400,
+   "seconds_median": 129.99382675002562,
+   "hint 85% right": 0.35231250000000003,
+   "still person, hint still": 0.657,
+   "gain_vs_step2": [
+    0.05946171875,
+    0.03909597634312069
+   ],
+   "still_vs_step1": [
+    0.011121093750000005,
+    0.013492980356257187
+   ]
+  }
+ ],
+ "references": {
+  "step-2 planner": {
+   "hint 85% right": 0.29285078124999997,
+   "still person, hint still": 0.49244140625000005
+  },
+  "step-1 planner": {
+   "hint 85% right": 0.18413203125000002,
+   "still person, hint still": 0.6458789062500001
+  }
+ }
+}

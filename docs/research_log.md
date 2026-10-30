@@ -409,6 +409,17 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Report:** docs/results/r17f_mission_time.md
 - **Chart:** r17f_mission_time
 
+### R17 step 5b: how much tuning time is a mission worth?
+- **Date:** 2026-10-30
+- **Question:** How does mission-time planning improve with more tuning time, and where does it level off?
+- **Why:** The ground station has to budget the wait before launch. Step 5 used 100 generations, about 30 s of one CPU core.
+- **What we did:** Re-ran step 5's mission-time tuning with 25, 50, 200 and 400 generations on the same held-out missions. Exploratory, with no bar; step 5's verdict stands as measured at 100.
+- **Result:** Scores with the walking hint / on still people: 25 generations (10 s): 31.3 / 59.9; 50 (19 s): 33.1 / 61.4; 100 (30 s): 34.1 / 63.1; 200 (69 s): 34.5 / 64.1; 400 (130 s): 35.2 / 65.7. Most of the gain comes in the first 30–60 s. At 400 generations it edges past the step-1 planner on still people (+1.1) and is +5.9 ± 3.9 over the step-2 planner with the hint.
+- **Verdict:** MEASURED
+- **What it means:** About half a minute to a minute of one core per mission gets most of the benefit. A laptop spreading the candidates over 8 cores would need a few seconds, short enough to run between the operator's request and launch. More time buys little beyond two minutes.
+- **Report:** docs/results/r17f_budget.md
+- **Chart:** r17f_budget
+
 ### R17 step 4: what the scout brain must reach before a search works
 - **Date:** 2026-10-30
 - **Question:** With the scout brain R15b measured on drone footage, how many fewer false detections does it need, from a temporal filter on the drone or a better model, before a tuned search finds the person without sending the team to the wrong place?
