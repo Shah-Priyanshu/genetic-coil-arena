@@ -339,3 +339,28 @@ Tuned plans, operator confirms; found / wrong finds.
 
 **Recommendation:** a camera module whose NPU runs the scout brain at 448 px (MaixCAM-class, about 1 TOPS), plus a persistence filter that cuts false detections about 10×. Bench check: frame rate at 448 on the chosen module, and whether a K210 can keep up.
 
+## R17 step 6: the recommended search system (`docs/results/r17g_system.md`)
+
+**Pass, narrowly.** Realistic missions: half with a walking person; GPS error, wind and battery vary.
+
+| Setup (mission-time tuning, operator confirms) | Found | Wrong finds |
+|---|---|---|
+| K210, brain as measured | 10% | 6.6% |
+| K210, false alarms cut 10× | 36% | 4.2% |
+| 448 camera, as measured | 16% | 13.4% |
+| **448 camera, false alarms cut 10×** | **52%** | **4.8%** |
+| same, 1 frame per look | 35% | 4.4% |
+| OpenSwarm default (448, cut 10×) | 19% | 72.9% |
+
+**What a working person search needs (all of it):**
+- a 448-px camera module;
+- an on-drone filter cutting false alarms about 10×;
+- operator confirmation from the drone's view;
+- a plan tuned per mission against the measured detector.
+
+**What to measure first:**
+- frames per second that carry new information (drone video);
+- how far a persistence filter cuts false alarms;
+- operator accuracy;
+- 448-px frame rate on the module.
+

@@ -252,6 +252,10 @@ HOW_TO_READ = {
     "r17f_budget": "Mission-time planning score against how long the ground station "
     "tunes each mission (one CPU core). Dotted lines: the learned planners. Most of the "
     "gain comes in the first half minute.",
+    "r17g_system": "Realistic person searches (walking people, GPS error, wind): the "
+    "share found and the share of wrong finds for each camera and false-alarm level, "
+    "with plans tuned at mission time. Only the 448-px camera with false alarms cut 10x "
+    "finds half the people while keeping wrong finds under 5%.",
     "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
     "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
     "translation through the shared meanings could do.",
@@ -538,6 +542,19 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
                 fig.add_hline(y=100 * v, line_dash="dot",
                               annotation_text=f"{name} ({which})")  # fmt: skip
         figs["r17f_budget"] = fig
+    system = read_json(res / "r17g_system.json")
+    if system:
+        pts = [
+            {"setup": f"{r['camera']}, false x{r['fa_mult']:g}, {r['frames']:g} f/look",
+             "measure": label, "%": 100 * r["mission-time tuning"][key]}
+            for r in system["rows"]
+            for key, label in (("found", "found"), ("wrong", "wrong finds"))
+        ]  # fmt: skip
+        figs["r17g_system"] = px.bar(
+            pd.DataFrame(pts), x="setup", y="%", color="measure", barmode="group",
+            color_discrete_sequence=["#2e7d32", "#c62828"],
+            title="R17 step 6: realistic searches with mission-time planning",
+        )  # fmt: skip
     inter = read_json(res / "r7e_interlingua.json")
     if inter:
         pts = [

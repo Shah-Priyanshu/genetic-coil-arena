@@ -410,14 +410,15 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r17f_mission_time
 
 ### R17 step 6: the recommended search system on realistic missions
-- **Date:** 2026-10-30 (running)
+- **Date:** 2026-10-30
 - **Question:** Put together, how well would a search go with the recommended setup: the 448-px camera, a filter cutting false detections 10×, the operator confirming, the hand-off for walkers and mission-time planning?
 - **Why:** Each R15–R17 step measured one piece. A hardware decision needs the whole chain on realistic missions, and a comparison with today's K210 brain and OpenSwarm's default.
 - **What we did:** Step 3's 40 held-out missions (half with a walking person; GPS error, wind and battery vary; the moving hint is right 85% of the time) × 2,000 episodes, with the measured scout brains. Conditions: the K210 brain as measured, the K210 with the filter, the 448 camera without and with the filter, and the recommended setup with 1 frame per look. Plans: OpenSwarm's default, the step-2 planner, and mission-time tuning. Bar fixed in advance: the recommended setup finds the person in ≥ 50% of episodes with ≤ 5% wrong finds.
-- **Result:** Running (about 40 min on the CPU).
-- **Verdict:** Running
-- **What it means:** Pending.
-- **Report:** docs/directions/drone_swarm.md
+- **Result:** PASS, narrowly: the recommended setup finds the person in 52.3% of episodes with 4.8% wrong finds. With today's K210 brain, mission-time tuning finds 10% (6.6% wrong); the K210 with the filter 36% (4.2%); the 448 camera without the filter 16% (13.4%). The recommended setup with 1 frame per look instead of 3 finds 35% (4.4%). OpenSwarm's default finds 2–19% and sends the team to the wrong place 40–98% of the time. The step-2 learned planner, trained on assumed detectors, fails with the measured ones (4–9% found, 42–69% wrong). These missions are much harder than step 4's still-person ones.
+- **Verdict:** PASS (narrowly)
+- **What it means:** A person search that works about half the time without misleading the team needs every piece: a camera that puts more pixels on people (448 px), false alarms cut about 10× on the drone, an operator confirming from the drone's view, and a plan tuned for the mission against the real detector. Remove any one and it falls to 10–36%. A plan learned against an assumed detector does not transfer, so the ground station should tune against the measured one. The margin is thin and rests on stated assumptions: about 3 independent frames per second (with 1 it drops to 35%), the operator's accuracy, and a filter that removes false alarms without losing people. Those are what the bench and drone video should measure first.
+- **Report:** docs/results/r17g_system.md
+- **Chart:** r17g_system
 
 ### R17 step 5b: how much tuning time is a mission worth?
 - **Date:** 2026-10-30

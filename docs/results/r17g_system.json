@@ -1,0 +1,110 @@
+{
+ "rows": [
+  {
+   "camera": "K210 224",
+   "fa_mult": 1.0,
+   "frames": 3.0,
+   "OpenSwarm default": {
+    "score": -1.8449000000000002,
+    "found": 0.047325000000000006,
+    "wrong": 0.9461124999999999
+   },
+   "step-2 planner": {
+    "score": -1.2701960937499999,
+    "found": 0.04023828125000001,
+    "wrong": 0.6552171875
+   },
+   "mission-time tuning": {
+    "score": -0.0297875,
+    "found": 0.1022625,
+    "wrong": 0.066025
+   }
+  },
+  {
+   "camera": "K210 224",
+   "fa_mult": 0.1,
+   "frames": 3.0,
+   "OpenSwarm default": {
+    "score": -0.6157375,
+    "found": 0.1927625,
+    "wrong": 0.40424999999999994
+   },
+   "step-2 planner": {
+    "score": -0.80245625,
+    "found": 0.087409375,
+    "wrong": 0.4449328125
+   },
+   "mission-time tuning": {
+    "score": 0.27391249999999995,
+    "found": 0.3589125,
+    "wrong": 0.0425
+   }
+  },
+  {
+   "camera": "448 camera",
+   "fa_mult": 1.0,
+   "frames": 3.0,
+   "OpenSwarm default": {
+    "score": -1.9372249999999998,
+    "found": 0.020925000000000003,
+    "wrong": 0.9790750000000001
+   },
+   "step-2 planner": {
+    "score": -1.32958515625,
+    "found": 0.039935156250000006,
+    "wrong": 0.68476015625
+   },
+   "mission-time tuning": {
+    "score": -0.10301249999999999,
+    "found": 0.1644625,
+    "wrong": 0.1337375
+   }
+  },
+  {
+   "camera": "448 camera",
+   "fa_mult": 0.1,
+   "frames": 3.0,
+   "OpenSwarm default": {
+    "score": -1.265375,
+    "found": 0.192075,
+    "wrong": 0.7287250000000001
+   },
+   "step-2 planner": {
+    "score": -1.04342734375,
+    "found": 0.06502421875,
+    "wrong": 0.55422578125
+   },
+   "mission-time tuning": {
+    "score": 0.42680000000000007,
+    "found": 0.523025,
+    "wrong": 0.0481125
+   }
+  },
+  {
+   "camera": "448 camera",
+   "fa_mult": 0.1,
+   "frames": 1.0,
+   "OpenSwarm default": {
+    "score": -0.7699999999999999,
+    "found": 0.157175,
+    "wrong": 0.46358749999999993
+   },
+   "step-2 planner": {
+    "score": -0.7468632812500001,
+    "found": 0.09294296875,
+    "wrong": 0.419903125
+   },
+   "mission-time tuning": {
+    "score": 0.2652625,
+    "found": 0.3526875,
+    "wrong": 0.0437125
+   }
+  }
+ ],
+ "recommended": {
+  "score": 0.42680000000000007,
+  "found": 0.523025,
+  "wrong": 0.0481125
+ },
+ "pass": true
+}
