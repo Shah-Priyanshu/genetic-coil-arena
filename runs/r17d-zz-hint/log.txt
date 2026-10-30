@@ -1,0 +1,8 @@
+[load] step-1 planner: 16, planner v2: 16, planner v3 (hint): 16
+[progress] 500/9600 cells, 12 s
+[progress] 1000/9600 cells, 17 s
+[progress] 1500/9600 cells, 22 s
+[progress] 2000/9600 cells, 27 s
+[progress] 2500/9600 cells, 34 s
+[progress] 3000/9600 cells, 39 s
+[progress] 3500/9600 cells, 44 s
