@@ -1,0 +1,21 @@
+{
+  "id": "r17h-sensitivity",
+  "commit": "74f07a33742fc1b9bee5edc3fab27132cd7f7a29",
+  "queued_args": [
+    "scripts/r17h_sensitivity.py",
+    "--from",
+    "runs:r17b-train-cond-*",
+    "--workers",
+    "16",
+    "--out",
+    "docs/results/r17h_sensitivity.md"
+  ],
+  "state": "running",
+  "started_at": "2026-10-30T06:34:27+00:00",
+  "updated_at": "2026-10-30T06:34:27+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 98 %, 4137 MiB, 12282 MiB, 69",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 16
+}
