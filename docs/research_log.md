@@ -378,6 +378,16 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **What it means:** Step 2's explanation was wrong: the loss on still people was not hedging over a possibly walking person, since a correct hint does not recover it. One small network trained over the broader, harsher missions plans worse for the nominal case even when told the person is still, while per-mission tuning finds better plans (44 vs 30 on still people). That points to a training limit, not missing information. A larger planner (32 hidden units, 6,000 generations) is now tested against the same bars. If it also fails, the leader should keep separate planners and let the hint pick one.
 - **Report:** docs/results/r17c_hint.md
 
+### R17 step 3b: is the planner too small or too briefly trained?
+- **Date:** 2026-10-30
+- **Question:** Step 3's planner reads the moving hint but stays far below the step-1 planner on still people. Is it too small, or trained too briefly?
+- **Why:** If capacity or budget is the limit, a bigger planner fixes it. If not, one learned planner over broad missions is the wrong design.
+- **What we did:** The same step-3 setup and bars with twice the hidden units (32) and twice the generations (6,000), 16 runs.
+- **Result:** NOT YET, and no better. On still-person missions it is 18.4 ± 3.3 points below the step-1 planner (step 3: 15.6 below). With the 85% hint it is 2.1 below the step-2 planner, and on walking missions 3.8 below (bar ≥ −3: missed). Validation peaked early, at generations 150–600 of 6,000.
+- **Verdict:** NOT YET (explanation ruled out)
+- **What it means:** Neither size nor training time is the limit. One planner trained by evolution over a broad range of missions stalls well below what tuning each mission alone reaches (44 vs about 30 on still people). The practical design is to plan at mission time: the ground station tunes the plan in the simulator for the actual mission just before launch, using what it knows and averaging over what it does not, such as whether the person walks. That is tested next.
+- **Report:** docs/results/r17d_hint.md
+
 ### R17 step 4: what the scout brain must reach before a search works
 - **Date:** 2026-10-30
 - **Question:** With the scout brain R15b measured on drone footage, how many fewer false detections does it need, from a temporal filter on the drone or a better model, before a tuned search finds the person without sending the team to the wrong place?

@@ -1,0 +1,74 @@
+{
+ "table": {
+  "hint 85% right": {
+   "step-1 planner": 0.18413203125000002,
+   "step-1 planner (walking)": 0.02723233695652174,
+   "step-1 planner (still)": 0.39640808823529416,
+   "planner v2": 0.29285078124999997,
+   "planner v2 (walking)": 0.2930584239130435,
+   "planner v2 (still)": 0.29256985294117643,
+   "planner v3 (hint)": 0.2717,
+   "planner v3 (hint) (walking)": 0.25552038043478265,
+   "planner v3 (hint) (still)": 0.29359007352941174
+  },
+  "hint always right": {
+   "step-1 planner": 0.18413203125000002,
+   "step-1 planner (walking)": 0.02723233695652174,
+   "step-1 planner (still)": 0.39640808823529416,
+   "planner v2": 0.29285078124999997,
+   "planner v2 (walking)": 0.2930584239130435,
+   "planner v2 (still)": 0.29256985294117643,
+   "planner v3 (hint)": 0.27828125,
+   "planner v3 (hint) (walking)": 0.2669701086956522,
+   "planner v3 (hint) (still)": 0.2935845588235294
+  },
+  "hint always wrong": {
+   "step-1 planner": 0.18413203125000002,
+   "step-1 planner (walking)": 0.02723233695652174,
+   "step-1 planner (still)": 0.39640808823529416,
+   "planner v2": 0.29285078124999997,
+   "planner v2 (walking)": 0.2930584239130435,
+   "planner v2 (still)": 0.29256985294117643,
+   "planner v3 (hint)": 0.21869062499999997,
+   "planner v3 (hint) (walking)": 0.18395244565217397,
+   "planner v3 (hint) (still)": 0.26568933823529417
+  },
+  "no hint": {
+   "step-1 planner": 0.18413203125000002,
+   "step-1 planner (walking)": 0.02723233695652174,
+   "step-1 planner (still)": 0.39640808823529416,
+   "planner v2": 0.29285078124999997,
+   "planner v2 (walking)": 0.2930584239130435,
+   "planner v2 (still)": 0.29256985294117643,
+   "planner v3 (hint)": 0.26218984375,
+   "planner v3 (hint) (walking)": 0.2509972826086957,
+   "planner v3 (hint) (still)": 0.27733272058823527
+  },
+  "still person, hint still": {
+   "step-1 planner": 0.6458789062500001,
+   "planner v2": 0.49244140625000005,
+   "planner v3 (hint)": 0.46205937500000005
+  }
+ },
+ "diffs": {
+  "still": [
+   -0.18381953125,
+   0.03295610769867613
+  ],
+  "gain": [
+   -0.021150781249999993,
+   0.016831066950818995
+  ],
+  "walking": [
+   -0.03753804347826086,
+   0.025580066094534965
+  ]
+ },
+ "bars": {
+  "still": false,
+  "gain": false,
+  "walking": false
+ },
+ "passed": false,
+ "walking_missions": 23
+}

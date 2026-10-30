@@ -284,6 +284,12 @@ Per-frame recall of the width-0.5 brain, by person size in the 224-px tile. Alti
 - The measured curve is flatter than R17 assumed (half recall near 27 px), so R17's absolute numbers are optimistic.
 - More pixels per person is the lever, through a higher-resolution camera module or lower sweeps.
 
+### R17 step 3b: a bigger planner does not help (`docs/results/r17d_hint.md`)
+
+**Setup:** twice the hidden units and twice the generations.
+**Result:** no better. It stays 18 points below the step-1 planner on still people, and validation peaks by generation 600.
+**What it means:** one planner trained by evolution over broad missions stalls. Next is planning at mission time: the ground station tunes the plan in the simulator for the actual mission just before launch.
+
 ### R17 step 4: the scout brain's specification (`docs/results/r17e_requirements.md`)
 
 **Setup:** R15b's measured brain in the search simulator, with the operator confirming candidates. Results are found / wrong finds.
