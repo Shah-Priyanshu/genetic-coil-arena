@@ -1,0 +1,21 @@
+{
+  "id": "r17g-system",
+  "commit": "8e2eb677436a58b63ef98f89d0761a5d360bead4",
+  "queued_args": [
+    "scripts/r17g_system.py",
+    "--from",
+    "runs:r17b-train-cond-*",
+    "--workers",
+    "8",
+    "--out",
+    "docs/results/r17g_system.md"
+  ],
+  "state": "running",
+  "started_at": "2026-10-30T06:01:51+00:00",
+  "updated_at": "2026-10-30T06:01:51+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 100 %, 4135 MiB, 12282 MiB, 69",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 8
+}
