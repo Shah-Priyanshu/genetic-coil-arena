@@ -33,3 +33,6 @@ C:\Users\priya\AppData\Local\Temp\gca-r15d-train-neg-mrb77378\src\genetic_coil_a
 [07:13:16] [alpha 0.5] epoch 10/20 loss 1.0244 (6744 s)
 [07:24:30] [alpha 0.5] epoch 11/20 loss 1.0064 (7418 s)
 [07:35:44] [alpha 0.5] epoch 12/20 loss 0.9900 (8092 s)
+[07:46:58] [alpha 0.5] epoch 13/20 loss 0.9771 (8766 s)
+[07:58:13] [alpha 0.5] epoch 14/20 loss 0.9607 (9441 s)
+[08:09:28] [alpha 0.5] epoch 15/20 loss 0.9492 (10116 s)
