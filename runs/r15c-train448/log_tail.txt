@@ -7,3 +7,4 @@
 [23:34:19] [alpha 0.5] epoch 7/20 loss 0.9761 (3590 s)
 [23:42:51] [alpha 0.5] epoch 8/20 loss 0.9560 (4102 s)
 [23:51:23] [alpha 0.5] epoch 9/20 loss 0.9372 (4614 s)
+[23:59:55] [alpha 0.5] epoch 10/20 loss 0.9196 (5126 s)
