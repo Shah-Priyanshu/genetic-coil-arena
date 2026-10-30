@@ -1,1 +1,2 @@
 [load] step-1 16, step-2 16, oracle 40
+[progress] 10/80 missions tuned, 167 s
