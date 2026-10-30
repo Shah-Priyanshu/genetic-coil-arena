@@ -42,8 +42,9 @@ radius (``Mission.found_m``) can grow with the GPS error.
 recall and false detections come from a measured table (``TABLE_THR`` x ``TABLE_PX``,
 R15b), person size is ``px_m / altitude`` px and a one-second look holds
 ``frames_per_look`` independent frames. With ``operator_confirms`` the confirmer's view
-goes to the operator, who recognises a person in it (``OP_HIT`` per look) or wrongly
-accepts an empty one (``OP_FALSE`` per candidate); the detector's own confirmations are
+goes to the operator, who recognises a person in it (``op_hit``, default ``OP_HIT``,
+per look) or wrongly accepts an empty one (``op_false``, default ``OP_FALSE``, per
+candidate); the detector's own confirmations are
 not used then.
 
 **Outcome:** a declaration within ``found_m`` (default ``FOUND_M``) of the person is a find; any other
@@ -127,6 +128,8 @@ class Mission:
     frames_per_look: float = 1.0
     table: tuple[float, ...] = ()
     operator_confirms: bool = False
+    op_hit: float = OP_HIT
+    op_false: float = OP_FALSE
 
     def vector(self) -> np.ndarray:
         if self.table and len(self.table) != len(TABLE_THR) * (len(TABLE_PX) + 1):
@@ -136,7 +139,8 @@ class Mission:
                          *astuple(self.detector), self.person_speed, self.loc_error,
                          self.speed, self.found_m, self.px_m, self.frames_per_look,
                          1.0 if self.table else 0.0, *table,
-                         1.0 if self.operator_confirms else 0.0],
+                         1.0 if self.operator_confirms else 0.0, self.op_hit,
+                         self.op_false],
                         dtype=np.float64)  # fmt: skip
 
 
@@ -438,13 +442,13 @@ def _episode(seed, mv, pv, out):
             elif cmode[j] == 3 and mv[30] > 0:  # the operator judges the view
                 half = s_c / 2
                 if abs(tx - kx[c]) <= half and abs(ty - ky[c]) <= half:
-                    if np.random.random() < OP_HIT:
+                    if np.random.random() < mv[31]:
                         rx = tx + np.random.normal() * sig_c
                         ry = ty + np.random.normal() * sig_c
                         out[0] = 1.0 if math.hypot(rx - tx, ry - ty) <= found_m else 2.0
                         out[1], out[2] = t, swept / lanes
                         return
-                elif clooks[j] == 0 and np.random.random() < OP_FALSE:
+                elif clooks[j] == 0 and np.random.random() < mv[32]:
                     out[0] = (
                         1.0 if math.hypot(kx[c] - tx, ky[c] - ty) <= found_m else 2.0
                     )

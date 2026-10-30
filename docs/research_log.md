@@ -420,6 +420,16 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Report:** docs/results/r17g_system.md
 - **Chart:** r17g_system
 
+### R17 step 6b: which assumption matters most?
+- **Date:** 2026-10-30 (running)
+- **Question:** Step 6's recommended system passed narrowly on unmeasured assumptions. Which assumption moves the result most, and so should be measured first?
+- **Why:** Bench time and video data are limited, and the one measurement that could break the recommendation should come first.
+- **What we did:** Moved one assumption at a time from step 6's recommended system and replanned every mission at mission time. Variants: 1 or 2 independent frames per second of video instead of 3; a filter that keeps 80% or 60% of detections; false alarms cut 5× or 20× instead of 10×; an operator who sees the person in 70% or 50% of looks; an operator who accepts 5% or 10% of empty views; a person 0.28 or 0.40 m in size. Read-out fixed in advance: the variants that drop the share found below 40% or push wrong finds above 5%. No bar.
+- **Result:** Running (about 1 h on the CPU).
+- **Verdict:** Running
+- **What it means:** Pending.
+- **Report:** docs/directions/drone_swarm.md
+
 ### R17 step 5b: how much tuning time is a mission worth?
 - **Date:** 2026-10-30
 - **Question:** How does mission-time planning improve with more tuning time, and where does it level off?

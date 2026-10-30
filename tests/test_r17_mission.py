@@ -291,3 +291,20 @@ def test_system_conditions_and_bar():
                 }
     rep = rg.summarise(cells)
     assert rep["pass"] and "PASS" in rg.render(rep)
+
+
+def test_sensitivity_variants():
+    from genetic_coil_arena.experiments import r17g_system as rg
+    from genetic_coil_arena.experiments import r17h_sensitivity as rh
+
+    base = rh.missions_for("recommended (as in step 6)")
+    step6 = rg.missions_for(rg.RECOMMENDED)
+    assert all(np.array_equal(a.vector(), b.vector()) for a, b in zip(base, step6))
+    low = rh.missions_for("filter keeps 60% of detections")[0]
+    assert np.allclose(np.array(low.table[:12]), 0.6 * np.array(base[0].table[:12]))
+    assert rh.missions_for("operator accepts 10% of empty views")[0].op_false == 0.10
+    cells = {(v, i): {"score": 0.4, "found": 0.5 if v == "recommended (as in step 6)" else 0.3,
+                      "wrong": 0.04} for v in list(rh.VARIANTS)[:2] for i in range(2)}  # fmt: skip
+    rep = rh.summarise(cells)
+    assert rep["breaking"] == ["1 frame per second of video"]
+    assert "1 frame per second" in rh.render(rep)
