@@ -471,3 +471,7 @@
 [progress] conditioned run 12: gen 6000/6000, val 0.177, best 0.294 at 350, 9372 s
 [done] run 12: best val 0.294 at generation 350, 9372 s
 [progress] conditioned run 14: gen 5800/6000, val 0.190, best 0.297 at 300, 9373 s
+[progress] conditioned run 8: gen 6000/6000, val 0.208, best 0.256 at 650, 9400 s
+[done] run 8: best val 0.256 at generation 650, 9400 s
+[saved] D:\Projects\genetic-coil-arena-gpu-results\runs\r17d-train-cond-b\artifacts\r17c_planner_conditioned_run8
+[progress] conditioned run 15: gen 5800/6000, val 0.207, best 0.276 at 500, 9414 s
