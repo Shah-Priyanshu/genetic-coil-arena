@@ -456,3 +456,5 @@
 [progress] conditioned run 7: gen 5700/6000, val 0.180, best 0.290 at 350, 9034 s
 [progress] conditioned run 1: gen 5400/6000, val 0.195, best 0.280 at 350, 9043 s
 [progress] conditioned run 4: gen 5700/6000, val 0.172, best 0.273 at 1050, 9054 s
+[progress] conditioned run 2: gen 5500/6000, val 0.198, best 0.286 at 550, 9076 s
+[progress] conditioned run 0: gen 5900/6000, val 0.200, best 0.290 at 350, 9087 s
