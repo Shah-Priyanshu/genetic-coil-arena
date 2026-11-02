@@ -1,0 +1,32 @@
+{
+ "rows": [
+  {
+   "variant": "recommended (as in step 6)",
+   "score": 0.42680000000000007,
+   "found": 0.523025,
+   "wrong": 0.0481125,
+   "found_change": 0.0,
+   "breaks": false
+  },
+  {
+   "variant": "measured operator, clear cases (92% / 23%)",
+   "score": -0.1517,
+   "found": 0.25375,
+   "wrong": 0.202725,
+   "found_change": -0.269275,
+   "breaks": true
+  },
+  {
+   "variant": "measured operator, VisDrone labels (96% / 46%)",
+   "score": -0.446275,
+   "found": 0.23259999999999997,
+   "wrong": 0.3394375,
+   "found_change": -0.290425,
+   "breaks": true
+  }
+ ],
+ "breaking": [
+  "measured operator, clear cases (92% / 23%)",
+  "measured operator, VisDrone labels (96% / 46%)"
+ ]
+}

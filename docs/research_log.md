@@ -337,14 +337,14 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Report:** docs/results/r15d_negatives.md
 
 ### R15e: how often does an operator confirm a false alarm?
-- **Date:** 2026-10-30 (waiting for the labelling session)
+- **Date:** 2026-11-02
 - **Question:** Shown a spot the scout brain flagged, how often does a person say "person" when there is none, and "no person" when there is one?
 - **Why:** R17 step 6b found the operator's false-accept rate is the assumption the search results depend on most. Accepting 10% of empty views instead of 2% costs 20 points of people found.
 - **What we did:** R15b's width-0.5 brain flagged spots at confidence ≥ 0.5 on 4,000 VisDrone validation tiles (native scale; the test split untouched). 200 were sampled, 100 on a person and 100 false alarms, each shown as a 72-px crop around the spot (3× enlarged) with a ring on it, in random order, on a private labelling page. The answers and decision times are stored in the page's database; the true labels stay in the data folder. From the scout's own view, not a closer confirmer's, so this is a pessimistic first measurement.
-- **Result:** Waiting for the labelling session.
-- **Verdict:** Running
-- **What it means:** Pending. The measured rates replace R17's assumed 90% / 2% and step 6 is rerun with them.
-- **Report:** docs/directions/drone_swarm.md
+- **Result:** One operator labelled all 200 spots, a median of 0.75 s each. By VisDrone's labels they said "person" for 96% of matched people and 47% of false alarms. But VisDrone leaves many riders and seated or shadowed people unlabelled, and a visual check of the 100 "false alarms" found 27 that are plainly people, 43 plainly not people (bins, bollards, poles, signs, roof tiles, empty dark patches) and 30 too ambiguous to call; the check was not blind to the answers. On the clear cases the operator said "person" for 92% of people [86, 96] and 23% of non-people [13, 38], ten times the 2% assumed. With these rates in R17 step 6's recommended system, the share found falls from 52.3% to 25.4% and wrong finds rise from 4.8% to 20.3% (VisDrone-label rates: 23.3%, 33.9%).
+- **Verdict:** MEASURED: A QUICK LOOK CONFIRMS ONE FALSE ALARM IN FOUR
+- **What it means:** A quick single look by the operator is the weakest link in the person search, weaker than the detector or the camera: with it, one search in five would send the team to the wrong place. Confirmation needs a better view and more time: the confirming drone descends for a closer look, the operator sees several frames or a short clip, takes a few seconds, and can answer "can't tell" to ask for another look. This was one operator, answering fast on the scout's own small view, as asked. A careful-mode session (more time, more context) would measure how much slowing down buys.
+- **Report:** docs/results/r15e_operator.md
 
 ### R15c probe: does a bigger camera input change recall per pixel?
 - **Date:** 2026-10-30

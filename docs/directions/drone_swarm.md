@@ -388,3 +388,19 @@ Change in the share found from the recommended system's 52.3%, moving one assump
 
 **Fail.** Training on every empty tile cuts false detections at matched recall to 0.72× (bar 0.5×; the search needs about 0.1×). Keep the recipe as a free improvement, but the big cut has to come from evidence across frames: persistence over consecutive frames, or a second, closer look.
 
+## R15e: the operator, measured (`docs/results/r15e_operator.md`, `docs/results/r17h_operator.md`)
+
+One operator labelled 200 flagged spots in a median of 0.75 s each. On the clear cases they said "person" for:
+- 92% of people;
+- 23% of non-people (bins, bollards, poles, roof tiles).
+
+With those rates, the recommended search system finds 25% of people (was 52%), and 20% of its finds are wrong (was 4.8%).
+
+**The quick single look is the weakest link.** Confirmation must change:
+- a closer look from the confirming drone;
+- several frames or a clip;
+- a few seconds to decide;
+- "can't tell" triggers another look.
+
+**Next measurement:** a careful-mode labelling session.
+
