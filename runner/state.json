@@ -3,8 +3,15 @@
   "host": "PC",
   "draining_for_update": false,
   "cpu_budget": 24,
-  "cpu_workers_in_use": 0,
-  "running": [],
+  "cpu_workers_in_use": 2,
+  "running": [
+    {
+      "id": "ci-696ee39115e9",
+      "lane": "cpu",
+      "cpu_workers": 2,
+      "started_at": "2026-11-02T07:03:53+00:00"
+    }
+  ],
   "backlog": {
     "ready": [],
     "blocked": []
@@ -14,11 +21,11 @@
     "gpu": "2026-10-30T13:08:57+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-11-02T07:02:41+00:00",
-  "cpu_percent": 4.5,
+  "updated_at": "2026-11-02T07:03:53+00:00",
+  "cpu_percent": 4.7,
   "gpu": {
-    "util": 3.0,
-    "mem_used_mb": 1819.0,
+    "util": 2.0,
+    "mem_used_mb": 1815.0,
     "mem_total_mb": 12282.0
   }
 }
