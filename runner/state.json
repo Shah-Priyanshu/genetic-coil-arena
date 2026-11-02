@@ -14,11 +14,11 @@
     "gpu": "2026-10-30T13:08:57+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-11-02T05:56:03+00:00",
-  "cpu_percent": 4.5,
+  "updated_at": "2026-11-02T05:57:15+00:00",
+  "cpu_percent": 4.8,
   "gpu": {
-    "util": 5.0,
-    "mem_used_mb": 1836.0,
+    "util": 6.0,
+    "mem_used_mb": 1818.0,
     "mem_total_mb": 12282.0
   }
 }
