@@ -327,14 +327,14 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r17_mission
 
 ### R15d: train on every empty tile to cut false detections
-- **Date:** 2026-10-30 (running)
+- **Date:** 2026-10-30
 - **Question:** If the scout brain trains on every empty tile instead of 20% of them, does it raise far fewer false detections at the same recall?
 - **Why:** R17 step 4 set the scout's specification at 10–30 times fewer false detections. Showing the brain more of what is not a person is the cheapest first try.
 - **What we did:** R15b's recipe (width 0.5, from COCO, 20 epochs), changing only the share of empty training tiles from 20% to 100%; two seeds. Compared with R15b's three width-0.5 brains on the same VisDrone test tiles at matched recall: the threshold where each finds 28.8% of 8–16 px people (R15b's recall at 0.5), read off a finer threshold grid. Bar fixed in advance: at most half the false detections per tile.
-- **Result:** Running (tile preparation on the CPU, then about 6 h on the GPU).
-- **Verdict:** Running
-- **What it means:** Pending.
-- **Report:** docs/results/r15b_aerial_scout.md
+- **Result:** FAIL. At matched recall (28.8% of 8–16 px people), the brain trained on every empty tile raises 0.069–0.071 false detections per tile against 0.096–0.098 for R15b's brains: 0.72× (bar: at most 0.5×). The same in both seeds, with recall in the other size bins unchanged or slightly higher.
+- **Verdict:** FAIL
+- **What it means:** Showing the brain more empty ground cuts false alarms by about a quarter, far from the 10× the search needs (R17 step 4). Frame-by-frame training data is not where the big cut comes from. The remaining levers work across frames and views: a detection must persist over consecutive frames, or the confirming drone looks again from closer. Both need drone video to measure. The all-empty-tiles recipe is still a free improvement to keep.
+- **Report:** docs/results/r15d_negatives.md
 
 ### R15e: how often does an operator confirm a false alarm?
 - **Date:** 2026-10-30 (waiting for the labelling session)

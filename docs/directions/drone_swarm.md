@@ -384,3 +384,7 @@ Change in the share found from the recommended system's 52.3%, moving one assump
 - independent frames per second (video);
 - a persistence filter's cut and its loss of detections (video).
 
+## R15d: more empty tiles in training (`docs/results/r15d_negatives.md`)
+
+**Fail.** Training on every empty tile cuts false detections at matched recall to 0.72× (bar 0.5×; the search needs about 0.1×). Keep the recipe as a free improvement, but the big cut has to come from evidence across frames: persistence over consecutive frames, or a second, closer look.
+
