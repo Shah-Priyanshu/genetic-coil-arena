@@ -37,6 +37,12 @@ VARIANTS: dict[str, dict[str, float]] = {
     "operator accepts 10% of empty views": {"op_false": 0.10},
     "person smaller (0.28 m)": {"person_m": 0.28},
     "person larger (0.40 m)": {"person_m": 0.40},
+    # R15e: one operator's measured rates on the scout's own crops (quick answers)
+    "measured operator, clear cases (92% / 23%)": {"op_hit": 0.92, "op_false": 0.23},
+    "measured operator, VisDrone labels (96% / 46%)": {
+        "op_hit": 0.96,
+        "op_false": 0.46,
+    },
 }
 FOUND_FLOOR, WRONG_CEIL = 0.40, 0.05
 
