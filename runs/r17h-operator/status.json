@@ -1,0 +1,25 @@
+{
+  "id": "r17h-operator",
+  "commit": "37a53f4a42c4ea5a7c1a11c2299bba3feb584285",
+  "queued_args": [
+    "scripts/r17h_sensitivity.py",
+    "--from",
+    "runs:r17b-train-cond-*",
+    "--variants",
+    "recommended (as in step 6)",
+    "measured operator, clear cases (92% / 23%)",
+    "measured operator, VisDrone labels (96% / 46%)",
+    "--workers",
+    "16",
+    "--out",
+    "docs/results/r17h_operator.md"
+  ],
+  "state": "running",
+  "started_at": "2026-11-02T06:35:56+00:00",
+  "updated_at": "2026-11-02T06:35:56+00:00",
+  "elapsed_min": 0.0,
+  "gpu": "NVIDIA GeForce RTX 4070 SUPER, 3 %, 1814 MiB, 12282 MiB, 37",
+  "host": "PC",
+  "lane": "cpu",
+  "cpu_workers": 16
+}
