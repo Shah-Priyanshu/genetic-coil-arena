@@ -1,0 +1,21 @@
+{
+  "id": "r17h-operator",
+  "commit": "37a53f4a42c4ea5a7c1a11c2299bba3feb584285",
+  "args": [
+    "scripts/r17h_sensitivity.py",
+    "--from",
+    "runs:r17b-train-cond-*",
+    "--variants",
+    "recommended (as in step 6)",
+    "measured operator, clear cases (92% / 23%)",
+    "measured operator, VisDrone labels (96% / 46%)",
+    "--workers",
+    "16",
+    "--out",
+    "docs/results/r17h_operator.md"
+  ],
+  "lane": "cpu",
+  "cpu_workers": 16,
+  "priority": 1,
+  "timeout_min": 90.0
+}
