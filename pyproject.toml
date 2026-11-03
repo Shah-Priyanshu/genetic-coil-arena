@@ -54,7 +54,7 @@ ui = [
     "pygame>=2.1.0",
     "arcade>=2.6.0",
 ]
-llm = ["torch", "transformers>=5", "peft>=0.21", "accelerate"]
+llm = ["torch", "torchvision", "transformers>=5", "peft>=0.21", "accelerate"]  # torchvision: Qwen3-VL processors (R19)
 wasm = [
     "pygbag>=0.8.0",
 ]

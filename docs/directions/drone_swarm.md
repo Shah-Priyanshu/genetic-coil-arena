@@ -434,3 +434,24 @@ With those rates the recommended search system finds 36% of people (quick look 2
 - Editing matters if, on test-dev, the edited model passes at most half the false alarms of the same model unedited, with the frame-bootstrap upper bound of the ratio below 1.
 - KILL if the chosen model passes ≥ 30% of the clear non-person false alarms.
 - Measured with no bar: the model chained in front of the operator, and those rates in R17 step 6's search.
+
+### R19 result: pass (`docs/results/r19_confirmer.md`, `docs/results/r17h_confirmer.md`)
+
+**A fine-tuned open-weight model clears the 10× bar on clearly empty spots; the same model used as is does not.** On the 81 clear non-person false alarms among the operator spots, the share each one lets through (each keeps 93–96% of people):
+
+| Who | Clear non-persons passed |
+|---|---|
+| Operator alone | 16.0% |
+| DINOv2 frozen | 27.2% |
+| DINOv2 fine-tuned (chosen) | 6.2% [3, 14] |
+| Qwen3-VL as is | 40.7% |
+| Qwen3-VL with LoRA | 2.5% |
+
+On test-dev, editing cuts the false alarms passed to 0.56× (DINOv2) and 0.44× (Qwen) of the unedited model's.
+
+**The errors overlap with the operator's.** The operator accepted 4 of the 5 clear non-persons the model passes. Chained, the two let through 4.9%. The search finds 40% with 7% wrong finds (careful operator alone 36% / 10%), still over the 5% limit. The next cut must come from evidence whose errors differ: persistence over video frames (R15g) or a closer look from the confirming drone.
+
+**Follow-ups:**
+- Distil the fine-tuned confirmer into the K210 scout brain, as a teacher on unlabelled frames.
+- Put the Qwen LoRA and DINOv2 together.
+- Fine-tune the ground station's LLM on the R16 dev data (G14b missed narrowly). G3b's lesson applies there: train on real phrasing, not templates.

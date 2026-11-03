@@ -357,6 +357,36 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r15f_operator
 - **Report:** docs/results/r15f_careful.md
 
+### R19 (G15): can a fine-tuned open-weight model stop the false alarms before the operator?
+- **Date:** 2026-11-03
+- **Question:** Can an open-weight vision model that looks at each scout detection before the operator remove the scout's false alarms? And does editing its weights matter, compared with using it as is?
+- **Why:** R15e/R15f showed the operator alone confirms 8–23% of clearly empty spots, and R17 step 4 asks for 10–30× fewer false alarms. Until now nothing in the drone stack edited an open-weight model: the scout brain is our own network, and the ground station's LLM is only prompted. Earlier LoRA work (G3b, the small translator) failed on a shift in phrasing, so it was open whether editing weights pays off here.
+- **What we did:**
+  - **Candidates:** R15b's scout brain run over VisDrone-DET frames at native scale. Each detection gives the 144-px view around its centre (R15f's wider view), labelled by R15b's matching rule.
+  - **Splits:** 56,538 train candidates for fitting; 7,638 val candidates for every choice (spots near the 400 R15e/R15f operator spots left out); test-dev (11,639 candidates, 1,336 frames) and the 400 operator spots scored once.
+  - **Two open-weight models (Apache-2.0), each unedited and edited:**
+    - DINOv2-small (22M parameters): a linear head on frozen features, or every weight fine-tuned (3 seeds, 336-px input, 10 epochs, chosen on val);
+    - Qwen3-VL-2B-Instruct: asked "is there a person at the exact centre?" as is, or with LoRA adapters trained on that question (1 seed).
+  - **Thresholds:** every threshold keeps 95% of val people.
+  - **Bars, committed before any test score:**
+    - PASS if the edited model with the lowest val pass lets through ≤ 10% of the 81 clear non-person false alarms among the operator spots (Claude's visual checks) and keeps ≥ 90% of the 200 matched people;
+    - editing matters if, on test-dev, the edited model passes ≤ 0.5× the false alarms of the same model unedited.
+- **Result:**
+  - **The bar.** The chosen model, fine-tuned DINOv2 seed 2, lets through 6.2% [3, 14] of the clear non-persons (5 of 81) and keeps 93.0% of matched people. Seeds 0 and 1 give 9.9% and 7.4%. The operator alone lets through 16.0% [10, 26] of the same spots; the model chained in front of them, 4.9% with 92% kept.
+  - **Unedited, the models fail.** Frozen DINOv2 lets through 27.2% of the clear non-persons, and Qwen3-VL asked as is lets through 40.7%, which would be a kill. Fine-tuned DINOv2 lets through 6.2%, and Qwen with LoRA 2.5% [1, 9] (2 of 81; it was not the chosen model, because its val pass was higher).
+  - **The editing bar.** On test-dev, fine-tuned DINOv2 passes 0.56× [0.52, 0.60] of the false alarms the frozen probe passes, so it narrowly misses the ≤ 0.5× bar. Qwen with LoRA passes 0.44× [0.41, 0.47] of itself as is, so it meets it.
+  - **The label floor.** With VisDrone labels the edited models pass 24–26% of labelled false alarms. On the operator spots they keep about 45% of the people VisDrone did not label, which accounts for most of that floor.
+  - **Errors overlap with the operator's.** Of the 5 clear non-persons the chosen model passes, the operator accepted 4.
+  - **The search.** In R17 step 6's search (one rate changed at a time), the confirmer at the ground with the operator after it (92% / 5% per look) finds 40.4% with 7.0% wrong finds. The careful operator alone gives 35.7% / 10.2%. Run before dispatch, with the operator's conditional rates (99% / 80%), wrong finds rise to 16–37%.
+- **Verdict:** PASS: A FINE-TUNED OPEN-WEIGHT CONFIRMER LETS THROUGH ONE CLEARLY EMPTY SPOT IN SIXTEEN (6.2%); EDITING THE WEIGHTS IS WHAT MAKES IT WORK (EDITING BAR MET FOR QWEN, MISSED NARROWLY FOR DINOv2)
+- **What it means:**
+  - **Edit open-weight models for this task, don't use them as is.** Used as is, both models are no better than the operator. Fine-tuned on about 57,000 drone crops for minutes (DINOv2) or about an hour (Qwen LoRA), both clear the 10× bar on clearly empty spots, and they beat the operator by 2.6× (DINOv2) and 6× (Qwen).
+  - **Hardware.** DINOv2-small fits a companion computer on the confirming drone (Jetson or Raspberry Pi class). Qwen-2B needs the ground station's GPU, with the scout sending the 144-px view (about 5 KB per detection).
+  - **The search is not fixed yet.** The false alarms the confirmer lets through are the ones the operator also accepts. Stacking another look at the same pixels therefore helps little, and wrong finds stay above the 5% limit. The remaining cut must come from evidence whose errors differ: persistence over video frames (R15g, waiting for the VisDrone-VID download) or a closer look from the confirming drone.
+  - **Caveats.** The operator spots are on val frames, which were also used for choices, though spots within 24 px were left out of them. Only 81 clear non-persons exist, so the intervals are wide.
+- **Chart:** r19_confirmer
+- **Report:** docs/results/r19_confirmer.md, docs/results/r17h_confirmer.md
+
 ### R15c probe: does a bigger camera input change recall per pixel?
 - **Date:** 2026-10-30
 - **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?

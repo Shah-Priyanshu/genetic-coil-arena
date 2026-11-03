@@ -46,6 +46,27 @@ VARIANTS: dict[str, dict[str, float]] = {
     # R15f: the same operator, careful look (2 s minimum, close-up plus wider view)
     "careful operator, clear cases (90% / 8%)": {"op_hit": 0.90, "op_false": 0.08},
     "careful operator, VisDrone labels (99% / 36%)": {"op_hit": 0.99, "op_false": 0.36},
+    # R19: the fine-tuned DINOv2 confirmer (seed 2), measured on the 400 operator spots.
+    # At the ground: the joint rates of "the model passes it and the operator says person".
+    "R19: confirmer at the ground, then operator (92% / 5%)": {
+        "op_hit": 0.92,
+        "op_false": 0.049,
+    },
+    # Before dispatch: the model removes false detections (fa_mult) and people (recall_mult);
+    # the operator then sees only what it passed, and accepts 4 of the 5 clear non-persons it
+    # passed, so the operator's rates are conditional on the model's pass (joint = 92% / 5%)
+    "R19: confirmer before dispatch, no video filter (operator after it 99% / 80%)": {
+        "fa_mult": 0.062,
+        "recall_mult": 0.93,
+        "op_hit": 0.99,
+        "op_false": 0.80,
+    },
+    "R19: video filter and confirmer before dispatch (operator after it 99% / 80%)": {
+        "fa_mult": 0.0062,
+        "recall_mult": 0.93,
+        "op_hit": 0.99,
+        "op_false": 0.80,
+    },
 }
 FOUND_FLOOR, WRONG_CEIL = 0.40, 0.05
 

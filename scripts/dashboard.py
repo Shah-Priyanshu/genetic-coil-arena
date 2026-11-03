@@ -265,6 +265,11 @@ HOW_TO_READ = {
     "(R15e) and a careful one with a wider view (R15f); 95% intervals. Right: the "
     "recommended search system with each operator. A careful look cuts the confirmed "
     "false alarms about threefold, not yet to what the search needs.",
+    "r19_confirmer": "Left: on the spots the operator labelled, the share of people each "
+    "confirmer keeps (green) and of clearly empty spots it lets through (red), with 95% "
+    "intervals; every threshold keeps 95% of val people. Right: the share of VisDrone-"
+    "labelled false alarms each model lets through on test-dev (some are unlabelled "
+    "people, so this cannot reach zero). The dotted line is the bar: 10% (a 10x cut).",
     "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
     "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
     "translation through the shared meanings could do.",
@@ -609,6 +614,41 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
         fig.update_layout(barmode="group", yaxis_title="%",
                           title="R15f: a careful look by the operator, and the search")  # fmt: skip
         figs["r15f_operator"] = fig
+    conf = read_json(res / "r19_confirmer.json")
+    if conf:
+        from plotly.subplots import make_subplots
+
+        fig = make_subplots(rows=1, cols=2, subplot_titles=(
+            "the 400 operator spots (clear cases)", "test-dev, false alarms passed"))  # fmt: skip
+        whos = {"operator alone": conf["operator"]}
+        chosen = next((s for s in conf["systems"]
+                       if f"{s['model']}_s{s['seed']}" == conf["chosen"]), None)  # fmt: skip
+        for s in conf["systems"]:  # the chosen seed for its model, seed 0 for the others
+            if "spots" in s and (s is chosen or (s["seed"] == 0 and not (
+                    chosen and s["model"] == chosen["model"]))):  # fmt: skip
+                whos[s["name"]] = s["spots"]
+        if chosen and "chain" in chosen:
+            whos[f"{chosen['name']} + operator"] = chosen["chain"]
+        for key, label, colour in (("matched", "people kept", "#2e7d32"),
+                                   ("not_person", "non-persons passed", "#c62828")):  # fmt: skip
+            vals = [v[key] for v in whos.values()]
+            fig.add_trace(go.Bar(
+                x=list(whos), y=[100 * v[0] for v in vals], name=label, marker_color=colour,
+                error_y={"type": "data", "array": [100 * (v[2] - v[0]) for v in vals],
+                         "arrayminus": [100 * (v[0] - v[1]) for v in vals]}), 1, 1)  # fmt: skip
+        tests = [s for s in conf["systems"] if "test" in s]
+        fig.add_trace(go.Bar(
+            x=[f"{s['name']} (seed {s['seed']})" for s in tests],
+            y=[100 * s["test"]["pass"][0] for s in tests], name="false alarms passed",
+            marker_color="#c62828", opacity=0.6, showlegend=False,
+            error_y={"type": "data", "array": [100 * (s["test"]["pass"][2] - s["test"]["pass"][0]) for s in tests],
+                     "arrayminus": [100 * (s["test"]["pass"][0] - s["test"]["pass"][1]) for s in tests]}),
+            1, 2)  # fmt: skip
+        fig.add_hline(y=10, line_dash="dot", line_color="#555", row=1, col=1,
+                      annotation_text="bar: 10%")  # fmt: skip
+        fig.update_layout(barmode="group", yaxis_title="%", title=(
+            f"R19: an open-weight confirmer before the operator ({conf['verdict']})"))  # fmt: skip
+        figs["r19_confirmer"] = fig
     inter = read_json(res / "r7e_interlingua.json")
     if inter:
         pts = [

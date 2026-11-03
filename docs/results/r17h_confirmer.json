@@ -1,0 +1,50 @@
+{
+ "rows": [
+  {
+   "variant": "recommended (as in step 6)",
+   "score": 0.42680000000000007,
+   "found": 0.523025,
+   "wrong": 0.0481125,
+   "found_change": 0.0,
+   "breaks": false
+  },
+  {
+   "variant": "careful operator, clear cases (90% / 8%)",
+   "score": 0.15413749999999998,
+   "found": 0.3573875,
+   "wrong": 0.101625,
+   "found_change": -0.16563749999999994,
+   "breaks": true
+  },
+  {
+   "variant": "R19: confirmer at the ground, then operator (92% / 5%)",
+   "score": 0.2641375,
+   "found": 0.40398750000000005,
+   "wrong": 0.06992499999999999,
+   "found_change": -0.11903749999999991,
+   "breaks": true
+  },
+  {
+   "variant": "R19: confirmer before dispatch, no video filter (operator after it 99% / 80%)",
+   "score": -0.49658750000000007,
+   "found": 0.2355875,
+   "wrong": 0.3660875,
+   "found_change": -0.28743749999999996,
+   "breaks": true
+  },
+  {
+   "variant": "R19: video filter and confirmer before dispatch (operator after it 99% / 80%)",
+   "score": 0.17312499999999997,
+   "found": 0.501625,
+   "wrong": 0.16425,
+   "found_change": -0.021399999999999975,
+   "breaks": true
+  }
+ ],
+ "breaking": [
+  "careful operator, clear cases (90% / 8%)",
+  "R19: confirmer at the ground, then operator (92% / 5%)",
+  "R19: confirmer before dispatch, no video filter (operator after it 99% / 80%)",
+  "R19: video filter and confirmer before dispatch (operator after it 99% / 80%)"
+ ]
+}

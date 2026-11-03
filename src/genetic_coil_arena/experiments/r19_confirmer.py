@@ -287,7 +287,7 @@ class DinoConfirmer:
 
 
 def train_dino(mode: str, crops: np.ndarray, person: np.ndarray, val: tuple[np.ndarray,
-               np.ndarray], seed: int, epochs: int = 3, batch: int = 64,
+               np.ndarray], seed: int, epochs: int = 3, batch: int = 64, size: int = 224,
                log: Any = print) -> tuple[DinoConfirmer, list[dict]]:  # fmt: skip
     """``probe``: frozen backbone, head only; ``full``: every weight. The epoch with the
     lowest val false-alarm pass at ``KEEP`` is kept."""
@@ -296,7 +296,7 @@ def train_dino(mode: str, crops: np.ndarray, person: np.ndarray, val: tuple[np.n
     torch.manual_seed(seed)
     rng = np.random.default_rng(seed)
     dev = _gpu()
-    m = DinoConfirmer(dev)
+    m = DinoConfirmer(dev, size)
     full = mode == "full"
     m.net.requires_grad_(full)
     groups = [{"params": m.head.parameters(), "lr": 1e-3}]
@@ -386,7 +386,7 @@ class QwenConfirmer:
     def logit(self, batch: Any) -> Any:
         import torch
 
-        out = self.net(**batch).logits[:, -1].float()
+        out = self.net(**batch, logits_to_keep=1).logits[:, -1].float()  # last position only
         return torch.logsumexp(out[:, self.yes], 1) - torch.logsumexp(
             out[:, self.no], 1
         )
@@ -419,6 +419,7 @@ def train_lora(q: QwenConfirmer, crops: np.ndarray, person: np.ndarray,
                      target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj",
                                      "up_proj", "down_proj"])  # fmt: skip
     q.net = get_peft_model(q.net, cfg)
+    q.net.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
     params = [p for p in q.net.parameters() if p.requires_grad]
     opt = torch.optim.AdamW(params, lr=1e-4, weight_decay=0.0)
     sched = torch.optim.lr_scheduler.OneCycleLR(opt, 1e-4, total_steps=steps,
