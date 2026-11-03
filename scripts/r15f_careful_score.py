@@ -100,7 +100,11 @@ def main() -> None:
     else:
         verdict = "NOT ENOUGH"
     ms = sorted(a["ms"] for a in answers.values())
+    labels = ("person", "no person", "can't tell")
+    agree = {k: {lab: sum(said.get(i) == lab for i in adj[k]) for lab in labels}
+             for k in ("person", "not_person", "ambiguous")}  # fmt: skip
     rep = {"rows": rows, "compare": compare, "verdict": verdict, "answered": len(answers),
+           "agree": agree,
            "median_ms": ms[len(ms) // 2] if ms else None,
            "unsure": sum(v == "can't tell" for v in said.values())}  # fmt: skip
     lines = ["# R15f: does a careful look cut the false alarms an operator confirms?", "",
@@ -122,6 +126,10 @@ def main() -> None:
     lines += ["", f"Quick look (R15e, clear cases, other spots): hit {qh[0]}/{qh[1]}, false "
               f"accept {qf[0]}/{qf[1]}. Careful against quick, Fisher's exact: hit p = "
               f"{compare['p_hit']:.3f}, false accept p = {compare['p_fa']:.3f}.", "",
+              "Answers on the 100 false alarms, by the visual check: "
+              + "; ".join(f"{k.replace('_', ' ')} ({sum(v.values())}): "
+                          + ", ".join(f"{n} {lab}" for lab, n in v.items())
+                          for k, v in agree.items()) + ".", "",
               "Brackets: 95% Wilson intervals. One operator, a second session (some learning "
               "from R15e is possible). Unlike R15e, the visual check of the false alarms was "
               "made from both views and committed before any answer was read.", ""]  # fmt: skip

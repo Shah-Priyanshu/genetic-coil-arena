@@ -1,0 +1,94 @@
+{
+ "rows": [
+  {
+   "truth": "clear cases (visual check made before the session)",
+   "persons": 126,
+   "hit_k": 114,
+   "hit": [
+    0.9047619047619048,
+    0.8408936424953803,
+    0.9446789320878042
+   ],
+   "unsure_pos": 1,
+   "empties": 38,
+   "fa_k": 3,
+   "false_accept": [
+    0.07894736842105263,
+    0.02721410139426493,
+    0.2079967892026529
+   ],
+   "unsure_neg": 2
+  },
+  {
+   "truth": "matched by R15b's scoring rule",
+   "persons": 100,
+   "hit_k": 99,
+   "hit": [
+    0.99,
+    0.9455124752390653,
+    0.9982326134344526
+   ],
+   "unsure_pos": 0,
+   "empties": 100,
+   "fa_k": 36,
+   "false_accept": [
+    0.36,
+    0.2727107459049014,
+    0.45764780018837914
+   ],
+   "unsure_neg": 5
+  },
+  {
+   "truth": "a labelled person within the ring",
+   "persons": 110,
+   "hit_k": 104,
+   "hit": [
+    0.9454545454545454,
+    0.886080727682667,
+    0.9747645169379286
+   ],
+   "unsure_pos": 1,
+   "empties": 90,
+   "fa_k": 31,
+   "false_accept": [
+    0.34444444444444444,
+    0.2544576592146297,
+    0.44716720651655983
+   ],
+   "unsure_neg": 4
+  }
+ ],
+ "compare": {
+  "quick_hit": [
+   117,
+   127
+  ],
+  "quick_fa": [
+   10,
+   43
+  ],
+  "p_hit": 0.6627327485346819,
+  "p_fa": 0.07427131964625117
+ },
+ "verdict": "NOT ENOUGH",
+ "answered": 200,
+ "agree": {
+  "person": {
+   "person": 15,
+   "no person": 10,
+   "can't tell": 1
+  },
+  "not_person": {
+   "person": 3,
+   "no person": 33,
+   "can't tell": 2
+  },
+  "ambiguous": {
+   "person": 18,
+   "no person": 16,
+   "can't tell": 2
+  }
+ },
+ "median_ms": 2320,
+ "unsure": 5
+}

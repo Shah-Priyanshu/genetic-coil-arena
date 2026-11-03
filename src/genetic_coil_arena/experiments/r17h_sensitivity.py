@@ -43,6 +43,9 @@ VARIANTS: dict[str, dict[str, float]] = {
         "op_hit": 0.96,
         "op_false": 0.46,
     },
+    # R15f: the same operator, careful look (2 s minimum, close-up plus wider view)
+    "careful operator, clear cases (90% / 8%)": {"op_hit": 0.90, "op_false": 0.08},
+    "careful operator, VisDrone labels (99% / 36%)": {"op_hit": 0.99, "op_false": 0.36},
 }
 FOUND_FLOOR, WRONG_CEIL = 0.40, 0.05
 

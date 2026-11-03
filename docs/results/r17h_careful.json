@@ -1,0 +1,41 @@
+{
+ "rows": [
+  {
+   "variant": "recommended (as in step 6)",
+   "score": 0.42680000000000007,
+   "found": 0.523025,
+   "wrong": 0.0481125,
+   "found_change": 0.0,
+   "breaks": false
+  },
+  {
+   "variant": "measured operator, clear cases (92% / 23%)",
+   "score": -0.1517,
+   "found": 0.25375,
+   "wrong": 0.202725,
+   "found_change": -0.269275,
+   "breaks": true
+  },
+  {
+   "variant": "careful operator, clear cases (90% / 8%)",
+   "score": 0.15413749999999998,
+   "found": 0.3573875,
+   "wrong": 0.101625,
+   "found_change": -0.16563749999999994,
+   "breaks": true
+  },
+  {
+   "variant": "careful operator, VisDrone labels (99% / 36%)",
+   "score": -0.33298750000000005,
+   "found": 0.24823750000000003,
+   "wrong": 0.29061250000000005,
+   "found_change": -0.27478749999999996,
+   "breaks": true
+  }
+ ],
+ "breaking": [
+  "measured operator, clear cases (92% / 23%)",
+  "careful operator, clear cases (90% / 8%)",
+  "careful operator, VisDrone labels (99% / 36%)"
+ ]
+}

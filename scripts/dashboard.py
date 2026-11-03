@@ -260,6 +260,11 @@ HOW_TO_READ = {
     "one assumption moves. Long red bars are the assumptions to measure first: the "
     "operator wrongly accepting empty views, and how many independent frames a second "
     "of video gives.",
+    "r15f_operator": "Left: how often the operator says 'person' on spots that clearly "
+    "show a person (green) and on spots that clearly show none (red), for a quick look "
+    "(R15e) and a careful one with a wider view (R15f); 95% intervals. Right: the "
+    "recommended search system with each operator. A careful look cuts the confirmed "
+    "false alarms about threefold, not yet to what the search needs.",
     "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
     "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
     "translation through the shared meanings could do.",
@@ -572,6 +577,38 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
             title="R17 step 6b: which assumption matters most",
         )  # fmt: skip
         figs["r17h_sensitivity"] = fig
+    quick, careful = read_json(res / "r15e_operator.json"), read_json(
+        res / "r15f_careful.json"
+    )
+    search = read_json(res / "r17h_careful.json")
+    if quick and careful and search:
+        from plotly.subplots import make_subplots
+
+        fig = make_subplots(rows=1, cols=2, subplot_titles=(
+            "operator's answers (clear cases)", "the search with that operator"))  # fmt: skip
+        looks = {
+            "quick look (R15e)": quick["rows"][0],
+            "careful look (R15f)": careful["rows"][0],
+        }
+        for key, label, colour in (("hit", "says person: a person", "#2e7d32"),
+                                   ("false_accept", "says person: empty spot", "#c62828")):  # fmt: skip
+            vals = [r[key] for r in looks.values()]
+            fig.add_trace(go.Bar(
+                x=list(looks), y=[100 * v[0] for v in vals], name=label, marker_color=colour,
+                error_y={"type": "data", "array": [100 * (v[2] - v[0]) for v in vals],
+                         "arrayminus": [100 * (v[0] - v[1]) for v in vals]}), 1, 1)  # fmt: skip
+        names = {"recommended (as in step 6)": "assumed (90% / 2%)",
+                 "measured operator, clear cases (92% / 23%)": "quick look",
+                 "careful operator, clear cases (90% / 8%)": "careful look"}  # fmt: skip
+        rows = [r for r in search["rows"] if r["variant"] in names]
+        for key, label, colour in (("found", "found", "#2e7d32"),
+                                   ("wrong", "wrong finds", "#c62828")):  # fmt: skip
+            fig.add_trace(go.Bar(x=[names[r["variant"]] for r in rows],
+                                 y=[100 * r[key] for r in rows], name=label,
+                                 marker_color=colour, opacity=0.6), 1, 2)  # fmt: skip
+        fig.update_layout(barmode="group", yaxis_title="%",
+                          title="R15f: a careful look by the operator, and the search")  # fmt: skip
+        figs["r15f_operator"] = fig
     inter = read_json(res / "r7e_interlingua.json")
     if inter:
         pts = [

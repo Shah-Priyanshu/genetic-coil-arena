@@ -404,3 +404,15 @@ With those rates, the recommended search system finds 25% of people (was 52%), a
 
 **Next measurement:** a careful-mode labelling session.
 
+## R15f: a careful look by the operator (`docs/results/r15f_careful.md`, `docs/results/r17h_careful.md`)
+
+**Not enough.** 200 new spots, each with a close-up and a wider view, answer buttons locked for 2 s (median answer 2.3 s). On the clear cases the operator said "person" for:
+- 90% of people;
+- 8% of non-people [3, 21], down from 23%.
+
+With those rates the recommended search system finds 36% of people (quick look 25%, assumed operator 52%), and 10% of its finds are wrong (quick look 20%, the limit 5%).
+
+**Slowing down helps but cannot close the gap alone.** Fewer false alarms must reach the operator:
+- persistence over several video frames (needs VisDrone-VID);
+- a closer look from the confirming drone.
+
