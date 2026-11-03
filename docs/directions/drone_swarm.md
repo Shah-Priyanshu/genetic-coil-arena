@@ -416,3 +416,21 @@ With those rates the recommended search system finds 36% of people (quick look 2
 - persistence over several video frames (needs VisDrone-VID);
 - a closer look from the confirming drone.
 
+
+## R19: an open-weight confirmer, as is and fine-tuned (pre-registered 2026-11-03, goal G15)
+
+**Question.** The scout brain is our own sub-megabyte network, and the ground station's LLM (qwen2.5-coder:14b) is used as is. Can an open-weight vision model, with its weights edited for drone footage, look at each detection before the operator and remove the false alarms R15e/R15f showed the operator cannot? And does editing the weights matter against using the model as is?
+
+**Where it would run.** A 2B vision-language model needs the ground station's GPU (the scout sends the 144-px view of each detection, about 5 KB as JPEG). DINOv2-small (22M parameters) also fits a companion computer on the confirming drone (Jetson or Raspberry Pi class).
+
+**Set-up.**
+- Candidates: R15b's width-0.5 brain on VisDrone-DET frames at native scale (merged tiles), the 144-px view around each detection, labelled by R15b's centre rule. Train frames at threshold 0.4, at most 12 per frame; val and test-dev at 0.5.
+- Fit on train, select on val (spots within 24 px of an R15e/R15f operator spot are left out), then score test-dev and the 400 operator spots once.
+- The operator spots carry R15b's label, Claude's visual check of the false alarms (81 clear non-person, 53 person, 66 ambiguous) and the operator's answer, so the model is compared with the operator on the same spots.
+- Models: DINOv2-small with a linear head on frozen features (weights kept) or fully fine-tuned (3 seeds); Qwen3-VL-2B-Instruct asked "is there a person at the exact centre?" as is, or with LoRA adapters trained on the same question (1 seed). Both are Apache-2.0.
+
+**Read-out, fixed before any test score.** Each model's threshold keeps 95% of the val people. The chosen model is the edited one with the lowest val false-alarm pass.
+- PASS if it passes ≤ 10% of the 81 clear non-person false alarms (R17 step 4's 10× cut) and keeps ≥ 90% of the 200 matched people among the operator spots.
+- Editing matters if, on test-dev, the edited model passes at most half the false alarms of the same model unedited, with the frame-bootstrap upper bound of the ratio below 1.
+- KILL if the chosen model passes ≥ 30% of the clear non-person false alarms.
+- Measured with no bar: the model chained in front of the operator, and those rates in R17 step 6's search.
