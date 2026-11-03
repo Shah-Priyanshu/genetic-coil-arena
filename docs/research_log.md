@@ -346,6 +346,16 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **What it means:** A quick single look by the operator is the weakest link in the person search, weaker than the detector or the camera: with it, one search in five would send the team to the wrong place. Confirmation needs a better view and more time: the confirming drone descends for a closer look, the operator sees several frames or a short clip, takes a few seconds, and can answer "can't tell" to ask for another look. This was one operator, answering fast on the scout's own small view, as asked. A careful-mode session (more time, more context) would measure how much slowing down buys.
 - **Report:** docs/results/r15e_operator.md
 
+### R15f: does a careful look cut the false alarms an operator confirms?
+- **Date:** 2026-11-02
+- **Question:** Given time and a wider view, does the operator confirm fewer of the scout brain's false alarms than the 23% of R15e's quick look?
+- **Why:** R15e made the operator's quick look the weakest link in the person search (25% found, 20% wrong finds); R17 step 6b shows that even 5% false accepts push wrong finds past 5%. If slowing down is enough, the fix is a procedure; if not, the confirmer needs a closer or multi-frame view.
+- **What we did:** 200 new spots drawn the same way as R15e (R15b's width-0.5 brain, VisDrone validation at native scale, confidence ≥ 0.5, 100 on a person and 100 false alarms) from tiles R15e did not draw, none within 24 px of an R15e spot. Each spot shows R15e's close-up and a 144-px wider view, both cut from the original frame; the answer buttons unlock after 2 s and "can't tell" is a first-class answer (it counts as not confirmed). Before the session Claude checked the 100 false alarms visually from both views (26 person, 38 not a person, 36 ambiguous) and committed the result. Read-out fixed in advance: ENOUGH if the clear-case false accept is at most 5% with a hit rate of at least 85%; NO GAIN if it is 15% or more; NOT ENOUGH otherwise.
+- **Result:** Waiting for the operator session.
+- **Verdict:** WAITING
+- **What it means:** To be written when the answers are in.
+- **Report:** docs/results/r15f_careful.md
+
 ### R15c probe: does a bigger camera input change recall per pixel?
 - **Date:** 2026-10-30
 - **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?

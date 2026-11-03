@@ -1,0 +1,6 @@
+{
+ "method": "Claude's visual judgement of the 100 spots R15b's scoring rule calls false alarms in the R15f careful-mode set, in id order, from contact sheets showing both views (72-px close-up and 144-px wider view, each at 216 px); made and committed before the operator session, so blind to the answers. person = a person or rider at the ring; not_person = clearly an object or empty ground at the ring; ambiguous = cannot tell from the views.",
+ "person": ["k005", "k017", "k021", "k025", "k027", "k029", "k047", "k048", "k050", "k057", "k074", "k076", "k077", "k104", "k106", "k112", "k132", "k135", "k137", "k142", "k147", "k163", "k177", "k182", "k193", "k195"],
+ "not_person": ["k003", "k009", "k022", "k026", "k030", "k042", "k045", "k055", "k059", "k060", "k064", "k066", "k071", "k079", "k083", "k087", "k090", "k102", "k108", "k111", "k115", "k116", "k126", "k129", "k139", "k157", "k158", "k159", "k164", "k167", "k174", "k175", "k186", "k188", "k191", "k194", "k196", "k199"],
+ "ambiguous": ["k004", "k013", "k014", "k015", "k019", "k023", "k031", "k033", "k034", "k041", "k044", "k046", "k051", "k054", "k072", "k073", "k075", "k081", "k089", "k109", "k110", "k114", "k121", "k125", "k128", "k131", "k134", "k140", "k141", "k146", "k160", "k169", "k170", "k176", "k180", "k185"]
+}
