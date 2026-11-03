@@ -1,9 +1,10 @@
 {
-  "sha": "d5b42ffc7de52b1d4ff2505e73012a56a86e8478",
-  "state": "done",
+  "sha": "9599c1d0827bb5c7ad2c5cc1f755d0d70756713e",
+  "state": "failed",
   "counts": {
-    "passed": 1775,
+    "failed": 1,
+    "passed": 1778,
     "skipped": 1
   },
-  "time": "2026-11-03T13:16:44+00:00"
+  "time": "2026-11-03T18:00:46+00:00"
 }
