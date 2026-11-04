@@ -456,6 +456,10 @@ On test-dev, editing cuts the false alarms passed to 0.56× (DINOv2) and 0.44× 
 - Put the Qwen LoRA and DINOv2 together.
 - Fine-tune the ground station's LLM on the R16 dev data (G14b missed narrowly). G3b's lesson applies there: train on real phrasing, not templates.
 
+### R17 step 6g: planning cannot buy the slack (`docs/results/r17i_wrong_cost.md`)
+
+**FAIL.** Mission-time tuning with a stiffer cost per wrong find (4, 8, 16 instead of the score's 2) trades finds for wrong finds at about 11 to 1 and never holds the closer look's upper-bound cut under 5% wrong while finding 40%. Cost 4: 36.4% / 4.5%; cost 3, post hoc: 42.3% / 5.1%. The share of declarations that are wrong stays at 8–10% (measured cut) whatever the cost, because the operator's false accept is per candidate and a declaration is final: a plan can only declare less. The margin has to come from a lower false-accept rate per candidate (R15g persistence, a real second look, R22's cleaner scout). Meanwhile, planning for the measured cut at cost 3 gives 46.4% found and 4.2% wrong.
+
 ## R20: a closer look from the confirming drone (pre-registered 2026-11-04, goal G16)
 
 **Question.** R19's confirmer and the operator fail on the same false alarms, and two models on the same view fail together (DINOv2 and Qwen correlate 0.85; together they barely beat one). In the mission the confirming drone hovers far lower than the scout sweeps. Does that closer look fail on *different* false alarms, so that a second check is worth something?

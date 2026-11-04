@@ -524,6 +524,42 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r21_ground_lora
 - **Report:** docs/results/r21_ground_lora.md
 
+### R17 step 6g: can planning buy the slack under the wrong-find limit?
+- **Date:** 2026-11-04
+- **Question:** If mission-time tuning counts a wrong find as costlier, does the search with the closer look stay under 5% wrong finds even at the upper bound of the closer look's cut, while still finding ≥ 40%?
+- **Why:** Step 6f met the limits at the measured cut (51.9% found, 4.7% wrong) but reached 5.6% wrong at the cut's upper bound, so there was no slack. The tuner maximises found − 2 × wrong. A stiffer cost lets it trade finds for fewer wrong ones: higher thresholds, more looks, fewer candidates checked.
+- **What we did:**
+  - **Set-up.** Step 6f's set-up (`scripts/r17i_wrong_cost.py`): step 3's 40 held-out missions × 2,000 test episodes, every mission tuned at mission time.
+  - **The objective.** Found − cost × wrong, with cost 2, 4, 8 or 16.
+  - **Variants.** R20b's three cuts and R19 alone. The plans tuned for the upper bound were also flown at the measured and replicate cuts: the ground station plans for the pessimistic case and meets the real one.
+  - **Bars, committed before the run:** W* is the smallest cost that holds the upper bound to ≤ 5% wrong. PASS if, at W*, three cases all find ≥ 40% with ≤ 5% wrong:
+    - the upper bound;
+    - the measured cut;
+    - the upper bound's plans flown at the measured cut.
+  - **Check.** Cost 2 reproduced step 6f's four rows exactly.
+- **Result:**
+
+  | Cost | Measured cut: found / wrong | Upper bound: found / wrong | Upper bound's plans at the measured cut | R19 alone |
+  |---|---|---|---|---|
+  | 2 | 51.9% / 4.7% | 47.6% / 5.6% | 48.2% / 3.9% | 40.4% / 7.0% |
+  | 3 (post hoc) | 46.4% / 4.2% | 42.3% / 5.1% | 42.7% / 3.6% | 34.6% / 6.6% |
+  | 4 | 41.1% / 3.6% | 36.4% / 4.5% | 36.6% / 3.1% | 28.5% / 5.6% |
+  | 8 | 29.2% / 2.7% | 26.0% / 3.8% | 26.1% / 2.6% | 24.2% / 5.7% |
+  | 16 | 23.3% / 2.5% | 21.3% / 3.4% | 21.3% / 2.3% | 22.8% / 5.5% |
+
+  - **W\* = 4.** There the upper bound finds 36.4%, below the 40% floor, and its plans flown at the measured cut find 36.6%.
+  - **The cost-3 row** was added after the verdict to look between 2 and 4. At the upper bound it reaches 5.1% wrong, so no tested cost meets both limits.
+  - **The share of declarations that are wrong does not fall with cost.** At the measured cut it is 8.4% at cost 2 and 9.9% at cost 16; at the upper bound, 10.6% and 13.9%.
+- **Verdict:** FAIL: NO WRONG-FIND COST HOLDS THE CUT'S UPPER BOUND UNDER 5% WRONG FINDS WHILE FINDING ≥ 40% (COST 4: 36.4% / 4.5%; COST 3, POST HOC: 42.3% / 5.1%)
+- **What it means:**
+  - **Planning cannot make a declaration more trustworthy; it can only declare less.**
+    - In the simulator the operator wrongly accepts each empty candidate once, with a fixed chance, and a declaration ends the sortie.
+    - A stiffer plan checks fewer candidates, so it loses real finds at the same rate as wrong ones. About 11 points of finds buy 1 point of wrong finds.
+  - **The slack must come from the evidence.** That means a lower false-accept rate per candidate: video persistence (R15g), a real second look at another angle and moment, or a cleaner scout (R22, running).
+  - **A usable setting for now.** Plan for the measured cut at cost 3: 46.4% found with 4.2% wrong, which gives more margin under the 5% line than cost 2 (4.7%) for 5.5 points of finds.
+- **Chart:** r17i_wrong_cost
+- **Report:** docs/results/r17i_wrong_cost.md
+
 ### R15c probe: does a bigger camera input change recall per pixel?
 - **Date:** 2026-10-30
 - **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?
