@@ -261,6 +261,10 @@ HOW_TO_READ = {
     "confirmer before the operator gives 7.0% wrong finds; adding the closer look at the "
     "hover (R20b's measured cut, its upper bound and its replicate) brings it to 4.7% "
     "(5.6%, 3.7%). Dotted lines: the 40% found and 5% wrong limits.",
+    "r17i_wrong_cost": "The search with the closer look, each of R17's 40 held-out "
+    "missions retuned at mission time with a stiffer cost per wrong find (the mission "
+    "score uses 2). Left: wrong finds; right: people found; 95% CI over missions. Dotted "
+    "curves: plans made for the cut's upper bound, flown where the cut is as measured.",
     "r17h_sensitivity": "How the recommended search system's share found changes when "
     "one assumption moves. Long red bars are the assumptions to measure first: the "
     "operator wrongly accepting empty views, and how many independent frames a second "
@@ -281,6 +285,11 @@ HOW_TO_READ = {
     "Right (R20b): the 594 passed false alarms R20 had not checked, labelled blind; most are "
     "people the labels miss or count twice. On the clearly empty spots (red) the closer look "
     "passes 15 where the control passes 35 (0.43x; replicate 9, 0.26x).",
+    "r21_ground_lora": "G14b's 150 sealed requests to the ground station: the share of "
+    "requests that should run and came out as exactly the right command (left) and the "
+    "share of all requests that became a wrong command (right), with 95% Wilson intervals. "
+    "The 14B as is is the deployed G14b model; the 7B runs with the same prompt, as is and "
+    "after QLoRA on 997 operator-style requests. Dotted lines: the G14 bars.",
     "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
     "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
     "translation through the shared meanings could do.",
@@ -606,6 +615,39 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
         fig.update_layout(barmode="group", yaxis_title="%",
                           title="R17 step 6f: the search with the closer look")  # fmt: skip
         figs["r17h_closer_look"] = fig
+    cost = read_json(res / "r17i_wrong_cost.json")
+    if cost:
+        from plotly.subplots import make_subplots
+
+        short = {"R20b: confirmer and closer look at the hover, then operator (92% / 2.1%)":
+                 "measured cut", "R20b: the same at the replicate's cut (92% / 1.3%)":
+                 "replicate's cut", "R20b: the same at the cut's upper bound (92% / 3.2%)":
+                 "upper bound", "R19: confirmer at the ground, then operator (92% / 5%)":
+                 "R19 alone"}  # fmt: skip
+        fig = make_subplots(rows=1, cols=2, subplot_titles=("wrong finds", "people found"))
+        lines: dict[str, list] = {}
+        for r in cost["rows"]:
+            name = short[r["plan"]] if r["plan"] == r["world"] else (
+                f"planned for {short[r['plan']]}, flown at {short[r['world']]}")  # fmt: skip
+            lines.setdefault(name, []).append(r)
+        for k, (name, rs) in enumerate(lines.items()):
+            colour = px.colors.qualitative.Safe[k % 10]
+            dash = "solid" if " flown at " not in name else "dot"
+            for col, key in ((1, "wrong"), (2, "found")):
+                fig.add_trace(go.Scatter(
+                    x=[r["cost"] for r in rs], y=[100 * r[key] for r in rs], name=name,
+                    mode="lines+markers", line={"color": colour, "dash": dash},
+                    showlegend=col == 1, legendgroup=name,
+                    error_y={"type": "data", "array": [100 * r[key + "_hw"] for r in rs]}),
+                    1, col)  # fmt: skip
+        fig.add_hline(y=5, line_dash="dot", line_color="#c62828", row=1, col=1,
+                      annotation_text="5% limit")  # fmt: skip
+        fig.add_hline(y=40, line_dash="dot", line_color="#2e7d32", row=1, col=2,
+                      annotation_text="40% limit")  # fmt: skip
+        fig.update_xaxes(type="log", title_text="cost of a wrong find in the tuning objective")
+        fig.update_layout(yaxis_title="%", title=(
+            f"R17 step 6g: plan to the wrong-find limit ({cost['verdict']})"))  # fmt: skip
+        figs["r17i_wrong_cost"] = fig
     quick, careful = read_json(res / "r15e_operator.json"), read_json(
         res / "r15f_careful.json"
     )
@@ -701,6 +743,29 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
             f"({closer['verdict']}, {closer['ratio']['closer'][0]:.2f}x)"))  # fmt: skip
         fig.update_yaxes(title_text="spots", row=1, col=2)
         figs["r20_closer_look"] = fig
+    lora = read_json(res / "r21_ground_lora.json")
+    if lora and "verdict" in lora:
+        from plotly.subplots import make_subplots
+
+        fig = make_subplots(rows=1, cols=2, subplot_titles=(
+            "exact command (requests that should run)", "wrong commands (all requests)"))  # fmt: skip
+        whos = {}
+        if lora.get("g14b"):
+            whos["14B as is (G14b)"] = lora["g14b"]["g14"]
+        names = {"asis_sealed-b": "7B as is", "lora_sealed-b": "7B + QLoRA"}
+        whos.update({v: lora["systems"][k] for k, v in names.items() if k in lora["systems"]})
+        for col, key, colour, bar in ((1, "exact", "#2e7d32", 90), (2, "wrong_commands", "#c62828", 3)):
+            vals = [w[key] for w in whos.values()]
+            fig.add_trace(go.Bar(
+                x=list(whos), y=[100 * v[0] for v in vals], marker_color=colour,
+                showlegend=False, text=[f"{100 * v[0]:.1f}%" for v in vals],
+                error_y={"type": "data", "array": [100 * (v[2] - v[0]) for v in vals],
+                         "arrayminus": [100 * (v[0] - v[1]) for v in vals]}), 1, col)  # fmt: skip
+            fig.add_hline(y=bar, line_dash="dot", line_color="#555", row=1, col=col,
+                          annotation_text=f"bar {bar}%")  # fmt: skip
+        fig.update_layout(yaxis_title="%", title=(
+            f"R21: the ground station's LLM with its weights edited ({lora['verdict']})"))  # fmt: skip
+        figs["r21_ground_lora"] = fig
     inter = read_json(res / "r7e_interlingua.json")
     if inter:
         pts = [

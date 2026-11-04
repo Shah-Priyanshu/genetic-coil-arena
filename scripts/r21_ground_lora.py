@@ -15,6 +15,7 @@ per system, after the read-out was committed.
 import argparse
 import collections
 import json
+import math
 import os
 import time
 from pathlib import Path
@@ -25,6 +26,8 @@ from genetic_coil_arena.experiments import r16_sealed  # noqa: E402
 from genetic_coil_arena.experiments import r21_ground_lora as rg  # noqa: E402
 
 G14B = Path("docs/results/r16b_ground_station.json")
+Q14_ROWS = Path("D:/Projects/genetic-coil-arena-gpu-results/runs/r16b-sealed-q14/artifacts/"
+                "r16_sealed-b_ollama_qwen2.5-coder_14b.jsonl")  # G14b's per-item rows
 BARS = {"exact": 0.90, "wrong": 0.03, "wrong_hi": 0.06}
 EDIT_POINTS = 0.10  # editing matters: exact at least 10 points above the 7B as is
 
@@ -181,8 +184,16 @@ def cmd_report(_args) -> None:
         if asis is not None:
             gain = s["exact"][0] - rep["systems"]["asis_sealed-b"]["exact"][0]
             rep["editing"] = {"gain": gain, "mcnemar": mcnemar(lora, asis),
-                              "matters": bool(gain >= EDIT_POINTS)}  # fmt: skip
+                              "matters": bool(round(gain, 9) >= EDIT_POINTS)}  # fmt: skip
             rep["editing"]["matters"] &= rep["editing"]["mcnemar"]["p"] < 0.05
+        if Q14_ROWS.exists():  # measured with no bar: the deployed 14B on the same items
+            q14 = [json.loads(x) for x in Q14_ROWS.read_text("utf-8").splitlines() if x.strip()]
+            qc = {r["id"]: r["correct"] for r in q14}
+            a = sum(r["correct"] and not qc[r["id"]] for r in lora)
+            b = sum(qc[r["id"]] and not r["correct"] for r in lora)
+            p = min(1.0, 2 * sum(math.comb(a + b, k) for k in range(min(a, b) + 1)) / 2 ** (a + b))
+            rep["vs_14b"] = {"exact": mcnemar(lora, q14),
+                             "correct": {"a_only": a, "b_only": b, "p": p}}  # fmt: skip
         rep["misses"] = [{k: r[k] for k in ("id", "text", "expect", "gold", "params",
                                             "outcome", "reason")}
                          for r in lora if not r["correct"]]  # fmt: skip
@@ -207,10 +218,18 @@ def render(rep: dict) -> str:
             lines += ["", f"Editing: {100 * e['gain']:+.1f} points of exact match over the "
                       f"same 7B as is (McNemar p = {e['mcnemar']['p']:.3g}; "
                       f"{'meets' if e['matters'] else 'misses'} the >= 10-point bar)."]  # fmt: skip
+        if "vs_14b" in rep:
+            v = rep["vs_14b"]
+            lines += ["", f"Against the deployed 14B on the same items (no bar): exact match "
+                      f"{v['exact']['a_only']} items only the tuned 7B gets, "
+                      f"{v['exact']['b_only']} only the 14B (p = {v['exact']['p']:.2f}); "
+                      f"right outcome overall (exact, asked, refused as expected) "
+                      f"{v['correct']['a_only']} against {v['correct']['b_only']} "
+                      f"(p = {v['correct']['p']:.3f})."]  # fmt: skip
         lines.append("")
     if "data" in rep:
         d = rep["data"]
-        lines += [f"Training requests: {d['written']} written by three writers from the "
+        lines += [f"Training requests: {d['written']} written by five writers from the "
                   f"label guide alone; {d['label_problems']} dropped by the label check, "
                   f"{d['leaks']} as too close to a dev or sealed text; {d['kept']} kept.", ""]  # fmt: skip
     if "fit" in rep:

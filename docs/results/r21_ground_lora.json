@@ -1,0 +1,804 @@
+{
+ "bars": {
+  "exact": 0.9,
+  "wrong": 0.03,
+  "wrong_hi": 0.06
+ },
+ "systems": {
+  "asis_dev": {
+   "n": 60,
+   "by_expect": {
+    "ok": {
+     "exact": 32,
+     "refused": 3,
+     "failed": 1
+    },
+    "clarify": {
+     "asked": 10,
+     "refused": 2
+    },
+    "refuse": {
+     "refused": 9,
+     "wrong command": 2,
+     "asked": 1
+    }
+   },
+   "exact": [
+    0.8888888888888888,
+    0.7468487098496367,
+    0.9559343109125816
+   ],
+   "asked_when_unclear": [
+    0.8333333333333334,
+    0.5519636426153274,
+    0.9530358523851776
+   ],
+   "refused_when_should": [
+    0.75,
+    0.46768966087934005,
+    0.9110599603710386
+   ],
+   "wrong_commands": [
+    0.03333333333333333,
+    0.009189126490150246,
+    0.11363987528925378
+   ],
+   "correct": [
+    0.85,
+    0.7388517410884038,
+    0.9190265075770431
+   ],
+   "median_latency_s": 1.3202911000698805
+  },
+  "asis_sealed-b": {
+   "n": 150,
+   "by_expect": {
+    "ok": {
+     "exact": 73,
+     "asked": 12,
+     "refused": 4,
+     "failed": 1
+    },
+    "refuse": {
+     "refused": 25,
+     "wrong command": 5
+    },
+    "clarify": {
+     "asked": 26,
+     "refused": 4
+    }
+   },
+   "exact": [
+    0.8111111111111111,
+    0.7181618666315032,
+    0.8785884019061175
+   ],
+   "asked_when_unclear": [
+    0.8666666666666667,
+    0.7031831605558306,
+    0.9469043057578189
+   ],
+   "refused_when_should": [
+    0.8333333333333334,
+    0.6643529481431982,
+    0.9266356575964831
+   ],
+   "wrong_commands": [
+    0.03333333333333333,
+    0.014320220695575196,
+    0.07565284250709559
+   ],
+   "correct": [
+    0.8266666666666667,
+    0.7581386789428641,
+    0.8788801768152663
+   ],
+   "median_latency_s": 2.535977500025183
+  },
+  "lora_sealed-b": {
+   "n": 150,
+   "by_expect": {
+    "ok": {
+     "exact": 82,
+     "asked": 7,
+     "refused": 1
+    },
+    "refuse": {
+     "wrong command": 3,
+     "refused": 26,
+     "failed": 1
+    },
+    "clarify": {
+     "asked": 30
+    }
+   },
+   "exact": [
+    0.9111111111111111,
+    0.8342928001780631,
+    0.9542700546752215
+   ],
+   "asked_when_unclear": [
+    1.0,
+    0.8864829086095221,
+    1.0
+   ],
+   "refused_when_should": [
+    0.8666666666666667,
+    0.7031831605558306,
+    0.9469043057578189
+   ],
+   "wrong_commands": [
+    0.02,
+    0.006824627715648315,
+    0.05714766586424165
+   ],
+   "correct": [
+    0.92,
+    0.8653774250568131,
+    0.9536468180607831
+   ],
+   "median_latency_s": 2.8847022999543697
+  }
+ },
+ "fit": {
+  "seed": 0,
+  "history": [
+   {
+    "epoch": 1,
+    "loss": 0.06459516066025763,
+    "n": 60,
+    "n_ok": 36,
+    "exact": 35,
+    "wrong": 0,
+    "correct": 59
+   },
+   {
+    "epoch": 2,
+    "loss": 0.007997052552927045,
+    "n": 60,
+    "n_ok": 36,
+    "exact": 35,
+    "wrong": 0,
+    "correct": 59
+   },
+   {
+    "epoch": 3,
+    "loss": 0.0019790429094789196,
+    "n": 60,
+    "n_ok": 36,
+    "exact": 35,
+    "wrong": 0,
+    "correct": 59
+   }
+  ],
+  "chosen_epoch": 1,
+  "seconds": 5046.959941299981
+ },
+ "data": {
+  "written": 1250,
+  "label_problems": 68,
+  "leaks": 212,
+  "kept": 997
+ },
+ "g14b": {
+  "g14": {
+   "available": true,
+   "exact": [
+    0.8888888888888888,
+    0.8074203653741283,
+    0.9385174702978976
+   ],
+   "wrong_commands": [
+    0.02666666666666667,
+    0.010417772291104764,
+    0.06655490610017561
+   ],
+   "bar_exact": false,
+   "bar_wrong": false,
+   "gain": 0.4555555555555555,
+   "bar_gain": true,
+   "passed": false
+  },
+  "runs": {
+   "dev|keyword": {
+    "n": 60,
+    "by_expect": {
+     "ok": {
+      "exact": 20,
+      "refused": 5,
+      "asked": 7,
+      "wrong command": 4
+     },
+     "clarify": {
+      "asked": 6,
+      "refused": 5,
+      "wrong command": 1
+     },
+     "refuse": {
+      "refused": 7,
+      "wrong command": 2,
+      "asked": 3
+     }
+    },
+    "exact": [
+     0.5555555555555556,
+     0.3958078731600341,
+     0.7045897012345685
+    ],
+    "asked_when_unclear": [
+     0.5,
+     0.2537781703934222,
+     0.7462218296065778
+    ],
+    "refused_when_should": [
+     0.5833333333333334,
+     0.3195073356553728,
+     0.8067425380947535
+    ],
+    "wrong_commands": [
+     0.11666666666666667,
+     0.05767647403450049,
+     0.2217902059985814
+    ],
+    "correct": [
+     0.55,
+     0.42491714548981496,
+     0.6690654614623918
+    ],
+    "median_latency_s": 0.0,
+    "translator": "keyword",
+    "split": "dev",
+    "reach_drones": 7,
+    "reach_drones_rate": [
+     0.11666666666666667,
+     0.05767647403450049,
+     0.2217902059985814
+    ]
+   },
+   "dev|ollama:gemma4:e2b": {
+    "n": 60,
+    "by_expect": {
+     "ok": {
+      "exact": 32,
+      "refused": 3,
+      "asked": 1
+     },
+     "clarify": {
+      "asked": 9,
+      "refused": 3
+     },
+     "refuse": {
+      "refused": 9,
+      "asked": 2,
+      "wrong command": 1
+     }
+    },
+    "exact": [
+     0.8888888888888888,
+     0.7468487098496367,
+     0.9559343109125816
+    ],
+    "asked_when_unclear": [
+     0.75,
+     0.46768966087934005,
+     0.9110599603710386
+    ],
+    "refused_when_should": [
+     0.75,
+     0.46768966087934005,
+     0.9110599603710386
+    ],
+    "wrong_commands": [
+     0.016666666666666666,
+     0.002948083860873682,
+     0.08855338226779477
+    ],
+    "correct": [
+     0.8333333333333334,
+     0.7196814850279217,
+     0.9068692279867897
+    ],
+    "median_latency_s": 0.2321409999858588,
+    "translator": "ollama:gemma4:e2b",
+    "split": "dev",
+    "reach_drones": 1,
+    "reach_drones_rate": [
+     0.016666666666666666,
+     0.002948083860873682,
+     0.08855338226779477
+    ]
+   },
+   "dev|ollama:gemma4:e4b": {
+    "n": 60,
+    "by_expect": {
+     "ok": {
+      "exact": 21,
+      "refused": 4,
+      "asked": 11
+     },
+     "clarify": {
+      "asked": 7,
+      "refused": 5
+     },
+     "refuse": {
+      "refused": 10,
+      "asked": 2
+     }
+    },
+    "exact": [
+     0.5833333333333334,
+     0.4219996966427768,
+     0.7285966649491271
+    ],
+    "asked_when_unclear": [
+     0.5833333333333334,
+     0.3195073356553728,
+     0.8067425380947535
+    ],
+    "refused_when_should": [
+     0.8333333333333334,
+     0.5519636426153274,
+     0.9530358523851776
+    ],
+    "wrong_commands": [
+     0.0,
+     0.0,
+     0.06017393047793289
+    ],
+    "correct": [
+     0.6333333333333333,
+     0.5068276736679673,
+     0.7437926115379172
+    ],
+    "median_latency_s": 0.33900680008810014,
+    "translator": "ollama:gemma4:e4b",
+    "split": "dev",
+    "reach_drones": 0,
+    "reach_drones_rate": [
+     0.0,
+     0.0,
+     0.06017393047793289
+    ]
+   },
+   "dev|ollama:qwen2.5-coder:14b": {
+    "n": 60,
+    "by_expect": {
+     "ok": {
+      "exact": 35,
+      "asked": 1
+     },
+     "clarify": {
+      "asked": 9,
+      "refused": 3
+     },
+     "refuse": {
+      "refused": 11,
+      "asked": 1
+     }
+    },
+    "exact": [
+     0.9722222222222222,
+     0.8582996626496918,
+     0.9950797197044302
+    ],
+    "asked_when_unclear": [
+     0.75,
+     0.46768966087934005,
+     0.9110599603710386
+    ],
+    "refused_when_should": [
+     0.9166666666666666,
+     0.6461140782014047,
+     0.9851352905492264
+    ],
+    "wrong_commands": [
+     0.0,
+     0.0,
+     0.06017393047793289
+    ],
+    "correct": [
+     0.9166666666666666,
+     0.8193083153188752,
+     0.9638800759495141
+    ],
+    "median_latency_s": 0.6226204999256879,
+    "translator": "ollama:qwen2.5-coder:14b",
+    "split": "dev",
+    "reach_drones": 0,
+    "reach_drones_rate": [
+     0.0,
+     0.0,
+     0.06017393047793289
+    ]
+   },
+   "sealed-b|keyword": {
+    "n": 150,
+    "by_expect": {
+     "ok": {
+      "asked": 19,
+      "wrong command": 13,
+      "exact": 39,
+      "refused": 19
+     },
+     "refuse": {
+      "refused": 18,
+      "wrong command": 9,
+      "asked": 3
+     },
+     "clarify": {
+      "refused": 11,
+      "asked": 18,
+      "wrong command": 1
+     }
+    },
+    "exact": [
+     0.43333333333333335,
+     0.33576405263265097,
+     0.5363608898235731
+    ],
+    "asked_when_unclear": [
+     0.6,
+     0.42320052498273836,
+     0.7540960567391659
+    ],
+    "refused_when_should": [
+     0.6,
+     0.42320052498273836,
+     0.7540960567391659
+    ],
+    "wrong_commands": [
+     0.15333333333333332,
+     0.10439879275574346,
+     0.2195811970519548
+    ],
+    "correct": [
+     0.5,
+     0.4209887046908502,
+     0.5790112953091499
+    ],
+    "median_latency_s": 0.0,
+    "translator": "keyword",
+    "split": "sealed-b",
+    "reach_drones": 23,
+    "reach_drones_rate": [
+     0.15333333333333332,
+     0.10439879275574346,
+     0.2195811970519548
+    ]
+   },
+   "sealed-b|ollama:gemma4:e2b": {
+    "n": 150,
+    "by_expect": {
+     "ok": {
+      "exact": 77,
+      "asked": 9,
+      "refused": 3,
+      "wrong command": 1
+     },
+     "refuse": {
+      "refused": 27,
+      "asked": 1,
+      "wrong command": 2
+     },
+     "clarify": {
+      "refused": 9,
+      "asked": 20,
+      "wrong command": 1
+     }
+    },
+    "exact": [
+     0.8555555555555555,
+     0.7683993769120605,
+     0.9136009299880774
+    ],
+    "asked_when_unclear": [
+     0.6666666666666666,
+     0.48779725813830266,
+     0.807697044731538
+    ],
+    "refused_when_should": [
+     0.9,
+     0.7437855868473339,
+     0.9654007400402839
+    ],
+    "wrong_commands": [
+     0.02666666666666667,
+     0.010417772291104764,
+     0.06655490610017561
+    ],
+    "correct": [
+     0.8266666666666667,
+     0.7581386789428641,
+     0.8788801768152663
+    ],
+    "median_latency_s": 0.23275480000302196,
+    "translator": "ollama:gemma4:e2b",
+    "split": "sealed-b",
+    "reach_drones": 4,
+    "reach_drones_rate": [
+     0.02666666666666667,
+     0.010417772291104764,
+     0.06655490610017561
+    ]
+   },
+   "sealed-b|ollama:gemma4:e4b": {
+    "n": 150,
+    "by_expect": {
+     "ok": {
+      "asked": 23,
+      "refused": 13,
+      "exact": 54
+     },
+     "refuse": {
+      "wrong command": 1,
+      "refused": 24,
+      "asked": 5
+     },
+     "clarify": {
+      "refused": 19,
+      "asked": 11
+     }
+    },
+    "exact": [
+     0.6,
+     0.4967011780834921,
+     0.6951114082321718
+    ],
+    "asked_when_unclear": [
+     0.36666666666666664,
+     0.21873702204017678,
+     0.5448675356639506
+    ],
+    "refused_when_should": [
+     0.8,
+     0.6269395261897256,
+     0.9049502189759876
+    ],
+    "wrong_commands": [
+     0.006666666666666667,
+     0.0011777710231334546,
+     0.036793752933975674
+    ],
+    "correct": [
+     0.5933333333333334,
+     0.51334517440468,
+     0.6686602129547861
+    ],
+    "median_latency_s": 0.33776020002551377,
+    "translator": "ollama:gemma4:e4b",
+    "split": "sealed-b",
+    "reach_drones": 1,
+    "reach_drones_rate": [
+     0.006666666666666667,
+     0.0011777710231334546,
+     0.036793752933975674
+    ]
+   },
+   "sealed-b|ollama:qwen2.5-coder:14b": {
+    "n": 150,
+    "by_expect": {
+     "ok": {
+      "exact": 80,
+      "refused": 1,
+      "wrong command": 1,
+      "asked": 8
+     },
+     "refuse": {
+      "refused": 28,
+      "wrong command": 2
+     },
+     "clarify": {
+      "refused": 10,
+      "asked": 19,
+      "wrong command": 1
+     }
+    },
+    "exact": [
+     0.8888888888888888,
+     0.8074203653741283,
+     0.9385174702978976
+    ],
+    "asked_when_unclear": [
+     0.6333333333333333,
+     0.45513246433604937,
+     0.7812629779598231
+    ],
+    "refused_when_should": [
+     0.9333333333333333,
+     0.7867618227892791,
+     0.9815233646723066
+    ],
+    "wrong_commands": [
+     0.02666666666666667,
+     0.010417772291104764,
+     0.06655490610017561
+    ],
+    "correct": [
+     0.8466666666666667,
+     0.7804188029480452,
+     0.8956012072442565
+    ],
+    "median_latency_s": 0.6237565000774339,
+    "translator": "ollama:qwen2.5-coder:14b",
+    "split": "sealed-b",
+    "reach_drones": 4,
+    "reach_drones_rate": [
+     0.02666666666666667,
+     0.010417772291104764,
+     0.06655490610017561
+    ]
+   }
+  }
+ },
+ "verdict": "PASS",
+ "editing": {
+  "gain": 0.09999999999999998,
+  "mcnemar": {
+   "a_only": 12,
+   "b_only": 3,
+   "p": 0.03515625
+  },
+  "matters": true
+ },
+ "vs_14b": {
+  "exact": {
+   "a_only": 7,
+   "b_only": 5,
+   "p": 0.7744140625
+  },
+  "correct": {
+   "a_only": 19,
+   "b_only": 8,
+   "p": 0.052238985896110535
+  }
+ },
+ "misses": [
+  {
+   "id": "b006",
+   "text": "Marta wants the swarm to ring the old barn tonight, with 3 m spacing between the drones please",
+   "expect": "refuse",
+   "gold": null,
+   "params": {
+    "behavior": "formation",
+    "shape": "circle",
+    "spacing_m": 3.0
+   },
+   "outcome": "wrong command",
+   "reason": ""
+  },
+  {
+   "id": "b009",
+   "text": "watch the launch pad, 30 feet out",
+   "expect": "ok",
+   "gold": {
+    "behavior": "perimeter",
+    "area": "home",
+    "radius_m": 9.14
+   },
+   "params": null,
+   "outcome": "asked",
+   "reason": "Which place should the swarm circle?"
+  },
+  {
+   "id": "b013",
+   "text": "Birds mode. separation four, alignment half.",
+   "expect": "ok",
+   "gold": {
+    "behavior": "boids",
+    "separation": 4,
+    "alignment": 0.5
+   },
+   "params": null,
+   "outcome": "refused",
+   "reason": "That value is outside the allowed range."
+  },
+  {
+   "id": "b015",
+   "text": "Search the schoolyard",
+   "expect": "ok",
+   "gold": {
+    "behavior": "search_grid",
+    "area": "school"
+   },
+   "params": null,
+   "outcome": "asked",
+   "reason": "Which area should the swarm search?"
+  },
+  {
+   "id": "b019",
+   "text": "circle the barn while doing a rainbow show",
+   "expect": "refuse",
+   "gold": null,
+   "params": null,
+   "outcome": "failed",
+   "reason": "the reply is not JSON: '{\"refusal\": \"\", \"clarify\": \"\", \"params\": {\"behavior\": \"perimeter\", \"area\": \"barn'"
+  },
+  {
+   "id": "b045",
+   "text": "make a circle",
+   "expect": "ok",
+   "gold": {
+    "behavior": "formation",
+    "shape": "circle"
+   },
+   "params": null,
+   "outcome": "asked",
+   "reason": "Which place should the swarm circle?"
+  },
+  {
+   "id": "b050",
+   "text": "search the barn but don't move",
+   "expect": "refuse",
+   "gold": null,
+   "params": {
+    "behavior": "search_grid",
+    "area": "barn",
+    "alt_m": 5.0
+   },
+   "outcome": "wrong command",
+   "reason": ""
+  },
+  {
+   "id": "b063",
+   "text": "search the orchard then return home",
+   "expect": "refuse",
+   "gold": null,
+   "params": {
+    "behavior": "search_grid",
+    "area": "orchard",
+    "alt_m": 5.0
+   },
+   "outcome": "wrong command",
+   "reason": ""
+  },
+  {
+   "id": "b070",
+   "text": "circle the motorway",
+   "expect": "ok",
+   "gold": {
+    "behavior": "perimeter",
+    "area": "highway"
+   },
+   "params": null,
+   "outcome": "asked",
+   "reason": "Which place should the swarm circle?"
+  },
+  {
+   "id": "b073",
+   "text": "serach the river",
+   "expect": "ok",
+   "gold": {
+    "behavior": "search_grid",
+    "area": "river bank"
+   },
+   "params": null,
+   "outcome": "asked",
+   "reason": "Which area should the swarm search?"
+  },
+  {
+   "id": "b143",
+   "text": "Search the parking lot",
+   "expect": "ok",
+   "gold": {
+    "behavior": "search_grid",
+    "area": "car park"
+   },
+   "params": null,
+   "outcome": "asked",
+   "reason": "Which area should the swarm search?"
+  },
+  {
+   "id": "b145",
+   "text": "search the forest at ten metres",
+   "expect": "ok",
+   "gold": {
+    "behavior": "search_grid",
+    "area": "east woods",
+    "alt_m": 10
+   },
+   "params": null,
+   "outcome": "asked",
+   "reason": "Which area should the swarm search?"
+  }
+ ]
+}

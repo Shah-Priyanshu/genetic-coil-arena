@@ -5,8 +5,8 @@ command, and code does the rest (``r16_ground_station.GroundTranslator``, v5). O
 fresh sealed set it missed the exact-match bar narrowly (88.9%, bar 90%). R7a's distilled
 students failed on hand-written requests because they were trained on template-like
 phrasing (G3b). This module fine-tunes a smaller open-weight model of the same family,
-Qwen2.5-Coder-7B-Instruct, with QLoRA on requests written like real ones: three writers
-with different styles (``train_a/b/c.jsonl`` in ``DATA_DIR``), each given only the G14b
+Qwen2.5-Coder-7B-Instruct, with QLoRA on requests written like real ones: five writers
+with different styles (``train_a..e.jsonl`` in ``DATA_DIR``), each given only the G14b
 label guide, never the sealed sets.
 
 The model sees exactly the prompt the 14B sees (system prompt, the nine few-shot

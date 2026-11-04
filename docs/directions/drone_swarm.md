@@ -503,6 +503,8 @@ On test-dev, editing cuts the false alarms passed to 0.56× (DINOv2) and 0.44× 
 - KILL if exact < 80% or wrong commands > 10%.
 - Measured with no bar: the 14B's G14b result on the same items, asks and refusals, latency.
 
+**Result (2026-11-04): PASS.** On G14b's 150 sealed requests the 7B + QLoRA gets 91.1% [83, 95] exact with 2.0% [1, 6] wrong commands; the same 7B as is gets 81.1% and 3.3%, so editing adds 10.0 points (McNemar p = 0.035, exactly at the bar). The deployed 14B as is got 88.9% / 2.7%. Paired with the 14B, exact match is level (7 items against 5), but the tuned 7B gets the right outcome on 19 items where the 14B fails, against 8 (p = 0.052); 11 of them are unclear requests the 14B refused or ran, where the 7B asks (it asks on all 30). Its 12 misses are 7 questions about place names not tied to the site map (schoolyard, parking lot, motorway, forest), 3 compound requests that should be refused but became their first half ("then return home", "but don't move"), a wrong refusal and a failed reply. Training needed one fix: peft's 4-bit prep upcast the embedding and output layers to fp32 and ran the card out of memory; they now stay in bf16 and only the reply's logits are computed.
+
 ## R22: the scout brain trained on confirmer-cleaned labels (pre-registered 2026-11-04, goal G18)
 
 **Question.** R20b found that about three in four of VisDrone's "false alarms" that get past the confirmers are people the labels miss. The scout brain (R15b) learned from those labels, so part of its training said people are background. If an out-of-fold confirmer puts the missing people back, does the scout raise fewer *clearly empty* false alarms at the same share of labelled people found?

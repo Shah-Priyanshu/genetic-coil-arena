@@ -475,6 +475,55 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r17h_closer_look
 - **Report:** docs/results/r17h_closer_look.md
 
+### R21 (G17): the ground station's language model with its weights edited
+- **Date:** 2026-11-04
+- **Question:** Can a smaller open-weight model, fine-tuned on how operators really talk, reach the ground-station bars that the deployed 14B, used as is, missed narrowly?
+- **Why:**
+  - G14b's 14B reached 88.9% exact against a 90% bar.
+  - R19 showed that editing open weights is what made the vision confirmer work.
+  - R7a's distilled students had failed on hand-written requests (G3b) because their training text was template-like.
+- **What we did:**
+  - **Training data.**
+    - Five writers with different styles wrote 1,250 requests from the label guide alone: radio calls, chatty hobbyists, voice transcripts, professionals and chat-app beginners.
+    - 68 were dropped by the spec and literal checks, and 212 as too close to a dev or sealed text (4-gram containment ≥ 0.5).
+    - The deployed 14B read every remaining request. Its disagreements were reviewed by hand, and 2 labels that broke the guide were dropped. 997 were kept.
+  - **Model.**
+    - Qwen2.5-Coder-7B-Instruct in 4-bit NF4 with QLoRA (rank 16, every linear projection), trained only on the reply, with the exact prompt the 14B gets.
+    - It runs inside the unchanged v5 ground-station pipeline (literal check, placement check, retries).
+    - Epoch (of 3) picked on R16 dev; all three scored 35/36 exact with no wrong commands, so the first was kept.
+    - The same 7B unedited is the "as is" system.
+  - **Fix on the way.** peft's 4-bit training prep upcast the embedding and output layers to fp32 (4.4 GB), which ran the 12 GB card out of memory. Training now keeps them in bf16 and computes logits only for the reply tokens; that loss matched the full loss to 5 decimals.
+  - **Bars, committed before any sealed run:**
+    - PASS if exact ≥ 90% and wrong commands ≤ 3% with the Wilson upper bound ≤ 6%;
+    - editing matters if exact is ≥ 10 points above the 7B as is, with McNemar p < 0.05;
+    - KILL if exact < 80% or wrong commands > 10%.
+- **Result:** G14b's sealed set (150 requests), one run per system.
+
+  | System | Exact (90 that should run) | Asked when unclear | Refused when it should | Wrong commands |
+  |---|---|---|---|---|
+  | qwen2.5-coder:14b as is (G14b) | 88.9% | | | 2.7% |
+  | Qwen2.5-Coder-7B as is | 81.1% [72, 88] | 86.7% | 83.3% | 3.3% [1, 8] |
+  | Qwen2.5-Coder-7B + QLoRA | 91.1% [83, 95] | 100% | 86.7% | 2.0% [1, 6] |
+
+  - **Editing.** +10.0 points of exact match over the same 7B as is (82 against 73 of 90; McNemar 12 against 3, p = 0.035), exactly at the bar.
+    - The report first printed "misses": 82/90 − 73/90 rounds to 0.0999… in floating point. The comparison now rounds; the bar itself did not change.
+  - **Against the deployed 14B on the same items (no bar).** Exact match is level: 7 items only the 7B gets, 5 only the 14B (p = 0.77). On the right outcome overall the 7B leads: 19 items against 8 (p = 0.052). 11 of the 19 are unclear requests the 14B refused (10) or turned into a command (1); the 7B asks on all 30.
+  - **The 12 misses.**
+    - 7 ask a question where the request was complete. Most are a place the model did not tie to the site map: schoolyard, parking lot, motorway, forest, "serach the river".
+    - 3 are wrong commands on requests that should be refused: a named third party, "but don't move", "then return home".
+    - 2 are a wrong refusal ("Birds mode") and one failed reply.
+- **Verdict:** PASS: THE FINE-TUNED 7B REACHES 91.1% EXACT WITH 2.0% WRONG COMMANDS (UPPER BOUND 5.7%); EDITING ADDS EXACTLY THE 10 POINTS THE BAR ASKED (p = 0.035)
+- **What it means:**
+  - **Editing the weights works on the language side too**, as it did for the vision confirmer (R19). A model half the size, fine-tuned on varied hand-written phrasing, clears the bars the 14B missed. In 4-bit it also leaves room on the 12 GB card that the 14B does not.
+  - **G3b's lesson held.** Training text written in many styles, checked against the dev and sealed texts, carried over to the sealed set. The template-trained students of R7a had not.
+  - **The margin is thin.** 91.1% exact against a 90% bar, and the editing gain lands exactly on its bar. One sealed run, one seed. Exact match does not beat the 14B on paired items; the gain is in asking when unsure.
+  - **What is left is clear:**
+    - place names that are not on the site map should resolve or be asked about (the safe failure, which the model takes);
+    - compound requests ("then return home", "but don't move") should be refused, not cut down to their first half. The second kind is the dangerous one.
+  - **Next:** use the 7B + QLoRA as the ground station's default, since it is smaller, as good and asks more. Add the place aliases and compound refusals to the writers' guide, and train a second seed before any new sealed set.
+- **Chart:** r21_ground_lora
+- **Report:** docs/results/r21_ground_lora.md
+
 ### R15c probe: does a bigger camera input change recall per pixel?
 - **Date:** 2026-10-30
 - **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?
