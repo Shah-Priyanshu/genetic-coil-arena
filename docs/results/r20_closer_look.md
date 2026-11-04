@@ -26,4 +26,18 @@ Second model's errors on test-dev false alarms, against far seed 0's (each model
 
 Blind visual check of 150 test-dev false alarms passed by either chain: 12 clear non-persons, 111 unlabelled people, 27 ambiguous. Clear non-persons passed: control 12, closer look 3 (0.25x).
 
+## R20b: every other passed false alarm, checked blind
+
+**PASS.** On the 41 clear non-persons among 594 test-dev false alarms R20 did not check, the closer-look chain passes 0.43x [0.24, 0.66] of what the control passes (replicate 0.26x [0.10, 0.43]; bar: <= 0.5x with the upper bound below 1 and the replicate <= 0.5x; kill at >= 0.8x).
+
+The 594 spots: 457 people, 96 unclear, 41 clearly not a person.
+
+| Chain | Clear non-persons passed | People passed | Unclear passed | People among its passed spots |
+|---|---|---|---|---|
+| scout's view, checked by two models | 35 | 422 | 77 | 79% |
+| scout's view, then the closer look | 15 | 395 | 52 | 85% |
+| the same, other seeds | 9 | 389 | 58 | 85% |
+
+Agreement with R20's check on 36 spots mixed in: 81% of labels; R20's clear non-persons kept 0 of 1, its people 26 of 28.
+
 Reproduce: `python scripts/r20_closer_look.py report`.

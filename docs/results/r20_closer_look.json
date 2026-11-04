@@ -163,5 +163,56 @@
    "persons_passed": 98
   },
   "clear_ratio": 0.25
+ },
+ "visual_b": {
+  "spots": 594,
+  "calibration": 36,
+  "counts": {
+   "person": 457,
+   "not_person": 41,
+   "ambiguous": 96
+  },
+  "control": {
+   "person": 422,
+   "not_person": 35,
+   "ambiguous": 77,
+   "people_share": 0.7902621722846442
+  },
+  "closer": {
+   "person": 395,
+   "not_person": 15,
+   "ambiguous": 52,
+   "people_share": 0.854978354978355
+  },
+  "closer_replicate": {
+   "person": 389,
+   "not_person": 9,
+   "ambiguous": 58,
+   "people_share": 0.8530701754385965
+  },
+  "ratio": {
+   "closer": [
+    0.42857142857142855,
+    0.24242424242424243,
+    0.6573809523809511
+   ],
+   "closer_replicate": [
+    0.2571428571428571,
+    0.10256410256410256,
+    0.4348104793756966
+   ]
+  },
+  "verdict": "PASS",
+  "agreement": {
+   "all": 0.8055555555555556,
+   "r20_not_person": [
+    0,
+    1
+   ],
+   "r20_person": [
+    26,
+    28
+   ]
+  }
  }
 }

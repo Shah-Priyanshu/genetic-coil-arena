@@ -417,6 +417,35 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r20_closer_look
 - **Report:** docs/results/r20_closer_look.md
 
+### R20b (G16b): on spots that are clearly empty, does the closer look cut the false alarms in half?
+- **Date:** 2026-11-04
+- **Question:** R20's labelled false alarms were mostly people, so its KILL mostly measured label noise. On the spots that really are empty, does the closer look let through at most half of what a second model on the scout's view lets through?
+- **Why:** In R20's check of 150 spots, the control chain passed all 12 clear non-persons and the closer look 3. Twelve spots were too few to count, so the remaining spots needed a blind check.
+- **What we did:**
+  - **Spots.** R20's scores and thresholds were kept; nothing was refit. The pool was every test-dev false alarm that any of the three chains passed: 744 in all, of which 594 R20 had not checked.
+  - **Sheets.** The 594 spots plus 36 that R20 had checked (for agreement) went onto 53 sheets in one random order. Each spot showed the closer look's centre at 4× and the whole closer look with the centre marked; the chain was never shown.
+  - **Labels.** Five Claude subagents each labelled about 11 sheets, blind: "is a person at the marked centre?" (person / not a person / unclear).
+  - **Bars, committed before any label:**
+    - PASS if, among the new spots labelled not a person, the closer look passes ≤ 0.5× what the control passes, with the frame-bootstrap upper bound < 1, and the replicate does too;
+    - KILL at ≥ 0.8×.
+- **Result:**
+  - **What the 594 spots are.** 457 people (77%), 96 unclear and 41 clearly not a person.
+  - **Clear non-persons, the bar.** The control passed 35 of the 41 and the closer look 15: 0.43× [0.24, 0.66]. The replicate passed 9: 0.26× [0.10, 0.43].
+  - **With R20's spots added.** 53 clear non-persons: control 47, closer look 18, which is 0.38× [0.24, 0.56].
+  - **Unclear spots.** The cut is smaller: 0.68× (control 77, closer look 52).
+  - **What gets dropped.** The clear non-persons the closer look rejects are rigid objects that look like a person from twice as high: lamp posts, traffic cones, bins, traffic lights, and tables with chairs.
+  - **Checks:**
+    - the subagents agreed with R20's labels on 81% of the 36 mixed-in spots (26 of 28 people kept), but only one of those spots was a clear non-person;
+    - Claude's own blind re-check of the 41 not-a-person labels agreed on 37–39 of them (doubts on 2–4).
+- **Verdict:** PASS: ON CLEARLY EMPTY SPOTS, THE CLOSER LOOK LETS THROUGH 0.43× (REPLICATE 0.26×) OF WHAT A SECOND MODEL ON THE SCOUT'S VIEW DOES
+- **What it means:**
+  - **The closer look is worth flying, for the right reason.** It removes 2–4× more of the truly empty spots than a second check of the scout's pixels. Those are the false alarms that cost a confirming flight and an operator's attention.
+  - **The labelled rate hides this.** About four in five of the passed "false alarms" are people that VisDrone misses or counts twice, and both chains pass those alike. That is why R20's labelled ratio stayed at 0.86×.
+  - **Next:** model the confirmer chain with the closer look in R17h's mission simulation. Rates per spot: about 93% of people kept; clear non-persons passed at 0.4× the second-model rate, which is in turn about 0.75× R19's single-model rate. Then check whether wrong finds drop below the 5% limit. A real hover adds another angle and another moment, so these numbers are a floor.
+  - **Caveats:** only 41 clear non-persons; one labelling pass per spot by subagents, without enlarging the sheets; the clear-non-person agreement on the mixed-in spots rests on a single spot.
+- **Chart:** r20_closer_look
+- **Report:** docs/results/r20_closer_look.md
+
 ### R15c probe: does a bigger camera input change recall per pixel?
 - **Date:** 2026-10-30
 - **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?
