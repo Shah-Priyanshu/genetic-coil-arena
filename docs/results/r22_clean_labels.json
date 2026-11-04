@@ -1,0 +1,118 @@
+{
+ "thresholds": {
+  "control_s0": 0.5,
+  "control_s1": 0.495,
+  "clean_s0": 0.505,
+  "clean_s1": 0.5
+ },
+ "models": {
+  "control_s0": {
+   "threshold": 0.5,
+   "val_recall": 0.4406900995060491,
+   "test_recall": [
+    0.2972755824994522,
+    0.29189060707281955,
+    0.3027174330175022
+   ],
+   "test_fa_per_frame": 2.1732919254658385
+  },
+  "control_s1": {
+   "threshold": 0.495,
+   "val_recall": 0.443768344190708,
+   "test_recall": [
+    0.2987363961726682,
+    0.29334357604616546,
+    0.30418568155386394
+   ],
+   "test_fa_per_frame": 2.1695652173913045
+  },
+  "clean_s0": {
+   "threshold": 0.505,
+   "val_recall": 0.44133438327725677,
+   "test_recall": [
+    0.29552260609159303,
+    0.29014713166771866,
+    0.3009554474109539
+   ],
+   "test_fa_per_frame": 2.1229813664596273
+  },
+  "clean_s1": {
+   "threshold": 0.5,
+   "val_recall": 0.44469897630467464,
+   "test_recall": [
+    0.294792199254985,
+    0.2894207118188197,
+    0.30022125850499903
+   ],
+   "test_fa_per_frame": 2.139751552795031
+  }
+ },
+ "pseudo": {
+  "thresholds": {
+   "0": 0.90625,
+   "1": 1.2421875
+  },
+  "pseudo": 2456,
+  "frames": 1755,
+  "unlabelled_off_box": 25495,
+  "candidates": 56538
+ },
+ "pseudo_check": {
+  "pseudo_positives": {
+   "person": 77,
+   "not_person": 7,
+   "ambiguous": 16
+  },
+  "rejected": {
+   "person": 9,
+   "not_person": 47,
+   "ambiguous": 44
+  }
+ },
+ "sample_counts": {
+  "control_s0": {
+   "person": 56,
+   "not_person": 51,
+   "ambiguous": 43
+  },
+  "control_s1": {
+   "person": 57,
+   "not_person": 50,
+   "ambiguous": 43
+  },
+  "clean_s0": {
+   "person": 62,
+   "not_person": 50,
+   "ambiguous": 38
+  },
+  "clean_s1": {
+   "person": 79,
+   "not_person": 42,
+   "ambiguous": 29
+  }
+ },
+ "clear_per_frame": {
+  "control_s0": 0.7389192546583851,
+  "control_s1": 0.7231884057971014,
+  "clean_s0": 0.7076604554865424,
+  "clean_s1": 0.5991304347826087
+ },
+ "ratio": {
+  "pooled": [
+   0.8937720016199423,
+   0.7125480056724111,
+   1.114088377424972
+  ],
+  "seed0": [
+   0.9576965967867569,
+   0.7014855615262784,
+   1.3258892155626993
+  ],
+  "seed1": [
+   0.8284569138276554,
+   0.5687029343254014,
+   1.13977306979327
+  ]
+ },
+ "verdict": "NOT PASSED"
+}

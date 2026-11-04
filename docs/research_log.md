@@ -475,6 +475,40 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r17h_closer_look
 - **Report:** docs/results/r17h_closer_look.md
 
+### R22 (G18): the scout brain trained on cleaned labels
+- **Date:** 2026-11-04
+- **Question:** About three in four of the false alarms that get past the confirmers are people VisDrone's labels miss (R20b), so the scout learned that some people are background. If an out-of-fold confirmer adds those people back as boxes, does the retrained scout raise fewer clearly empty false alarms at the same share of labelled people found?
+- **Why:** R17 step 6h needs the chain to accept about a third fewer empty candidates. Cleaning the training labels would be a free fix on the drone: same brain, same cost per frame.
+- **What we did:**
+  - **Pseudo-labels.** DINOv2-small (R19's recipe) was trained on one sequence fold of R19's 56,538 train candidates and scored the other, so every candidate was scored by a model that never saw its sequence. 2,456 of 25,495 unlabelled off-box candidates became person boxes, in 1,755 frames.
+  - **Scouts.** R15b's recipe was retrained with those boxes added (seeds 0 and 1). The control is R15b's own seeds.
+  - **Thresholds** were set on val so every scout finds the share of people control seed 0 finds at 0.5.
+  - **Blind check.** 150 random test-dev false alarms per scout (600 in all) went on sheets with the scout hidden, labelled blind by five Claude subagents.
+  - **Bars, fixed before any pseudo-label existed:**
+    - PASS if clear non-person false alarms per frame, cleaned over control, are at most 0.7x (frame-bootstrap upper bound below 1), each seed at most 0.8x, and people found stay within 2 points;
+    - KILL at 0.9x or more.
+- **Result:**
+
+  | Scout | Test-dev people found | False alarms per frame | Of 150 checked: people / unclear / clearly not | Clear non-persons per frame |
+  |---|---|---|---|---|
+  | control seed 0 | 29.7% | 2.17 | 56 / 43 / 51 | 0.74 |
+  | control seed 1 | 29.9% | 2.17 | 57 / 43 / 50 | 0.72 |
+  | cleaned seed 0 | 29.6% | 2.12 | 62 / 38 / 50 | 0.71 |
+  | cleaned seed 1 | 29.5% | 2.14 | 79 / 29 / 42 | 0.60 |
+
+  - **Clear non-person false alarms:** the cleaned scouts raise 0.89x [0.71, 1.11] of control's, with both seeds pooled. Seed 0 gives 0.96x and seed 1 gives 0.83x.
+  - **People found and false alarms overall barely move:** people found -0.1 to -0.4 points, false alarms per frame -2%.
+  - **What changes is what the false alarms are.** 47% of the cleaned scouts' "false alarms" are people the labels miss, against 38% for control. The cleaned scouts fire a little more on unlabelled people and a little less on empty spots.
+  - **The pseudo-labels are mostly right.** In the blind check of 100 pseudo-positives, 77 were people, 16 unclear and 7 clearly not. Of 100 rejected candidates, 9 were people, 44 unclear and 47 clearly not.
+- **Verdict:** NOT PASSED: CLEANED LABELS CUT THE SCOUT'S CLEARLY EMPTY FALSE ALARMS ONLY TO 0.89x [0.71, 1.11] OF CONTROL'S (SEEDS 0.96x AND 0.83x) AT THE SAME SHARE OF PEOPLE FOUND; JUST SHORT OF THE KILL LINE
+- **What it means:**
+  - **Label noise is not what makes the scout fire on empty spots.** Adding 2,456 mostly correct person boxes moved clear non-person false alarms by about a tenth. The interval includes no change, and the point estimate sits just under the kill line.
+  - **The empty-spot false alarms come from what the scout can see in a 224-px tile,** not from what it was taught. Cleaner labels do not remove them.
+  - **R17 step 6h's third has to come from elsewhere.** The candidates are video persistence across frames (R15g, waiting for the VisDrone-VID download) and the 448-px camera (R24, running), which puts more pixels on each person.
+  - **The pseudo-labelling pipeline still has a use.** About 77% of its boxes are people, so it could correct the *evaluation* labels: the scout is being charged for people VisDrone misses.
+- **Chart:** r22_clean_labels
+- **Report:** docs/results/r22_clean_labels.md
+
 ### R21 (G17): the ground station's language model with its weights edited
 - **Date:** 2026-11-04
 - **Question:** Can a smaller open-weight model, fine-tuned on how operators really talk, reach the ground-station bars that the deployed 14B, used as is, missed narrowly?

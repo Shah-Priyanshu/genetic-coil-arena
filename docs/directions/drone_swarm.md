@@ -530,6 +530,8 @@ With 92% of people kept, the search meets its limits only if the chain (scout, c
 - Measured: blind check of 100 pseudo-positives and 100 rejected candidates (label precision), labelled false alarms per frame, and people among the false alarms.
 - Control scouts were trained on 2026-10-29 with the same recipe; the cleaned ones reuse the same tiles and images, so only the boxes differ.
 
+**Result (2026-11-04): NOT PASSED.** The cleaned scouts raise 0.89x [0.71, 1.11] of control's clear non-person false alarms per test-dev frame (seeds 0.96x and 0.83x), with the same share of people found (29.6% / 29.5% against 29.7% / 29.9%) and 2% fewer false alarms overall. What shifts is the mix: 47% of the cleaned scouts' false alarms are people VisDrone misses, against 38%. The pseudo-labels were mostly right (77 of 100 checked are people), so label noise is not what makes the scout fire on empty spots. Step 6h's third must come from video persistence (R15g) or more pixels per person (R24).
+
 ## R23: the scout brain through the K210 toolchain (pre-registered 2026-11-04, goal G19)
 
 **Question.** OpenSwarm's vision module is a K210 running an INT8 model at 224 x 224, converted with nncase. Every scout number so far (R15b to R22) comes from the float brain. Does the brain keep its accuracy once the real toolchain has quantised and compiled it?

@@ -295,6 +295,10 @@ HOW_TO_READ = {
     "share of all requests that became a wrong command (right), with 95% Wilson intervals. "
     "The 14B as is is the deployed G14b model; the 7B runs with the same prompt, as is and "
     "after QLoRA on 997 operator-style requests. Dotted lines: the G14 bars.",
+    "r22_clean_labels": "R22: 150 random VisDrone test-dev false alarms per scout, labelled "
+    "blind, scaled to false alarms per frame. Control: R15b's scouts; cleaned: retrained with "
+    "2,456 person boxes an out-of-fold confirmer added. Red is what the bar counts (clearly "
+    "not a person); the cleaned scouts' share of real but unlabelled people (blue) grows instead.",
     "r23_k210": "R15b's scout brain as float (blue) and as the int8 model nncase compiles "
     "for OpenSwarm's K210 (orange), run in nncase's simulator on all 64,727 VisDrone "
     "test-dev tiles. Left: the main detection metrics per seed; right: the share of "
@@ -804,6 +808,21 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
         fig.update_layout(yaxis_title="%", title=(
             f"R21: the ground station's LLM with its weights edited ({lora['verdict']})"))  # fmt: skip
         figs["r21_ground_lora"] = fig
+    clean = read_json(res / "r22_clean_labels.json")
+    if clean and "sample_counts" in clean:
+        scouts = list(clean["sample_counts"])
+        fig = go.Figure()
+        for cls, label, colour in (("person", "unlabelled person", "#1565c0"),
+                                   ("ambiguous", "unclear", "#9e9e9e"),
+                                   ("not_person", "clearly not a person", "#c62828")):  # fmt: skip
+            fig.add_trace(go.Bar(
+                x=scouts, name=label, marker_color=colour,
+                y=[clean["models"][m]["test_fa_per_frame"] * clean["sample_counts"][m][cls]
+                   / sum(clean["sample_counts"][m].values()) for m in scouts]))  # fmt: skip
+        fig.update_layout(barmode="stack", yaxis_title="false alarms per test-dev frame",
+                          title=f"R22: scouts trained on cleaned labels ({clean['verdict']}, "
+                                f"{clean['ratio']['pooled'][0]:.2f}x clear non-persons)")  # fmt: skip
+        figs["r22_clean_labels"] = fig
     k210 = read_json(res / "r23_k210.json")
     if k210 and "verdict" in k210:
         from plotly.subplots import make_subplots
