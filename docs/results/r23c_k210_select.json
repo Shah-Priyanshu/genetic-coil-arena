@@ -1,0 +1,50 @@
+{
+ "model": "r15b_coco_a0.5_seed0",
+ "float_val_false": 0.2150362022973488,
+ "float_val_recall": 0.3610262379358844,
+ "variants": {
+  "base": {
+   "recall_at_false": 0.33465272853171757,
+   "matched_tau": 0.5222959518432618,
+   "at_matched": {
+    "recall all": 0.3077986323294049,
+    "recall 0-8": 0.1738405071738405,
+    "recall 8-16": 0.3216908472147591,
+    "recall 16-32": 0.4013813517513567,
+    "recall 32+": 0.48732037193575656,
+    "false_per_tile": 0.16832707278567152,
+    "tile_hit_rate": 0.7513015618742491,
+    "tile_false_alarm_rate": 0.06637249494392351
+   }
+  },
+  "heat": {
+   "recall_at_false": 0.34081685006930246,
+   "matched_tau": 0.5056310892105104,
+   "at_matched": {
+    "recall all": 0.3364615160774043,
+    "recall 0-8": 0.18852185518852185,
+    "recall 8-16": 0.34861782793002566,
+    "recall 16-32": 0.4460779477059694,
+    "recall 32+": 0.5304311073541843,
+    "false_per_tile": 0.2081768196417878,
+    "tile_hit_rate": 0.7605126151381658,
+    "tile_false_alarm_rate": 0.07032542746828462
+   }
+  },
+  "heat_sized": {
+   "recall_at_false": 0.332218985198795,
+   "matched_tau": 0.5178414583206178,
+   "at_matched": {
+    "recall all": 0.3298656578883554,
+    "recall 0-8": 0.19044044044044045,
+    "recall 8-16": 0.3429458475132844,
+    "recall 16-32": 0.43206709422792305,
+    "recall 32+": 0.5059171597633136,
+    "false_per_tile": 0.21078991779628722,
+    "tile_hit_rate": 0.7487651848885329,
+    "tile_false_alarm_rate": 0.07289943004228719
+   }
+  }
+ },
+ "chosen": "heat"
+}

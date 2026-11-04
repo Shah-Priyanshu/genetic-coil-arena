@@ -646,6 +646,38 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r23_k210
 - **Report:** docs/results/r23b_k210_threshold.md
 
+### R23c (G19c): compile-side fixes for the K210 brain
+- **Date:** 2026-11-04
+- **Question:** R23b traced the K210 model's loss to the compile, not the brain. Do two fixes that leave the float brain unchanged bring it within 2 points of float at the same false-detection rate?
+- **Why:** If the compile is the problem, the brain can go to the bench as trained. Quantisation-aware training would mean retraining every scout.
+- **What we did:**
+  - **Three variants:**
+    - **base:** R23 as compiled.
+    - **heat:** the head's last convolution split in two, so the heatmap, clamped to logits [−4, 4], gets its own 8-bit range.
+    - **heat_sized:** heat, calibrated on 250 train tiles holding a person of 32 px or more plus 250 random ones.
+  - **Selection on seed 0's val, rule fixed in advance:** people found at float's val false rate, interpolated between int8 score steps. A later variant must win by 0.5 points.
+  - The chosen variant then ran once on test-dev for both seeds, with R23b's threshold rule and bars.
+- **Result:**
+  - **Selection:** heat 34.1%, base 33.5%, heat_sized 33.2% (float at 0.5: 36.1%). Heat won by 0.6 points, just over the margin.
+
+  | Seed | int8 threshold | People found, float / int8 | False per tile, float / int8 | 16–32 px | 32+ px |
+  |---|---|---|---|---|---|
+  | 0 | 0.506 | 23.8% / 22.2% | 0.099 / 0.092 (−7%) | 45.1 / 40.9 | 62.3 / 53.4 |
+  | 1 | 0.494 | 23.3% / 21.7% | 0.093 / 0.092 (−1%) | 44.5 / 40.3 | 61.0 / 50.8 |
+
+  - **Both seeds lose 1.6 points.** That is inside the 2-point bar, and false detections are within 10%.
+  - **The score steps are finer, as designed.** The matched thresholds now land within 0.006 of 0.5, against 0.022 in R23b.
+  - **Size-aware calibration did not help.** Large people still lose 9–10 points, so that loss is not the calibration set. It lies inside the network.
+  - **The cost is negligible:** the model grows by 704 bytes (494.6 KB, 2.67 MB of memory in all).
+- **Verdict:** PASS: WITH THE HEATMAP IN ITS OWN CLAMPED OUTPUT, THE K210 MODEL FINDS 1.6 POINTS FEWER PEOPLE THAN FLOAT AT THE SAME FALSE-DETECTION RATE (BOTH SEEDS); SIZE-AWARE CALIBRATION ADDS NOTHING; LARGE PEOPLE STILL LOSE 9–10 POINTS
+- **What it means:**
+  - **The width-0.5 scout can go to the K210 as trained.** Export it with the split head and set its threshold on the compiled model. No quantisation-aware training is needed for the bar we set.
+  - **Large people are the remaining gap.** They are the easy, close-range cases, so for the mission this matters less than small people. Still, a K210 scout misses about 1 in 6 large people that float finds. Per-channel or mixed-precision quantisation of the later layers is the next lever if a mission needs them.
+  - **The selection was on one seed's val, with a narrow margin.** Seed 1's test result matching seed 0's is the evidence that the choice generalises.
+  - **Next:** the 448-px brain, which runs the K210 out of memory, through MaixCAM's toolchain (tpu-mlir, cv181x) as R24.
+- **Chart:** r23c_k210
+- **Report:** docs/results/r23c_k210_fixes.md
+
 ### R15c probe: does a bigger camera input change recall per pixel?
 - **Date:** 2026-10-30
 - **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?

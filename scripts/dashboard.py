@@ -299,6 +299,11 @@ HOW_TO_READ = {
     "for OpenSwarm's K210 (orange), run in nncase's simulator on all 64,727 VisDrone "
     "test-dev tiles. Left: the main detection metrics per seed; right: the share of "
     "people found at the 0.5 threshold, by person size in the 224-px tile.",
+    "r23c_k210": "People found on VisDrone test-dev by R15b's scout brain as float at 0.5 "
+    "(blue), and as the K210 int8 model with its threshold set on val to float's false "
+    "detections per tile: R23b's single output (grey) and R23c's split head, where the "
+    "heatmap has its own clamped 8-bit output (orange). Left: all people per seed, with the "
+    "PASS bar (float minus 2 points) dotted; right: by person size (seed 0).",
     "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
     "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
     "translation through the shared meanings could do.",
@@ -824,6 +829,33 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
         fig.update_layout(barmode="group", title=(
             f"R23: the scout brain through the K210 toolchain ({k210['verdict']})"))  # fmt: skip
         figs["r23_k210"] = fig
+    k210b, k210c = read_json(res / "r23b_k210_threshold.json"), read_json(res / "r23c_k210_fixes.json")
+    if k210b and k210c and "verdict" in k210c:
+        from plotly.subplots import make_subplots
+
+        fig = make_subplots(rows=1, cols=2, subplot_titles=(
+            "people found, all sizes", "people found by size (seed 0)"))  # fmt: skip
+        seeds = ("seed0", "seed1")
+        rows = {s_: (k210b["models"][f"r15b_coco_a0.5_{s_}"]["test"],
+                     k210c["models"][f"r15b_coco_a0.5_{s_}__heat"]["test"]) for s_ in seeds}  # fmt: skip
+        bins = ("all", "0-8", "8-16", "16-32", "32+")
+        for label, colour, pick in (("float", "#1565c0", lambda b, c, k: c[k]["float"]),
+                                    ("R23b int8", "#9e9e9e", lambda b, c, k: b[k]["int8"]),
+                                    ("R23c int8", "#ef6c00", lambda b, c, k: c[k]["int8"])):  # fmt: skip
+            fig.add_trace(go.Bar(x=[f"seed {s_[-1]}" for s_ in seeds],
+                                 y=[100 * pick(*rows[s_], "recall all") for s_ in seeds],
+                                 name=label, marker_color=colour, legendgroup=label), 1, 1)  # fmt: skip
+            fig.add_trace(go.Bar(x=[f"{b} px" for b in bins[1:]],
+                                 y=[100 * pick(*rows["seed0"], f"recall {b}") for b in bins[1:]],
+                                 marker_color=colour, legendgroup=label, showlegend=False), 1, 2)  # fmt: skip
+        for i, s_ in enumerate(seeds):
+            bar = 100 * rows[s_][1]["recall all"]["float"] - 2
+            fig.add_shape(type="line", x0=i - 0.45, x1=i + 0.45, y0=bar, y1=bar,
+                          line={"dash": "dot", "color": "#555"}, row=1, col=1)  # fmt: skip
+        fig.update_yaxes(title_text="%", row=1, col=1)
+        fig.update_layout(barmode="group", title=(
+            f"R23c: the K210 scout with the heatmap in its own output ({k210c['verdict']})"))  # fmt: skip
+        figs["r23c_k210"] = fig
     inter = read_json(res / "r7e_interlingua.json")
     if inter:
         pts = [

@@ -574,3 +574,4 @@ With 92% of people kept, the search meets its limits only if the chain (scout, c
 - PASS if both seeds find at least float's share of people at 0.5 minus 2 points, with false detections per tile within 10%.
 - KILL at 5 points fewer people: the brain would need quantisation-aware training.
 
+**Result (2026-11-04): PASS.** Seed 0's val chose heat (34.1% of people at float's val false rate; base 33.5%, heat_sized 33.2%). On test-dev at the thresholds set on val (0.506 and 0.494) the compiled model finds 22.2% and 21.7% of people against float's 23.8% and 23.3%, 1.6 points below for both seeds, with 7% and 1% fewer false detections. The split head costs 704 bytes. Size-aware calibration did not help: large people (32+ px) still lose 9-10 points, so that loss lies inside the network, not in the calibration set. The width-0.5 scout goes to the K210 as trained, exported with the split head and its threshold set on the compiled model.
