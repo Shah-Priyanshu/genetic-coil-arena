@@ -473,6 +473,17 @@ On test-dev, editing cuts the false alarms passed to 0.56× (DINOv2) and 0.44× 
 
 **Result (2026-11-04): KILL.** The closer-look chain passes 0.86× [0.82, 0.90] of the control's test-dev false alarms (18.3% against 21.2%; replicate 0.84×), with 93.6% of people kept. On its own the native view is the better model (val AUC 0.94 against 0.92), but its scores on false alarms correlate at 0.85 with the scout-view model's, and it passes two thirds of what that model passed. Claude's blind check of 150 of the passed false alarms found 111 people (57 inside a labelled box, counted twice by the matching rule; 54 not boxed), 27 unclear and 12 clearly not a person. The control passed all 12 of those and the closer look 3: a hint on too few spots. Dropping false alarms near labelled people leaves the ratio at 0.72–0.85×. So detail alone does not decorrelate the errors, and once a confirmer is in the chain, VisDrone's labels mostly measure label noise. Next: a blind check of all 744 passed false alarms (scored on the 594 unseen ones) settles the clear-case ratio; video persistence (R15g) is the other candidate.
 
+## R20b: the closer look on clear non-persons (pre-registered 2026-11-04, goal G16b)
+
+**Question.** R20's labelled false alarms are mostly people (111 of 150 checked), so its KILL mostly measured label noise. On the 12 clear non-persons in that check, the control chain passed all 12 and the closer look 3. Is that real: does the closer look cut the clearly empty spots the chain lets through at least in half?
+
+**Set-up.** R20's scores and val thresholds, nothing refit or re-scored. Every test-dev false alarm (VisDrone labels) that any of the three chains passes: 744, of which 594 R20 did not check. Those 594 plus 36 R20-checked spots (for agreement, not scored) go on sheets in one random order: the closer look's centre at 4x and the whole closer look with the centre marked; the chain is never shown. Claude subagents label each spot: is a person (standing, walking, sitting or riding) at the marked centre? person / not_person / ambiguous.
+
+**Read-out, fixed before any label.** Among the 594 new spots labelled not_person:
+- PASS if the closer-look chain passes <= 0.5x what the control passes, frame-bootstrap upper bound < 1, and the replicate also <= 0.5x.
+- KILL if it passes >= 0.8x.
+- Measured with no bar: per chain, the share of its passed false alarms that are people; agreement with R20's labels on the 36 calibration spots.
+
 ## R21: the ground station's language model with its weights edited (pre-registered 2026-11-04, goal G17)
 
 **Question.** The ground station uses qwen2.5-coder:14b as is and missed G14b's exact-match bar narrowly (88.9%, bar 90%). R19 showed that editing open weights is what made the vision confirmer work. Does the same hold for the language side: can a smaller open-weight model, fine-tuned on how operators really talk, reach the bars the unedited 14B missed?

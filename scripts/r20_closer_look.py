@@ -6,6 +6,8 @@ python scripts/r20_closer_look.py score --view far --seed 0 --split val|test
 python scripts/r20_closer_look.py report
 python scripts/r20_closer_look.py sample                   # blind visual-check sheets
 python scripts/r20_closer_look.py report                   # again, with the visual check
+python scripts/r20_closer_look.py sample-b                 # R20b: every other passed false alarm
+python scripts/r20_closer_look.py report                   # again, with R20b's labels
 
 Everything is written under ``D:/Projects/genetic-coil-arena-data/r20_closer_look``;
 ``report`` writes ``docs/results/r20_closer_look.{md,json}``. Test-dev is scored once
@@ -38,6 +40,9 @@ CHAIN_NAMES = {
 }
 VISUAL = Path("docs/results/r20_visual_check.json")
 VISUAL_N = 150
+VISUAL_B = Path("docs/results/r20b_visual_check.json")  # labels per spot number, and the pool
+CALIBRATION_N = 36  # R20-checked spots mixed into R20b's sheets, for agreement only
+CLASSES = ("person", "not_person", "ambiguous")
 
 
 def log(m: str) -> None:
@@ -166,6 +171,8 @@ def cmd_report(_args) -> None:
         rep["overlap"] = overlap(tm, single)
     if VISUAL.exists() and passed:
         rep["visual"] = visual(passed, tp)
+    if VISUAL_B.exists() and passed:
+        rep["visual_b"] = visual_b(passed, tp, boot)
     r19.save_json(Path("docs/results/r20_closer_look.json"), rep)
     Path("docs/results/r20_closer_look.md").write_text(render(rep), "utf-8")
     log(render(rep))
@@ -228,24 +235,84 @@ def visual(passed: dict, tp: np.ndarray) -> dict:
     return out
 
 
-def cmd_sample(_args) -> None:
-    """Contact sheets of the visual-check sample (the closer look's centre 4x, and the whole
-    closer look with the centre marked), numbered in a random order, plus the index list;
-    the chain each spot came from is not shown."""
-    from PIL import Image, ImageDraw
+def visual_b(passed: dict, tp: np.ndarray, boot: np.ndarray) -> dict:
+    """R20b: on the passed false alarms R20 did not check, each chain's count of clear
+    non-persons, the ratios with frame-bootstrap intervals, and the verdict; agreement with
+    R20's check on the calibration spots."""
+    check = json.loads(VISUAL_B.read_text("utf-8"))
+    idx = np.array(check["index"])
+    lab = np.array([check["labels"][str(n)] for n in range(len(idx))])
+    seen = json.loads(VISUAL.read_text("utf-8"))
+    old = {i: k for k in CLASSES for i in np.array(seen["index"])[seen[k]]}
+    new = np.array([i not in old for i in idx])
+    out: dict = {"spots": int(new.sum()), "calibration": int((~new).sum()),
+                 "counts": {k: int(((lab == k) & new).sum()) for k in CLASSES}}  # fmt: skip
+    masks = {k: np.zeros(len(tp), bool) for k in (*CLASSES, "new")}
+    masks["new"][idx[new]] = True
+    for k in CLASSES:
+        masks[k][idx[(lab == k) & new]] = True
+    for name, ok in passed.items():  # the people share: of the new spots this chain passed
+        out[name] = {k: int((ok & masks[k]).sum()) for k in CLASSES}
+        out[name]["people_share"] = out[name]["person"] / max(int((ok & masks["new"]).sum()), 1)
+    clear = masks["not_person"]
+    den = passed["control"] & clear
+    out["ratio"] = {name: boot_ci(passed[name] & clear, den, boot)
+                    for name in ("closer", "closer_replicate")}  # fmt: skip
+    r, rr = out["ratio"]["closer"], out["ratio"]["closer_replicate"]
+    if r[0] <= rl.RATIO_PASS and r[2] < 1 and rr[0] <= rl.RATIO_PASS:
+        out["verdict"] = "PASS"
+    elif r[0] >= rl.RATIO_KILL:
+        out["verdict"] = "KILL"
+    else:
+        out["verdict"] = "NOT PASSED"
+    cal = [(old[i], lab[n]) for n, i in enumerate(idx) if i in old]
+    out["agreement"] = {
+        "all": float(np.mean([a == b for a, b in cal])) if cal else None,
+        "r20_not_person": [int(sum(b == "not_person" for a, b in cal if a == "not_person")),
+                           int(sum(a == "not_person" for a, _ in cal))],
+        "r20_person": [int(sum(b == "person" for a, b in cal if a == "person")),
+                       int(sum(a == "person" for a, _ in cal))]}  # fmt: skip
+    return out
 
+
+def test_passed(names=tuple(CHAINS)) -> tuple[dict, np.ndarray]:
+    """Each chain's test-dev passes at its val thresholds, and the test person labels."""
     _, tm = rl.load("test", "far")
-    tp = tm["person"]
-    passed = {}
     _, vm = rl.load("val", "far")
-    for name in ("control", "closer"):
+    passed = {}
+    for name in names:
         va, sa, vb, sb = CHAINS[name]
         ta, tb, _ = rl.chain_thresholds(scores(va, sa, "val"), scores(vb, sb, "val"),
                                         vm["person"])  # fmt: skip
         passed[name] = (scores(va, sa, "test") >= ta) & (scores(vb, sb, "test") >= tb)
-    pool = visual_pool(passed, tp)
+    return passed, tm["person"]
+
+
+def cmd_sample_b(_args) -> None:
+    """R20b's sheets: every test-dev false alarm passed by any chain that R20 did not
+    check, plus ``CALIBRATION_N`` R20-checked spots, in one random order."""
+    passed, tp = test_passed()
+    seen = set(json.loads(VISUAL.read_text("utf-8"))["index"])
+    union = (passed["control"] | passed["closer"] | passed["closer_replicate"]) & ~tp
+    rng = np.random.default_rng(2021)
+    fresh = [i for i in np.flatnonzero(union) if int(i) not in seen]
+    cal = rng.choice(sorted(seen), CALIBRATION_N, replace=False)
+    pool = rng.permutation(np.concatenate([fresh, cal]).astype(np.int64))
+    draw_sheets(pool, rl.OUT_DIR / "visual_b")
+
+
+def cmd_sample(_args) -> None:
+    """Contact sheets of the visual-check sample (the closer look's centre 4x, and the whole
+    closer look with the centre marked), numbered in a random order, plus the index list;
+    the chain each spot came from is not shown."""
+    passed, tp = test_passed(("control", "closer"))
+    draw_sheets(visual_pool(passed, tp), rl.OUT_DIR / "visual")
+
+
+def draw_sheets(pool: np.ndarray, out: Path) -> None:
+    from PIL import Image, ImageDraw
+
     close, _ = rl.load("test", "close")
-    out = rl.OUT_DIR / "visual"
     out.mkdir(parents=True, exist_ok=True)
     for old in out.glob("sheet_*.png"):
         old.unlink()
@@ -323,6 +390,31 @@ def render(rep: dict) -> str:
                   f"{v['control']['clear_non_persons_passed']}, closer look "
                   f"{v['closer']['clear_non_persons_passed']}"
                   + (f" ({v['clear_ratio']:.2f}x)." if v["clear_ratio"] is not None else ".")]  # fmt: skip
+    if "visual_b" in rep:
+        v = rep["visual_b"]
+        r, rr = v["ratio"]["closer"], v["ratio"]["closer_replicate"]
+        lines += ["", "## R20b: every other passed false alarm, checked blind", "",
+                  f"**{v['verdict']}.** On the {v['counts']['not_person']} clear "
+                  f"non-persons among {v['spots']} test-dev false alarms R20 did not check, "
+                  f"the closer-look chain passes {r[0]:.2f}x [{r[1]:.2f}, {r[2]:.2f}] of what "
+                  f"the control passes (replicate {rr[0]:.2f}x [{rr[1]:.2f}, {rr[2]:.2f}]; "
+                  f"bar: <= {rl.RATIO_PASS}x with the upper bound below 1 and the replicate "
+                  f"<= {rl.RATIO_PASS}x; kill at >= {rl.RATIO_KILL}x).", "",
+                  f"The {v['spots']} spots: {v['counts']['person']} people, "
+                  f"{v['counts']['ambiguous']} unclear, {v['counts']['not_person']} clearly "
+                  f"not a person.", "",
+                  "| Chain | Clear non-persons passed | People passed | Unclear passed | "
+                  "People among its passed spots |", "|---|---|---|---|---|"]  # fmt: skip
+        for name in CHAINS:
+            c = v[name]
+            lines.append(f"| {CHAIN_NAMES[name]} | {c['not_person']} | {c['person']} | "
+                         f"{c['ambiguous']} | {100 * c['people_share']:.0f}% |")  # fmt: skip
+        a = v["agreement"]
+        if a["all"] is not None:
+            lines += ["", f"Agreement with R20's check on {v['calibration']} spots mixed in: "
+                      f"{100 * a['all']:.0f}% of labels; R20's clear non-persons kept "
+                      f"{a['r20_not_person'][0]} of {a['r20_not_person'][1]}, its people "
+                      f"{a['r20_person'][0]} of {a['r20_person'][1]}."]  # fmt: skip
     lines += ["", "Reproduce: `python scripts/r20_closer_look.py report`.", ""]
     return "\n".join(lines)
 
@@ -341,9 +433,10 @@ def main() -> None:
     s.add_argument("--split", choices=("val", "test"), required=True)
     sub.add_parser("report")
     sub.add_parser("sample")
+    sub.add_parser("sample-b")
     args = p.parse_args()
     {"crops": cmd_crops, "fit": cmd_fit, "score": cmd_score, "report": cmd_report,
-     "sample": cmd_sample}[args.cmd](args)  # fmt: skip
+     "sample": cmd_sample, "sample-b": cmd_sample_b}[args.cmd](args)  # fmt: skip
 
 
 if __name__ == "__main__":
