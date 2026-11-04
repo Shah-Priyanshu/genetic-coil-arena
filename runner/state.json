@@ -17,15 +17,15 @@
     "blocked": []
   },
   "idle_since": {
-    "cpu": "2026-11-04T16:01:22+00:00",
+    "cpu": null,
     "gpu": "2026-10-30T13:08:57+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-11-04T17:14:20+00:00",
-  "cpu_percent": 9.7,
+  "updated_at": "2026-11-04T17:15:44+00:00",
+  "cpu_percent": 48.0,
   "gpu": {
-    "util": 100.0,
-    "mem_used_mb": 8140.0,
+    "util": 32.0,
+    "mem_used_mb": 8141.0,
     "mem_total_mb": 12282.0
   }
 }
