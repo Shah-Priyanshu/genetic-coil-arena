@@ -530,3 +530,17 @@ With 92% of people kept, the search meets its limits only if the chain (scout, c
 - Measured: blind check of 100 pseudo-positives and 100 rejected candidates (label precision), labelled false alarms per frame, and people among the false alarms.
 - Control scouts were trained on 2026-10-29 with the same recipe; the cleaned ones reuse the same tiles and images, so only the boxes differ.
 
+## R23: the scout brain through the K210 toolchain (pre-registered 2026-11-04, goal G19)
+
+**Question.** OpenSwarm's vision module is a K210 running an INT8 model at 224 x 224, converted with nncase. Every scout number so far (R15b to R22) comes from the float brain. Does the brain keep its accuracy once the real toolchain has quantised and compiled it?
+
+**Set-up.**
+- R15b's deployed brain (width 0.5, COCO then VisDrone, seed 0; seed 1 as the replicate) compiled by nncase 1.9.0, the last release with the K210 target: uint8 weights and activations, post-training quantisation calibrated on 500 random VisDrone train tiles, the input normalisation folded into the model.
+- nncase's simulator runs the compiled model on all 64,727 VisDrone2019-DET test-dev tiles; the float brain runs on the same tiles with R15b's own code. Both are scored with R15b's decode and metrics, with a paired frame bootstrap.
+- A probe before pre-registration (10 val tiles, 64 calibration tiles) showed that the model compiles (482 KB, 1.78 MB of memory) and that the int8 outputs correlate 0.98-0.99 with float.
+
+**Read-out, fixed before any test-dev tile is simulated.**
+- PASS if, for both seeds, int8 loses at most 2 points of centre AP (worst end of the interval at most 3), at most 2 points of AP50 and at most 0.01 present AUC, and at threshold 0.5 its false detections per tile are within 20% and its recall within 3 points of float's.
+- KILL if centre AP drops by 5 points or more for either seed: the brain would need quantisation-aware training before the bench.
+- Measured with no bar: the compiled size and memory; R17's detector table for int8 against float; whether the 448-px brain (R15c) compiles for the K210 and how much memory it needs.
+
