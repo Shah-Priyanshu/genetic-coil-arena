@@ -109,8 +109,10 @@ def _sim_chunk(task: tuple) -> int:
     saved = os.dup(1)
     os.dup2(devnull, 1)
     try:
+        import tpu_mlir  # noqa: F401  (puts pyruntime_cvi on sys.path; must come first)
+
+        # isort: split
         import pyruntime_cvi as rt
-        import tpu_mlir  # noqa: F401  (library paths)
 
         m = rt.Model(str(OUT_DIR / model / f"{model}.cvimodel"), output_all_tensors=False)
         names = [o.name for o in m.outputs]
