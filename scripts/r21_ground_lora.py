@@ -75,8 +75,7 @@ def cmd_audit(_args) -> None:
             backend.unload()
     with open(rg.DATA_DIR / "audit.jsonl", "w", encoding="utf-8") as f:
         for r in rows:
-            f.write(json.dumps(r) + "
-")
+            f.write(json.dumps(r) + "\n")
     off = [r for r in rows if not r["correct"]]
     log(f"audit: the 14B disagrees with {len(off)} of {len(rows)} labels")
 
