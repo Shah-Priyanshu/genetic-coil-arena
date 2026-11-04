@@ -32,7 +32,7 @@ from typing import Any
 
 import numpy as np
 
-from ..envs.swarm.mission import Mission, hand_two_tier, run_missions
+from ..envs.swarm.mission import WRONG_COST, Mission, hand_two_tier, run_missions
 from ..evaluation import mean_ci
 from ..learning import EvolutionStrategy
 from . import r17_mission as r17
@@ -62,12 +62,15 @@ def prior_variants(m: Mission, index: int, k: int = VARIANTS) -> list[Mission]:
                     if rng.random() < walk_p else 0.0) for _ in range(k)]  # fmt: skip
 
 
-def _fitness(u: np.ndarray, variants: list[Mission], base: int) -> float:
-    return float(np.mean([
-        run_missions(v, r17.decode_plan(u, v.drones, 2),
-                     [base + j * 1000 + e for e in range(EPISODES_PER_VARIANT)])["score"].mean()
-        for j, v in enumerate(variants)
-    ]))  # fmt: skip
+def _fitness(u: np.ndarray, variants: list[Mission], base: int,
+             cost: float = WRONG_COST) -> float:  # fmt: skip
+    """Mean of found - ``cost`` x wrong (the mission score at the default cost)."""
+    scores = []
+    for j, v in enumerate(variants):
+        res = run_missions(v, r17.decode_plan(u, v.drones, 2),
+                           [base + j * 1000 + e for e in range(EPISODES_PER_VARIANT)])  # fmt: skip
+        scores.append((res["found"] - cost * res["wrong"]).mean())
+    return float(np.mean(scores))
 
 
 def tune_task(task: tuple) -> dict[str, Any]:
@@ -81,9 +84,10 @@ def tune_task(task: tuple) -> dict[str, Any]:
 
 
 def tune_mission(m: Mission, i: int, run2: dict, generations: int = GENERATIONS,
-                 ) -> dict[str, Any]:  # fmt: skip
+                 cost: float = WRONG_COST) -> dict[str, Any]:  # fmt: skip
     """Mission-time tuning of one mission (``i`` picks its seeds), starting from the hand
-    plan with a hand-off and from the step-2 planner's plan."""
+    plan with a hand-off and from the step-2 planner's plan; ``cost`` is what one wrong
+    find costs in the tuning objective."""
     start = time.perf_counter()
     variants = prior_variants(m, i)
     learned = r17.Planner(r17.PlannerSettings(**run2["settings"])).plans(
@@ -100,8 +104,8 @@ def tune_mission(m: Mission, i: int, run2: dict, generations: int = GENERATIONS,
                                seed=i * 10 + k)  # fmt: skip
         for g in range(generations):
             base = TUNE_BASE + i * 1_000_000 + (k * generations + g) * 10_000
-            es.tell(np.array([_fitness(c, variants, base) for c in es.ask()]))
-        check = _fitness(es.theta, variants, CHECK_BASE + i * 100_000)
+            es.tell(np.array([_fitness(c, variants, base, cost) for c in es.ask()]))
+        check = _fitness(es.theta, variants, CHECK_BASE + i * 100_000, cost)
         if check > best[0]:
             best = (check, es.theta.copy(), name)
     return {"mission": i, "u": best[1].tolist(), "start": best[2],
