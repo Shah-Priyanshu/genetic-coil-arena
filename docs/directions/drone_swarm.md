@@ -559,3 +559,18 @@ With 92% of people kept, the search meets its limits only if the chain (scout, c
 
 **Result (2026-11-04): NOT PASSED.** At the thresholds set on val (0.522 and 0.500) the compiled model finds 20.3% and 20.7% of test-dev people against float's 23.8% and 23.3%, with 27% and 13% fewer false detections; large people (32+ px) 50% against 62%. The five output channels share one 8-bit scale whose step (0.089 logit, about 2.2% near 0.5) is too coarse for the threshold to land near float's false rate; interpolated between steps (post hoc) int8 is 1.5-1.7 points below float. Next (R23c): the heatmap in its own output tensor and a calibration set with people of every size, chosen on val.
 
+## R23c: a finer heatmap and size-aware calibration (pre-registered 2026-11-04, goal G19c)
+
+**Question.** R23b traced the K210 model's loss to the compile, not the brain: one 8-bit scale for all five output channels (score steps too coarse near the threshold) and a calibration set with few large people. Do two compile-side fixes, which leave the float brain unchanged, close the gap?
+
+**Variants.**
+- **base:** R23 as compiled.
+- **heat:** the head's last convolution split in two, so that the heatmap, clamped to logits [-4, 4], has its own 8-bit range. The clamp only moves scores below 0.018 or above 0.982, and the decoder ignores peaks under 0.05.
+- **heat_sized:** heat, calibrated on 250 train tiles holding a person of at least 32 px plus 250 random ones.
+
+**Selection on seed 0's val, fixed in advance.** The variant that finds the most people at float's val false rate (threshold 0.5), interpolated between the int8 score steps. A later variant must win by 0.5 points.
+
+**Read-out, fixed in advance.** The chosen variant runs on test-dev once for both seeds, with R23b's threshold rule.
+- PASS if both seeds find at least float's share of people at 0.5 minus 2 points, with false detections per tile within 10%.
+- KILL at 5 points fewer people: the brain would need quantisation-aware training.
+

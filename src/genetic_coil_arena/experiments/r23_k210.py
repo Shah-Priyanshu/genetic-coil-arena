@@ -301,3 +301,193 @@ def report_b(path: Path = Path("docs/results/r23b_k210_threshold.md"),
     path.write_text(render_b(rep), "utf-8")
     path.with_suffix(".json").write_text(json.dumps(rep, indent=1), "utf-8")
     return rep
+
+
+# ----------------------------------------------------------------------------- R23c
+# R23c (goal G19c): two compile-side fixes that leave the float brain unchanged, chosen
+# on val. R23b found that the five output channels share one 8-bit scale whose steps are
+# too coarse near the threshold, and that large people lose most (VisDrone's random
+# train tiles, used for calibration, rarely hold one).
+# - "heat": the head's last convolution split in two, the heatmap's own (clamped to
+#   logits HEAT_CLAMP, which only moves scores below 0.018 or above 0.982; the decoder
+#   ignores peaks under 0.05) and the size and offset channels', so each gets its own
+#   8-bit range. Calibration as in R23.
+# - "heat_sized": "heat" calibrated on N_CALIB train tiles, half random and half drawn
+#   from tiles holding a person of at least LARGE_PX (square root of box area).
+# Selection on seed 0's val: the variant (R23's "base" included) with the most people
+# found at float's val false-detection rate at 0.5, interpolated between the int8 score
+# steps; a later variant must beat an earlier one by 0.5 points to be chosen. The chosen
+# variant is then compiled for seed 1 and both run once on test-dev, with R23b's
+# threshold rule and bars.
+VARIANTS = ("base", "heat", "heat_sized")
+HEAT_CLAMP = (-4.0, 4.0)
+LARGE_PX = 32.0
+N_CALIB = 500
+SELECT_MARGIN = 0.005
+
+
+def variant_tag(tag: str, variant: str) -> str:
+    return tag if variant == "base" else f"{tag}__{variant}"
+
+
+def export_heat_onnx(tag: str) -> Path:
+    """The brain with the heatmap in its own clamped output (same scores in float)."""
+    import torch
+    from torch import nn
+
+    model = r15.build_model(0.5)
+    model.load_state_dict(torch.load(r15.DATA_DIR / "r15_models" / f"{tag}.pt",
+                                     map_location="cpu"))  # fmt: skip
+    model.eval()
+
+    class Split(nn.Module):
+        def __init__(self, m: Any) -> None:
+            super().__init__()
+            self.m = m
+            w, b = m.out.weight.data, m.out.bias.data
+            self.heat = nn.Conv2d(w.shape[1], 1, 1)
+            self.rest = nn.Conv2d(w.shape[1], 4, 1)
+            with torch.no_grad():
+                self.heat.weight.copy_(w[:1]), self.heat.bias.copy_(b[:1])
+                self.rest.weight.copy_(w[1:]), self.rest.bias.copy_(b[1:])
+
+        def forward(self, x: Any) -> Any:
+            m = self.m
+            f8 = m.s8(x)
+            h = m.merge(m.lat8(f8) + m.up(m.lat16(m.s16(f8))))
+            return torch.clamp(self.heat(h), *HEAT_CLAMP), self.rest(h)
+
+    net = Split(model).eval()
+    x = torch.randn(1, 3, 224, 224)
+    with torch.no_grad():
+        ref = model(x)
+        heat, rest = net(x)
+    assert torch.allclose(torch.cat([heat, rest], 1), torch.cat(
+        [ref[:, :1].clamp(*HEAT_CLAMP), ref[:, 1:]], 1), atol=1e-4)  # fmt: skip
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    path = OUT_DIR / f"{variant_tag(tag, 'heat')}.onnx"
+    torch.onnx.export(net, x, str(path), opset_version=11, input_names=["input"],
+                      output_names=["heat", "rest"], do_constant_folding=True,
+                      dynamo=False)  # fmt: skip
+    return path
+
+
+def sized_calibration(seed: int = 23) -> Path:
+    """Half random train tiles, half from tiles holding a person >= LARGE_PX."""
+    tr = r15b.load_tiles(TILES, "train")
+    n = len(tr["offsets"]) - 1
+    largest = np.zeros(n)
+    for i in range(n):
+        g = r15.image_boxes(tr, i)
+        g = g[g[:, 4] > 0]
+        if len(g):
+            largest[i] = np.sqrt(g[:, 2] * g[:, 3]).max()
+    rng = np.random.default_rng(seed)
+    big = rng.choice(np.flatnonzero(largest >= LARGE_PX), N_CALIB // 2, replace=False)
+    rest = rng.choice(np.setdiff1d(np.arange(n), big), N_CALIB - len(big), replace=False)
+    path = OUT_DIR / "calib_sized.npy"
+    np.save(path, np.sort(np.concatenate([big, rest])))
+    return path
+
+
+def recall_at_false(table: dict, top: np.ndarray, present: np.ndarray, target: float,
+                    lo: float = 0.2, hi: float = 0.9) -> float:  # fmt: skip
+    """People found (all sizes) at ``target`` false detections per tile, interpolated
+    linearly between the int8 score steps around it."""
+    levels = np.unique(table["score"][(table["score"] >= lo) & (table["score"] <= hi)])
+    pts = [at(table, top, present, float(t)) for t in levels[::-1]]
+    false = np.array([p["false_per_tile"] for p in pts])
+    rec = np.array([p["recall all"] for p in pts])
+    return float(np.interp(target, false, rec))
+
+
+def select_variant(scores: dict[str, float]) -> str:
+    """The first variant in ``VARIANTS`` order unless a later one beats the current
+    choice by ``SELECT_MARGIN``."""
+    best = VARIANTS[0]
+    for v in VARIANTS[1:]:
+        if v in scores and scores[v] >= scores[best] + SELECT_MARGIN:
+            best = v
+    return best
+
+
+SELECT_JSON = Path("docs/results/r23c_k210_select.json")
+
+
+def select_c(log: Any = print) -> dict[str, Any]:
+    """R23c step 1, on seed 0's val only: score each variant and pick one."""
+    tag, split = MODELS[0], load_split("val")
+    f = tables(*float_predictions(tag, split), split)
+    target = at(*f, FLOAT_TAU)["false_per_tile"]
+    rep: dict[str, Any] = {"model": tag, "float_val_false": target,
+                           "float_val_recall": at(*f, FLOAT_TAU)["recall all"], "variants": {}}  # fmt: skip
+    for v in VARIANTS:
+        out = raw_outputs(variant_tag(tag, v), "val")
+        if out is None:
+            continue
+        log(f"{v}: val")
+        q = tables(*int8_predictions(out), split)
+        tau = matched_threshold(q[0], len(q[1]), target)
+        rep["variants"][v] = {"recall_at_false": recall_at_false(*q, target), "matched_tau": tau,
+                              "at_matched": at(*q, tau)}  # fmt: skip
+    rep["chosen"] = select_variant({v: r["recall_at_false"] for v, r in rep["variants"].items()})
+    SELECT_JSON.write_text(json.dumps(rep, indent=1), "utf-8")
+    return rep
+
+
+def render_c(rep: dict[str, Any]) -> str:
+    sel = rep["select"]
+    lines = ["# R23c: the K210 scout brain with a finer heatmap and size-aware calibration", "",
+             f"**{rep['verdict']}.** Variant chosen on seed 0's val: **{sel['chosen']}** "
+             "(people found at float's val false-detection rate, interpolated between the "
+             "int8 score steps):", "",
+             "| Variant | People found at float's val false rate | Threshold set on val | "
+             "32+ px people at that threshold |", "|---|---|---|---|"]  # fmt: skip
+    for v, r in sel["variants"].items():
+        lines.append(f"| {v} | {100 * r['recall_at_false']:.1f}% | {r['matched_tau']:.3f} | "
+                     f"{100 * r['at_matched']['recall 32+']:.1f}% |")
+    lines += ["", f"Float on val at 0.5: {100 * sel['float_val_recall']:.1f}% of people, "
+              f"{sel['float_val_false']:.3f} false detections per tile.", "",
+              "Test-dev, the chosen variant with R23b's threshold rule and bars (people found "
+              "at most 2 points below float's at 0.5, false detections per tile within 10%):", "",
+              "| Seed | int8 threshold | Recall float / int8 | False per tile float / int8 | "
+              "0-8 px | 8-16 px | 16-32 px | 32+ px | Passes |",
+              "|---|---|---|---|---|---|---|---|---|"]  # fmt: skip
+    for tag, c in rep["models"].items():
+        t = c["test"]
+        bins = [f"{100 * t[f'recall {b}']['float']:.1f} / {100 * t[f'recall {b}']['int8']:.1f}"
+                for b in ("0-8", "8-16", "16-32", "32+")]  # fmt: skip
+        lines.append(f"| {tag.split('__')[0][-1]} | {c['int8_tau']:.3f} | "
+                     f"{100 * t['recall all']['float']:.1f}% / {100 * t['recall all']['int8']:.1f}% | "
+                     f"{t['false_per_tile']['float']:.3f} / {t['false_per_tile']['int8']:.3f} "
+                     f"({100 * c['false_rel']:+.0f}%) | " + " | ".join(bins)
+                     + f" | {'yes' if c['passes'] else 'no'} |")  # fmt: skip
+    lines += ["", "Reproduce: `python scripts/r23_k210.py select-c`, then `report-c`.", ""]
+    return "\n".join(lines)
+
+
+def report_c(path: Path = Path("docs/results/r23c_k210_fixes.md"),
+             log: Any = print) -> dict[str, Any]:  # fmt: skip
+    """R23c step 2: the chosen variant on test-dev for both seeds, R23b's rule and bars."""
+    sel = json.loads(SELECT_JSON.read_text("utf-8"))
+    rep: dict[str, Any] = {"select": sel, "models": {}}
+    splits = {s: load_split(s) for s in ("val", "test")}
+    for tag in MODELS:
+        name = variant_tag(tag, sel["chosen"])
+        outs = {s: raw_outputs(name, s) for s in splits}
+        if any(o is None for o in outs.values()):
+            continue
+        got = {}
+        for s, split in splits.items():
+            log(f"{name} {s}")
+            got[("int8", s)] = tables(*int8_predictions(outs[s]), split)
+            got[("float", s)] = tables(*float_predictions(tag, split), split)
+        rep["models"][name] = compare_b(*[got[(k, s)] for s in ("val", "test")
+                                          for k in ("float", "int8")])  # fmt: skip
+    cs = list(rep["models"].values())
+    rep["verdict"] = ("KILL" if any(c["kill"] for c in cs) else
+                      "PASS" if len(cs) == len(MODELS) and all(c["passes"] for c in cs)
+                      else "NOT PASSED")  # fmt: skip
+    path.write_text(render_c(rep), "utf-8")
+    path.with_suffix(".json").write_text(json.dumps(rep, indent=1), "utf-8")
+    return rep

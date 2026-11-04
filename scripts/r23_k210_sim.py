@@ -10,6 +10,8 @@ D:\\venvs\\nncase\\Scripts\\python.exe scripts/r23_k210_sim.py compile --model r
 D:\\venvs\\nncase\\Scripts\\python.exe scripts/r23_k210_sim.py simulate --model r15b_coco_a0.5_seed0 --split test
 """
 
+from __future__ import annotations
+
 import argparse
 import json
 import os
@@ -37,13 +39,25 @@ def log(msg: str) -> None:
     print(f"[{time.strftime('%H:%M:%S')}] {msg}", flush=True)
 
 
-def _compile(model: str, size: int) -> None:
+def onnx_path(model: str, onnx: str | None) -> Path:
+    return Path(onnx) if onnx else DATA_DIR / "r15_models" / f"{model}.onnx"
+
+
+def calib_pick(n: int, index: str | None) -> np.ndarray:
+    """``N_CALIB`` random train tiles, or the tile indices saved at ``index`` (R23c)."""
+    if index:
+        return np.sort(np.load(index))
+    return np.sort(np.random.default_rng(CALIB_SEED).choice(n, N_CALIB, replace=False))
+
+
+def _compile(model: str, size: int, onnx_file: str | None = None,
+             index: str | None = None) -> None:  # fmt: skip
     """In a child process, so the compiler's own prints (memory table) can be captured."""
     import nncase
     import onnx
 
     tr = tiles(size, "train")
-    pick = np.sort(np.random.default_rng(CALIB_SEED).choice(len(tr), N_CALIB, replace=False))
+    pick = calib_pick(len(tr), index)
     calib = np.ascontiguousarray(tr[pick].transpose(0, 3, 1, 2))
     co = nncase.CompileOptions()
     co.target, co.preprocess, co.swapRB = "k210", True, False
@@ -54,7 +68,7 @@ def _compile(model: str, size: int) -> None:
     co.dump_ir = co.dump_asm = False
     co.dump_dir = str(OUT_DIR / "dump")
     c = nncase.Compiler(co)
-    m = onnx.shape_inference.infer_shapes(onnx.load(DATA_DIR / "r15_models" / f"{model}.onnx"))
+    m = onnx.shape_inference.infer_shapes(onnx.load(onnx_path(model, onnx_file)))
     c.import_onnx(m.SerializeToString(), nncase.ImportOptions())
     ptq = nncase.PTQTensorOptions()
     ptq.samples_count = len(calib)
@@ -67,8 +81,11 @@ def _compile(model: str, size: int) -> None:
 def cmd_compile(args) -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     start = time.perf_counter()
-    res = subprocess.run([sys.executable, __file__, "_compile", "--model", args.model,
-                          "--size", str(args.size)], capture_output=True, text=True)  # fmt: skip
+    cmd = [sys.executable, __file__, "_compile", "--model", args.model, "--size", str(args.size)]
+    for flag in ("onnx", "calib_index"):
+        if getattr(args, flag):
+            cmd += [f"--{flag.replace('_', '-')}", getattr(args, flag)]
+    res = subprocess.run(cmd, capture_output=True, text=True)
     (OUT_DIR / f"{args.model}_compile.log").write_text(res.stdout + res.stderr, "utf-8")
     if res.returncode:
         raise SystemExit(f"compile failed:\n{res.stderr[-2000:]}")
@@ -76,7 +93,8 @@ def cmd_compile(args) -> None:
                                                  res.stdout, re.M)}  # fmt: skip
     rec = {"model": args.model, "size": args.size, "nncase": "1.9.0.20230322",
            "target": "k210", "quant": "uint8 weights and activations",
-           "calibration": {"tiles": N_CALIB, "seed": CALIB_SEED, "split": "train"},
+           "calibration": {"tiles": N_CALIB, "seed": CALIB_SEED, "split": "train",
+                           "index": args.calib_index}, "onnx": args.onnx,
            "kmodel_bytes": (OUT_DIR / f"{args.model}.kmodel").stat().st_size,
            "memory": memory, "seconds": time.perf_counter() - start}  # fmt: skip
     (OUT_DIR / f"{args.model}_compile.json").write_text(json.dumps(rec, indent=1), "utf-8")
@@ -95,7 +113,9 @@ def _sim_chunk(task: tuple) -> int:
         x = np.ascontiguousarray(src[i : i + 1].transpose(0, 3, 1, 2))
         sim.set_input_tensor(0, nncase.RuntimeTensor.from_numpy(x))
         sim.run()
-        out[i] = sim.get_output_tensor(0).to_numpy()[0]
+        # several outputs (R23c: heatmap, then size and offsets) join along channels
+        out[i] = np.concatenate([sim.get_output_tensor(k).to_numpy()[0]
+                                 for k in range(sim.outputs_size)], axis=0)  # fmt: skip
     out.flush()
     return b - a
 
@@ -126,12 +146,15 @@ def main() -> None:
         s = sub.add_parser(name)
         s.add_argument("--model", required=True)
         s.add_argument("--size", type=int, default=224)
+        if name != "simulate":
+            s.add_argument("--onnx", help="the ONNX file (default: r15_models/<model>.onnx)")
+            s.add_argument("--calib-index", help=".npy of train tile indices to calibrate on")
         if name == "simulate":
             s.add_argument("--split", choices=("val", "test"), required=True)
             s.add_argument("--workers", type=int, default=int(os.environ.get("GCA_WORKERS", 20)))
     args = p.parse_args()
     if args.cmd == "_compile":
-        _compile(args.model, args.size)
+        _compile(args.model, args.size, args.onnx, args.calib_index)
     else:
         {"compile": cmd_compile, "simulate": cmd_simulate}[args.cmd](args)
 

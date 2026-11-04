@@ -43,3 +43,9 @@ def test_matched_threshold_keeps_false_detections_at_target():
     assert 0.6 < tau <= 0.7 + 1e-12
     assert ((table["score"] >= tau) & (table["det_gt"] < 0)).sum() == 2
     assert rk.matched_threshold(table, 10, 1.0) == 0.0
+
+
+def test_select_variant_needs_a_margin():
+    assert rk.select_variant({"base": 0.20, "heat": 0.204, "heat_sized": 0.203}) == "base"
+    assert rk.select_variant({"base": 0.20, "heat": 0.21, "heat_sized": 0.212}) == "heat"
+    assert rk.select_variant({"base": 0.20, "heat": 0.21, "heat_sized": 0.216}) == "heat_sized"
