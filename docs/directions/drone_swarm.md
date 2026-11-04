@@ -502,3 +502,21 @@ On test-dev, editing cuts the false alarms passed to 0.56× (DINOv2) and 0.44× 
 - Editing matters if its exact match is ≥ 10 points above the 7B as is, with McNemar p < 0.05.
 - KILL if exact < 80% or wrong commands > 10%.
 - Measured with no bar: the 14B's G14b result on the same items, asks and refusals, latency.
+
+## R22: the scout brain trained on confirmer-cleaned labels (pre-registered 2026-11-04, goal G18)
+
+**Question.** R20b found that about three in four of VisDrone's "false alarms" that get past the confirmers are people the labels miss. The scout brain (R15b) learned from those labels, so part of its training said people are background. If an out-of-fold confirmer puts the missing people back, does the scout raise fewer *clearly empty* false alarms at the same share of labelled people found?
+
+**Set-up.**
+- R19's 56,538 train candidates are split by sequence into two folds. DINOv2-small (R19's recipe) is trained on one fold and scores the other, so every candidate is scored by a model that never saw its sequence.
+- A candidate VisDrone calls a false alarm, outside every person box, becomes a person box when its out-of-fold score reaches the threshold that passes 80% of that fold's labelled people.
+- The scout is retrained with R15b's recipe on R15b's own training tiles with those boxes added (seeds 0 and 1). The control is R15b's fine-tuned seeds 0 and 1.
+- All four scouts run over val and test-dev frames at native scale. Thresholds are set on val so each finds the share of labelled people that control seed 0 finds at 0.5.
+- 150 random test-dev false alarms per scout go on blind sheets (scout hidden), labelled by Claude subagents.
+
+**Read-out, fixed before any pseudo-label exists.**
+- PASS if clear non-person false alarms per frame, cleaned over control (seeds pooled), is <= 0.7x with the frame-bootstrap upper bound < 1, each seed pair is <= 0.8x, and test-dev labelled people found stay within 2 points of control.
+- KILL at >= 0.9x.
+- Measured: blind check of 100 pseudo-positives and 100 rejected candidates (label precision), labelled false alarms per frame, and people among the false alarms.
+- Control scouts were trained on 2026-10-29 with the same recipe; the cleaned ones reuse the same tiles and images, so only the boxes differ.
+
