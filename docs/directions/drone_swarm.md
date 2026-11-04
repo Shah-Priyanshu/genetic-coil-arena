@@ -546,3 +546,14 @@ With 92% of people kept, the search meets its limits only if the chain (scout, c
 
 **Result (2026-11-04): NOT PASSED.** The compiled K210 model ranks people as well as float (centre AP 0.315 → 0.313 for seed 0, 0.314 → 0.306 for seed 1; present AUC within 0.008) but its scores sit higher: at the float threshold 0.5 it passes 35% (seed 0) and 22% (seed 1) more false detections, and seed 1 loses 2.2 points of AP50 (box sizes). Small people's scores rise and large people's fall (32+ px recall at 0.5: 62.3% → 56.9%). The model is 482 KB and needs 2.54 MB; the 448-px brain runs the K210's allocator out of memory, so a 448 camera needs a bigger module. Next (R23b): set the threshold on the compiled model with val, then compare people found at the same false-detection rate.
 
+## R23b: the K210 brain with its own threshold (pre-registered 2026-11-04, goal G19b)
+
+**Question.** R23's compiled model keeps the ranking but shifts the score scale. If the ground station sets the threshold on the compiled model, does it find as many people as float at the same false-detection rate?
+
+**Set-up.** Per seed (0 and 1), nncase's simulator runs the compiled model on every VisDrone val tile. The int8 threshold is the lowest at which its false detections per val tile do not exceed float's at 0.5. Test-dev is then compared at those thresholds, reusing R23's outputs. R23's fixed-threshold test-dev numbers were known when this was set; the matched-threshold ones were not.
+
+**Read-out, fixed before the val thresholds are computed.**
+- PASS if, for both seeds, int8 finds at least float's share of people at 0.5 minus 2 points (all sizes), with false detections per tile within 10% of float's.
+- KILL if it finds 5 points fewer or more for either seed: quantisation-aware training would be needed.
+- Measured: recall per person size at the matched threshold.
+

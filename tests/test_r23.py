@@ -33,3 +33,13 @@ def test_int8_predictions_match_decode():
     preds, best = rk.int8_predictions(out, batch=2)
     assert len(preds) == 3 and best.shape == (3,)
     assert np.allclose(best, 1 / (1 + np.exp(-out[:, 0].reshape(3, -1).max(1))))
+
+
+def test_matched_threshold_keeps_false_detections_at_target():
+    table = {"score": np.array([0.9, 0.8, 0.7, 0.6, 0.5, 0.4]),
+             "det_gt": np.array([-1, 0, -1, -1, 1, -1])}
+    # false scores 0.9, 0.7, 0.6, 0.4 over 10 tiles; target 0.2 per tile = 2 allowed
+    tau = rk.matched_threshold(table, 10, 0.2)
+    assert 0.6 < tau <= 0.7 + 1e-12
+    assert ((table["score"] >= tau) & (table["det_gt"] < 0)).sum() == 2
+    assert rk.matched_threshold(table, 10, 1.0) == 0.0

@@ -482,7 +482,8 @@ def tile_metrics(
 
 
 def operating_points(
-    table: dict, top: np.ndarray, present: np.ndarray, tiles: np.ndarray
+    table: dict, top: np.ndarray, present: np.ndarray, tiles: np.ndarray,
+    taus: Any = None,
 ) -> dict[str, dict[str, float]]:
     """What a scout sees at a fixed confidence threshold (centre hits): recall per person
     size bin, false detections per tile, and per tile the share of tiles with a person
@@ -491,7 +492,7 @@ def operating_points(
     run on the detections above it would make."""
     out = {}
     det_on = tiles[table["det_tile"]]
-    for tau in sorted(set(THRESHOLDS) | set(FINE_THRESHOLDS)):
+    for tau in sorted(set(THRESHOLDS) | set(FINE_THRESHOLDS)) if taus is None else taus:
         keep = det_on & (table["score"] >= tau)
         hit_gt = np.zeros(len(table["gt_size"]), bool)
         hit_gt[table["det_gt"][keep & (table["det_gt"] >= 0)]] = True

@@ -171,12 +171,12 @@ def render(rep: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
-def load_split() -> dict:
-    return r15b.load_tiles(TILES, "test")
+def load_split(split: str = "test") -> dict:
+    return r15b.load_tiles(TILES, split)
 
 
-def raw_outputs(tag: str) -> np.ndarray | None:
-    p = OUT_DIR / f"{tag}_test.npy"
+def raw_outputs(tag: str, split: str = "test") -> np.ndarray | None:
+    p = OUT_DIR / f"{tag}_{split}.npy"
     return np.load(p, mmap_mode="r") if p.exists() else None
 
 
@@ -200,5 +200,104 @@ def report(path: Path = Path("docs/results/r23_k210.md"), log: Any = print) -> d
         rep["verdict"] = verdict(rep["models"])
         rep["calibration"] = rep["compile"][MODELS[0]]["calibration"]["tiles"]
     path.write_text(render(rep), "utf-8")
+    path.with_suffix(".json").write_text(json.dumps(rep, indent=1), "utf-8")
+    return rep
+
+
+# ----------------------------------------------------------------------------- R23b
+# R23b (goal G19b): the compiled model with its own threshold. R23 found that int8 keeps
+# the ranking but shifts the score scale, so a threshold carried over from float passes
+# more false detections. The ground station would set the threshold on the compiled
+# model: per seed, the int8 threshold is the lowest at which the compiled model's false
+# detections per val tile do not exceed float's at FLOAT_TAU; test-dev is then compared
+# at those thresholds. R23's test-dev outputs are reused (its fixed-threshold numbers
+# were known when these bars were set; the matched-threshold numbers were not).
+# PASS if, for both seeds on test-dev, int8 at its val threshold finds at least float's
+# share of people at FLOAT_TAU minus 2 points (all sizes) with false detections per tile
+# within 10% of float's; KILL if it finds 5 points fewer or more for either seed.
+FLOAT_TAU = 0.5
+B_RECALL_DROP, B_FALSE_REL, B_KILL_DROP = 0.02, 0.10, 0.05
+
+
+def tables(preds: list[np.ndarray], top: np.ndarray, split: dict) -> tuple:
+    """(centre hit table, top score per tile, tile has a person)."""
+    gts = [r15.image_boxes(split, i) for i in range(len(preds))]
+    present = np.array([bool(g[:, 4].any()) for g in gts])
+    return r15b.hit_table(preds, gts, "centre"), top, present
+
+
+def matched_threshold(table: dict, n_tiles: int, target: float) -> float:
+    """The lowest threshold whose false detections per tile do not exceed ``target``."""
+    false = np.sort(table["score"][table["det_gt"] < 0])[::-1]
+    allowed = int(np.floor(target * n_tiles + 1e-9))
+    if allowed >= len(false):
+        return 0.0
+    return float(np.nextafter(false[allowed], np.inf))
+
+
+def at(table: dict, top: np.ndarray, present: np.ndarray, tau: float) -> dict[str, float]:
+    tiles = np.ones(len(top), bool)
+    return r15b.operating_points(table, top, present, tiles, taus=[tau])[f"{tau:g}"]
+
+
+def compare_b(f_val: tuple, q_val: tuple, f_test: tuple, q_test: tuple) -> dict[str, Any]:
+    """Each argument: (hit table, top scores, present) for float / int8 on val / test."""
+    target = at(*f_val, FLOAT_TAU)["false_per_tile"]
+    tau = matched_threshold(q_val[0], len(q_val[1]), target)
+    f, q = at(*f_test, FLOAT_TAU), at(*q_test, tau)
+    out = {"float_tau": FLOAT_TAU, "int8_tau": tau, "val_false_target": target,
+           "val_false_int8": at(*q_val, tau)["false_per_tile"],
+           "test": {k: {"float": f[k], "int8": q[k]} for k in f}}  # fmt: skip
+    out["recall_drop"] = f["recall all"] - q["recall all"]
+    out["false_rel"] = q["false_per_tile"] / f["false_per_tile"] - 1.0
+    out["passes"] = bool(out["recall_drop"] <= B_RECALL_DROP and abs(out["false_rel"]) <= B_FALSE_REL)
+    out["kill"] = bool(out["recall_drop"] >= B_KILL_DROP)
+    return out
+
+
+def render_b(rep: dict[str, Any]) -> str:
+    lines = ["# R23b: the K210 scout brain with its own threshold", "",
+             f"**{rep['verdict']}.** Per seed the compiled model's threshold is set on VisDrone "
+             f"val so that its false detections per tile do not exceed the float brain's at "
+             f"{FLOAT_TAU}; test-dev is then compared at those thresholds. Bars: people found "
+             f"(all sizes) at most {100 * B_RECALL_DROP:.0f} points below float's, false "
+             f"detections per tile within {100 * B_FALSE_REL:.0f}%.", "",
+             "| Seed | int8 threshold | Recall float / int8 | False per tile float / int8 | "
+             "0-8 px | 8-16 px | 16-32 px | 32+ px | Passes |",
+             "|---|---|---|---|---|---|---|---|---|"]  # fmt: skip
+    for tag, c in rep["models"].items():
+        t = c["test"]
+        bins = [f"{100 * t[f'recall {b}']['float']:.1f} / {100 * t[f'recall {b}']['int8']:.1f}"
+                for b in ("0-8", "8-16", "16-32", "32+")]  # fmt: skip
+        lines.append(f"| {tag[-1]} | {c['int8_tau']:.3f} | {100 * t['recall all']['float']:.1f}% / "
+                     f"{100 * t['recall all']['int8']:.1f}% | {t['false_per_tile']['float']:.3f} / "
+                     f"{t['false_per_tile']['int8']:.3f} ({100 * c['false_rel']:+.0f}%) | "
+                     + " | ".join(bins) + f" | {'yes' if c['passes'] else 'no'} |")  # fmt: skip
+    lines += ["", "Recall by person size (px in the 224 tile), float at 0.5 / int8 at its "
+              "threshold. Reproduce: `python scripts/r23_k210.py report-b`.", ""]  # fmt: skip
+    return "\n".join(lines)
+
+
+def report_b(path: Path = Path("docs/results/r23b_k210_threshold.md"),
+             log: Any = print) -> dict[str, Any]:  # fmt: skip
+    rep: dict[str, Any] = {"models": {}}
+    splits = {s: load_split(s) for s in ("val", "test")}
+    for tag in MODELS:
+        outs = {s: raw_outputs(tag, s) for s in splits}
+        if any(o is None for o in outs.values()):
+            continue
+        got = {}
+        for s, split in splits.items():
+            log(f"{tag} {s}: int8 and float hit tables")
+            got[("int8", s)] = tables(*int8_predictions(outs[s]), split)
+            got[("float", s)] = tables(*float_predictions(tag, split), split)
+        rep["models"][tag] = compare_b(*[got[(k, s)] for s in ("val", "test")
+                                         for k in ("float", "int8")])  # fmt: skip
+    if rep["models"]:
+        cs = rep["models"].values()
+        rep["verdict"] = ("KILL" if any(c["kill"] for c in cs) else
+                          "PASS" if len(rep["models"]) == len(MODELS) and all(c["passes"] for c in cs)
+                          else "NOT PASSED")  # fmt: skip
+    path.write_text(render_b(rep), "utf-8")
     path.with_suffix(".json").write_text(json.dumps(rep, indent=1), "utf-8")
     return rep
