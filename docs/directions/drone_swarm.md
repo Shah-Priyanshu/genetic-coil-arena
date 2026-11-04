@@ -460,6 +460,10 @@ On test-dev, editing cuts the false alarms passed to 0.56× (DINOv2) and 0.44× 
 
 **FAIL.** Mission-time tuning with a stiffer cost per wrong find (4, 8, 16 instead of the score's 2) trades finds for wrong finds at about 11 to 1 and never holds the closer look's upper-bound cut under 5% wrong while finding 40%. Cost 4: 36.4% / 4.5%; cost 3, post hoc: 42.3% / 5.1%. The share of declarations that are wrong stays at 8–10% (measured cut) whatever the cost, because the operator's false accept is per candidate and a declaration is final: a plan can only declare less. The margin has to come from a lower false-accept rate per candidate (R15g persistence, a real second look, R22's cleaner scout). Meanwhile, planning for the measured cut at cost 3 gives 46.4% found and 4.2% wrong.
 
+### R17 step 6h: the requirement on the evidence (`docs/results/r17j_requirement.md`)
+
+With 92% of people kept, the search meets its limits only if the chain (scout, confirmer, closer look, operator) accepts **at most 2.0% of empty candidates** at the mission score's cost (51.9% found, 4.6% wrong), or 3.0% at cost 3 (41.7% found, 4.8% wrong). That is 0.41x (0.61x) R19's 4.9%. The closer look's estimate (2.1%) meets it; its upper bound (3.2%) does not, so the next evidence (R15g persistence, R22's cleaner scout) must cut the remaining false accepts to at most 0.63x (cost 2) or 0.94x (cost 3). Each point of false-accept rate costs about 1.2 points of wrong finds and 3 points of finds.
+
 ## R20: a closer look from the confirming drone (pre-registered 2026-11-04, goal G16)
 
 **Question.** R19's confirmer and the operator fail on the same false alarms, and two models on the same view fail together (DINOv2 and Qwen correlate 0.85; together they barely beat one). In the mission the confirming drone hovers far lower than the scout sweeps. Does that closer look fail on *different* false alarms, so that a second check is worth something?

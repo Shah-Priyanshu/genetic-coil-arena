@@ -265,6 +265,11 @@ HOW_TO_READ = {
     "missions retuned at mission time with a stiffer cost per wrong find (the mission "
     "score uses 2). Left: wrong finds; right: people found; 95% CI over missions. Dotted "
     "curves: plans made for the cut's upper bound, flown where the cut is as measured.",
+    "r17j_requirement": "The search with the closer look (92% of people kept) on R17's 40 "
+    "held-out missions, each tuned at mission time, against the rate at which the evidence "
+    "chain accepts an empty candidate. Grey lines: R19's measured rate, the closer look's "
+    "and its upper bound. The search meets both limits left of where the red curve crosses "
+    "5% and the green stays above 40%.",
     "r17h_sensitivity": "How the recommended search system's share found changes when "
     "one assumption moves. Long red bars are the assumptions to measure first: the "
     "operator wrongly accepting empty views, and how many independent frames a second "
@@ -648,6 +653,30 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
         fig.update_layout(yaxis_title="%", title=(
             f"R17 step 6g: plan to the wrong-find limit ({cost['verdict']})"))  # fmt: skip
         figs["r17i_wrong_cost"] = fig
+    need = read_json(res / "r17j_requirement.json")
+    if need:
+        from plotly.subplots import make_subplots
+
+        fig = make_subplots(rows=1, cols=2, subplot_titles=("wrong finds", "people found"))
+        for k, c in enumerate(sorted({r["cost"] for r in need["rows"]})):
+            rs = [r for r in need["rows"] if r["cost"] == c]
+            for col, key in ((1, "wrong"), (2, "found")):
+                fig.add_trace(go.Scatter(
+                    x=[100 * r["op_false"] for r in rs], y=[100 * r[key] for r in rs],
+                    name=f"wrong-find cost {c:g}", mode="lines+markers", legendgroup=str(c),
+                    showlegend=col == 1, line={"color": px.colors.qualitative.Safe[k]},
+                    error_y={"type": "data", "array": [100 * r[key + "_hw"] for r in rs]}),
+                    1, col)  # fmt: skip
+        fig.add_hline(y=5, line_dash="dot", line_color="#c62828", row=1, col=1,
+                      annotation_text="5% limit")  # fmt: skip
+        fig.add_hline(y=40, line_dash="dot", line_color="#2e7d32", row=1, col=2,
+                      annotation_text="40% limit")  # fmt: skip
+        for x, label in ((4.9, "R19"), (2.1, "closer look"), (3.2, "its upper bound")):
+            fig.add_vline(x=x, line_dash="dash", line_color="#9e9e9e", annotation_text=label)
+        fig.update_xaxes(title_text="false accepts per empty candidate (%)")
+        fig.update_layout(yaxis_title="%",
+                          title="R17 step 6h: the false-accept rate the evidence must reach")  # fmt: skip
+        figs["r17j_requirement"] = fig
     quick, careful = read_json(res / "r15e_operator.json"), read_json(
         res / "r15f_careful.json"
     )

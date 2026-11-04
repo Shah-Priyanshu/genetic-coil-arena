@@ -560,6 +560,27 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r17i_wrong_cost
 - **Report:** docs/results/r17i_wrong_cost.md
 
+### R17 step 6h: how low must the false-accept rate be?
+- **Date:** 2026-11-04
+- **Question:** For the search with the closer look to meet its limits (≥ 40% found, ≤ 5% wrong finds), how often may the evidence chain accept an empty candidate? The chain is scout, confirmer, closer look and operator.
+- **Why:** Step 6g showed that planning cannot buy the margin; only a lower false-accept rate per candidate can. A requirement turns the next tests (R15g's video persistence, R22's cleaner scout) into a target with a number.
+- **What we did:**
+  - **Set-up.** Step 6f's search with people kept at the measured 92%, step 3's 40 held-out missions × 2,000 episodes, every mission tuned at mission time (`scripts/r17j_requirement.py`).
+  - **The grid.** False-accept rates per candidate from 0.5% to 4% in steps of 0.5, at wrong-find costs 2 (the mission score) and 3 (step 6g's post-hoc setting).
+  - **Read-out, fixed before the run (a measurement, no bar).** Per cost, the largest rate that meets both limits.
+- **Result:**
+  - **Cost 2.** The largest rate is **2.0%** (0.41× R19's 4.9%): 51.9% found, 4.6% wrong finds. At 2.5% wrong finds are 5.2%.
+  - **Cost 3.** The largest rate is **3.0%** (0.61× R19's rate): 41.7% found, 4.8% wrong finds. At 3.5% found is 37.8% and wrong finds are 5.1%.
+  - **The slopes.** Each point of false-accept rate adds about 1.2 points of wrong finds and costs about 3 points of finds.
+  - **Consistency.** The 2.0% row at cost 2 matches step 6f's measured cut (2.1%: 51.9% / 4.7%), and the 3.0% row at cost 3 matches step 6g's upper bound at cost 3 (3.2%: 42.3% / 5.1%).
+- **Verdict:** MEASUREMENT: THE CHAIN MUST ACCEPT ≤ 2.0% OF EMPTY CANDIDATES AT THE MISSION SCORE'S COST (≤ 3.0% AT COST 3, WITH ABOUT 42% FOUND)
+- **What it means:**
+  - **The closer look's estimate meets the requirement; its interval does not.** Its estimate (2.1%) sits on the cost-2 line and its upper bound (3.2%) is above both.
+  - **To make the system safe at the closer look's upper bound,** the next piece of evidence must cut false accepts further on top: to ≤ 0.63× at cost 2, or to ≤ 0.94× at cost 3 (losing about 10 points of finds).
+  - **What this gives R15g and R22.** Video persistence or a cleaner scout needs to remove about a third of the false accepts that still pass the closer look. Alternatively, more blind-labelled spots could tighten the closer look's interval.
+- **Chart:** r17j_requirement
+- **Report:** docs/results/r17j_requirement.md
+
 ### R15c probe: does a bigger camera input change recall per pixel?
 - **Date:** 2026-10-30
 - **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?
