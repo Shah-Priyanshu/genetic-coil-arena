@@ -256,6 +256,11 @@ HOW_TO_READ = {
     "share found and the share of wrong finds for each camera and false-alarm level, "
     "with plans tuned at mission time. Only the 448-px camera with false alarms cut 10x "
     "finds half the people while keeping wrong finds under 5%.",
+    "r17h_closer_look": "The search on R17's 40 held-out missions, each replanned at "
+    "mission time: share of people found (green) and of finds that are wrong (red). R19's "
+    "confirmer before the operator gives 7.0% wrong finds; adding the closer look at the "
+    "hover (R20b's measured cut, its upper bound and its replicate) brings it to 4.7% "
+    "(5.6%, 3.7%). Dotted lines: the 40% found and 5% wrong limits.",
     "r17h_sensitivity": "How the recommended search system's share found changes when "
     "one assumption moves. Long red bars are the assumptions to measure first: the "
     "operator wrongly accepting empty views, and how many independent frames a second "
@@ -588,6 +593,19 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
             title="R17 step 6b: which assumption matters most",
         )  # fmt: skip
         figs["r17h_sensitivity"] = fig
+    closer_search = read_json(res / "r17h_closer_look.json")
+    if closer_search:
+        rows = sorted(closer_search["rows"], key=lambda r: -r["wrong"])
+        fig = go.Figure()
+        for key, label, colour in (("found", "found", "#2e7d32"),
+                                   ("wrong", "wrong finds", "#c62828")):  # fmt: skip
+            fig.add_trace(go.Bar(x=[r["variant"] for r in rows], y=[100 * r[key] for r in rows],
+                                 name=label, marker_color=colour))  # fmt: skip
+        fig.add_hline(y=5, line_dash="dot", line_color="#c62828", annotation_text="5% wrong")
+        fig.add_hline(y=40, line_dash="dot", line_color="#2e7d32", annotation_text="40% found")
+        fig.update_layout(barmode="group", yaxis_title="%",
+                          title="R17 step 6f: the search with the closer look")  # fmt: skip
+        figs["r17h_closer_look"] = fig
     quick, careful = read_json(res / "r15e_operator.json"), read_json(
         res / "r15f_careful.json"
     )

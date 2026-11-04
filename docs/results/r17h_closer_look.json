@@ -1,0 +1,48 @@
+{
+ "rows": [
+  {
+   "variant": "recommended (as in step 6)",
+   "score": 0.42680000000000007,
+   "found": 0.523025,
+   "wrong": 0.0481125,
+   "found_change": 0.0,
+   "breaks": false
+  },
+  {
+   "variant": "R19: confirmer at the ground, then operator (92% / 5%)",
+   "score": 0.2641375,
+   "found": 0.40398750000000005,
+   "wrong": 0.06992499999999999,
+   "found_change": -0.11903749999999991,
+   "breaks": true
+  },
+  {
+   "variant": "R20b: confirmer and closer look at the hover, then operator (92% / 2.1%)",
+   "score": 0.424025,
+   "found": 0.5187999999999999,
+   "wrong": 0.047387500000000006,
+   "found_change": -0.004225000000000034,
+   "breaks": false
+  },
+  {
+   "variant": "R20b: the same at the replicate's cut (92% / 1.3%)",
+   "score": 0.487875,
+   "found": 0.5615249999999999,
+   "wrong": 0.036825,
+   "found_change": 0.03849999999999998,
+   "breaks": false
+  },
+  {
+   "variant": "R20b: the same at the cut's upper bound (92% / 3.2%)",
+   "score": 0.36323750000000005,
+   "found": 0.4756875,
+   "wrong": 0.056225000000000004,
+   "found_change": -0.04733749999999998,
+   "breaks": true
+  }
+ ],
+ "breaking": [
+  "R19: confirmer at the ground, then operator (92% / 5%)",
+  "R20b: the same at the cut's upper bound (92% / 3.2%)"
+ ]
+}

@@ -67,6 +67,16 @@ VARIANTS: dict[str, dict[str, float]] = {
         "op_hit": 0.99,
         "op_false": 0.80,
     },
+    # R20b: the hovering confirmer's closer look checked by a second model, chained after
+    # R19's confirmer at the same share of people kept. On clearly empty spots it passes
+    # 0.43x [0.24, 0.66] of what a second model on the scout's view passes (replicate
+    # 0.26x), applied to R19's joint rate with the operator (0.049); people kept as R19's.
+    "R20b: confirmer and closer look at the hover, then operator (92% / 2.1%)": {
+        "op_hit": 0.92,
+        "op_false": 0.021,
+    },
+    "R20b: the same at the replicate's cut (92% / 1.3%)": {"op_hit": 0.92, "op_false": 0.013},
+    "R20b: the same at the cut's upper bound (92% / 3.2%)": {"op_hit": 0.92, "op_false": 0.032},
 }
 FOUND_FLOOR, WRONG_CEIL = 0.40, 0.05
 

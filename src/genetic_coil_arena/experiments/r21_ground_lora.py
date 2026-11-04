@@ -252,13 +252,16 @@ def train_lora(items: list[dict[str, Any]], dev: list[dict[str, Any]], out: Path
     ``GroundTranslator``. Each epoch's adapter is saved under ``out/epoch<k>``; returns
     the per-epoch dev summaries (the caller picks the epoch)."""
     import torch
-    from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+    from peft import LoraConfig, get_peft_model
 
     random.seed(seed)
     torch.manual_seed(seed)
     net, tok = load_model()
-    net = prepare_model_for_kbit_training(net, use_gradient_checkpointing=True,
-                                          gradient_checkpointing_kwargs={"use_reentrant": False})  # fmt: skip
+    # Not peft's prepare_model_for_kbit_training: it upcasts the untied embedding and
+    # output layers to fp32 (4.4 GB), which runs the 12 GB card out of memory.
+    net.config.use_cache = False
+    net.gradient_checkpointing_enable(gradient_checkpointing_kwargs={"use_reentrant": False})
+    net.enable_input_require_grads()
     cfg = LoraConfig(r=rank, lora_alpha=2 * rank, lora_dropout=0.05, task_type="CAUSAL_LM",
                      target_modules=["q_proj", "k_proj", "v_proj", "o_proj", "gate_proj",
                                      "up_proj", "down_proj"])  # fmt: skip
@@ -278,10 +281,7 @@ def train_lora(items: list[dict[str, Any]], dev: list[dict[str, Any]], out: Path
         start, total = time.perf_counter(), 0.0
         for s in range(len(data) // accum):
             for k in order[s * accum : (s + 1) * accum]:
-                ids, labels = data[k]
-                x = torch.tensor([ids], device=net.device)
-                y = torch.tensor([labels], device=net.device)
-                loss = net(input_ids=x, labels=y).loss / accum
+                loss = reply_loss(net, *data[k]) / accum
                 loss.backward()
                 total += float(loss)
             opt.step()
@@ -298,6 +298,19 @@ def train_lora(items: list[dict[str, Any]], dev: list[dict[str, Any]], out: Path
         log(f"epoch {ep + 1}: dev exact {rec['exact']}/{rec['n_ok']}, wrong commands "
             f"{rec['wrong']}, correct {rec['correct']}/{rec['n']}")  # fmt: skip
     return hist
+
+
+def reply_loss(net: Any, ids: list[int], labels: list[int]) -> Any:
+    """Cross-entropy on the reply tokens only, with logits computed only where they are
+    needed (``logits_to_keep``): the logit at position t predicts token t + 1."""
+    import torch
+    import torch.nn.functional as F
+
+    start = next(i for i, v in enumerate(labels) if v != -100)
+    x = torch.tensor([ids], device=net.device)
+    logits = net(input_ids=x, logits_to_keep=len(ids) - start + 1).logits[0, :-1]
+    y = torch.tensor(labels[start:], device=net.device)
+    return F.cross_entropy(logits.float(), y, ignore_index=-100)
 
 
 def translator(net: Any, tok: Any, name: str) -> Any:

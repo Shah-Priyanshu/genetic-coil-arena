@@ -446,6 +446,35 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r20_closer_look
 - **Report:** docs/results/r20_closer_look.md
 
+### R17 step 6f: the search with the closer look
+- **Date:** 2026-11-04
+- **Question:** With R20b's closer look chained after R19's confirmer, does the person search stay within its limits (≥ 40% of people found, ≤ 5% wrong finds)?
+- **Why:** R19's confirmer before the operator gave 40.4% found but 7.0% wrong finds. R20b measured how many clearly empty spots the closer look still lets through: 0.43× (replicate 0.26×, upper bound 0.66×).
+- **What we did:**
+  - **Set-up.** R17 step 6's recommended system on step 3's 40 held-out missions (2,000 episodes each), every mission replanned at mission time, one rate changed at a time (`scripts/r17h_sensitivity.py`).
+  - **The rate changed.** The operator's joint rates after the machine checks. People kept stay at R19's 92%, since R20's chains keep the same share of val people as a single model. Wrong acceptances are R19's 4.9% times R20b's cut: 2.1% at the estimate, 1.3% at the replicate and 3.2% at the upper bound.
+  - **The limits.** The same as for every step-6 variant, fixed in advance: a variant breaks the system if found falls below 40% or wrong finds exceed 5%.
+- **Result:**
+
+  | Variant | Found | Wrong finds |
+  |---|---|---|
+  | R19's confirmer alone | 40.4% | 7.0% |
+  | with the closer look, upper bound of the cut | 47.6% | 5.6% |
+  | with the closer look, the estimate | 51.9% | 4.7% |
+  | with the closer look, the replicate's cut | 56.2% | 3.7% |
+  | step 6's recommended system, assumed rates | 52.3% | 4.8% |
+
+- **Verdict:** MEASUREMENT: WITH THE CLOSER LOOK THE SEARCH MEETS ITS LIMITS AT THE MEASURED CUT (51.9% FOUND, 4.7% WRONG), BUT NOT AT ITS UPPER BOUND (5.6% WRONG)
+- **What it means:**
+  - **Every part of the search system now has a measured rate.** Measured on real footage, the confirmer and the closer look land where step 6 assumed the operator would (52.3% / 4.8%). Before, that operator rate was a hope.
+  - **There is no slack.** The interval reaches 5.6% wrong finds. The cheapest further cut is video persistence (R15g), which is still waiting on the VisDrone-VID download.
+  - **Assumptions:**
+    - the operator accepts what the machines pass at the same 80% rate as in R19;
+    - the closer look's cut multiplies R19's single-model rate (it was measured against a second model, which passes slightly less than one model);
+    - a real hover adds another angle and another moment, so the cut is probably a floor.
+- **Chart:** r17h_closer_look
+- **Report:** docs/results/r17h_closer_look.md
+
 ### R15c probe: does a bigger camera input change recall per pixel?
 - **Date:** 2026-10-30
 - **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?
