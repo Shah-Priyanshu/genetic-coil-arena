@@ -270,6 +270,11 @@ HOW_TO_READ = {
     "intervals; every threshold keeps 95% of val people. Right: the share of VisDrone-"
     "labelled false alarms each model lets through on test-dev (some are unlabelled "
     "people, so this cannot reach zero). The dotted line is the bar: 10% (a 10x cut).",
+    "r20_closer_look": "Left: the share of test-dev false alarms (by VisDrone's labels) "
+    "that each two-model chain lets through, with 95% intervals; every chain keeps 95% of "
+    "val people. The closer look passes 0.86x of the control, where the bar was 0.5x. "
+    "Right: Claude's blind check of 150 of those false alarms: three in four show a "
+    "person the labels miss or count twice.",
     "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
     "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
     "translation through the shared meanings could do.",
@@ -649,6 +654,33 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
         fig.update_layout(barmode="group", yaxis_title="%", title=(
             f"R19: an open-weight confirmer before the operator ({conf['verdict']})"))  # fmt: skip
         figs["r19_confirmer"] = fig
+    closer = read_json(res / "r20_closer_look.json")
+    if closer and "verdict" in closer:
+        from plotly.subplots import make_subplots
+
+        fig = make_subplots(rows=1, cols=2, subplot_titles=(
+            "test-dev false alarms passed (VisDrone labels)",
+            "what the passed false alarms show (blind check of 150)"))  # fmt: skip
+        names = {"control": "scout's view, two models", "closer": "scout's view + closer look",
+                 "closer_replicate": "the same, other seeds"}  # fmt: skip
+        vals = [closer["chains"][k]["test_pass"] for k in names]
+        fig.add_trace(go.Bar(
+            x=list(names.values()), y=[100 * v[0] for v in vals], marker_color="#c62828",
+            name="false alarms passed", showlegend=False,
+            error_y={"type": "data", "array": [100 * (v[2] - v[0]) for v in vals],
+                     "arrayminus": [100 * (v[0] - v[1]) for v in vals]}), 1, 1)  # fmt: skip
+        vis = closer.get("visual")
+        if vis:
+            for key, label, colour in (("person", "a person", "#2e7d32"),
+                                       ("ambiguous", "unclear", "#9e9e9e"),
+                                       ("not_person", "clearly not a person", "#c62828")):  # fmt: skip
+                fig.add_trace(go.Bar(x=["sample"], y=[vis["counts"][key]], name=label,
+                                     marker_color=colour), 1, 2)  # fmt: skip
+        fig.update_layout(barmode="stack", yaxis_title="%", title=(
+            f"R20: a closer look against a second model on the scout's view "
+            f"({closer['verdict']}, {closer['ratio']['closer'][0]:.2f}x)"))  # fmt: skip
+        fig.update_yaxes(title_text="spots", row=1, col=2)
+        figs["r20_closer_look"] = fig
     inter = read_json(res / "r7e_interlingua.json")
     if inter:
         pts = [

@@ -387,6 +387,36 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r19_confirmer
 - **Report:** docs/results/r19_confirmer.md, docs/results/r17h_confirmer.md
 
+### R20 (G16): does a closer look from the confirming drone fail on different false alarms?
+- **Date:** 2026-11-04
+- **Question:** R19's confirmer and the operator fail on the same false alarms. Does a closer look at the spot (the confirming drone hovering lower than the scout flew) remove false alarms that a second model on the scout's own view cannot?
+- **Why:** Two checks of the same pixels fail together: R19's two edited models correlate at 0.85 on val false alarms, and the operator accepted 4 of the 5 clear non-persons the model passed. R17's confirming drone already flies to each detection, so a closer look costs nothing extra in the mission. The question is whether the extra detail brings errors that differ.
+- **What we did:**
+  - **Two views from one photo.** VisDrone2019-DET frames reduced 2× (box filter) are the scout's view, as if the scout flew twice as high. The native frames are the closer look, where the same 144-px window covers half the ground at twice the detail. R15b's scout brain runs on the reduced frames: 6,916 val and 9,366 test-dev candidates (6,183 people and 3,183 false alarms by VisDrone's labels).
+  - **Models.** DINOv2-small fully fine-tuned per view with R19's recipe (10 epochs, 336 px), seeds 0 and 1.
+  - **Chains** (both models must pass; thresholds set on val so the pair keeps 95% of val people):
+    - control: the scout's view checked by two models (seeds 0 and 1);
+    - closer look: the scout's view (seed 0), then the native view (seed 0);
+    - replicate: the closer look with seed 1 of each.
+  - **Bars, committed before any test score:**
+    - PASS if the closer-look chain passes ≤ 0.5× the control's test-dev false alarms (frame-bootstrap upper bound < 1), the replicate does too, and ≥ 90% of test-dev people are kept;
+    - KILL at ≥ 0.8×.
+  - **Visual check.** After the verdict was computed, Claude checked 150 test-dev false alarms passed by either chain, blind to the chain: is a person at the marked centre of the closer look?
+- **Result:**
+  - **The verdict.** The closer-look chain passes 0.86× [0.82, 0.90] of the control's false alarms (18.3% against 21.2%), with 93.6% of people kept. The replicate gives 0.84×.
+  - **Alone and as a pair.** On its own the native view is better: val AUC 0.94 against 0.92, and 18% of test-dev false alarms passed against 22–23%. But its errors still overlap: it passes 67% of the false alarms the scout-view model passed (83% for a second scout-view model), and its scores on false alarms correlate at 0.85 with the scout-view model's (0.94 between the two scout-view models).
+  - **Most "false alarms" are people.** Of the 150 checked, 111 show a person at the centre, 27 are unclear, and only 12 are clearly not a person. 57 of the 111 sit inside a labelled person box: the matching rule counts a second detection on the same person as a false alarm. The other 54 are people VisDrone did not box where the scout fired.
+  - **Clear non-persons.** On those 12, the control passed all 12 and the closer look 3. That is a hint (0.25×) on too few spots to count.
+  - **Post hoc on labels.** Dropping false alarms within 0–32 px of a labelled person leaves the ratio at 0.72–0.85×.
+- **Verdict:** KILL: A CLOSER LOOK AT THE SAME PHOTO CUTS LABELLED FALSE ALARMS BY ONLY 14% (0.86×) AGAINST A SECOND MODEL ON THE SCOUT'S VIEW
+- **What it means:**
+  - **Detail alone does not decorrelate the errors.** Twice the pixels gives a better model, but it trips on largely the same spots as the scout-view model. Stacking the closer look into the confirmer chain is worth 0.8–0.86×, not the ≥ 2× cut R17 step 4 needs.
+  - **Real second looks might still differ.** Both views here come from one photograph, so pose, light and blur are shared. A real hover adds another angle and another moment; the test-dev result is the floor for that.
+  - **The bigger lesson: VisDrone labels now dominate these numbers.** About three in four of the "false alarms" both chains pass are people the labels miss or count twice. Once a confirmer is in the chain, label-based false-alarm rates mostly measure label noise. The 12-spot hint (control 12, closer 3) needs a proper count: a blind check of all 744 test-dev false alarms that any chain passes, scored only on the 594 not yet seen.
+  - **Persistence over video stays the other candidate** (R15g, waiting on the VisDrone-VID download): errors there come from different frames, not the same photo at a different scale.
+- **Chart:** r20_closer_look
+- **Report:** docs/results/r20_closer_look.md
+
 ### R15c probe: does a bigger camera input change recall per pixel?
 - **Date:** 2026-10-30
 - **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?

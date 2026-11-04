@@ -229,8 +229,9 @@ def visual(passed: dict, tp: np.ndarray) -> dict:
 
 
 def cmd_sample(_args) -> None:
-    """Contact sheets of the visual-check sample (native view, 2x), numbered in a random
-    order, plus the index list; the chain each spot came from is not shown."""
+    """Contact sheets of the visual-check sample (the closer look's centre 4x, and the whole
+    closer look with the centre marked), numbered in a random order, plus the index list;
+    the chain each spot came from is not shown."""
     from PIL import Image, ImageDraw
 
     _, tm = rl.load("test", "far")
@@ -244,19 +245,26 @@ def cmd_sample(_args) -> None:
         passed[name] = (scores(va, sa, "test") >= ta) & (scores(vb, sb, "test") >= tb)
     pool = visual_pool(passed, tp)
     close, _ = rl.load("test", "close")
-    far, _ = rl.load("test", "far")
     out = rl.OUT_DIR / "visual"
     out.mkdir(parents=True, exist_ok=True)
-    per = 20
+    for old in out.glob("sheet_*.png"):
+        old.unlink()
+    per, h = 12, r19.HALF
     for sheet in range(0, len(pool), per):
-        img = Image.new("RGB", (5 * 2 * 300, 4 * 310), (255, 255, 255))
+        img = Image.new("RGB", (3 * 600, 4 * 310), (255, 255, 255))
         draw = ImageDraw.Draw(img)
         for k, i in enumerate(pool[sheet : sheet + per]):
-            x0, y0 = (k % 5) * 600, (k // 5) * 310
-            img.paste(Image.fromarray(np.asarray(close[i])).resize((288, 288)), (x0, y0 + 20))
-            img.paste(Image.fromarray(np.asarray(far[i])).resize((288, 288)),
-                      (x0 + 296, y0 + 20))  # fmt: skip
-            draw.text((x0 + 4, y0 + 4), f"#{sheet + k:03d}  close | scout", fill=(0, 0, 0))
+            x0, y0 = (k % 3) * 600, (k // 3) * 310
+            view = Image.fromarray(np.asarray(close[i]))
+            zoom = view.crop((h // 2, h // 2, 3 * h // 2, 3 * h // 2)).resize((288, 288))
+            img.paste(zoom, (x0, y0 + 20))
+            img.paste(view.resize((288, 288)), (x0 + 296, y0 + 20))
+            cx, cy = x0 + 296 + 144, y0 + 20 + 144  # the detection's centre
+            for dx, dy in ((-1, 0), (1, 0), (0, -1), (0, 1)):
+                draw.line((cx + 30 * dx, cy + 30 * dy, cx + 48 * dx, cy + 48 * dy),
+                          fill=(255, 0, 255), width=2)  # fmt: skip
+            draw.text((x0 + 4, y0 + 4), f"#{sheet + k:03d}  centre x4 | closer look",
+                      fill=(0, 0, 0))  # fmt: skip
         img.save(out / f"sheet_{sheet // per:02d}.png")
     r19.save_json(out / "pool.json", {"index": [int(i) for i in pool]})
     log(f"{len(pool)} spots on {(len(pool) + per - 1) // per} sheets in {out}")
