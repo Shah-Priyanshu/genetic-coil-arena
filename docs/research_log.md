@@ -613,6 +613,39 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r23_k210
 - **Report:** docs/results/r23_k210.md
 
+### R23b (G19b): the K210 brain with its own threshold
+- **Date:** 2026-11-04
+- **Question:** R23's compiled model kept the ranking but shifted the score scale. If its threshold is set on the compiled model, does it find as many people as float at the same false-detection rate?
+- **Why:** On the drone the ground station would set the threshold on the compiled model, not carry float's over.
+- **What we did:**
+  - nncase's simulator ran both compiled seeds on all 18,369 VisDrone val tiles.
+  - Per seed, the int8 threshold was the lowest at which its false detections per val tile do not exceed float's at 0.5. Test-dev was then compared at those thresholds, reusing R23's outputs.
+  - **Bars, committed before the thresholds were computed:**
+    - PASS if both seeds find at least float's share of people at 0.5 minus 2 points, with false detections per tile within 10%;
+    - KILL at 5 points fewer.
+- **Result:**
+
+  | Seed | int8 threshold | People found, float / int8 | False per tile, float / int8 | 32+ px people found |
+  |---|---|---|---|---|
+  | 0 | 0.522 | 23.8% / 20.3% | 0.099 / 0.073 (−27%) | 62.3% / 50.1% |
+  | 1 | 0.500 (just above) | 23.3% / 20.7% | 0.093 / 0.080 (−13%) | 61.0% / 49.2% |
+
+  - **Why the thresholds land off target.** The compiled model's scores move in coarse steps, and no threshold sits close to float's false-detection rate.
+    - All five output channels (heatmap, box size, offsets) share one 8-bit scale, with a step of 0.089 in logit.
+    - The heatmap's long negative tail (down to −17) uses up most of that range, so near 0.5 the score moves in steps of about 2.2% probability.
+    - False detections change by around 60% from one step to the next, so the matched threshold either overshoots (R23: +22–35% false) or undershoots (here: −13–27%).
+  - **Interpolated between the two steps on each side (post hoc, not the bar),** int8 finds about 1.5–1.7 points fewer people than float at float's false-detection rate.
+  - **Large people lose most:** 12 points at the matched threshold. VisDrone's random train tiles rarely hold large people, so the calibration probably clips the large activations they produce.
+- **Verdict:** NOT PASSED: AT THE THRESHOLD SET ON VAL THE K210 MODEL FINDS 2.6–3.5 POINTS FEWER PEOPLE WITH 13–27% FEWER FALSE DETECTIONS; THE SCORE STEPS ARE TOO COARSE TO MATCH FLOAT'S RATE, AND LARGE PEOPLE LOSE 12 POINTS
+- **What it means:**
+  - **The loss is in how the model was quantised, not in the brain.** The ranking holds (R23: centre AP within 1 point). Two parts of the compile cost accuracy:
+    - the head's single output tensor, whose score resolution is too coarse near the threshold;
+    - a calibration set with few large people.
+  - **Both fixes are cheap and change nothing in float.** Give the heatmap its own output convolution, so it gets its own 8-bit range, and calibrate on tiles that include people of every size.
+  - **Next (R23c):** try those on val, pick by a rule fixed in advance, and test once.
+- **Chart:** r23_k210
+- **Report:** docs/results/r23b_k210_threshold.md
+
 ### R15c probe: does a bigger camera input change recall per pixel?
 - **Date:** 2026-10-30
 - **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?

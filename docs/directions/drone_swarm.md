@@ -557,3 +557,5 @@ With 92% of people kept, the search meets its limits only if the chain (scout, c
 - KILL if it finds 5 points fewer or more for either seed: quantisation-aware training would be needed.
 - Measured: recall per person size at the matched threshold.
 
+**Result (2026-11-04): NOT PASSED.** At the thresholds set on val (0.522 and 0.500) the compiled model finds 20.3% and 20.7% of test-dev people against float's 23.8% and 23.3%, with 27% and 13% fewer false detections; large people (32+ px) 50% against 62%. The five output channels share one 8-bit scale whose step (0.089 logit, about 2.2% near 0.5) is too coarse for the threshold to land near float's false rate; interpolated between steps (post hoc) int8 is 1.5-1.7 points below float. Next (R23c): the heatmap in its own output tensor and a calibration set with people of every size, chosen on val.
+
