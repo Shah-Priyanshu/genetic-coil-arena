@@ -581,6 +581,38 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r17j_requirement
 - **Report:** docs/results/r17j_requirement.md
 
+### R23 (G19): does the scout brain survive the K210 toolchain?
+- **Date:** 2026-11-04
+- **Question:** OpenSwarm's vision module is a Kendryte K210 running an INT8 model at 224 × 224, converted with nncase. Every scout number so far comes from the float brain. Does it keep its accuracy once the real toolchain has quantised and compiled it?
+- **Why:** This is the first hardware-path check of the scout brain that needs no hardware. A brain that loses accuracy in int8 would need quantisation-aware training before the bench.
+- **What we did:**
+  - **Toolchain.** nncase 1.9.0 (the last release with the K210 target) in its own Python 3.10 venv. On Windows its native library needs Microsoft's LLVM OpenMP runtime, which is not installed; Intel's runtime (shipped with torch) exports the same functions at the same ordinals and serves in its place.
+  - **Compile.** R15b's deployed brain (width 0.5, COCO then VisDrone; seeds 0 and 1), compiled for the K210 with uint8 weights and activations. Post-training quantisation was calibrated on 500 random VisDrone train tiles, with the input normalisation folded in.
+  - **Run.** nncase's simulator ran the compiled model on all 64,727 VisDrone2019-DET test-dev tiles. The float brain ran on the same tiles with R15b's own code; both were scored with R15b's decode and metrics, with a paired frame bootstrap.
+  - **Bars, committed before any test-dev tile was simulated:**
+    - PASS if, for both seeds, int8 loses ≤ 2 points of centre AP (worst end ≤ 3), ≤ 2 points of AP50 and ≤ 0.01 present AUC, and at threshold 0.5 its false detections per tile are within 20% and its recall within 3 points of float's;
+    - KILL at a 5-point centre-AP drop.
+- **Result:**
+
+  | Seed | Centre AP drop [95% CI] | AP50 drop | Present AUC drop | False per tile at 0.5 | Recall at 0.5 |
+  |---|---|---|---|---|---|
+  | 0 | 0.2 [−0.1, 0.5] | 1.8 | 0.004 | 0.099 → 0.133 (+35%) | 23.8% → 24.9% |
+  | 1 | 0.8 [0.5, 1.2] | 2.2 | 0.008 | 0.093 → 0.113 (+22%) | 23.3% → 23.0% |
+
+  - **Ranking holds.** Centre AP, the metric for what OpenSwarm's DETECTION packet carries, drops by under 1 point, and present AUC by under 0.01.
+  - **Score scale shifts.** At the fixed 0.5 threshold int8 passes 22–35% more false detections. Small people's scores rise (0–8 px recall 10.6% → 11.8%) and large people's fall (32+ px: 62.3% → 56.9%).
+  - **Box sizes are worse.** AP50, which needs the box size right, drops by about 2 points.
+  - **Fit.** The compiled model is 482 KB and needs 2.54 MB of memory, inside the K210's 6 MB.
+  - **The 448-px brain (R15c) does not compile for the K210.** The allocator runs out of memory at code generation, so the recommended 448 camera needs a bigger module, as R17 step 4 assumed.
+- **Verdict:** NOT PASSED: THE K210 MODEL RANKS PEOPLE AS WELL AS FLOAT (CENTRE AP −0.2 / −0.8 POINTS) BUT PASSES 22–35% MORE FALSE DETECTIONS AT THE FLOAT THRESHOLD, AND SEED 1 LOSES 2.2 POINTS OF AP50
+- **What it means:**
+  - **Quantisation-aware training is not needed yet.** The ranking survives the toolchain; it is the score scale that moves. The threshold must be set on the compiled model, not carried over from float.
+  - **The next check (R23b)** re-sets the int8 threshold on val to float's false-detection rate and compares people found on test-dev.
+  - **Large people lose most.** That is worth watching, because the confirming drone's closer look sees people large.
+  - **Hardware facts.** A 224-px K210 brain fits with room to spare; a 448-px brain does not.
+- **Chart:** r23_k210
+- **Report:** docs/results/r23_k210.md
+
 ### R15c probe: does a bigger camera input change recall per pixel?
 - **Date:** 2026-10-30
 - **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?

@@ -295,6 +295,10 @@ HOW_TO_READ = {
     "share of all requests that became a wrong command (right), with 95% Wilson intervals. "
     "The 14B as is is the deployed G14b model; the 7B runs with the same prompt, as is and "
     "after QLoRA on 997 operator-style requests. Dotted lines: the G14 bars.",
+    "r23_k210": "R15b's scout brain as float (blue) and as the int8 model nncase compiles "
+    "for OpenSwarm's K210 (orange), run in nncase's simulator on all 64,727 VisDrone "
+    "test-dev tiles. Left: the main detection metrics per seed; right: the share of "
+    "people found at the 0.5 threshold, by person size in the 224-px tile.",
     "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
     "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
     "translation through the shared meanings could do.",
@@ -795,6 +799,31 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
         fig.update_layout(yaxis_title="%", title=(
             f"R21: the ground station's LLM with its weights edited ({lora['verdict']})"))  # fmt: skip
         figs["r21_ground_lora"] = fig
+    k210 = read_json(res / "r23_k210.json")
+    if k210 and "verdict" in k210:
+        from plotly.subplots import make_subplots
+
+        fig = make_subplots(rows=1, cols=2, subplot_titles=(
+            "test-dev, float against the K210 model", "recall per person size at 0.5 (seed 0)"))  # fmt: skip
+        tags = list(k210["models"])
+        for key, label in (("centre_ap", "centre AP"), ("ap50", "AP50"),
+                           ("present_auc", "present AUC")):  # fmt: skip
+            for kind, colour in (("float", "#1565c0"), ("int8", "#ef6c00")):
+                fig.add_trace(go.Bar(
+                    x=[f"{label}, seed {t[-1]}" for t in tags],
+                    y=[k210["models"][t][key][kind] for t in tags], name=kind,
+                    marker_color=colour, legendgroup=kind, showlegend=key == "centre_ap"),
+                    1, 1)  # fmt: skip
+        row = k210["models"][tags[0]]["operating"]["0.5"]
+        bins = ("0-8", "8-16", "16-32", "32+")
+        for kind, colour in (("float", "#1565c0"), ("int8", "#ef6c00")):
+            fig.add_trace(go.Bar(x=[f"{b} px" for b in bins],
+                                 y=[100 * row[f"recall {b}"][kind] for b in bins],
+                                 marker_color=colour, showlegend=False), 1, 2)  # fmt: skip
+        fig.update_yaxes(title_text="%", row=1, col=2)
+        fig.update_layout(barmode="group", title=(
+            f"R23: the scout brain through the K210 toolchain ({k210['verdict']})"))  # fmt: skip
+        figs["r23_k210"] = fig
     inter = read_json(res / "r7e_interlingua.json")
     if inter:
         pts = [

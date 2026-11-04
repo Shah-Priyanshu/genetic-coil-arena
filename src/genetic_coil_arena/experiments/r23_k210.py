@@ -108,6 +108,11 @@ def compile_records() -> dict[str, Any]:
         p = OUT_DIR / f"{tag}_compile.json"
         if p.exists():
             out[tag] = json.loads(p.read_text("utf-8"))
+        elif (OUT_DIR / f"{tag}_compile.log").exists():  # the compiler raised
+            text = (OUT_DIR / f"{tag}_compile.log").read_text("utf-8")
+            err = [x for x in text.splitlines() if x.startswith("RuntimeError")]
+            size = 448 if tag.endswith("_s448") else 224
+            out[tag] = {"size": size, "failed": err[-1] if err else "failed"}
     return out
 
 
@@ -154,6 +159,9 @@ def render(rep: dict[str, Any]) -> str:
                   "and 2 MB for the KPU):", "",
                   "| Model | Input | kmodel | Total memory |", "|---|---|---|---|"]  # fmt: skip
         for tag, r in rep["compile"].items():
+            if "failed" in r:
+                lines.append(f"| {tag} | {r['size']} px | does not compile: {r['failed']} | - |")
+                continue
             total = r["memory"].get("TOTAL")
             lines.append(f"| {tag} | {r['size']} px | {r['kmodel_bytes'] / 1024:.0f} KB | "
                          + (f"{total / 2**20:.2f} MB" if total else "-") + " |")
@@ -190,7 +198,7 @@ def report(path: Path = Path("docs/results/r23_k210.md"), log: Any = print) -> d
         rep["models"][tag] = compare(f, q)
     if rep["models"]:
         rep["verdict"] = verdict(rep["models"])
-        rep["calibration"] = next(iter(rep["compile"].values()))["calibration"]["tiles"]
+        rep["calibration"] = rep["compile"][MODELS[0]]["calibration"]["tiles"]
     path.write_text(render(rep), "utf-8")
     path.with_suffix(".json").write_text(json.dumps(rep, indent=1), "utf-8")
     return rep

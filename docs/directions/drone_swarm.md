@@ -544,3 +544,5 @@ With 92% of people kept, the search meets its limits only if the chain (scout, c
 - KILL if centre AP drops by 5 points or more for either seed: the brain would need quantisation-aware training before the bench.
 - Measured with no bar: the compiled size and memory; R17's detector table for int8 against float; whether the 448-px brain (R15c) compiles for the K210 and how much memory it needs.
 
+**Result (2026-11-04): NOT PASSED.** The compiled K210 model ranks people as well as float (centre AP 0.315 → 0.313 for seed 0, 0.314 → 0.306 for seed 1; present AUC within 0.008) but its scores sit higher: at the float threshold 0.5 it passes 35% (seed 0) and 22% (seed 1) more false detections, and seed 1 loses 2.2 points of AP50 (box sizes). Small people's scores rise and large people's fall (32+ px recall at 0.5: 62.3% → 56.9%). The model is 482 KB and needs 2.54 MB; the 448-px brain runs the K210's allocator out of memory, so a 448 camera needs a bigger module. Next (R23b): set the threshold on the compiled model with val, then compare people found at the same false-detection rate.
+
