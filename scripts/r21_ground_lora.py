@@ -6,6 +6,9 @@ python scripts/r21_ground_lora.py data                     # again, with label_d
 python scripts/r21_ground_lora.py fit --seed 0             # QLoRA, dev after each epoch
 python scripts/r21_ground_lora.py run --system asis|lora --split dev|sealed-b
 python scripts/r21_ground_lora.py report
+python scripts/r21_ground_lora.py fit --seed 1          # R21b: the replicate seed
+python scripts/r21_ground_lora.py run --system lora --seed 1 --split sealed-b
+python scripts/r21_ground_lora.py report-b
 
 Everything is written under ``D:/Projects/genetic-coil-arena-data/r21_ground_lora``;
 ``report`` writes ``docs/results/r21_ground_lora.{md,json}``. The sealed set is run once
@@ -101,20 +104,26 @@ def adapter_path(seed: int = 0) -> Path:
     return out / f"epoch{json.loads((out / 'fit.json').read_text('utf-8'))['chosen_epoch']}"
 
 
+def system_name(system: str, seed: int) -> str:
+    """File name of a system's runs: R21's seed-0 adapter is plain "lora"."""
+    return f"lora_s{seed}" if system == "lora" and seed else system
+
+
 def cmd_run(args) -> None:
-    out = rg.DATA_DIR / "runs" / f"{args.system}_{args.split}.jsonl"
+    name = system_name(args.system, args.seed)
+    out = rg.DATA_DIR / "runs" / f"{name}_{args.split}.jsonl"
     if args.split != "dev" and out.exists():
         raise SystemExit(f"{out} exists: the sealed set is run once per system")
     items = r16_sealed.load_sealed(b=True) if args.split == "sealed-b" else r16_sealed.load_dev()
-    net, tok = rg.load_model(adapter_path() if args.system == "lora" else None)
+    net, tok = rg.load_model(adapter_path(args.seed) if args.system == "lora" else None)
     net.eval()
-    tr = rg.translator(net, tok, f"{rg.BASE}+{args.system}")
-    rows = rg.run_items(tr, items, f"{args.system} {args.split}", log)
+    tr = rg.translator(net, tok, f"{rg.BASE}+{name}")
+    rows = rg.run_items(tr, items, f"{name} {args.split}", log)
     out.parent.mkdir(parents=True, exist_ok=True)
     with open(out, "w", encoding="utf-8") as f:
         for r in rows:
             f.write(json.dumps(r) + "\n")
-    log(f"{args.system} {args.split}: {json.dumps(summarise(rows))}")
+    log(f"{name} {args.split}: {json.dumps(summarise(rows))}")
 
 
 def summarise(rows: list[dict]) -> dict:
@@ -260,6 +269,45 @@ def render(rep: dict) -> str:
     return "\n".join(lines)
 
 
+
+def passes(s: dict) -> bool:
+    return bool(s["exact"][0] >= BARS["exact"] and s["wrong_commands"][0] <= BARS["wrong"]
+                and s["wrong_commands"][2] <= BARS["wrong_hi"])  # fmt: skip
+
+
+def cmd_report_b(_args) -> None:
+    """R21b: the replicate seed's adapter on G14b's sealed set against seed 0's, G17's bars."""
+    a, b = rows_of("lora", "sealed-b"), rows_of("lora_s1", "sealed-b")
+    if a is None or b is None:
+        raise SystemExit("both adapters' sealed runs are needed")
+    fit = json.loads((rg.DATA_DIR / "models" / "lora_s1" / "fit.json").read_text("utf-8"))
+    sa, sb = summarise(a), summarise(b)
+    rep = {"bars": BARS, "seed0": sa, "seed1": sb, "seed1_fit": fit,
+           "seed1_vs_seed0": mcnemar(b, a), "verdict": "PASS" if passes(sb) else "NOT PASSED",
+           "seed1_misses": [{k: r[k] for k in ("id", "text", "expect", "gold", "params",
+                                               "outcome", "reason")}
+                            for r in b if not r["correct"]]}  # fmt: skip
+    pct = lambda w: f"{100 * w[0]:.1f}% [{100 * w[1]:.0f}, {100 * w[2]:.0f}]"  # noqa: E731
+    m = rep["seed1_vs_seed0"]
+    lines = ["# R21b: the ground station's QLoRA edit with a second training seed", "",
+             f"**{rep['verdict']}** (G17's bars: exact >= 90% of the ok items, wrong commands "
+             "<= 3% with the Wilson upper bound <= 6%). G14b's sealed set, run once per adapter; "
+             "same training data, recipe and dev epoch rule, only the seed differs.", "",
+             "| Adapter | Exact (ok items) | Wrong commands | Asked when unclear | "
+             "Refused when it should | Correct overall |", "|---|---|---|---|---|---|"]  # fmt: skip
+    for name, s in (("seed 0 (R21)", sa), ("seed 1", sb)):
+        lines.append(f"| {name} | {pct(s['exact'])} | {pct(s['wrong_commands'])} | "
+                     f"{pct(s['asked_when_unclear'])} | {pct(s['refused_when_should'])} | "
+                     f"{pct(s['correct'])} |")  # fmt: skip
+    lines += ["", f"Seed 1 chose epoch {fit['chosen_epoch']} on dev. Paired exact matches: seed 1 "
+              f"only {m['a_only']}, seed 0 only {m['b_only']} (exact McNemar p = {m['p']:.3g}).",
+              "", "Reproduce: `python scripts/r21_ground_lora.py report-b`.", ""]  # fmt: skip
+    out = Path("docs/results/r21b_replicate.md")
+    out.write_text("\n".join(lines), "utf-8")
+    out.with_suffix(".json").write_text(json.dumps(rep, indent=1), "utf-8")
+    log(f"R21b: {rep['verdict']}")
+
+
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -271,9 +319,12 @@ def main() -> None:
     r = sub.add_parser("run")
     r.add_argument("--system", choices=("asis", "lora"), required=True)
     r.add_argument("--split", choices=("dev", "sealed-b"), required=True)
+    r.add_argument("--seed", type=int, default=0, help="the LoRA's training seed")
     sub.add_parser("report")
+    sub.add_parser("report-b")
     args = p.parse_args()
-    {"data": cmd_data, "audit": cmd_audit, "fit": cmd_fit, "run": cmd_run, "report": cmd_report}[args.cmd](args)
+    {"data": cmd_data, "audit": cmd_audit, "fit": cmd_fit, "run": cmd_run, "report": cmd_report,
+     "report-b": cmd_report_b}[args.cmd](args)  # fmt: skip
 
 
 if __name__ == "__main__":
