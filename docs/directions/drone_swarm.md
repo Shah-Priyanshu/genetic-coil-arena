@@ -455,3 +455,18 @@ On test-dev, editing cuts the false alarms passed to 0.56× (DINOv2) and 0.44× 
 - Distil the fine-tuned confirmer into the K210 scout brain, as a teacher on unlabelled frames.
 - Put the Qwen LoRA and DINOv2 together.
 - Fine-tune the ground station's LLM on the R16 dev data (G14b missed narrowly). G3b's lesson applies there: train on real phrasing, not templates.
+
+## R20: a closer look from the confirming drone (pre-registered 2026-11-04, goal G16)
+
+**Question.** R19's confirmer and the operator fail on the same false alarms, and two models on the same view fail together (DINOv2 and Qwen correlate 0.85; together they barely beat one). In the mission the confirming drone hovers far lower than the scout sweeps. Does that closer look fail on *different* false alarms, so that a second check is worth something?
+
+**Set-up.**
+- VisDrone2019-DET stands in for both views. The scout's view is each frame reduced 2× (the scout twice as high); the closer look is the native frame (the confirmer at half the height: the same 144-px window, half the ground, twice the detail).
+- R15b's brain runs on the reduced frames. Each candidate gets the 144-px view around it in both resolutions and R15b's label. Both views come from one photo, so pose, light and blur are shared: this measures what detail alone adds. A real second look (another angle, another moment) can only be less correlated.
+- DINOv2-small fine-tuned per view (R19's recipe: 10 epochs, 336 px), two seeds each.
+- Control chain: the scout's view checked by two models (seeds 0 and 1). Closer-look chain: the scout's view (seed 0), then the native view (seed 0). Replicate: seed 1 of each. Thresholds on val: each model keeps the same share of val people, and the pair keeps 95%.
+
+**Read-out, fixed before any test score.** On test-dev false alarms (VisDrone labels):
+- PASS if the closer-look chain passes ≤ 0.5× what the control passes, with the frame-bootstrap upper bound below 1, the replicate also ≤ 0.5×, and the closer-look chain keeps ≥ 90% of test-dev people.
+- KILL if it passes ≥ 0.8× of the control's.
+- Measured with no bar: each model alone, how often the second model passes what the first passed, score rank correlations, and Claude's blind visual check of up to 150 test-dev false alarms passed by either chain (random order, chain hidden). Unlabelled people count as false alarms for both chains, which pulls the ratio toward 1 (against a pass).
