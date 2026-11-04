@@ -56,7 +56,8 @@ def int8_predictions(out: np.ndarray, batch: int = 1024) -> tuple[list[np.ndarra
     return preds, np.concatenate(best)
 
 
-def float_predictions(model_tag: str, split: dict) -> tuple[list[np.ndarray], np.ndarray]:
+def float_predictions(model_tag: str, split: dict,
+                      size: int = 224) -> tuple[list[np.ndarray], np.ndarray]:  # fmt: skip
     """The float brain on the CPU (the GPU may be busy), exactly as R15b scored it."""
     import torch
 
@@ -64,7 +65,7 @@ def float_predictions(model_tag: str, split: dict) -> tuple[list[np.ndarray], np
     model.load_state_dict(torch.load(r15.DATA_DIR / "r15_models" / f"{model_tag}.pt",
                                      map_location="cpu"))  # fmt: skip
     dev = torch.device("cpu")
-    return r15b.predict(model, split, 224, dev, r15b.input_fn(dev), batch=128, top=TOP)
+    return r15b.predict(model, split, size, dev, r15b.input_fn(dev), batch=128, top=TOP)
 
 
 def compare(f: dict, q: dict) -> dict[str, Any]:
@@ -330,7 +331,7 @@ def variant_tag(tag: str, variant: str) -> str:
     return tag if variant == "base" else f"{tag}__{variant}"
 
 
-def export_heat_onnx(tag: str) -> Path:
+def export_heat_onnx(tag: str, size: int = 224, out_dir: Path = OUT_DIR) -> Path:
     """The brain with the heatmap in its own clamped output (same scores in float)."""
     import torch
     from torch import nn
@@ -358,14 +359,14 @@ def export_heat_onnx(tag: str) -> Path:
             return torch.clamp(self.heat(h), *HEAT_CLAMP), self.rest(h)
 
     net = Split(model).eval()
-    x = torch.randn(1, 3, 224, 224)
+    x = torch.randn(1, 3, size, size)
     with torch.no_grad():
         ref = model(x)
         heat, rest = net(x)
     assert torch.allclose(torch.cat([heat, rest], 1), torch.cat(
         [ref[:, :1].clamp(*HEAT_CLAMP), ref[:, 1:]], 1), atol=1e-4)  # fmt: skip
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
-    path = OUT_DIR / f"{variant_tag(tag, 'heat')}.onnx"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    path = out_dir / f"{variant_tag(tag, 'heat')}.onnx"
     torch.onnx.export(net, x, str(path), opset_version=11, input_names=["input"],
                       output_names=["heat", "rest"], do_constant_folding=True,
                       dynamo=False)  # fmt: skip

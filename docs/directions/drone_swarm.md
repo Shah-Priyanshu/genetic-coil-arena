@@ -575,3 +575,20 @@ With 92% of people kept, the search meets its limits only if the chain (scout, c
 - KILL at 5 points fewer people: the brain would need quantisation-aware training.
 
 **Result (2026-11-04): PASS.** Seed 0's val chose heat (34.1% of people at float's val false rate; base 33.5%, heat_sized 33.2%). On test-dev at the thresholds set on val (0.506 and 0.494) the compiled model finds 22.2% and 21.7% of people against float's 23.8% and 23.3%, 1.6 points below for both seeds, with 7% and 1% fewer false detections. The split head costs 704 bytes. Size-aware calibration did not help: large people (32+ px) still lose 9-10 points, so that loss lies inside the network, not in the calibration set. The width-0.5 scout goes to the K210 as trained, exported with the split head and its threshold set on the compiled model.
+
+## R24: the 448-px brain through MaixCAM's toolchain (pre-registered 2026-11-04, goal G20)
+
+**Question.** R15c's 448-px brain finds more people per look, and R17 step 4's recommended setup assumes it, but it runs the K210 out of memory (R23). A MaixCAM-class module (SG2002, a cv181x NPU of about 1 TOPS INT8) would take it. Does it keep its accuracy through that module's toolchain, and does it fit?
+
+**Set-up.**
+- **Brains:** R15c's 448 brain (seed 0) and a seed-1 replicate trained the same way (COCO, then VisDrone 448 tiles, batch 32, 20 epochs).
+- **Export:** R23c's split head, with the heatmap clamped to logits [-4, 4] in its own output.
+- **Compile:** tpu-mlir 1.30.2 for cv181x. INT8 symmetric, with the uint8 RGB preprocessing fused in so the model takes the camera's pixels. tpu-mlir's default calibration runs on 500 random 448 train tiles (seed 23), and model_deploy's own top-versus-INT8 check uses tolerance 0.85 / 0.45.
+- **Simulation:** tpu-mlir's cv181x simulator (cmodel) runs every VisDrone val (5,447) and test-dev (19,703) 448 tile. The float brain runs on the same tiles with R15b's `predict`.
+- **Already known:** seed 0 was compiled on train tiles while the toolchain was set up: 521 KB, 2.47 MB of NPU memory. The simulator matched the INT8 MLIR exactly on the 224 probe.
+
+**Read-out, fixed before any val or test-dev tile is simulated (R23b's rule and bars).**
+- The int8 threshold is set per seed: the lowest whose val false detections per tile do not exceed float's at 0.5.
+- PASS if both seeds find at least float's share of test-dev people at 0.5 minus 2 points, with false detections per tile within 10%.
+- KILL at 5 points fewer people for either seed: quantisation-aware training would be needed for this toolchain.
+- Measured with no bar: model size, NPU memory, and recall per person size. Speed needs the module itself.
