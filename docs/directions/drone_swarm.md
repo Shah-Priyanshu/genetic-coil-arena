@@ -470,3 +470,20 @@ On test-dev, editing cuts the false alarms passed to 0.56× (DINOv2) and 0.44× 
 - PASS if the closer-look chain passes ≤ 0.5× what the control passes, with the frame-bootstrap upper bound below 1, the replicate also ≤ 0.5×, and the closer-look chain keeps ≥ 90% of test-dev people.
 - KILL if it passes ≥ 0.8× of the control's.
 - Measured with no bar: each model alone, how often the second model passes what the first passed, score rank correlations, and Claude's blind visual check of up to 150 test-dev false alarms passed by either chain (random order, chain hidden). Unlabelled people count as false alarms for both chains, which pulls the ratio toward 1 (against a pass).
+
+## R21: the ground station's language model with its weights edited (pre-registered 2026-11-04, goal G17)
+
+**Question.** The ground station uses qwen2.5-coder:14b as is and missed G14b's exact-match bar narrowly (88.9%, bar 90%). R19 showed that editing open weights is what made the vision confirmer work. Does the same hold for the language side: can a smaller open-weight model, fine-tuned on how operators really talk, reach the bars the unedited 14B missed?
+
+**Why this can differ from G3b.** R7a's distilled students failed on hand-written requests because their training text was template-like. Here five writers with different styles (radio calls, chatty hobbyists, voice transcripts, professionals, chat-app beginners) write the training requests from the label guide alone.
+
+**Set-up.**
+- Qwen2.5-Coder-7B-Instruct in 4-bit with QLoRA, trained only on the reply, with the exact prompt the 14B gets, inside the unchanged v5 ground-station pipeline (literal check, placement check, retries).
+- Training data checks: each label must pass the spec and the literal check, no text may be close to a dev or sealed text (4-gram containment < 0.5), and the deployed 14B reads every training request; its disagreements are reviewed by hand and labels that break the guide are dropped.
+- Epoch (of 3) picked on R16 dev. The same 7B unedited, with the same prompt and decoding, is the "as is" system.
+
+**Read-out, fixed before any sealed run.** G14b's sealed set, once per new system:
+- PASS if the tuned 7B reaches exact ≥ 90% and wrong commands ≤ 3% with the Wilson upper bound ≤ 6%.
+- Editing matters if its exact match is ≥ 10 points above the 7B as is, with McNemar p < 0.05.
+- KILL if exact < 80% or wrong commands > 10%.
+- Measured with no bar: the 14B's G14b result on the same items, asks and refusals, latency.
