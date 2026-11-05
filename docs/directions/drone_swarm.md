@@ -606,3 +606,21 @@ With 92% of people kept, the search meets its limits only if the chain (scout, c
 **Set-up.** R24's calibration table with one line changed: the heat convolution's threshold set to 4 (step 0.031 logit; a 128-tile train probe shows 63 levels in (-1, 1) against R24's 11). Both seeds recompiled; same simulator, tiles, threshold rule and bars as R24. Pre-registered after R24's test-dev numbers were seen, from the val diagnosis alone; the recompiled models are new systems and run test-dev once.
 
 **Read-out.** PASS if both seeds find at least float's share of test-dev people at 0.5 minus 2 points, with false detections per tile within 10%. KILL at 5 points fewer for either seed: the 448 brain would need quantisation-aware training or mixed precision (cv181x runs bf16 layers) for this toolchain.
+
+## R25: the 448-px camera through the confirmer (pre-registered 2026-11-04, goal G21)
+
+**Question.** R17 step 6h needs the chain to pass about a third fewer empty candidates. R15c found that the 448-px brain, at the same pixels per person, raises about a third fewer false detections per area than the 224 brain and finds people of a given pixel size as often. Does that cut survive R19's confirmer, which was trained on the 224 scout's candidates?
+
+**Why it matters for the hardware.** If it does, a MaixCAM-class camera (R24/R24b) buys the margin the search lacks, and the camera choice becomes a purchase with a measured payoff.
+
+**Set-up.**
+- **Scouts:** R15b's 224 brain and R15c's 448 brain, seeds 0 and 1 each, float, at threshold 0.5, over every VisDrone-DET val and test-dev frame at native scale. R19's candidate builder runs each brain on tiles of its own size, with ignore regions greyed and tiles merged. The 224 seed-0 candidates are R19's own.
+- **Confirmer:** R19's chosen model (DINOv2-small fine-tuned, e10s336 seed 2), unchanged, on the 144-px view around each candidate. Per scout, its threshold keeps 95% of that scout's val people, with the spots near the R15e/R15f operator spots kept out (R19's rule).
+- **Read-out per test-dev frame, VisDrone labels:** the share of counted persons that scout and confirmer both pass, and the labelled false alarms the confirmer passes per frame. Intervals: frame bootstrap, the same frames for both cameras.
+
+**Bars, fixed before any 448 or 224 seed-1 candidate is built.**
+- PASS if, pooled over seeds, the 448 chain passes at most 0.67x the 224 chain's false alarms per frame (upper bound below 1), each seed at most 0.8x, and each seed finds at least the 224 chain's share of people minus 1 point.
+- KILL if the pooled ratio is 0.9x or more.
+- Measured with no bar: candidates per frame, the confirmer's AUC per scout, the share of false alarms it passes.
+
+**Limits.** Labelled false alarms include people VisDrone misses (38% of the 224 scout's in R22), for both cameras alike. The scouts are float; R24b tests the compiled 448 brain.

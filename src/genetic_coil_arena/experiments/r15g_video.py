@@ -82,19 +82,22 @@ def merge(dets: np.ndarray) -> np.ndarray:
     return dets[keep]
 
 
-def detect_frame(model: Any, dev: Any, to_input: Any, img: np.ndarray) -> np.ndarray:
-    """(K, 5) detections x, y, w, h, score in frame pixels, score >= ``MIN_SCORE``."""
+def detect_frame(model: Any, dev: Any, to_input: Any, img: np.ndarray,
+                 size: int = SIZE) -> np.ndarray:  # fmt: skip
+    """(K, 5) detections x, y, w, h, score in frame pixels, score >= ``MIN_SCORE``.
+
+    ``size``: the brain's tile (R25 runs the 448 brain at native scale too)."""
     h, w = img.shape[:2]
     tiles, origins = [], []
-    for y0 in r15b.tile_starts(h, SIZE):
-        for x0 in r15b.tile_starts(w, SIZE):
-            t = np.full((SIZE, SIZE, 3), r15.PAD, np.uint8)
-            crop = img[y0 : y0 + SIZE, x0 : x0 + SIZE]
+    for y0 in r15b.tile_starts(h, size):
+        for x0 in r15b.tile_starts(w, size):
+            t = np.full((size, size, 3), r15.PAD, np.uint8)
+            crop = img[y0 : y0 + size, x0 : x0 + size]
             t[: crop.shape[0], : crop.shape[1]] = crop
             tiles.append(t)
             origins.append((x0, y0))
     split = {"images": np.stack(tiles), "offsets": np.arange(len(tiles) + 1)}
-    preds = r15b.predict(model, split, SIZE, dev, to_input, top=100)[0]
+    preds = r15b.predict(model, split, size, dev, to_input, top=100)[0]
     out = [p[p[:, 4] >= MIN_SCORE] + np.array([x0, y0, 0, 0, 0], np.float32)
            for p, (x0, y0) in zip(preds, origins)]  # fmt: skip
     return merge(np.concatenate(out)) if out else np.zeros((0, 5), np.float32)

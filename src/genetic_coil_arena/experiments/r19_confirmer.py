@@ -108,33 +108,37 @@ def box_dist(persons: np.ndarray, cx: float, cy: float) -> float:
     return float(np.hypot(dx, dy).min())
 
 
-def scout(device: str = "cuda") -> tuple[Any, Any, Any]:
+def scout(device: str = "cuda", weights: Path = WEIGHTS) -> tuple[Any, Any, Any]:
     import torch
 
     dev = torch.device(device if torch.cuda.is_available() else "cpu")
     if dev.type == "cuda":
         torch.cuda.set_per_process_memory_fraction(0.85)
     model = r15.build_model(0.5)
-    model.load_state_dict(torch.load(WEIGHTS, map_location="cpu"))
+    model.load_state_dict(torch.load(weights, map_location="cpu"))
     return model.to(dev), dev, r15b.input_fn(dev)
 
 
 def build(split: str, threshold: float, cap: int = 0, seed: int = 0,
           reserved_spots: dict[str, list[tuple[float, float]]] | None = None,
-          device: str = "cuda", log: Any = print) -> dict[str, Any]:  # fmt: skip
-    """Run the scout over ``split`` and write ``<split>_crops.u8`` and ``<split>_meta.npz``."""
+          device: str = "cuda", log: Any = print, weights: Path = WEIGHTS, size: int = 224,
+          out_dir: Path = OUT_DIR) -> dict[str, Any]:  # fmt: skip
+    """Run the scout over ``split`` and write ``<split>_crops.u8`` and ``<split>_meta.npz``.
+
+    ``weights``, ``size``, ``out_dir``: another scout brain and its tile (R25)."""
     from . import r15g_video as rg
 
-    model, dev, to_input = scout(device)
+    model, dev, to_input = scout(device, weights)
     rng = np.random.default_rng(seed)
-    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    out_dir.mkdir(parents=True, exist_ok=True)
     meta: dict[str, list] = {k: [] for k in META}
-    names = []
+    names, n_persons = [], []
     n = 0
-    with open(OUT_DIR / f"{split}_crops.u8", "wb") as fh:
+    with open(out_dir / f"{split}_crops.u8", "wb") as fh:
         for i, name, img, persons in frames(split):
             names.append(name)
-            d = rg.detect_frame(model, dev, to_input, img)
+            n_persons.append(len(persons))
+            d = rg.detect_frame(model, dev, to_input, img, size)
             d = d[d[:, 4] >= threshold]
             g = np.column_stack([persons, np.ones(len(persons), np.float32)])
             hit = r15b.match(d, g, "centre") >= 0
@@ -155,16 +159,17 @@ def build(split: str, threshold: float, cap: int = 0, seed: int = 0,
             if (i + 1) % 200 == 0:
                 log(f"[progress] {split}: {i + 1} frames, {n} candidates")
     arrays = {k: np.asarray(v) for k, v in meta.items()}
-    np.savez(OUT_DIR / f"{split}_meta.npz", names=np.asarray(names), **arrays)
+    np.savez(out_dir / f"{split}_meta.npz", names=np.asarray(names),
+             n_persons=np.asarray(n_persons), **arrays)  # fmt: skip
     log(f"{split}: {len(names)} frames, {n} candidates, {arrays['person'].mean():.1%} "
         f"on a person, {arrays['reserved'].sum()} reserved")  # fmt: skip
     return arrays
 
 
-def load(split: str) -> tuple[np.ndarray, dict[str, np.ndarray]]:
-    meta = dict(np.load(OUT_DIR / f"{split}_meta.npz"))
+def load(split: str, out_dir: Path = OUT_DIR) -> tuple[np.ndarray, dict[str, np.ndarray]]:
+    meta = dict(np.load(out_dir / f"{split}_meta.npz"))
     n = len(meta["frame"])
-    crops = np.memmap(OUT_DIR / f"{split}_crops.u8", np.uint8, "r",
+    crops = np.memmap(out_dir / f"{split}_crops.u8", np.uint8, "r",
                       shape=(n, 2 * HALF, 2 * HALF, 3))  # fmt: skip
     return crops, meta
 
