@@ -308,6 +308,12 @@ HOW_TO_READ = {
     "detections per tile: R23b's single output (grey) and R23c's split head, where the "
     "heatmap has its own clamped 8-bit output (orange). Left: all people per seed, with the "
     "PASS bar (float minus 2 points) dotted; right: by person size (seed 0).",
+    "r24_maixcam": "People found on VisDrone test-dev 448 tiles by R15c's 448-px scout "
+    "brain as float at 0.5 (blue), and as the int8 model tpu-mlir compiles for MaixCAM's "
+    "cv181x NPU with its threshold set on val to float's false detections per tile: R24 "
+    "(grey; heatmap steps of 0.19 logit) and, once run, R24b (orange; the heat conv "
+    "calibrated to its clamp, steps of 0.031). Left: all people per seed, with the PASS "
+    "bar (float minus 2 points) dotted; right: by person size (seed 0).",
     "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
     "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
     "translation through the shared meanings could do.",
@@ -875,6 +881,34 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
         fig.update_layout(barmode="group", title=(
             f"R23c: the K210 scout with the heatmap in its own output ({k210c['verdict']})"))  # fmt: skip
         figs["r23c_k210"] = fig
+    mx, mxb = read_json(res / "r24_maixcam.json"), read_json(res / "r24b_maixcam_heatcal.json")
+    if mx and "verdict" in mx:
+        from plotly.subplots import make_subplots
+
+        fig = make_subplots(rows=1, cols=2, subplot_titles=(
+            "people found, all sizes", "people found by size (seed 0)"))  # fmt: skip
+        tags = list(mx["models"])
+        bins = ("0-8", "8-16", "16-32", "32+")
+        series = [("float", "#1565c0", mx, "float"), ("R24 int8", "#9e9e9e", mx, "int8")]
+        if mxb and "verdict" in mxb:
+            series.append(("R24b int8", "#ef6c00", mxb, "int8"))
+        for label, colour, rep, kind in series:
+            fig.add_trace(go.Bar(x=[f"seed {t.split('_seed')[1][0]}" for t in tags],
+                                 y=[100 * rep["models"][t]["test"]["recall all"][kind] for t in tags],
+                                 name=label, marker_color=colour, legendgroup=label), 1, 1)  # fmt: skip
+            fig.add_trace(go.Bar(x=[f"{b} px" for b in bins],
+                                 y=[100 * rep["models"][tags[0]]["test"][f"recall {b}"][kind]
+                                    for b in bins],
+                                 marker_color=colour, legendgroup=label, showlegend=False), 1, 2)  # fmt: skip
+        for i, t in enumerate(tags):
+            bar = 100 * mx["models"][t]["test"]["recall all"]["float"] - 2
+            fig.add_shape(type="line", x0=i - 0.45, x1=i + 0.45, y0=bar, y1=bar,
+                          line={"dash": "dot", "color": "#555"}, row=1, col=1)  # fmt: skip
+        fig.update_yaxes(title_text="%", row=1, col=1)
+        verdicts = f"R24 {mx['verdict']}" + (f", R24b {mxb['verdict']}" if mxb else "")
+        fig.update_layout(barmode="group", title=(
+            f"R24: the 448-px scout brain through MaixCAM's toolchain ({verdicts})"))  # fmt: skip
+        figs["r24_maixcam"] = fig
     inter = read_json(res / "r7e_interlingua.json")
     if inter:
         pts = [

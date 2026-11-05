@@ -712,6 +712,38 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r23c_k210
 - **Report:** docs/results/r23c_k210_fixes.md
 
+### R24 (G20): the 448-px scout brain through MaixCAM's toolchain
+- **Date:** 2026-11-04
+- **Question:** The 448-px brain finds more people per look but runs the K210 out of memory (R23). Does it keep its accuracy through the toolchain of a MaixCAM-class module (SG2002, a cv181x NPU), and does it fit?
+- **Why:** R17 step 4's recommended setup assumes the 448 brain. If it survives tpu-mlir, a MaixCAM is the scout's camera; if not, the K210's 224 brain is the ceiling.
+- **What we did:**
+  - **Brains:** R15c's 448 brain (seed 0) and a seed-1 replicate trained the same way.
+  - **Export:** R23c's split head, with the heatmap clamped to logits [-4, 4] in its own output.
+  - **Compile:** tpu-mlir 1.30.2 for cv181x, INT8 symmetric, uint8 RGB preprocessing fused in, default calibration on 500 random 448 train tiles.
+  - **Simulation:** tpu-mlir's cv181x simulator ran all 5,447 val and 19,703 test-dev 448 tiles (about 11 and 41 minutes per seed on 20 CPU workers, in WSL).
+  - **Bars, R23b's, fixed before any val or test-dev tile was simulated:** the int8 threshold is the lowest whose val false detections per tile do not exceed float's at 0.5. PASS if both seeds find at least float's share of test-dev people minus 2 points, with false detections per tile within 10%. KILL at 5 points fewer.
+- **Result:**
+
+  | Seed | int8 threshold | People found, float / int8 | False per tile, float / int8 | 16-32 px | 32+ px |
+  |---|---|---|---|---|---|
+  | 0 | 0.500 | 26.1% / 22.7% | 0.259 / 0.197 (-24%) | 46.6 / 40.3 | 65.5 / 60.8 |
+  | 1 | 0.500 | 26.3% / 23.2% | 0.281 / 0.221 (-21%) | 46.9 / 41.3 | 64.8 / 60.9 |
+
+  - **Both seeds miss both bars:** 3.4 and 3.1 points fewer people, with about a fifth fewer false detections. Not a KILL (under 5 points).
+  - **It fits easily:** 521 KB of model and 2.47 MB of NPU memory per seed.
+  - **The cause, found on val after the test-dev numbers were in:** tpu-mlir runs the clamp as its own bf16 op after the heat convolution, so it quantised the convolution's output with its calibrated range (about +-24) instead of the clamp's +-4. One int8 step is 0.19 in logit, and only three score levels lie between 0.45 and 0.56.
+  - **So the threshold rule cannot reach float's false rate.** On val, the level just above 0.5 gives 0.46 false detections per tile against float's 0.56; the next level down gives 0.81.
+  - **Coarse levels also cost ranking.** Breaking the ties at random (interpolating between levels) still finds only 35.0% / 35.8% of val people at float's false rate, against float's 38.7% / 39.3%.
+- **Verdict:** NOT PASSED: THE MAIXCAM INT8 SCOUT FINDS 3.4 / 3.1 POINTS FEWER TEST-DEV PEOPLE THAN FLOAT WITH ABOUT A FIFTH FEWER FALSE DETECTIONS; ITS HEATMAP WAS QUANTISED IN STEPS OF 0.19 LOGIT, SO THE THRESHOLD RULE COULD NOT REACH FLOAT'S FALSE RATE
+- **What it means:**
+  - **This is a compile problem, not yet a brain problem.** R23c's clamp gave the K210's heatmap its own range because nncase quantises the clamped output. tpu-mlir quantises before the clamp, so the clamp set nothing.
+  - **The fix is one line of the calibration table:** set the heat convolution's threshold to the clamp bound, 4. That makes the step 0.031 logit (63 levels in (-1, 1) on a 128-tile probe, against 11).
+  - **R24b tests it** with R24's calibration otherwise unchanged and the same tiles, rule and bars. It is pre-registered after R24's test-dev numbers were seen, from the val diagnosis only; the recompiled models are new systems and see test-dev once.
+  - **Memory is not the constraint on MaixCAM.** The 448 brain uses 2.47 MB of NPU memory, against the K210's 6 MB total that it could not fit in.
+  - **Speed is still unknown.** The simulator does not time the NPU, so frames per second needs a module.
+- **Chart:** r24_maixcam
+- **Report:** docs/results/r24_maixcam.md
+
 ### R15c probe: does a bigger camera input change recall per pixel?
 - **Date:** 2026-10-30
 - **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?

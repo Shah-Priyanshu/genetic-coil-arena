@@ -4,12 +4,14 @@ Simulation is ``scripts/r24_maixcam_sim.py`` in WSL; this runs in the main venv.
 
 python scripts/r24_maixcam.py export --model r15b_coco_a0.5_seed1_s448
 python scripts/r24_maixcam.py report
+python scripts/r24_maixcam.py report-b   # R24b: the heat conv calibrated to its clamp
 """
 
 from __future__ import annotations
 
 import argparse
 import time
+from pathlib import Path
 
 from genetic_coil_arena.experiments import r23_k210 as r23
 from genetic_coil_arena.experiments import r24_maixcam as r24
@@ -25,9 +27,13 @@ def main() -> None:
     e = sub.add_parser("export", help="the split-head ONNX (R23c's 'heat' export) at 448")
     e.add_argument("--model", required=True)
     sub.add_parser("report")
+    sub.add_parser("report-b")
     args = p.parse_args()
     if args.cmd == "export":
         log(str(r23.export_heat_onnx(args.model, size=r24.SIZE, out_dir=r24.OUT_DIR)))
+    elif args.cmd == "report-b":
+        rep = r24.report(Path("docs/results/r24b_maixcam_heatcal.md"), log, r24.HEATCAL)
+        log(f"verdict: {rep['verdict']}")
     else:
         rep = r24.report(log=log)
         log(f"verdict: {rep['verdict']}")

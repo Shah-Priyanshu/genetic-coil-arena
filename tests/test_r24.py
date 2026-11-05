@@ -26,3 +26,11 @@ def test_render_lists_seeds_and_memory():
     text = r24.render(rep)
     assert "| 0 | 0.500 |" in text and "| 1 | 0.500 |" in text
     assert "521 KB | 2.47 MB | yes" in text
+
+
+def test_render_b_names_the_variant_and_levels():
+    rep = {"verdict": "NOT PASSED", "variant": r24.HEATCAL,
+           "models": {t: {**_row(0.03, 0.0, False), "val_levels": 4} for t in r24.MODELS}}  # fmt: skip
+    text = r24.render(rep)
+    assert text.startswith("# R24b:") and "0.56 on val: 4 / 4." in text
+    assert r24.render({**rep, "variant": ""}).startswith("# R24:")

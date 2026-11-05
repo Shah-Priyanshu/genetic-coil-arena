@@ -10,6 +10,9 @@ imports nothing from this package. Scoring is ``scripts/r24_maixcam.py`` in the 
 wsl -d Ubuntu -- /mnt/d/venvs/tpumlir/bin/python scripts/r24_maixcam_sim.py calib
 wsl -d Ubuntu -- /mnt/d/venvs/tpumlir/bin/python scripts/r24_maixcam_sim.py compile --model r15b_coco_a0.5_seed0_s448
 wsl -d Ubuntu -- /mnt/d/venvs/tpumlir/bin/python scripts/r24_maixcam_sim.py simulate --model r15b_coco_a0.5_seed0_s448 --split val
+# R24b: R24's table with the heat conv's threshold set to the clamp bound
+wsl -d Ubuntu -- /mnt/d/venvs/tpumlir/bin/python scripts/r24_maixcam_sim.py compile --model r15b_coco_a0.5_seed0_s448 --onnx <onnx> --heat-threshold 4
+wsl -d Ubuntu -- /mnt/d/venvs/tpumlir/bin/python scripts/r24_maixcam_sim.py simulate --model r15b_coco_a0.5_seed0_s448__heatcal --split val
 """
 
 from __future__ import annotations
@@ -32,6 +35,7 @@ MEAN, STD = [123.7, 116.3, 103.5], [58.4, 57.1, 57.4]  # r15b.input_fn
 N_CALIB, CALIB_SEED = 500, 23  # R23's rule, on the 448 train tiles
 TOLERANCE = "0.85,0.45"  # model_deploy's own top-vs-int8 sanity check
 CHUNK = 64
+HEATCAL = "__heatcal"  # R24b's compiled models: the heat conv calibrated to the clamp bound
 
 
 def tiles(split: str) -> np.ndarray:
@@ -66,19 +70,42 @@ def run(cmd: list[str], cwd: Path, logfile: Path) -> None:
         raise SystemExit(f"{cmd[0]} failed, see {logfile}")
 
 
+def set_heat_threshold(src: Path, dst: Path, t: float) -> None:
+    """R24b: ``src``'s table with the heat conv's threshold set to ``t``.
+
+    tpu-mlir treats the clamp after the heat conv as its own bf16 op, so R24 quantised
+    the conv output to int8 with the calibrated threshold (about 24, a logit step of
+    about 0.19). The clamp throws everything beyond +-4 away, so the conv needs no more.
+    """
+    lines, n = [], 0
+    for line in src.read_text("utf-8").splitlines():
+        f = line.split()
+        if f and f[0].startswith("/heat/"):
+            line, n = f"{f[0]} {t:.7f} {-t:.7f} {f[3]}", n + 1
+        lines.append(line)
+    if n != 1:
+        raise SystemExit(f"{src}: {n} heat conv lines")
+    dst.write_text("\n".join(lines) + "\n", "utf-8")
+
+
 def cmd_compile(args) -> None:
-    work = OUT_DIR / args.model
+    name = args.model + (HEATCAL if args.heat_threshold else "")
+    work = OUT_DIR / name
     work.mkdir(parents=True, exist_ok=True)
     start = time.perf_counter()
     img = str(sorted(calib_dir().glob("*.png"))[0])
     scale = ",".join(f"{1 / s:.6f}" for s in STD)
-    run(["model_transform.py", "--model_name", args.model, "--model_def", args.onnx,
+    run(["model_transform.py", "--model_name", name, "--model_def", args.onnx,
          "--input_shapes", f"[[1,3,{SIZE},{SIZE}]]", "--mean", ",".join(map(str, MEAN)),
          "--scale", scale, "--pixel_format", "rgb", "--test_input", img,
          "--test_result", "top_outputs.npz", "--mlir", "model.mlir"], work, work / "transform.log")  # fmt: skip
-    run(["run_calibration.py", "model.mlir", "--dataset", str(calib_dir()),
-         "--input_num", str(N_CALIB), "-o", "cali_table"], work, work / "calib.log")  # fmt: skip
-    cvimodel = f"{args.model}.cvimodel"
+    if args.heat_threshold:  # R24's calibration, one line changed
+        set_heat_threshold(OUT_DIR / args.model / "cali_table", work / "cali_table",
+                           args.heat_threshold)  # fmt: skip
+    else:
+        run(["run_calibration.py", "model.mlir", "--dataset", str(calib_dir()),
+             "--input_num", str(N_CALIB), "-o", "cali_table"], work, work / "calib.log")  # fmt: skip
+    cvimodel = f"{name}.cvimodel"
     run(["model_deploy.py", "--mlir", "model.mlir", "--quantize", "INT8",
          "--calibration_table", "cali_table", "--processor", "cv181x", "--fuse_preprocess",
          "--customization_format", "RGB_PLANAR", "--test_input", img,
@@ -91,7 +118,8 @@ def cmd_compile(args) -> None:
     shared = re.search(r"shared_gmem_size: (\d+)", info)
     sims = re.findall(r"min_similarity = \(([\d.]+), ([\d.]+), ([\d.inf]+)\)",
                       (work / "deploy.log").read_text("utf-8", "replace"))  # fmt: skip
-    rec = {"model": args.model, "size": SIZE, "tpu_mlir": "1.30.2", "processor": "cv181x",
+    rec = {"model": name, "size": SIZE, "heat_threshold": args.heat_threshold,
+           "tpu_mlir": "1.30.2", "processor": "cv181x",
            "quant": "INT8 symmetric, fused uint8 RGB preprocessing",
            "calibration": {"tiles": N_CALIB, "seed": CALIB_SEED, "split": "train"},
            "onnx": args.onnx, "cvimodel_bytes": (work / cvimodel).stat().st_size,
@@ -99,7 +127,7 @@ def cmd_compile(args) -> None:
            "shared_gmem_bytes": int(shared.group(1)) if shared else None,
            "deploy_min_similarity": [list(map(float, s)) for s in sims],
            "seconds": time.perf_counter() - start}  # fmt: skip
-    (OUT_DIR / f"{args.model}_compile.json").write_text(json.dumps(rec, indent=1), "utf-8")
+    (OUT_DIR / f"{name}_compile.json").write_text(json.dumps(rec, indent=1), "utf-8")
     log(json.dumps(rec))
 
 
@@ -155,6 +183,12 @@ def main() -> None:
     c = sub.add_parser("compile")
     c.add_argument("--model", required=True)
     c.add_argument("--onnx", required=True, help="the split-head ONNX (R23c's export)")
+    c.add_argument(
+        "--heat-threshold",
+        type=float,
+        default=None,
+        help="R24b: R24's table with the heat conv's threshold set to this",
+    )
     s = sub.add_parser("simulate")
     s.add_argument("--model", required=True)
     s.add_argument("--split", choices=("val", "test", "train"), required=True)

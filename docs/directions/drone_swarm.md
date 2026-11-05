@@ -594,3 +594,13 @@ With 92% of people kept, the search meets its limits only if the chain (scout, c
 - PASS if both seeds find at least float's share of test-dev people at 0.5 minus 2 points, with false detections per tile within 10%.
 - KILL at 5 points fewer people for either seed: quantisation-aware training would be needed for this toolchain.
 - Measured with no bar: model size, NPU memory, and recall per person size. Speed needs the module itself.
+
+**Result (2026-11-04): NOT PASSED.** At its val threshold (0.500 for both seeds), the int8 scout finds 22.7% / 23.2% of test-dev people against float's 26.1% / 26.3%, with 24% / 21% fewer false detections. Not a KILL. It fits easily: 521 KB, 2.47 MB of NPU memory. The val diagnosis found the cause in the compile: tpu-mlir runs the clamp as a bf16 op after the heat convolution, so the convolution's int8 output kept its calibrated range of about +-24. The heatmap steps 0.19 in logit, so the threshold can only land on a few levels: on val the level above 0.5 gives 0.46 false detections per tile against float's 0.56, the next level down 0.81.
+
+## R24b: the heat convolution calibrated to its clamp (pre-registered 2026-11-04, goal G20b)
+
+**Question.** With the heat convolution's int8 range set to the clamp's, does the MaixCAM scout match float at the same false-detection rate?
+
+**Set-up.** R24's calibration table with one line changed: the heat convolution's threshold set to 4 (step 0.031 logit; a 128-tile train probe shows 63 levels in (-1, 1) against R24's 11). Both seeds recompiled; same simulator, tiles, threshold rule and bars as R24. Pre-registered after R24's test-dev numbers were seen, from the val diagnosis alone; the recompiled models are new systems and run test-dev once.
+
+**Read-out.** PASS if both seeds find at least float's share of test-dev people at 0.5 minus 2 points, with false detections per tile within 10%. KILL at 5 points fewer for either seed: the 448 brain would need quantisation-aware training or mixed precision (cv181x runs bf16 layers) for this toolchain.
