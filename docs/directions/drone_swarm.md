@@ -624,3 +624,13 @@ With 92% of people kept, the search meets its limits only if the chain (scout, c
 - Measured with no bar: candidates per frame, the confirmer's AUC per scout, the share of false alarms it passes.
 
 **Limits.** Labelled false alarms include people VisDrone misses (38% of the 224 scout's in R22), for both cameras alike. The scouts are float; R24b tests the compiled 448 brain.
+
+**Result (2026-11-04): KILL.** The 448 chain passes 1.42x [1.28, 1.56] the 224 chain's labelled false alarms per test-dev frame (seeds 1.34x and 1.50x), while finding 2-3 points more people. The 448 scout itself raises fewer false candidates (1.70 and 1.89 per frame against 2.17 and 2.01). But R19's confirmer passes 40% and 38% of them against 24% of the 224 scout's, and its AUC drops from 0.91 to 0.85. The 448 brain removes the easy false alarms the confirmer would have caught; what is left looks more like a person.
+
+## R25b: the 448 camera with its own confirmer (pre-registered 2026-11-04, goal G21b)
+
+**Question.** R19's confirmer was fitted to the 224 scout's mistakes. Given a confirmer fitted to its own candidates, does the 448 camera cut the false alarms that pass by a third?
+
+**Set-up.** R19's recipe unchanged (DINOv2-small fine-tuned, 10 epochs, 336 px, the epoch with the lowest val pass kept) on the 448 seed-0 scout's train candidates (threshold 0.4, at most 12 per frame), seeds 0-2. The seed with the lowest val pass on that scout's val selection set is chosen (R19's rule). Both 448 chains use it; the 224 chains keep R19's confirmer, which was picked the same way.
+
+**Read-out.** R25's, unchanged: PASS if, pooled over seeds, the 448 chain passes at most 0.67x the 224 chain's false alarms per frame (upper bound below 1), each seed at most 0.8x, people found within 1 point; KILL at 0.9x or more. Pre-registered after R25's test-dev numbers were seen; the new confirmer is a new system and scores test-dev once.

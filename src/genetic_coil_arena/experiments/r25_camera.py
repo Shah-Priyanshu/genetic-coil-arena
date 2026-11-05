@@ -29,6 +29,16 @@ Bars, fixed before any 448 or 224 seed-1 candidate is built:
   share of false alarms it passes.
 
 The scouts are float; R24b tests whether the compiled 448 brain matches float.
+
+R25b (goal G21b): R25 was a KILL because R19's confirmer, trained on the 224 scout's
+candidates, separates the 448 scout's candidates worse (test-dev AUC 0.85 against 0.91).
+R25b gives the 448 camera its own confirmer: R19's recipe (DINOv2-small fine-tuned, 10
+epochs, 336 px, the epoch with the lowest val pass kept) on the 448 seed-0 scout's train
+candidates (R19's rule: threshold 0.4, at most 12 per frame), seeds 0-2, the seed with
+the lowest val pass chosen on that scout's val selection set (R19's rule). The 448 chains
+(both seeds) use it; the 224 chains keep R19's confirmer; R25's bars unchanged.
+Pre-registered after R25's test-dev numbers were seen; the new confirmer is a new system
+and scores test-dev once.
 """
 
 from __future__ import annotations
@@ -52,6 +62,11 @@ SCOUTS = {  # tag -> (brain weights, tile size)
 }
 PAIRS = (("s224_seed0", "s448_seed0"), ("s224_seed1", "s448_seed1"))
 POOLED_MAX, SEED_MAX, PEOPLE_DROP, KILL = 0.67, 0.80, 0.01, 0.90
+OWN, OWN_SCOUT, OWN_SEEDS = "own", "s448_seed0", (0, 1, 2)  # R25b's confirmer
+TITLES = {
+    "r19": "# R25: does the 448-px camera cut the false alarms that pass the confirmer?",
+    OWN: "# R25b: the 448-px camera with a confirmer trained on its own candidates",
+}
 N_BOOT, BOOT_SEED = 2000, 25
 
 
@@ -60,7 +75,9 @@ def scout_dir(tag: str) -> Path:
     return rc.OUT_DIR if tag == "s224_seed0" else OUT_DIR / tag
 
 
-def score_path(tag: str, split: str) -> Path:
+def score_path(tag: str, split: str, variant: str = "r19") -> Path:
+    if variant == OWN:
+        return OUT_DIR / tag / f"confirmer_own_{split}.npy"
     if tag == "s224_seed0":
         name, ctag, seed = CONFIRMER
         return rc.OUT_DIR / "scores" / f"{name}{ctag}_s{seed}_{split}.npy"
@@ -68,38 +85,80 @@ def score_path(tag: str, split: str) -> Path:
 
 
 def build(tag: str, split: str, log: Any = print) -> dict[str, Any]:
-    """The scout's candidates at R19's evaluation threshold (val keeps R19's reserved spots)."""
+    """The scout's candidates at R19's evaluation threshold (val keeps R19's reserved spots);
+    train (R25b, the 448 seed-0 scout only) at R19's training threshold and cap."""
     if tag == "s224_seed0":
         raise SystemExit("s224_seed0 is R19's own candidate set")
+    weights, size = SCOUTS[tag]
+    kw = {"log": log, "weights": r15.DATA_DIR / "r15_models" / f"{weights}.pt", "size": size,
+          "out_dir": scout_dir(tag)}  # fmt: skip
+    if split == "train":
+        if tag != OWN_SCOUT:
+            raise SystemExit(f"R25b trains on {OWN_SCOUT}'s candidates only")
+        return rc.build(split, rc.TRAIN_THRESHOLD, cap=rc.TRAIN_CAP, **kw)
     reserved = None
     if split == "val":
         reserved = {}
         for s in json.loads((rc.OUT_DIR / "spots.json").read_text("utf-8")):
             reserved.setdefault(s["frame"], []).append((s["fx"], s["fy"]))
-    weights, size = SCOUTS[tag]
-    return rc.build(split, rc.EVAL_THRESHOLD, reserved_spots=reserved, log=log,
-                    weights=r15.DATA_DIR / "r15_models" / f"{weights}.pt", size=size,
-                    out_dir=scout_dir(tag))  # fmt: skip
+    return rc.build(split, rc.EVAL_THRESHOLD, reserved_spots=reserved, **kw)
 
 
-def confirmer() -> Any:
+def own_dir(seed: int) -> Path:
+    return OUT_DIR / "models" / f"dino-full-e10s336_s{seed}"
+
+
+def fit_own(seed: int, log: Any = print) -> None:
+    """R25b: R19's chosen recipe on the 448 seed-0 scout's train candidates."""
+    import time
+
     import torch
 
-    name, ctag, seed = CONFIRMER
-    state = torch.load(rc.OUT_DIR / "models" / f"{name}{ctag}_s{seed}" / "model.pt",
-                       map_location="cpu")  # fmt: skip
+    start = time.perf_counter()
+    crops, meta = rc.load("train", scout_dir(OWN_SCOUT))
+    vc, vm = rc.load("val", scout_dir(OWN_SCOUT))
+    sel = ~vm["reserved"]
+    log(f"train {len(crops)} candidates ({meta['person'].mean():.1%} person); selection "
+        f"{int(sel.sum())} ({vm['person'][sel].mean():.1%} person)")  # fmt: skip
+    val = (np.asarray(vc[sel]), vm["person"][sel])
+    m, hist = rc.train_dino("full", crops, meta["person"], val, seed, epochs=10, size=336,
+                            log=log)  # fmt: skip
+    own_dir(seed).mkdir(parents=True, exist_ok=True)
+    torch.save({"net": m.net.state_dict(), "head": m.head.state_dict(), "size": m.size},
+               own_dir(seed) / "model.pt")  # fmt: skip
+    rc.save_json(own_dir(seed) / "fit.json", {"seed": seed, "history": hist,
+                                              "seconds": time.perf_counter() - start})  # fmt: skip
+
+
+def own_choice() -> dict[str, Any]:
+    """R19's rule: the seed whose kept epoch passes the fewest val false alarms."""
+    fits = {s: json.loads((own_dir(s) / "fit.json").read_text("utf-8")) for s in OWN_SEEDS}
+    best = {s: min(h["pass"] for h in f["history"]) for s, f in fits.items()}
+    seed = min(best, key=best.get)
+    return {"seed": seed, "val_pass": best}
+
+
+def confirmer(variant: str = "r19") -> Any:
+    import torch
+
+    if variant == OWN:
+        path = own_dir(own_choice()["seed"]) / "model.pt"
+    else:
+        name, ctag, seed = CONFIRMER
+        path = rc.OUT_DIR / "models" / f"{name}{ctag}_s{seed}" / "model.pt"
+    state = torch.load(path, map_location="cpu")
     m = rc.DinoConfirmer(rc._gpu(), state.get("size", 224))
     m.net.load_state_dict(state["net"])
     m.head.load_state_dict(state["head"])
     return m
 
 
-def score(tag: str, split: str, log: Any = print) -> np.ndarray:
-    out = score_path(tag, split)
+def score(tag: str, split: str, log: Any = print, variant: str = "r19") -> np.ndarray:
+    out = score_path(tag, split, variant)
     if out.exists() and (split == "test" or tag == "s224_seed0"):
         raise SystemExit(f"{out} exists: test-dev is scored once per scout")
     crops, _ = rc.load(split, scout_dir(tag))
-    s = confirmer().score(np.asarray(crops))
+    s = confirmer(variant).score(np.asarray(crops))
     np.save(out, s)
     log(f"{tag} {split}: {len(s)} confirmer scores -> {out}")
     return s
@@ -114,14 +173,14 @@ def person_counts(split: str) -> np.ndarray:
     return np.load(path)
 
 
-def chain(tag: str) -> dict[str, Any]:
+def chain(tag: str, variant: str = "r19") -> dict[str, Any]:
     """Scout + confirmer on test-dev at the threshold set on the scout's own val people."""
     _, vm = rc.load("val", scout_dir(tag))
-    vs = np.load(score_path(tag, "val"))
+    vs = np.load(score_path(tag, "val", variant))
     sel = ~vm["reserved"]
     thr = rc.threshold_at(vs[sel][vm["person"][sel]])
     _, tm = rc.load("test", scout_dir(tag))
-    ts = np.load(score_path(tag, "test"))
+    ts = np.load(score_path(tag, "test", variant))
     person, keep = tm["person"].astype(bool), ts >= thr
     return {"threshold": float(thr), "frame": tm["frame"], "person": person, "keep": keep,
             "auc": rc.auc(ts[person], ts[~person])}  # fmt: skip
@@ -137,15 +196,17 @@ def per_frame(c: dict, n_frames: int) -> tuple[np.ndarray, np.ndarray]:
 
 
 def compare(pairs: tuple = PAIRS, chains: dict | None = None,
-            persons: np.ndarray | None = None) -> dict[str, Any]:  # fmt: skip
+            persons: np.ndarray | None = None, variant: str = "r19") -> dict[str, Any]:  # fmt: skip
     """Each pair (224 tag, 448 tag) on the same test-dev frames; ``chains``, ``persons``
-    can be given (tests)."""
+    can be given (tests). ``variant``: the 448 chains' confirmer (R25b: ``OWN``)."""
     persons = person_counts("test") if persons is None else persons
     n_frames = len(persons)
     rng = np.random.default_rng(BOOT_SEED)
     counts = rng.multinomial(n_frames, np.full(n_frames, 1 / n_frames), size=N_BOOT)
-    chains = chains or {t: chain(t) for pair in pairs for t in pair}
-    rep: dict[str, Any] = {"n_frames": n_frames, "n_persons": int(persons.sum()), "seeds": {}}
+    chains = chains or {t: chain(t, variant if "448" in t else "r19")
+                        for pair in pairs for t in pair}  # fmt: skip
+    rep: dict[str, Any] = {"variant": variant, "n_frames": n_frames,
+                           "n_persons": int(persons.sum()), "seeds": {}}  # fmt: skip
     pooled = {"224": [0.0, np.zeros(N_BOOT)], "448": [0.0, np.zeros(N_BOOT)]}
     for a, b in pairs:
         row: dict[str, Any] = {}
@@ -157,6 +218,7 @@ def compare(pairs: tuple = PAIRS, chains: dict | None = None,
             pooled[key][1] = pooled[key][1] + false_b
             row[key] = {"tag": tag, "threshold": c["threshold"], "auc": c["auc"],
                         "candidates_per_frame": len(c["keep"]) / n_frames,
+                        "false_candidates_per_frame": int((~c["person"]).sum()) / n_frames,
                         "people_found": people / persons.sum(),
                         "false_per_frame": false / n_frames,
                         "false_passed_share": false / max(1, int((~c["person"]).sum())),
@@ -185,7 +247,7 @@ def verdict(rep: dict[str, Any]) -> str:
 
 def render(rep: dict[str, Any]) -> str:
     pr = rep["pooled_ratio"]
-    lines = ["# R25: does the 448-px camera cut the false alarms that pass the confirmer?", "",
+    lines = [TITLES[rep.get("variant", "r19")], "",
              f"**{rep['verdict']}.** Pooled over seeds, the 448 chain passes {pr[0]:.2f}x "
              f"[{pr[1]:.2f}, {pr[2]:.2f}] the 224 chain's labelled false alarms per test-dev "
              f"frame (bars: pooled <= {POOLED_MAX}x with the upper bound below 1, each seed "
@@ -195,13 +257,14 @@ def render(rep: dict[str, Any]) -> str:
              "persons, native scale. Scout threshold 0.5; R19's confirmer (DINOv2-small "
              "fine-tuned) with its threshold set per scout to keep 95% of that scout's val "
              "people.", "",
-             "| Seed | Camera | Candidates per frame | Confirmer AUC | People found | "
-             "False alarms passed per frame | Share of false alarms passed |",
-             "|---|---|---|---|---|---|---|"]  # fmt: skip
+             "| Seed | Camera | Candidates per frame | False candidates per frame | "
+             "Confirmer AUC | People found | False alarms passed per frame | "
+             "Share of false alarms passed |", "|---|---|---|---|---|---|---|---|"]  # fmt: skip
     for seed, row in rep["seeds"].items():
         for key in ("224", "448"):
             c = row[key]
             lines.append(f"| {seed[-1]} | {key} px | {c['candidates_per_frame']:.2f} | "
+                         f"{c.get('false_candidates_per_frame', float('nan')):.2f} | "
                          f"{c['auc']:.3f} | {100 * c['people_found']:.1f}% | "
                          f"{c['false_per_frame']:.3f} | {100 * c['false_passed_share']:.1f}% |")  # fmt: skip
     lines += [""]
@@ -215,8 +278,11 @@ def render(rep: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
-def report(path: Path = Path("docs/results/r25_camera.md")) -> dict[str, Any]:
-    rep = compare()
+def report(path: Path = Path("docs/results/r25_camera.md"),
+           variant: str = "r19") -> dict[str, Any]:  # fmt: skip
+    rep = compare(variant=variant)
+    if variant == OWN:
+        rep["own_confirmer"] = own_choice()
     path.write_text(render(rep), "utf-8")
     path.with_suffix(".json").write_text(json.dumps(rep, indent=1), "utf-8")
     return rep

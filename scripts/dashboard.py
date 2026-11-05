@@ -318,6 +318,12 @@ HOW_TO_READ = {
     "(grey; heatmap steps of 0.19 logit) and, once run, R24b (orange; the heat conv "
     "calibrated to its clamp, steps of 0.031). Left: all people per seed, with the PASS "
     "bar (float minus 2 points) dotted; right: by person size (seed 0).",
+    "r25_camera": "VisDrone test-dev at native scale, per frame: the 224-px and 448-px "
+    "scout brains (seeds 0 and 1) followed by a confirmer whose threshold keeps 95% of "
+    "that scout's val people. Left: labelled false alarms per frame, raised by the scout "
+    "(light) and passed by R19's confirmer (dark), and with R25b's confirmer trained on "
+    "the 448 scout's own candidates (orange, once run); dotted: the PASS bar, 0.67x the "
+    "224 chain. Right: the share of people the whole chain finds.",
     "interlingua": "Score as a share of squad B's own centre. 'raw' = A's centre talks to "
     "B with no translation; 'bridged' = through the decoders; 'oracle' = the best any "
     "translation through the shared meanings could do.",
@@ -932,6 +938,37 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
         fig.update_layout(barmode="group", title=(
             f"R24: the 448-px scout brain through MaixCAM's toolchain ({verdicts})"))  # fmt: skip
         figs["r24_maixcam"] = fig
+    cam, camb = read_json(res / "r25_camera.json"), read_json(res / "r25b_camera_own.json")
+    if cam and "verdict" in cam:
+        from plotly.subplots import make_subplots
+
+        fig = make_subplots(rows=1, cols=2, subplot_titles=(
+            "false alarms per frame", "people found by the chain"))  # fmt: skip
+        xs = [f"seed {sd[-1]}, {k} px" for sd in cam["seeds"] for k in ("224", "448")]
+        rows = [cam["seeds"][sd][k] for sd in cam["seeds"] for k in ("224", "448")]
+        fig.add_trace(go.Bar(x=xs, y=[r["false_candidates_per_frame"] for r in rows],
+                             name="raised by the scout", marker_color="#90a4ae"), 1, 1)  # fmt: skip
+        fig.add_trace(go.Bar(x=xs, y=[r["false_per_frame"] for r in rows],
+                             name="passed by R19's confirmer", marker_color="#37474f"), 1, 1)  # fmt: skip
+        fig.add_trace(go.Bar(x=xs, y=[100 * r["people_found"] for r in rows],
+                             marker_color="#37474f", showlegend=False), 1, 2)  # fmt: skip
+        if camb and "verdict" in camb:
+            own = {f"seed {sd[-1]}, 448 px": camb["seeds"][sd]["448"] for sd in camb["seeds"]}
+            fig.add_trace(go.Bar(x=list(own), y=[r["false_per_frame"] for r in own.values()],
+                                 name="passed by its own confirmer (R25b)",
+                                 marker_color="#ef6c00"), 1, 1)  # fmt: skip
+            fig.add_trace(go.Bar(x=list(own), y=[100 * r["people_found"] for r in own.values()],
+                                 marker_color="#ef6c00", showlegend=False), 1, 2)  # fmt: skip
+        for i, sd in enumerate(cam["seeds"]):
+            bar = 0.67 * cam["seeds"][sd]["224"]["false_per_frame"]
+            fig.add_shape(type="line", x0=2 * i + 0.55, x1=2 * i + 1.45, y0=bar, y1=bar,
+                          line={"dash": "dot", "color": "#555"}, row=1, col=1)  # fmt: skip
+        fig.update_yaxes(title_text="per frame", row=1, col=1)
+        fig.update_yaxes(title_text="%", row=1, col=2)
+        verdicts = f"R25 {cam['verdict']}" + (f", R25b {camb['verdict']}" if camb else "")
+        fig.update_layout(barmode="group", title=(
+            f"R25: the 448-px camera through the confirmer ({verdicts})"))  # fmt: skip
+        figs["r25_camera"] = fig
     inter = read_json(res / "r7e_interlingua.json")
     if inter:
         pts = [
