@@ -295,6 +295,10 @@ HOW_TO_READ = {
     "share of all requests that became a wrong command (right), with 95% Wilson intervals. "
     "The 14B as is is the deployed G14b model; the 7B runs with the same prompt, as is and "
     "after QLoRA on 997 operator-style requests. Dotted lines: the G14 bars.",
+    "r21b_replicate": "G14b's 150 sealed requests to the ground station, run once per "
+    "QLoRA adapter of the 7B: seed 0 is R21's, seed 1 is the same recipe with another "
+    "training seed. Exact command on the 90 that should run (left) and wrong commands over "
+    "all 150 (right), with 95% Wilson intervals; dotted lines are G17's bars.",
     "r22_clean_labels": "R22: 150 random VisDrone test-dev false alarms per scout, labelled "
     "blind, scaled to false alarms per frame. Control: R15b's scouts; cleaned: retrained with "
     "2,456 person boxes an out-of-fold confirmer added. Red is what the bar counts (clearly "
@@ -814,6 +818,25 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
         fig.update_layout(yaxis_title="%", title=(
             f"R21: the ground station's LLM with its weights edited ({lora['verdict']})"))  # fmt: skip
         figs["r21_ground_lora"] = fig
+    rep_b = read_json(res / "r21b_replicate.json")
+    if rep_b and "verdict" in rep_b:
+        from plotly.subplots import make_subplots
+
+        fig = make_subplots(rows=1, cols=2, subplot_titles=(
+            "exact command (requests that should run)", "wrong commands (all requests)"))  # fmt: skip
+        whos = {"seed 0 (R21)": rep_b["seed0"], "seed 1": rep_b["seed1"]}
+        for col, key, colour, bar in ((1, "exact", "#2e7d32", 90), (2, "wrong_commands", "#c62828", 3)):
+            vals = [w[key] for w in whos.values()]
+            fig.add_trace(go.Bar(
+                x=list(whos), y=[100 * v[0] for v in vals], marker_color=colour,
+                showlegend=False, text=[f"{100 * v[0]:.1f}%" for v in vals],
+                error_y={"type": "data", "array": [100 * (v[2] - v[0]) for v in vals],
+                         "arrayminus": [100 * (v[0] - v[1]) for v in vals]}), 1, col)  # fmt: skip
+            fig.add_hline(y=bar, line_dash="dot", line_color="#555", row=1, col=col,
+                          annotation_text=f"bar {bar}%")  # fmt: skip
+        fig.update_layout(yaxis_title="%", title=(
+            f"R21b: the ground station's QLoRA edit, second seed ({rep_b['verdict']})"))  # fmt: skip
+        figs["r21b_replicate"] = fig
     clean = read_json(res / "r22_clean_labels.json")
     if clean and "sample_counts" in clean:
         scouts = list(clean["sample_counts"])

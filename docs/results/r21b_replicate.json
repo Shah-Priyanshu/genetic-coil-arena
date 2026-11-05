@@ -1,0 +1,197 @@
+{
+ "bars": {
+  "exact": 0.9,
+  "wrong": 0.03,
+  "wrong_hi": 0.06
+ },
+ "seed0": {
+  "n": 150,
+  "by_expect": {
+   "ok": {
+    "exact": 82,
+    "asked": 7,
+    "refused": 1
+   },
+   "refuse": {
+    "wrong command": 3,
+    "refused": 26,
+    "failed": 1
+   },
+   "clarify": {
+    "asked": 30
+   }
+  },
+  "exact": [
+   0.9111111111111111,
+   0.8342928001780631,
+   0.9542700546752215
+  ],
+  "asked_when_unclear": [
+   1.0,
+   0.8864829086095221,
+   1.0
+  ],
+  "refused_when_should": [
+   0.8666666666666667,
+   0.7031831605558306,
+   0.9469043057578189
+  ],
+  "wrong_commands": [
+   0.02,
+   0.006824627715648315,
+   0.05714766586424165
+  ],
+  "correct": [
+   0.92,
+   0.8653774250568131,
+   0.9536468180607831
+  ],
+  "median_latency_s": 2.8847022999543697
+ },
+ "seed1": {
+  "n": 150,
+  "by_expect": {
+   "ok": {
+    "exact": 85,
+    "refused": 3,
+    "asked": 2
+   },
+   "refuse": {
+    "refused": 30
+   },
+   "clarify": {
+    "asked": 30
+   }
+  },
+  "exact": [
+   0.9444444444444444,
+   0.8764610019095158,
+   0.9760393817156567
+  ],
+  "asked_when_unclear": [
+   1.0,
+   0.8864829086095221,
+   1.0
+  ],
+  "refused_when_should": [
+   1.0,
+   0.8864829086095221,
+   1.0
+  ],
+  "wrong_commands": [
+   0.0,
+   0.0,
+   0.02497113914571871
+  ],
+  "correct": [
+   0.9666666666666667,
+   0.9243471574929044,
+   0.9856797793044249
+  ],
+  "median_latency_s": 3.178396899951622
+ },
+ "seed1_fit": {
+  "seed": 1,
+  "history": [
+   {
+    "epoch": 1,
+    "loss": 0.06383183270789841,
+    "n": 60,
+    "n_ok": 36,
+    "exact": 33,
+    "wrong": 0,
+    "correct": 57
+   },
+   {
+    "epoch": 2,
+    "loss": 0.008654791941678798,
+    "n": 60,
+    "n_ok": 36,
+    "exact": 35,
+    "wrong": 0,
+    "correct": 59
+   },
+   {
+    "epoch": 3,
+    "loss": 0.0028012538954225964,
+    "n": 60,
+    "n_ok": 36,
+    "exact": 35,
+    "wrong": 0,
+    "correct": 59
+   }
+  ],
+  "chosen_epoch": 2,
+  "seconds": 5364.616095500067
+ },
+ "seed1_vs_seed0": {
+  "a_only": 6,
+  "b_only": 3,
+  "p": 0.5078125
+ },
+ "verdict": "PASS",
+ "seed1_misses": [
+  {
+   "id": "b013",
+   "text": "Birds mode. separation four, alignment half.",
+   "expect": "ok",
+   "gold": {
+    "behavior": "boids",
+    "separation": 4,
+    "alignment": 0.5
+   },
+   "params": null,
+   "outcome": "refused",
+   "reason": "That value is outside the allowed range."
+  },
+  {
+   "id": "b045",
+   "text": "make a circle",
+   "expect": "ok",
+   "gold": {
+    "behavior": "formation",
+    "shape": "circle"
+   },
+   "params": null,
+   "outcome": "asked",
+   "reason": "Which place should the swarm circle?"
+  },
+  {
+   "id": "b074",
+   "text": "frmation grid pls",
+   "expect": "ok",
+   "gold": {
+    "behavior": "formation",
+    "shape": "grid"
+   },
+   "params": null,
+   "outcome": "refused",
+   "reason": "That behaviour has no such setting."
+  },
+  {
+   "id": "b079",
+   "text": "follow the person at 3 m",
+   "expect": "ok",
+   "gold": {
+    "behavior": "person_follow",
+    "alt_m": 3
+   },
+   "params": null,
+   "outcome": "asked",
+   "reason": "Which setting is that for? (3 m reads as alt_m but set distance_m)"
+  },
+  {
+   "id": "b104",
+   "text": "folow the person at 6 m altitude, distance 8 m",
+   "expect": "ok",
+   "gold": {
+    "behavior": "person_follow",
+    "alt_m": 6,
+    "distance_m": 8
+   },
+   "params": null,
+   "outcome": "refused",
+   "reason": "That value is outside the allowed range."
+  }
+ ]
+}
