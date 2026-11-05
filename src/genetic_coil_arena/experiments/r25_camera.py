@@ -254,9 +254,8 @@ def render(rep: dict[str, Any]) -> str:
              f"<= {SEED_MAX}x, people found within {100 * PEOPLE_DROP:.0f} point; KILL at "
              f">= {KILL}x).", "",
              f"VisDrone2019-DET test-dev, {rep['n_frames']} frames, {rep['n_persons']} counted "
-             "persons, native scale. Scout threshold 0.5; R19's confirmer (DINOv2-small "
-             "fine-tuned) with its threshold set per scout to keep 95% of that scout's val "
-             "people.", "",
+             f"persons, native scale. Scout threshold 0.5; {confirmers(rep)} Each confirmer's "
+             "threshold is set per scout to keep 95% of that scout's val people.", "",
              "| Seed | Camera | Candidates per frame | False candidates per frame | "
              "Confirmer AUC | People found | False alarms passed per frame | "
              "Share of false alarms passed |", "|---|---|---|---|---|---|---|---|"]  # fmt: skip
@@ -273,9 +272,23 @@ def render(rep: dict[str, Any]) -> str:
         lines.append(f"- Seed {seed[-1]}: 448 over 224 false alarms passed {r[0]:.2f}x "
                      f"[{r[1]:.2f}, {r[2]:.2f}], people found {100 * row['people_diff']:+.1f} "
                      "points.")  # fmt: skip
+    steps = ("crops --split train`, `fit --seed 0|1|2`, `score --confirmer own`, `report-b"
+             if rep.get("variant") == OWN else "crops`, `score`, `report")  # fmt: skip
     lines += ["", "Intervals: 95% frame bootstrap (2,000 resamples, the same frames for both "
-              "cameras). Reproduce: `python scripts/r25_camera.py crops|score|report`.", ""]  # fmt: skip
+              f"cameras). Reproduce: `python scripts/r25_camera.py {steps}`.", ""]  # fmt: skip
     return "\n".join(lines)
+
+
+def confirmers(rep: dict[str, Any]) -> str:
+    if rep.get("variant") != OWN:
+        return "R19's confirmer (DINOv2-small fine-tuned) for every chain."
+    own = rep["own_confirmer"]
+    vp = ", ".join(f"seed {k} {100 * v:.1f}%" for k, v in own["val_pass"].items())
+    return (
+        "the 224 chains keep R19's confirmer; both 448 chains use R25b's, R19's recipe "
+        "fitted on the 448 seed-0 scout's train candidates (seed "
+        f"{own['seed']} kept: the lowest val pass at 95% keep; {vp})."
+    )
 
 
 def report(path: Path = Path("docs/results/r25_camera.md"),

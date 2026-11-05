@@ -828,6 +828,36 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r25_camera
 - **Report:** docs/results/r25_camera.md
 
+### R25b (G21b): the 448-px camera with a confirmer trained on its own candidates
+- **Date:** 2026-11-04
+- **Question:** R25 found that R19's confirmer, trained on the 224 scout's mistakes, lets through more of the 448 scout's false candidates. Given a confirmer trained on the 448 scout's own candidates, does the 448 camera cut the false alarms that pass by a third?
+- **Why:** R25's KILL could have been a mismatched partner rather than the camera. A camera upgrade would come with its own confirmer, so this is the fair comparison for the purchase.
+- **What we did:**
+  - **The new confirmer:** R19's recipe unchanged (DINOv2-small fine-tuned, 10 epochs, 336 px, the epoch with the lowest val pass kept) on the 448 seed-0 scout's train candidates (50,126; threshold 0.4, at most 12 per frame), seeds 0-2. Seed 0 was kept: it passed the fewest val false alarms at 95% of people kept (43.5%, against 44.8% and 45.9%).
+  - **Chains:** both 448 chains use it; the 224 chains keep R19's confirmer. Each threshold keeps 95% of that scout's val people.
+  - **Bars, R25's, unchanged:** PASS if, pooled over seeds, the 448 chain passes at most 0.67x the 224 chain's labelled false alarms per frame (upper bound below 1), each seed at most 0.8x, people found within 1 point. KILL at 0.9x or more. Pre-registered after R25's test-dev numbers were seen; the new confirmer scored test-dev once.
+- **Result:**
+
+  | Seed | Chain | Confirmer AUC | Share of false candidates passed | False alarms passed per frame | People found |
+  |---|---|---|---|---|---|
+  | 0 | 224 px, R19's confirmer | 0.911 | 23.7% | 0.514 | 27.0% |
+  | 0 | 448 px, R19's confirmer (R25) | 0.847 | 40.5% | 0.688 | 29.1% |
+  | 0 | 448 px, its own confirmer | 0.859 | 38.0% | 0.647 | 28.7% |
+  | 1 | 224 px, R19's confirmer | 0.910 | 24.1% | 0.483 | 26.6% |
+  | 1 | 448 px, R19's confirmer (R25) | 0.858 | 38.4% | 0.725 | 29.6% |
+  | 1 | 448 px, its own confirmer | 0.871 | 35.6% | 0.673 | 29.3% |
+
+  - **The 448 chain still passes more false alarms:** 1.32x [1.21, 1.44] of the 224 chain's per frame (seeds 1.26x and 1.39x), against R25's 1.42x. It finds 1.7 and 2.7 points more people.
+  - **Its own confirmer helps only a little.** Test AUC rises by about 0.01 (0.86 and 0.87) and the share of false candidates it passes falls by about 2.5 points, still well above the 224 chain's 24%.
+  - **The candidates are harder, not just unfamiliar.** On val too, the best of three seeds passes 43.5% of the 448 scout's false candidates at 95% keep; R19's confirmer passes 33.9% of the 224 scout's.
+- **Verdict:** KILL: WITH ITS OWN CONFIRMER THE 448 CHAIN STILL PASSES 1.32x [1.21, 1.44] THE 224 CHAIN'S LABELLED FALSE ALARMS PER FRAME; THE 448 SCOUT'S FALSE CANDIDATES ARE HARDER TO REJECT, NOT JUST UNFAMILIAR
+- **What it means:**
+  - **A 448 camera buys people found, not fewer wrong finds.** The whole chain finds 2 to 3 points more people, but passes about a third more labelled false alarms. The wrong-find margin R17 step 6h asks for must come from elsewhere: video persistence (R15g, waiting for the VisDrone-VID download) or a real second look.
+  - **One reading is still open: the 448 scout may be finding people VisDrone did not label.** R22 found that 38% of the 224 scout's false alarms are such people. With more pixels per tile, the 448 scout could raise more of them, and a confirmer that passes them would be right. R25 assumed the share is the same for both cameras; a blind visual check of passed false alarms from both chains would measure it.
+  - **For the purchase:** a MaixCAM runs the 448 brain at float accuracy (R24b) and adds people found. It does not reduce labelled wrong finds. Its frame rate is still unmeasured.
+- **Chart:** r25_camera
+- **Report:** docs/results/r25b_camera_own.md
+
 ### R15c probe: does a bigger camera input change recall per pixel?
 - **Date:** 2026-10-30
 - **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?
