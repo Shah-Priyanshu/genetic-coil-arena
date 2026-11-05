@@ -39,6 +39,21 @@ the lowest val pass chosen on that scout's val selection set (R19's rule). The 4
 (both seeds) use it; the 224 chains keep R19's confirmer; R25's bars unchanged.
 Pre-registered after R25's test-dev numbers were seen; the new confirmer is a new system
 and scores test-dev once.
+
+R25c (goal G21c): R20b found that most labelled false alarms past a confirmer are people
+VisDrone did not label, so R25/R25b's labelled counts may mostly measure label noise. R25c
+counts only clear non-persons. From each of R25b's four chains (224 seeds 0/1 with R19's
+confirmer, 448 seeds 0/1 with R25b's), ``N_SPOTS`` of its passed test-dev false alarms are
+drawn at random (seed ``SPOT_SEED``); with ``REPEATS`` of them shown twice (consistency
+only), they go on sheets in one random order with the chain hidden, and Claude subagents
+label each spot blind: person / not_person / ambiguous at the marked centre (R20b's
+protocol). Per chain, clear non-persons passed per frame = its passed false alarms per
+frame x the share of its sample labelled not_person (per frame: N/n x the sampled
+not_person spots in that frame, so the frame bootstrap carries the sampling). R25's bars
+apply to that count: PASS if, pooled over seeds, the 448 chain passes <= 0.67x the 224
+chain's (upper bound < 1), each seed <= 0.8x, people found within 1 point (R25b's); KILL at
+>= 0.9x. Measured with no bar: each chain's people / unclear shares, label consistency on
+the repeats.
 """
 
 from __future__ import annotations
@@ -297,5 +312,172 @@ def report(path: Path = Path("docs/results/r25_camera.md"),
     if variant == OWN:
         rep["own_confirmer"] = own_choice()
     path.write_text(render(rep), "utf-8")
+    path.with_suffix(".json").write_text(json.dumps(rep, indent=1), "utf-8")
+    return rep
+
+
+# R25c: clear non-persons, labelled blind
+N_SPOTS, REPEATS, SPOT_SEED = 400, 36, 2025
+C_CHAINS = (("s224_seed0", "r19"), ("s448_seed0", OWN), ("s224_seed1", "r19"),
+            ("s448_seed1", OWN))  # fmt: skip
+CLASSES = ("person", "not_person", "ambiguous")
+VISUAL_C = OUT_DIR / "visual_c"
+LABELS_C = Path("docs/results/r25c_visual_check.json")
+
+
+def passed_false(c: dict) -> np.ndarray:
+    return np.flatnonzero(c["keep"] & ~c["person"])
+
+
+def sample_c(chains: dict, seed: int = SPOT_SEED) -> list[tuple[str, int]]:
+    """``N_SPOTS`` passed false alarms per chain, plus ``REPEATS`` of them again, in one
+    random order: the sheet order."""
+    rng = np.random.default_rng(seed)
+    spots = [(tag, int(i)) for tag, _ in C_CHAINS
+             for i in np.sort(rng.choice(passed_false(chains[tag]),
+                                         min(N_SPOTS, len(passed_false(chains[tag]))),
+                                         replace=False))]  # fmt: skip
+    spots += [spots[k] for k in rng.choice(len(spots), REPEATS, replace=False)]
+    return [spots[k] for k in rng.permutation(len(spots))]
+
+
+def draw_sheets(pool: list[tuple[str, int]], out: Path, per: int = 12) -> int:
+    """R20b's sheets: the centre at 4x and the whole 144-px view with the centre marked."""
+    from PIL import Image, ImageDraw
+
+    crops = {tag: rc.load("test", scout_dir(tag))[0] for tag, _ in C_CHAINS}
+    out.mkdir(parents=True, exist_ok=True)
+    for old in out.glob("sheet_*.png"):
+        old.unlink()
+    h = rc.HALF
+    for sheet in range(0, len(pool), per):
+        img = Image.new("RGB", (3 * 600, 4 * 310), (255, 255, 255))
+        draw = ImageDraw.Draw(img)
+        for k, (tag, i) in enumerate(pool[sheet : sheet + per]):
+            x0, y0 = (k % 3) * 600, (k // 3) * 310
+            view = Image.fromarray(np.asarray(crops[tag][i]))
+            zoom = view.crop((h // 2, h // 2, 3 * h // 2, 3 * h // 2)).resize((288, 288))
+            img.paste(zoom, (x0, y0 + 20))
+            img.paste(view.resize((288, 288)), (x0 + 296, y0 + 20))
+            cx, cy = x0 + 296 + 144, y0 + 20 + 144
+            for dx, dy in ((-1, 0), (1, 0), (0, -1), (0, 1)):
+                draw.line((cx + 30 * dx, cy + 30 * dy, cx + 48 * dx, cy + 48 * dy),
+                          fill=(255, 0, 255), width=2)  # fmt: skip
+            draw.text((x0 + 4, y0 + 4), f"#{sheet + k:04d}  centre x4 | whole view",
+                      fill=(0, 0, 0))  # fmt: skip
+        img.save(out / f"sheet_{sheet // per:03d}.png")
+    return (len(pool) + per - 1) // per
+
+
+def sample_sheets(log: Any = print) -> None:
+    if LABELS_C.exists():
+        raise SystemExit(f"{LABELS_C} exists: the sample is fixed")
+    chains = {tag: chain(tag, v) for tag, v in C_CHAINS}
+    pool = sample_c(chains)
+    n = draw_sheets(pool, VISUAL_C)
+    (VISUAL_C / "pool.json").write_text(json.dumps({"seed": SPOT_SEED, "spots": pool}),
+                                        "utf-8")  # fmt: skip
+    log(f"{len(pool)} spots on {n} sheets in {VISUAL_C}")
+
+
+def merge_labels() -> dict[str, Any]:
+    """The subagents' ``labels_*.json`` ({spot number: class}) and the pool, into
+    ``LABELS_C`` (kept in git)."""
+    if LABELS_C.exists():
+        return json.loads(LABELS_C.read_text("utf-8"))
+    pool = json.loads((VISUAL_C / "pool.json").read_text("utf-8"))
+    labels: dict[str, str] = {}
+    for f in sorted(VISUAL_C.glob("labels_*.json")):
+        for k, v in json.loads(f.read_text("utf-8")).items():
+            labels[str(int(str(k).lstrip("#")))] = v
+    missing = [n for n in range(len(pool["spots"])) if str(n) not in labels]
+    bad = sorted({v for v in labels.values() if v not in CLASSES})
+    if missing or bad:
+        raise SystemExit(f"labels missing for {len(missing)} spots, unknown classes {bad}")
+    rec = {**pool, "labels": labels}
+    LABELS_C.write_text(json.dumps(rec), "utf-8")
+    return rec
+
+
+def clear_compare(rec: dict[str, Any], chains: dict, n_frames: int,
+                  people_diff: dict[str, float]) -> dict[str, Any]:  # fmt: skip
+    """Clear non-persons passed per frame, per chain and 448 over 224, from the labels."""
+    first: dict[tuple[str, int], str] = {}
+    pairs = []
+    for n, (tag, i) in enumerate(rec["spots"]):
+        lab, key = rec["labels"][str(n)], (tag, int(i))
+        if key in first:
+            pairs.append(first[key] == lab)
+        else:
+            first[key] = lab
+    rng = np.random.default_rng(BOOT_SEED)
+    counts = rng.multinomial(n_frames, np.full(n_frames, 1 / n_frames), size=N_BOOT)
+    out: dict[str, Any] = {"chains": {}, "seeds": {}, "n_frames": n_frames,
+                           "repeats_agree": [int(sum(pairs)), len(pairs)]}  # fmt: skip
+    est: dict[str, tuple[float, np.ndarray]] = {}
+    for tag, variant in C_CHAINS:
+        c = chains[tag]
+        mine = {i: lab for (t, i), lab in first.items() if t == tag}
+        n_all, n = len(passed_false(c)), len(mine)
+        clear = np.bincount([c["frame"][i] for i, lab in mine.items() if lab == "not_person"],
+                            minlength=n_frames) * n_all / n  # fmt: skip
+        est[tag] = (float(clear.sum()), counts @ clear)
+        shares = {k: sum(lab == k for lab in mine.values()) for k in CLASSES}
+        out["chains"][tag] = {"confirmer": variant, "passed_false": n_all, "sampled": n,
+                              **shares, "false_per_frame": n_all / n_frames,
+                              "clear_per_frame": clear.sum() / n_frames}  # fmt: skip
+    pooled = [0.0, np.zeros(N_BOOT), 0.0, np.zeros(N_BOOT)]
+    for a, b in PAIRS:
+        ratio_b = est[b][1] / est[a][1]
+        out["seeds"][a.split("_")[1]] = {
+            "ratio": [est[b][0] / est[a][0], *np.percentile(ratio_b, [2.5, 97.5]).tolist()],
+            "people_diff": people_diff[a.split("_")[1]]}  # fmt: skip
+        pooled = [pooled[0] + est[b][0], pooled[1] + est[b][1], pooled[2] + est[a][0],
+                  pooled[3] + est[a][1]]  # fmt: skip
+    out["pooled_ratio"] = [pooled[0] / pooled[2],
+                           *np.percentile(pooled[1] / pooled[3], [2.5, 97.5]).tolist()]  # fmt: skip
+    out["verdict"] = verdict(out)
+    return out
+
+
+def render_c(rep: dict[str, Any]) -> str:
+    pr, ag = rep["pooled_ratio"], rep["repeats_agree"]
+    lines = ["# R25c: the 448-px camera, counting only clear non-persons", "",
+             f"**{rep['verdict']}.** Pooled over seeds, the 448 chain passes {pr[0]:.2f}x "
+             f"[{pr[1]:.2f}, {pr[2]:.2f}] the 224 chain's clear non-persons per test-dev frame "
+             f"(R25's bars: pooled <= {POOLED_MAX}x with the upper bound below 1, each seed "
+             f"<= {SEED_MAX}x, people found within {100 * PEOPLE_DROP:.0f} point; KILL at "
+             f">= {KILL}x).", "",
+             f"R25b's chains. Per chain {N_SPOTS} of its passed test-dev false alarms (VisDrone "
+             f"labels) drawn at random (seed {SPOT_SEED}) and labelled blind by Claude "
+             f"subagents, chain hidden; clear non-persons per frame = passed false alarms per "
+             f"frame x the share labelled not a person.", "",
+             "| Chain | Confirmer | Passed false alarms per frame | Sampled | Person | Unclear "
+             "| Not a person | Clear non-persons per frame |", "|---|---|---|---|---|---|---|---|"]  # fmt: skip
+    for tag, c in rep["chains"].items():
+        conf = "R19's" if c["confirmer"] == "r19" else "its own (R25b)"
+        lines.append(f"| {tag.replace('_', ', ').replace('s224', '224 px').replace('s448', '448 px')}"
+                     f" | {conf} | {c['false_per_frame']:.3f} | {c['sampled']} | {c['person']} | "
+                     f"{c['ambiguous']} | {c['not_person']} | {c['clear_per_frame']:.3f} |")  # fmt: skip
+    lines += [""]
+    for seed, row in rep["seeds"].items():
+        r = row["ratio"]
+        lines.append(f"- Seed {seed[-1]}: 448 over 224 clear non-persons passed {r[0]:.2f}x "
+                     f"[{r[1]:.2f}, {r[2]:.2f}]; people found {100 * row['people_diff']:+.1f} "
+                     "points (R25b).")  # fmt: skip
+    lines += ["", f"Repeated spots labelled the same both times: {ag[0]} of {ag[1]}. "
+              "Intervals: 95% frame bootstrap (2,000 resamples, the same frames for every "
+              "chain), which also resamples the labelled spots. Reproduce: `python "
+              "scripts/r25_camera.py sample-c`, label the sheets, `report-c`.", ""]  # fmt: skip
+    return "\n".join(lines)
+
+
+def report_c(path: Path = Path("docs/results/r25c_camera_clear.md")) -> dict[str, Any]:
+    rec = merge_labels()
+    chains = {tag: chain(tag, v) for tag, v in C_CHAINS}
+    b = json.loads(Path("docs/results/r25b_camera_own.json").read_text("utf-8"))
+    diff = {seed: row["people_diff"] for seed, row in b["seeds"].items()}
+    rep = clear_compare(rec, chains, len(person_counts("test")), diff)
+    path.write_text(render_c(rep), "utf-8")
     path.with_suffix(".json").write_text(json.dumps(rep, indent=1), "utf-8")
     return rep

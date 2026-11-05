@@ -638,3 +638,38 @@ With 92% of people kept, the search meets its limits only if the chain (scout, c
 **Read-out.** R25's, unchanged: PASS if, pooled over seeds, the 448 chain passes at most 0.67x the 224 chain's false alarms per frame (upper bound below 1), each seed at most 0.8x, people found within 1 point; KILL at 0.9x or more. Pre-registered after R25's test-dev numbers were seen; the new confirmer is a new system and scores test-dev once.
 
 **Result (2026-11-04): KILL.** With its own confirmer (seed 0 of 3, the lowest val pass: 43.5%), the 448 chain passes 1.32x [1.21, 1.44] the 224 chain's labelled false alarms per test-dev frame (seeds 1.26x and 1.39x; R25: 1.42x), and finds 1.7 and 2.7 points more people. The own confirmer's AUC is 0.86 and 0.87 against R19's 0.85 and 0.86 on the same candidates, and 0.91 for the 224 chain. So the 448 scout's false candidates are harder to reject, not just unfamiliar. A 448 camera buys people found, not fewer wrong finds; the wrong-find margin must come from video persistence (R15g) or a real second look. One reading remains open: the 448 scout may raise more people VisDrone did not label (38% of the 224 scout's false alarms in R22), and a blind visual check of both chains' passed false alarms would measure it.
+
+## R25c: the 448-px camera, counting only clear non-persons (pre-registered 2026-11-04, goal G21c)
+
+**Question.** R20b found that most labelled false alarms that get past a confirmer are people VisDrone did not label (457 of 594). R25 and R25b counted labelled false alarms, so their KILLs may mostly measure label noise: the 448 scout, with more pixels per person, could be finding more unlabelled people, which a confirmer rightly passes. Counting only the spots that are clearly not a person, does the 448 chain pass fewer?
+
+**Set-up.** R25b's four chains and thresholds, nothing refit or re-scored: 224 seeds 0 and 1 with R19's confirmer, 448 seeds 0 and 1 with R25b's own confirmer.
+- **Sample:** per chain, 400 of its passed test-dev false alarms drawn at random (seed 2025); 36 of the 1,600 shown twice, for consistency only. 1,636 spots on 137 sheets in one random order, the chain never shown. Each spot shows the centre at 4x and the whole 144-px view with the centre marked (R20b's sheets).
+- **Labels:** Claude subagents, blind: is a person (standing, walking, sitting, riding) at the marked centre? person / not_person / ambiguous.
+- **Count:** per chain, clear non-persons passed per frame = its passed false alarms per frame x the share of its sample labelled not_person. The frame bootstrap (the same frames for every chain) also resamples the labelled spots.
+
+**Bars, fixed before any label (R25's).**
+- PASS if, pooled over seeds, the 448 chain passes at most 0.67x the 224 chain's clear non-persons per frame (upper bound below 1), each seed at most 0.8x, and people found within 1 point (R25b: +1.7 and +2.7 points).
+- KILL if the pooled ratio is 0.9x or more.
+- Measured with no bar: each chain's people and unclear shares, agreement on the repeated spots.
+
+**Limits.** One labelling pass per spot. With roughly 7% of passed false alarms clearly not a person (R20b), each chain's sample holds only a few dozen, so the interval will be wide.
+
+## R26: R19's confirmer on MaixCAM's NPU (pre-registered 2026-11-04, goal G22)
+
+**Question.** R19's confirmer runs on a GPU: at the ground station, or on a Jetson-class companion computer on the confirming drone. R24b showed that a MaixCAM-class module (SG2002, cv181x NPU) runs the 448 scout brain at float accuracy. Can the same module also run the confirmer, so that the confirming drone needs no companion computer?
+
+**Probe before pre-registration (val, 64 crops).** The confirmer (DINOv2-small, 22M parameters, 336-px input) compiles for cv181x in INT8 (34 MB, 41 MB of NPU memory) and in BF16 (50 MB, 56 MB). BF16 matches float: correlation 0.9999 and a mean difference of 0.03 logit. INT8 with tpu-mlir's default calibration does not: correlation 0.95, a mean difference of 1.7 logit, and 1 in 8 crops on the wrong side of zero. So the test is BF16. The simulator takes about 85 s per crop per worker, so the test uses a fixed sample.
+
+**Set-up.**
+- **Model:** R19's chosen confirmer (e10s336 seed 2), exported with its position embedding precomputed for 336 px. tpu-mlir 1.30.2 for cv181x, BF16, with the camera's uint8 RGB in and the normalisation fused.
+- **Input:** R19's eval view: the centre 132 px of the 144-px crop, bilinear to 336 px, rounded to uint8 (what a camera pipeline would hand the NPU).
+- **Sample:** 600 people and 600 non-persons drawn at random (seed 26) from R19's 11,639 test-dev candidates (the 224 seed-0 scout's).
+- **Reference:** the same model in fp32 on the same uint8 views. **Threshold:** R19's, from its stored val scores (it keeps 95% of the val selection set's people).
+
+**Bars, fixed before any test-dev crop is simulated.**
+- PASS if BF16's accept/reject decision agrees with float's on at least 99% of the sampled people and at least 99% of the sampled non-persons, and its AUC on the sample is within 0.005 of float's.
+- KILL if agreement is below 95% for either class: the confirmer would need a companion computer.
+- Measured with no bar: model size, NPU memory, the logit differences.
+
+**Limits.** The simulator checks numbers, not speed: frames per second and power need a module. DINOv2-small at 336 px is about 11 GFLOPs per crop, and cv181x is rated at 1 TOPS in INT8, with BF16 slower; a confirmer checks a few candidates per frame, not every frame. The NPU memory (56 MB in BF16) must fit beside the scout brain in the module's 256 MB.

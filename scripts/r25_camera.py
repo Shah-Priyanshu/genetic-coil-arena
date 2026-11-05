@@ -8,6 +8,9 @@ python scripts/r25_camera.py crops --scout s448_seed0 --split train
 python scripts/r25_camera.py fit --seed 0                          # seeds 0, 1, 2
 python scripts/r25_camera.py score --scout s448_seed0 --split val --confirmer own
 python scripts/r25_camera.py report-b
+# R25c: clear non-persons, labelled blind
+python scripts/r25_camera.py sample-c                              # sheets in <data>/r25_camera/visual_c
+python scripts/r25_camera.py report-c                              # after the labels_*.json are in
 
 Candidates, crops and confirmer scores go to ``D:/Projects/genetic-coil-arena-data/r25_camera``;
 the 224 seed-0 scout is R19's own. ``report`` writes ``docs/results/r25_camera.{md,json}``.
@@ -40,6 +43,8 @@ def main() -> None:
     f.add_argument("--seed", type=int, choices=r25.OWN_SEEDS, required=True)
     sub.add_parser("report")
     sub.add_parser("report-b")
+    sub.add_parser("sample-c")
+    sub.add_parser("report-c")
     args = p.parse_args()
     if args.cmd == "crops":
         r25.build(args.scout, args.split, log=log)
@@ -47,6 +52,11 @@ def main() -> None:
         r25.score(args.scout, args.split, log=log, variant=args.confirmer)
     elif args.cmd == "fit":
         r25.fit_own(args.seed, log=log)
+    elif args.cmd == "sample-c":
+        r25.sample_sheets(log=log)
+    elif args.cmd == "report-c":
+        rep = r25.report_c()
+        log(f"verdict: {rep['verdict']}, pooled ratio {rep['pooled_ratio']}")
     else:
         rep = (r25.report() if args.cmd == "report"
                else r25.report(Path("docs/results/r25b_camera_own.md"), r25.OWN))  # fmt: skip

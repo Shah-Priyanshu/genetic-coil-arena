@@ -39,3 +39,34 @@ def test_bars():
 def test_render_lists_both_cameras():
     text = r25.render(_rep(2))
     assert "**PASS.**" in text and "| 0 | 224 px |" in text and "| 1 | 448 px |" in text
+
+
+def _chains_c(false448: int) -> dict:
+    return {"s224_seed0": _chain(4, 3), "s224_seed1": _chain(4, 3),
+            "s448_seed0": _chain(false448, 3), "s448_seed1": _chain(false448, 3)}  # fmt: skip
+
+
+def test_sample_c_is_fixed_and_repeats_spots():
+    chains = _chains_c(4)
+    pool = r25.sample_c(chains)
+    assert pool == r25.sample_c(chains)
+    per = {t: sum(tag == t for tag, _ in pool) for t in chains}
+    assert sum(per.values()) == 4 * 4 * N_FRAMES + r25.REPEATS  # every false alarm, fewer than N_SPOTS
+    assert len(set(pool)) == 4 * 4 * N_FRAMES
+    assert all(not chains[t]["person"][i] for t, i in pool)
+
+
+def test_clear_compare_counts_only_not_person():
+    chains = _chains_c(4)
+    pool = r25.sample_c(chains)
+    # half of the 224 chains' false alarms are clear non-persons, a quarter of the 448's
+    labels = {str(n): ("not_person" if i % 4 < (2 if "224" in t else 1) else "person")
+              for n, (t, i) in enumerate(pool)}  # fmt: skip
+    rep = r25.clear_compare({"spots": pool, "labels": labels}, chains, N_FRAMES,
+                            {"seed0": 0.0, "seed1": 0.0})  # fmt: skip
+    assert abs(rep["pooled_ratio"][0] - 0.5) < 1e-9
+    assert rep["repeats_agree"] == [r25.REPEATS, r25.REPEATS]
+    assert rep["chains"]["s224_seed0"]["not_person"] == 2 * N_FRAMES
+    assert rep["verdict"] == "PASS"
+    text = r25.render_c(rep)
+    assert text.startswith("# R25c:") and "| 224 px, seed0 | R19's |" in text
