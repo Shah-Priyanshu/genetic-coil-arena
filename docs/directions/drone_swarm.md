@@ -607,6 +607,8 @@ With 92% of people kept, the search meets its limits only if the chain (scout, c
 
 **Read-out.** PASS if both seeds find at least float's share of test-dev people at 0.5 minus 2 points, with false detections per tile within 10%. KILL at 5 points fewer for either seed: the 448 brain would need quantisation-aware training or mixed precision (cv181x runs bf16 layers) for this toolchain.
 
+**Result (2026-11-04): PASS.** At int8 threshold 0.484 for both seeds, the recompiled scout finds 25.3% / 26.0% of test-dev people against float's 26.1% / 26.3%, with false detections per tile 5% below and level with float. On val, 14 distinct int8 scores lie between 0.45 and 0.56 (R24: 3). Size is unchanged: 521 KB, 2.47 MB of NPU memory. So a MaixCAM-class module runs the 448 brain at float accuracy, given one hand-set calibration line; frames per second and power still need a module.
+
 ## R25: the 448-px camera through the confirmer (pre-registered 2026-11-04, goal G21)
 
 **Question.** R17 step 6h needs the chain to pass about a third fewer empty candidates. R15c found that the 448-px brain, at the same pixels per person, raises about a third fewer false detections per area than the 224 brain and finds people of a given pixel size as often. Does that cut survive R19's confirmer, which was trained on the 224 scout's candidates?

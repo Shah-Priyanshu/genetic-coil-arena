@@ -1,0 +1,156 @@
+{
+ "variant": "__heatcal",
+ "models": {
+  "r15b_coco_a0.5_seed0_s448": {
+   "float_tau": 0.5,
+   "int8_tau": 0.4842581450939179,
+   "val_false_target": 0.5581053791077657,
+   "val_false_int8": 0.5252432531668808,
+   "test": {
+    "recall all": {
+     "float": 0.26123140857392824,
+     "int8": 0.25256999125109364
+    },
+    "recall 0-8": {
+     "float": 0.11768075812188193,
+     "int8": 0.1098035471319791
+    },
+    "recall 8-16": {
+     "float": 0.28901476141434945,
+     "int8": 0.2778578784757981
+    },
+    "recall 16-32": {
+     "float": 0.4660220073357786,
+     "int8": 0.45875291763921305
+    },
+    "recall 32+": {
+     "float": 0.6547399483585393,
+     "int8": 0.649575802286979
+    },
+    "false_per_tile": {
+     "float": 0.2589960919656905,
+     "int8": 0.24676445211389128
+    },
+    "tile_hit_rate": {
+     "float": 0.6333078686019863,
+     "int8": 0.6309069082178326
+    },
+    "tile_false_alarm_rate": {
+     "float": 0.0777988614800759,
+     "int8": 0.07666034155597723
+    }
+   },
+   "recall_drop": 0.008661417322834597,
+   "false_rel": -0.04722712130119544,
+   "passes": true,
+   "kill": false,
+   "compile": {
+    "model": "r15b_coco_a0.5_seed0_s448__heatcal",
+    "size": 448,
+    "heat_threshold": 4.0,
+    "tpu_mlir": "1.30.2",
+    "processor": "cv181x",
+    "quant": "INT8 symmetric, fused uint8 RGB preprocessing",
+    "calibration": {
+     "tiles": 500,
+     "seed": 23,
+     "split": "train"
+    },
+    "onnx": "/mnt/d/Projects/genetic-coil-arena-data/r24_maixcam/r15b_coco_a0.5_seed0_s448__heat.onnx",
+    "cvimodel_bytes": 533744,
+    "ion_mb": 2.47,
+    "shared_gmem_bytes": 1404928,
+    "deploy_min_similarity": [
+     [
+      0.9320871829986572,
+      0.6246768856666118,
+      8.140189051628113
+     ],
+     [
+      1.0,
+      1.0,
+      Infinity
+     ]
+    ],
+    "seconds": 50.28487093000001
+   },
+   "val_levels": 14
+  },
+  "r15b_coco_a0.5_seed1_s448": {
+   "float_tau": 0.5,
+   "int8_tau": 0.4842581450939179,
+   "val_false_target": 0.5874793464292271,
+   "val_false_int8": 0.5792179181200661,
+   "test": {
+    "recall all": {
+     "float": 0.26286089238845145,
+     "int8": 0.2596675415573053
+    },
+    "recall 0-8": {
+     "float": 0.11674981500489343,
+     "int8": 0.1138615043085957
+    },
+    "recall 8-16": {
+     "float": 0.2951939581187779,
+     "int8": 0.2887401304497082
+    },
+    "recall 16-32": {
+     "float": 0.46902300766922306,
+     "int8": 0.46868956318772925
+    },
+    "recall 32+": {
+     "float": 0.6479158981925489,
+     "int8": 0.6519734415344891
+    },
+    "false_per_tile": {
+     "float": 0.28112470182205757,
+     "int8": 0.2824950515149977
+    },
+    "tile_hit_rate": {
+     "float": 0.6540434355560406,
+     "int8": 0.6605915093310051
+    },
+    "tile_false_alarm_rate": {
+     "float": 0.08662239089184061,
+     "int8": 0.09364326375711575
+    }
+   },
+   "recall_drop": 0.0031933508311461356,
+   "false_rel": 0.004874526087741415,
+   "passes": true,
+   "kill": false,
+   "compile": {
+    "model": "r15b_coco_a0.5_seed1_s448__heatcal",
+    "size": 448,
+    "heat_threshold": 4.0,
+    "tpu_mlir": "1.30.2",
+    "processor": "cv181x",
+    "quant": "INT8 symmetric, fused uint8 RGB preprocessing",
+    "calibration": {
+     "tiles": 500,
+     "seed": 23,
+     "split": "train"
+    },
+    "onnx": "/mnt/d/Projects/genetic-coil-arena-data/r24_maixcam/r15b_coco_a0.5_seed1_s448__heat.onnx",
+    "cvimodel_bytes": 533744,
+    "ion_mb": 2.47,
+    "shared_gmem_bytes": 1404928,
+    "deploy_min_similarity": [
+     [
+      0.9406366348266602,
+      0.6500727799047192,
+      8.949158191680908
+     ],
+     [
+      1.0,
+      1.0,
+      Infinity
+     ]
+    ],
+    "seconds": 32.32533404899999
+   },
+   "val_levels": 14
+  }
+ },
+ "verdict": "PASS"
+}

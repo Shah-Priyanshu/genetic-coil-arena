@@ -100,8 +100,10 @@ def render(rep: dict[str, Any]) -> str:
               "`model_tool --info` reports."
               + (f" Distinct int8 scores between 0.45 and 0.56 on val: {' / '.join(levels)}."
                  if levels else ""), "",
-              "Reproduce: `scripts/r24_maixcam_sim.py` (WSL, tpu-mlir venv) `calib`, `compile`, "
-              "`simulate`, then `python scripts/r24_maixcam.py report`.", ""]  # fmt: skip
+              "Reproduce: `scripts/r24_maixcam_sim.py` (WSL, tpu-mlir venv) `calib`, `compile"
+              + (" --heat-threshold 4" if rep.get("variant") else "") + "`, `simulate`, then "
+              "`python scripts/r24_maixcam.py "
+              + ("report-b" if rep.get("variant") else "report") + "`.", ""]  # fmt: skip
     return "\n".join(lines)
 
 

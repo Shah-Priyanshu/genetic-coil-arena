@@ -772,6 +772,33 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r24_maixcam
 - **Report:** docs/results/r24_maixcam.md
 
+### R24b (G20b): the MaixCAM scout with its heatmap calibrated to the clamp
+- **Date:** 2026-11-04
+- **Question:** R24 found the compiled 448 brain's heatmap quantised in steps of 0.19 logit, because tpu-mlir quantises the heat convolution before the clamp. With that convolution's int8 range set to the clamp's, does the MaixCAM scout match float?
+- **Why:** If it does, the 448 brain runs on a MaixCAM-class module at float accuracy, and the camera question comes down to speed and the confirmer (R25b).
+- **What we did:**
+  - **One change to R24:** in R24's calibration table, the heat convolution's threshold set to the clamp bound 4 (a step of 0.031 logit). Everything else unchanged: both seeds, tpu-mlir 1.30.2 for cv181x, the same val and test-dev tiles in the simulator.
+  - **Bars, R24's:** the int8 threshold is the lowest whose val false detections per tile do not exceed float's at 0.5. PASS if both seeds find at least float's share of test-dev people minus 2 points, with false detections per tile within 10%. KILL at 5 points fewer.
+  - **Pre-registered after R24's test-dev numbers were seen,** from the val diagnosis only. The recompiled models ran test-dev once.
+- **Result:**
+
+  | Seed | int8 threshold | People found, float / int8 | False per tile, float / int8 | 0-8 px | 16-32 px | 32+ px |
+  |---|---|---|---|---|---|---|
+  | 0 | 0.484 | 26.1% / 25.3% | 0.259 / 0.247 (-5%) | 11.8 / 11.0 | 46.6 / 45.9 | 65.5 / 65.0 |
+  | 1 | 0.484 | 26.3% / 26.0% | 0.281 / 0.282 (+0%) | 11.7 / 11.4 | 46.9 / 46.9 | 64.8 / 65.2 |
+
+  - **Both seeds pass both bars:** 0.9 and 0.3 points fewer people (R24: 3.4 and 3.1), at float's false rate within 5%.
+  - **The threshold rule can now reach float's rate:** 14 distinct int8 scores between 0.45 and 0.56 on val, against R24's 3.
+  - **Size is unchanged:** 521 KB of model and 2.47 MB of NPU memory per seed.
+- **Verdict:** PASS: WITH THE HEAT CONVOLUTION CALIBRATED TO THE CLAMP, THE MAIXCAM INT8 SCOUT FINDS 25.3% / 26.0% OF TEST-DEV PEOPLE AGAINST FLOAT'S 26.1% / 26.3% AT FLOAT'S FALSE RATE (-5% / +0%)
+- **What it means:**
+  - **The 448 brain survives a MaixCAM-class toolchain** at float accuracy, in 2.47 MB of NPU memory. On the K210 it did not fit at all (R23).
+  - **The recipe for tpu-mlir:** set the heatmap convolution's calibration threshold to the clamp bound by hand. tpu-mlir quantises the convolution before the clamp, unlike nncase, for which R23c's export was built.
+  - **Still unmeasured:** frames per second (the simulator does not time the NPU) and power. Both need a module.
+  - **The camera decision now rests on R25b,** which tests whether the 448 chain with its own confirmer passes fewer false alarms. R25 found the 448 scout finds 2 to 3 points more people but, with R19's confirmer, passes more false alarms.
+- **Chart:** r24_maixcam
+- **Report:** docs/results/r24b_maixcam_heatcal.md
+
 ### R25 (G21): does the 448-px camera cut the false alarms that pass the confirmer?
 - **Date:** 2026-11-04
 - **Question:** R17 step 6h needs the machine chain to pass about a third fewer empty candidates. R15c found the 448-px brain raises about a third fewer false detections per area at the same pixels per person. Does that cut survive R19's confirmer?
