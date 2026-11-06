@@ -1,0 +1,263 @@
+{
+ "bars": {
+  "exact": 0.9,
+  "wrong": 0.03,
+  "wrong_hi": 0.06
+ },
+ "station": "v6",
+ "verdict": "NOT PASSED",
+ "systems": {
+  "lora": {
+   "n": 150,
+   "by_expect": {
+    "ok": {
+     "exact": 84,
+     "asked": 5,
+     "refused": 1
+    },
+    "clarify": {
+     "asked": 29,
+     "wrong command": 1
+    },
+    "refuse": {
+     "refused": 22,
+     "asked": 4,
+     "wrong command": 4
+    }
+   },
+   "exact": [
+    0.9333333333333333,
+    0.8620973805849326,
+    0.9690904934496107
+   ],
+   "asked_when_unclear": [
+    0.9666666666666667,
+    0.8332924860304112,
+    0.9940915620051425
+   ],
+   "refused_when_should": [
+    0.7333333333333333,
+    0.5555169795568831,
+    0.8581750444608938
+   ],
+   "wrong_commands": [
+    0.03333333333333333,
+    0.014320220695575196,
+    0.07565284250709559
+   ],
+   "correct": [
+    0.9,
+    0.8415639255193982,
+    0.9384591631640268
+   ],
+   "median_latency_s": 4.112597999861464
+  },
+  "lora_s1": {
+   "n": 150,
+   "by_expect": {
+    "ok": {
+     "exact": 88,
+     "refused": 2
+    },
+    "clarify": {
+     "asked": 27,
+     "refused": 2,
+     "wrong command": 1
+    },
+    "refuse": {
+     "refused": 29,
+     "asked": 1
+    }
+   },
+   "exact": [
+    0.9777777777777777,
+    0.9225532261919241,
+    0.9938846862051364
+   ],
+   "asked_when_unclear": [
+    0.9,
+    0.7437855868473339,
+    0.9654007400402839
+   ],
+   "refused_when_should": [
+    0.9666666666666667,
+    0.8332924860304112,
+    0.9940915620051425
+   ],
+   "wrong_commands": [
+    0.006666666666666667,
+    0.0011777710231334546,
+    0.036793752933975674
+   ],
+   "correct": [
+    0.96,
+    0.9154854608728422,
+    0.9815410911130964
+   ],
+   "median_latency_s": 4.122372499899939
+  },
+  "asis": {
+   "n": 150,
+   "by_expect": {
+    "ok": {
+     "exact": 71,
+     "refused": 10,
+     "asked": 7,
+     "failed": 2
+    },
+    "clarify": {
+     "asked": 21,
+     "refused": 8,
+     "wrong command": 1
+    },
+    "refuse": {
+     "refused": 24,
+     "asked": 4,
+     "wrong command": 2
+    }
+   },
+   "exact": [
+    0.7888888888888889,
+    0.6936500878323096,
+    0.8604751615240526
+   ],
+   "asked_when_unclear": [
+    0.7,
+    0.5212387898833981,
+    0.8333543735604105
+   ],
+   "refused_when_should": [
+    0.8,
+    0.6269395261897256,
+    0.9049502189759876
+   ],
+   "wrong_commands": [
+    0.02,
+    0.006824627715648315,
+    0.05714766586424165
+   ],
+   "correct": [
+    0.7733333333333333,
+    0.6999966119167443,
+    0.8330191653502627
+   ],
+   "median_latency_s": 2.531162600032985
+  }
+ },
+ "paired_exact": {
+  "lora_s1_vs_lora": {
+   "a_only": 5,
+   "b_only": 1,
+   "p": 0.21875
+  },
+  "lora_s1_vs_asis": {
+   "a_only": 18,
+   "b_only": 1,
+   "p": 7.62939453125e-05
+  }
+ },
+ "outcomes": {
+  "lora": {
+   "refuse -> asked": 4,
+   "ok -> asked": 5,
+   "refuse -> wrong command": 4,
+   "clarify -> wrong command": 1,
+   "ok -> refused": 1
+  },
+  "lora_s1": {
+   "clarify -> refused": 2,
+   "ok -> refused": 2,
+   "clarify -> wrong command": 1,
+   "refuse -> asked": 1
+  },
+  "asis": {
+   "ok -> refused": 10,
+   "clarify -> refused": 8,
+   "ok -> asked": 7,
+   "refuse -> asked": 4,
+   "ok -> failed": 2,
+   "clarify -> wrong command": 1,
+   "refuse -> wrong command": 2
+  }
+ },
+ "miss_ids": {
+  "lora": [
+   "c010",
+   "c061",
+   "c075",
+   "c085",
+   "c092",
+   "c098",
+   "c099",
+   "c121",
+   "c122",
+   "c131",
+   "c138",
+   "c140",
+   "c143",
+   "c144",
+   "c148"
+  ],
+  "lora_s1": [
+   "c039",
+   "c101",
+   "c130",
+   "c140",
+   "c143",
+   "c148"
+  ],
+  "asis": [
+   "c003",
+   "c008",
+   "c011",
+   "c013",
+   "c019",
+   "c022",
+   "c028",
+   "c029",
+   "c040",
+   "c041",
+   "c046",
+   "c047",
+   "c062",
+   "c064",
+   "c073",
+   "c075",
+   "c089",
+   "c096",
+   "c098",
+   "c106",
+   "c109",
+   "c115",
+   "c117",
+   "c118",
+   "c121",
+   "c123",
+   "c126",
+   "c130",
+   "c138",
+   "c140",
+   "c143",
+   "c144",
+   "c145",
+   "c148"
+  ]
+ },
+ "vs_v5": {
+  "lora": {
+   "a_only": 1,
+   "b_only": 1,
+   "p": 1.0
+  },
+  "lora_s1": {
+   "a_only": 0,
+   "b_only": 1,
+   "p": 1.0
+  },
+  "asis": {
+   "a_only": 1,
+   "b_only": 1,
+   "p": 1.0
+  }
+ }
+}

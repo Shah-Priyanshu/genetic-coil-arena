@@ -616,6 +616,35 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r21c_fresh_sealed
 - **Report:** docs/results/r21c_fresh_sealed.md
 
+### R21d (G17d): refusals moved into code (station v6)
+- **Date:** 2026-11-06
+- **Question:** R21c's seed-0 adapter sent wrong commands on requests it should refuse. If the refusals that code can decide move into the station, do both adapters pass on G14c?
+- **Why:** Safety should not depend on which training seed was lucky. The label guide's refusals include rules a regex can check: actions no behaviour does, one named drone, two behaviours in one request.
+- **What we did:**
+  - **Station v6:** v5 plus `ground.code_refusals`, text rules that overrule any command the model gives: an action no behaviour does (land, take off, film or photograph, spray, deliver or drop, fly to coordinates, change speed), one named drone, two shapes at once, two behaviours joined in one request.
+  - **Written on training and dev texts only.** On R21's 1,250 written training requests plus R16 dev, the rules fire on none of the 1,048 that should run or be asked about. They catch 44 of 45 two-behaviour, 20 of 20 single-drone and 63 of 111 out-of-domain requests (47% of all should-refuse ones).
+  - **Run:** both adapters, unchanged, and the 7B as is ran G14c once each in v6.
+  - **Bars, G17's:** PASS if each adapter gets exact >= 90% and wrong commands <= 3% with the upper bound <= 6%.
+- **Result:**
+
+  | System | Exact, v5 → v6 | Wrong commands, v5 → v6 | Correct overall, v5 → v6 |
+  |---|---|---|---|
+  | 7B + QLoRA, seed 1 | 98.9% → 97.8% | 0.7% → 0.7% | 96.7% → 96.0% |
+  | 7B + QLoRA, seed 0 | 94.4% → 93.3% | 4.0% → 3.3% [1, 8] | 90.0% → 90.0% |
+  | 7B as is | 80.0% → 78.9% | 2.7% → 2.0% | 77.3% → 77.3% |
+
+  - **v6 changes almost nothing.** Each system is right on at most one item more and one item fewer than in v5.
+  - **The rules barely reach G14c's refusals.** Counted by code (no text read), they fire on 7 of G14c's 30 should-refuse requests, against 47% of the training pool's. They catch 1 of seed 0's 5 wrong commands on those requests.
+  - **And they misfire once:** they refuse 1 of G14c's 90 should-run requests (none of 786 in training), which costs every system one exact match.
+- **Verdict:** NOT PASSED: WITH CODE REFUSALS (v6) THE SEED-0 ADAPTER STILL SENDS 3.3% [1, 8] WRONG COMMANDS ON G14c; THE RULES FIRE ON 7 OF 30 SHOULD-REFUSE REQUESTS AND CATCH 1 OF ITS 5 WRONG ONES
+- **What it means:**
+  - **Keyword rules don't carry to a new writer's wording.** Written on training-style phrasing, they cover 47% of that pool's refusals but 23% of G14c's, and they start misfiring on requests that should run. The G14c writer was asked for distinctive wording, so this is a harder test than a deployment might be, but operators do not speak like the training set either.
+  - **Seed 0's wrong commands are mostly not of the kinds the rules cover.** Four of five lie outside them, so a bigger keyword list is not the fix.
+  - **Decision: stay on v5 with the seed-1 adapter.** v6 costs an exact match and buys one refusal.
+  - **What would make safety independent of the seed** is evidence from more than one model: run a command only when two independently trained adapters agree on it, and ask otherwise. That must be designed on dev and tested on a fresh set, because G14c's per-system rows are now known.
+- **Chart:** r21c_fresh_sealed
+- **Report:** docs/results/r21d_code_refusals.md
+
 ### R17 step 6g: can planning buy the slack under the wrong-find limit?
 - **Date:** 2026-11-04
 - **Question:** If mission-time tuning counts a wrong find as costlier, does the search with the closer look stay under 5% wrong finds even at the upper bound of the closer look's cut, while still finding ≥ 40%?
