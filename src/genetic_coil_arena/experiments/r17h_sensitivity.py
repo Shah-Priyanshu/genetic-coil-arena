@@ -77,6 +77,16 @@ VARIANTS: dict[str, dict[str, float]] = {
     },
     "R20b: the same at the replicate's cut (92% / 1.3%)": {"op_hit": 0.92, "op_false": 0.013},
     "R20b: the same at the cut's upper bound (92% / 3.2%)": {"op_hit": 0.92, "op_false": 0.032},
+    # R27: Qwen3-VL as a last look at the ground station after R20b's chain, at the threshold
+    # keeping 95% of dev people: keeps 95.3% of test people and rejects 39.3% [28, 52] of the
+    # clear non-persons (8B), or 95.1% / 53.6% [41, 66] (2B, measured with no bar).
+    "R27: closer look, then Qwen3-VL-8B, then operator (88% / 1.3%)": {
+        "op_hit": 0.877,
+        "op_false": 0.0128,
+    },
+    "R27: the same at the VLM's lower bound (88% / 1.5%)": {"op_hit": 0.877, "op_false": 0.0152},
+    "R27: both cuts at their upper bounds (88% / 2.3%)": {"op_hit": 0.877, "op_false": 0.0232},
+    "R27: Qwen3-VL-2B instead, no bar (88% / 1.0%)": {"op_hit": 0.875, "op_false": 0.0098},
 }
 FOUND_FLOOR, WRONG_CEIL = 0.40, 0.05
 

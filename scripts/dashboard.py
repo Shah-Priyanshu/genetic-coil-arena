@@ -261,6 +261,10 @@ HOW_TO_READ = {
     "confirmer before the operator gives 7.0% wrong finds; adding the closer look at the "
     "hover (R20b's measured cut, its upper bound and its replicate) brings it to 4.7% "
     "(5.6%, 3.7%). Dotted lines: the 40% found and 5% wrong limits.",
+    "r17h_vlm_last_look": "The search on R17's 40 held-out missions with R27's VLM last look after the "
+    "closer look (people kept 87.7%; empty candidates accepted 1.3% at the estimate, 1.5% at the VLM's "
+    "lower bound, 2.3% with both cuts at their upper bounds), against step 6f's chain. Dotted lines: the "
+    "40% found and 5% wrong limits.",
     "r17i_wrong_cost": "The search with the closer look, each of R17's 40 held-out "
     "missions retuned at mission time with a stiffer cost per wrong find (the mission "
     "score uses 2). Left: wrong finds; right: people found; 95% CI over missions. Dotted "
@@ -662,6 +666,19 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
         fig.update_layout(barmode="group", yaxis_title="%",
                           title="R17 step 6f: the search with the closer look")  # fmt: skip
         figs["r17h_closer_look"] = fig
+    last_look = read_json(res / "r17h_vlm_last_look.json")
+    if last_look:
+        rows = sorted(last_look["rows"], key=lambda r: -r["wrong"])
+        fig = go.Figure()
+        for key, label, colour in (("found", "found", "#2e7d32"),
+                                   ("wrong", "wrong finds", "#c62828")):  # fmt: skip
+            fig.add_trace(go.Bar(x=[r["variant"] for r in rows], y=[100 * r[key] for r in rows],
+                                 name=label, marker_color=colour))  # fmt: skip
+        fig.add_hline(y=5, line_dash="dot", line_color="#c62828", annotation_text="5% wrong")
+        fig.add_hline(y=40, line_dash="dot", line_color="#2e7d32", annotation_text="40% found")
+        fig.update_layout(barmode="group", yaxis_title="%",
+                          title="R17 step 6i: the search with a VLM last look")  # fmt: skip
+        figs["r17h_vlm_last_look"] = fig
     cost = read_json(res / "r17i_wrong_cost.json")
     if cost:
         from plotly.subplots import make_subplots

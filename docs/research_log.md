@@ -1003,6 +1003,34 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r27_vlm_check
 - **Report:** docs/results/r27_vlm_check.md
 
+### R17 step 6i: the search with a VLM last look
+- **Date:** 2026-11-06
+- **Question:** With R27's measured VLM last look added after the closer look, does the person search keep its limits (>= 40% found, <= 5% wrong finds), even at the pessimistic ends of the measured cuts?
+- **Why:** Step 6f met the limits at the closer look's measured cut (51.9% / 4.7%) but not at its upper bound (5.6% wrong), and step 6g showed planning cannot buy that slack. R27 measured a last look that removes some of the remaining empty candidates at a cost of 5% of the people.
+- **What we did:**
+  - **Set-up:** step 6f's search (`scripts/r17h_sensitivity.py`), step 3's 40 held-out missions x 2,000 episodes, every mission replanned at mission time.
+  - **The rates:** people kept 92% x R27's 95.3% = 87.7%. Empty candidates accepted = the closer look's 2.1% x (1 - 39.3%) = 1.3% at R27's estimate; 1.5% at the VLM's lower bound; 2.3% with both cuts at their upper bounds (3.2% x 72%). The 2B (no bar in R27) at its estimate, 1.0%, for reference.
+  - **Read-out, fixed before the run (a measurement, no bar):** which variants meet both limits.
+- **Result:**
+
+  | Chain before the operator | Kept / empty accepted | Found | Wrong finds |
+  |---|---|---|---|
+  | R20b: confirmer and closer look (step 6f) | 92% / 2.1% | 51.9% | 4.7% |
+  | + Qwen3-VL-8B last look, estimate | 88% / 1.3% | 55.3% | 3.8% |
+  | + 8B, at the VLM's lower bound | 88% / 1.5% | 54.7% | 4.2% |
+  | + 8B, both cuts at their upper bounds | 88% / 2.3% | 49.0% | 4.8% |
+  | + Qwen3-VL-2B instead (no bar) | 88% / 1.0% | 58.8% | 3.6% |
+
+  - **Every variant meets both limits,** including the pessimistic one, where step 6f's chain alone reached 5.6% wrong finds.
+  - **The last look finds more people, not fewer,** despite dropping 5% of them: fewer wrong declarations end fewer sorties early.
+- **Verdict:** MEASUREMENT: WITH THE VLM LAST LOOK THE SEARCH MEETS ITS LIMITS EVEN WITH BOTH CUTS AT THEIR UPPER BOUNDS (49.0% FOUND, 4.8% WRONG); AT R27'S ESTIMATE 55.3% FOUND, 3.8% WRONG
+- **What it means:**
+  - **The slack step 6g could not plan for comes from the evidence, as it said it must.** A model that misses R27's 50% bar is still enough for the mission's limits.
+  - **The whole chain now has measured rates:** scout (R15b/R15c), confirmer (R19), closer look (R20b), last look (R27), and the operator's 90% recognition, still an assumption from step 6.
+  - **Caveats:** the last look's rates are agreement with Claude's blind labels on 144-px views; the mission model treats each candidate's false accept as independent; the 448 camera and 3 frames per look are step 6's assumptions, and the frame rate is unmeasured.
+- **Chart:** r17h_vlm_last_look
+- **Report:** docs/results/r17h_vlm_last_look.md
+
 ### R15c probe: does a bigger camera input change recall per pixel?
 - **Date:** 2026-10-30
 - **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?
