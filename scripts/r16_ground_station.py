@@ -35,10 +35,10 @@ def log(msg: str) -> None:
 
 
 def items_for(split: str) -> list[dict[str, Any]]:
-    if split in ("sealed", "sealed-b"):
+    if split in ("sealed", "sealed-b", "sealed-c"):
         from genetic_coil_arena.experiments import r16_sealed
 
-        return r16_sealed.load_sealed(b=split == "sealed-b")
+        return r16_sealed.load_sealed(b=split == "sealed-b", c=split == "sealed-c")
     return r16.load_items(DATA / "r16_dev.jsonl")
 
 
@@ -111,12 +111,8 @@ def summarise(rows: list[dict]) -> dict[str, Any]:
         "n": len(rows),
         "by_expect": {k: dict(v) for k, v in by.items()},
         "exact": wilson(by["ok"]["exact"], n_ok),
-        "asked_when_unclear": wilson(
-            by["clarify"]["asked"], sum(by["clarify"].values())
-        ),
-        "refused_when_should": wilson(
-            by["refuse"]["refused"], sum(by["refuse"].values())
-        ),
+        "asked_when_unclear": wilson(by["clarify"]["asked"], sum(by["clarify"].values())),
+        "refused_when_should": wilson(by["refuse"]["refused"], sum(by["refuse"].values())),
         "wrong_commands": wilson(wrong, len(rows)),
         "correct": wilson(sum(r["correct"] for r in rows), len(rows)),
         "median_latency_s": lat[len(lat) // 2] if lat else 0.0,
@@ -132,15 +128,11 @@ def report(args: argparse.Namespace) -> None:
             rows_path = f.with_suffix(".jsonl")
             rows = [json.loads(x) for x in rows_path.read_text(encoding="utf-8").splitlines()
                     if x.strip()]  # fmt: skip
-            runs.append(
-                {"summary": json.loads(f.read_text(encoding="utf-8")), "rows": rows}
-            )
+            runs.append({"summary": json.loads(f.read_text(encoding="utf-8")), "rows": rows})
     md, data = r16_report.render(runs)
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_text(md, encoding="utf-8")
-    args.out.with_suffix(".json").write_text(
-        json.dumps(data, indent=1), encoding="utf-8"
-    )
+    args.out.with_suffix(".json").write_text(json.dumps(data, indent=1), encoding="utf-8")
     run_dir = os.environ.get("GCA_RUN_DIR")
     if run_dir:
         (Path(run_dir) / args.out.name).write_text(md, encoding="utf-8")
@@ -152,13 +144,11 @@ def main() -> None:
     sub = p.add_subparsers(dest="cmd", required=True)
     r = sub.add_parser("run")
     r.add_argument("--translator", required=True, help="ollama:<tag> or keyword")
-    r.add_argument("--split", choices=["dev", "sealed", "sealed-b"], default="dev")
+    r.add_argument("--split", choices=["dev", "sealed", "sealed-b", "sealed-c"], default="dev")
     r.add_argument("--out", default=os.environ.get("GCA_RUN_DIR", "outputs/r16"))
     m = sub.add_parser("report")
     m.add_argument("--from", dest="sources", nargs="+", required=True)
-    m.add_argument(
-        "--out", type=Path, default=Path("docs/results/r16_ground_station.md")
-    )
+    m.add_argument("--out", type=Path, default=Path("docs/results/r16_ground_station.md"))
     args = p.parse_args()
     run(args) if args.cmd == "run" else report(args)
 

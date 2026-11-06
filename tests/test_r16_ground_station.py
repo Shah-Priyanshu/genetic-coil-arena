@@ -117,9 +117,7 @@ class FakeBackend:
 
     def generate(self, prompts, **kw):
         body = self.replies.pop(0)
-        return [
-            SimpleNamespace(text=json.dumps(body), latency_s=0.0, n_prompt_tokens=0)
-        ]
+        return [SimpleNamespace(text=json.dumps(body), latency_s=0.0, n_prompt_tokens=0)]
 
 
 def translate(*replies, text="x"):
@@ -170,15 +168,10 @@ def test_keyword_baseline(text, expected):
 
 
 def test_score_and_correct():
-    ok = SimpleNamespace(
-        status="ok", spec=SimpleNamespace(params={"behavior": "boids"})
-    )
+    ok = SimpleNamespace(status="ok", spec=SimpleNamespace(params={"behavior": "boids"}))
     item = {"expect": "ok", "params": {"behavior": "boids", "cohesion": 1}}
     assert r16.score(ok, item) == "exact"
-    assert (
-        r16.score(ok, {"expect": "ok", "params": {"behavior": "rth"}})
-        == "wrong command"
-    )
+    assert r16.score(ok, {"expect": "ok", "params": {"behavior": "rth"}}) == "wrong command"
     assert r16.score(ok, {"expect": "refuse"}) == "wrong command"
     ask = SimpleNamespace(status="clarify", spec=None)
     assert r16.correct(r16.score(ask, {"expect": "clarify"}), "clarify")
@@ -193,20 +186,14 @@ def test_report_verdict():
                             "wrong_commands": (wrong, 0.0, wrong + 0.02),
                             "median_latency_s": 1.0}, "rows": []}  # fmt: skip
 
-    md, data = r16_report.render(
-        [run(r16_report.MAIN, 0.95, 0.02), run("keyword", 0.6, 0.2)]
-    )
+    md, data = r16_report.render([run(r16_report.MAIN, 0.95, 0.02), run("keyword", 0.6, 0.2)])
     assert data["g14"]["passed"] and "G14 PASSED" in md
-    md, data = r16_report.render(
-        [run(r16_report.MAIN, 0.95, 0.05), run("keyword", 0.6, 0.2)]
-    )
+    md, data = r16_report.render([run(r16_report.MAIN, 0.95, 0.05), run("keyword", 0.6, 0.2)])
     assert not data["g14"]["passed"]
 
 
 def test_label_guide_lists_the_site_map():
-    guide = (Path(r16.__file__).parent / "data" / "r16_label_guide.md").read_text(
-        encoding="utf-8"
-    )
+    guide = (Path(r16.__file__).parent / "data" / "r16_label_guide.md").read_text(encoding="utf-8")
     for place in gs.SITE:
         assert f"| {place.name} | {', '.join(place.aliases)} |" in guide
     for b in gs.BEHAVIORS:
@@ -236,16 +223,12 @@ def test_spoken_numbers_and_literal_check():
     assert gs.spoken_numbers("twenty-five m, a hundred feet") == [25.0, 100.0]
     ok = {"behavior": "perimeter", "area": "home", "radius_m": 6.1}
     assert gs.unsupported(ok, "orbit home 20 ft out") == []
-    assert (
-        gs.unsupported({"behavior": "person_follow", "min_conf": 0.8}, "80% sure") == []
-    )
+    assert gs.unsupported({"behavior": "person_follow", "min_conf": 0.8}, "80% sure") == []
     clamped = {"behavior": "formation", "shape": "v", "spacing_m": 10}
     assert len(gs.unsupported(clamped, "get in a V at 15 m altitude")) == 1
     invented = {"behavior": "formation", "shape": "line", "spacing_m": 2}
     assert len(gs.unsupported(invented, "formation with 2 m between each drone")) == 1
-    assert gs.unsupported(
-        {"behavior": "search_grid", "area": "north field"}, "sweep the hill"
-    )
+    assert gs.unsupported({"behavior": "search_grid", "area": "north field"}, "sweep the hill")
 
 
 def test_translator_question_beats_refusal_and_literals_are_checked():
@@ -318,9 +301,7 @@ def test_v5_fractions_at_means_altitude_and_bare_retries_ask():
 def test_g14b_sealed_set_is_pinned_fresh_and_valid():
     from genetic_coil_arena.experiments import r16_sealed
 
-    assert (
-        r16_sealed.file_sha256(r16_sealed.SEALED_B_PATH) == r16_sealed.SEALED_B_SHA256
-    )
+    assert r16_sealed.file_sha256(r16_sealed.SEALED_B_PATH) == r16_sealed.SEALED_B_SHA256
     items = r16_sealed.load_sealed(b=True)
     assert len(items) == 150
     assert [i["expect"] for i in items].count("ok") == 90
@@ -333,3 +314,23 @@ def test_g14b_sealed_set_is_pinned_fresh_and_valid():
     assert len(texts) == 150
     seen = {i["text"] for i in r16_sealed.load_dev() + r16_sealed.load_sealed()}
     assert not texts & (seen | {e.text for e in r16.EXAMPLES})
+
+
+def test_g14c_sealed_set_is_pinned_fresh_and_valid():
+    from genetic_coil_arena.experiments import r16_sealed
+    from genetic_coil_arena.experiments.r21_ground_lora import check_labels
+
+    items = r16_sealed.load_sealed(c=True)  # checks the pinned hash
+    assert len(items) == 150 and [i["id"] for i in items][-1] == "c150"
+    assert [i["expect"] for i in items].count("ok") == 90
+    assert [i["expect"] for i in items].count("clarify") == 30
+    for item in items:
+        if item["expect"] == "ok":
+            make(item["params"])
+        else:
+            assert "params" not in item
+    texts = {i["text"] for i in items}
+    assert len(texts) == 150
+    old = r16_sealed.load_dev() + r16_sealed.load_sealed() + r16_sealed.load_sealed(b=True)
+    assert not texts & ({i["text"] for i in old} | {e.text for e in r16.EXAMPLES})
+    assert not check_labels(items)  # R21's training texts live in the data folder, not here

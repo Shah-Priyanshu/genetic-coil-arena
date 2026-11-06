@@ -21,6 +21,16 @@ v1 guide plus the v5 conventions: fractions in words, "at N m" is an altitude, t
 behaviours in sequence are refused). Ten of its texts happened to match dev or old
 sealed texts exactly; the agent rewrote those ten before the set was pinned. Pinned
 below, never read while developing.
+
+**G14c** (``data/r16c_sealed_test.jsonl``, split ``sealed-c``): G14b's set was retired for
+selection after R21b (five missed texts were read). A fresh set of 150 requests (90 / 30 /
+30) was written by a separate agent (Sonnet) from ``data/r16b_label_guide.md`` alone, after
+R21's adapters were trained. Code checks (no text was read): every label passes R21's
+``check_labels``; no text equals a dev, older sealed or R21 training text; and no text
+shares half or more of its 4-grams with any one of them (R21's leak rule, the new text on
+the held-out side). Two rewrite rounds by the same agent, given ids only, removed 89 then
+16 flagged items; 7 texts still contain at least half of some short training text's
+4-grams (the weaker direction) and were kept. Pinned below, never read.
 """
 
 from __future__ import annotations
@@ -37,11 +47,16 @@ DEV_PATH = DATA / "r16_dev.jsonl"
 SEALED_SHA256 = "db87f382be7456d7eca22edf163e9a10b37c489e6fbbb75a57b20a64afaa69f8"
 SEALED_B_PATH = DATA / "r16b_sealed_test.jsonl"
 SEALED_B_SHA256 = "196a839ff5dc93b60231a060bbe39c54c91052841c8bd63c664f5bcb518d43ed"
+SEALED_C_PATH = DATA / "r16c_sealed_test.jsonl"
+SEALED_C_SHA256 = "9bf54aab1c83634a81cfd5a7a891dcd994ba2067f7a7c06adf176ef4b84a4e34"
 
 
-def load_sealed(b: bool = False) -> list[dict[str, Any]]:
-    """The sealed items (G14's, or G14b's with ``b``), after checking the pinned hash."""
-    path, want = (SEALED_B_PATH, SEALED_B_SHA256) if b else (SEALED_PATH, SEALED_SHA256)
+def load_sealed(b: bool = False, c: bool = False) -> list[dict[str, Any]]:
+    """The sealed items (G14's, G14b's with ``b``, G14c's with ``c``), after checking the
+    pinned hash."""
+    path, want = ((SEALED_C_PATH, SEALED_C_SHA256) if c
+                  else (SEALED_B_PATH, SEALED_B_SHA256) if b
+                  else (SEALED_PATH, SEALED_SHA256))  # fmt: skip
     got = file_sha256(path)
     if got != want:
         raise RuntimeError(f"r16 sealed set {path.name} changed: {got} != {want}")

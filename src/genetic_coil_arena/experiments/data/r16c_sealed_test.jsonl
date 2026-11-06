@@ -1,0 +1,150 @@
+{"id": "c001", "text": "hold position where you are", "expect": "ok", "params": {"behavior": "hover"}, "tags": ["hover", "default"]}
+{"id": "c002", "text": "get into a V", "expect": "ok", "params": {"behavior": "formation", "shape": "v"}, "tags": ["formation"]}
+{"id": "c003", "text": "everyone drift about together like a murmuration, no fixed plan", "expect": "ok", "params": {"behavior": "boids"}, "tags": ["boids", "default"]}
+{"id": "c004", "text": "can the swarm comb the shoreline of Mirror Lake, my kayak went missing out there", "expect": "clarify", "tags": ["search_grid", "unknown-place"]}
+{"id": "c005", "text": "anybody know if rain's rolling in before sundown?", "expect": "refuse", "tags": ["out-of-domain"]}
+{"id": "c006", "text": "grandma says the little one wandered off since lunch, so quarter the north field in lanes", "expect": "ok", "params": {"behavior": "search_grid", "area": "north field"}, "tags": ["search_grid", "default"]}
+{"id": "c007", "text": "somebody's been sniffing around the barn, put a ring of drones 20 m out from it", "expect": "ok", "params": {"behavior": "perimeter", "area": "barn", "radius_m": 20}, "tags": ["perimeter"]}
+{"id": "c008", "text": "latch onto whoever the scout cam is tracking and shadow them", "expect": "ok", "params": {"behavior": "person_follow"}, "tags": ["person_follow", "default"]}
+{"id": "c009", "text": "do a search grid", "expect": "clarify", "tags": ["search_grid", "no-place"]}
+{"id": "c010", "text": "got any good puns to cheer up the ground crew?", "expect": "refuse", "tags": ["out-of-domain"]}
+{"id": "c011", "text": "kick off the LED spectacular for the kids' party", "expect": "ok", "params": {"behavior": "light_show"}, "tags": ["light_show", "default"]}
+{"id": "c012", "text": "bring everyone back home", "expect": "ok", "params": {"behavior": "rth"}, "tags": ["rth"]}
+{"id": "c013", "text": "pause in mid-air, altitude twelve metres, I need to re-seat the laptop cable", "expect": "ok", "params": {"behavior": "hover", "alt_m": 12}, "tags": ["hover"]}
+{"id": "c014", "text": "orbit that spot yonder past the tree line", "expect": "clarify", "tags": ["perimeter", "unknown-place"]}
+{"id": "c015", "text": "bring the whole fleet down onto the grass and kill the motors", "expect": "refuse", "tags": ["out-of-domain"]}
+{"id": "c016", "text": "squares, I want them as a grid with three metres of gap between neighbours", "expect": "ok", "params": {"behavior": "formation", "shape": "grid", "spacing_m": 3}, "tags": ["formation"]}
+{"id": "c017", "text": "set the swarm to bird-like flocking, cohesion knob at 2", "expect": "ok", "params": {"behavior": "boids", "cohesion": 2}, "tags": ["boids"]}
+{"id": "c018", "text": "raking lanes over the car park for the missing keys, run it ten metres up", "expect": "ok", "params": {"behavior": "search_grid", "area": "car park", "alt_m": 10}, "tags": ["search_grid"]}
+{"id": "c019", "text": "yeah we need a guard ring, go ahead", "expect": "clarify", "tags": ["perimeter", "no-place"]}
+{"id": "c020", "text": "spin up the props and get airborne", "expect": "refuse", "tags": ["out-of-domain"]}
+{"id": "c021", "text": "babysit the parking for me while I grab a coffee", "expect": "ok", "params": {"behavior": "perimeter", "area": "car park"}, "tags": ["perimeter", "alias", "default"]}
+{"id": "c022", "text": "tail the guy the scout just picked up", "expect": "ok", "params": {"behavior": "person_follow"}, "tags": ["person_follow", "default"]}
+{"id": "c023", "text": "paint the sky in all the colours, rainbow mode", "expect": "ok", "params": {"behavior": "light_show", "pattern": "rainbow"}, "tags": ["light_show"]}
+{"id": "c024", "text": "sweep the old patch behind the sheds for the missing kid", "expect": "clarify", "tags": ["search_grid", "unknown-place"]}
+{"id": "c025", "text": "I want footage of the northern field, start the cameras rolling", "expect": "refuse", "tags": ["out-of-domain"]}
+{"id": "c026", "text": "send them home", "expect": "ok", "params": {"behavior": "rth"}, "tags": ["rth"]}
+{"id": "c027", "text": "everyone stay put at 30 feet", "expect": "ok", "params": {"behavior": "hover", "alt_m": 9.14}, "tags": ["hover", "feet"]}
+{"id": "c028", "text": "line up single file, spaced five feet", "expect": "ok", "params": {"behavior": "formation", "shape": "line", "spacing_m": 1.52}, "tags": ["formation", "feet"]}
+{"id": "c029", "text": "run that routine Dave set up on Tuesday", "expect": "clarify", "tags": ["unclear-behavior"]}
+{"id": "c030", "text": "take a photo of the barn", "expect": "refuse", "tags": ["out-of-domain"]}
+{"id": "c031", "text": "uh loosen it up, flock around, separation 2.5 and alignment 0.5", "expect": "ok", "params": {"behavior": "boids", "separation": 2.5, "alignment": 0.5}, "tags": ["boids"]}
+{"id": "c032", "text": "systematically sweep the river for anything that looks like a person", "expect": "ok", "params": {"behavior": "search_grid", "area": "river bank"}, "tags": ["search_grid", "alias"]}
+{"id": "c033", "text": "um, guard the apple orchard, radius of fifteen metres, flying eight metres high", "expect": "ok", "params": {"behavior": "perimeter", "area": "orchard", "alt_m": 8, "radius_m": 15}, "tags": ["perimeter", "alias"]}
+{"id": "c034", "text": "alright everyone, take your spots", "expect": "clarify", "tags": ["unclear-behavior"]}
+{"id": "c035", "text": "mist the trees with fungicide", "expect": "refuse", "tags": ["out-of-domain"]}
+{"id": "c036", "text": "follow him at 4 m distance", "expect": "ok", "params": {"behavior": "person_follow", "distance_m": 4}, "tags": ["person_follow"]}
+{"id": "c037", "text": "throb the LEDs with a heartbeat pulse, ninety beats a minute", "expect": "ok", "params": {"behavior": "light_show", "pattern": "pulse", "bpm": 90}, "tags": ["light_show"]}
+{"id": "c038", "text": "swarm, abort the mission and make for the place you launched from", "expect": "ok", "params": {"behavior": "rth"}, "tags": ["rth"]}
+{"id": "c039", "text": "set up a ring, 15 m radius, to keep an eye out", "expect": "clarify", "tags": ["perimeter", "no-place"]}
+{"id": "c040", "text": "carry the first-aid kit over to the parking lot", "expect": "refuse", "tags": ["out-of-domain"]}
+{"id": "c041", "text": "wait wait wait, everybody halt and sit steady at 2.5 metres while I swap the SD card", "expect": "ok", "params": {"behavior": "hover", "alt_m": 2.5}, "tags": ["hover"]}
+{"id": "c042", "text": "ok guys circle shape, ten metres off the ground, two metres between neighbours", "expect": "ok", "params": {"behavior": "formation", "shape": "circle", "alt_m": 10, "spacing_m": 2}, "tags": ["formation"]}
+{"id": "c043", "text": "birds of a feather: cohesion 3, separation 1, alignment 4, go free-flying", "expect": "ok", "params": {"behavior": "boids", "cohesion": 3, "separation": 1, "alignment": 4}, "tags": ["boids"]}
+{"id": "c044", "text": "sweep in lanes, ten metres altitude, I'll tell you where later", "expect": "clarify", "tags": ["search_grid", "no-place"]}
+{"id": "c045", "text": "drop the payload on the river bank", "expect": "refuse", "tags": ["out-of-domain"]}
+{"id": "c046", "text": "comb the east woods for the lost scout, fly 15 feet up", "expect": "ok", "params": {"behavior": "search_grid", "area": "east woods", "alt_m": 4.57}, "tags": ["search_grid", "feet"]}
+{"id": "c047", "text": "we've lost a dog near the water, circle the river bank at thirty feet radius", "expect": "ok", "params": {"behavior": "perimeter", "area": "river bank", "radius_m": 9.14}, "tags": ["perimeter", "feet"]}
+{"id": "c048", "text": "shadow the person but don't trust detections under 80 percent", "expect": "ok", "params": {"behavior": "person_follow", "min_conf": 0.8}, "tags": ["person_follow"]}
+{"id": "c049", "text": "look around the junkyard", "expect": "clarify", "tags": ["search_grid", "unknown-place"]}
+{"id": "c050", "text": "send the swarm to latitude 40.7128 longitude -74.0060", "expect": "refuse", "tags": ["out-of-domain"]}
+{"id": "c051", "text": "chase sequence on the LEDs, tempo 140 beats/min", "expect": "ok", "params": {"behavior": "light_show", "pattern": "chase", "bpm": 140}, "tags": ["light_show"]}
+{"id": "c052", "text": "abort abort, everyone home immediately!!", "expect": "ok", "params": {"behavior": "rth"}, "tags": ["rth"]}
+{"id": "c053", "text": "sworm stay in hoverr, 8 metrs up", "expect": "ok", "params": {"behavior": "hover", "alt_m": 8}, "tags": ["hover", "typo"]}
+{"id": "c054", "text": "orbit the chapel", "expect": "clarify", "tags": ["perimeter", "unknown-place"]}
+{"id": "c055", "text": "send unit 3 over to scout the barn on its own", "expect": "refuse", "tags": ["single-drone"]}
+{"id": "c056", "text": "marching order for the parade: a line, 1.5 m apart", "expect": "ok", "params": {"behavior": "formation", "shape": "line", "spacing_m": 1.5}, "tags": ["formation"]}
+{"id": "c057", "text": "start flocking, keep them tight, cohesion 5", "expect": "ok", "params": {"behavior": "boids", "cohesion": 5}, "tags": ["boids"]}
+{"id": "c058", "text": "do lanes around the old barn, the hikers' last ping was near it", "expect": "ok", "params": {"behavior": "search_grid", "area": "barn"}, "tags": ["search_grid", "alias", "default"]}
+{"id": "c059", "text": "repeat the manoeuvre we ran at the last demo", "expect": "clarify", "tags": ["unclear-behavior"]}
+{"id": "c060", "text": "make drone number 2 stop and hold 5 metres up by itself", "expect": "refuse", "tags": ["single-drone"]}
+{"id": "c061", "text": "patrol around the launch pad at 50 m radius", "expect": "ok", "params": {"behavior": "perimeter", "area": "home", "radius_m": 50}, "tags": ["perimeter", "alias"]}
+{"id": "c062", "text": "stay with the runner, ten feet back", "expect": "ok", "params": {"behavior": "person_follow", "distance_m": 3.05}, "tags": ["person_follow", "feet"]}
+{"id": "c063", "text": "twinkle! sparkle effect on all of them", "expect": "ok", "params": {"behavior": "light_show", "pattern": "sparkle"}, "tags": ["light_show"]}
+{"id": "c064", "text": "make the drones do something cool", "expect": "clarify", "tags": ["unclear-behavior"]}
+{"id": "c065", "text": "crank the cruise velocity up, we're running behind", "expect": "refuse", "tags": ["out-of-domain"]}
+{"id": "c066", "text": "recal the swarm to base", "expect": "ok", "params": {"behavior": "rth"}, "tags": ["rth", "typo", "alias"]}
+{"id": "c067", "text": "leave them suspended at 25 feet", "expect": "ok", "params": {"behavior": "hover", "alt_m": 7.62}, "tags": ["hover", "feet"]}
+{"id": "c068", "text": "gimme a vee, one point five metres between neighbours, around 6 m height", "expect": "ok", "params": {"behavior": "formation", "shape": "v", "spacing_m": 1.5, "alt_m": 6}, "tags": ["formation"]}
+{"id": "c069", "text": "cordon off the duck pond", "expect": "clarify", "tags": ["perimeter", "unknown-place"]}
+{"id": "c070", "text": "slow down a bit", "expect": "refuse", "tags": ["out-of-domain"]}
+{"id": "c071", "text": "flocking like starlings but turn cohesion right down to zero", "expect": "ok", "params": {"behavior": "boids", "cohesion": 0}, "tags": ["boids"]}
+{"id": "c072", "text": "mow lanes over the parking area at eight metres", "expect": "ok", "params": {"behavior": "search_grid", "area": "car park", "alt_m": 8}, "tags": ["search_grid", "alias"]}
+{"id": "c073", "text": "keep circling along the motorway edge, stay 12 m up", "expect": "ok", "params": {"behavior": "perimeter", "area": "highway", "alt_m": 12}, "tags": ["perimeter", "no-fly"]}
+{"id": "c074", "text": "Patrol the area", "expect": "clarify", "tags": ["perimeter", "no-place"]}
+{"id": "c075", "text": "first freeze where you are, afterwards put on the LED display", "expect": "refuse", "tags": ["two-behaviours"]}
+{"id": "c076", "text": "follow mode: need 90% detection confidence and keep two metres behind", "expect": "ok", "params": {"behavior": "person_follow", "min_conf": 0.9, "distance_m": 2}, "tags": ["person_follow"]}
+{"id": "c077", "text": "for the finale put the LED wave on, slow, 60 bpm", "expect": "ok", "params": {"behavior": "light_show", "pattern": "wave", "bpm": 60}, "tags": ["light_show"]}
+{"id": "c078", "text": "brilliant session, send the lot back to the pad they took off from", "expect": "ok", "params": {"behavior": "rth"}, "tags": ["rth"]}
+{"id": "c079", "text": "Secure the site", "expect": "clarify", "tags": ["unclear-behavior"]}
+{"id": "c080", "text": "search the orchard and then return home", "expect": "refuse", "tags": ["two-behaviours"]}
+{"id": "c081", "text": "everybody hang there at seven metres", "expect": "ok", "params": {"behavior": "hover", "alt_m": 7}, "tags": ["hover"]}
+{"id": "c082", "text": "Make a ring, two and a half metres apart", "expect": "ok", "params": {"behavior": "formation", "shape": "circle", "spacing_m": 2.5}, "tags": ["formation"]}
+{"id": "c083", "text": "flock please, nudge alignment to 1.5 and leave the rest alone", "expect": "ok", "params": {"behavior": "boids", "alignment": 1.5}, "tags": ["boids"]}
+{"id": "c084", "text": "sweep the football pitch in lanes", "expect": "clarify", "tags": ["search_grid", "unknown-place"]}
+{"id": "c085", "text": "form a straight line shaped like a ring", "expect": "refuse", "tags": ["contradiction"]}
+{"id": "c086", "text": "we think someone wandered off, can you comb the orchard in lanes", "expect": "ok", "params": {"behavior": "search_grid", "area": "orchard"}, "tags": ["search_grid", "default"]}
+{"id": "c087", "text": "tight loop round the woods, just 2 metres radius", "expect": "ok", "params": {"behavior": "perimeter", "area": "east woods", "radius_m": 2}, "tags": ["perimeter"]}
+{"id": "c088", "text": "track the walker from 6 m behind, alt 4 m", "expect": "ok", "params": {"behavior": "person_follow", "distance_m": 6, "alt_m": 4}, "tags": ["person_follow"]}
+{"id": "c089", "text": "start the light show to the song, it's about 128 bpm", "expect": "ok", "params": {"behavior": "light_show", "bpm": 128}, "tags": ["light_show"]}
+{"id": "c090", "text": "come home, everybody", "expect": "ok", "params": {"behavior": "rth"}, "tags": ["rth"]}
+{"id": "c091", "text": "make a circle round the cement works, 20 m out", "expect": "clarify", "tags": ["perimeter", "unknown-place"]}
+{"id": "c092", "text": "photographer wants a grid way up at 50 m altitude", "expect": "refuse", "tags": ["range"]}
+{"id": "c093", "text": "Could you please keep the drones hovering where they are right now, the wind is picking up and I want to check the camera feeds", "expect": "ok", "params": {"behavior": "hover"}, "tags": ["hover", "default"]}
+{"id": "c094", "text": "tight V please, 0.8 m between each", "expect": "ok", "params": {"behavior": "formation", "shape": "v", "spacing_m": 0.8}, "tags": ["formation"]}
+{"id": "c095", "text": "we want to demo the flocking to the visitors, so set them loose as a flock with separation 3", "expect": "ok", "params": {"behavior": "boids", "separation": 3}, "tags": ["boids"]}
+{"id": "c096", "text": "ok team, same as before please", "expect": "clarify", "tags": ["unclear-behavior"]}
+{"id": "c097", "text": "V formation with spacing 0.5 m", "expect": "refuse", "tags": ["range"]}
+{"id": "c098", "text": "scan the forest, search grid", "expect": "ok", "params": {"behavior": "search_grid", "area": "east woods"}, "tags": ["search_grid", "alias"]}
+{"id": "c099", "text": "oversee the schoolyard from a 100 m radius ring", "expect": "ok", "params": {"behavior": "perimeter", "area": "school", "radius_m": 100}, "tags": ["perimeter", "no-fly"]}
+{"id": "c100", "text": "folow the person, 1 m distance", "expect": "ok", "params": {"behavior": "person_follow", "distance_m": 1}, "tags": ["person_follow", "typo"]}
+{"id": "c101", "text": "lght shw: pulse, 200 bpm", "expect": "ok", "params": {"behavior": "light_show", "pattern": "pulse", "bpm": 200}, "tags": ["light_show", "typo"]}
+{"id": "c102", "text": "Search that way", "expect": "clarify", "tags": ["search_grid", "unknown-place"]}
+{"id": "c103", "text": "strobe the LEDs to 300 bpm for the finale", "expect": "refuse", "tags": ["range"]}
+{"id": "c104", "text": "wind's picking up and the packs are sagging, so everybody back to the launch pad now", "expect": "ok", "params": {"behavior": "rth"}, "tags": ["rth", "alias"]}
+{"id": "c105", "text": "hold them a mere 0.5 m off the ground", "expect": "ok", "params": {"behavior": "hover", "alt_m": 0.5}, "tags": ["hover"]}
+{"id": "c106", "text": "grid of drones at twenty-five metres up", "expect": "ok", "params": {"behavior": "formation", "shape": "grid", "alt_m": 25}, "tags": ["formation"]}
+{"id": "c107", "text": "boyds, separation 0.5", "expect": "ok", "params": {"behavior": "boids", "separation": 0.5}, "tags": ["boids", "typo"]}
+{"id": "c108", "text": "scan the scrub west of the woods", "expect": "clarify", "tags": ["search_grid", "unknown-place"]}
+{"id": "c109", "text": "park at a hundred and twenty feet for the aerial shot", "expect": "refuse", "tags": ["range", "feet"]}
+{"id": "c110", "text": "sector sweep, lanes over the field to the north, 12 m altitude, hikers reported there", "expect": "ok", "params": {"behavior": "search_grid", "area": "north field", "alt_m": 12}, "tags": ["search_grid", "alias"]}
+{"id": "c111", "text": "hold a tiny loop around the field to the north, radius 2.5 m, to protect the seedlings", "expect": "ok", "params": {"behavior": "perimeter", "area": "north field", "radius_m": 2.5}, "tags": ["perimeter", "alias"]}
+{"id": "c112", "text": "follow whoever the scout sees with min conf 0.5", "expect": "ok", "params": {"behavior": "person_follow", "min_conf": 0.5}, "tags": ["person_follow"]}
+{"id": "c113", "text": "birthday party mode: sparkle effect on the LEDs, super slow at 40 bpm", "expect": "ok", "params": {"behavior": "light_show", "pattern": "sparkle", "bpm": 40}, "tags": ["light_show"]}
+{"id": "c114", "text": "ok we're done, bring 'em in to the base station", "expect": "ok", "params": {"behavior": "rth"}, "tags": ["rth"]}
+{"id": "c115", "text": "just the standard sequence, you know", "expect": "clarify", "tags": ["unclear-behavior"]}
+{"id": "c116", "text": "boids with an altitude of 10 m", "expect": "refuse", "tags": ["wrong-param"]}
+{"id": "c117", "text": "stabilise in place around 15 feet, everyone", "expect": "ok", "params": {"behavior": "hover", "alt_m": 4.57}, "tags": ["hover", "feet"]}
+{"id": "c118", "text": "make a grid formation, 40 feet up", "expect": "ok", "params": {"behavior": "formation", "shape": "grid", "alt_m": 12.19}, "tags": ["formation", "feet"]}
+{"id": "c119", "text": "flock, and give them maximum separation of five", "expect": "ok", "params": {"behavior": "boids", "separation": 5}, "tags": ["boids"]}
+{"id": "c120", "text": "orbit the lighthouse at 8 metres up", "expect": "clarify", "tags": ["perimeter", "unknown-place"]}
+{"id": "c121", "text": "circle the barn, with 3 m of spacing between drones", "expect": "refuse", "tags": ["wrong-param"]}
+{"id": "c122", "text": "do a lawnmower search of base", "expect": "ok", "params": {"behavior": "search_grid", "area": "home"}, "tags": ["search_grid", "alias"]}
+{"id": "c123", "text": "hold the school's boundary, mount guard there at 6 ft altitude", "expect": "ok", "params": {"behavior": "perimeter", "area": "school", "alt_m": 1.83}, "tags": ["perimeter", "feet", "no-fly"]}
+{"id": "c124", "text": "the lost walker is on the ridge path; tail him keeping a gap of 10 metres, altitude one and a half metres", "expect": "ok", "params": {"behavior": "person_follow", "distance_m": 10, "alt_m": 1.5}, "tags": ["person_follow"]}
+{"id": "c125", "text": "run the leds in a chase, slow tempo of seventy", "expect": "ok", "params": {"behavior": "light_show", "pattern": "chase", "bpm": 70}, "tags": ["light_show"]}
+{"id": "c126", "text": "look for the dog along the creek, search it", "expect": "clarify", "tags": ["search_grid", "unknown-place"]}
+{"id": "c127", "text": "show me the battery levels", "expect": "refuse", "tags": ["out-of-domain"]}
+{"id": "c128", "text": "lift and hold at the ceiling, thirty metres", "expect": "ok", "params": {"behavior": "hover", "alt_m": 30}, "tags": ["hover"]}
+{"id": "c129", "text": "line up single file, 10 m apart", "expect": "ok", "params": {"behavior": "formation", "shape": "line", "spacing_m": 10}, "tags": ["formation"]}
+{"id": "c130", "text": "move them to where we need them", "expect": "clarify", "tags": ["unclear-behavior"]}
+{"id": "c131", "text": "have them cycle rainbow lights as they arrange into a V", "expect": "refuse", "tags": ["two-behaviours"]}
+{"id": "c132", "text": "free roam like birds, cohesion 1.5 and alignment 2", "expect": "ok", "params": {"behavior": "boids", "cohesion": 1.5, "alignment": 2}, "tags": ["boids"]}
+{"id": "c133", "text": "search grid of the schoolyard", "expect": "ok", "params": {"behavior": "search_grid", "area": "school"}, "tags": ["search_grid", "alias", "no-fly"]}
+{"id": "c134", "text": "ring the area, maybe 25 m out", "expect": "clarify", "tags": ["perimeter", "no-place"]}
+{"id": "c135", "text": "search the garage", "expect": "clarify", "tags": ["search_grid", "unknown-place"]}
+{"id": "c136", "text": "perimeter of the orchard with radius 150 m", "expect": "refuse", "tags": ["range"]}
+{"id": "c137", "text": "Flash the lights in a wave pattern for the crowd", "expect": "ok", "params": {"behavior": "light_show", "pattern": "wave"}, "tags": ["light_show"]}
+{"id": "c138", "text": "Mount guard over here", "expect": "ok", "params": {"behavior": "perimeter", "area": "home"}, "tags": ["perimeter", "alias"]}
+{"id": "c139", "text": "follow the person, require 99% sure", "expect": "ok", "params": {"behavior": "person_follow", "min_conf": 0.99}, "tags": ["person_follow"]}
+{"id": "c140", "text": "orbit about thirty feet off, something's fishy", "expect": "clarify", "tags": ["perimeter", "no-place"]}
+{"id": "c141", "text": "follow the guy, stay 15 metres behind him", "expect": "refuse", "tags": ["range"]}
+{"id": "c142", "text": "that's a wrap, back to base", "expect": "ok", "params": {"behavior": "rth"}, "tags": ["rth", "alias"]}
+{"id": "c143", "text": "hang just one point five metres above ground, motionless", "expect": "ok", "params": {"behavior": "hover", "alt_m": 1.5}, "tags": ["hover"]}
+{"id": "c144", "text": "grid layout, radius ten metres", "expect": "refuse", "tags": ["formation", "wrong-param"]}
+{"id": "c145", "text": "pick up where we left off", "expect": "clarify", "tags": ["unclear-behavior"]}
+{"id": "c146", "text": "lanes over the car park, down at 0.2 m, so the camera sees under the cars", "expect": "refuse", "tags": ["range"]}
+{"id": "c147", "text": "time to head back to where we launched, wrap it up", "expect": "ok", "params": {"behavior": "rth"}, "tags": ["rth"]}
+{"id": "c148", "text": "freeze at 3 m and make them 2 m apart", "expect": "refuse", "tags": ["hover", "wrong-param"]}
+{"id": "c149", "text": "a V, flown at 18 ft", "expect": "ok", "params": {"behavior": "formation", "shape": "v", "alt_m": 5.49}, "tags": ["formation", "feet"]}
+{"id": "c150", "text": "search grid of the meadow", "expect": "clarify", "tags": ["search_grid", "unknown-place"]}

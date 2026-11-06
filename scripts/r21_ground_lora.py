@@ -9,6 +9,9 @@ python scripts/r21_ground_lora.py report
 python scripts/r21_ground_lora.py fit --seed 1          # R21b: the replicate seed
 python scripts/r21_ground_lora.py run --system lora --seed 1 --split sealed-b
 python scripts/r21_ground_lora.py report-b
+# R21c: G14c's fresh sealed set, once per system (the 14B through scripts/r16_ground_station.py)
+python scripts/r21_ground_lora.py run --system lora --seed 0 --split sealed-c   # also --seed 1, asis
+python scripts/r21_ground_lora.py report-c
 
 Everything is written under ``D:/Projects/genetic-coil-arena-data/r21_ground_lora``;
 ``report`` writes ``docs/results/r21_ground_lora.{md,json}``. The sealed set is run once
@@ -29,8 +32,10 @@ from genetic_coil_arena.experiments import r16_sealed  # noqa: E402
 from genetic_coil_arena.experiments import r21_ground_lora as rg  # noqa: E402
 
 G14B = Path("docs/results/r16b_ground_station.json")
-Q14_ROWS = Path("D:/Projects/genetic-coil-arena-gpu-results/runs/r16b-sealed-q14/artifacts/"
-                "r16_sealed-b_ollama_qwen2.5-coder_14b.jsonl")  # G14b's per-item rows
+Q14_ROWS = Path(
+    "D:/Projects/genetic-coil-arena-gpu-results/runs/r16b-sealed-q14/artifacts/"
+    "r16_sealed-b_ollama_qwen2.5-coder_14b.jsonl"
+)  # G14b's per-item rows
 BARS = {"exact": 0.90, "wrong": 0.03, "wrong_hi": 0.06}
 EDIT_POINTS = 0.10  # editing matters: exact at least 10 points above the 7B as is
 
@@ -114,7 +119,9 @@ def cmd_run(args) -> None:
     out = rg.DATA_DIR / "runs" / f"{name}_{args.split}.jsonl"
     if args.split != "dev" and out.exists():
         raise SystemExit(f"{out} exists: the sealed set is run once per system")
-    items = r16_sealed.load_sealed(b=True) if args.split == "sealed-b" else r16_sealed.load_dev()
+    items = (r16_sealed.load_sealed(b=True) if args.split == "sealed-b"
+             else r16_sealed.load_sealed(c=True) if args.split == "sealed-c"
+             else r16_sealed.load_dev())  # fmt: skip
     net, tok = rg.load_model(adapter_path(args.seed) if args.system == "lora" else None)
     net.eval()
     tr = rg.translator(net, tok, f"{rg.BASE}+{name}")
@@ -269,7 +276,6 @@ def render(rep: dict) -> str:
     return "\n".join(lines)
 
 
-
 def passes(s: dict) -> bool:
     return bool(s["exact"][0] >= BARS["exact"] and s["wrong_commands"][0] <= BARS["wrong"]
                 and s["wrong_commands"][2] <= BARS["wrong_hi"])  # fmt: skip
@@ -308,6 +314,65 @@ def cmd_report_b(_args) -> None:
     log(f"R21b: {rep['verdict']}")
 
 
+Q14_C_ROWS = rg.DATA_DIR / "runs" / "q14" / "r16_sealed-c_ollama_qwen2.5-coder_14b.jsonl"
+C_SYSTEMS = (("lora", "seed 0 (R21)"), ("lora_s1", "seed 1 (R21b)"), ("asis", "7B as is"))
+
+
+def cmd_report_c(_args) -> None:
+    """R21c: both QLoRA adapters on G14c's fresh sealed set, G17's bars for each; the 7B and
+    the 14B as is measured with no bar. No request text or param is stored or printed: the
+    set stays sealed for the next change."""
+    rows = {name: rows_of(name, "sealed-c") for name, _ in C_SYSTEMS}
+    if Q14_C_ROWS.exists():
+        rows["q14"] = [json.loads(x) for x in Q14_C_ROWS.read_text("utf-8").splitlines()
+                       if x.strip()]  # fmt: skip
+    if rows["lora"] is None or rows["lora_s1"] is None:
+        raise SystemExit("both adapters' G14c runs are needed")
+    sums = {name: summarise(r) for name, r in rows.items() if r is not None}
+    kill = any(sums[a]["exact"][0] < 0.80 or sums[a]["wrong_commands"][0] > 0.10
+               for a in ("lora", "lora_s1"))  # fmt: skip
+    verdict = ("PASS" if passes(sums["lora"]) and passes(sums["lora_s1"])
+               else "KILL" if kill else "NOT PASSED")  # fmt: skip
+    paired = {f"{a}_vs_{b}": mcnemar(rows[a], rows[b])
+              for a, b in (("lora_s1", "lora"), ("lora_s1", "asis"), ("lora_s1", "q14"))
+              if rows.get(b) is not None}  # fmt: skip
+    rep = {"bars": BARS, "verdict": verdict, "systems": sums, "paired_exact": paired,
+           "outcomes": {name: dict(collections.Counter(
+               f"{x['expect']} -> {x['outcome']}" for x in r if not x["correct"]))
+               for name, r in rows.items() if r is not None},
+           "miss_ids": {name: [x["id"] for x in r if not x["correct"]]
+                        for name, r in rows.items() if r is not None}}  # fmt: skip
+    names = dict(C_SYSTEMS) | {"q14": "14B as is (deployed before R21)"}
+    lines = ["# R21c: the ground station's QLoRA edit on a fresh sealed set (G14c)", "",
+             f"**{verdict}** (G17's bars for each adapter: exact >= 90% of the ok items, wrong "
+             "commands <= 3% with the Wilson upper bound <= 6%; KILL if exact < 80% or wrong "
+             "commands > 10%). G14c: 150 requests (90 / 30 / 30) written by a separate agent "
+             "from G14b's label guide alone, after both adapters were trained; run once per "
+             "system.", "",
+             "| System | Exact (ok items) | Wrong commands | Asked when unclear | "
+             "Refused when it should | Correct overall | Passes |", "|---|---|---|---|---|---|---|"]  # fmt: skip
+    for name, sm in sums.items():
+        mark = ("yes" if passes(sm) else "no") if name.startswith("lora") else "(no bar)"
+        lines.append(f"| {names[name]} | {pct(sm['exact'])} | {pct(sm['wrong_commands'])} | "
+                     f"{pct(sm['asked_when_unclear'])} | {pct(sm['refused_when_should'])} | "
+                     f"{pct(sm['correct'])} | {mark} |")  # fmt: skip
+    lines += ["", "Paired exact matches on the ok items (exact McNemar):", ""]
+    for key, m in paired.items():
+        a, b = key.split("_vs_")
+        lines.append(f"- {names[a]} only {m['a_only']}, {names[b]} only {m['b_only']} "
+                     f"(p = {m['p']:.3g}).")  # fmt: skip
+    lines += ["", "Misses by kind (expected -> got):", ""]
+    for name, kinds in rep["outcomes"].items():
+        lines.append(f"- {names[name]}: " + (", ".join(f"{k} {v}" for k, v in sorted(kinds.items()))
+                                             or "none"))  # fmt: skip
+    lines += ["", "Request texts are not shown, so the set can test the next change. "
+              "Reproduce: `python scripts/r21_ground_lora.py report-c`.", ""]  # fmt: skip
+    out = Path("docs/results/r21c_fresh_sealed.md")
+    out.write_text("\n".join(lines), "utf-8")
+    out.with_suffix(".json").write_text(json.dumps(rep, indent=1), "utf-8")
+    log(f"R21c: {verdict}")
+
+
 def main() -> None:
     p = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -318,13 +383,14 @@ def main() -> None:
     f.add_argument("--epochs", type=int, default=3)
     r = sub.add_parser("run")
     r.add_argument("--system", choices=("asis", "lora"), required=True)
-    r.add_argument("--split", choices=("dev", "sealed-b"), required=True)
+    r.add_argument("--split", choices=("dev", "sealed-b", "sealed-c"), required=True)
     r.add_argument("--seed", type=int, default=0, help="the LoRA's training seed")
     sub.add_parser("report")
     sub.add_parser("report-b")
+    sub.add_parser("report-c")
     args = p.parse_args()
     {"data": cmd_data, "audit": cmd_audit, "fit": cmd_fit, "run": cmd_run, "report": cmd_report,
-     "report-b": cmd_report_b}[args.cmd](args)  # fmt: skip
+     "report-b": cmd_report_b, "report-c": cmd_report_c}[args.cmd](args)  # fmt: skip
 
 
 if __name__ == "__main__":
