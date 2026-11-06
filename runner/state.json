@@ -3,22 +3,29 @@
   "host": "PC",
   "draining_for_update": false,
   "cpu_budget": 24,
-  "cpu_workers_in_use": 0,
-  "running": [],
+  "cpu_workers_in_use": 2,
+  "running": [
+    {
+      "id": "ci-2bf13fc9c753",
+      "lane": "cpu",
+      "cpu_workers": 2,
+      "started_at": "2026-11-06T18:37:17+00:00"
+    }
+  ],
   "backlog": {
     "ready": [],
     "blocked": []
   },
   "idle_since": {
-    "cpu": "2026-11-05T04:15:55+00:00",
-    "gpu": "2026-10-30T13:08:57+00:00"
+    "cpu": "2026-11-06T18:36:57+00:00",
+    "gpu": "2026-11-06T18:36:57+00:00"
   },
   "psutil": true,
-  "updated_at": "2026-11-05T04:51:44+00:00",
-  "cpu_percent": 5.0,
+  "updated_at": "2026-11-06T18:37:17+00:00",
+  "cpu_percent": 0.0,
   "gpu": {
-    "util": 5.0,
-    "mem_used_mb": 1410.0,
+    "util": 15.0,
+    "mem_used_mb": 9472.0,
     "mem_total_mb": 12282.0
   }
 }
