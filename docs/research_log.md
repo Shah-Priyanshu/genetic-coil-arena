@@ -947,6 +947,34 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r25c_clear
 - **Report:** docs/results/r25c_camera_clear.md
 
+### R26 (G22): R19's confirmer on MaixCAM's NPU
+- **Date:** 2026-11-06
+- **Question:** R19's confirmer (DINOv2-small fine-tuned) runs on a GPU, at the ground station or on a Jetson-class companion computer. Can the confirming drone's own camera module, a MaixCAM-class SG2002 (cv181x NPU) that R24b showed runs the 448 scout brain, run it instead?
+- **Why:** If it can, the confirming drone needs no companion computer, and one module type serves both roles.
+- **What we did:**
+  - **Compile:** the chosen confirmer (336-px input, position embedding precomputed) with tpu-mlir 1.30.2 for cv181x in BF16, the camera's uint8 RGB in with the normalisation fused.
+  - **Probe before pre-registration (val, 64 crops):** BF16 correlated 0.9999 with float; INT8 with tpu-mlir's default calibration only 0.95 (1 in 8 crops on the wrong side of zero), so INT8 was not tested.
+  - **Test:** 600 people and 600 non-persons drawn at random from R19's 11,639 test-dev candidates, in tpu-mlir's cv181x simulator (about 2 hours on 20 CPU workers), against the same model in fp32 on the same uint8 views, at R19's threshold.
+  - **Bars, fixed before any test-dev crop was simulated:** PASS if decisions agree on at least 99% of the sampled people and of the sampled non-persons, and the AUC is within 0.005 of float's. KILL below 95%.
+- **Result:**
+
+  | | Float (fp32) | cv181x BF16 |
+  |---|---|---|
+  | Decisions agree, people | | 99.8% [99.1, 100] (1 of 600 differ) |
+  | Decisions agree, non-persons | | 99.5% [98.5, 99.8] (3 of 600 differ) |
+  | AUC on the sample | 0.9192 | 0.9196 |
+  | People kept / non-persons passed | 92.3% / 21.7% | 92.2% / 22.2% |
+
+  - **The logits barely move:** mean absolute difference 0.050, correlation 0.99986.
+  - **Size:** a 50 MB model needing 56.5 MB of NPU memory, against 2.5 MB for the scout brain.
+- **Verdict:** PASS: COMPILED IN BF16 FOR MAIXCAM'S cv181x NPU, R19'S CONFIRMER AGREES WITH FLOAT ON 99.8% OF PEOPLE AND 99.5% OF NON-PERSONS (AUC 0.9196 AGAINST 0.9192)
+- **What it means:**
+  - **On numbers, one MaixCAM-class module can be both the scout's camera and the confirmer.** The 448 scout brain (R24b) and this confirmer together need about 59 MB of NPU memory, within the module's 256 MB.
+  - **Speed is the open question.** DINOv2-small at 336 px is about 11 GFLOPs per crop, and cv181x runs BF16 slower than its 1 TOPS of INT8. A confirmer only checks a few candidates per frame, but the frame rate needs a module.
+  - **A smaller or faster confirmer would need mixed precision:** plain INT8 lost too much, so the next step is INT8 with the sensitive layers kept in BF16.
+- **Chart:** r26_confirmer_npu
+- **Report:** docs/results/r26_confirmer_npu.md
+
 ### R15c probe: does a bigger camera input change recall per pixel?
 - **Date:** 2026-10-30
 - **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?

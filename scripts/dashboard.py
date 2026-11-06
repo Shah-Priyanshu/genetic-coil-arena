@@ -325,6 +325,9 @@ HOW_TO_READ = {
     "blind (chain hidden). Left: what those false alarms are (people VisDrone did not label, unclear, "
     "clearly not a person). Right: clear non-persons passed per frame, with the dotted PASS bar at "
     "0.67x the 224 chain.",
+    "r26_confirmer_npu": "R19's confirmer in fp32 and compiled in BF16 for MaixCAM's cv181x NPU (tpu-mlir simulator), "
+    "on 600 people and 600 non-persons from VisDrone test-dev at R19's threshold: the share of people kept "
+    "and of non-persons passed, with 95% Wilson intervals.",
     "r25_camera": "VisDrone test-dev at native scale, per frame: the 224-px and 448-px "
     "scout brains (seeds 0 and 1) followed by a confirmer whose threshold keeps 95% of "
     "that scout's val people. Left: labelled false alarms per frame, raised by the scout "
@@ -1001,6 +1004,20 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
         fig.update_layout(barmode="group", title=(
             f"R25: the 448-px camera through the confirmer ({verdicts})"))  # fmt: skip
         figs["r25_camera"] = fig
+    npu = read_json(res / "r26_confirmer_npu.json")
+    if npu and "verdict" in npu:
+        t = npu["test"]
+        fig = go.Figure()
+        for key, name, colour in (("float", "fp32 (CPU)", "#37474f"),
+                                  ("bf16", "BF16 (cv181x simulator)", "#ef6c00")):  # fmt: skip
+            fig.add_trace(go.Bar(x=["people kept", "non-persons passed"],
+                                 y=[100 * t["keep"][key], 100 * t["pass"][key]], name=name,
+                                 marker_color=colour))  # fmt: skip
+        a, b = t["people"]["wilson"][0], t["non_persons"]["wilson"][0]
+        fig.update_layout(barmode="group", yaxis_title="%", title=(
+            f"R26: the confirmer on MaixCAM's NPU ({npu['verdict']}; decisions agree "
+            f"{100 * a:.1f}% / {100 * b:.1f}%)"))  # fmt: skip
+        figs["r26_confirmer_npu"] = fig
     clear = read_json(res / "r25c_camera_clear.json")
     if clear and "verdict" in clear:
         from plotly.subplots import make_subplots

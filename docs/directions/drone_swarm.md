@@ -684,6 +684,8 @@ With 92% of people kept, the search meets its limits only if the chain (scout, c
 
 **Limits.** The simulator checks numbers, not speed: frames per second and power need a module. DINOv2-small at 336 px is about 11 GFLOPs per crop, and cv181x is rated at 1 TOPS in INT8, with BF16 slower; a confirmer checks a few candidates per frame, not every frame. The NPU memory (56 MB in BF16) must fit beside the scout brain in the module's 256 MB.
 
+**Result (2026-11-06): PASS.** On 600 people and 600 non-persons from test-dev, the BF16 model's decision agrees with float's on 99.8% of the people and 99.5% of the non-persons (1 and 3 differ); AUC 0.9196 against 0.9192. So on numbers one MaixCAM-class module can be both the scout's camera and the confirmer (about 59 MB of NPU memory together). Frame rate on the module is the open number; a faster confirmer would need INT8 with the sensitive layers kept in BF16.
+
 ## R27: a ground-station vision-language model as the final check (pre-registered 2026-11-06, goal G23)
 
 **Question.** R17 step 6b found the operator's false-accept rate on empty views to be the search's most sensitive assumption, and step 6h asks the chain to pass about a third fewer empty candidates. Can a vision-language model on the ground station's GPU look at each candidate the confirmer chain passes and reject half of the clear non-persons, while keeping the people?
