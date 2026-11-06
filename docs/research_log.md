@@ -641,7 +641,7 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
   - **Keyword rules don't carry to a new writer's wording.** Written on training-style phrasing, they cover 47% of that pool's refusals but 23% of G14c's, and they start misfiring on requests that should run. The G14c writer was asked for distinctive wording, so this is a harder test than a deployment might be, but operators do not speak like the training set either.
   - **Seed 0's wrong commands are mostly not of the kinds the rules cover.** Four of five lie outside them, so a bigger keyword list is not the fix.
   - **Decision: stay on v5 with the seed-1 adapter.** v6 costs an exact match and buys one refusal.
-  - **What would make safety independent of the seed** is evidence from more than one model: run a command only when two independently trained adapters agree on it, and ask otherwise. That must be designed on dev and tested on a fresh set, because G14c's per-system rows are now known.
+  - **A two-adapter agreement rule does not help either (exploration, development data only).** On dev and on G14's spent sealed set, both seeds refuse every request they should (12/12, 30/30) and send the same one wrong command. Running a command only when both adapters agree would cost 3 exact matches on the spent set (84 → 81 of 90) and remove no wrong command, so it is not worth a fresh sealed set. Seed 0's refusal weakness shows only on G14c's wording.
 - **Chart:** r21c_fresh_sealed
 - **Report:** docs/results/r21d_code_refusals.md
 

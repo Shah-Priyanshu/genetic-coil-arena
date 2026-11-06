@@ -120,9 +120,10 @@ def system_name(system: str, seed: int) -> str:
 def cmd_run(args) -> None:
     name = system_name(args.system, args.seed) + ("_v6" if args.station == "v6" else "")
     out = rg.DATA_DIR / "runs" / f"{name}_{args.split}.jsonl"
-    if args.split != "dev" and out.exists():
+    if args.split.startswith("sealed") and out.exists():
         raise SystemExit(f"{out} exists: the sealed set is run once per system")
-    items = (r16_sealed.load_sealed(b=True) if args.split == "sealed-b"
+    items = (r16_sealed.load_sealed() if args.split == "spent-a"  # G14's set, spent: a dev set
+             else r16_sealed.load_sealed(b=True) if args.split == "sealed-b"
              else r16_sealed.load_sealed(c=True) if args.split == "sealed-c"
              else r16_sealed.load_dev())  # fmt: skip
     net, tok = rg.load_model(adapter_path(args.seed) if args.system == "lora" else None)
@@ -425,7 +426,7 @@ def main() -> None:
     f.add_argument("--epochs", type=int, default=3)
     r = sub.add_parser("run")
     r.add_argument("--system", choices=("asis", "lora"), required=True)
-    r.add_argument("--split", choices=("dev", "sealed-b", "sealed-c"), required=True)
+    r.add_argument("--split", choices=("dev", "spent-a", "sealed-b", "sealed-c"), required=True)
     r.add_argument("--seed", type=int, default=0, help="the LoRA's training seed")
     r.add_argument("--station", choices=("v5", "v6"), default="v5",
                    help="v6: v5 plus ground.code_refusals (R21d)")  # fmt: skip
