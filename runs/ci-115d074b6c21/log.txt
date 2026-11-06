@@ -8,3 +8,49 @@
 ........................................................................ [ 31%]
 ..............................................................s......... [ 35%]
 ........................................................................ [ 39%]
+........................................................................ [ 43%]
+........................................................................ [ 47%]
+........................................................................ [ 51%]
+........................................................................ [ 55%]
+........................................................................ [ 59%]
+........................................................................ [ 63%]
+........................................................................ [ 67%]
+........................................................................ [ 71%]
+........................................................................ [ 75%]
+........................................................................ [ 79%]
+........................................................................ [ 83%]
+........................................................................ [ 87%]
+........................................................................ [ 91%]
+........................................................................ [ 95%]
+........................................................................ [ 99%]
+............                                                             [100%]
+================================== FAILURES ===================================
+_____________ test_research_log_parses_and_cites_existing_reports _____________
+
+    def test_research_log_parses_and_cites_existing_reports():
+        log = dashboard.parse_research_log(
+            (ROOT / "docs" / "research_log.md").read_text(encoding="utf-8")
+        )
+        assert "end goal" in log["intro"].lower()
+        entries = [e for t in log["tracks"] for e in t["entries"]]
+        assert len(log["tracks"]) >= 5 and len(entries) >= 15
+        for e in entries:
+            for field in (
+                "Question",
+                "Why",
+                "What we did",
+                "Result",
+                "Verdict",
+                "What it means",
+            ):
+>               assert e.get(field), (e["title"], field)
+E               AssertionError: ('R19 (G15): can a fine-tuned open-weight model stop the false alarms before the operator?', 'What we did')
+E               assert ''
+E                +  where '' = <built-in method get of dict object at 0x0000017390F19640>('What we did')
+E                +    where <built-in method get of dict object at 0x0000017390F19640> = {'title': 'R19 (G15): can a fine-tuned open-weight model stop the false alarms before the operator?', 'Date': '2026-11...(G3b, the small translator) failed on a shift in phrasing, so it was open whether editing weights pays off here.', ...}.get
+
+tests\test_dashboard.py:61: AssertionError
+=========================== short test summary info ===========================
+SKIPPED [1] tests\test_experiments_r7a.py:479: CPU-lane runner job: the GPU may be in use
+FAILED tests/test_dashboard.py::test_research_log_parses_and_cites_existing_reports
+1 failed, 1810 passed, 1 skipped in 153.32s (0:02:33)
