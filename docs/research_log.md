@@ -975,6 +975,34 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r26_confirmer_npu
 - **Report:** docs/results/r26_confirmer_npu.md
 
+### R27 (G23): a ground-station vision-language model as the final check
+- **Date:** 2026-11-06
+- **Question:** Can a vision-language model on the ground station's GPU look at each candidate the confirmer chain passes and reject half of the clear non-persons, while keeping the people?
+- **Why:** R17 step 6b found the operator's false-accept rate to be the search's most sensitive assumption, and step 6h asks the chain to pass about a third fewer empty candidates. R20b and R25c's blind labels are the first clean ground truth on which an automatic last look can be measured.
+- **What we did:**
+  - **Model:** Qwen3-VL-8B-Instruct in 4-bit, unchanged, shown R19's eval view at 448 px and asked whether a person is at the centre; score = logit Yes minus No.
+  - **Dev (variant and threshold):** R20 and R20b's 744 blind-labelled spots plus 200 VisDrone people (53 clear non-persons). Two prompt variants, plain and with a magenta cross at the centre. The threshold keeps 95% of dev people; the variant rejecting most dev clear non-persons was chosen: the marked one.
+  - **Test, once:** R25c's blind-labelled spots plus 100 VisDrone people passed per chain, minus 398 spots near a dev spot: 1,602 spots, 56 clear non-persons, 1,420 people.
+  - **Bars, fixed before any model score:** PASS if it rejects at least 50% of the test clear non-persons (lower bound at least 30%) and keeps at least 93% of the test people, each group at least 90%. KILL under 25%.
+- **Result:**
+
+  | Model, variant | Split | Clear non-persons rejected | Unclear rejected | People kept | AUC people vs clear |
+  |---|---|---|---|---|---|
+  | 8B, plain | dev | 24.5% | 2.4% | 95.3% | 0.750 |
+  | 8B, marked | dev | 52.8% | 32.5% | 95.7% | 0.890 |
+  | **8B, marked** | **test** | **39.3% [28, 52]** | 27.0% | **95.3%** | 0.828 |
+  | 2B, marked (no bar) | test | 53.6% [41, 66] | 22.2% | 95.1% | 0.847 |
+
+  - **The pre-registered 8B misses the 50% bar:** 39.3% of the test clear non-persons rejected, keeping 95.3% of the people. Not a KILL.
+  - **Marking the centre matters more than model size.** The cross doubled the 8B's rejections on dev (24.5% to 52.8%). On test the 2B, measured with no bar, rejected 53.6% at the same 95% keep.
+- **Verdict:** NOT PASSED: AT 95% OF PEOPLE KEPT, QWEN3-VL-8B REJECTS 39.3% [28, 52] OF THE CLEAR NON-PERSONS THE CHAIN PASSES (BAR 50%); THE 2B, MEASURED ALONGSIDE, REJECTS 53.6%
+- **What it means:**
+  - **A VLM last look removes a useful share of the empty spots, not half.** At 39% it would cut the chain's clear non-persons to about 0.61x, which is near what R17 step 6h asks for (0.63x at the mission's cost), at the price of 5% of the people. Whether that nets out in the search needs the mission simulator, which has not been run with these numbers.
+  - **The 2B result cannot be claimed.** It was measured, not chosen; testing it as a system needs labels it has not seen. Both models' intervals overlap.
+  - **The labels are Claude's blind reading of the same 144-px views,** so this measures agreement with a stronger model's judgment, not truth from the scene.
+- **Chart:** r27_vlm_check
+- **Report:** docs/results/r27_vlm_check.md
+
 ### R15c probe: does a bigger camera input change recall per pixel?
 - **Date:** 2026-10-30
 - **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?

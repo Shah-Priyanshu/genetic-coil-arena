@@ -703,3 +703,5 @@ With 92% of people kept, the search meets its limits only if the chain (scout, c
 - Measured with no bar: unclear spots rejected, AUC people against clear non-persons, and the same variant with Qwen3-VL-2B.
 
 **Limits.** The labels are Claude subagents' blind judgments on the same 144-px views, so this measures agreement with a stronger model's reading, not ground truth from the scene. Only 56 test clear non-persons, so the interval is about +-13 points.
+
+**Result (2026-11-06): NOT PASSED.** The marked variant was chosen on dev (52.8% of dev clear non-persons rejected, against 24.5% plain). On test the 8B rejects 39.3% [28, 52] of the clear non-persons while keeping 95.3% of the people: short of the 50% bar, not a KILL. The 2B, measured alongside, rejects 53.6% [41, 66] at the same keep, so marking the centre mattered more than model size. A 39% cut would bring the chain's clear non-persons to about 0.61x, close to R17 step 6h's ask, at 5% of the people; the mission simulator has not yet been run with these numbers.

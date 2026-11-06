@@ -328,6 +328,9 @@ HOW_TO_READ = {
     "r26_confirmer_npu": "R19's confirmer in fp32 and compiled in BF16 for MaixCAM's cv181x NPU (tpu-mlir simulator), "
     "on 600 people and 600 non-persons from VisDrone test-dev at R19's threshold: the share of people kept "
     "and of non-persons passed, with 95% Wilson intervals.",
+    "r27_vlm_check": "Qwen3-VL as the last look on the candidates the confirmer chain passes, at the threshold "
+    "that keeps 95% of the dev people: clear non-persons rejected (left) and people kept (right), with 95% "
+    "Wilson intervals; dotted lines are the bars (50% rejected, 93% kept).",
     "r25_camera": "VisDrone test-dev at native scale, per frame: the 224-px and 448-px "
     "scout brains (seeds 0 and 1) followed by a confirmer whose threshold keeps 95% of "
     "that scout's val people. Left: labelled false alarms per frame, raised by the scout "
@@ -1018,6 +1021,27 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
             f"R26: the confirmer on MaixCAM's NPU ({npu['verdict']}; decisions agree "
             f"{100 * a:.1f}% / {100 * b:.1f}%)"))  # fmt: skip
         figs["r26_confirmer_npu"] = fig
+    vlm = read_json(res / "r27_vlm_check.json")
+    if vlm and "verdict" in vlm:
+        from plotly.subplots import make_subplots
+
+        fig = make_subplots(rows=1, cols=2, subplot_titles=(
+            "clear non-persons rejected", "people kept"))  # fmt: skip
+        rows = [(f"{m} {v}, dev", r) for m, by in vlm["dev"].items() for v, r in by.items()]
+        rows += [(f"{m} {vlm['variant']}, test", r) for m, r in vlm["test"].items()]
+        xs = [n for n, _ in rows]
+        for col, key, colour, bar in ((1, "clear_rejected", "#c62828", 50),
+                                      (2, "people_kept", "#2e7d32", 93)):  # fmt: skip
+            v = [r[key] for _, r in rows]
+            fig.add_trace(go.Bar(x=xs, y=[100 * w[0] for w in v], marker_color=colour,
+                                 showlegend=False,
+                                 error_y={"type": "data", "array": [100 * (w[2] - w[0]) for w in v],
+                                          "arrayminus": [100 * (w[0] - w[1]) for w in v]}),
+                          1, col)  # fmt: skip
+            fig.add_hline(y=bar, line_dash="dot", line_color="#555", row=1, col=col)
+        fig.update_layout(yaxis_title="%", title=(
+            f"R27: a VLM last look at the ground station ({vlm['verdict']})"))  # fmt: skip
+        figs["r27_vlm_check"] = fig
     clear = read_json(res / "r25c_camera_clear.json")
     if clear and "verdict" in clear:
         from plotly.subplots import make_subplots
