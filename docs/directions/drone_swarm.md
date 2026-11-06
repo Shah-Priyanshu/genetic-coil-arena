@@ -683,3 +683,21 @@ With 92% of people kept, the search meets its limits only if the chain (scout, c
 - Measured with no bar: model size, NPU memory, the logit differences.
 
 **Limits.** The simulator checks numbers, not speed: frames per second and power need a module. DINOv2-small at 336 px is about 11 GFLOPs per crop, and cv181x is rated at 1 TOPS in INT8, with BF16 slower; a confirmer checks a few candidates per frame, not every frame. The NPU memory (56 MB in BF16) must fit beside the scout brain in the module's 256 MB.
+
+## R27: a ground-station vision-language model as the final check (pre-registered 2026-11-06, goal G23)
+
+**Question.** R17 step 6b found the operator's false-accept rate on empty views to be the search's most sensitive assumption, and step 6h asks the chain to pass about a third fewer empty candidates. Can a vision-language model on the ground station's GPU look at each candidate the confirmer chain passes and reject half of the clear non-persons, while keeping the people?
+
+**Why now.** R20b and R25c labelled the chain's passed false alarms blind: most are people VisDrone missed, a few percent are clearly not a person. Those labels are the first ground truth on which an automatic final check can be measured. R19 tried Qwen3-VL-2B against VisDrone's labels as the confirmer itself; this asks a model four times larger for the last look, against clean labels.
+
+**Set-up.**
+- **Model:** Qwen3-VL-8B-Instruct (Apache-2.0) in 4-bit NF4, unchanged. It sees R19's eval view (the centre 132 px of the 144-px crop at 448 px) and is asked whether a person is at the centre; the score is the logit of Yes minus No (R19's). Two prompt variants: plain, and with a magenta cross at the centre (as on the label sheets).
+- **Dev (variant and threshold):** R20 and R20b's 744 blind-labelled spots plus 200 VisDrone-labelled people from R20's candidates: 768 people, 53 clear non-persons, 123 unclear. The threshold keeps 95% of the dev people; the variant that rejects most dev clear non-persons at its threshold is chosen.
+- **Test, once:** R25c's blind-labelled spots of R25b's four chains plus 100 VisDrone people passed by each chain, minus 398 spots within 24 px of a dev spot in the same frame: 1,602 spots, 1,420 people, 56 clear non-persons, 126 unclear.
+
+**Bars, fixed before any model score.**
+- PASS if, at the dev threshold, the chosen variant rejects at least 50% of the test clear non-persons (Wilson lower bound at least 30%) and keeps at least 93% of the test people, with each group (blind-labelled people, VisDrone people) at least 90%.
+- KILL if it rejects under 25% of the test clear non-persons.
+- Measured with no bar: unclear spots rejected, AUC people against clear non-persons, and the same variant with Qwen3-VL-2B.
+
+**Limits.** The labels are Claude subagents' blind judgments on the same 144-px views, so this measures agreement with a stronger model's reading, not ground truth from the scene. Only 56 test clear non-persons, so the interval is about +-13 points.
