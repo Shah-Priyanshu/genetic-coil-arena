@@ -858,6 +858,36 @@ The user's drone platform, OpenSwarm (`D:\Projects\drone`), becomes the embodime
 - **Chart:** r25_camera
 - **Report:** docs/results/r25b_camera_own.md
 
+### R25c (G21c): the 448-px camera, counting only clear non-persons
+- **Date:** 2026-11-06
+- **Question:** R25 and R25b counted labelled false alarms, and R20b had found most of those are people VisDrone did not label. Counting only spots that are clearly not a person, does the 448 chain pass fewer than the 224 chain?
+- **Why:** If the 448 scout's extra passed "false alarms" are mostly real people, R25/R25b's KILLs measured label noise, and the camera purchase was being judged on the wrong count.
+- **What we did:**
+  - **Sample:** R25b's four chains and thresholds, nothing refit (224 seeds 0/1 with R19's confirmer, 448 seeds 0/1 with R25b's). Per chain, 400 of its passed test-dev false alarms drawn at random; 36 shown twice for consistency. 1,636 spots on 137 sheets in one random order, chain hidden.
+  - **Labels:** 12 Claude subagents, blind: is a person at the marked centre? person / not a person / unclear.
+  - **Count:** clear non-persons passed per frame = passed false alarms per frame x the share labelled not a person, with a frame bootstrap.
+  - **Bars, R25's, fixed before any label:** PASS if, pooled over seeds, the 448 chain passes at most 0.67x the 224 chain's (upper bound below 1), each seed at most 0.8x. KILL at 0.9x or more.
+- **Result:**
+
+  | Chain | Passed false alarms per frame | Unlabelled people | Unclear | Clearly not a person | Clear non-persons per frame |
+  |---|---|---|---|---|---|
+  | 224 px, seed 0 | 0.514 | 84% | 10% | 5.2% | 0.027 |
+  | 448 px, seed 0 | 0.647 | 90% | 7% | 3.0% | 0.019 |
+  | 224 px, seed 1 | 0.483 | 82% | 13% | 5.0% | 0.024 |
+  | 448 px, seed 1 | 0.673 | 87% | 10% | 3.0% | 0.020 |
+
+  - **The 448 chain passes fewer clearly empty spots, but not significantly:** 0.77x [0.46, 1.40] pooled (seeds 0.72x and 0.84x), above the 0.67x bar. Not a KILL.
+  - **Its extra passed "false alarms" are people.** 87-90% of the 448 chain's are people VisDrone did not label, against 82-84% of the 224 chain's.
+  - **Consistency:** 31 of the 36 repeated spots got the same label both times.
+- **Verdict:** NOT PASSED: COUNTING ONLY CLEAR NON-PERSONS, THE 448 CHAIN PASSES 0.77x [0.46, 1.40] OF THE 224 CHAIN'S PER FRAME; ITS EXTRA LABELLED FALSE ALARMS ARE MOSTLY PEOPLE VISDRONE MISSED
+- **What it means:**
+  - **R25 and R25b's KILLs were label noise, not a worse camera.** On labelled counts the 448 chain looked a third worse; on clearly empty spots it is, if anything, better. A 448 camera finds 2-3 points more labelled people, plus more people VisDrone missed, and does not pass more empty spots.
+  - **Whether it cuts empty spots by a third is not settled.** Only 20-21 clear non-persons per 224 chain sample and 12 per 448 sample; the interval runs from 0.46x to 1.40x. A larger labelled sample could settle it, at roughly 4x the labels for half the interval width.
+  - **For the purchase:** the case for a MaixCAM-class module now rests on more people found (R25, R25b), float accuracy after compiling (R24b) and no sign of more wrong finds (R25c). Frame rate on the module is the open number.
+  - **For the evaluation:** any future scout or confirmer comparison on VisDrone must count clear non-persons from blind labels; VisDrone's labelled false alarms are about 85% people.
+- **Chart:** r25c_clear
+- **Report:** docs/results/r25c_camera_clear.md
+
 ### R15c probe: does a bigger camera input change recall per pixel?
 - **Date:** 2026-10-30
 - **Question:** At a 448×448 input (what a bigger NPU camera module can run) instead of the K210's 224×224, does the scout brain find a person of a given size in pixels as often as before?

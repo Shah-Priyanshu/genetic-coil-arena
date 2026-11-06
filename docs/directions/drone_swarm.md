@@ -657,6 +657,8 @@ With 92% of people kept, the search meets its limits only if the chain (scout, c
 
 **Limits.** One labelling pass per spot. With roughly 7% of passed false alarms clearly not a person (R20b), each chain's sample holds only a few dozen, so the interval will be wide.
 
+**Result (2026-11-06): NOT PASSED.** Counting only clear non-persons, the 448 chain passes 0.77x [0.46, 1.40] of the 224 chain's per frame (seeds 0.72x and 0.84x): fewer, but not significantly, and above the 0.67x bar. 87-90% of the 448 chains' passed false alarms are people VisDrone did not label, against 82-84% of the 224 chains'; 3.0% are clearly not a person, against 5.0-5.2%. So R25 and R25b's KILLs measured label noise: the 448 camera finds more people and passes no more empty spots. Whether it cuts empty spots by a third needs a larger labelled sample (about 4x the labels to halve the interval).
+
 ## R26: R19's confirmer on MaixCAM's NPU (pre-registered 2026-11-04, goal G22)
 
 **Question.** R19's confirmer runs on a GPU: at the ground station, or on a Jetson-class companion computer on the confirming drone. R24b showed that a MaixCAM-class module (SG2002, cv181x NPU) runs the 448 scout brain at float accuracy. Can the same module also run the confirmer, so that the confirming drone needs no companion computer?

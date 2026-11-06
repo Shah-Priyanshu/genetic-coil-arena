@@ -1,0 +1,73 @@
+{
+ "chains": {
+  "s224_seed0": {
+   "confirmer": "r19",
+   "passed_false": 828,
+   "sampled": 400,
+   "person": 337,
+   "not_person": 21,
+   "ambiguous": 42,
+   "false_per_frame": 0.5142857142857142,
+   "clear_per_frame": 0.027
+  },
+  "s448_seed0": {
+   "confirmer": "own",
+   "passed_false": 1041,
+   "sampled": 400,
+   "person": 359,
+   "not_person": 12,
+   "ambiguous": 29,
+   "false_per_frame": 0.646583850931677,
+   "clear_per_frame": 0.019397515527950313
+  },
+  "s224_seed1": {
+   "confirmer": "r19",
+   "passed_false": 778,
+   "sampled": 400,
+   "person": 329,
+   "not_person": 20,
+   "ambiguous": 51,
+   "false_per_frame": 0.4832298136645963,
+   "clear_per_frame": 0.024161490683229814
+  },
+  "s448_seed1": {
+   "confirmer": "own",
+   "passed_false": 1083,
+   "sampled": 400,
+   "person": 349,
+   "not_person": 12,
+   "ambiguous": 39,
+   "false_per_frame": 0.6726708074534161,
+   "clear_per_frame": 0.020180124223602484
+  }
+ },
+ "seeds": {
+  "seed0": {
+   "ratio": [
+    0.7184265010351968,
+    0.3143115942028986,
+    1.5473801560758085
+   ],
+   "people_diff": 0.016543714849171
+  },
+  "seed1": {
+   "ratio": [
+    0.8352185089974294,
+    0.38649947417620945,
+    1.6903231729709882
+   ],
+   "people_diff": 0.026586808852530897
+  }
+ },
+ "n_frames": 1610,
+ "repeats_agree": [
+  31,
+  36
+ ],
+ "pooled_ratio": [
+  0.7735826150297439,
+  0.45877398046858053,
+  1.4041023713641763
+ ],
+ "verdict": "NOT PASSED"
+}

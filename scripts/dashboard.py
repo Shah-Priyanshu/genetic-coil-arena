@@ -318,6 +318,10 @@ HOW_TO_READ = {
     "(grey; heatmap steps of 0.19 logit) and, once run, R24b (orange; the heat conv "
     "calibrated to its clamp, steps of 0.031). Left: all people per seed, with the PASS "
     "bar (float minus 2 points) dotted; right: by person size (seed 0).",
+    "r25c_clear": "R25b's four chains on VisDrone test-dev, 400 passed false alarms each, labelled "
+    "blind (chain hidden). Left: what those false alarms are (people VisDrone did not label, unclear, "
+    "clearly not a person). Right: clear non-persons passed per frame, with the dotted PASS bar at "
+    "0.67x the 224 chain.",
     "r25_camera": "VisDrone test-dev at native scale, per frame: the 224-px and 448-px "
     "scout brains (seeds 0 and 1) followed by a confirmer whose threshold keeps 95% of "
     "that scout's val people. Left: labelled false alarms per frame, raised by the scout "
@@ -969,6 +973,35 @@ def build_charts(res: Path) -> dict[str, Any]:  # pragma: no cover - plotting
         fig.update_layout(barmode="group", title=(
             f"R25: the 448-px camera through the confirmer ({verdicts})"))  # fmt: skip
         figs["r25_camera"] = fig
+    clear = read_json(res / "r25c_camera_clear.json")
+    if clear and "verdict" in clear:
+        from plotly.subplots import make_subplots
+
+        fig = make_subplots(rows=1, cols=2, subplot_titles=(
+            "what the passed false alarms are", "clear non-persons passed per frame"))  # fmt: skip
+        names = {t: t.replace("s224_seed", "224 px, seed ").replace("s448_seed", "448 px, seed ")
+                 for t in clear["chains"]}  # fmt: skip
+        xs = [names[t] for t in clear["chains"]]
+        rows = list(clear["chains"].values())
+        for key, label, color in (("person", "unlabelled person", "#90a4ae"),
+                                  ("ambiguous", "unclear", "#cfd8dc"),
+                                  ("not_person", "clearly not a person", "#c62828")):  # fmt: skip
+            fig.add_trace(go.Bar(x=xs, y=[100 * r[key] / r["sampled"] for r in rows], name=label,
+                                 marker_color=color), 1, 1)  # fmt: skip
+        fig.add_trace(go.Bar(x=xs, y=[r["clear_per_frame"] for r in rows], showlegend=False,
+                             marker_color=["#37474f" if "224" in x else "#ef6c00" for x in xs]),
+                      1, 2)  # fmt: skip
+        for i, a in enumerate(t for t in clear["chains"] if "224" in t):
+            bar = 0.67 * clear["chains"][a]["clear_per_frame"]
+            fig.add_shape(type="line", x0=2 * i + 0.55, x1=2 * i + 1.45, y0=bar, y1=bar,
+                          line={"dash": "dot", "color": "#555"}, row=1, col=2)  # fmt: skip
+        fig.update_yaxes(title_text="% of the sample", row=1, col=1)
+        fig.update_yaxes(title_text="per frame", row=1, col=2)
+        pr = clear["pooled_ratio"]
+        fig.update_layout(barmode="stack", title=(
+            f"R25c: clear non-persons, 448 over 224 {pr[0]:.2f}x [{pr[1]:.2f}, {pr[2]:.2f}] "
+            f"({clear['verdict']})"))  # fmt: skip
+        figs["r25c_clear"] = fig
     inter = read_json(res / "r7e_interlingua.json")
     if inter:
         pts = [
