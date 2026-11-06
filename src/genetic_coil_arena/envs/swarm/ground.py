@@ -122,9 +122,7 @@ def find_place(name: str, site: Sequence[Place] = SITE) -> Place | None:
     key = key[4:] if key.startswith("the ") else key
     for p in site:
         names = [p.name, *p.aliases]
-        if key in {
-            _norm(n)[4:] if _norm(n).startswith("the ") else _norm(n) for n in names
-        }:
+        if key in {_norm(n)[4:] if _norm(n).startswith("the ") else _norm(n) for n in names}:
             return p
     return None
 
@@ -253,18 +251,12 @@ def check(params: Mapping[str, Any], state: SwarmState,
             "battery: only return-home or hover is allowed"
         )
     elif low and b not in ("rth", "hover"):
-        warns.append(
-            f"drone(s) {', '.join(map(str, low))} below {LOW_BATTERY_PCT}% battery"
-        )
+        warns.append(f"drone(s) {', '.join(map(str, low))} below {LOW_BATTERY_PCT}% battery")
     alt = params.get("alt_m")
     if state.indoor and alt is not None and alt > INDOOR_ALT_MAX_M:
-        blocks.append(
-            f"indoors the swarm flies on optical flow, limited to {INDOOR_ALT_MAX_M:g} m"
-        )
+        blocks.append(f"indoors the swarm flies on optical flow, limited to {INDOOR_ALT_MAX_M:g} m")
     if b == "person_follow" and not any(d.has_vision for d in state.drones):
-        blocks.append(
-            "person-follow needs a scout with a vision module; none is flying"
-        )
+        blocks.append("person-follow needs a scout with a vision module; none is flying")
     if b == "formation":
         need = MIN_DRONES[params.get("shape", BEHAVIOR_PARAMS["formation"]["shape"])]
         if 0 < n < need:
@@ -313,9 +305,7 @@ def encode(params: Mapping[str, Any], site: Sequence[Place] = SITE) -> bytes:
         body.update(p=PATTERNS[p["pattern"]], t=int(p["bpm"]))
     raw = json.dumps(body, separators=(",", ":")).encode() if body else b""
     if len(raw) > PARAMS_MAX:
-        raise ValueError(
-            f"params need {len(raw)} bytes, BEHAVIOR_CMD holds {PARAMS_MAX}"
-        )
+        raise ValueError(f"params need {len(raw)} bytes, BEHAVIOR_CMD holds {PARAMS_MAX}")
     return bytes([BEHAVIORS[b], len(body)]) + raw.ljust(PARAMS_MAX, b"\0")
 
 
@@ -375,9 +365,7 @@ def _number_tokens(text: str) -> list[str | float]:
             cur, seen = cur + _TENS[tok], True
         elif tok == "hundred":
             cur, seen = max(cur, 1.0) * 100, True
-        elif (
-            seen and tok == "and" and ahead(1) in ("a", "an") and ahead(2) in _FRACTIONS
-        ):
+        elif seen and tok == "and" and ahead(1) in ("a", "an") and ahead(2) in _FRACTIONS:
             cur += _FRACTIONS[ahead(2)]  # "two and a half"
             i += 2
         elif seen and tok == "point" and _UNITS.get(ahead(1), 10) < 10:
@@ -429,10 +417,7 @@ def _tolerance(c: float) -> float:
 
 
 def _said(phrase: str, text: str) -> bool:
-    return (
-        re.search(rf"(?<![a-z0-9]){re.escape(_norm(phrase))}(?![a-z0-9])", text)
-        is not None
-    )
+    return re.search(rf"(?<![a-z0-9]){re.escape(_norm(phrase))}(?![a-z0-9])", text) is not None
 
 
 def unsupported(params: Mapping[str, Any], text: str,
@@ -467,8 +452,7 @@ def unsupported(params: Mapping[str, Any], text: str,
 # ------------------------------------------------------------------ stated lengths (v4)
 _FEET = ("ft", "feet", "foot")
 _LENGTH = re.compile(
-    r"(?:\b([a-z]+) (?:of )?)?(\d+(?:\.\d+)?) ?(m|meters?|metres?|ft|feet|foot)\b"
-    r"(?: ([a-z]+))?"
+    r"(?:\b([a-z]+) (?:of )?)?(\d+(?:\.\d+)?) ?(m|meters?|metres?|ft|feet|foot)\b" r"(?: ([a-z]+))?"
 )
 # words that name the param a length sets, before it ("spacing of 3 m", "radius 10 m",
 # "altitude 8 metres", "at 7 m") or after it (the same nouns, and "3 m apart", "10 m
@@ -492,9 +476,7 @@ ROLE_AFTER = {
 def with_digits(text: str) -> str:
     """The request lower-cased, one space between tokens, spoken numbers as digits
     ("Six feet apart." -> "6 feet apart .")."""
-    return " ".join(
-        f"{t:g}" if isinstance(t, float) else t for t in _number_tokens(text)
-    )
+    return " ".join(f"{t:g}" if isinstance(t, float) else t for t in _number_tokens(text))
 
 
 def stated_lengths(text: str) -> list[tuple[str, float, tuple[str, ...]]]:
@@ -523,7 +505,84 @@ def misplaced_lengths(params: Mapping[str, Any], text: str) -> list[str]:
         if not hits:
             out.append(f"{phrase} sets nothing in the command")
         elif role and not set(hits) & set(role):
-            out.append(
-                f"{phrase} reads as {' or '.join(role)} but set {', '.join(hits)}"
-            )
+            out.append(f"{phrase} reads as {' or '.join(role)} but set {', '.join(hits)}")
+    return out
+
+
+# ------------------------------------------------------------------ code refusals (v6)
+# Requests the label guide says to refuse that code can tell from the words alone, so a
+# model (or a training seed) cannot turn them into a command. Written on R21's 1,250
+# written training requests and R16 dev only, never a sealed set: on those 1,310 texts
+# they fire on none of the 1,048 that should run or be asked about, and catch 44 of 45
+# two-behaviour, 20 of 20 single-drone and 63 of 111 out-of-domain requests (the rest are
+# chat that no model makes a command of). Out-of-range values and parameters a behaviour lacks stay with the schema,
+# ``unsupported`` and ``misplaced_lengths``.
+_ACTIONS = re.compile(
+    r"\b(land|lands|landing|touch ?down|take ?off|takeoff|lift ?off|liftoff|"
+    r"film|filming|record|recording|photograph\w*|"
+    r"(?:take|snap|shoot|grab|get|capture|record)\s+(?:a\s+|an\s+|some\s+|the\s+)?(?:\w+\s+)?"
+    r"(?:photos?|pictures?|pics?|snapshots?|selfies?|shots?|videos?|footage)|"
+    r"spray|spraying|deliver|delivery|payload|drop (?:\w+\s+){0,2}(?:over|on|onto|off|at)|"
+    r"latitude|longitude|coordinates?|gps coord\w*|"
+    r"-?\d{1,3}\.\d{2,}\s*[ns]?\s*,\s*-?\d{1,3}\.\d{2,}|"
+    r"(?:to|at)\s+-?\d{1,3}\.\d+\s*[ns]?\s*,\s*-?\d{1,3}\.\d+)"
+)
+_SPEED = re.compile(
+    r"\b(faster|slower|speed (?:up|it up)|slow (?:down|the|them|it|up)|km/?h|mph|knots|"
+    r"metres per second|meters per second|m/s)\b"
+)
+_CALLSIGN = re.compile(r"\bunit \d+ (?:reporting|here|calling|speaking|included|over)\b")
+_SINGLE = re.compile(
+    r"\b(?:drone|unit|quad|bird|copter|craft)\s*(?:#|no\.?\s*|number\s*)?"
+    r"(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten)\b(?!\s*(?:drones|units))"
+    r"|\b(?:only|just)\s+(?:the\s+)?(?:\w+\s+)?(?:drone|one|unit)\b(?!s)"
+    r"|\b(?:the\s+)?(?:red|blue|green|yellow|white|black|lead|leader|first|last)\s+"
+    r"(?:one|drone)\b|\bby itself\b"
+)
+_FAMILIES = {
+    "hover": r"\bhover\w*|\bhold (?:position|still|there|here|station)\b"
+             r"|\bstay (?:put|there|still)\b",
+    "formation": r"\bformation\b|\bline (?:up|formation|them up)\b|\bform (?:a|up)\b"
+                 r"|\bin a (?:line|v|grid|circle)\b|\bv[- ]?(?:shape|formation)\b",
+    "boids": r"\bboids?\b|\bflock\w*|\blike birds\b",
+    "search_grid": r"\bsearch\w*|\bsweep\w*|\bcomb\w*|\bgrid search\b|\blook for\b|\bscan\b",
+    "perimeter": r"\bperimeter\b|\bpatrol\w*|\bguard\w*|\borbit\w*"
+                 r"|\bcircle (?:the|around|round)\b|\bring around\b",
+    "person_follow": r"\bfollow\w*|\btrack\w*|\btail (?:that|the|him|her)\b",
+    "light_show": r"\blight ?show\b|\bleds?\b|\blights\b|\brainbow\b|\bdisco\b|\bsparkle\b",
+    "rth": r"\brth\b|\breturn\w*|\bcome (?:back|home)\b|\bhead (?:back|home)\b"
+           r"|\bback to base\b|\bgo(?:ing)? (?:home|back)\b|\bfly(?:ing)? home\b",
+}  # fmt: skip
+_SHAPES = {
+    "line": r"\bline\b|\bin a row\b", "v": r"\bv\b|\bv[- ]?shape|\bvee\b|\bchevron\b",
+    "grid": r"\bgrid\b(?! search)", "circle": r"\bcircle\b(?! (?:the|around|round|over))",
+}  # fmt: skip
+_JOIN = re.compile(
+    r"\b(then|after(?:wards| that| you)?|afterward|followed by|before|and|"
+    r"once (?:you|that|done|finished)|when (?:you're|you are|i stop|done|finished)|"
+    r"next|also|while|at the same time|meanwhile)\b"
+)
+_TEMPO = re.compile(_FAMILIES["light_show"] + r"|\bbpm\b|\bbeats?\b|\btempo\b")
+
+
+def code_refusals(text: str) -> list[str]:
+    """Why the request must be refused whatever a model makes of it: an action no
+    behaviour does (land, take off, film or photograph, spray, deliver or drop, fly to
+    coordinates, change speed), one named drone, two shapes at once, or two behaviours
+    joined in one request. Empty when none applies."""
+    t = text.lower()
+    out = []
+    m = _ACTIONS.search(t)
+    if m:
+        out.append(f"no behaviour does that ({m.group(1)})")
+    if _SPEED.search(t) and not _TEMPO.search(t):
+        out.append("the swarm's speed cannot be changed")
+    if _SINGLE.search(_CALLSIGN.sub(" ", t)):
+        out.append("commands go to the whole swarm, not one drone")
+    shapes = sorted(k for k, rx in _SHAPES.items() if re.search(rx, t))
+    if len(shapes) >= 2:
+        out.append(f"two shapes at once ({', '.join(shapes)})")
+    fams = sorted(f for f, rx in _FAMILIES.items() if re.search(rx, t))
+    if len(fams) >= 2 and _JOIN.search(t):
+        out.append(f"one behaviour per command ({', '.join(fams)})")
     return out

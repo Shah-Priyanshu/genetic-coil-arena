@@ -4,6 +4,7 @@
   "wrong": 0.03,
   "wrong_hi": 0.06
  },
+ "station": "v5",
  "verdict": "NOT PASSED",
  "systems": {
   "lora": {

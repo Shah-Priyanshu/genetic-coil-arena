@@ -146,6 +146,8 @@ class GroundTranslator(PolicyTranslator):
 
     _text = ""
     _calls = 0
+    refuse_rules = False  # v6: ``ground.code_refusals`` overrules any command
+
 
     def translate(self, text: str, pack: TranslationPack, priority: int = 0,
                   deadline: int | None = None) -> Any:  # fmt: skip
@@ -168,10 +170,12 @@ class GroundTranslator(PolicyTranslator):
             if isinstance(refusal, str) and "?" in refusal:
                 return (CLARIFY, [refusal.strip()])
         stop = isinstance(body, dict) and any(
-            isinstance(body.get(k), str) and body[k].strip()
-            for k in ("refusal", "clarify")
+            isinstance(body.get(k), str) and body[k].strip() for k in ("refusal", "clarify")
         )
         if isinstance(params, dict) and not stop:
+            why = gs.code_refusals(self._text) if self.refuse_rules else []
+            if why:
+                return (REFUSED, ["; ".join(why)])
             params = {k: v for k, v in params.items() if v is not None}
             if "behavior" in params:
                 params["behavior"] = _behavior_name(params["behavior"])
@@ -227,9 +231,7 @@ def keyword_params(text: str) -> dict[str, Any] | None:
         return None
     p: dict[str, Any] = {"behavior": behavior}
     feet = 0.3048 if re.search(r"\b(ft|feet|foot)\b", t) else 1.0
-    alt = re.search(
-        _NUM + r"\s*(?:m|meters?|metres?|ft|feet)?\s*(?:up|high|altitude)", t
-    )
+    alt = re.search(_NUM + r"\s*(?:m|meters?|metres?|ft|feet)?\s*(?:up|high|altitude)", t)
     alt = alt or re.search(r"(?:at|altitude(?: of)?)\s*" + _NUM, t)
     allowed = gs.BEHAVIOR_PARAMS[behavior]
     if alt and "alt_m" in allowed:
@@ -239,22 +241,15 @@ def keyword_params(text: str) -> dict[str, Any] | None:
             if re.search(rf"\b{shape}\b", t):
                 p["shape"] = shape
                 break
-        sp = re.search(
-            _NUM + r"\s*(?:m|meters?|metres?|ft|feet)?\s*(?:apart|spacing)", t
-        )
+        sp = re.search(_NUM + r"\s*(?:m|meters?|metres?|ft|feet)?\s*(?:apart|spacing)", t)
         if sp:
             p["spacing_m"] = round(float(sp.group(1)) * feet, 2)
     if behavior in ("search_grid", "perimeter"):
         for place in gs.SITE:
-            if any(
-                re.search(rf"\b{re.escape(n)}\b", t)
-                for n in (place.name, *place.aliases)
-            ):
+            if any(re.search(rf"\b{re.escape(n)}\b", t) for n in (place.name, *place.aliases)):
                 p["area"] = place.name
                 break
-        r = re.search(
-            _NUM + r"\s*(?:m|meters?|metres?|ft|feet)?\s*(?:radius|out|away)", t
-        )
+        r = re.search(_NUM + r"\s*(?:m|meters?|metres?|ft|feet)?\s*(?:radius|out|away)", t)
         if r and behavior == "perimeter":
             p["radius_m"] = round(float(r.group(1)) * feet, 2)
     if behavior == "light_show":

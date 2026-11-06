@@ -313,8 +313,11 @@ def reply_loss(net: Any, ids: list[int], labels: list[int]) -> Any:
     return F.cross_entropy(logits.float(), y, ignore_index=-100)
 
 
-def translator(net: Any, tok: Any, name: str) -> Any:
-    return r16.GroundTranslator(HFChatBackend(net, tok, name), r16.build_registry())
+def translator(net: Any, tok: Any, name: str, refuse_rules: bool = False) -> Any:
+    """The v5 station around a model; ``refuse_rules``: v6 (``ground.code_refusals``)."""
+    tr = r16.GroundTranslator(HFChatBackend(net, tok, name), r16.build_registry())
+    tr.refuse_rules = refuse_rules
+    return tr
 
 
 def run_items(tr: Any, items: list[dict[str, Any]], tag: str, log: Any = print) -> list[dict]:

@@ -334,3 +334,23 @@ def test_g14c_sealed_set_is_pinned_fresh_and_valid():
     old = r16_sealed.load_dev() + r16_sealed.load_sealed() + r16_sealed.load_sealed(b=True)
     assert not texts & ({i["text"] for i in old} | {e.text for e in r16.EXAMPLES})
     assert not check_labels(items)  # R21's training texts live in the data folder, not here
+
+
+def test_code_refusals_catch_what_no_behaviour_does():
+    for text in ("land them all now", "take a few photos of the barn", "fly to 51.5, -0.12",
+                 "drone 3, come back home", "form a line then go home",
+                 "line up in a circle", "slow the swarm down a bit"):  # fmt: skip
+        assert gs.code_refusals(text), text
+    for text in ("hover at 8 m for the parade photo", "Unit 7 reporting, line them up",
+                 "rainbow lights a bit slower than usual, 100 bpm",
+                 "search the north field and keep 6 m up", "all units, RTH"):  # fmt: skip
+        assert not gs.code_refusals(text), text
+
+
+def test_v6_refuses_a_command_the_rules_forbid():
+    reply = {"params": {"behavior": "formation", "shape": "line"}}
+    assert translate(reply, text="form a line then go home").status == "ok"  # v5 runs it
+    tr = r16.GroundTranslator(FakeBackend([reply]), REG)
+    tr.refuse_rules = True
+    res = tr.translate("form a line then go home", r16.pack())
+    assert res.status == "refused" and "one behaviour per command" in res.reason
